@@ -1,0 +1,85 @@
+# =============================================================================
+# SETUP COMMANDS - Copy and paste into PowerShell
+# =============================================================================
+# Multimodal Banglish Classroom Summarizer
+# Windows 11 | RTX 3090 | AWQ Quantization (No bitsandbytes)
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# STEP 1: Create Fresh Conda Environment
+# -----------------------------------------------------------------------------
+conda create -n thesis_v2 python=3.10 -y
+conda activate thesis_v2
+
+# -----------------------------------------------------------------------------
+# STEP 2: Install PyTorch with CUDA 12.4
+# -----------------------------------------------------------------------------
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
+
+# -----------------------------------------------------------------------------
+# STEP 3: Install AutoGPTQ (Windows-Compatible AWQ)
+# -----------------------------------------------------------------------------
+# This is the critical step for Windows - uses pre-built wheels
+pip install auto-gptq --extra-index-url https://huggingface.github.io/autogptq-index/whl/cu124/
+
+# -----------------------------------------------------------------------------
+# STEP 4: Install Transformers & Acceleration Stack
+# -----------------------------------------------------------------------------
+pip install transformers accelerate optimum safetensors sentencepiece
+
+# -----------------------------------------------------------------------------
+# STEP 5: Install Qwen2-VL Dependencies (VLM for whiteboard understanding)
+# -----------------------------------------------------------------------------
+pip install qwen-vl-utils
+
+# -----------------------------------------------------------------------------
+# STEP 6: Install Audio Processing Libraries
+# -----------------------------------------------------------------------------
+pip install librosa soundfile pydub
+
+# PyAudio for live microphone capture (Windows)
+# If pip install pyaudio fails, try:
+#   pip install pipwin && pipwin install pyaudio
+# Or download wheel from: https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyaudio
+pip install pyaudio
+
+# -----------------------------------------------------------------------------
+# STEP 7: Install Vision Processing Libraries
+# -----------------------------------------------------------------------------
+pip install opencv-python pillow
+
+# -----------------------------------------------------------------------------
+# STEP 8: Install Video Processing
+# -----------------------------------------------------------------------------
+pip install moviepy
+
+# -----------------------------------------------------------------------------
+# STEP 9: Install Utilities
+# -----------------------------------------------------------------------------
+pip install tqdm pyyaml python-dotenv rich pytest ipykernel jupyter
+
+# -----------------------------------------------------------------------------
+# STEP 10: Verify Installation
+# -----------------------------------------------------------------------------
+python verify_stack.py
+
+# =============================================================================
+# TROUBLESHOOTING
+# =============================================================================
+# 
+# Issue: "CUDA out of memory"
+# Fix: Close other GPU applications, or use a smaller test model
+#
+# Issue: "auto_gptq import error"  
+# Fix: Ensure you used the correct --extra-index-url for cu124
+#
+# Issue: "torch.cuda.is_available() returns False"
+# Fix: 
+#   1. Verify NVIDIA drivers are installed: nvidia-smi
+#   2. Reinstall PyTorch with correct CUDA version
+#   3. Check CUDA_PATH environment variable
+#
+# Issue: "No module named 'transformers'"
+# Fix: Ensure conda environment is activated: conda activate thesis_v2
+#
+# =============================================================================

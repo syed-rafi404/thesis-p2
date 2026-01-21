@@ -1,0 +1,71 @@
+# =============================================================================
+# Global Configuration - Multimodal Banglish Classroom Summarizer
+# =============================================================================
+
+# Project Metadata
+project:
+  name: "Multimodal Banglish Classroom Summarizer"
+  version: "0.1.0"
+  author: "Master's Thesis"
+
+# Hardware Configuration
+hardware:
+  device: "cuda"
+  gpu_memory_fraction: 0.9  # Use 90% of GPU memory max
+  mixed_precision: true
+
+# Model Configuration
+models:
+  # Summarization LLM (AWQ Quantized)
+  summarizer:
+    name: "TheBloke/Mistral-7B-Instruct-v0.2-AWQ"
+    quantization: "awq"
+    max_new_tokens: 2048
+    temperature: 0.7
+    top_p: 0.9
+  
+  # Speech Recognition (Whisper)
+  asr:
+    name: "openai/whisper-medium"
+    language: "bengali"  # Helps with Banglish accent
+    task: "transcribe"
+    chunk_length_s: 30
+    # ~1.5GB VRAM - good balance of speed/accuracy for Banglish
+  
+  # Vision Language Model (replaces traditional OCR - EasyOCR failed)
+  vlm:
+    name: "Qwen/Qwen2-VL-7B-Instruct"
+    precision: "float16"  # ~15GB VRAM on RTX 3090
+    max_new_tokens: 1024
+    # NOTE: Using float16 (not AWQ) due to Windows quantization issues
+    # Fits comfortably in RTX 3090's 24GB VRAM
+
+# Audio Processing
+audio:
+  sample_rate: 16000
+  chunk_duration_sec: 30
+  overlap_sec: 2
+  denoise: true
+
+# Vision Processing
+vision:
+  frame_extraction:
+    fps: 1  # Extract 1 frame per second
+    resize_width: 1280
+  whiteboard_detection:
+    min_area_ratio: 0.1
+    blur_threshold: 100
+
+# Output Configuration
+output:
+  format: "markdown"
+  include_timestamps: true
+  include_images: true
+
+# Paths (relative to project root)
+paths:
+  raw_data: "data/raw"
+  processed_data: "data/processed"
+  outputs: "data/outputs"
+  logs: "experiments/logs"
+  checkpoints: "experiments/checkpoints"
