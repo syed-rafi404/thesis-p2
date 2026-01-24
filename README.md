@@ -138,7 +138,17 @@ python src/ingest_video.py path/to/lecture.mp4 --interval 30
 
 ---
 
-## 📋 Research Pipeline (Batch Processing)
+## 📋 Research Pipeline (Full Demo)
+
+### 🎯 Research Novelties
+
+| Novelty | Description | Implementation |
+|---------|-------------|----------------|
+| **1. Visual-Biased ASR** | Bias Whisper's logits toward whiteboard keywords | `src/audio/visual_bias_processor.py` |
+| **2. Spatio-Temporal Gaze Tracking** | Detect lecturer pointing at whiteboard terms | `src/research/gaze_tracker.py` |
+| **3. Multimodal Fusion** | Combine audio + visual + gaze for summarization | `src/summarizer/generator.py` |
+
+### Pipeline Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -156,84 +166,128 @@ python src/ingest_video.py path/to/lecture.mp4 --interval 30
 └─────────────────────────────────────────────────────────────────┘
                               │
               ┌───────────────┴───────────────┐
-              ▼                               ▼
-┌─────────────────────────┐     ┌─────────────────────────┐
-│    AUDIO OUTPUTS        │     │    VIDEO OUTPUTS        │
-│  ─────────────────────  │     │  ─────────────────────  │
-│  📁 full_audio.wav      │     │  📁 frames/*.jpg        │
-│  (16kHz mono)           │     │  (every 30 seconds)     │
-└─────────────────────────┘     └─────────────────────────┘
               │                               │
               ▼                               ▼
-┌─────────────────────────┐     ┌─────────────────────────┐
-│  DUAL-STREAM ASR        │     │    VLM WHITEBOARD OCR   │
-│  ─────────────────────  │     │  ─────────────────────  │
-│  📁 src/audio/          │     │  📁 src/vision/         │
-│     dual_transcribe.py  │     │     whiteboard_ocr.py   │
-│                         │     │                         │
-│  Model: Whisper         │     │  Model: Qwen2.5-VL-7B   │
-│  large-v3-turbo         │     │  (FP16, 15GB VRAM)      │
-│                         │     │                         │
-│  Stream 1: English      │     │  Prompt: "Transcribe    │
-│  Stream 2: Bengali      │     │  all text, formulas,    │
-│  (with Bengali prompt)  │     │  diagrams on board"     │
-└─────────────────────────┘     └─────────────────────────┘
+┌─────────────────────────────┐   ┌─────────────────────────────┐
+│   TRACK A: AUDIO            │   │   TRACK B: VISION           │
+│  ─────────────────────────  │   │  ─────────────────────────  │
+│                             │   │                             │
+│  📁 src/audio/transcriber.py│   │  📁 src/vision/             │
+│                             │   │     whiteboard_ocr.py       │
+│  Model: Whisper             │   │                             │
+│  large-v3-turbo             │   │  Model: Qwen2.5-VL-7B       │
+│                             │   │  (FP16, 15GB VRAM)          │
+│  ┌─────────────────────┐    │   │                             │
+│  │ ★ NOVELTY 1:        │    │   │  Output:                    │
+│  │ Visual-Biased ASR   │◄───┼───┤  • visual_keywords[]        │
+│  │                     │    │   │  • text_bounding_boxes[]    │
+│  │ LogitsProcessor     │    │   │                             │
+│  │ biases toward       │    │   ├─────────────────────────────┤
+│  │ whiteboard terms    │    │   │                             │
+│  └─────────────────────┘    │   │  📁 src/research/           │
+│                             │   │     gaze_tracker.py         │
+│                             │   │                             │
+│                             │   │  Model: YOLOv8n-Pose        │
+│                             │   │                             │
+│                             │   │  ┌─────────────────────┐    │
+│                             │   │  │ ★ NOVELTY 2:        │    │
+│                             │   │  │ Gaze Tracking       │    │
+│                             │   │  │                     │    │
+│                             │   │  │ Detects hand        │    │
+│                             │   │  │ pointing at terms   │    │
+│                             │   │  └─────────────────────┘    │
+└─────────────────────────────┘   └─────────────────────────────┘
               │                               │
-              ▼                               ▼
-┌─────────────────────────┐     ┌─────────────────────────┐
-│  📄 transcript_en.json  │     │  📄 vision_context.json │
-│  📄 transcript_bn.json  │     │  (per-frame analysis)   │
-└─────────────────────────┘     └─────────────────────────┘
-              │                               │
+              │ transcript_visual_biased.txt  │ gaze_events.json
+              │                               │ visual_keywords.json
               └───────────────┬───────────────┘
                               ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│                   MULTIMODAL FUSION + LLM                       │
+│               TRACK C: EVALUATION                               │
+│  ─────────────────────────────────────────────────────────────  │
+│  📁 src/evaluation/evaluator.py                                 │
+│                                                                 │
+│  BanglishEvaluator:                                             │
+│  • Compare Standard Whisper vs Visual-Biased Whisper            │
+│  • Calculate Technical Term Recall (TTR)                        │
+│  • Fuzzy matching (thefuzz) with threshold > 85                 │
+│                                                                 │
+│  Output: TTR Improvement Score (e.g., +33.3%)                   │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                   ★ NOVELTY 3: MULTIMODAL FUSION + LLM          │
 │  ─────────────────────────────────────────────────────────────  │
 │  📁 src/summarizer/generator.py                                 │
 │                                                                 │
 │  Model: Qwen2.5-7B-Instruct (FP16, 14GB VRAM)                   │
 │                                                                 │
+│  Inputs:                                                        │
+│  • Visual-biased transcript (corrected technical terms)         │
+│  • Whiteboard content (formulas, diagrams)                      │
+│  • Gaze events (attention-weighted importance)                  │
+│                                                                 │
 │  Strategy:                                                      │
 │  • Use VISUAL text as source of truth for technical terms       │
-│  • Correct audio errors (e.g., "A-Store" → "A*")                │
-│  • Use audio for flow and explanations                          │
+│  • Weight content by gaze attention                             │
 │  • Generate structured Markdown notes                           │
 └─────────────────────────────────────────────────────────────────┘
                               │
                               ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│                   📄 final_lecture_notes.md                     │
+│                   📄 OUTPUT FILES                               │
 │  ─────────────────────────────────────────────────────────────  │
-│  • Corrected technical terms                                    │
-│  • Accurate formulas from whiteboard                            │
-│  • Structured Markdown format                                   │
+│  • final_lecture_notes.md     (structured lecture summary)      │
+│  • transcript_visual_biased.txt (novelty transcript)            │
+│  • evaluation.json            (TTR improvement metrics)         │
+│  • gaze_events.json           (pointing gesture timestamps)     │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
 ### Models Used
 
-| Component | Model | Precision | VRAM |
-|-----------|-------|-----------|------|
-| ASR | `openai/whisper-large-v3-turbo` | FP16 | ~1.5 GB |
-| VLM | `Qwen/Qwen2.5-VL-7B-Instruct` | FP16 | ~15 GB |
-| LLM | `Qwen/Qwen2.5-7B-Instruct` | FP16 | ~14 GB |
+| Component | Model | Precision | VRAM | Purpose |
+|-----------|-------|-----------|------|---------|
+| ASR | `openai/whisper-large-v3-turbo` | FP16 | ~1.5 GB | Speech-to-text with visual bias |
+| VLM | `Qwen/Qwen2.5-VL-7B-Instruct` | FP16 | ~15 GB | Whiteboard text extraction |
+| LLM | `Qwen/Qwen2.5-7B-Instruct` | FP16 | ~14 GB | Multimodal fusion & summarization |
+| Pose | `YOLOv8n-Pose` | FP32 | ~0.5 GB | Hand/body pose for gaze tracking |
 
 > **Note**: AWQ quantization was originally planned but had Windows compatibility issues. FP16 models work reliably on RTX 3090 (24GB VRAM).
 
-### Quick Pipeline Execution
+### 🚀 Quick Start: Master Orchestration Script
+
+```powershell
+# Run the full thesis pipeline (all 3 novelties)
+python run_thesis.py data/raw/lecture.mp4
+
+# Fast demo mode (mock VLM, skip gaze tracking)
+python run_thesis.py data/raw/lecture.mp4 --mock --skip-gaze
+
+# Custom output directory
+python run_thesis.py data/raw/lecture.mp4 -o results/experiment1 --interval 60
+```
+
+### Manual Step-by-Step Execution
 
 ```powershell
 # Step 1: Ingest video (extract audio + frames)
 python src/ingest_video.py data/raw/lecture.mp4 --interval 30 --output-dir temp_output
 
-# Step 2: Dual-stream audio transcription
-python src/audio/dual_transcribe.py temp_output/full_audio.wav --output-dir temp_output
-
-# Step 3: VLM whiteboard analysis
+# Step 2: VLM whiteboard analysis (extracts visual_keywords)
 python src/vision/whiteboard_ocr.py temp_output/frames --output temp_output/vision_context.json
 
-# Step 4: Generate final lecture notes
+# Step 3: Visual-biased transcription (NOVELTY 1)
+python src/audio/transcriber.py temp_output/full_audio.wav --visual-context temp_output/vision_context.json
+
+# Step 4: Gaze tracking (NOVELTY 2)
+python src/research/gaze_tracker.py temp_output/frames --text-boxes temp_output/vision_context.json
+
+# Step 5: Evaluate TTR improvement
+python src/evaluation/evaluator.py
+
+# Step 6: Generate final lecture notes (NOVELTY 3)
 python src/summarizer/generator.py --output final_lecture_notes.md
 ```
 

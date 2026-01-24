@@ -23,11 +23,13 @@ from dataclasses import dataclass
 
 import torch
 import librosa
-from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor
+from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor, LogitsProcessorList
 
 from rich.console import Console
 from rich.progress import Progress, SpinnerColumn, TextColumn
 from rich.panel import Panel
+
+from src.audio.visual_bias_processor import create_visual_biased_processor
 
 console = Console()
 
@@ -171,12 +173,16 @@ class BanglishTranscriber:
     def transcribe(
         self,
         audio_path: str,
+        visual_context: List[str] = None,
     ) -> TranscriptResult:
         """
         Transcribe an audio file using Whisper's native long-form transcription.
         
         Args:
             audio_path: Path to audio file (WAV, MP3, etc.)
+            visual_context: Optional list of keywords/terms extracted from visual content
+                           (e.g., whiteboard OCR). These terms will be biased in the
+                           logits during generation to improve recognition of technical terms.
             
         Returns:
             TranscriptResult with full text and timestamped segments
@@ -185,7 +191,7 @@ class BanglishTranscriber:
             - Language is auto-detected (no forced language to avoid hallucinations)
             - Uses Whisper's native chunking mechanism for long-form audio
             - condition_on_previous_text=False prevents repetition loops
-            - temperature=0.0 for deterministic greedy decoding
+            - temperature=0.0 for deterministic greedy decoding (required for visual biasing)
         """
         # Ensure model is loaded
         if not self._is_loaded:
@@ -233,7 +239,8 @@ class BanglishTranscriber:
             # - prompt_ids biases model to expect technical English terms mixed in
             
             # Initial prompt to bias model toward Banglish (mixed Bengali + English)
-            initial_prompt = "This is a technical lecture in Banglish. It mixes Bengali and English terms like Algorithm, Heuristic, A-Star, Greedy Search."
+            # Keep it generic - specific terms come from visual_context parameter
+            initial_prompt = "This is a technical lecture in Banglish. It mixes Bengali and English. Technical terms, formulas, and code are spoken in English."
             prompt_ids = self.processor.get_prompt_ids(initial_prompt, return_tensors="pt").to(self.device)
             
             generate_kwargs = {
@@ -243,13 +250,25 @@ class BanglishTranscriber:
                 "prompt_ids": prompt_ids,
                 # Anti-hallucination settings
                 "condition_on_prev_tokens": False,  # Prevent repetition loops
-                "temperature": 0.0,                  # Greedy decoding
+                "temperature": 0.0,                  # Greedy decoding (required for deterministic biasing)
                 "no_speech_threshold": 0.6,          # Filter silence
                 "compression_ratio_threshold": 2.4,  # Detect repetitive output
                 "logprob_threshold": -1.0,           # Accept low confidence
             }
             if attention_mask is not None:
                 generate_kwargs["attention_mask"] = attention_mask
+            
+            # Create visual bias logits processor if visual context provided
+            logits_processor = None
+            if visual_context and len(visual_context) > 0:
+                console.print(f"[blue]→ Visual bias: {len(visual_context)} terms from whiteboard[/blue]")
+                bias_processor = create_visual_biased_processor(
+                    tokenizer=self.processor.tokenizer,
+                    visual_keywords=visual_context,
+                    bias_value=2.0  # Moderate boost to visual terms
+                )
+                logits_processor = LogitsProcessorList([bias_processor])
+                generate_kwargs["logits_processor"] = logits_processor
             
             generated_ids = self.model.generate(
                 input_features,
