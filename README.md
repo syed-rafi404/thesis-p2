@@ -295,5 +295,5 @@ python src/summarizer/generator.py --output final_lecture_notes.md
 
 ## 📄 License
 
-This project is part of academic research for a Master's Thesis.
+This project is part of academic research for a Undergrad Thesis.
 
