@@ -53,9 +53,11 @@ console = Console()
 
 from src.ingest_video import VideoIngestor
 from src.audio.transcriber import BanglishTranscriber
+from src.audio.transcriber_specialized import BanglaASRTranscriber
 from src.vision.whiteboard_ocr import WhiteboardVLM
 from src.research.gaze_tracker import GazeTracker
 from src.evaluation.evaluator import BanglishEvaluator
+from src.summarizer.generator import LectureNoteGenerator
 
 
 # ============================================================================
@@ -73,9 +75,10 @@ class GazeEvent:
 @dataclass
 class PipelineResult:
     """Complete result from the thesis pipeline."""
-    # Track A: Audio
-    transcript_with_bias: str
-    transcript_without_bias: str  # Simulated baseline
+    # Track A: Audio (Dual ASR)
+    transcript_whisper: str           # Whisper with visual bias
+    transcript_whisper_baseline: str  # Whisper without bias
+    transcript_bangla: str            # BanglaASR for Bengali parts
     
     # Track B: Vision
     visual_keywords: List[str]
@@ -85,6 +88,9 @@ class PipelineResult:
     # Track C: Evaluation
     ttr_improvement: float
     evaluation_details: Dict[str, Any]
+    
+    # Track D: Final Output
+    final_lecture_notes: str          # LLM-generated notes
     
     # Metadata
     processing_time: float
@@ -215,25 +221,36 @@ class ThesisPipeline:
             console.print()
         
         # ================================================================
-        # STEP 3: AUDIO TRACK (Track A) - WITH VISUAL BIAS
+        # STEP 3: AUDIO TRACK (Track A) - DUAL ASR SYSTEM
         # ================================================================
         console.print(Panel.fit(
-            "[bold]STEP 3: Audio Track (Visual-Biased ASR)[/bold]\n"
-            "Whisper transcription with logits biased toward visual keywords",
+            "[bold]STEP 3: Audio Track (Dual ASR System)[/bold]\n"
+            "Whisper (English/Banglish) + BanglaASR (Bengali)",
             border_style="yellow"
         ))
         
-        transcript_with_bias = self._run_transcription(
+        # STEP 3A: Whisper Baseline (NO visual bias)
+        console.print("[bold cyan]3A. Whisper Baseline (no visual bias)[/bold cyan]")
+        transcript_whisper_baseline = self._run_transcription(
             audio_path, 
-            visual_context=visual_keywords
+            visual_context=None  # No bias!
         )
         
-        # Also run without bias for comparison (simulated for demo)
-        transcript_without_bias = self._simulate_baseline_transcript(transcript_with_bias)
+        # STEP 3B: Whisper with Visual-bias
+        console.print("[bold cyan]3B. Whisper Visual-Biased[/bold cyan]")
+        transcript_whisper = self._run_transcription(
+            audio_path, 
+            visual_context=visual_keywords  # With bias!
+        )
         
-        console.print(f"[green]✓ Transcription complete[/green]")
-        console.print(f"[dim]  With visual bias: {len(transcript_with_bias)} chars[/dim]")
-        console.print(f"[dim]  Baseline (simulated): {len(transcript_without_bias)} chars[/dim]\n")
+        # STEP 3C: BanglaASR for Bengali recognition
+        console.print("[bold cyan]3C. BanglaASR (Bengali Specialized)[/bold cyan]")
+        transcript_bangla = self._run_bangla_transcription(audio_path)
+        
+        console.print(f"[green]✓ All transcriptions complete[/green]")
+        console.print(f"[dim]  Whisper baseline: {len(transcript_whisper_baseline)} chars[/dim]")
+        console.print(f"[dim]  Whisper visual-biased: {len(transcript_whisper)} chars[/dim]")
+        console.print(f"[dim]  BanglaASR: {len(transcript_bangla)} chars[/dim]\n")
         
         # ================================================================
         # STEP 4: EVALUATION (Track C)
@@ -251,8 +268,8 @@ class ThesisPipeline:
         
         comparison = self.evaluator.compare_transcripts(
             ground_truth_terms=ground_truth,
-            baseline_transcript=transcript_without_bias,
-            biased_transcript=transcript_with_bias,
+            baseline_transcript=transcript_whisper_baseline,
+            biased_transcript=transcript_whisper,
             baseline_name="Standard Whisper",
             biased_name="Visual-Biased Whisper",
         )
@@ -260,20 +277,38 @@ class ThesisPipeline:
         self.evaluator.print_comparison(comparison)
         
         # ================================================================
-        # STEP 5: SAVE RESULTS
+        # STEP 5: LLM SUMMARIZATION (Track D) - MULTIMODAL FUSION
         # ================================================================
         console.print(Panel.fit(
-            "[bold]STEP 5: Saving Results[/bold]",
+            "[bold]STEP 5: LLM Summarization (Multimodal Fusion)[/bold]\n"
+            "Merging Whisper + BanglaASR + VLM → Final Lecture Notes",
             border_style="cyan"
         ))
         
+        final_lecture_notes = self._generate_lecture_notes(
+            transcript_whisper=transcript_whisper,
+            transcript_bangla=transcript_bangla,
+            visual_keywords=visual_keywords,
+            gaze_events=gaze_events,
+        )
+        
+        # ================================================================
+        # STEP 6: SAVE ALL RESULTS
+        # ================================================================
+        console.print(Panel.fit(
+            "[bold]STEP 6: Saving All Results[/bold]",
+            border_style="blue"
+        ))
+        
         self._save_results(
-            transcript_with_bias,
-            transcript_without_bias,
-            visual_keywords,
-            text_boxes,
-            gaze_events,
-            comparison,
+            transcript_whisper=transcript_whisper,
+            transcript_whisper_baseline=transcript_whisper_baseline,
+            transcript_bangla=transcript_bangla,
+            visual_keywords=visual_keywords,
+            text_boxes=text_boxes,
+            gaze_events=gaze_events,
+            evaluation=comparison,
+            final_notes=final_lecture_notes,
         )
         
         # ================================================================
@@ -282,13 +317,15 @@ class ThesisPipeline:
         processing_time = time.time() - start_time
         
         result = PipelineResult(
-            transcript_with_bias=transcript_with_bias,
-            transcript_without_bias=transcript_without_bias,
+            transcript_whisper=transcript_whisper,
+            transcript_whisper_baseline=transcript_whisper_baseline,
+            transcript_bangla=transcript_bangla,
             visual_keywords=visual_keywords,
             text_boxes=text_boxes,
             gaze_events=gaze_events,
             ttr_improvement=comparison['improvement_pct'],
             evaluation_details=comparison,
+            final_lecture_notes=final_lecture_notes,
             processing_time=processing_time,
             video_duration=video_duration,
         )
@@ -449,61 +486,146 @@ class ThesisPipeline:
         
         return result.text
     
-    def _simulate_baseline_transcript(self, biased_transcript: str) -> str:
+    # NOTE: _simulate_baseline_transcript() has been REMOVED
+    # We now run TRUE A/B comparison with two real transcriptions:
+    # 1. Baseline: Whisper without visual_context
+    # 2. Biased: Whisper WITH visual_context (logits processor active)
+    # This gives us a genuine measurement of TTR improvement.
+    
+    def _run_bangla_transcription(self, audio_path: str) -> str:
         """
-        Simulate a baseline transcript by introducing common ASR errors.
+        Run BanglaASR transcription for Bengali content.
         
-        In a real experiment, this would be a separate transcription run
-        without visual bias. For demo purposes, we simulate realistic errors
-        that ASR commonly makes on technical terms.
+        Args:
+            audio_path: Path to audio file
+            
+        Returns:
+            Bengali transcription text
         """
-        import random
-        import re
+        try:
+            bangla_transcriber = BanglaASRTranscriber()
+            result = bangla_transcriber.transcribe(audio_path)
+            bangla_transcriber.unload_model()  # Free GPU memory
+            return result.text
+        except Exception as e:
+            console.print(f"[yellow]⚠ BanglaASR failed: {e}[/yellow]")
+            console.print("[yellow]  Continuing with Whisper output only...[/yellow]")
+            return ""
+    
+    def _generate_lecture_notes(
+        self,
+        transcript_whisper: str,
+        transcript_bangla: str,
+        visual_keywords: List[str],
+        gaze_events: List[GazeEvent],
+    ) -> str:
+        """
+        Generate final lecture notes using LLM (Qwen2.5-7B-Instruct).
         
-        simulated = biased_transcript
+        Merges:
+        - Whisper transcript (English + Banglish)
+        - BanglaASR transcript (Bengali)
+        - Visual keywords from VLM
+        - Gaze events (what professor emphasized)
         
-        # Common ASR error patterns (topic-agnostic)
-        # These simulate how Whisper might mishear technical terms
-        error_patterns = [
-            # Acronyms often get spaced out or misheard
-            (r'\bBFS\b', ['B F S', 'BF S', 'beef s']),
-            (r'\bDFS\b', ['D F S', 'DF S', 'deaf s']),
-            (r'\bDNA\b', ['D N A', 'the NA']),
-            (r'\bRNA\b', ['R N A', 'are NA']),
-            (r'\bAPI\b', ['A P I', 'a pie']),
-            (r'\bSQL\b', ['S Q L', 'sequel']),
-            (r'\bGPU\b', ['G P U', 'GP you']),
-            (r'\bCPU\b', ['C P U', 'see PU']),
+        Returns:
+            Markdown formatted lecture notes
+        """
+        try:
+            generator = LectureNoteGenerator()
+            generator.load_model()
             
-            # Special characters often misheard
-            (r'\bA\*\b', ['A star', 'a store', 'Astar']),
-            (r'\bO\(n\)', ['O of n', 'o n', 'Owen']),
-            (r'\bO\(1\)', ['O of 1', 'o one']),
+            # Build multimodal context
+            visual_content = "\\n".join(visual_keywords) if visual_keywords else "No visual content extracted"
             
-            # Technical terms with common mishearings
-            (r'\balgorithm\b', ['al-gorithm', 'algorism']),
-            (r'\bheuristic\b', ['heuristics', 'hueuristic']),
-            (r'\brecursion\b', ['recursion', 're-cursion']),
-            (r'\brecursive\b', ['recursive', 're-cursive']),
-            (r'\btraversal\b', ['traversal', 'travel']),
-            (r'\bpolymorphism\b', ['polymorphism', 'poly morphism']),
-        ]
-        
-        # Apply random errors (30% chance per pattern found)
-        for pattern, replacements in error_patterns:
-            if re.search(pattern, simulated, re.IGNORECASE) and random.random() < 0.3:
-                replacement = random.choice(replacements)
-                simulated = re.sub(pattern, replacement, simulated, count=1, flags=re.IGNORECASE)
-        
-        # Additionally, randomly corrupt some capitalized technical terms
-        # by lowercasing them (simulating ASR not recognizing proper nouns)
-        words = simulated.split()
-        for i, word in enumerate(words):
-            if len(word) > 4 and word[0].isupper() and word[1:].islower():
-                if random.random() < 0.15:  # 15% chance
-                    words[i] = word.lower()
-        
-        return ' '.join(words)
+            gaze_summary = ""
+            if gaze_events:
+                gaze_summary = "\\n".join([
+                    f"- At {e.timestamp:.0f}s: Professor pointed at '{e.term}'"
+                    for e in gaze_events[:10]  # Limit to first 10
+                ])
+            else:
+                gaze_summary = "No pointing gestures detected"
+            
+            # Build the prompt
+            system_prompt = """You are an expert lecture note generator. Create comprehensive, well-structured lecture notes in Markdown format.
+
+You have access to multiple sources:
+1. WHISPER TRANSCRIPT - English/Banglish audio transcription (may have errors)
+2. BANGLA TRANSCRIPT - Bengali audio transcription (may capture Bengali words better)
+3. VISUAL KEYWORDS - Technical terms extracted from whiteboard by AI vision
+4. GAZE EVENTS - When the professor pointed at specific terms (emphasis indicators)
+
+CRITICAL INSTRUCTIONS:
+- Use VISUAL KEYWORDS as the source of truth for technical terms, formulas, and definitions
+- Cross-reference both transcripts to correct errors
+- Terms the professor pointed at (GAZE EVENTS) are important - emphasize them
+- Output clean, well-structured Markdown lecture notes
+- Include all formulas exactly as they appear in visual keywords
+- Organize by topic with clear headings
+- Add a summary section at the end"""
+
+            user_prompt = f"""Please merge these sources into comprehensive lecture notes:
+
+## WHISPER TRANSCRIPT (English/Banglish):
+{transcript_whisper[:8000]}{"..." if len(transcript_whisper) > 8000 else ""}
+
+## BANGLA TRANSCRIPT (Bengali):
+{transcript_bangla[:4000]}{"..." if len(transcript_bangla) > 4000 else "" if transcript_bangla else "No Bengali transcript available"}
+
+## VISUAL KEYWORDS (from whiteboard):
+{visual_content}
+
+## GAZE EVENTS (professor emphasis):
+{gaze_summary}
+
+---
+
+Generate comprehensive lecture notes in Markdown format. Include:
+1. Main topics and subtopics
+2. Key definitions and formulas
+3. Important concepts explained
+4. Summary section
+
+Output:"""
+
+            # Generate using the model
+            messages = [
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_prompt}
+            ]
+            
+            text = generator.tokenizer.apply_chat_template(
+                messages,
+                tokenize=False,
+                add_generation_prompt=True
+            )
+            
+            import torch
+            inputs = generator.tokenizer(text, return_tensors="pt").to(generator.model.device)
+            
+            with torch.no_grad():
+                outputs = generator.model.generate(
+                    **inputs,
+                    max_new_tokens=2048,
+                    do_sample=True,
+                    temperature=0.7,
+                    top_p=0.9,
+                    pad_token_id=generator.tokenizer.eos_token_id,
+                )
+            
+            generated_ids = outputs[0][inputs.input_ids.shape[1]:]
+            notes = generator.tokenizer.decode(generated_ids, skip_special_tokens=True)
+            
+            generator.unload_model()  # Free GPU memory
+            
+            console.print(f"[green]✓ Lecture notes generated ({len(notes)} chars)[/green]")
+            return notes.strip()
+            
+        except Exception as e:
+            console.print(f"[yellow]⚠ LLM summarization failed: {e}[/yellow]")
+            console.print("[yellow]  Returning raw transcript as fallback...[/yellow]")
+            return f"# Lecture Notes (Raw Transcript)\\n\\n{transcript_whisper[:5000]}"
     
     def _extract_keywords_from_text(self, text: str) -> List[str]:
         """
@@ -577,20 +699,30 @@ class ThesisPipeline:
     
     def _save_results(
         self,
-        transcript_with_bias: str,
-        transcript_without_bias: str,
+        transcript_whisper: str,
+        transcript_whisper_baseline: str,
+        transcript_bangla: str,
         visual_keywords: List[str],
         text_boxes: List[Dict[str, Any]],
         gaze_events: List[GazeEvent],
         evaluation: Dict[str, Any],
+        final_notes: str,
     ):
         """Save all results to output directory."""
         # Save transcripts
-        (self.output_dir / "transcript_visual_biased.txt").write_text(
-            transcript_with_bias, encoding="utf-8"
+        (self.output_dir / "transcript_whisper_visual_biased.txt").write_text(
+            transcript_whisper, encoding="utf-8"
         )
-        (self.output_dir / "transcript_baseline.txt").write_text(
-            transcript_without_bias, encoding="utf-8"
+        (self.output_dir / "transcript_whisper_baseline.txt").write_text(
+            transcript_whisper_baseline, encoding="utf-8"
+        )
+        (self.output_dir / "transcript_bangla.txt").write_text(
+            transcript_bangla, encoding="utf-8"
+        )
+        
+        # Save final lecture notes (the main output!)
+        (self.output_dir / "final_lecture_notes.md").write_text(
+            final_notes, encoding="utf-8"
         )
         
         # Save visual data
@@ -644,6 +776,10 @@ class ThesisPipeline:
         table.add_row("Visual Keywords", f"{len(result.visual_keywords)} extracted")
         table.add_row("Gaze Events", f"{len(result.gaze_events)} detected")
         table.add_row("", "")
+        table.add_row("Whisper Transcript", f"{len(result.transcript_whisper)} chars")
+        table.add_row("BanglaASR Transcript", f"{len(result.transcript_bangla)} chars")
+        table.add_row("Final Lecture Notes", f"{len(result.final_lecture_notes)} chars")
+        table.add_row("", "")
         
         # Highlight the key result
         if result.ttr_improvement > 0:
@@ -658,14 +794,19 @@ class ThesisPipeline:
         console.print(table)
         
         # Key insight
-        console.print("\n[bold cyan]Key Finding:[/bold cyan]")
+        console.print("\n[bold cyan]Key Findings:[/bold cyan]")
         console.print(
-            f"  Visual-Biased ASR improved Technical Term Recall by "
+            f"  1. Visual-Biased ASR improved Technical Term Recall by "
             f"[bold]{result.ttr_improvement:+.1f}%[/bold] compared to standard Whisper."
         )
         console.print(
-            f"  This demonstrates the effectiveness of using whiteboard content "
-            f"to guide speech recognition.\n"
+            f"  2. Dual ASR (Whisper + BanglaASR) captured both English and Bengali content."
+        )
+        console.print(
+            f"  3. LLM merged all sources into structured lecture notes."
+        )
+        console.print(
+            f"\n[bold green]📝 Final output: final_lecture_notes.md[/bold green]\n"
         )
 
 

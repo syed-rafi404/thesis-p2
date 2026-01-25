@@ -88,6 +88,8 @@ def process_video(
             'ttr_improvement': result.ttr_improvement,
             'visual_keywords': len(result.visual_keywords),
             'gaze_events': len(result.gaze_events),
+            'bangla_transcript_len': len(result.transcript_bangla),
+            'lecture_notes_len': len(result.final_lecture_notes),
             'error': None,
         }
         
