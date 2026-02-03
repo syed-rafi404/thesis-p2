@@ -2,7 +2,7 @@
 # SETUP COMMANDS - Copy and paste into PowerShell
 # =============================================================================
 # Multimodal Banglish Classroom Summarizer
-# Windows 11 | RTX 3090 | AWQ Quantization (No bitsandbytes)
+# Windows 11 | RTX 3090 (24GB) | CUDA 12.4
 # =============================================================================
 
 # -----------------------------------------------------------------------------
@@ -17,61 +17,72 @@ conda activate thesis_v2
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
 
 # -----------------------------------------------------------------------------
-# STEP 3: Install AutoGPTQ (Windows-Compatible AWQ)
+# STEP 3: Install All Dependencies from requirements.txt
 # -----------------------------------------------------------------------------
-# This is the critical step for Windows - uses pre-built wheels
-pip install auto-gptq --extra-index-url https://huggingface.github.io/autogptq-index/whl/cu124/
+pip install -r requirements.txt
 
 # -----------------------------------------------------------------------------
-# STEP 4: Install Transformers & Acceleration Stack
+# STEP 4: (Optional) Install bitsandbytes for 4-bit quantization (Live Mode)
 # -----------------------------------------------------------------------------
-pip install transformers accelerate optimum safetensors sentencepiece
+# Note: bitsandbytes on Windows can be unstable, but works with recent versions
+pip install bitsandbytes>=0.42.0 --quiet
 
 # -----------------------------------------------------------------------------
-# STEP 5: Install Qwen2-VL Dependencies (VLM for whiteboard understanding)
-# -----------------------------------------------------------------------------
-pip install qwen-vl-utils
-
-# -----------------------------------------------------------------------------
-# STEP 6: Install Audio Processing Libraries
-# -----------------------------------------------------------------------------
-pip install librosa soundfile pydub
-
-# PyAudio for live microphone capture (Windows)
-# If pip install pyaudio fails, try:
-#   pip install pipwin && pipwin install pyaudio
-# Or download wheel from: https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyaudio
-pip install pyaudio
-
-# -----------------------------------------------------------------------------
-# STEP 7: Install Vision Processing Libraries
-# -----------------------------------------------------------------------------
-pip install opencv-python pillow
-
-# -----------------------------------------------------------------------------
-# STEP 8: Install Video Processing
-# -----------------------------------------------------------------------------
-pip install moviepy
-
-# -----------------------------------------------------------------------------
-# STEP 9: Install Utilities
-# -----------------------------------------------------------------------------
-pip install tqdm pyyaml python-dotenv rich pytest ipykernel jupyter
-
-# -----------------------------------------------------------------------------
-# STEP 10: Verify Installation
+# STEP 5: Verify Installation
 # -----------------------------------------------------------------------------
 python verify_stack.py
+
+# -----------------------------------------------------------------------------
+# ALTERNATIVE: Manual Installation (if requirements.txt fails)
+# -----------------------------------------------------------------------------
+
+# Transformers & Acceleration Stack
+pip install transformers accelerate optimum safetensors sentencepiece
+
+# Qwen2.5-VL Dependencies (VLM)
+pip install qwen-vl-utils
+
+# Audio Processing
+pip install librosa soundfile pydub
+
+# Vision Processing
+pip install opencv-python pillow
+
+# Video Processing
+pip install moviepy
+
+# Pose Estimation (Gaze Tracking)
+pip install ultralytics
+
+# Evaluation
+pip install thefuzz jiwer
+
+# Utilities
+pip install tqdm pyyaml python-dotenv rich pytest
+
+# =============================================================================
+# QUICK TEST - Run the Full Pipeline
+# =============================================================================
+
+# Process a single video (all 3 novelties)
+python run_thesis.py "data/raw/lecture.mp4" -o "output/test" --interval 30
+
+# Live mode (4-bit LLM, fits all models in 24GB VRAM)
+python run_thesis.py "data/raw/lecture.mp4" --live --interval 45
+
+# Batch process all videos in data/raw/
+python batch_process.py --live --interval 45
 
 # =============================================================================
 # TROUBLESHOOTING
 # =============================================================================
 # 
 # Issue: "CUDA out of memory"
-# Fix: Close other GPU applications, or use a smaller test model
+# Fix: Use --live mode (4-bit LLM) or close other GPU applications
 #
-# Issue: "auto_gptq import error"  
-# Fix: Ensure you used the correct --extra-index-url for cu124
+# Issue: "bitsandbytes not working on Windows"
+# Fix: pip install bitsandbytes>=0.42.0 (recent versions work on Windows)
+#      Or use batch mode without --live flag (stage-based model loading)
 #
 # Issue: "torch.cuda.is_available() returns False"
 # Fix: 
@@ -81,5 +92,8 @@ python verify_stack.py
 #
 # Issue: "No module named 'transformers'"
 # Fix: Ensure conda environment is activated: conda activate thesis_v2
+#
+# Issue: "ultralytics / YOLOv8 not found"
+# Fix: pip install ultralytics
 #
 # =============================================================================

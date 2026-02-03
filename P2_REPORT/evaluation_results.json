@@ -1,0 +1,95 @@
+{
+  "summary": {
+    "total_videos": 9,
+    "total_runs": 27,
+    "frame_intervals": ["10s", "20s", "30s"],
+    "metrics_used": ["Term Recall", "Term Precision", "Term F1"],
+    "metrics_excluded": ["WER"],
+    "generated": "2026-02-03"
+  },
+  "averages": {
+    "term_recall": 0.665,
+    "term_precision": 0.836,
+    "term_f1": 0.739,
+    "fuzzy_similarity": 0.448
+  },
+  "by_video": [
+    {
+      "video": "BanglaASR1",
+      "topic": "Python Variables",
+      "term_recall": 0.620,
+      "term_precision": 0.816,
+      "term_f1": 0.705,
+      "fuzzy_similarity": 0.431
+    },
+    {
+      "video": "BanglaASR2",
+      "topic": "Python Input",
+      "term_recall": 0.687,
+      "term_precision": 0.847,
+      "term_f1": 0.758,
+      "fuzzy_similarity": 0.455
+    },
+    {
+      "video": "BanglaASR3",
+      "topic": "Conditionals",
+      "term_recall": 0.726,
+      "term_precision": 0.882,
+      "term_f1": 0.796,
+      "fuzzy_similarity": 0.470
+    },
+    {
+      "video": "BanglaASR4",
+      "topic": "Loops",
+      "term_recall": 0.517,
+      "term_precision": 0.787,
+      "term_f1": 0.624,
+      "fuzzy_similarity": 0.458
+    },
+    {
+      "video": "BanglaASR5",
+      "topic": "Lists/Tuples/Arrays",
+      "term_recall": 0.630,
+      "term_precision": 0.873,
+      "term_f1": 0.732,
+      "fuzzy_similarity": 0.440
+    },
+    {
+      "video": "BanglaASR6",
+      "topic": "DLD Logic Gates",
+      "term_recall": 0.600,
+      "term_precision": 0.864,
+      "term_f1": 0.708,
+      "fuzzy_similarity": 0.456
+    },
+    {
+      "video": "BanglaASR7",
+      "topic": "Universal Gates",
+      "term_recall": 0.686,
+      "term_precision": 0.828,
+      "term_f1": 0.750,
+      "fuzzy_similarity": 0.461
+    },
+    {
+      "video": "BanglaASR8",
+      "topic": "DBMS Introduction",
+      "term_recall": 0.769,
+      "term_precision": 0.806,
+      "term_f1": 0.787,
+      "fuzzy_similarity": 0.428
+    },
+    {
+      "video": "BanglaASR9",
+      "topic": "SQL SELECT",
+      "term_recall": 0.754,
+      "term_precision": 0.821,
+      "term_f1": 0.786,
+      "fuzzy_similarity": 0.434
+    }
+  ],
+  "best_performers": {
+    "highest_term_recall": {"video": "BanglaASR8", "value": 0.769},
+    "highest_term_precision": {"video": "BanglaASR3", "value": 0.882},
+    "highest_term_f1": {"video": "BanglaASR3", "value": 0.796}
+  }
+}

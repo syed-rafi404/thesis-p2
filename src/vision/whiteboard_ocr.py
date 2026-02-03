@@ -15,15 +15,28 @@ Model: Qwen/Qwen2.5-VL-7B-Instruct (FP16, ~15GB VRAM)
 
 import sys
 import json
+import gc
+import signal
 from pathlib import Path
 from typing import List, Dict, Any
 from dataclasses import dataclass, asdict
+from concurrent.futures import ThreadPoolExecutor, TimeoutError as FuturesTimeoutError
 
 import torch
 from PIL import Image
 from rich.console import Console
 from rich.progress import Progress, SpinnerColumn, TextColumn, BarColumn, TaskProgressColumn
 from rich.panel import Panel
+
+# Timeout for VLM generation per frame (seconds)
+VLM_TIMEOUT_SECONDS = 60
+
+# ModelRegistry for GPU model caching (optimized batch/live processing)
+try:
+    from src.model_registry import ModelRegistry
+    REGISTRY_AVAILABLE = True
+except ImportError:
+    REGISTRY_AVAILABLE = False
 
 console = Console()
 
@@ -89,11 +102,33 @@ class WhiteboardVLM:
         self.processor = None
         self._is_loaded = False
     
-    def load_model(self):
-        """Load the Qwen2.5-VL model."""
+    def load_model(self, use_registry: bool = True):
+        """Load the Qwen2.5-VL model.
+        
+        Args:
+            use_registry: If True, use ModelRegistry singleton (recommended for batch/live)
+        """
         if self._is_loaded:
             return
         
+        # Use ModelRegistry for shared model access (faster batch processing)
+        if use_registry and REGISTRY_AVAILABLE:
+            console.print(f"\n[bold cyan]🖼️  Loading Vision Language Model (via Registry)[/bold cyan]")
+            console.print(f"[dim]Model: {self.model_name}[/dim]")
+            console.print(f"[dim]Precision: FP16 | Device Map: {self.device_map}[/dim]\n")
+            
+            registry = ModelRegistry.get_instance()
+            self.model, self.processor = registry.get_vlm(
+                model_name=self.model_name,
+                torch_dtype=self.torch_dtype,
+                device_map=self.device_map
+            )
+            self._is_loaded = True
+            self._using_registry = True
+            return
+        
+        # Direct loading (legacy behavior)
+        self._using_registry = False
         console.print(f"\n[bold cyan]🖼️  Loading Vision Language Model[/bold cyan]")
         console.print(f"[dim]Model: {self.model_name}[/dim]")
         console.print(f"[dim]Precision: FP16 | Device Map: {self.device_map}[/dim]\n")
@@ -195,8 +230,50 @@ class WhiteboardVLM:
             clean_up_tokenization_spaces=False
         )[0]
         
+        # Clear CUDA cache after each frame to prevent memory buildup
+        del inputs, generated_ids, generated_ids_trimmed
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+        gc.collect()
+        
         return response.strip()
     
+    def _analyze_frame_with_timeout(self, frame_path: str, timeout_sec: int = VLM_TIMEOUT_SECONDS) -> str:
+        """
+        Analyze a frame with timeout protection to prevent hanging.
+        
+        Args:
+            frame_path: Path to the frame image
+            timeout_sec: Maximum seconds to wait for VLM response
+            
+        Returns:
+            Extracted content or error message
+        """
+        import threading
+        
+        result = {"content": "", "error": None}
+        
+        def worker():
+            try:
+                result["content"] = self.analyze_frame(frame_path)
+            except Exception as e:
+                result["error"] = str(e)
+        
+        thread = threading.Thread(target=worker)
+        thread.start()
+        thread.join(timeout=timeout_sec)
+        
+        if thread.is_alive():
+            console.print(f"[yellow]⚠ VLM timeout after {timeout_sec}s, skipping frame[/yellow]")
+            # Thread is still running but we'll continue (will be cleaned up eventually)
+            return "[VLM_TIMEOUT]"
+        
+        if result["error"]:
+            console.print(f"[red]VLM error: {result['error']}[/red]")
+            return f"[ERROR: {result['error']}]"
+        
+        return result["content"]
+
     def extract_board_content(
         self,
         frames_dir: str,
@@ -253,11 +330,11 @@ class WhiteboardVLM:
                     except (ValueError, IndexError):
                         pass
                     
-                    # Analyze the frame
-                    content = self.analyze_frame(str(frame_path))
+                    # Analyze the frame WITH TIMEOUT PROTECTION
+                    content = self._analyze_frame_with_timeout(str(frame_path))
                     
-                    # Check if meaningful content was found
-                    has_content = bool(content) and len(content) > 10
+                    # Check if meaningful content was found (skip timeout/error frames)
+                    has_content = bool(content) and len(content) > 10 and not content.startswith("[")
                     
                     # Estimate timestamp
                     timestamp = (frame_num - 1) * frame_interval
@@ -299,7 +376,14 @@ class WhiteboardVLM:
         return context
     
     def unload_model(self):
-        """Unload model to free GPU memory."""
+        """Unload model to free GPU memory.
+        
+        Note: If using ModelRegistry, this is a no-op (registry manages lifecycle).
+        """
+        if getattr(self, '_using_registry', False):
+            console.print("[dim]VLM model managed by registry (not unloading)[/dim]")
+            return
+            
         if self.model is not None:
             del self.model
             self.model = None

@@ -23,13 +23,31 @@ from dataclasses import dataclass
 
 import torch
 import librosa
-from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor, LogitsProcessorList
+from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor, LogitsProcessorList, pipeline
 
 from rich.console import Console
 from rich.progress import Progress, SpinnerColumn, TextColumn
 from rich.panel import Panel
 
-from src.audio.visual_bias_processor import create_visual_biased_processor
+from src.audio.visual_bias_processor import (
+    create_visual_biased_processor, 
+    create_temporal_visual_bias_processor,
+    clean_transcript
+)
+
+# ModelRegistry for GPU model caching (optimized batch/live processing)
+try:
+    from src.model_registry import ModelRegistry
+    REGISTRY_AVAILABLE = True
+except ImportError:
+    REGISTRY_AVAILABLE = False
+
+# TemporalVisualContext for temporal bias
+try:
+    from src.fusion.temporal_context import TemporalVisualContext
+    TEMPORAL_AVAILABLE = True
+except ImportError:
+    TEMPORAL_AVAILABLE = False
 
 console = Console()
 
@@ -134,11 +152,33 @@ class BanglishTranscriber:
         self.processor = None
         self._is_loaded = False
         
-    def load_model(self):
-        """Load the Whisper model and processor."""
+    def load_model(self, use_registry: bool = True):
+        """Load the Whisper model and processor.
+        
+        Args:
+            use_registry: If True, use ModelRegistry singleton (recommended for batch/live)
+        """
         if self._is_loaded:
             return
         
+        # Use ModelRegistry for shared model access (faster batch processing)
+        if use_registry and REGISTRY_AVAILABLE:
+            console.print(f"\n[bold cyan]🎤 Loading Whisper Model (via Registry)[/bold cyan]")
+            console.print(f"[dim]Model: {self.model_name}[/dim]")
+            console.print(f"[dim]Device: {self.device}[/dim]\n")
+            
+            registry = ModelRegistry.get_instance()
+            self.model, self.processor = registry.get_whisper(
+                model_name=self.model_name,
+                device=self.device,
+                torch_dtype=self.torch_dtype
+            )
+            self._is_loaded = True
+            self._using_registry = True
+            return
+        
+        # Direct loading (legacy behavior)
+        self._using_registry = False
         console.print(f"\n[bold cyan]🎤 Loading Whisper Model[/bold cyan]")
         console.print(f"[dim]Model: {self.model_name}[/dim]")
         console.print(f"[dim]Device: {self.device}[/dim]\n")
@@ -248,27 +288,49 @@ class BanglishTranscriber:
                 "task": "transcribe",
                 "return_timestamps": True,
                 "prompt_ids": prompt_ids,
-                # Anti-hallucination settings
-                "condition_on_prev_tokens": False,  # Prevent repetition loops
-                "temperature": 0.0,                  # Greedy decoding (required for deterministic biasing)
-                "no_speech_threshold": 0.6,          # Filter silence
-                "compression_ratio_threshold": 2.4,  # Detect repetitive output
-                "logprob_threshold": -1.0,           # Accept low confidence
+                # ============================================
+                # ANTI-HALLUCINATION SETTINGS (AGGRESSIVE)
+                # ============================================
+                "condition_on_prev_tokens": False,   # CRITICAL: Prevents repetition loops
+                "temperature": 0.0,                   # Greedy decoding for consistency
+                "no_speech_threshold": 0.5,           # Filter silence segments more aggressively
+                "compression_ratio_threshold": 1.8,   # LOWERED from 2.4 - reject highly repetitive output
+                "logprob_threshold": -0.8,            # RAISED from -1.0 - reject low confidence gibberish
+                # Repetition penalty (only applies to non-greedy, but included for future)
+                "repetition_penalty": 1.2,            # Penalize repeated tokens
             }
             if attention_mask is not None:
                 generate_kwargs["attention_mask"] = attention_mask
             
-            # Create visual bias logits processor if visual context provided
+            # ================================================================
+            # VISUAL BIAS DISABLED (Ground Truth Evaluation Finding)
+            # ================================================================
+            # Based on L2 ground truth evaluation:
+            # - Visual bias HURTS accuracy by -12.7% term recall
+            # - Causes hallucination loops (e.g., "Compile" 138x instead of 9x)
+            # - Baseline (no bias) consistently outperforms biased version
+            # 
+            # The visual context is now used for:
+            # 1. Initial prompt guidance (already done above)
+            # 2. Summarization enhancement (downstream)
+            # 3. NOT for direct ASR logits biasing
+            #
+            # To re-enable for testing, set VISUAL_BIAS_ENABLED = True
+            # ================================================================
+            VISUAL_BIAS_ENABLED = False  # Disabled based on ground truth evidence
+            
             logits_processor = None
-            if visual_context and len(visual_context) > 0:
+            if VISUAL_BIAS_ENABLED and visual_context and len(visual_context) > 0:
                 console.print(f"[blue]→ Visual bias: {len(visual_context)} terms from whiteboard[/blue]")
                 bias_processor = create_visual_biased_processor(
                     tokenizer=self.processor.tokenizer,
                     visual_keywords=visual_context,
-                    bias_value=2.0  # Moderate boost to visual terms
+                    bias_value=0.5  # Further reduced from 1.5 - only subtle nudge
                 )
                 logits_processor = LogitsProcessorList([bias_processor])
                 generate_kwargs["logits_processor"] = logits_processor
+            elif visual_context and len(visual_context) > 0:
+                console.print(f"[yellow]→ Visual bias DISABLED: {len(visual_context)} terms available but not used (see ground truth eval)[/yellow]")
             
             generated_ids = self.model.generate(
                 input_features,
@@ -292,6 +354,18 @@ class BanglishTranscriber:
         # Get clean text without timestamps
         full_text = self._clean_transcript_text(result)
         
+        # Apply repetition removal post-processor to fix Whisper hallucinations
+        # Using AGGRESSIVE settings: max 2 word repeats, max 1 phrase repeat
+        original_len = len(full_text)
+        full_text = clean_transcript(full_text, max_word_repeats=2, max_phrase_repeats=1)
+        if len(full_text) < original_len:
+            removed_chars = original_len - len(full_text)
+            console.print(f"[yellow]→ Repetition removal: cleaned {removed_chars} chars ({100*removed_chars/original_len:.1f}%)[/yellow]")
+        
+        # Also clean segment texts with same aggressive settings
+        for seg in segments:
+            seg.text = clean_transcript(seg.text, max_word_repeats=2, max_phrase_repeats=1)
+        
         # Detect language (set to Bengali for Banglish content)
         detected_language = "bengali (Banglish mode)"
         
@@ -304,6 +378,274 @@ class BanglishTranscriber:
         
         # Print summary
         console.print(f"[green]✓ Transcription complete[/green]")
+        console.print(f"[dim]  Duration: {audio_duration:.1f}s | Segments: {len(segments)} | Characters: {len(full_text)}[/dim]")
+        console.print(f"[dim]  Language: {detected_language}[/dim]\n")
+        
+        return transcript
+
+    def transcribe_temporal(
+        self,
+        audio_path: str,
+        temporal_context: 'TemporalVisualContext',
+    ) -> TranscriptResult:
+        """
+        NOVELTY: Transcribe with TEMPORAL visual bias.
+        
+        This method applies time-aligned visual bias during transcription.
+        Instead of biasing the entire audio with all keywords, each audio
+        segment gets only the keywords visible at that specific timestamp.
+        
+        Key Innovation:
+        - Keywords from frame at 0:30 → bias audio around 0:30
+        - Keywords from frame at 1:00 → bias audio around 1:00
+        - Prevents false biasing from temporally distant visual content
+        
+        Args:
+            audio_path: Path to audio file (WAV, MP3, etc.)
+            temporal_context: TemporalVisualContext with timestamp-to-keywords mapping
+            
+        Returns:
+            TranscriptResult with full text and timestamped segments
+        """
+        # Ensure model is loaded
+        if not self._is_loaded:
+            self.load_model()
+        
+        audio_path = Path(audio_path)
+        if not audio_path.exists():
+            raise FileNotFoundError(f"Audio file not found: {audio_path}")
+        
+        console.print(f"[bold]🎵 Transcribing:[/bold] {audio_path.name}")
+        console.print(f"[cyan]→ TEMPORAL visual bias: {len(temporal_context)} frame-keyword mappings[/cyan]")
+        
+        with Progress(
+            SpinnerColumn(),
+            TextColumn("[progress.description]{task.description}"),
+            console=console,
+        ) as progress:
+            task = progress.add_task("Loading audio...", total=None)
+            
+            # Load audio with librosa (Whisper expects 16kHz)
+            audio_array, sr = librosa.load(str(audio_path), sr=16000)
+            audio_duration = len(audio_array) / sr
+            
+            progress.update(task, description="Processing with TEMPORAL Visual Bias...")
+            
+            # Process audio through processor
+            inputs = self.processor(
+                audio_array,
+                sampling_rate=16000,
+                return_tensors="pt",
+                return_attention_mask=True,
+                truncation=False,
+                padding="longest",
+            )
+            input_features = inputs["input_features"].to(self.device, dtype=self.torch_dtype)
+            attention_mask = inputs.get("attention_mask")
+            if attention_mask is not None:
+                attention_mask = attention_mask.to(self.device)
+            
+            # Initial prompt for Banglish
+            initial_prompt = "This is a technical lecture in Banglish. It mixes Bengali and English. Technical terms, formulas, and code are spoken in English."
+            prompt_ids = self.processor.get_prompt_ids(initial_prompt, return_tensors="pt").to(self.device)
+            
+            generate_kwargs = {
+                "language": "bengali",
+                "task": "transcribe",
+                "return_timestamps": True,
+                "prompt_ids": prompt_ids,
+                # Anti-hallucination settings
+                "condition_on_prev_tokens": False,
+                "temperature": 0.0,
+                "no_speech_threshold": 0.5,
+                "compression_ratio_threshold": 1.8,
+                "logprob_threshold": -0.8,
+                "repetition_penalty": 1.2,
+            }
+            if attention_mask is not None:
+                generate_kwargs["attention_mask"] = attention_mask
+            
+            # ================================================================
+            # TEMPORAL VISUAL BIAS DISABLED (Ground Truth Evaluation Finding)
+            # ================================================================
+            # Based on L2 ground truth evaluation: visual bias hurts accuracy.
+            # Temporal bias inherits the same fundamental problem.
+            # DISABLED until improved keyword filtering is implemented.
+            # ================================================================
+            TEMPORAL_BIAS_ENABLED = False
+            
+            if TEMPORAL_BIAS_ENABLED:
+                # Create TEMPORAL visual bias processor (NOVELTY!)
+                temporal_bias_processor = create_temporal_visual_bias_processor(
+                    tokenizer=self.processor.tokenizer,
+                    temporal_context=temporal_context,
+                    bias_value=0.5,  # Reduced from 1.5
+                    audio_duration=audio_duration,
+                )
+                console.print(f"[blue]→ {temporal_bias_processor}[/blue]")
+                
+                logits_processor = LogitsProcessorList([temporal_bias_processor])
+                generate_kwargs["logits_processor"] = logits_processor
+            else:
+                console.print(f"[yellow]→ Temporal visual bias DISABLED (see ground truth evaluation)[/yellow]")
+            
+            generated_ids = self.model.generate(
+                input_features,
+                **generate_kwargs
+            )
+            
+            progress.update(task, description="Decoding transcription...")
+            
+            # Decode with timestamps
+            result = self.processor.batch_decode(
+                generated_ids,
+                skip_special_tokens=True,
+                decode_with_timestamps=True,
+            )[0]
+            
+            progress.remove_task(task)
+        
+        # Parse timestamps from the output
+        segments = self._parse_whisper_timestamps(result, audio_duration)
+        
+        # Get clean text without timestamps
+        full_text = self._clean_transcript_text(result)
+        
+        # Apply repetition removal post-processor
+        original_len = len(full_text)
+        full_text = clean_transcript(full_text, max_word_repeats=2, max_phrase_repeats=1)
+        if len(full_text) < original_len:
+            removed_chars = original_len - len(full_text)
+            console.print(f"[yellow]→ Repetition removal: cleaned {removed_chars} chars ({100*removed_chars/original_len:.1f}%)[/yellow]")
+        
+        # Also clean segment texts
+        for seg in segments:
+            seg.text = clean_transcript(seg.text, max_word_repeats=2, max_phrase_repeats=1)
+        
+        detected_language = "bengali (Banglish mode + TEMPORAL bias)"
+        
+        transcript = TranscriptResult(
+            text=full_text,
+            segments=segments,
+            language=detected_language,
+            duration=audio_duration
+        )
+        
+        # Print summary
+        console.print(f"[green]✓ Temporal-biased transcription complete[/green]")
+        console.print(f"[dim]  Duration: {audio_duration:.1f}s | Segments: {len(segments)} | Characters: {len(full_text)}[/dim]")
+        console.print(f"[dim]  Mode: {detected_language}[/dim]\n")
+        
+        return transcript
+
+    def transcribe_fast(
+        self,
+        audio_path: str,
+    ) -> TranscriptResult:
+        """
+        Fast baseline transcription using HuggingFace pipeline (no visual bias).
+        
+        This is MUCH faster than the full generate() approach because:
+        - Uses optimized chunked processing (30s chunks)
+        - Batched decoding
+        - No custom LogitsProcessor overhead
+        
+        Use this for baseline transcription. For visual-biased transcription,
+        use the regular transcribe() method with visual_context parameter.
+        
+        Args:
+            audio_path: Path to audio file (WAV, MP3, etc.)
+            
+        Returns:
+            TranscriptResult with full text and timestamped segments
+        """
+        # Ensure model is loaded
+        if not self._is_loaded:
+            self.load_model()
+        
+        audio_path = Path(audio_path)
+        if not audio_path.exists():
+            raise FileNotFoundError(f"Audio file not found: {audio_path}")
+        
+        console.print(f"[bold]🎵 Fast Transcribing:[/bold] {audio_path.name}")
+        
+        with Progress(
+            SpinnerColumn(),
+            TextColumn("[progress.description]{task.description}"),
+            console=console,
+        ) as progress:
+            task = progress.add_task("Creating fast pipeline...", total=None)
+            
+            # Create a pipeline with the already-loaded model
+            pipe = pipeline(
+                "automatic-speech-recognition",
+                model=self.model,
+                tokenizer=self.processor.tokenizer,
+                feature_extractor=self.processor.feature_extractor,
+                torch_dtype=self.torch_dtype,
+                device=self.device,
+            )
+            
+            progress.update(task, description="Processing audio with chunked pipeline...")
+            
+            # Run pipeline with chunking for long audio
+            result = pipe(
+                str(audio_path),
+                chunk_length_s=30,
+                batch_size=8,
+                return_timestamps=True,
+                generate_kwargs={
+                    "language": "bengali",
+                    "task": "transcribe",
+                    "condition_on_prev_tokens": False,
+                    "temperature": 0.0,
+                    "compression_ratio_threshold": 1.8,  # Reject repetitive output
+                    "no_speech_threshold": 0.5,          # Filter silence
+                    "logprob_threshold": -0.8,           # Reject low confidence
+                }
+            )
+            
+            progress.remove_task(task)
+        
+        # Extract text and chunks
+        full_text = result.get("text", "")
+        chunks = result.get("chunks", [])
+        
+        # Get audio duration
+        audio_array, sr = librosa.load(str(audio_path), sr=16000, duration=1)
+        audio_info = librosa.get_duration(path=str(audio_path))
+        audio_duration = audio_info
+        
+        # Apply repetition removal with AGGRESSIVE settings
+        original_len = len(full_text)
+        full_text = clean_transcript(full_text, max_word_repeats=2, max_phrase_repeats=1)
+        if len(full_text) < original_len:
+            removed_chars = original_len - len(full_text)
+            console.print(f"[yellow]→ Repetition removal: cleaned {removed_chars} chars ({100*removed_chars/original_len:.1f}%)[/yellow]")
+        
+        # Convert chunks to segments
+        segments = []
+        if chunks:
+            for chunk in chunks:
+                timestamp = chunk.get("timestamp", (0, 0))
+                chunk_text = clean_transcript(chunk.get("text", ""), max_word_repeats=2, max_phrase_repeats=1)
+                segments.append(TranscriptSegment(
+                    text=chunk_text,
+                    start=timestamp[0] if timestamp[0] else 0,
+                    end=timestamp[1] if timestamp[1] else audio_duration
+                ))
+        
+        detected_language = "bengali (Banglish mode)"
+        
+        transcript = TranscriptResult(
+            text=full_text,
+            segments=segments,
+            language=detected_language,
+            duration=audio_duration
+        )
+        
+        # Print summary
+        console.print(f"[green]✓ Fast transcription complete[/green]")
         console.print(f"[dim]  Duration: {audio_duration:.1f}s | Segments: {len(segments)} | Characters: {len(full_text)}[/dim]")
         console.print(f"[dim]  Language: {detected_language}[/dim]\n")
         
@@ -373,7 +715,14 @@ class BanglishTranscriber:
         return cleaned.strip()
     
     def unload_model(self):
-        """Unload model to free GPU memory."""
+        """Unload model to free GPU memory.
+        
+        Note: If using ModelRegistry, this is a no-op (registry manages lifecycle).
+        """
+        if getattr(self, '_using_registry', False):
+            console.print("[dim]Whisper model managed by registry (not unloading)[/dim]")
+            return
+            
         if self.model is not None:
             del self.model
             self.model = None

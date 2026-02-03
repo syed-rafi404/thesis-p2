@@ -25,6 +25,13 @@ from rich.panel import Panel
 from rich.table import Table
 from rich import box
 
+# ModelRegistry for preloading GPU models
+try:
+    from src.model_registry import ModelRegistry
+    REGISTRY_AVAILABLE = True
+except ImportError:
+    REGISTRY_AVAILABLE = False
+
 console = Console()
 
 # Supported video extensions
@@ -46,6 +53,7 @@ def process_video(
     interval: int,
     mock: bool,
     skip_gaze: bool,
+    live_mode: bool = False,
 ) -> dict:
     """
     Process a single video through the thesis pipeline.
@@ -62,6 +70,8 @@ def process_video(
     console.print(f"\n[bold blue]{'='*60}[/bold blue]")
     console.print(f"[bold]Processing:[/bold] {video_path.name}")
     console.print(f"[bold]Output to:[/bold] {output_dir}")
+    if live_mode:
+        console.print(f"[bold yellow]Mode:[/bold yellow] LIVE (4-bit LLM)")
     console.print(f"[bold blue]{'='*60}[/bold blue]\n")
     
     start_time = time.time()
@@ -73,6 +83,7 @@ def process_video(
             frame_interval=interval,
             use_mock_vlm=mock,
             skip_gaze=skip_gaze,
+            live_mode=live_mode,
         )
         
         result = pipeline.run()
@@ -204,6 +215,12 @@ def main():
         help="Skip gaze tracking"
     )
     
+    parser.add_argument(
+        "--live",
+        action="store_true",
+        help="Enable live mode: uses 4-bit quantized LLM to fit all models in 24GB VRAM"
+    )
+    
     args = parser.parse_args()
     
     # Print banner
@@ -237,11 +254,21 @@ def main():
     console.print(f"  Frame interval: {args.interval}s")
     console.print(f"  Mock VLM: {args.mock}")
     console.print(f"  Skip gaze: {args.skip_gaze}")
+    console.print(f"  Live mode (4-bit LLM): {args.live}")
     
     # List videos
     console.print(f"\n[bold]Found {len(videos)} video(s):[/bold]")
     for i, v in enumerate(videos, 1):
         console.print(f"  {i}. {v.name}")
+    
+    # Note: Models are loaded on-demand per pipeline stage
+    # This is necessary because 24GB VRAM cannot hold all models (~50GB total)
+    # The ModelRegistry caches models within each video's processing
+    if REGISTRY_AVAILABLE and not args.mock:
+        console.print(f"\n[bold cyan]🧠 GPU Model Strategy: Stage-based Loading[/bold cyan]")
+        console.print(f"[dim]  24GB VRAM cannot hold all models (~50GB total)[/dim]")
+        console.print(f"[dim]  Models will load/unload per pipeline stage[/dim]")
+        console.print(f"[dim]  Registry caches models within each video[/dim]\n")
     
     # Confirm
     console.print(f"\n[bold yellow]Starting batch processing...[/bold yellow]")
@@ -264,6 +291,7 @@ def main():
             interval=args.interval,
             mock=args.mock,
             skip_gaze=args.skip_gaze,
+            live_mode=args.live,
         )
         results.append(result)
         
@@ -277,6 +305,16 @@ def main():
     
     # Save final log
     _save_batch_log(results, output_dir, final=True)
+    
+    # Cleanup: Unload all models from registry
+    if REGISTRY_AVAILABLE:
+        console.print(f"\n[dim]Cleaning up GPU models...[/dim]")
+        try:
+            registry = ModelRegistry.get_instance()
+            registry.unload_all()
+            console.print(f"[green]✓ GPU memory cleared[/green]")
+        except Exception as e:
+            console.print(f"[yellow]⚠ Cleanup warning: {e}[/yellow]")
     
     return 0 if all(r['status'] == 'success' for r in results) else 1
 
