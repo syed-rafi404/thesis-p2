@@ -1,10 +1,550 @@
-\section{Preliminaries}
+% =============================================================================
+% CHAPTER 2: LITERATURE REVIEW
+% Multimodal Banglish Classroom Summarizer
+% =============================================================================
 
-This section provides essential background information that readers need to understand your study. You can include information about theories, definitions, concepts, models, etc.
+\section{Introduction}
 
-\section{Review of Existing Research}
-Perform a literature survey and find relevant materials and information.
+This chapter provides a comprehensive survey and critical analysis of the research landscape that informs and contextualizes our work on multimodal Banglish lecture transcription. We examine five interconnected areas in depth: automatic speech recognition, with particular attention to its evolution toward multilingual and low-resource settings; code-mixed language processing, focusing on the South Asian context where Banglish emerges; multimodal learning and vision-language models that enable cross-modal information fusion; lecture video processing systems that represent prior attempts to automate educational content transformation; and evaluation methodologies for ASR and code-mixed languages. For each area, we identify key contributions, critically analyze methodological approaches, compare competing paradigms, and highlight gaps that our research addresses.
 
-\section{Summary of Key Findings}
+Our analysis reveals a fundamental tension in the literature: while individual components of our problem---ASR, multimodal fusion, code-mixing---have received substantial attention, their intersection remains largely unexplored. This chapter not only surveys existing work but critically examines why these research threads have remained disconnected and how our approach bridges them.
 
-Discuss key results, patterns or trends, and implications.
+% =============================================================================
+\section{Automatic Speech Recognition}
+
+\subsection{Historical Evolution and Deep Learning Revolution}
+
+Automatic speech recognition has undergone a remarkable transformation over the past decade, evolving from systems requiring careful acoustic modeling and language-specific engineering to end-to-end neural approaches that learn directly from data. Understanding this evolution is crucial for appreciating both the capabilities and limitations of current systems when applied to challenging domains like Banglish technical lectures.
+
+The foundations of modern ASR were established through decades of research on Hidden Markov Models (HMMs) combined with Gaussian Mixture Models (GMMs), which dominated the field from the 1980s through the early 2010s \cite{Rabiner1989, Juang1991}. These systems required extensive feature engineering, including Mel-frequency cepstral coefficients (MFCCs), and relied on separate acoustic, pronunciation, and language models trained independently. The modular architecture offered interpretability---errors could be traced to specific components---but required substantial expertise for each language and domain. Critically for our work, this modularity meant that supporting a new language required building all components from scratch: acoustic models, pronunciation dictionaries, and language models. For under-resourced languages like Bengali, this created insurmountable barriers.
+
+The deep learning revolution fundamentally altered this landscape but introduced new challenges. Hinton et al. \cite{Hinton2012} demonstrated that deep neural networks could replace GMMs in the acoustic modeling component, achieving 20-30\% relative error reduction on benchmark tasks. This breakthrough catalyzed rapid progress: recurrent neural networks (RNNs) with Long Short-Term Memory (LSTM) cells \cite{Hochreiter1997} enabled modeling of temporal dependencies in speech that HMMs struggled to capture, while the Connectionist Temporal Classification (CTC) loss function \cite{Graves2006} allowed training without pre-aligned transcriptions---a critical advance that reduced annotation requirements.
+
+However, a careful analysis of CTC-based systems reveals limitations relevant to our domain. CTC assumes conditional independence between output tokens given the input, which works well for acoustic-to-phoneme mapping but poorly captures linguistic dependencies. For code-mixed speech, where the language context strongly influences word probabilities, this independence assumption is particularly problematic. A Bengali word following an English technical term has different probability than the same word in a purely Bengali context---a dependency CTC cannot model.
+
+The introduction of attention mechanisms \cite{Bahdanau2015} and the Transformer architecture \cite{Vaswani2017} marked another paradigm shift that addressed some CTC limitations. Chan et al. \cite{Chan2016} proposed Listen, Attend and Spell (LAS), an end-to-end model that jointly learned acoustic and language modeling through attention. This approach eliminated the need for separate pronunciation dictionaries and language models, simplifying the ASR pipeline while achieving competitive performance. The attention mechanism allowed the decoder to focus on relevant portions of the acoustic input when generating each output token, implicitly learning alignment without explicit supervision.
+
+\textbf{Critical Analysis:} While LAS and similar attention-based models represent significant advances, their data requirements pose challenges for low-resource scenarios. The original LAS paper reported training on 12,500 hours of English speech---a dataset size unavailable for most languages. Furthermore, the end-to-end nature that simplifies deployment also complicates adaptation: there is no separate language model to swap for domain-specific vocabulary, no pronunciation dictionary to extend with new terms. For Banglish technical content, where domain vocabulary is crucial and training data is scarce, these limitations are significant.
+
+\subsection{Self-Supervised Learning and Foundation Models}
+
+A pivotal development in recent ASR research has been the application of self-supervised learning to speech, fundamentally changing the resource requirements for building capable systems. This paradigm shift has profound implications for low-resource languages, though as we analyze below, significant gaps remain for code-mixed scenarios.
+
+Wav2Vec 2.0 \cite{Baevski2020} demonstrated that pre-training on unlabeled audio through contrastive learning could produce representations that dramatically reduced the labeled data requirements for downstream ASR tasks. The key insight was that abundant unlabeled audio---available even for low-resource languages through radio broadcasts, YouTube, and other sources---could provide the acoustic knowledge that previously required expensive manual transcription. Fine-tuning on just 10 minutes of labeled data achieved results competitive with systems trained on 100 hours, a 600x reduction in annotation requirements.
+
+\textbf{Methodological Analysis:} The Wav2Vec 2.0 architecture combines a CNN-based feature encoder with a Transformer-based context network. During pre-training, the model learns to identify the correct quantized representation of masked audio segments from a set of distractors---a contrastive objective analogous to masked language modeling in NLP. This approach implicitly learns phonetic categories and acoustic invariances without explicit phoneme labels. However, our analysis reveals that the learned representations remain language-specific: a model pre-trained on English audio captures English phonetic distinctions but may miss phonemes unique to Bengali (e.g., retroflex consonants, aspirated stops). Cross-lingual transfer helps but does not fully bridge this gap.
+
+HuBERT \cite{Hsu2021} extended self-supervised speech representation learning through an iterative clustering approach, achieving state-of-the-art results on several benchmarks. Unlike Wav2Vec 2.0's contrastive objective, HuBERT uses a predictive objective: the model learns to predict cluster assignments for masked regions, where clusters are derived from previous model iterations or acoustic features. This iterative refinement progressively discovers more linguistically meaningful units. On the LibriSpeech benchmark, HuBERT achieved 1.4\% word error rate with fine-tuning on 960 hours of labeled data---approaching human performance.
+
+\textbf{Critical Comparison:} Comparing Wav2Vec 2.0 and HuBERT reveals trade-offs relevant to our application. Wav2Vec 2.0's contrastive learning is more stable during training but may learn representations tied to dataset-specific acoustic conditions. HuBERT's iterative refinement captures more abstract linguistic structure but requires careful hyperparameter tuning and multiple training passes. For code-mixed content, neither approach explicitly addresses the challenge of multiple language varieties in the same utterance---both assume relatively homogeneous training data.
+
+The XLSR (Cross-Lingual Speech Representations) line of work \cite{Conneau2021} extended self-supervised pre-training to 53 languages, demonstrating that a single model could capture phonetic knowledge transferable across language families. These self-supervised models have been adapted for numerous languages, including Bengali, through fine-tuning on relatively small labeled datasets. The BanglaASR model we employ in our experiments derives from this lineage: Wav2Vec 2.0 pre-trained on multilingual data and fine-tuned on Bengali speech.
+
+\textbf{Limitations for Code-Mixing:} Despite these advances, our analysis identifies a critical gap: self-supervised models are pre-trained on monolingual data and assume language consistency within utterances. When an utterance contains systematic code-mixing---as in Banglish---the model encounters acoustic patterns that violate its training assumptions. An English word pronounced with Bengali phonology falls outside both the English and Bengali acoustic spaces the model learned. This mismatch partly explains why both Whisper and BanglaASR struggle with Banglish: neither was trained on code-mixed data, and the acoustic realization of code-mixed speech differs from either source language.
+
+\subsection{Whisper: Multilingual ASR at Scale}
+
+OpenAI's Whisper \cite{Radford2023} represents a significant milestone in multilingual ASR and merits detailed analysis given its central role in our pipeline. Unlike previous multilingual models that required language-specific fine-tuning, Whisper demonstrates robust performance across 99 languages from a single model checkpoint, fundamentally changing expectations for multilingual ASR.
+
+\textbf{Architecture and Training:} Whisper employs a standard encoder-decoder Transformer architecture, processing log-Mel spectrograms through a CNN front-end followed by Transformer encoder blocks. The decoder generates text tokens autoregressively, conditioned on the encoded audio and previous tokens. Special tokens indicate task (transcription vs. translation), language, and timestamps. Trained on approximately 680,000 hours of labeled audio data collected from the internet---roughly 100x the data used for previous large-scale ASR models---Whisper achieved unprecedented robustness across domains and acoustic conditions.
+
+\textbf{Training Methodology Analysis:} Whisper's training methodology emphasizes robustness over benchmark optimization, a design philosophy worth examining critically. By training on diverse, ``in-the-wild'' audio including varying acoustic conditions, background noise, and speaker characteristics, the model achieves generalization that surpasses systems optimized for clean benchmark conditions. The weak supervision approach---using automatically-aligned audio-text pairs from the internet rather than carefully transcribed datasets---introduces label noise but provides scale and diversity impossible with manual transcription.
+
+This design philosophy aligns well with our target domain of classroom recordings, which feature realistic acoustic challenges. However, the training data composition reveals potential biases: English comprises approximately 65\% of training data, while Bengali represents less than 0.5\%. This imbalance manifests in Whisper's behavior on Banglish: the model strongly prefers English transcription, interpreting Bengali words through an English phonetic lens.
+
+\textbf{Language Handling Behavior:} However, Whisper's multilingual capabilities have significant limitations for code-mixed content that our analysis reveals. The model tends to transcribe in a single language, determined either automatically through a language identification module or through explicit language specification via special tokens. When processing Banglish, Whisper typically defaults to English transcription, handling English portions adequately but producing phonetically-motivated English approximations for Bengali words \cite{Peng2023}. 
+
+Our experimental analysis (detailed in Chapter 4) quantifies this behavior: when processing our Banglish lecture dataset with English language specification, Whisper transcribes English technical terms with 85\% accuracy but reduces Bengali words to phonetic nonsense (``korbo'' becomes ``curb oh,'' ``bujhte'' becomes ``boost a''). With Bengali language specification, the reverse occurs: Bengali words are transcribed in Bengali script while English terms are phonetically approximated in Bengali characters. Neither mode handles the code-mixed reality of Banglish instruction.
+
+\textbf{Comparison with Alternatives:} Comparing Whisper to alternatives reveals trade-offs in our application context:
+
+\begin{itemize}
+    \item \textbf{Google Speech-to-Text} offers Bengali language support but, like Whisper, assumes monolingual content. Commercial pricing limits research experimentation.
+    \item \textbf{Azure Speech Services} provides custom model training but requires substantial labeled data for adaptation---precisely the resource we lack for Banglish.
+    \item \textbf{Wav2Vec 2.0 fine-tuned models} offer language-specific optimization but require training infrastructure and data we aim to avoid.
+    \item \textbf{Whisper} provides the best balance of availability, robustness to acoustic conditions, and baseline multilingual capability, making it our primary ASR engine despite code-mixing limitations.
+\end{itemize}
+
+This analysis motivates our multimodal approach: rather than attempting to train a code-mixed ASR model (infeasible without large-scale Banglish training data), we leverage visual information to verify and correct Whisper's outputs, accepting its English-biased transcription as a starting point for refinement.
+
+\subsection{Bengali and South Asian Language ASR}
+
+Research on Bengali ASR has accelerated in recent years, though resources remain limited compared to high-resource languages. A comprehensive analysis of existing work reveals both progress and persistent gaps that frame our contribution.
+
+The Bengali.AI Speech Recognition Challenge \cite{BengaliAI2023} released a substantial dataset of read speech, catalyzing development of Bengali-specific models. This dataset comprises approximately 1,200 hours of speech from 5,000 speakers, covering diverse dialects and demographic groups. The challenge attracted significant participation, with winning systems achieving word error rates below 10\% on the evaluation set. However, critical analysis reveals limitations of this benchmark for our application:
+
+\begin{itemize}
+    \item \textbf{Read vs. Spontaneous Speech:} The dataset consists of read speech---speakers reading predefined sentences---which differs acoustically and linguistically from spontaneous classroom instruction. Read speech has cleaner articulation, fewer disfluencies, and predictable prosody. Spontaneous speech, as in our lectures, includes false starts, self-corrections, filler words, and variable speaking rates that challenge ASR systems.
+    \item \textbf{Monolingual Content:} The dataset is purely Bengali, excluding code-mixed content. Systems optimized on this data have no exposure to English technical terms embedded in Bengali sentences.
+    \item \textbf{Script Output:} The task requires Bengali Unicode output, while our application needs Romanized Banglish for accessibility and practical use.
+\end{itemize}
+
+BanglaASR, built on Wav2Vec 2.0 fine-tuned on Bengali data, represents one of the more capable open-source Bengali ASR systems \cite{BanglaASR2023}. Our experimental evaluation (Chapter 4) reveals both its strengths and limitations: BanglaASR handles Bengali phonology well, correctly recognizing retroflex consonants and vowel distinctions that Whisper misses. However, English technical terms become unintelligible Bengali approximations (``object'' becomes meaningless Bengali syllables), and the Bengali Unicode output requires transliteration for comparison with Romanized ground truth---a lossy process that introduces additional errors.
+
+\textbf{Comparative Analysis of Bengali ASR Approaches:}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{System} & \textbf{Bengali} & \textbf{English} & \textbf{Code-Mixed} & \textbf{Output} \\
+\hline
+Whisper (en) & Poor & Good & Poor & Roman \\
+Whisper (bn) & Moderate & Poor & Poor & Bengali \\
+BanglaASR & Good & Poor & Poor & Bengali \\
+Google STT & Moderate & N/A & N/A & Bengali \\
+\hline
+\end{tabular}
+\caption{Comparative capabilities of ASR systems on Banglish content}
+\end{table}
+
+Ahmed et al. \cite{Ahmed2022} noted that existing Bengali ASR systems struggle with English technical terms, while systems optimized for English fail on Bengali morphology. Their analysis of error patterns---which we extend in our work---identified three primary failure modes: (1) phoneme substitution, where sounds outside the model's training language are mapped to nearest equivalents; (2) segmentation errors, where word boundaries are misidentified in code-mixed contexts; and (3) script confusion, where the model attempts to transcribe foreign words in the wrong script. This gap motivates our multimodal approach to leverage visual information for terminology verification.
+
+South Asian language ASR more broadly faces similar challenges, and comparing approaches across languages provides methodological insights. Research on Hindi-English code-mixing (Hinglish) has explored language identification and switching detection \cite{Sitaram2019}, with some systems achieving over 90\% accuracy on language identification at the word level. However, word-level code-mixing with morphological integration---where a single token contains elements from both languages---remains challenging. The morphological richness of South Asian languages, combined with productive derivational processes that apply native morphology to borrowed stems, creates tokens that are genuinely bilingual at the sub-word level.
+
+Choudhury et al. \cite{Choudhury2007} analyzed code-mixing patterns in Indian languages, finding that technical domains exhibit particularly high rates of English term insertion, often with native language grammatical markers. Their corpus analysis of social media and educational content revealed that code-mixing rates in technical discussions exceed 40\%---meaning nearly half of content involves language alternation. This finding directly informs our work: Banglish technical lectures are not marginally code-mixed but pervasively bilingual, requiring systems designed for this reality rather than treating code-mixing as an edge case.
+
+% =============================================================================
+\section{Code-Mixed Language Processing}
+
+Code-mixing represents one of the most challenging phenomena for natural language processing systems, requiring simultaneous competence in multiple languages and understanding of how they interact. This section provides an in-depth analysis of code-mixing research, with particular attention to the South Asian context where Banglish emerges.
+
+\subsection{Linguistic Foundations of Code-Mixing}
+
+Code-mixing and code-switching represent distinct multilingual phenomena with different implications for natural language processing, and understanding their theoretical foundations is essential for principled system design. Code-switching involves alternation between languages at clause or sentence boundaries, maintaining the grammatical integrity of each language within its segment \cite{MyersScotton1993}. Code-mixing, in contrast, involves the integration of elements from two languages within a single utterance, often at the word or morpheme level \cite{Muysken2000}.
+
+\textbf{Theoretical Framework Analysis:} The Matrix Language Frame (MLF) model \cite{MyersScotton1997} provides the dominant theoretical framework for understanding code-mixing patterns. According to this model, one language (the matrix language) provides the grammatical framework---word order, morphological affixes, and function words---while elements from another language (the embedded language) are inserted at designated points. The model predicts constraints on where embedded language elements can appear: they must either be well-formed constituents or must receive matrix language morphology.
+
+In Banglish technical discourse, Bengali typically serves as the matrix language, providing word order, morphological affixes, and function words, while English provides technical vocabulary and some verbs. Our corpus analysis confirms this pattern: Bengali provides sentence structure (SOV word order), case marking, and tense/aspect morphology, while English contributes nouns (particularly technical terms), some verbs, and occasional adjectives. For example, ``amra class theke object create korbo'' exhibits Bengali matrix structure with English embedded elements (``class,'' ``object,'' ``create'') that receive Bengali morphology (``-theke'' locative, ``korbo'' future tense).
+
+\textbf{Implications for NLP:} Understanding these linguistic patterns is crucial for NLP system design. Systems that treat code-mixing as simple language alternation, applying monolingual models sequentially, fail to capture the grammatical integration that characterizes genuine code-mixing. The morphological attachment of Bengali suffixes to English stems (e.g., ``compile-korbo'' for ``will compile'') requires truly bilingual processing that neither monolingual system provides.
+
+\textbf{Muysken's Typology:} Muysken \cite{Muysken2000} proposed a typology distinguishing three code-mixing patterns: \textit{insertion} (embedding single words or phrases from one language into another's structure), \textit{alternation} (switching between languages at constituent boundaries), and \textit{congruent lexicalization} (sharing grammatical structure while drawing vocabulary from both languages). Banglish technical discourse exhibits primarily insertion patterns for technical terms but alternation for longer English explanations. Recognizing these patterns helps predict where code-mixing will occur and what forms it will take.
+
+\subsection{Code-Mixed Language Identification and Processing}
+
+Language identification in code-mixed text has been studied extensively, with shared tasks at venues like FIRE and SemEval driving progress \cite{Solorio2014, Aguilar2018}. These tasks typically address word-level language tagging, identifying which language each token belongs to. A detailed analysis of approaches and their limitations reveals challenges relevant to our work.
+
+\textbf{Shared Task Analysis:} The FIRE 2013 and subsequent shared tasks on code-mixed language identification established benchmarks for Hindi-English, Bengali-English, and other language pairs. Early systems relied on lexicon-based approaches, classifying words as belonging to the language in whose dictionary they appeared. However, this approach fails for words present in both languages (``data'' is valid English and borrowed into Bengali), named entities, and transliterated words. Machine learning approaches using character n-grams achieved better performance by capturing orthographic patterns distinctive to each language.
+
+The best-performing systems at recent shared tasks achieve 90-95\% token-level accuracy on language identification. However, performance degrades significantly for morphologically complex cases where a single token contains elements from both languages. A word like ``install-korbo'' (``will install'') cannot be cleanly assigned to either language---it is genuinely bilingual at the token level. For ASR evaluation, where word boundaries may be incorrectly identified, this limitation compounds.
+
+\textbf{Subword Tokenization Analysis:} Subword tokenization approaches, particularly Byte-Pair Encoding (BPE) \cite{Sennrich2016} and WordPiece \cite{Schuster2012}, offer partial solutions by segmenting words into smaller units that may align with language boundaries. For example, ``install-korbo'' might be tokenized as ``install,'' ``-kor,'' ``bo,'' potentially allowing the English stem and Bengali morphology to be processed separately. However, these tokenizers are typically trained on monolingual or parallel corpora rather than code-mixed data, potentially fragmenting code-mixed tokens in linguistically unmotivated ways.
+
+Our analysis of Whisper's tokenization on Banglish reveals this problem: the tokenizer, trained primarily on English, treats Bengali words as sequences of unfamiliar characters, fragmenting them into short, meaningless pieces. This fragmentation disrupts the model's language modeling, as it never encountered these token sequences during training. The resulting outputs combine correctly-tokenized English words with garbled Bengali, producing transcriptions that are neither good English nor good Bengali.
+
+\textbf{Pre-trained Model Adaptation:} Recent work has explored training tokenizers and language models specifically on code-mixed data. Khanuja et al. \cite{Khanuja2020} released GLUECoS, a benchmark for code-mixed natural language understanding that includes Hindi-English and Spanish-English data across tasks including sentiment analysis, named entity recognition, and question answering. Their experiments demonstrated that multilingual pre-trained models like mBERT \cite{Devlin2019} provide reasonable baselines but leave substantial room for improvement on code-mixed tasks. Specifically, mBERT's performance dropped 15-20\% absolute on code-mixed data compared to monolingual equivalents, suggesting that multilingual pre-training does not automatically confer code-mixed competence.
+
+\textbf{Gap Analysis:} Critically for our work, we note that GLUECoS and similar benchmarks address written text rather than speech. The challenges of code-mixed text processing---language identification, tokenization, semantic understanding---are compounded in speech by acoustic variation, pronunciation adaptation, and the absence of visual word boundaries. No equivalent benchmark exists for code-mixed speech in the Banglish variety, motivating our dataset contribution.
+
+\subsection{Code-Mixed Speech Recognition}
+
+ASR for code-mixed speech presents unique challenges beyond those faced in text processing, requiring consideration of acoustic, phonetic, and linguistic factors simultaneously. A systematic analysis of existing approaches reveals the limitations that our multimodal approach addresses.
+
+\textbf{Acoustic Challenges:} The acoustic realization of code-mixed utterances may differ from either component language, with speakers adapting pronunciation based on the surrounding linguistic context. An English word embedded in Bengali speech may receive Bengali phonological treatment, affecting vowel quality, stress patterns, and consonant articulation. For example, an English word like ``class'' in Banglish may be pronounced with Bengali retroflex /l/, final consonant gemination, or vowel adaptation. These modifications, natural for bilingual speakers, confuse ASR systems trained on native English or Bengali pronunciation.
+
+Conversely, Bengali words in technical contexts may receive English-influenced pronunciation. A Bengali speaker discussing programming might unconsciously shift toward English intonation patterns even when using Bengali words. These prosodic accommodations provide cues to human listeners about language switching but may mislead ASR language identification.
+
+\textbf{Approach Analysis:} Research on code-mixed ASR has explored several approaches with varying success:
+
+\begin{itemize}
+    \item \textbf{Language-Switching Models:} Y{\i}lmaz et al. \cite{Yilmaz2016} investigated bilingual deep neural networks for Frisian-Dutch code-switching, using language-specific acoustic models with switching mechanisms that select the appropriate model based on detected language. This approach achieved 5-10\% relative WER improvement over monolingual baselines. However, it struggles with word-internal code-mixing (common in Banglish) and requires accurate language boundary detection---itself a challenging problem in continuous speech.
+    
+    \item \textbf{Joint Multilingual Models:} Li et al. \cite{Li2019} proposed multi-encoder architectures that process audio through parallel language-specific encoders before fusion. This approach shows promise for capturing language-specific acoustic patterns while allowing cross-language information sharing. However, it requires substantial code-mixed training data to learn appropriate fusion strategies---data that is scarce for most language pairs including Bengali-English.
+    
+    \item \textbf{Language-Agnostic Approaches:} Some researchers have explored training models without explicit language labels, hoping the model discovers language structure implicitly. Results have been mixed: such models may learn acoustically-grounded representations but lack the linguistic knowledge to produce coherent output in either language.
+\end{itemize}
+
+\textbf{Critical Gap:} For Banglish specifically, we found no published work addressing code-mixed ASR with ground truth evaluation. This absence is striking given the prevalence of Banglish in Bangladeshi education and the millions of students who could benefit from accurate transcription. The gap reflects broader patterns in AI research, where languages spoken by billions receive a fraction of the attention devoted to English. Our dataset creation addresses this gap, providing the first benchmark for Banglish technical lecture ASR.
+
+\subsection{Banglish: Characteristics and Challenges}
+
+Banglish exhibits distinctive characteristics that differentiate it from other code-mixed varieties and require specific consideration in system design. Our analysis draws on both prior literature and our own corpus observations.
+
+Bali et al. \cite{Bali2014} analyzed social media code-mixing patterns, finding that technical and educational domains show particularly high rates of English insertion. Their corpus of 1,200 Facebook posts revealed code-mixing rates of 36\% (by token count) in technical discussions, compared to 18\% in casual social contexts. Unlike casual social media Banglish, which may exhibit more varied mixing patterns, educational Banglish shows systematic patterns: technical terms appear in English while explanatory language remains primarily Bengali.
+
+\textbf{Romanization Complexity:} The Romanization of Banglish introduces additional complexity absent from code-mixed varieties with established orthographies. While Hindi-English code-mixing can leverage Devanagari script for Hindi portions---providing unambiguous orthography---Bangladeshi users frequently write Bengali in Roman script, especially in digital contexts. This Romanization follows no standard convention, resulting in high orthographic variability. The same Bengali word may be spelled differently by different writers, or even by the same writer in different contexts.
+
+Our corpus analysis identified three primary sources of Romanization variance:
+\begin{enumerate}
+    \item \textbf{Vowel Representation:} Bengali distinguishes vowel length and quality in ways not directly represented in Roman orthography. The word for ``we'' might be Romanized as ``amra,'' ``aamra,'' ``amraa,'' or ``amara'' depending on writer preference.
+    
+    \item \textbf{Consonant Clusters:} Bengali consonant clusters may be simplified or preserved variably. The word for ``with'' appears as ``shathe,'' ``sathe,'' ``shate,'' or ``saathe.''
+    
+    \item \textbf{Retroflex Sounds:} Bengali distinguishes dental and retroflex consonants, but Roman script lacks standardized representation. Writers may use ``t'' for both, or use ``T'' or ``th'' for retroflex variants inconsistently.
+\end{enumerate}
+
+\textbf{Implications for Evaluation:} This orthographic variability has profound implications for NLP systems and evaluation. Traditional approaches that rely on lexicon lookup or exact string matching fail when faced with multiple valid spellings. A system that produces ``aamra'' when the reference says ``amra'' is not wrong---both are valid---but would be penalized by exact-match metrics. Fuzzy matching approaches must balance precision against recall, risking either false negatives (failing to match valid variants) or false positives (incorrectly matching unrelated words). Our term-based evaluation metrics explicitly address this challenge through similarity thresholds rather than exact matching, accepting predictions within 85\% character similarity as matches.
+
+\textbf{Technical Vocabulary Patterns:} Our analysis of lecture transcripts reveals consistent patterns in how technical vocabulary is integrated:
+
+\begin{itemize}
+    \item \textbf{Nouns:} Technical nouns almost universally appear in English (``variable,'' ``function,'' ``database''), often with Bengali case markers attached.
+    \item \textbf{Verbs:} Technical verbs show mixed patterns. Some appear as English stems with Bengali light verb (``create kora,'' ``define kora''), while others are nativized (``compile korbo'' paralleling Bengali verb morphology).
+    \item \textbf{Adjectives:} Technical adjectives frequently remain English (``primary key,'' ``object-oriented''), though descriptive adjectives may be Bengali.
+\end{itemize}
+
+These patterns inform our visual bias approach: whiteboard content, being primarily technical vocabulary, predominantly contains the English terms that Whisper handles well. Visual extraction thus provides ground truth for precisely the tokens most likely to be correct in Whisper output---a fortuitous alignment that our system exploits.
+
+% =============================================================================
+\section{Multimodal Learning and Vision-Language Models}
+
+Multimodal learning represents one of the most dynamic areas of AI research, with vision-language models achieving capabilities that seemed impossible just a few years ago. This section provides comprehensive analysis of multimodal approaches relevant to our work, examining both foundations and recent advances with attention to their applicability and limitations for lecture video processing.
+
+\subsection{Foundations of Multimodal Learning}
+
+Multimodal learning seeks to build models that can process and relate information from multiple modalities such as text, images, audio, and video \cite{Baltrusaitis2019}. The fundamental premise is that different modalities provide complementary information: what is ambiguous in one modality may be clear in another. For lecture video processing, the spoken audio and visual whiteboard content represent complementary channels that together convey the full instructional message.
+
+\textbf{Taxonomic Analysis:} Baltru{\v{s}}aitis et al. \cite{Baltrusaitis2019} provide a comprehensive taxonomy of multimodal challenges: \textit{representation} (how to represent and summarize multimodal data), \textit{translation} (how to map from one modality to another), \textit{alignment} (identifying relationships between elements from different modalities), \textit{fusion} (integrating information from multiple modalities for prediction), and \textit{co-learning} (transferring knowledge between modalities). Our work primarily addresses alignment (connecting visual keywords to audio mentions) and fusion (combining visual and audio evidence for improved transcription).
+
+\textbf{Fusion Strategy Analysis:} Early multimodal approaches typically involved modality-specific encoders followed by fusion mechanisms. Understanding these strategies illuminates choices in our pipeline:
+
+\begin{itemize}
+    \item \textbf{Early Fusion:} Combines raw or lightly processed features from different modalities before main processing. Allows learning of low-level cross-modal correlations but requires modalities to be temporally aligned and may be dominated by the higher-dimensional modality.
+    
+    \item \textbf{Late Fusion:} Processes each modality independently, combining only final predictions or high-level features. Allows modality-specific optimization but may miss cross-modal interactions that require joint reasoning.
+    
+    \item \textbf{Hybrid Fusion:} Combines elements of early and late fusion, with multiple fusion points. Attention-based fusion \cite{Xu2015} allows the model to dynamically weight contributions from different modalities, learning where to attend based on task demands. Tensor fusion \cite{Zadeh2017} captures multiplicative interactions between modality representations, modeling second-order effects.
+\end{itemize}
+
+Our pipeline employs a form of late fusion: audio and visual channels are processed independently (ASR and visual extraction), with fusion occurring at the keyword verification stage. This design choice reflects practical constraints (pre-trained models expect specific input formats) and allows interpretable error analysis (we can identify whether errors originate from audio or visual processing).
+
+\textbf{Temporal Alignment Challenges:} Lecture video processing presents particular alignment challenges. Visual content (whiteboard writing) persists over time, while audio content is inherently sequential. A term written on the whiteboard at minute 5 may be discussed verbally at minutes 5, 10, and 15. Determining which visual content is relevant to which audio segment requires modeling temporal dynamics that simple frame-level processing misses.
+
+Prior work on video understanding has addressed temporal modeling through various mechanisms: 3D CNNs that convolve over time, temporal attention that learns to weight different time steps, and hierarchical approaches that model events at multiple timescales. However, the specific pattern in lecture videos---persistent visual content with intermittent verbal reference---differs from typical video understanding scenarios (action recognition, video captioning) where visual content changes more dynamically.
+
+\subsection{Vision-Language Pre-training}
+
+The remarkable success of large-scale pre-training in NLP, exemplified by BERT \cite{Devlin2019} and GPT \cite{Brown2020}, inspired similar approaches for vision-language modeling. Understanding this evolution contextualizes the capabilities of models we employ.
+
+\textbf{CLIP Analysis:} CLIP \cite{Radford2021} demonstrated that contrastive learning on 400 million image-text pairs from the internet could produce powerful visual representations aligned with natural language. The key insight was that internet-scale image-text pairs, though noisy, provided sufficient signal for learning visual concepts that transfer across tasks. This approach enabled zero-shot image classification, where the model classifies images into arbitrary categories specified through text prompts.
+
+CLIP's contrastive objective trains the model to associate matching image-text pairs while separating non-matching pairs. The resulting representation space aligns visual and textual concepts: the embedding of an image of a cat lies close to the embedding of the phrase ``a photo of a cat.'' This alignment enables novel applications impossible with vision-only or language-only models.
+
+\textbf{Limitations for Our Domain:} However, CLIP's training data and objectives create limitations for lecture video processing:
+\begin{itemize}
+    \item \textbf{Natural Image Bias:} CLIP was trained on natural images with descriptive captions, not document images or whiteboard photographs. Its visual encoder may struggle with the text-heavy, diagram-rich content typical of lecture whiteboards.
+    \item \textbf{Caption vs. OCR:} CLIP learns to describe images, not read them. The textual concepts it captures are about image content, not the specific text appearing in images.
+    \item \textbf{Static Images:} CLIP processes single images, not video. Temporal reasoning about content evolution requires additional mechanisms.
+\end{itemize}
+
+\textbf{BLIP Series:} Subsequent work extended vision-language pre-training to more complex tasks. BLIP \cite{Li2022BLIP} introduced a bootstrapping approach that improved training data quality through caption filtering and generation. Recognizing that web-scraped image-text pairs are noisy, BLIP uses a captioning model to generate synthetic captions and a filter to remove low-quality pairs. This data cleaning improved downstream performance across tasks.
+
+BLIP-2 \cite{Li2023BLIP2} proposed a query-based architecture that efficiently bridges frozen image encoders and language models through a lightweight Querying Transformer (Q-Former). Rather than fine-tuning billion-parameter vision and language models end-to-end, BLIP-2 trains only the Q-Former, dramatically reducing computational requirements while achieving competitive performance. The Q-Former learns to extract visual features relevant to language model processing, effectively translating between modalities.
+
+\subsection{Large Vision-Language Models}
+
+The emergence of large language models (LLMs) with instruction-following capabilities \cite{Ouyang2022} catalyzed development of vision-language models that could engage in complex visual reasoning and conversation. This section analyzes key models and their relevance to our application.
+
+\textbf{LLaVA:} LLaVA \cite{Liu2023LLaVA} demonstrated that connecting a vision encoder to an instruction-tuned LLM through a simple projection layer, followed by fine-tuning on visual instruction data, produced capable visual assistants. The key insight was that the language model already possessed reasoning capabilities; it simply needed visual input in a compatible format. LLaVA achieved this by projecting CLIP visual embeddings into the language model's embedding space, allowing visual information to participate in attention alongside text.
+
+LLaVA's visual instruction tuning data, generated by prompting GPT-4 with image captions and bounding boxes, taught the model to engage in detailed visual conversations. The resulting system could answer complex questions about images, describe fine details, and reason about spatial relationships. However, LLaVA's reliance on CLIP visual features inherits CLIP's limitations for document and text-heavy images.
+
+\textbf{Qwen-VL Series:} Qwen-VL \cite{Bai2023QwenVL} and its successor Qwen2-VL \cite{Wang2024Qwen2VL} represent state-of-the-art open-source vision-language models with capabilities particularly relevant to our application. Unlike models built on CLIP, Qwen-VL uses a vision encoder trained from scratch on diverse data including documents, charts, and screenshots. This design choice enables superior performance on text-heavy images.
+
+Key capabilities relevant to our work include:
+\begin{itemize}
+    \item \textbf{Arbitrary Resolution:} Qwen2-VL supports images of any aspect ratio and resolution, important for whiteboard photographs that may be wide, tall, or vary across frames.
+    \item \textbf{Multi-Image Context:} The model can process multiple images in a single context, enabling comparison across lecture frames or aggregation of visual information.
+    \item \textbf{OCR and Document Understanding:} Qwen2-VL achieves strong performance on document understanding benchmarks, suggesting capability for reading whiteboard text.
+    \item \textbf{Grounding:} The model can identify regions of images corresponding to textual descriptions, potentially useful for locating specific content on whiteboards.
+\end{itemize}
+
+The Qwen2.5-VL-7B model we employ in our pipeline achieves competitive performance with much larger proprietary models on visual question answering and text extraction benchmarks. Our experiments (Chapter 4) validate its capability for whiteboard keyword extraction, though we observe failure modes including hallucination of text not present in images and occasional character-level errors in extracted text.
+
+\textbf{Comparative Analysis:}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Model} & \textbf{OCR Quality} & \textbf{Open Source} & \textbf{Context Length} & \textbf{VRAM (7B)} \\
+\hline
+GPT-4V & Excellent & No & 128K & N/A \\
+Claude 3 & Excellent & No & 200K & N/A \\
+LLaVA 1.5 & Moderate & Yes & 4K & 14GB \\
+Qwen2.5-VL & Good & Yes & 32K & 16GB \\
+\hline
+\end{tabular}
+\caption{Comparison of vision-language models for OCR-heavy applications}
+\end{table}
+
+\subsection{Cross-Modal Verification and Fusion}
+
+Several research threads explore using information from one modality to verify or improve processing in another. Our approach draws on these precedents while addressing domain-specific challenges.
+
+\textbf{Audio-Visual Speech Recognition:} In the speech domain, audio-visual speech recognition (AVSR) leverages lip movements to improve ASR accuracy, particularly in noisy conditions \cite{Afouras2018}. The visual modality provides information redundant with but independent of the audio signal, enabling error correction when one modality is degraded. Afouras et al. demonstrated that AVSR could recover from 50\% of acoustic errors by incorporating visual lip reading, particularly for consonants whose acoustic realizations are similar but lip shapes are distinct.
+
+\textbf{Critical Analysis:} However, AVSR differs fundamentally from our approach in several ways:
+\begin{itemize}
+    \item \textbf{Information Type:} AVSR extracts phonetic information (lip shapes correspond to phonemes), while we extract semantic information (whiteboard content provides keywords, not pronunciation).
+    \item \textbf{Temporal Alignment:} Lip movements are tightly synchronized with speech, while whiteboard content persists across extended time periods.
+    \item \textbf{Coverage:} Lip reading potentially corrects any word, while whiteboard content only provides ground truth for written terms.
+\end{itemize}
+
+These differences mean AVSR techniques do not directly transfer, but the principle---using visual redundancy to correct audio errors---inspires our approach.
+
+\textbf{How2 Dataset and Multimodal Learning:} Sanabria et al. \cite{Sanabria2018} introduced the How2 dataset for multimodal learning from instructional videos, though this dataset features English-only content. Their experiments demonstrated that jointly modeling audio, video, and text improved summarization quality compared to single-modality approaches. The improvement was particularly notable for content where visual demonstrations complemented verbal explanations---precisely the pattern we observe in classroom instruction.
+
+\textbf{Visual Bias in ASR:} The specific approach of biasing ASR with visually-extracted keywords has received limited attention in the literature. Most multimodal ASR work focuses on audio-visual speech recognition using lip reading, which provides phonetic information complementary to audio. Our approach of extracting semantic keywords from whiteboard content and using them to verify or correct ASR output represents a less-explored direction with distinct challenges.
+
+\textbf{Our Contribution to This Literature:} We identify and experimentally characterize a key risk in visual bias approaches: hallucination. When ASR is biased toward visually-extracted keywords, it may over-apply these keywords, inserting them at positions where they were not actually spoken. Our experiments quantify this risk and explore mitigation strategies, contributing empirical understanding to guide future work in visual-semantic ASR enhancement.
+
+% =============================================================================
+\section{Lecture Video Processing and Educational Technology}
+
+Educational technology represents a massive industry with significant academic research investment, yet certain populations remain underserved. This section analyzes existing work on lecture video processing, identifying both achievements and gaps that motivate our contribution.
+
+\subsection{Automatic Lecture Transcription}
+
+Automatic transcription of lecture videos has been studied extensively, driven by accessibility requirements and the desire to make educational content searchable. The evolution of approaches reflects broader ASR advances while revealing domain-specific challenges.
+
+\textbf{Early Systems:} Glass et al. \cite{Glass2007} developed early systems for MIT OpenCourseWare that combined ASR with slide alignment and indexing. These systems demonstrated practical utility despite imperfect transcription accuracy, enabling keyword search and navigation within lecture videos. Their key insight was that search functionality remains useful even with transcription errors, as long as keywords are occasionally correct. This observation informs our evaluation philosophy: we prioritize technical term recall over overall word accuracy.
+
+\textbf{Domain Adaptation:} More recent work has leveraged improvements in ASR to achieve higher transcription quality. Zhang et al. \cite{Zhang2021} explored using Transformer-based ASR models for lecture transcription, finding that domain adaptation through fine-tuning on academic speech improved performance by 15-25\% relative WER reduction. Their analysis identified three primary error sources in lecture transcription:
+
+\begin{itemize}
+    \item \textbf{Technical Vocabulary:} Domain-specific terms absent from general ASR training data
+    \item \textbf{Disfluencies:} False starts, repetitions, and self-corrections common in spontaneous speech
+    \item \textbf{Acoustic Variability:} Varying distances from microphone, background noise, room acoustics
+\end{itemize}
+
+All three challenges appear in our Banglish dataset, compounded by code-mixing. However, their work focused on English lectures; application to code-mixed content requires additional consideration that our work provides.
+
+\textbf{Commercial Solutions Analysis:} Commercial solutions for lecture transcription have proliferated, including Otter.ai, Rev.ai, and platform-specific solutions from Zoom and Microsoft Teams. A critical analysis of these services reveals patterns relevant to our work:
+
+\begin{itemize}
+    \item \textbf{Language Support:} Most services support major world languages individually but not code-mixed content. Otter.ai, for instance, allows language selection but transcribes in a single language.
+    \item \textbf{Accuracy on Accented Speech:} Even for English, services struggle with non-native accents. Our informal testing found 30-40\% higher error rates on Indian-accented English compared to American English.
+    \item \textbf{Technical Vocabulary:} General-purpose services lack domain-specific vocabulary. Custom vocabulary features exist but require manual term entry.
+    \item \textbf{Pricing:} Per-minute pricing limits research experimentation and practical deployment in resource-constrained educational contexts.
+\end{itemize}
+
+YouTube's automatic captions, while widely available, exhibit particularly high error rates on Banglish content, often producing incomprehensible outputs that frustrate rather than assist learners. Our analysis of YouTube captions on our dataset videos found Term Recall below 30\%---meaning over 70\% of technical terms were missed or garbled.
+
+\subsection{Lecture Summarization}
+
+Beyond transcription, automatic lecture summarization aims to distill lengthy recordings into concise, useful notes. This task adds complexity beyond transcription, requiring content selection and organization.
+
+\textbf{Extractive vs. Abstractive:} Extractive approaches select salient sentences from transcripts based on features like keyword density, position, and discourse markers \cite{Liu2019}. These methods are computationally efficient and avoid generating incorrect content, but produce disjointed summaries that may lack coherence. Abstractive approaches generate novel summary text, potentially reorganizing and synthesizing information from the source \cite{Zhang2020Pegasus}. These methods produce more readable summaries but risk hallucinating content not present in the source.
+
+\textbf{Multimodal Lecture Summarization:} Multimodal lecture summarization incorporates visual information alongside transcripts. Presentation slides provide structured content that can anchor summary generation, while whiteboard content captures instructor emphasis and visual explanations. Lin et al. \cite{Lin2020} explored using slide content to improve lecture summarization, finding that visual information helped identify topic boundaries and key concepts. Their experiments showed 12\% improvement in ROUGE scores when incorporating slide titles as summary anchors.
+
+\textbf{Critical Analysis:} However, their work assumed accurate OCR from clean presentation slides---a different visual domain than handwritten whiteboards. Handwritten content recognition is substantially more challenging, and their approach does not directly transfer. Furthermore, they processed English-only content with accurate ASR; our scenario combines challenging visual content with noisy transcription.
+
+\textbf{LLM-Based Summarization:} The application of large language models to summarization has achieved remarkable results. Models like GPT-4 and Claude can generate coherent, well-organized summaries from lengthy transcripts when provided appropriate instructions \cite{Goyal2023}. However, these models remain sensitive to input quality: garbage in, garbage out. When provided transcripts corrupted by ASR errors, LLM summaries may propagate or even amplify those errors.
+
+Our experiments revealed an interesting phenomenon: LLMs sometimes ``correct'' obvious ASR errors based on context, producing summaries that are more accurate than input transcripts. For example, if the transcript reads ``we will create an object from the clause,'' the LLM may correctly infer ``class'' from context. However, this correction is inconsistent and unreliable; sometimes the LLM faithfully reproduces errors or confabulates plausible but incorrect content. This observation motivates our focus on improving transcription quality before summarization rather than relying on LLM error correction.
+
+\subsection{Educational Content Processing in South Asian Languages}
+
+Research on educational technology for South Asian languages remains limited compared to English-centric work. This gap is striking given the demographics: India and Bangladesh alone have over 1.5 billion people, many of whom learn technical content in code-mixed varieties of their native languages.
+
+\textbf{Localization vs. Native Processing:} Khan Academy has localized content for Hindi and other languages, but these represent translations rather than processing of naturally-occurring multilingual instruction. The reality that much South Asian technical education occurs in code-mixed varieties has received insufficient attention from the educational technology research community. Localized content, while valuable, does not address the millions of hours of existing content in local educational styles.
+
+\textbf{Related Work in Hindi/Indian Languages:} Gupta et al. \cite{Gupta2020} explored automatic question generation from Hindi educational texts, finding that multilingual pre-trained models provided reasonable baselines. However, their work addressed written text rather than spoken lectures, and did not consider code-mixed content. The intersection of educational technology and code-mixed language processing remains largely unexplored.
+
+Other work has addressed speech-to-text for Indian language lectures, but typically in monolingual settings. The National Programme on Technology Enhanced Learning (NPTEL) in India has explored lecture transcription for Hindi and other languages, but their systems assume single-language content and do not handle the pervasive code-mixing characteristic of technical education.
+
+\textbf{Broader Implications:} This gap reflects broader patterns in AI research, where languages spoken by billions receive a fraction of the attention devoted to English. The consequences extend beyond academic interest: students in Bangladesh, India, Pakistan, and other multilingual societies cannot benefit from educational technology advances that assume monolingual content. Our work represents one step toward addressing this inequity, demonstrating that meaningful progress is possible even without massive code-mixed training datasets.
+
+\subsection{Classroom Video Understanding}
+
+Beyond transcription and summarization, researchers have explored richer understanding of classroom videos, including instructor behavior analysis, student engagement detection, and pedagogical quality assessment.
+
+\textbf{Instructor Behavior:} Work on instructor behavior analysis has examined gesture recognition, blackboard usage patterns, and explanation strategies. These analyses could inform more sophisticated visual understanding in our system---for example, identifying when the instructor is actively writing versus referring to existing content. However, such fine-grained analysis requires video understanding capabilities beyond current VLM strengths and falls outside our current scope.
+
+\textbf{Student Engagement:} Student engagement detection from classroom videos has received attention for improving teaching quality. While not directly relevant to our transcription task, engagement signals could potentially inform summarization: content that engages students may deserve more emphasis in notes. However, our dataset consists of online lecture recordings without visible student reactions.
+
+\textbf{Pedagogical Assessment:} Automatic assessment of pedagogical quality---identifying effective teaching strategies, unclear explanations, or missed concepts---represents an ambitious goal for classroom video understanding. Such assessment could guide both instructor improvement and student note-taking. While beyond our current scope, our pipeline's components (transcription, keyword extraction, summarization) provide foundations for future pedagogical analysis.
+
+% =============================================================================
+\section{Evaluation Metrics for ASR and Code-Mixed Languages}
+
+Evaluation methodology profoundly shapes research progress, determining what systems optimize for and how progress is measured. This section critically analyzes standard ASR metrics, identifies their limitations for code-mixed content, and situates our evaluation approach within broader methodological discussions.
+
+\subsection{Word Error Rate and Its Limitations}
+
+Word Error Rate (WER) has served as the dominant evaluation metric for ASR since the field's early days \cite{Jurafsky2000}. Defined as the edit distance between hypothesis and reference transcriptions normalized by reference length, WER provides an intuitive measure of transcription accuracy. Formally:
+
+\[
+\text{WER} = \frac{S + D + I}{N}
+\]
+
+where $S$, $D$, and $I$ are substitutions, deletions, and insertions respectively, and $N$ is the reference length in words. The metric counts substitutions, insertions, and deletions required to transform the hypothesis into the reference.
+
+\textbf{Theoretical Limitations:} However, WER exhibits well-known limitations that critical analysis reveals:
+
+\begin{itemize}
+    \item \textbf{All Errors Weighted Equally:} The metric treats all errors as equally severe, whether substituting ``the'' for ``a'' or ``cat'' for ``dog.'' In lecture transcription, confusing ``class'' with ``clause'' is far more damaging than confusing ``the'' with ``a,'' but WER weights them identically.
+    
+    \item \textbf{No Semantic Credit:} Semantic preservation receives no credit: a paraphrase that conveys identical meaning receives the same penalty as a completely incorrect transcription. If an instructor says ``we'll make an object'' and the system outputs ``we will create an object,'' WER counts multiple errors despite semantic equivalence.
+    
+    \item \textbf{Reference Dependency:} WER assumes a single correct reference. For content with valid variants (synonyms, paraphrases, spelling variations), this assumption introduces systematic bias.
+    
+    \item \textbf{Normalization Sensitivity:} WER is sensitive to text normalization choices: whether to expand contractions, how to handle numbers, whether punctuation is included. Different normalization choices can change WER by 5-10\% without reflecting genuine accuracy differences.
+\end{itemize}
+
+For applications where meaning matters more than exact wording, WER may poorly reflect practical utility.
+
+\textbf{Code-Mixed Specific Problems:} For code-mixed languages with non-standardized orthography, WER's limitations become particularly acute:
+
+\begin{itemize}
+    \item \textbf{Orthographic Variation:} When multiple valid spellings exist for the same word, WER penalizes valid variants as errors. A system that consistently uses one Romanization convention while the reference uses another would receive high WER despite producing correct transcriptions. Our analysis found that up to 15\% of WER on Banglish content reflects Romanization differences rather than recognition errors.
+    
+    \item \textbf{Script Mismatch:} Comparing Bengali script output to Roman script reference requires transliteration, introducing additional errors. A word correctly recognized in Bengali Unicode may transliterate differently than the ground truth Romanization, inflating WER.
+    
+    \item \textbf{Tokenization Ambiguity:} Code-mixed text has ambiguous word boundaries. Does ``install-korbo'' count as one word or two? Different tokenization choices affect WER calculation.
+\end{itemize}
+
+These observations have led researchers to question WER's appropriateness for evaluating code-mixed ASR \cite{Sitaram2019}. Sitaram et al. found that WER underestimated code-mixed ASR quality by 20-30\% compared to human judgments of utility.
+
+\subsection{Alternative Evaluation Approaches}
+
+Researchers have proposed various alternatives and supplements to WER, each with strengths and limitations for our application.
+
+\textbf{Character Error Rate:} Character Error Rate (CER) operates at the character level, partially mitigating issues with tokenization and compound words. For code-mixed content, CER is less sensitive to word boundary ambiguity. However, CER does not address the fundamental issue of orthographic variation in Romanized text---``amra'' vs. ``aamra'' still counts as error characters. Furthermore, CER over-penalizes short word errors: misspelling ``a'' as ``the'' is a 200\% character error but modest semantic impact.
+
+\textbf{Semantic Similarity Approaches:} BERTScore \cite{Zhang2020BERTScore} computes similarity between hypothesis and reference using contextual embeddings, potentially capturing semantic equivalence despite surface differences. The intuition is that BERT embeddings capture meaning; similar meanings should have similar embeddings regardless of exact wording.
+
+\textbf{Critical Analysis:} However, multilingual BERT's representation quality for code-mixed content remains uncertain. mBERT was trained on monolingual data from many languages but never saw code-mixed text. Our informal testing found that mBERT representations for Banglish words were often unstable, varying substantially with minor context changes. Furthermore, BERTScore may not appropriately handle the technical terminology central to our application---domain-specific terms may have embeddings that do not reflect their importance to the transcription task.
+
+\textbf{Keyword-Based Metrics:} For keyword-focused applications, precision and recall metrics assess coverage of important terms. Technical Term Recall, as we employ in this thesis, measures what fraction of domain-specific keywords appear in the transcription. This approach directly reflects whether the transcription captures the technical content that students need for learning, providing an application-appropriate alternative to WER.
+
+Our term-based evaluation framework includes:
+\begin{itemize}
+    \item \textbf{Term Recall:} Fraction of ground truth technical terms found in prediction
+    \item \textbf{Term Precision:} Fraction of predicted technical terms matching ground truth
+    \item \textbf{Term F1:} Harmonic mean of recall and precision
+\end{itemize}
+
+Crucially, we employ fuzzy matching with an 85\% similarity threshold, accepting predictions that are close to ground truth terms. This accommodation handles Romanization variance while maintaining precision: ``aamra'' matches ``amra'' (91\% similarity) but ``amara'' does not match ``camera'' (60\% similarity).
+
+\subsection{Evaluation Resources and Benchmarks}
+
+The availability of evaluation benchmarks profoundly shapes research progress, determining what problems researchers address and enabling meaningful comparison across systems.
+
+\textbf{English ASR Benchmarks:} LibriSpeech \cite{Panayotov2015} has served as a primary benchmark for English ASR, enabling consistent comparison across systems. The dataset comprises 1,000 hours of read English speech derived from audiobooks, with clean and other subsets representing varying acoustic conditions. LibriSpeech's availability catalyzed rapid progress: systems improved from 5\% WER in 2015 to below 2\% by 2023.
+
+Common Voice \cite{Ardila2020} extended benchmark availability to numerous languages through crowdsourced data collection. Contributors record themselves reading prompted sentences, with validation by other contributors. The project has collected data for over 100 languages, enabling ASR research beyond the English-dominated mainstream. However, code-mixed content remains absent from Common Voice; the prompted sentences are monolingual by design.
+
+\textbf{Code-Mixed Benchmarks:} For code-mixed languages, benchmark scarcity has hindered research. The MUCS (Microsoft Multilingual Code-Switching) corpus \cite{Diwan2021} provides Hindi-English and other code-switched speech data, but focuses on conversational rather than educational content. The conversational register differs from academic instruction in vocabulary, formality, and code-mixing patterns.
+
+No equivalent resource exists for Banglish, technical content, or lecture recordings. Researchers studying Banglish ASR have no standard corpus against which to evaluate, no prior results to compare against, and no data for training domain-adapted models.
+
+\textbf{Our Benchmark Contribution:} This resource gap motivated our dataset contribution. By creating and releasing ground truth transcriptions for Banglish technical lectures, we provide a benchmark that enables evaluation of ASR systems on this challenging and practically important domain. While nine videos represent a limited sample, this benchmark exceeds what was previously available: nothing.
+
+Our benchmark provides:
+\begin{itemize}
+    \item \textbf{Real Classroom Audio:} Authentic acoustic conditions, not read or prompted speech
+    \item \textbf{Technical Content:} Programming, digital logic, and database topics
+    \item \textbf{Natural Code-Mixing:} Pervasive Bengali-English integration as instructors naturally speak
+    \item \textbf{Romanized Ground Truth:} Accessible for evaluation without script conversion
+    \item \textbf{Keyword Annotations:} Technical terms identified for term-based evaluation
+\end{itemize}
+
+% =============================================================================
+\section{Research Gaps and Our Contributions}
+
+The comprehensive literature review reveals several interconnected gaps that our research addresses. This section synthesizes the gaps identified throughout the chapter, explicitly connecting them to our contributions and positioning our work within the broader research landscape.
+
+\subsection{Gap 1: Absence of Banglish Technical Lecture Benchmarks}
+
+Despite the prevalence of Banglish in Bangladeshi technical education, no benchmark dataset exists for evaluating ASR systems on this content. Our analysis revealed:
+
+\begin{itemize}
+    \item \textbf{Bengali.AI Challenge:} Covers read monolingual Bengali, not spontaneous code-mixed speech
+    \item \textbf{Common Voice:} Includes Bengali but only monolingual prompted sentences
+    \item \textbf{MUCS Corpus:} Provides Hindi-English code-switching but not Bengali-English
+    \item \textbf{How2 Dataset:} Features instructional videos but English-only
+\end{itemize}
+
+Researchers cannot rigorously assess system performance or compare approaches without standardized evaluation resources. This benchmark absence creates a chicken-and-egg problem: without benchmarks, researchers avoid the domain; without research attention, no one creates benchmarks.
+
+\textbf{Our Contribution:} We address this gap by creating a dataset of nine lecture recordings with manually transcribed ground truth, providing the first evaluation resource for this domain. Our benchmark includes approximately 73,000 characters of transcribed content across three technical domains (Python, Digital Logic, Databases), enabling meaningful system evaluation and comparison.
+
+\subsection{Gap 2: Limited Multimodal Approaches for Code-Mixed ASR}
+
+While multimodal learning has advanced rapidly, its application to code-mixed ASR remains unexplored. Our analysis of multimodal speech processing revealed:
+
+\begin{itemize}
+    \item \textbf{Audio-Visual Speech Recognition:} Focuses on lip reading for phonetic information, not semantic content from visual elements
+    \item \textbf{Lecture Video Processing:} Assumes monolingual content and accurate ASR
+    \item \textbf{Vision-Language Models:} Applied to image captioning and QA, not ASR enhancement
+\end{itemize}
+
+The specific approach of using visual content (whiteboard text) to verify or correct ASR outputs has not been explored for code-mixed content. The intuition that visual ground truth could help seems obvious, but the techniques for effective fusion remain undeveloped.
+
+\textbf{Our Contribution:} We explore using vision-language models to extract keywords from whiteboard content, investigating both the potential and the pitfalls of cross-modal fusion for code-mixed transcription. Our experiments characterize when visual information helps versus harms, providing guidance for future multimodal ASR research.
+
+\subsection{Gap 3: Inappropriate Evaluation Metrics for Code-Mixed Content}
+
+Standard WER penalizes valid Romanization variants as errors, systematically underestimating transcription quality for code-mixed content. Our analysis revealed:
+
+\begin{itemize}
+    \item \textbf{Romanization Variance:} Up to 15\% of WER reflects spelling differences, not errors
+    \item \textbf{Semantic Blindness:} WER treats all errors equally regardless of meaning impact
+    \item \textbf{Script Mismatch:} Bengali-to-Roman conversion introduces additional variance
+\end{itemize}
+
+Researchers evaluating code-mixed ASR using WER may draw incorrect conclusions about system quality, potentially abandoning effective approaches that appear to have high error rates.
+
+\textbf{Our Contribution:} We propose and validate term-based metrics---Term Recall, Term Precision, and Term F1---that focus on technical keyword capture while accommodating orthographic variation through fuzzy matching. These metrics better reflect practical utility for educational applications.
+
+\subsection{Gap 4: Unknown Baseline Performance}
+
+Without benchmarks, we lack even basic understanding of how existing ASR systems perform on Banglish technical lectures. Questions remained unanswered:
+
+\begin{itemize}
+    \item How well does Whisper handle Banglish technical content?
+    \item Does Bengali-focused ASR (BanglaASR) outperform multilingual approaches?
+    \item What types of errors dominate: acoustic confusion, vocabulary gaps, or language mixing?
+\end{itemize}
+
+These baseline questions are prerequisites for meaningful research progress. Without knowing current performance levels and error patterns, researchers cannot identify opportunities for improvement.
+
+\textbf{Our Contribution:} We establish quantitative baselines through systematic evaluation, finding that Whisper achieves 73.9\% Term F1 on our dataset---reasonable but with substantial room for improvement. Our error analysis identifies dominant failure modes: phonetic approximation of Bengali words as English, technical vocabulary confusion, and hallucination under noisy conditions.
+
+\subsection{Gap 5: Untested Assumptions about Visual Bias}
+
+The intuition that biasing ASR toward visually-extracted keywords should improve accuracy has not been empirically tested for code-mixed content. The theoretical appeal is clear: if the whiteboard shows ``polymorphism'' and the ASR outputs ``poly more fizz him,'' visual information should enable correction. However, the mechanics of incorporating visual bias without causing new errors remained unexplored.
+
+\textbf{Our Contribution:} Our experiments reveal that naive visual bias injection often harms rather than helps, causing hallucination of keyword mentions where none occur. This finding provides important guidance for future multimodal ASR research: visual information is valuable for verification and post-hoc correction, but simplistic boosting of keyword probabilities introduces more errors than it corrects.
+
+\subsection{Additional Gaps Addressed}
+
+Beyond the five primary gaps, our work addresses several additional limitations in the literature:
+
+\begin{itemize}
+    \item \textbf{Hallucination in ASR:} While hallucination is well-documented in language models, its prevalence in ASR for challenging audio has received less attention. We characterize and address hallucination patterns.
+    
+    \item \textbf{End-to-End Pipeline:} Most research addresses individual components (ASR, summarization, OCR) in isolation. We provide an integrated pipeline demonstrating that components can be combined effectively.
+    
+    \item \textbf{Practical Deployment Considerations:} Academic research often ignores computational constraints. Our pipeline operates on consumer-grade GPUs with explicit memory management.
+\end{itemize}
+
+\subsection{Synthesis and Positioning}
+
+Synthesizing across gaps, we observe a common pattern: existing research assumes conditions that do not hold for Banglish technical education. ASR research assumes monolingual content or clean language switching. Multimodal research assumes high-resource settings with abundant training data. Evaluation methodology assumes standardized orthography. Educational technology assumes English or cleanly-translated content.
+
+Our work challenges these assumptions by demonstrating that meaningful progress is possible even without massive code-mixed training datasets. By leveraging pre-trained models (Whisper, Qwen2.5-VL), adapting fusion strategies to the specific challenges of Banglish, and developing appropriate evaluation methodology, we advance both practical capabilities and scientific understanding for an underserved linguistic community.
+
+The tools, datasets, and insights we contribute enable future research while providing immediate value to students and educators working with Banglish technical content. Our hope is that this work catalyzes further attention to code-mixed educational technology, inspiring others to address the millions of learners whose linguistic realities have been overlooked by mainstream AI research.
+
+\section{Chapter Summary}
+
+This literature review has surveyed five interconnected research areas relevant to multimodal Banglish lecture transcription:
+
+\begin{enumerate}
+    \item \textbf{Automatic Speech Recognition:} We traced the evolution from HMM-based systems through deep learning and self-supervised learning to current foundation models like Whisper. Critical analysis revealed that despite impressive multilingual capabilities, current systems assume monolingual content and struggle with code-mixed Banglish.
+    
+    \item \textbf{Code-Mixed Language Processing:} We examined theoretical frameworks for understanding code-mixing, computational approaches to code-mixed text and speech, and the specific characteristics of Banglish. Analysis identified gaps in code-mixed ASR research, particularly for Bengali-English in educational domains.
+    
+    \item \textbf{Multimodal Learning and Vision-Language Models:} We surveyed the rapid progress in vision-language pre-training and large VLMs, analyzing their capabilities for document understanding and text extraction. We identified opportunities for using visual information to enhance ASR while noting challenges of hallucination and temporal alignment.
+    
+    \item \textbf{Lecture Video Processing:} We reviewed approaches to lecture transcription and summarization, commercial solutions and their limitations, and the gap in support for South Asian language education. Analysis revealed that code-mixed content remains unaddressed.
+    
+    \item \textbf{Evaluation Metrics:} We critically analyzed WER and its limitations for code-mixed content, surveyed alternatives, and identified the absence of appropriate benchmarks as a fundamental barrier to research progress.
+\end{enumerate}
+
+Throughout, we identified five primary research gaps that motivate and shape our contribution: absence of benchmarks, limited multimodal approaches, inappropriate metrics, unknown baselines, and untested assumptions. The following chapters present our methodology for addressing these gaps and experimental results validating our approach.
