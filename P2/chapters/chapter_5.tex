@@ -9,7 +9,7 @@ This chapter presents the comprehensive methodology underlying our Multimodal Ba
 
 Our approach synthesizes insights from multiple research traditions. From the ASR literature, we adopt the principle of leveraging large-scale pre-trained models rather than training domain-specific systems from scratch---a practical necessity given the absence of Banglish training corpora. From the multimodal learning literature, we draw the insight that naive fusion can harm performance, leading us to develop verification-oriented approaches that treat visual information as a corrective signal rather than an unconditional bias. From the software engineering tradition, we embrace modular architecture that enables component-level evaluation and facilitates systematic experimentation.
 
-The chapter proceeds as follows. Section 5.2 articulates our design philosophy and the constraints that shaped our architectural decisions. Section 5.3 presents the complete system architecture, detailing the audio processing pipeline, visual extraction system, cross-modal fusion mechanism, and content synthesis components. Section 5.4 describes our data collection methodology and the creation of the benchmark dataset. Section 5.5 details the preprocessing pipelines that prepare raw inputs for model processing. Section 5.6 provides implementation specifics including memory management strategies crucial for operating within hardware constraints. Finally, Section 5.7 outlines the experimental design whose results are presented in Chapter 6.
+The chapter proceeds as follows. Section 4.2 articulates our design philosophy and the constraints that shaped our architectural decisions. Section 4.3 presents the complete system architecture, detailing the audio processing pipeline, visual extraction system, cross-modal fusion mechanism, and content synthesis components. Section 4.4 describes our data collection methodology and the creation of the benchmark dataset. Section 4.5 details the preprocessing pipelines that prepare raw inputs for model processing. Section 4.6 provides implementation specifics including memory management strategies crucial for operating within hardware constraints. Finally, Section 4.7 outlines the experimental design whose results are presented in Chapter 5.
 
 % =============================================================================
 \section{Design Philosophy and Constraints}
@@ -20,7 +20,7 @@ The design of our system emerged from the intersection of ambitious research goa
 
 Four fundamental principles informed every design decision throughout the development process, from high-level architecture to low-level implementation details.
 
-The first principle, \textbf{leveraging pre-trained foundation models}, reflects the pragmatic reality of working with low-resource languages. Training a custom ASR system for Banglish would require hundreds of hours of transcribed code-mixed speech---data that simply does not exist. Instead, we leverage state-of-the-art pre-trained models that have learned robust acoustic and linguistic representations from massive multilingual corpora. OpenAI's Whisper, trained on 680,000 hours of labeled audio spanning 99 languages, provides a foundation far more capable than anything we could train from scratch. Our contribution lies not in model training but in careful prompt engineering, post-processing, and cross-modal integration that adapts these powerful general-purpose models to our specific domain.
+The first principle, \textbf{leveraging pre-trained foundation models}, reflects the pragmatic reality of working with low-resource languages. Training a custom ASR system for Banglish would require hundreds of hours of transcribed code-mixed speech---data that simply does not exist. Instead, we leverage state-of-the-art pre-trained models that have learned robust acoustic and linguistic representations from massive multilingual corpora. OpenAI's Whisper \cite{Radford2023}, trained on 680,000 hours of labeled audio spanning 99 languages, provides a foundation far more capable than anything we could train from scratch. Our contribution lies not in model training but in careful prompt engineering \cite{Liu2023Prompt}, post-processing, and cross-modal integration that adapts these powerful general-purpose models to our specific domain.
 
 The second principle, \textbf{modular pipeline architecture}, ensures that our system remains maintainable, debuggable, and extensible. Each component---audio extraction, speech recognition, visual analysis, cross-modal fusion, and content synthesis---operates as an independent module with well-defined interfaces. This modularity provides three key benefits: it enables component-level evaluation to identify performance bottlenecks; it facilitates debugging by isolating failures to specific modules; and it allows individual components to be upgraded as better models become available without requiring system-wide redesign. When a superior vision-language model emerges, we can substitute it without touching the ASR or summarization components.
 
@@ -57,7 +57,7 @@ Real-time processing not required & Processing time less critical than accuracy;
 
 The absence of Banglish training data represents our most fundamental constraint, eliminating entire categories of potential solutions. We cannot train an end-to-end code-mixed ASR system, cannot fine-tune existing models on in-domain data, and cannot employ techniques requiring paired Banglish audio-text corpora. This constraint redirects our research from model training toward intelligent integration of existing components---a contribution that may prove more broadly applicable than a narrow domain-specific model would have been.
 
-The GPU memory constraint of 24GB VRAM creates interesting engineering challenges. Our three primary models---Whisper large-v3-turbo (6GB), Qwen2.5-VL-7B (16GB), and Qwen2.5-7B (16GB)---cannot coexist in memory simultaneously. This necessitates a sequential processing architecture with explicit model loading and unloading between stages. While this approach increases total processing time compared to a parallel architecture, it enables us to use larger, more capable models than would otherwise be possible. The memory management system we developed, detailed in Section 5.6, ensures reliable operation without out-of-memory failures.
+The GPU memory constraint of 24GB VRAM creates interesting engineering challenges. Our three primary models---Whisper large-v3-turbo (6GB), Qwen2.5-VL-7B (16GB), and Qwen2.5-7B (16GB)---cannot coexist in memory simultaneously. This necessitates a sequential processing architecture with explicit model loading and unloading between stages. While this approach increases total processing time compared to a parallel architecture, it enables us to use larger, more capable models than would otherwise be possible. The memory management system we developed, detailed in Section 4.6, ensures reliable operation without out-of-memory failures.
 
 \subsection{Research Methodology Framework}
 
@@ -81,13 +81,13 @@ Our research follows an iterative experimental methodology combining systematic 
 %
 % Place as Figure 5.1 after this paragraph
 
-\textbf{Phase 1: Requirements Analysis and Architecture Design.} The first phase involved comprehensive analysis of the Banglish lecture transcription problem, surveying available tools and models, and designing a system architecture addressing identified requirements. We reviewed the ASR landscape to identify candidate models, evaluated vision-language models for whiteboard text extraction, and studied fusion architectures from the multimodal learning literature. This phase produced the modular pipeline architecture detailed in Section 5.3, along with specifications for each component.
+\textbf{Phase 1: Requirements Analysis and Architecture Design.} The first phase involved comprehensive analysis of the Banglish lecture transcription problem, surveying available tools and models, and designing a system architecture addressing identified requirements. We reviewed the ASR landscape to identify candidate models, evaluated vision-language models for whiteboard text extraction, and studied fusion architectures from the multimodal learning literature. This phase produced the modular pipeline architecture detailed in Section 4.3, along with specifications for each component.
 
-\textbf{Phase 2: Data Collection and Ground Truth Creation.} The second phase established the empirical foundation for our research through careful data collection and annotation. We identified suitable lecture recordings from publicly available educational content, downloaded and preprocessed video files, and created manually transcribed ground truth following detailed annotation guidelines. This phase produced the benchmark dataset of nine Banglish technical lectures totaling over 73,000 characters of transcribed content, detailed in Section 5.4.
+\textbf{Phase 2: Data Collection and Ground Truth Creation.} The second phase established the empirical foundation for our research through careful data collection and annotation. We identified suitable lecture recordings from publicly available educational content, downloaded and preprocessed video files, and created manually transcribed ground truth following detailed annotation guidelines. This phase produced the benchmark dataset of nine Banglish technical lectures totaling over 73,000 characters of transcribed content, detailed in Section 4.4.
 
-\textbf{Phase 3: Implementation and Integration.} The third phase transformed architectural designs into working code. We implemented each pipeline component, developed the model registry and memory management system, created configuration infrastructure for systematic experimentation, and integrated components into a cohesive end-to-end system. This phase also included development of the evaluation framework with term-based metrics appropriate for code-mixed content. Implementation details appear in Section 5.6.
+\textbf{Phase 3: Implementation and Integration.} The third phase transformed architectural designs into working code. We implemented each pipeline component, developed the model registry and memory management system, created configuration infrastructure for systematic experimentation, and integrated components into a cohesive end-to-end system. This phase also included development of the evaluation framework with term-based metrics appropriate for code-mixed content. Implementation details appear in Section 4.6.
 
-\textbf{Phase 4: Experimentation and Evaluation.} The final phase conducted systematic experiments to evaluate system performance, compare alternative approaches, and characterize failure modes. We tested multiple configurations---baseline ASR, visual verification, conservative fusion, aggressive fusion---across all nine dataset videos. Results and analysis are presented in Chapter 6.
+\textbf{Phase 4: Experimentation and Evaluation.} The final phase conducted systematic experiments to evaluate system performance, compare alternative approaches, and characterize failure modes. We tested multiple configurations---baseline ASR, visual verification, conservative fusion, aggressive fusion---across all nine dataset videos. Results and analysis are presented in Chapter 5.
 
 % =============================================================================
 \section{System Architecture}
@@ -156,7 +156,7 @@ This modular design enables systematic experimentation: we can evaluate each com
 
 \subsection{Component Specifications}
 
-Table~\ref{tab:components} provides a comprehensive overview of all system components, including the specific models and tools employed, their primary functions, and their computational requirements. The VRAM column indicates GPU memory consumption, which drives our sequential loading strategy discussed in Section 5.6.
+Table~\ref{tab:components} provides a comprehensive overview of all system components, including the specific models and tools employed, their primary functions, and their computational requirements. The VRAM column indicates GPU memory consumption, which drives our sequential loading strategy discussed in Section 4.6.
 
 \begin{table}[h]
 \centering
@@ -189,26 +189,7 @@ The audio processing pipeline transforms raw video audio into cleaned transcript
 
 \subsubsection{Audio Extraction and Preparation}
 
-Audio extraction represents the first computational step in our pipeline. We employ FFmpeg, the industry-standard multimedia framework, to extract the audio track from input videos and convert it to the format expected by Whisper. Table~\ref{tab:audio_spec} specifies the target audio format.
-
-\begin{table}[h]
-\centering
-\caption{Audio Format Specification for Whisper Compatibility}
-\label{tab:audio_spec}
-\begin{tabular}{|l|l|p{7cm}|}
-\hline
-\textbf{Parameter} & \textbf{Value} & \textbf{Rationale} \\
-\hline
-Container Format & WAV & Uncompressed format avoids codec artifacts \\
-\hline
-Sample Rate & 16,000 Hz & Native rate expected by Whisper's mel spectrogram \\
-\hline
-Channels & Mono & Single channel sufficient for speech; reduces file size \\
-\hline
-Bit Depth & 16-bit PCM & Standard depth providing adequate dynamic range \\
-\hline
-\end{tabular}
-\end{table}
+Audio extraction represents the first computational step in our pipeline. We employ FFmpeg, the industry-standard multimedia framework, to extract the audio track from input videos and convert it to Whisper's expected format: 16kHz mono audio encoded as 16-bit PCM in an uncompressed WAV container. This specification ensures compatibility with Whisper's mel spectrogram computation while avoiding codec artifacts that could degrade transcription quality.
 
 The conversion process is implemented as a single FFmpeg command that handles resampling, channel mixing, and format conversion atomically:
 
@@ -220,7 +201,7 @@ This command reads the input video, extracts the audio track, resamples to 16kHz
 
 \subsubsection{Speech Recognition with Whisper}
 
-The heart of our audio processing pipeline is OpenAI's Whisper large-v3-turbo model, a state-of-the-art multilingual ASR system trained on approximately 680,000 hours of labeled audio. We selected this variant for its balance of accuracy and computational efficiency: it achieves performance comparable to the full large-v3 model while requiring significantly less inference time.
+The heart of our audio processing pipeline is OpenAI's Whisper large-v3-turbo model \cite{Radford2023}, a state-of-the-art multilingual ASR system trained on approximately 680,000 hours of labeled audio. We selected this variant for its balance of accuracy and computational efficiency: it achieves performance comparable to the full large-v3 model while requiring significantly less inference time. The model architecture follows the encoder-decoder Transformer paradigm \cite{Vaswani2017}, processing log-Mel spectrograms through attention mechanisms that have proven highly effective for sequence-to-sequence tasks \cite{Sutskever2014}.
 
 Table~\ref{tab:whisper_config} details our Whisper configuration, with each parameter carefully chosen for the Banglish lecture domain.
 
@@ -289,42 +270,17 @@ Word Timestamps & Enabled & Provides temporal alignment for fusion \\
 
 The decision to configure Whisper for English output, despite processing Banglish content, merits detailed explanation. When configured for Bengali, Whisper outputs text in Bengali Unicode script (বাংলা), which is incompatible with our Romanized ground truth and would require lossy transliteration for evaluation. In English mode, Whisper produces Romanized approximations of Bengali words---``korbo'' becomes ``curb oh'' or similar phonetic renderings---which, while imperfect, are directly comparable to our Romanized ground truth. More importantly, English mode accurately captures technical terms (``variable,'' ``function,'' ``polymorphism'') that constitute our primary evaluation focus.
 
-Figure~\ref{fig:whisper_flow} illustrates the internal processing flow within Whisper. Audio is first converted to a log-Mel spectrogram with 80 frequency bins, then processed in 30-second chunks by a 32-layer Transformer encoder to produce acoustic representations. The 32-layer Transformer decoder, conditioned on task and language tokens, generates text tokens autoregressively using beam search with beam width 5. Word-level timestamps are extracted from attention patterns, providing temporal alignment information used in cross-modal fusion.
+Figure~\ref{fig:whisper_flow} illustrates the internal processing flow within Whisper. Audio is first converted to a log-Mel spectrogram with 80 frequency bins \cite{Davis1980}, then processed in 30-second chunks by a 32-layer Transformer encoder to produce acoustic representations. The 32-layer Transformer decoder, conditioned on task and language tokens, generates text tokens autoregressively using beam search with beam width 5. Word-level timestamps are extracted from attention patterns \cite{Luong2015}, providing temporal alignment information used in cross-modal fusion.
 
 \subsubsection{Transcript Cleaning and Hallucination Removal}
 
 Raw Whisper output frequently contains artifacts that degrade downstream processing quality. Our cleaning pipeline addresses three categories of issues: repetition hallucinations, stock phrase insertions, and format inconsistencies.
 
-\textbf{Repetition Hallucination} represents the most common failure mode, where Whisper produces looping patterns like ``the the the the the'' or ``and and and and.'' These typically occur during silence, background noise, or unclear speech segments. We detect repetitions using n-gram analysis: any word or phrase appearing more than five consecutive times triggers removal of excess repetitions, preserving at most two instances.
+\textbf{Repetition Hallucination} represents the most common failure mode, where Whisper produces looping patterns like ``the the the the the'' or ``and and and and.'' These typically occur during silence, background noise, or unclear speech segments---a phenomenon well-documented in neural text generation \cite{Holtzman2020, Ji2023}. We detect repetitions using n-gram analysis: any word or phrase appearing more than five consecutive times triggers removal of excess repetitions, preserving at most two instances.
 
 \textbf{Stock Phrase Hallucination} occurs when Whisper inserts phrases common in its training data but absent from the actual audio. Phrases like ``thank you for watching,'' ``please subscribe,'' and ``like and share'' appear frequently in YouTube training data and occasionally hallucinate into lecture transcripts. We maintain a blocklist of such phrases and remove them when detected.
 
-\textbf{Format Normalization} ensures consistency across transcripts for reliable evaluation. This includes converting to lowercase, collapsing multiple whitespace characters, standardizing punctuation, and normalizing Unicode to NFC form.
-
-Table~\ref{tab:cleaning_rules} summarizes the cleaning rules applied to raw transcripts.
-
-\begin{table}[h]
-\centering
-\caption{Transcript Cleaning Rules and Their Effects}
-\label{tab:cleaning_rules}
-\begin{tabular}{|l|p{5cm}|p{5cm}|}
-\hline
-\textbf{Rule} & \textbf{Pattern Detected} & \textbf{Action Taken} \\
-\hline
-Repetition Removal & Same word/phrase $>$5 consecutive times & Reduce to maximum 2 instances \\
-\hline
-Stock Phrase Filter & ``thank you for watching,'' ``subscribe,'' etc. & Remove entire phrase \\
-\hline
-Punctuation Cleanup & Excessive punctuation (``....'', ``!!!!!'') & Normalize to single instance \\
-\hline
-Case Normalization & Mixed case text & Convert to lowercase \\
-\hline
-Whitespace Collapse & Multiple spaces, tabs, newlines & Single space between words \\
-\hline
-Unicode Normalization & Various Unicode representations & Convert to NFC form \\
-\hline
-\end{tabular}
-\end{table}
+\textbf{Format Normalization} ensures consistency across transcripts for reliable evaluation. The cleaning pipeline applies the following rules sequentially: (1) \textit{repetition removal}, reducing sequences of more than five consecutive identical words/phrases to at most two instances; (2) \textit{stock phrase filtering}, removing YouTube-specific phrases like ``thank you for watching'' and ``please subscribe''; (3) \textit{punctuation cleanup}, normalizing excessive punctuation to single instances; (4) \textit{case normalization}, converting all text to lowercase; (5) \textit{whitespace collapse}, replacing multiple spaces, tabs, and newlines with single spaces; and (6) \textit{Unicode normalization}, converting all text to NFC form for consistent character representation.
 
 \subsection{Visual Processing Pipeline}
 
@@ -380,7 +336,7 @@ Figure~\ref{fig:frame_sampling} illustrates the sampling strategy applied to a 1
 
 \subsubsection{Visual Content Extraction with Qwen2.5-VL}
 
-For visual content extraction, we employ Qwen2.5-VL-7B-Instruct, a state-of-the-art vision-language model with strong capabilities in document understanding, OCR, and scene description. The model processes each sampled frame to extract multiple categories of information, as detailed in Table~\ref{tab:visual_extraction}.
+For visual content extraction, we employ Qwen2.5-VL-7B-Instruct \cite{Wang2024Qwen2VL}, a state-of-the-art vision-language model with strong capabilities in document understanding, OCR, and scene description. The model builds upon advances in vision-language pre-training \cite{Radford2021, Li2023BLIP2} and document understanding architectures \cite{Xu2020LayoutLM}. The model processes each sampled frame to extract multiple categories of information, as detailed in Table~\ref{tab:visual_extraction}.
 
 \begin{table}[h]
 \centering
@@ -558,7 +514,7 @@ The fusion process operates in three stages: verification, correction, and anti-
 %
 % Place as Figure 5.6.
 
-\textbf{Stage 1: Verification.} For each term in the ASR transcript, we search for matching visual keywords using fuzzy string matching. The similarity score is computed as the normalized Levenshtein distance ratio:
+\textbf{Stage 1: Verification.} For each term in the ASR transcript, we search for matching visual keywords using fuzzy string matching \cite{Cohen2003}. The similarity score is computed as the normalized Levenshtein distance ratio \cite{Levenshtein1966}:
 
 \begin{equation}
 \text{similarity}(s_1, s_2) = 1 - \frac{\text{levenshtein}(s_1, s_2)}{\max(|s_1|, |s_2|)}
@@ -610,7 +566,7 @@ The final pipeline stage transforms the fused transcript and visual context into
 
 \subsubsection{Summarization Model Selection and Configuration}
 
-We employ Qwen2.5-7B-Instruct for content synthesis, selected for its strong instruction-following capabilities and generous context window. Table~\ref{tab:summarization_config} details the model configuration.
+We employ Qwen2.5-7B-Instruct \cite{Bai2023Qwen} for content synthesis, selected for its strong instruction-following capabilities and generous context window. This model exemplifies the trend toward instruction-tuned language models \cite{Ouyang2022} that can follow complex, multi-step directives. Table~\ref{tab:summarization_config} details the model configuration.
 
 \begin{table}[h]
 \centering
@@ -792,6 +748,13 @@ BanglaASR9 & SQL SELECT Queries & DBMS & 4,178 & 31 \\
 %
 % Place as Figure 5.7.
 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/fig_5_7_dataset_distribution.pdf}
+    \caption{Dataset Distribution: (a) Domain distribution by character count showing Python dominance with 5 videos (56\%), and DLD and DBMS each with 2 videos (22\%). (b) Ground truth size per video, ranging from 4,178 characters (BanglaASR9) to 16,558 characters (BanglaASR3).}
+    \label{fig:dataset_distribution}
+\end{figure}
+
 Figure~\ref{fig:dataset_distribution} visualizes the dataset composition. The domain distribution reflects the natural availability of Banglish technical content, with Python programming lectures being most common. The character count distribution shows significant variation, with BanglaASR3 (Python Conditionals) being the longest at 16,558 characters and BanglaASR9 (SQL Queries) the shortest at 4,178 characters. This variation enables analysis of system performance across different lecture lengths.
 
 \subsection{Ground Truth Annotation Process}
@@ -950,55 +913,17 @@ Frame preprocessing extracts and prepares visual samples for VLM processing. The
 \begin{enumerate}
     \item \textbf{Duration Calculation:} Read video metadata to determine total duration and frame count
     \item \textbf{Timestamp Generation:} Generate sampling timestamps at configured intervals (default: 20 seconds)
-    \item \textbf{Frame Extraction:} For each timestamp, seek to position and extract frame using OpenCV
+    \item \textbf{Frame Extraction:} For each timestamp, seek to position and extract frame using OpenCV \cite{Bradski2000}
     \item \textbf{Color Conversion:} Convert from BGR (OpenCV default) to RGB for model compatibility
     \item \textbf{Quality Encoding:} Save as JPEG with quality setting 95 (balancing size and fidelity)
     \item \textbf{Metadata Recording:} Store timestamp association for temporal alignment
 \end{enumerate}
 
-For videos with low visual quality or challenging lighting conditions, we optionally apply image enhancement. Table~\ref{tab:image_enhancement} describes the available enhancement techniques.
-
-\begin{table}[h]
-\centering
-\caption{Optional Image Enhancement Techniques}
-\label{tab:image_enhancement}
-\begin{tabular}{|l|p{5cm}|p{5cm}|}
-\hline
-\textbf{Technique} & \textbf{Method} & \textbf{When Applied} \\
-\hline
-Contrast Enhancement & CLAHE (Contrast Limited Adaptive Histogram Equalization) & Low-contrast frames with washed-out whiteboard \\
-\hline
-Denoising & Bilateral filtering & High-noise frames from low-quality cameras \\
-\hline
-Sharpening & Unsharp mask (radius=1, amount=0.5) & Blurry frames where text edges are unclear \\
-\hline
-\end{tabular}
-\end{table}
+For videos with low visual quality or challenging lighting conditions, we optionally apply image enhancement techniques: CLAHE (Contrast Limited Adaptive Histogram Equalization) for low-contrast frames with washed-out whiteboards, bilateral filtering for denoising high-noise frames from low-quality cameras, and unsharp masking for sharpening blurry frames where text edges are unclear.
 
 \subsection{Text Preprocessing for Evaluation}
 
-Consistent text preprocessing is essential for reliable evaluation. Both predicted transcripts and ground truth undergo identical normalization to ensure fair comparison. Table~\ref{tab:text_preprocessing} specifies the normalization rules.
-
-\begin{table}[h]
-\centering
-\caption{Text Normalization Rules for Evaluation}
-\label{tab:text_preprocessing}
-\begin{tabular}{|l|p{5cm}|p{5cm}|}
-\hline
-\textbf{Rule} & \textbf{Transformation} & \textbf{Example} \\
-\hline
-Unicode Normalization & Convert to NFC form & Composed characters standardized \\
-\hline
-Case Normalization & Convert to lowercase & ``Variable'' → ``variable'' \\
-\hline
-Whitespace Collapse & Multiple spaces → single space & ``hello\hspace{2em}world'' → ``hello world'' \\
-\hline
-Punctuation Removal & Remove for term matching & ``print()'' → ``print'' \\
-\hline
-Number Standardization & Digits preserved as-is & ``x=5'' → ``x=5'' \\
-\hline
-\end{tabular}
-\end{table}
+Consistent text preprocessing is essential for reliable evaluation. Both predicted transcripts and ground truth undergo identical normalization to ensure fair comparison. This normalization pipeline converts all text to NFC Unicode form, transforms to lowercase, collapses multiple whitespace characters to single spaces, removes punctuation for term matching (e.g., ``print()'' becomes ``print''), and preserves numeric digits as-is. These transformations ensure that superficial differences in formatting do not affect metric computation.
 
 \subsection{Preprocessing Output Summary}
 
@@ -1031,7 +956,7 @@ This section provides comprehensive implementation details, covering the softwar
 
 \subsection{Software Architecture and Technology Stack}
 
-Our implementation follows software engineering best practices, emphasizing modularity, configurability, and robustness. The system is implemented in Python 3.10, chosen for its extensive ecosystem of machine learning libraries and ease of integration with state-of-the-art models.
+Our implementation follows software engineering best practices, emphasizing modularity, configurability, and robustness. The system is implemented in Python 3.10, chosen for its extensive ecosystem of machine learning libraries and ease of integration with state-of-the-art models. The deep learning components are built on PyTorch \cite{Paszke2019} with the Hugging Face Transformers library \cite{Wolf2020} providing standardized interfaces to pre-trained models.
 
 Table~\ref{tab:techstack_full} provides a comprehensive overview of the technology stack, organized by functional category.
 
@@ -1232,36 +1157,7 @@ The complete processing workflow for a single video involves twelve distinct ste
 
 \subsection{Configuration System}
 
-System behavior is controlled through a hierarchical YAML configuration system that separates concerns and enables reproducible experiments. The configuration structure is shown below:
-
-\begin{verbatim}
-# config/config.yaml - Main configuration file
-asr:
-  model: "openai/whisper-large-v3-turbo"
-  language: "en"
-  beam_size: 5
-  temperature: 0.0
-  vad_filter: true
-  
-visual:
-  model: "Qwen/Qwen2.5-VL-7B-Instruct"
-  frame_interval: 20
-  max_frames: 50
-  
-fusion:
-  similarity_threshold: 0.85
-  correction_threshold: 0.60
-  temporal_window: 60
-  max_corrections_per_keyword: 3
-  
-summarization:
-  model: "Qwen/Qwen2.5-7B-Instruct"
-  quantization: "4bit"
-  max_tokens: 4096
-  temperature: 0.3
-\end{verbatim}
-
-This configuration-driven approach enables systematic experimentation by varying parameters without code changes.
+System behavior is controlled through a hierarchical configuration system that separates concerns and enables reproducible experiments. The configuration is organized into four main sections: (1) \textit{ASR configuration} specifies the Whisper model variant, language setting, beam size (5), temperature (0.0 for deterministic output), and VAD filtering; (2) \textit{visual processing configuration} defines the VLM model, frame sampling interval (20 seconds), and maximum frame count (50); (3) \textit{fusion configuration} sets the similarity threshold (0.85), correction threshold (0.60), temporal alignment window (60 seconds), and maximum corrections per keyword (3); and (4) \textit{summarization configuration} specifies the LLM model, quantization level (4-bit), maximum output tokens (4096), and generation temperature (0.3). This configuration-driven approach enables systematic experimentation by varying parameters without code changes.
 
 \subsection{Error Handling and Recovery}
 
@@ -1292,7 +1188,7 @@ Checkpointing after each major stage enables recovery from interruptions. The sy
 
 \subsection{Evaluation Infrastructure}
 
-The evaluation infrastructure computes metrics comparing predicted transcripts against ground truth. Our primary metrics are term-based, designed to accommodate the orthographic variability inherent to Romanized Banglish.
+The evaluation infrastructure computes metrics comparing predicted transcripts against ground truth. Our primary metrics are term-based, designed to accommodate the orthographic variability inherent to Romanized Banglish. These metrics follow standard information retrieval formulations \cite{Jurafsky2000} adapted for our fuzzy matching requirements.
 
 \textbf{Term Recall} measures the proportion of ground truth technical terms captured in the prediction:
 
@@ -1527,7 +1423,7 @@ To ensure reproducibility, we provide:
 
 \subsection{Transition to Results}
 
-The following chapter presents experimental results evaluating this methodology. Chapter 6 reports quantitative performance metrics across all configurations, analyzes error patterns, and provides qualitative assessment of generated lecture notes. The experimental design outlined in Section~\ref{sec:experimental_design} structures the evaluation to address each research question systematically.
+The following chapter presents experimental results evaluating this methodology. Chapter 5 reports quantitative performance metrics across all configurations, analyzes error patterns, and provides qualitative assessment of generated lecture notes. The experimental design outlined in Section~\ref{sec:experimental_design} structures the evaluation to address each research question systematically.
 
 % =============================================================================
 % FIGURES TO CREATE (Complete List with Specifications):

@@ -54,7 +54,7 @@ This design philosophy aligns well with our target domain of classroom recording
 
 \textbf{Language Handling Behavior:} However, Whisper's multilingual capabilities have significant limitations for code-mixed content that our analysis reveals. The model tends to transcribe in a single language, determined either automatically through a language identification module or through explicit language specification via special tokens. When processing Banglish, Whisper typically defaults to English transcription, handling English portions adequately but producing phonetically-motivated English approximations for Bengali words \cite{Peng2023}. 
 
-Our experimental analysis (detailed in Chapter 4) quantifies this behavior: when processing our Banglish lecture dataset with English language specification, Whisper transcribes English technical terms with 85\% accuracy but reduces Bengali words to phonetic nonsense (``korbo'' becomes ``curb oh,'' ``bujhte'' becomes ``boost a''). With Bengali language specification, the reverse occurs: Bengali words are transcribed in Bengali script while English terms are phonetically approximated in Bengali characters. Neither mode handles the code-mixed reality of Banglish instruction.
+Our experimental analysis (detailed in Chapter 5) quantifies this behavior: when processing our Banglish lecture dataset with English language specification, Whisper transcribes English technical terms with 85\% accuracy but reduces Bengali words to phonetic nonsense (``korbo'' becomes ``curb oh,'' ``bujhte'' becomes ``boost a''). With Bengali language specification, the reverse occurs: Bengali words are transcribed in Bengali script while English terms are phonetically approximated in Bengali characters. Neither mode handles the code-mixed reality of Banglish instruction.
 
 \textbf{Comparison with Alternatives:} Comparing Whisper to alternatives reveals trade-offs in our application context:
 
@@ -79,7 +79,7 @@ The Bengali.AI Speech Recognition Challenge \cite{BengaliAI2023} released a subs
     \item \textbf{Script Output:} The task requires Bengali Unicode output, while our application needs Romanized Banglish for accessibility and practical use.
 \end{itemize}
 
-BanglaASR, built on Wav2Vec 2.0 fine-tuned on Bengali data, represents one of the more capable open-source Bengali ASR systems \cite{BanglaASR2023}. Our experimental evaluation (Chapter 4) reveals both its strengths and limitations: BanglaASR handles Bengali phonology well, correctly recognizing retroflex consonants and vowel distinctions that Whisper misses. However, English technical terms become unintelligible Bengali approximations (``object'' becomes meaningless Bengali syllables), and the Bengali Unicode output requires transliteration for comparison with Romanized ground truth---a lossy process that introduces additional errors.
+BanglaASR, built on Wav2Vec 2.0 fine-tuned on Bengali data, represents one of the more capable open-source Bengali ASR systems \cite{BanglaASR2023}. Our experimental evaluation (Chapter 5) reveals both its strengths and limitations: BanglaASR handles Bengali phonology well, correctly recognizing retroflex consonants and vowel distinctions that Whisper misses. However, English technical terms become unintelligible Bengali approximations (``object'' becomes meaningless Bengali syllables), and the Bengali Unicode output requires transliteration for comparison with Romanized ground truth---a lossy process that introduces additional errors.
 
 \textbf{Comparative Analysis of Bengali ASR Approaches:}
 
@@ -250,7 +250,7 @@ Key capabilities relevant to our work include:
     \item \textbf{Grounding:} The model can identify regions of images corresponding to textual descriptions, potentially useful for locating specific content on whiteboards.
 \end{itemize}
 
-The Qwen2.5-VL-7B model we employ in our pipeline achieves competitive performance with much larger proprietary models on visual question answering and text extraction benchmarks. Our experiments (Chapter 4) validate its capability for whiteboard keyword extraction, though we observe failure modes including hallucination of text not present in images and occasional character-level errors in extracted text.
+The Qwen2.5-VL-7B model we employ in our pipeline achieves competitive performance with much larger proprietary models on visual question answering and text extraction benchmarks. Our experiments (Chapter 5) validate its capability for whiteboard keyword extraction, though we observe failure modes including hallucination of text not present in images and occasional character-level errors in extracted text.
 
 \textbf{Comparative Analysis:}
 
