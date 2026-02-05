@@ -1,0 +1,78 @@
+{
+  "dataset_name": "BanglaASR Series",
+  "description": "Real classroom recordings in Banglish (Bengali-English code-mixed)",
+  "total_videos": 9,
+  "total_ground_truth_chars": 73000,
+  "evaluation_runs": 27,
+  "frame_intervals_tested": ["10s", "20s", "30s"],
+  "videos": [
+    {
+      "id": "BanglaASR1",
+      "topic": "Python Variables",
+      "domain": "Python",
+      "ground_truth_file": "BanglaASR1_ground_truth.txt",
+      "ground_truth_bytes": 11278
+    },
+    {
+      "id": "BanglaASR2",
+      "topic": "Python Input",
+      "domain": "Python",
+      "ground_truth_file": "BanglaASR2_ground_truth.txt",
+      "ground_truth_bytes": 10751
+    },
+    {
+      "id": "BanglaASR3",
+      "topic": "Conditionals (if-else)",
+      "domain": "Python",
+      "ground_truth_file": "BanglaASR3_ground_truth.txt",
+      "ground_truth_bytes": 4472
+    },
+    {
+      "id": "BanglaASR4",
+      "topic": "Loops (for, while)",
+      "domain": "Python",
+      "ground_truth_file": "BanglaASR4_ground_truth.txt",
+      "ground_truth_bytes": 7812
+    },
+    {
+      "id": "BanglaASR5",
+      "topic": "Lists, Tuples, Arrays",
+      "domain": "Python",
+      "ground_truth_file": "BanglaASR5_ground_truth.txt",
+      "ground_truth_bytes": 10462
+    },
+    {
+      "id": "BanglaASR6",
+      "topic": "Logic Gates (AND, OR, NOT)",
+      "domain": "DLD",
+      "ground_truth_file": "BanglaASR6_ground_truth.txt",
+      "ground_truth_bytes": 9116
+    },
+    {
+      "id": "BanglaASR7",
+      "topic": "Universal Gates (NAND, NOR)",
+      "domain": "DLD",
+      "ground_truth_file": "BanglaASR7_ground_truth.txt",
+      "ground_truth_bytes": 8702
+    },
+    {
+      "id": "BanglaASR8",
+      "topic": "DBMS Introduction",
+      "domain": "DBMS",
+      "ground_truth_file": "BanglaASR8_ground_truth.txt",
+      "ground_truth_bytes": 7870
+    },
+    {
+      "id": "BanglaASR9",
+      "topic": "SQL SELECT Queries",
+      "domain": "DBMS",
+      "ground_truth_file": "BanglaASR9_ground_truth.txt",
+      "ground_truth_bytes": 10414
+    }
+  ],
+  "domains_covered": ["Python", "DLD", "DBMS"],
+  "excluded_metrics": {
+    "WER": "Not suitable for Romanized Banglish due to transliteration variance"
+  },
+  "generated": "2026-02-03"
+}

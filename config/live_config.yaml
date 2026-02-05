@@ -1,0 +1,125 @@
+# =============================================================================
+# LIVE MODE CONFIGURATION - Optimized for 24GB GPU
+# =============================================================================
+# Multimodal Banglish Classroom Summarizer
+# Master's Thesis - Live Processing Configuration
+#
+# This configuration fits all models in 24GB VRAM:
+#   Whisper large-v3-turbo:  ~3 GB  (full precision - Bengali matters!)
+#   Qwen2.5-VL-7B FP16:     ~15 GB  (full precision - OCR accuracy)
+#   Qwen2.5-7B 4-bit:        ~4 GB  (quantized - summarization tolerant)
+#   YOLOv8-Pose:            ~0.5 GB (already lightweight)
+#   ─────────────────────────────────
+#   Total:                  ~22.5 GB ✅
+# =============================================================================
+
+# Processing Mode
+mode: "live"  # Options: "batch", "live"
+
+# =============================================================================
+# MODEL CONFIGURATIONS
+# =============================================================================
+
+whisper:
+  model_name: "openai/whisper-large-v3-turbo"
+  precision: "fp16"  # Keep full precision for Bengali/Banglish
+  device: "cuda"
+  
+bangla_asr:
+  model_name: "bangla-speech-processing/BanglaASR"
+  precision: "fp16"
+  device: "cuda"
+  # Note: BanglaASR is loaded on-demand, not kept in VRAM
+  # for live mode due to memory constraints
+  enabled: false  # Disable in live mode to save VRAM
+
+vlm:
+  model_name: "Qwen/Qwen2.5-VL-7B-Instruct"
+  precision: "fp16"  # Keep full precision for OCR accuracy
+  device_map: "auto"
+
+llm:
+  model_name: "Qwen/Qwen2.5-7B-Instruct"
+  precision: "4bit"  # Quantized to save VRAM
+  device_map: "auto"
+  quantization:
+    load_in_4bit: true
+    bnb_4bit_compute_dtype: "float16"
+    bnb_4bit_quant_type: "nf4"  # Normalized float 4-bit
+    bnb_4bit_use_double_quant: true  # Double quantization for more savings
+
+gaze_tracker:
+  model_name: "yolov8n-pose.pt"
+  confidence_threshold: 0.5
+  extension_factor: 0.5
+
+# =============================================================================
+# LIVE PROCESSING SETTINGS
+# =============================================================================
+
+live:
+  # Audio processing
+  audio_chunk_duration: 10  # seconds per chunk
+  transcription_delay: 2    # seconds delay for buffering
+  
+  # Frame processing
+  frame_interval: 5         # seconds between VLM analysis
+  frame_buffer_size: 3      # frames to keep in memory
+  
+  # Memory management
+  max_vram_usage_gb: 23     # Leave 1GB headroom
+  aggressive_gc: true       # Force garbage collection between stages
+  
+  # Output
+  stream_output: true       # Stream results as they're ready
+  update_interval: 5        # seconds between summary updates
+
+# =============================================================================
+# BATCH PROCESSING SETTINGS (for comparison)
+# =============================================================================
+
+batch:
+  # Full quality mode - uses stage-based loading
+  frame_interval: 30        # seconds between frames
+  use_bangla_asr: true      # Include Bengali transcription
+  full_precision_llm: false # Use FP16 LLM (requires swapping)
+
+# =============================================================================
+# VRAM BUDGET (24GB GPU)
+# =============================================================================
+
+vram_budget:
+  total_available_gb: 24
+  headroom_gb: 1.5
+  max_usable_gb: 22.5
+  
+  model_estimates:
+    whisper_large_v3_turbo: 3.0
+    bangla_asr: 0.5  # Fine-tuned Whisper-small (242M params)
+    vlm_fp16: 15.0
+    vlm_4bit: 4.0
+    llm_fp16: 15.0
+    llm_4bit: 4.0
+    yolo_pose: 0.5
+
+# =============================================================================
+# THESIS NOVELTY TOGGLES
+# =============================================================================
+
+novelties:
+  # Novelty 1: Visual-Biased ASR
+  visual_bias:
+    enabled: true
+    bias_strength: 2.0       # Logit boost factor
+    min_keyword_length: 2    # Minimum keyword length to consider
+    
+  # Novelty 2: Spatio-Temporal Gaze Tracking
+  gaze_tracking:
+    enabled: true
+    pointing_threshold: 0.6  # Confidence threshold for pointing detection
+    
+  # Novelty 3: Multimodal Fusion
+  multimodal_fusion:
+    enabled: true
+    visual_weight: 0.7       # Weight for visual keywords in fusion
+    audio_weight: 0.3        # Weight for audio transcript

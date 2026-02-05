@@ -25,6 +25,13 @@ from rich.console import Console
 from rich.progress import Progress, SpinnerColumn, TextColumn
 from rich.panel import Panel
 
+# ModelRegistry for GPU model caching (optimized batch/live processing)
+try:
+    from src.model_registry import ModelRegistry
+    REGISTRY_AVAILABLE = True
+except ImportError:
+    REGISTRY_AVAILABLE = False
+
 console = Console()
 
 
@@ -67,23 +74,50 @@ class LectureNoteGenerator:
         self,
         model_name: str = "Qwen/Qwen2.5-7B-Instruct",
         torch_dtype: torch.dtype = torch.float16,
-        device_map: str = "auto"
+        device_map: str = "auto",
+        use_4bit: bool = False  # Enable 4-bit quantization for live mode
     ):
         self.model_name = model_name
         self.torch_dtype = torch_dtype
         self.device_map = device_map
+        self.use_4bit = use_4bit
         self.model = None
         self.tokenizer = None
         self._is_loaded = False
     
-    def load_model(self):
-        """Load the Qwen2.5 model."""
+    def load_model(self, use_registry: bool = True):
+        """Load the Qwen2.5 model.
+        
+        Args:
+            use_registry: If True, use ModelRegistry singleton (recommended for batch/live)
+        """
         if self._is_loaded:
             return
         
+        precision_str = "4-bit quantized" if self.use_4bit else "FP16"
+        
+        # Use ModelRegistry for shared model access (faster batch processing)
+        if use_registry and REGISTRY_AVAILABLE:
+            console.print(f"\n[bold cyan]🧠 Loading Language Model (via Registry)[/bold cyan]")
+            console.print(f"[dim]Model: {self.model_name}[/dim]")
+            console.print(f"[dim]Precision: {precision_str} | Device Map: {self.device_map}[/dim]\n")
+            
+            registry = ModelRegistry.get_instance()
+            self.model, self.tokenizer = registry.get_llm(
+                model_name=self.model_name,
+                torch_dtype=self.torch_dtype,
+                device_map=self.device_map,
+                use_4bit=self.use_4bit
+            )
+            self._is_loaded = True
+            self._using_registry = True
+            return
+        
+        # Direct loading (legacy behavior)
+        self._using_registry = False
         console.print(f"\n[bold cyan]🧠 Loading Language Model[/bold cyan]")
         console.print(f"[dim]Model: {self.model_name}[/dim]")
-        console.print(f"[dim]Precision: FP16 | Device Map: {self.device_map}[/dim]\n")
+        console.print(f"[dim]Precision: {precision_str} | Device Map: {self.device_map}[/dim]\n")
         
         with Progress(
             SpinnerColumn(),
@@ -280,7 +314,14 @@ Output the lecture notes in Markdown:"""
         return output_path
     
     def unload_model(self):
-        """Unload model to free GPU memory."""
+        """Unload model to free GPU memory.
+        
+        Note: If using ModelRegistry, this is a no-op (registry manages lifecycle).
+        """
+        if getattr(self, '_using_registry', False):
+            console.print("[dim]LLM model managed by registry (not unloading)[/dim]")
+            return
+            
         if self.model is not None:
             del self.model
             self.model = None

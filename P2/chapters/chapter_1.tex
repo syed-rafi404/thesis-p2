@@ -1,0 +1,273 @@
+% =============================================================================
+% CHAPTER 1: INTRODUCTION
+% Multimodal Banglish Classroom Summarizer
+% =============================================================================
+
+\section{Introduction}
+
+The digital revolution in education has fundamentally reshaped how knowledge flows from instructors to learners across the globe. What was once confined to physical classrooms and printed textbooks now travels instantly through fiber-optic cables and wireless networks, reaching students in remote villages and bustling cities alike. Video-based learning platforms, massive open online courses, and recorded classroom lectures have emerged as powerful equalizers in the educational landscape, offering unprecedented access to quality instruction regardless of geographical or socioeconomic constraints. Yet beneath this promise of democratized education lies a persistent challenge: the vast majority of video content remains locked in its audio-visual form, inaccessible to those who cannot hear, difficult to search for those seeking specific concepts, and time-consuming for those who learn better through reading than watching.
+
+This thesis confronts this challenge head-on by developing a multimodal artificial intelligence system capable of automatically transforming classroom lecture videos into comprehensive, well-structured lecture notes. The system we propose does not merely transcribe speech---it understands context, extracts meaning from visual cues, and synthesizes information from multiple sources to produce output that genuinely serves student learning needs.
+
+At the heart of our research lies a linguistic phenomenon that makes this problem particularly fascinating and technically demanding: \textbf{Banglish}. This term describes the natural code-mixing that occurs when Bengali speakers, particularly in educational contexts, seamlessly weave English words and phrases into Bengali sentence structures. A computer science instructor in Dhaka does not pause to switch languages when explaining object-oriented programming; instead, they might say ``\textit{Amra class theke object create korbo}''---a single fluid utterance meaning ``We will create an object from a class,'' where English technical terms like ``class,'' ``object,'' and ``create'' nestle comfortably within Bengali grammatical frameworks. This linguistic fluidity, while natural and effective for human communication, poses formidable challenges for automatic speech recognition systems designed with monolingual assumptions.
+
+Our approach recognizes that classroom lectures are inherently multimodal experiences. Students do not learn solely by listening; they watch the instructor write on the whiteboard, observe diagrams being constructed, and connect verbal explanations to visual representations. We harness this multimodal richness by processing both the audio stream---capturing the instructor's spoken words---and the visual stream---extracting text, keywords, and structural information from whiteboard content. When the instructor writes ``Object-Oriented Programming'' on the whiteboard, that visual text serves as unambiguous ground truth, even if the audio transcription garbles the spoken phrase. By intelligently fusing information from both modalities, our system achieves transcription accuracy that neither modality could accomplish in isolation.
+
+% =============================================================================
+\section{Background}
+
+\subsection{The Rise of Video-Based Learning}
+
+The transformation of education through video content represents one of the most significant shifts in pedagogical history. What began as simple lecture recordings has evolved into a sophisticated ecosystem of educational media that spans the globe. Platforms such as YouTube, Coursera, edX, and Khan Academy have collectively amassed billions of hours of instructional content, covering subjects from elementary arithmetic to advanced quantum mechanics. This proliferation has been particularly transformative in developing nations, where traditional educational infrastructure often struggles to meet the demands of growing populations hungry for knowledge.
+
+In Bangladesh, the impact of video-based learning has been nothing short of revolutionary. Platforms like 10 Minute School and Shikho have become household names, serving millions of students preparing for board examinations, university admissions, and competitive assessments. Individual educators have built substantial followings on YouTube, delivering lectures on everything from HSC physics to university-level computer science. For students in rural areas, where qualified teachers for advanced subjects may be scarce, these video resources represent a lifeline---a window into educational opportunities previously accessible only to their urban counterparts.
+
+Yet despite this remarkable proliferation, a fundamental accessibility gap persists. Consider a student with hearing impairment attempting to learn from a video lecture: without accurate captions, the content remains entirely inaccessible. Consider a student preparing for an examination who needs to quickly review a specific concept: scrubbing through a forty-minute video searching for a two-minute explanation wastes precious study time. Consider a student who processes information more effectively through reading than listening: the video format forces them into a suboptimal learning modality. These scenarios illustrate a crucial insight: while video content has democratized access to instruction, the format itself creates barriers that text-based materials do not.
+
+Automatic lecture summarization emerges as a powerful solution to these challenges. By converting the ephemeral spoken word into persistent, searchable, and skimmable text, we can unlock the full potential of video-based education. Students can search for specific terms, jump directly to relevant sections, review key concepts quickly, and access content regardless of hearing ability. The challenge, of course, lies in performing this conversion accurately---particularly when the spoken language defies the assumptions built into most speech recognition systems.
+
+\subsection{Automatic Speech Recognition: Current State}
+
+The field of automatic speech recognition has witnessed remarkable progress over the past decade, driven primarily by deep learning advances and the availability of massive training datasets. OpenAI's Whisper model \cite{Radford2023}, released in 2022 and subsequently refined through multiple versions, represents the current state of the art for multilingual speech recognition. Trained on approximately 680,000 hours of labeled audio data spanning nearly 100 languages, Whisper achieves transcription accuracy that approaches human performance on clean English speech. Commercial offerings from Google, Amazon, and Microsoft have similarly matured, powering voice assistants, captioning services, and transcription tools used by millions daily.
+
+However, this impressive progress has not benefited all languages equally. The machine learning community has long recognized a hierarchy of language resources \cite{Conneau2021}: at the top sit ``high-resource'' languages like English, Mandarin, and Spanish, blessed with abundant training data, extensive research attention, and robust commercial support. At the bottom languish ``low-resource'' languages, often spoken by millions yet starved of the digital resources necessary for effective machine learning. Bengali occupies a curious middle ground in this hierarchy. As the seventh most spoken language globally, with over 230 million native speakers, Bengali commands significant demographic weight. Yet when it comes to technical content transcription---particularly in the code-mixed Banglish variety common in educational settings---the available resources and research attention fall far short of what the speaker population might suggest.
+
+The challenges facing ASR systems when processing Banglish technical lectures are manifold. First and most fundamentally, code-mixing confounds models trained on monolingual data. A Whisper model optimized for English may handle the English portions adequately but will stumble on Bengali words, often producing phonetically similar but semantically nonsensical English substitutions. Conversely, a Bengali-focused model like BanglaASR outputs text in Bengali Unicode script, ignoring English terms entirely and rendering the output difficult to compare with Romanized ground truth.
+
+Second, technical vocabulary presents persistent challenges. Domain-specific terms like ``polymorphism,'' ``database normalization,'' or ``flip-flop circuits'' appear rarely in general-purpose training corpora. When an instructor pronounces these terms with a Bengali accent, or embeds them within Bengali grammatical structures (``polymorphism ta important''), even sophisticated models may fail to recognize them correctly.
+
+Third, acoustic conditions in real classroom recordings differ substantially from the clean studio audio that dominates ASR training sets. Background noise from fans and air conditioners, reverberation from hard classroom walls, varying distances between speaker and microphone, and occasional overlapping speech from student questions all degrade recognition accuracy. These acoustic challenges compound the linguistic difficulties, creating a recognition environment far more challenging than ASR benchmarks typically assume.
+
+Finally, the absence of standardized Romanization for Bengali creates evaluation difficulties that ripple throughout the research process. Unlike languages with established transliteration schemes, Bengali written in Roman script admits multiple valid spellings for the same word. The first-person plural pronoun, for instance, might be Romanized as ``amra,'' ``aamra,'' ``amraa,'' or even ``amara''---all representing identical pronunciation and meaning. This variability means that traditional evaluation metrics like Word Error Rate, which count exact string matches, systematically underestimate transcription quality for Romanized Banglish.
+
+\subsection{Multimodal Learning and Cross-Modal Fusion}
+
+The past three years have witnessed an explosion of interest in vision-language models---systems capable of understanding and reasoning about images using natural language \cite{Radford2021, Liu2023LLaVA, Wang2024Qwen2VL}. Models such as GPT-4V, LLaVA, Qwen2.5-VL, and numerous others can describe image contents, answer complex questions about visual scenes, extract and interpret text from photographs and documents, and even generate images from textual descriptions. These capabilities, unimaginable just five years ago, have opened new frontiers in artificial intelligence research and application.
+
+For lecture processing, vision-language models offer a tantalizing opportunity. Classroom instruction is inherently multimodal: students do not simply listen to lectures; they watch instructors write on whiteboards, project slides, draw diagrams, and gesture toward visual aids. This visual channel carries information that complements and sometimes clarifies the audio channel. When an instructor writes ``Object-Oriented Programming'' on the whiteboard while explaining the concept verbally, the visual text serves as unambiguous ground truth for the terminology being discussed. Even if acoustic conditions or pronunciation variations cause the ASR system to mishear ``Object-Oriented Programming'' as ``object ornamental programming,'' the visual extraction can provide the correct term.
+
+This observation---that whiteboard content serves as reliable ground truth for technical terminology---forms a cornerstone of our approach. By extracting text from video frames using vision-language models, we obtain a vocabulary of terms that the instructor considers important enough to write down. These terms can then be used to guide, verify, or correct the ASR output. If the visual extraction identifies ``polymorphism'' as a whiteboard keyword, and the ASR output contains ``poly more fizz him'' at a corresponding timestamp, we have strong evidence for a correction opportunity.
+
+Cross-modal fusion, however, is not straightforward. The audio and visual channels operate on different timescales and carry different types of information. The instructor may write a term on the whiteboard minutes before or after discussing it verbally. The visual channel may contain historical content---previous concepts still visible on the board---alongside currently relevant material. Naively biasing ASR toward all visually-extracted keywords can introduce errors, causing the system to hallucinate keyword mentions where none actually occur. Our research explores these fusion challenges, investigating when and how cross-modal information should be combined for maximum benefit.
+
+\subsection{The Banglish Challenge}
+
+Banglish represents far more than simple language alternation; it embodies a sophisticated linguistic strategy that reflects the educational and cultural realities of contemporary Bangladesh \cite{MyersScotton1993, Muysken2000}. Unlike code-switching, where speakers alternate between languages at sentence or clause boundaries, code-mixing involves the intimate integration of two linguistic systems at the word, phrase, and even morphological levels. This distinction matters profoundly for natural language processing: while code-switching might be handled by language identification followed by monolingual processing, code-mixing demands truly bilingual understanding at the finest granularities.
+
+The examples from our dataset illuminate this complexity. When an instructor says ``\textit{Python e variable declare korte hole eivabe korbo}'' (``To declare a variable in Python, we do it this way''), the English terms ``Python,'' ``variable,'' and ``declare'' are not merely inserted into a Bengali sentence---they are morphologically integrated into Bengali grammatical structures. The locative suffix ``-e'' attaches to ``Python'' to form ``Python e'' (in Python), treating the English proper noun as a Bengali nominal. Similarly, ``variable declare korte'' combines the English noun-verb pair with the Bengali infinitive marker ``korte,'' creating a hybrid verbal construction that neither language would produce in isolation.
+
+This morphological integration poses severe challenges for tokenization and recognition. Standard English ASR models may recognize ``Python'' but will likely misinterpret ``e'' as a separate word or discard it as noise. Bengali models may handle the suffix correctly but fail to recognize ``Python'' as a meaningful unit. The resulting transcriptions fragment words unpredictably, creating outputs that serve neither English nor Bengali readers well.
+
+Consider the challenge from another angle: evaluation. How should we assess whether a transcription of ``\textit{SQL e SELECT query diye data retrieve kora hoy}'' is correct? If the system produces ``SQL e SELECT query diye data retrieve kora hoi,'' is this an error? The final word differs (``hoy'' versus ``hoi''), but both are valid Romanizations of the same Bengali pronunciation. Traditional Word Error Rate would count this as an error; a more linguistically informed metric would recognize it as correct. Our research develops and validates such metrics, contributing evaluation methodology alongside technical systems.
+
+% =============================================================================
+\section{Rationale of the Study}
+
+The motivation for this research emerges from a convergence of technological opportunity, educational necessity, and scholarly responsibility to address underserved linguistic communities.
+
+\subsection{Educational Equity and Access}
+
+Education in Bangladesh, like many developing nations, remains marked by significant inequalities. Students in Dhaka enjoy access to renowned coaching centers, experienced tutors, and well-equipped schools; their counterparts in rural Sylhet or Rangpur often make do with understaffed schools and limited resources. The digital revolution, and particularly the rise of video-based learning, has begun to address this imbalance. A student in the most remote village can now access the same lecture that a student in the capital watches---provided they have an internet connection and a smartphone.
+
+Yet this democratization remains incomplete. Video content, by its nature, demands sustained attention and linear consumption. A student cannot skim a video the way they might skim a textbook, quickly identifying relevant sections and skipping material they already understand. Searching for a specific concept within a video requires scrubbing through the timeline, hoping to land near the relevant segment. For students juggling academic responsibilities with work or family obligations, this inefficiency translates to hours of wasted time.
+
+Accurate, searchable lecture transcriptions address these limitations directly. With text-based notes, students can use Ctrl+F to locate specific terms instantly. They can skim headings and topic sentences to gauge relevance before committing attention. They can copy key definitions or code snippets into their own notes without pausing to transcribe manually. For students with hearing impairments, text-based content transforms inaccessible videos into fully usable learning resources.
+
+The system we develop in this thesis aims to provide these benefits automatically, at scale, for the Banglish technical lectures that serve millions of Bangladeshi students. By converting video lectures into structured notes, we contribute to a more equitable educational landscape where all students---regardless of disability, learning style preference, or time constraints---can benefit from the wealth of instructional content available online.
+
+\subsection{Addressing a Research Gap}
+
+Beyond practical impact, this research addresses a significant gap in the scholarly literature. Despite the global importance of code-mixed languages---spoken by hundreds of millions in South Asia, Southeast Asia, Africa, and diaspora communities worldwide---research attention has concentrated overwhelmingly on monolingual scenarios. English dominates ASR research; when multilingual systems are considered, they typically address language identification and switching rather than the intimate code-mixing characteristic of Banglish.
+
+Our literature review, detailed in Chapter 2, revealed a striking absence of foundational resources. No benchmark dataset exists for Banglish technical lecture transcription; researchers wishing to work on this problem have no standard corpus against which to evaluate their systems. No published work addresses multimodal fusion specifically for Banglish ASR enhancement; the techniques developed for English or Mandarin may not transfer effectively to this linguistically distinct context. Limited research explores term-based evaluation metrics appropriate for code-mixed languages; the standard metrics inherited from monolingual ASR research penalize valid transliteration variants as errors.
+
+This thesis contributes to filling these gaps. We create a benchmark dataset of nine classroom recordings with manually transcribed ground truth, providing future researchers with evaluation resources. We develop and test multimodal fusion techniques specifically designed for the Banglish context, documenting both successful approaches and instructive failures. We propose and validate evaluation metrics that account for transliteration variance and code-mixing phenomena, advancing the methodology available to the research community.
+
+\subsection{Practical Demand and User Needs}
+
+The motivation for this research is not purely academic; it responds to genuine user needs that we have observed firsthand. Students in Bangladeshi universities routinely express frustration with the manual effort required to extract value from video lectures. They describe spending hours transcribing key portions of recordings, pausing and rewinding repeatedly to catch technical terms. They share hand-written notes that inevitably contain gaps and errors. They ask whether any tool exists to automate this tedious process.
+
+This demand reflects a broader pattern: the gap between available technology and user needs in underserved linguistic contexts. While English speakers can choose from dozens of transcription services---from YouTube's automatic captions to dedicated tools like Otter.ai---Banglish speakers have few options. The tools that exist handle monolingual Bengali or English; the code-mixed reality of Bangladeshi technical education falls through the cracks.
+
+By developing a system that actually works for Banglish---acknowledging and accommodating its linguistic complexity rather than treating it as noise to be filtered---we respond to this unmet demand. The practical impact extends beyond convenience to genuine educational benefit: students who spend less time on mechanical transcription have more time for conceptual understanding, problem-solving, and creative learning.
+
+% =============================================================================
+\section{Problem Statement}
+
+This research addresses a central question that sits at the intersection of speech recognition, computer vision, natural language processing, and educational technology:
+
+\begin{quote}
+\textbf{How can multimodal artificial intelligence effectively process Banglish technical lecture videos to generate accurate, structured lecture notes, given the challenges of code-mixing, ASR errors, and limited training resources?}
+\end{quote}
+
+This seemingly simple question conceals layers of technical complexity. Each component of the problem---``multimodal,'' ``Banglish,'' ``technical lectures,'' ``accurate,'' ``structured''---introduces constraints and challenges that must be carefully navigated. We decompose this overarching problem into five specific technical challenges, each of which demands focused attention within our research.
+
+\subsection{Challenge 1: Accurate Speech Recognition for Banglish}
+
+The foundational challenge of this research lies in obtaining accurate transcriptions from Banglish speech. Current ASR systems, regardless of their sophistication on well-resourced languages, struggle substantially with Banglish technical content. This struggle manifests in several interconnected ways.
+
+When Whisper, the current state-of-the-art multilingual model, processes Banglish audio, it tends to interpret everything through an English lens. Bengali words are approximated by phonetically similar English words, producing outputs that may sound vaguely correct when read aloud but carry entirely different meanings. The Bengali word ``kori'' (meaning ``I do'') might become ``curry''; ``dekhbo'' (meaning ``I will see'') might become ``decade.'' These substitutions accumulate across an entire lecture, rendering the transcript unusable for study purposes.
+
+Bengali-focused models like BanglaASR face the opposite problem: they handle Bengali portions reasonably well but stumble on English technical terms. When an instructor says ``Let's discuss the SELECT statement,'' a Bengali model might produce nonsensical Bengali words that approximate the English sounds, or simply omit the unfamiliar terms entirely. Furthermore, BanglaASR outputs text in Bengali Unicode script (বাংলা), creating a script mismatch with the Romanized Banglish that students and our evaluation framework expect.
+
+Technical vocabulary compounds these difficulties. Terms like ``polymorphism,'' ``recursion,'' or ``normalization'' appear rarely in general ASR training data. When pronounced with a Bengali accent or embedded within Bengali grammatical structures, recognition accuracy plummets. The instructor might say ``polymorphism ta understand korte hole''---a perfectly natural Banglish construction---but ASR systems trained on clean English or Bengali monolingual data have no framework for interpreting this hybrid utterance.
+
+Acoustic conditions in real classroom recordings add another layer of difficulty. Unlike the studio-quality audio that dominates ASR benchmarks, classroom recordings feature reverberant acoustics, background noise from air conditioning or fans, variable speaker-to-microphone distances, and occasional interruptions from student questions. These acoustic challenges would degrade performance even for well-supported languages; for Banglish, they transform an already difficult problem into a formidable one.
+
+\subsection{Challenge 2: Cross-Modal Information Extraction}
+
+The visual channel of lecture videos---particularly whiteboard content---offers a potential solution to ASR limitations. When the instructor writes ``Object-Oriented Programming'' on the whiteboard, that visual text is unambiguous and correctly spelled, regardless of how the spoken version might be transcribed. Extracting and leveraging this visual information, however, presents its own set of challenges.
+
+Classroom video quality varies enormously. Some recordings feature high-definition cameras focused on well-lit whiteboards; others capture handheld smartphone footage of dimly lit classrooms from unfavorable angles. Lighting conditions change as instructors move, cast shadows, or partially occlude the board. These variations challenge even sophisticated vision-language models, which may confidently extract incorrect text or miss content entirely under adverse conditions.
+
+Handwritten text recognition, while it has improved dramatically with modern deep learning approaches, remains more challenging than printed text recognition. Instructors have idiosyncratic handwriting styles; they may write quickly, use inconsistent spacing, or employ abbreviations that make sense in context but confuse automated systems. A hastily written ``OOP'' on the whiteboard might be misread as ``COP'' or ``00P'' by a vision model unfamiliar with the educational context.
+
+Temporal alignment between visual and audio content presents additional complexity. The instructor may write a term on the whiteboard and only explain it verbally several minutes later---or may explain a concept first and then write the key term. Historical content remains visible on the board even after the discussion has moved to new topics. Distinguishing between currently relevant visual content and historical artifacts requires understanding the lecture's progression over time, a task that demands more than simple frame-by-frame analysis.
+
+\subsection{Challenge 3: Multimodal Fusion Strategy}
+
+Given information from both audio and visual channels, how should a system combine them to produce optimal output? This question of multimodal fusion lies at the heart of our research, and it admits no simple answer.
+
+The most straightforward approach---biasing ASR toward visually-extracted keywords---carries significant risks. If the visual extraction identifies fifty keywords from whiteboard content, and we boost the probability of these keywords throughout the transcription process, we may cause the system to hallucinate keyword mentions where none actually occur. The word ``class'' might be inserted dozens of times simply because it appears prominently on the whiteboard, even when the instructor is discussing unrelated topics.
+
+Verification-based approaches, where visual content is used to check rather than guide ASR outputs, face different challenges. How confident must we be in a visual extraction before using it to override an ASR decision? What if the visual and audio channels genuinely disagree---the instructor says one thing but has written something different on the board? How do we handle partial matches, where the ASR produces ``object orient programming'' and the visual extraction shows ``Object-Oriented Programming''?
+
+Temporal alignment adds another dimension to fusion decisions. A keyword extracted from a frame at the five-minute mark should probably influence transcription around that timestamp, but how wide should the influence window be? Keywords written early in the lecture may remain relevant throughout; keywords written during specific explanations may only be relevant locally. Determining appropriate temporal scopes for cross-modal influence requires understanding both the visual persistence of whiteboard content and the thematic structure of spoken explanations.
+
+\subsection{Challenge 4: ASR Hallucination Detection and Correction}
+
+A particularly insidious failure mode of ASR systems, especially when processing challenging audio, is hallucination: the generation of text that has no correspondence to actual speech. Unlike simple transcription errors, where the system mishears one word as another, hallucinations involve the fabrication of entire phrases or the excessive repetition of words or patterns.
+
+In our early experiments, we observed hallucinations taking several characteristic forms. Repetitive hallucinations involve the same word or short phrase repeated dozens or hundreds of times: ``the the the the the the'' or ``class class class class.'' These repetitions can inflate transcripts enormously, burying genuine content under masses of hallucinated text. Phrase hallucinations involve the insertion of stock phrases that appear in ASR training data but bear no relation to the actual lecture: ``thank you for watching,'' ``subscribe to our channel,'' or similar artifacts from YouTube-sourced training data.
+
+These hallucinations severely degrade transcript utility. A student reviewing a transcript expects it to represent what the instructor actually said; encountering pages of repetitive nonsense or irrelevant phrases destroys trust in the output and renders the transcript useless for study purposes. Detecting and removing hallucinations without inadvertently removing legitimate content poses a significant technical challenge that we address through dedicated post-processing mechanisms.
+
+\subsection{Challenge 5: Evaluation Without Established Benchmarks}
+
+The final challenge concerns not system development but system evaluation. How do we know whether our approach is working? This question, seemingly straightforward for well-established tasks, becomes surprisingly difficult for Banglish technical lecture transcription.
+
+Traditional ASR evaluation relies heavily on Word Error Rate (WER) \cite{Jurafsky2000}: the edit distance between predicted and reference transcriptions, normalized by reference length. This metric assumes that there exists a single correct transcription against which predictions should be judged. For Romanized Banglish, this assumption fails. The same spoken utterance can be validly transcribed in multiple ways, depending on Romanization conventions. If the instructor says the Bengali word for ``we,'' the reference might be ``amra,'' but ``aamra,'' ``amraa,'' and ``amara'' are all equally valid Romanizations. A system that produces ``aamra'' when the reference says ``amra'' would be penalized under WER, despite having transcribed correctly.
+
+Beyond Romanization variance, no standard benchmark dataset exists for Banglish technical lectures. Researchers working on English ASR can evaluate against LibriSpeech, CommonVoice, or numerous other established corpora; researchers working on Banglish technical lectures must create their own evaluation resources from scratch. This requirement introduces substantial overhead and makes comparison across studies difficult.
+
+Our research addresses this challenge by creating ground truth transcriptions for our dataset and developing evaluation metrics that account for Romanization variance. We propose term-based metrics---Term Recall, Term Precision, and Term F1---that focus on whether technical keywords are correctly captured rather than whether every word matches exactly. These metrics better reflect the practical utility of transcriptions for student learning while accommodating the linguistic variability inherent to Romanized Banglish.
+
+% =============================================================================
+\section{Research Objectives}
+
+Having articulated the problem and its constituent challenges, we now state the specific objectives that guide this research. These objectives are organized into primary goals---those essential to the thesis's core contribution---and secondary goals that extend and enrich the primary work.
+
+\subsection{Primary Objectives}
+
+\textbf{Objective 1: Develop a Multimodal Lecture Processing Pipeline.} The first and most fundamental objective is to create a complete, functional system that processes Banglish lecture videos from raw input to structured output. This pipeline must ingest video files, extract audio for speech recognition, sample frames for visual analysis, perform both ASR and visual text extraction, fuse information from multiple modalities, and generate coherent lecture notes suitable for student use. The system must be modular, allowing individual components to be improved or replaced as technology advances, and must operate within reasonable computational constraints on available hardware.
+
+\textbf{Objective 2: Design Cross-Modal Verification Mechanisms.} The second objective focuses on leveraging the complementary nature of audio and visual information. We aim to develop techniques that use whiteboard content to verify ASR outputs, identifying likely errors where the audio transcription diverges from visual evidence. Beyond verification, we explore whether visual information can guide correction, substituting visually-confirmed terms for acoustically-garbled alternatives. This objective requires careful attention to the risks of over-correction and the establishment of appropriate confidence thresholds.
+
+\textbf{Objective 3: Create a Benchmark Dataset.} The third objective addresses the absence of evaluation resources for Banglish technical lectures. We aim to create a dataset of real classroom recordings with manually transcribed ground truth, covering multiple technical domains and instructional styles. This dataset serves dual purposes: enabling rigorous evaluation of our own system and providing a resource for future researchers working on similar problems. The ground truth transcriptions must follow consistent Romanization conventions while accommodating the inherent variability of Banglish.
+
+\textbf{Objective 4: Propose and Validate Appropriate Evaluation Metrics.} The fourth objective concerns evaluation methodology. Recognizing that traditional WER penalizes valid Romanization variants as errors, we aim to develop and validate alternative metrics that better capture transcription quality for Banglish. These metrics should focus on technical term capture---whether the system successfully identifies and transcribes the keywords and concepts central to lecture content---while appropriately handling transliteration variance. Validation requires demonstrating that the proposed metrics correlate with human judgments of transcription utility.
+
+\subsection{Secondary Objectives}
+
+Beyond the primary objectives, several secondary goals extend the research in valuable directions.
+
+\textbf{Visual Bias Investigation.} We investigate whether injecting visually-extracted keywords directly into the ASR decoding process improves or harms transcription quality. This technique, conceptually appealing as a way to ``hint'' the ASR toward correct terms, may backfire by causing hallucination of keyword mentions. Systematic experimentation across multiple configurations reveals the conditions under which visual bias helps, harms, or has negligible effect.
+
+\textbf{Dual-ASR Fusion Exploration.} We explore approaches that combine outputs from multiple ASR systems---specifically, English-focused Whisper and Bengali-focused BanglaASR. This exploration includes developing transliteration methods to convert Bengali Unicode output to Romanized form, enabling comparison and fusion with Whisper output. While initial results suggest limited benefit from dual-ASR approaches in our context, the exploration contributes methodological insights for future work.
+
+\textbf{Anti-Hallucination Mechanism Development.} We develop post-processing techniques to detect and remove ASR hallucinations---particularly repetitive patterns and stock phrases---that degrade transcript quality. These mechanisms must balance aggressive hallucination removal against the risk of inadvertently removing legitimate content.
+
+\textbf{Lecture Note Generation.} We implement summarization capabilities that transform raw transcripts and visual information into structured, readable lecture notes. These notes should organize content logically, highlight key concepts, and present information in a format that supports efficient student review. While summarization quality is difficult to evaluate quantitatively, we aim for outputs that students would find genuinely useful.
+
+% =============================================================================
+\section{Methodology in Brief}
+
+This research adopts an experimental methodology that combines iterative system development with rigorous empirical evaluation. Rather than implementing a single predetermined approach and evaluating it, we follow a cycle of hypothesis formation, implementation, evaluation, and refinement that allows us to learn from both successes and failures. This section provides a high-level overview of our methodology; Chapter 4 presents the detailed technical approach.
+
+\subsection{Phase 1: System Architecture Design}
+
+The research began with careful architectural planning. We designed a modular pipeline that processes lecture videos through parallel audio and visual tracks, with multiple points where cross-modal information can influence processing. This architecture allows us to experiment with different fusion strategies without rebuilding the entire system.
+
+The audio track employs OpenAI's Whisper model (specifically the large-v3-turbo variant) as the primary ASR engine, chosen for its strong multilingual capabilities and demonstrated performance on accented English. We supplement this with BanglaASR, a Wav2Vec2-based model fine-tuned for Bengali, to explore dual-ASR fusion possibilities. Both models operate on audio extracted from input videos using FFmpeg.
+
+The visual track uses Qwen2.5-VL-7B, a state-of-the-art vision-language model, to extract text and keywords from video frames sampled at configurable intervals. This model can interpret complex visual scenes, recognize both printed and handwritten text, and categorize content into keywords, definitions, code snippets, and diagrams.
+
+For final summarization, we employ Qwen2.5-7B-Instruct, a large language model capable of synthesizing information from transcripts and visual context into coherent lecture notes. The entire pipeline operates on NVIDIA RTX 3090 hardware with 24GB VRAM, using a model registry that manages GPU memory by loading and unloading models as needed.
+
+\subsection{Phase 2: Data Collection and Ground Truth Creation}
+
+Meaningful evaluation requires ground truth data against which system outputs can be compared. We collected nine real classroom lecture recordings from Bangladeshi educational content, covering three distinct technical domains: Python programming (including variables, input/output, conditionals, loops, and data structures), Digital Logic Design (logic gates and universal gates), and Database Management Systems (introduction and SQL queries).
+
+For each recording, we manually transcribed the complete lecture content in Romanized Banglish, following consistent conventions while preserving the code-mixed nature of the original speech. This transcription effort produced approximately 73,000 characters of ground truth text across the dataset. The transcriptions capture not just words but the rhythm and structure of actual classroom instruction, including false starts, repetitions, and the natural disfluencies of spontaneous speech.
+
+\subsection{Phase 3: Experimentation and Iteration}
+
+With the pipeline architecture established and ground truth available, we conducted extensive experiments to evaluate various approaches. Visual bias injection was tested at multiple boost intensities, revealing that naive approaches often harm rather than help transcription quality. Temporal alignment strategies attempted to localize visual influence to appropriate time windows, with mixed results. Dual-ASR fusion explored whether combining Whisper and BanglaASR outputs improves coverage, finding limited benefit in our context. Anti-hallucination post-processing was developed and refined to remove repetitive patterns without damaging legitimate content.
+
+Each experiment followed a consistent protocol: modify a specific system component, process all videos in the dataset, compute evaluation metrics against ground truth, and analyze results to inform the next iteration. This disciplined approach ensures that our conclusions rest on systematic evidence rather than anecdotal observation.
+
+\subsection{Phase 4: Evaluation and Analysis}
+
+Evaluation employs the term-based metrics we developed specifically for Banglish technical content. Term Recall measures what fraction of ground truth technical terms appear in the system output, using fuzzy matching to accommodate Romanization variants. Term Precision measures what fraction of technical terms in the system output actually correspond to ground truth terms. Term F1 provides the harmonic mean of precision and recall, offering a balanced summary metric. Fuzzy Similarity provides a character-level similarity score that captures overall transcript quality beyond just technical terms.
+
+We deliberately exclude Word Error Rate from our primary evaluation, having demonstrated that it systematically penalizes valid Romanization variants. This methodological choice reflects our broader commitment to evaluation metrics that capture practical utility rather than artificial precision.
+
+% =============================================================================
+\section{Scope and Limitations}
+
+Every research project operates within boundaries---some chosen deliberately to focus effort, others imposed by constraints of time, resources, or circumstance. Clearly articulating these boundaries helps readers understand what this thesis does and does not claim to accomplish.
+
+\subsection{Scope of This Research}
+
+This research focuses specifically on pre-recorded classroom lecture videos featuring technical content delivered in Banglish. We process complete video files rather than streaming content; real-time transcription, while an interesting extension, falls outside our current scope. The lectures we address feature whiteboard-based instruction, where instructors write and draw while explaining concepts verbally. This focus on whiteboard content enables our visual extraction approaches but limits applicability to purely verbal lectures or those using only projected slides.
+
+Our dataset spans three technical domains: Python programming, Digital Logic Design, and Database Management Systems. These domains were chosen to represent the kinds of computer science and engineering content commonly taught in Bangladeshi universities and coaching centers. The Python lectures cover foundational programming concepts including variables, input/output operations, conditional statements, loop constructs, and data structures like lists and tuples. The Digital Logic Design lectures address basic logic gates (AND, OR, NOT) and universal gates (NAND, NOR). The Database lectures introduce DBMS concepts and SQL query syntax. This domain coverage, while not exhaustive, provides reasonable diversity for evaluating system generalization.
+
+The nine classroom recordings in our dataset represent real-world instructional content with authentic acoustic conditions. These are not studio recordings with professional audio equipment; they are the kinds of recordings that students actually encounter when learning online. This realism ensures that our results reflect genuine system performance rather than best-case scenarios.
+
+\subsection{Limitations and Constraints}
+
+Several limitations constrain the claims we can make and the conclusions we can draw.
+
+\textbf{Dataset Size.} Nine videos, while sufficient for demonstrating methodological approaches and establishing baseline performance, represent a limited sample. We cannot claim with certainty that results would generalize to all Banglish lectures, all technical domains, or all instructional styles. A larger dataset would strengthen confidence in our findings, and we acknowledge this as a limitation that future work should address.
+
+\textbf{Instructional Style Homogeneity.} The recordings in our dataset share certain stylistic characteristics: they feature individual instructors speaking to camera while writing on whiteboards. We have not tested lectures with multiple speakers, panel discussions, student interaction, or dramatically different pedagogical approaches. Our system may perform differently on such varied content.
+
+\textbf{Hardware Requirements.} The full system requires substantial computational resources---specifically, an NVIDIA GPU with at least 24GB of VRAM to run the vision-language model and language model simultaneously, or the ability to swap models in and out of memory sequentially. This requirement limits accessibility for researchers or practitioners with more constrained hardware. While we implement memory management strategies to reduce peak VRAM usage, the computational cost remains significant.
+
+\textbf{Visual Dependency.} Our multimodal approach relies heavily on whiteboard content for visual grounding. Lectures that use only verbal instruction, or that rely on projected slides with minimal text, may not benefit from our visual extraction pipeline. The system remains functional in these cases---it simply falls back to audio-only processing---but the multimodal advantages we claim require visual content that provides meaningful ground truth.
+
+\textbf{Language Scope.} We address only Bengali-English code-mixing. While similar code-mixing phenomena occur in other language pairs (Hindi-English ``Hinglish,'' Spanish-English ``Spanglish,'' and many others), we cannot claim that our approaches transfer directly. Each code-mixing context has unique linguistic characteristics that may require adapted methods.
+
+\textbf{Evaluation Metric Validation.} While we propose term-based metrics as appropriate for Banglish evaluation, these metrics have not been validated against human judgments at scale. We believe they capture practical utility better than WER, but systematic human evaluation studies would strengthen this claim. Such studies fall outside the scope of this thesis but represent important future work.
+
+% =============================================================================
+\section{Research Contributions}
+
+This thesis contributes to the fields of speech recognition, multimodal learning, and low-resource language processing through technical innovations, dataset creation, and empirical findings. We organize these contributions into three categories.
+
+\subsection{Technical Contributions}
+
+\textbf{Multimodal Pipeline Architecture.} We design and implement a complete, functional system for processing Banglish lecture videos. This pipeline integrates multiple state-of-the-art models---Whisper for ASR, Qwen2.5-VL for visual extraction, Qwen2.5 for summarization---into a coherent workflow that transforms raw video input into structured lecture notes. The modular architecture allows components to be upgraded or replaced as technology advances, and the implementation handles practical concerns like GPU memory management that often receive insufficient attention in research prototypes.
+
+\textbf{Term-Based Evaluation Framework.} We develop and validate evaluation metrics specifically designed for Romanized code-mixed languages. Unlike traditional Word Error Rate, our Term Recall, Term Precision, and Term F1 metrics focus on technical keyword capture while accommodating transliteration variance. This evaluation framework can be applied beyond our specific system, providing methodological tools for other researchers working on code-mixed ASR.
+
+\textbf{Cross-Modal Verification Techniques.} We develop approaches for using visual ground truth to verify and potentially correct ASR outputs. These techniques include keyword extraction from whiteboard frames, fuzzy matching between visual and audio terms, and confidence-weighted correction mechanisms. While our experiments reveal that naive visual bias injection can harm performance, the verification approaches provide value for error detection and quality assessment.
+
+\textbf{Anti-Hallucination Processing.} We implement and evaluate methods for detecting and removing ASR hallucinations---particularly repetitive patterns that can severely degrade transcript quality. These post-processing techniques improve output reliability without requiring modifications to the underlying ASR model, making them broadly applicable to other ASR systems and contexts.
+
+\subsection{Dataset Contribution}
+
+\textbf{BanglaASR Benchmark Dataset.} We create and release a benchmark dataset of nine Banglish technical lecture recordings with manually transcribed ground truth. This dataset covers three technical domains (Python, DLD, DBMS), encompasses approximately 73,000 characters of transcribed content, and represents real classroom acoustic conditions. The dataset enables rigorous evaluation of ASR systems on Banglish technical content and provides a foundation for future research in this understudied area. To our knowledge, this represents the first publicly available benchmark for Banglish technical lecture transcription.
+
+\subsection{Empirical Contributions}
+
+\textbf{Visual Bias Analysis.} Through systematic experimentation, we demonstrate that naive visual bias injection---boosting the probability of visually-extracted keywords during ASR decoding---can harm rather than help transcription quality. This finding, while perhaps counterintuitive, provides important guidance for researchers considering similar approaches. We characterize the conditions under which visual bias helps versus harms, contributing nuanced understanding of multimodal fusion challenges.
+
+\textbf{Metric Appropriateness Demonstration.} We provide empirical evidence that traditional Word Error Rate is inappropriate for evaluating Romanized Banglish transcription. By showing specific examples where correct transcriptions receive high WER scores due to valid Romanization variants, we justify the need for alternative metrics and validate our term-based approach.
+
+\textbf{Performance Baselines.} Our experiments establish quantitative baselines for Banglish technical lecture transcription: 73.9\% Term F1, 83.6\% Term Precision, and 66.5\% Term Recall. These figures provide reference points for future research, enabling meaningful comparison as techniques improve. The baselines represent honest assessment of current capabilities, neither inflated through cherry-picked examples nor deflated through pessimistic evaluation.
+
+
+
+

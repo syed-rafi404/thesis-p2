@@ -1,21 +1,31 @@
 """
 =============================================================================
-BANGLISH EVALUATOR - Technical Term Recall (TTR) Evaluation
+BANGLISH EVALUATOR - Technical Term Recall (TTR) + WER Evaluation
 =============================================================================
 Multimodal Banglish Classroom Summarizer
 Master's Thesis - Evaluation Module
 
 Compares 'Standard Whisper' vs 'Visually-Biased Whisper' transcription quality
-by measuring Technical Term Recall (TTR) using fuzzy string matching.
+by measuring:
+1. Technical Term Recall (TTR) - fuzzy string matching for domain terms
+2. Word Error Rate (WER) - standard ASR quality metric
 
 Metrics:
 - TTR = (Found Terms / Total Ground Truth Terms) * 100
-- Uses fuzzy matching (thefuzz) with threshold > 85 for flexible matching
+- WER = (Substitutions + Insertions + Deletions) / Total Reference Words
+- Uses fuzzy matching (thefuzz) with threshold > 85 for flexible TTR matching
 =============================================================================
 """
 
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 from thefuzz import fuzz
+
+# WER calculation
+try:
+    from jiwer import wer, cer
+    JIWER_AVAILABLE = True
+except ImportError:
+    JIWER_AVAILABLE = False
 
 from rich.console import Console
 from rich.table import Table
@@ -45,6 +55,49 @@ class BanglishEvaluator:
     def _normalize(self, text: str) -> str:
         """Normalize text for comparison (lowercase, strip whitespace)."""
         return text.lower().strip()
+    
+    def calculate_wer(
+        self,
+        reference: str,
+        hypothesis: str
+    ) -> Dict[str, float]:
+        """
+        Calculate Word Error Rate (WER) and Character Error Rate (CER).
+        
+        WER = (S + I + D) / N
+        Where:
+            S = Substitutions
+            I = Insertions  
+            D = Deletions
+            N = Total words in reference
+        
+        Args:
+            reference: Ground truth transcript
+            hypothesis: ASR output transcript
+            
+        Returns:
+            Dictionary with 'wer' and 'cer' values (0.0 to 1.0+)
+            Lower is better. WER > 1.0 possible if more errors than words.
+        """
+        if not JIWER_AVAILABLE:
+            return {'wer': -1.0, 'cer': -1.0, 'error': 'jiwer not installed'}
+        
+        # Normalize texts
+        ref_normalized = self._normalize(reference)
+        hyp_normalized = self._normalize(hypothesis)
+        
+        if not ref_normalized:
+            return {'wer': 0.0, 'cer': 0.0} if not hyp_normalized else {'wer': 1.0, 'cer': 1.0}
+        
+        try:
+            wer_score = wer(ref_normalized, hyp_normalized)
+            cer_score = cer(ref_normalized, hyp_normalized)
+            return {
+                'wer': round(wer_score, 4),
+                'cer': round(cer_score, 4)
+            }
+        except Exception as e:
+            return {'wer': -1.0, 'cer': -1.0, 'error': str(e)}
     
     def _fuzzy_find(self, term: str, transcript: str) -> tuple[bool, int]:
         """

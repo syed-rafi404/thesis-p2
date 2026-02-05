@@ -1,0 +1,2246 @@
+{
+    "history": {
+        "copilot": [
+            {
+                "inputText": "since this is not a classification problem how are we evluating this? ",
+                "attachments": [],
+                "mode": {
+                    "id": "agent",
+                    "kind": "agent"
+                },
+                "selectedModel": {
+                    "identifier": "copilot/claude-opus-4.5",
+                    "metadata": {
+                        "extension": {
+                            "value": "GitHub.copilot-chat",
+                            "_lower": "github.copilot-chat"
+                        },
+                        "id": "claude-opus-4.5",
+                        "vendor": "copilot",
+                        "name": "Claude Opus 4.5",
+                        "family": "claude-opus-4.5",
+                        "detail": "3x",
+                        "tooltip": "Claude Opus 4.5 (claude-opus-4.5) is counted at a 3x rate.",
+                        "version": "claude-opus-4.5",
+                        "maxInputTokens": 127805,
+                        "maxOutputTokens": 16000,
+                        "auth": {
+                            "providerLabel": "GitHub Copilot Chat",
+                            "accountLabel": "adibaislamkhan"
+                        },
+                        "isDefault": false,
+                        "isUserSelectable": true,
+                        "modelPickerCategory": {
+                            "label": "Premium Models",
+                            "order": 1
+                        },
+                        "capabilities": {
+                            "vision": true,
+                            "toolCalling": true,
+                            "agentMode": true
+                        }
+                    }
+                },
+                "selections": [
+                    {
+                        "startLineNumber": 1,
+                        "startColumn": 71,
+                        "endLineNumber": 1,
+                        "endColumn": 71,
+                        "selectionStartLineNumber": 1,
+                        "selectionStartColumn": 71,
+                        "positionLineNumber": 1,
+                        "positionColumn": 71
+                    }
+                ],
+                "contrib": {
+                    "chatDynamicVariableModel": []
+                }
+            },
+            {
+                "inputText": "Include WER too. Also yes mplement the repetition detection post-processor or modify the bias configuration",
+                "attachments": [],
+                "mode": {
+                    "id": "agent",
+                    "kind": "agent"
+                },
+                "selectedModel": {
+                    "identifier": "copilot/claude-opus-4.5",
+                    "metadata": {
+                        "extension": {
+                            "value": "GitHub.copilot-chat",
+                            "_lower": "github.copilot-chat"
+                        },
+                        "id": "claude-opus-4.5",
+                        "vendor": "copilot",
+                        "name": "Claude Opus 4.5",
+                        "family": "claude-opus-4.5",
+                        "detail": "3x",
+                        "tooltip": "Claude Opus 4.5 (claude-opus-4.5) is counted at a 3x rate.",
+                        "version": "claude-opus-4.5",
+                        "maxInputTokens": 127805,
+                        "maxOutputTokens": 16000,
+                        "auth": {
+                            "providerLabel": "GitHub Copilot Chat",
+                            "accountLabel": "adibaislamkhan"
+                        },
+                        "isDefault": false,
+                        "isUserSelectable": true,
+                        "modelPickerCategory": {
+                            "label": "Premium Models",
+                            "order": 1
+                        },
+                        "capabilities": {
+                            "vision": true,
+                            "toolCalling": true,
+                            "agentMode": true
+                        }
+                    }
+                },
+                "selections": [
+                    {
+                        "startLineNumber": 1,
+                        "startColumn": 108,
+                        "endLineNumber": 1,
+                        "endColumn": 108,
+                        "selectionStartLineNumber": 1,
+                        "selectionStartColumn": 108,
+                        "positionLineNumber": 1,
+                        "positionColumn": 108
+                    }
+                ],
+                "contrib": {
+                    "chatDynamicVariableModel": []
+                }
+            },
+            {
+                "inputText": "run a quick test on one video to verify the improvements",
+                "attachments": [],
+                "mode": {
+                    "id": "agent",
+                    "kind": "agent"
+                },
+                "selectedModel": {
+                    "identifier": "copilot/claude-opus-4.5",
+                    "metadata": {
+                        "extension": {
+                            "value": "GitHub.copilot-chat",
+                            "_lower": "github.copilot-chat"
+                        },
+                        "id": "claude-opus-4.5",
+                        "vendor": "copilot",
+                        "name": "Claude Opus 4.5",
+                        "family": "claude-opus-4.5",
+                        "detail": "3x",
+                        "tooltip": "Claude Opus 4.5 (claude-opus-4.5) is counted at a 3x rate.",
+                        "version": "claude-opus-4.5",
+                        "maxInputTokens": 127805,
+                        "maxOutputTokens": 16000,
+                        "auth": {
+                            "providerLabel": "GitHub Copilot Chat",
+                            "accountLabel": "adibaislamkhan"
+                        },
+                        "isDefault": false,
+                        "isUserSelectable": true,
+                        "modelPickerCategory": {
+                            "label": "Premium Models",
+                            "order": 1
+                        },
+                        "capabilities": {
+                            "vision": true,
+                            "toolCalling": true,
+                            "agentMode": true
+                        }
+                    }
+                },
+                "selections": [
+                    {
+                        "startLineNumber": 1,
+                        "startColumn": 57,
+                        "endLineNumber": 1,
+                        "endColumn": 57,
+                        "selectionStartLineNumber": 1,
+                        "selectionStartColumn": 57,
+                        "positionLineNumber": 1,
+                        "positionColumn": 57
+                    }
+                ],
+                "contrib": {
+                    "chatDynamicVariableModel": []
+                }
+            },
+            {
+                "inputText": "Is the code running actually? can you check? Because I see no gpu usage\r\n",
+                "attachments": [],
+                "mode": {
+                    "id": "agent",
+                    "kind": "agent"
+                },
+                "selectedModel": {
+                    "identifier": "copilot/claude-opus-4.5",
+                    "metadata": {
+                        "extension": {
+                            "value": "GitHub.copilot-chat",
+                            "_lower": "github.copilot-chat"
+                        },
+                        "id": "claude-opus-4.5",
+                        "vendor": "copilot",
+                        "name": "Claude Opus 4.5",
+                        "family": "claude-opus-4.5",
+                        "detail": "3x",
+                        "tooltip": "Claude Opus 4.5 (claude-opus-4.5) is counted at a 3x rate.",
+                        "version": "claude-opus-4.5",
+                        "maxInputTokens": 127805,
+                        "maxOutputTokens": 16000,
+                        "auth": {
+                            "providerLabel": "GitHub Copilot Chat",
+                            "accountLabel": "adibaislamkhan"
+                        },
+                        "isDefault": false,
+                        "isUserSelectable": true,
+                        "modelPickerCategory": {
+                            "label": "Premium Models",
+                            "order": 1
+                        },
+                        "capabilities": {
+                            "vision": true,
+                            "toolCalling": true,
+                            "agentMode": true
+                        }
+                    }
+                },
+                "selections": [
+                    {
+                        "startLineNumber": 2,
+                        "startColumn": 1,
+                        "endLineNumber": 2,
+                        "endColumn": 1,
+                        "selectionStartLineNumber": 2,
+                        "selectionStartColumn": 1,
+                        "positionLineNumber": 2,
+                        "positionColumn": 1
+                    }
+                ],
+                "contrib": {
+                    "chatDynamicVariableModel": []
+                }
+            },
+            {
+                "inputText": "Is the code running now?",
+                "attachments": [],
+                "mode": {
+                    "id": "agent",
+                    "kind": "agent"
+                },
+                "selectedModel": {
+                    "identifier": "copilot/claude-opus-4.5",
+                    "metadata": {
+                        "extension": {
+                            "value": "GitHub.copilot-chat",
+                            "_lower": "github.copilot-chat"
+                        },
+                        "id": "claude-opus-4.5",
+                        "vendor": "copilot",
+                        "name": "Claude Opus 4.5",
+                        "family": "claude-opus-4.5",
+                        "detail": "3x",
+                        "tooltip": "Claude Opus 4.5 (claude-opus-4.5) is counted at a 3x rate.",
+                        "version": "claude-opus-4.5",
+                        "maxInputTokens": 127805,
+                        "maxOutputTokens": 16000,
+                        "auth": {
+                            "providerLabel": "GitHub Copilot Chat",
+                            "accountLabel": "adibaislamkhan"
+                        },
+                        "isDefault": false,
+                        "isUserSelectable": true,
+                        "modelPickerCategory": {
+                            "label": "Premium Models",
+                            "order": 1
+                        },
+                        "capabilities": {
+                            "vision": true,
+                            "toolCalling": true,
+                            "agentMode": true
+                        }
+                    }
+                },
+                "selections": [
+                    {
+                        "startLineNumber": 1,
+                        "startColumn": 25,
+                        "endLineNumber": 1,
+                        "endColumn": 25,
+                        "selectionStartLineNumber": 1,
+                        "selectionStartColumn": 25,
+                        "positionLineNumber": 1,
+                        "positionColumn": 25
+                    }
+                ],
+                "contrib": {
+                    "chatDynamicVariableModel": []
+                }
+            },
+            {
+                "inputText": "Check the full codebase and try to find why is the code not running? It's been 1 hour still no progress here ",
+                "attachments": [],
+                "mode": {
+                    "id": "agent",
+                    "kind": "agent"
+                },
+                "selectedModel": {
+                    "identifier": "copilot/claude-opus-4.5",
+                    "metadata": {
+                        "extension": {
+                            "value": "GitHub.copilot-chat",
+                            "_lower": "github.copilot-chat"
+                        },
+                        "id": "claude-opus-4.5",
+                        "vendor": "copilot",
+                        "name": "Claude Opus 4.5",
+                        "family": "claude-opus-4.5",
+                        "detail": "3x",
+                        "tooltip": "Claude Opus 4.5 (claude-opus-4.5) is counted at a 3x rate.",
+                        "version": "claude-opus-4.5",
+                        "maxInputTokens": 127805,
+                        "maxOutputTokens": 16000,
+                        "auth": {
+                            "providerLabel": "GitHub Copilot Chat",
+                            "accountLabel": "adibaislamkhan"
+                        },
+                        "isDefault": false,
+                        "isUserSelectable": true,
+                        "modelPickerCategory": {
+                            "label": "Premium Models",
+                            "order": 1
+                        },
+                        "capabilities": {
+                            "vision": true,
+                            "toolCalling": true,
+                            "agentMode": true
+                        }
+                    }
+                },
+                "selections": [
+                    {
+                        "startLineNumber": 1,
+                        "startColumn": 110,
+                        "endLineNumber": 1,
+                        "endColumn": 110,
+                        "selectionStartLineNumber": 1,
+                        "selectionStartColumn": 110,
+                        "positionLineNumber": 1,
+                        "positionColumn": 110
+                    }
+                ],
+                "contrib": {
+                    "chatDynamicVariableModel": []
+                }
+            },
+            {
+                "inputText": "",
+                "attachments": [],
+                "mode": {
+                    "id": "agent",
+                    "kind": "agent"
+                },
+                "selectedModel": {
+                    "identifier": "copilot/claude-opus-4.5",
+                    "metadata": {
+                        "extension": {
+                            "value": "GitHub.copilot-chat",
+                            "_lower": "github.copilot-chat"
+                        },
+                        "id": "claude-opus-4.5",
+                        "vendor": "copilot",
+                        "name": "Claude Opus 4.5",
+                        "family": "claude-opus-4.5",
+                        "detail": "3x",
+                        "tooltip": "Claude Opus 4.5 (claude-opus-4.5) is counted at a 3x rate.",
+                        "version": "claude-opus-4.5",
+                        "maxInputTokens": 127805,
+                        "maxOutputTokens": 16000,
+                        "auth": {
+                            "providerLabel": "GitHub Copilot Chat",
+                            "accountLabel": "adibaislamkhan"
+                        },
+                        "isDefault": false,
+                        "isUserSelectable": true,
+                        "modelPickerCategory": {
+                            "label": "Premium Models",
+                            "order": 1
+                        },
+                        "capabilities": {
+                            "vision": true,
+                            "toolCalling": true,
+                            "agentMode": true
+                        }
+                    }
+                },
+                "selections": [
+                    {
+                        "startLineNumber": 1,
+                        "startColumn": 1,
+                        "endLineNumber": 1,
+                        "endColumn": 1,
+                        "selectionStartLineNumber": 1,
+                        "selectionStartColumn": 1,
+                        "positionLineNumber": 1,
+                        "positionColumn": 1
+                    }
+                ],
+                "contrib": {
+                    "chatDynamicVariableModel": []
+                }
+            },
+            {
+                "inputText": "Can you update the readme and other files based on the current pipeline",
+                "attachments": [],
+                "mode": {
+                    "id": "agent",
+                    "kind": "agent"
+                },
+                "selectedModel": {
+                    "identifier": "copilot/claude-opus-4.5",
+                    "metadata": {
+                        "extension": {
+                            "value": "GitHub.copilot-chat",
+                            "_lower": "github.copilot-chat"
+                        },
+                        "id": "claude-opus-4.5",
+                        "vendor": "copilot",
+                        "name": "Claude Opus 4.5",
+                        "family": "claude-opus-4.5",
+                        "detail": "3x",
+                        "tooltip": "Claude Opus 4.5 (claude-opus-4.5) is counted at a 3x rate.",
+                        "version": "claude-opus-4.5",
+                        "maxInputTokens": 127805,
+                        "maxOutputTokens": 16000,
+                        "auth": {
+                            "providerLabel": "GitHub Copilot Chat",
+                            "accountLabel": "adibaislamkhan"
+                        },
+                        "isDefault": false,
+                        "isUserSelectable": true,
+                        "modelPickerCategory": {
+                            "label": "Premium Models",
+                            "order": 1
+                        },
+                        "capabilities": {
+                            "vision": true,
+                            "toolCalling": true,
+                            "agentMode": true
+                        }
+                    }
+                },
+                "selections": [
+                    {
+                        "startLineNumber": 1,
+                        "startColumn": 72,
+                        "endLineNumber": 1,
+                        "endColumn": 72,
+                        "selectionStartLineNumber": 1,
+                        "selectionStartColumn": 72,
+                        "positionLineNumber": 1,
+                        "positionColumn": 72
+                    }
+                ],
+                "contrib": {
+                    "chatDynamicVariableModel": []
+                }
+            },
+            {
+                "inputText": "Run a full single video in this pipeline after finishing evaluate the result",
+                "attachments": [],
+                "mode": {
+                    "id": "agent",
+                    "kind": "agent"
+                },
+                "selectedModel": {
+                    "identifier": "copilot/claude-opus-4.5",
+                    "metadata": {
+                        "extension": {
+                            "value": "GitHub.copilot-chat",
+                            "_lower": "github.copilot-chat"
+                        },
+                        "id": "claude-opus-4.5",
+                        "vendor": "copilot",
+                        "name": "Claude Opus 4.5",
+                        "family": "claude-opus-4.5",
+                        "detail": "3x",
+                        "tooltip": "Claude Opus 4.5 (claude-opus-4.5) is counted at a 3x rate.",
+                        "version": "claude-opus-4.5",
+                        "maxInputTokens": 127805,
+                        "maxOutputTokens": 16000,
+                        "auth": {
+                            "providerLabel": "GitHub Copilot Chat",
+                            "accountLabel": "adibaislamkhan"
+                        },
+                        "isDefault": false,
+                        "isUserSelectable": true,
+                        "modelPickerCategory": {
+                            "label": "Premium Models",
+                            "order": 1
+                        },
+                        "capabilities": {
+                            "vision": true,
+                            "toolCalling": true,
+                            "agentMode": true
+                        }
+                    }
+                },
+                "selections": [
+                    {
+                        "startLineNumber": 1,
+                        "startColumn": 77,
+                        "endLineNumber": 1,
+                        "endColumn": 77,
+                        "selectionStartLineNumber": 1,
+                        "selectionStartColumn": 77,
+                        "positionLineNumber": 1,
+                        "positionColumn": 77
+                    }
+                ],
+                "contrib": {
+                    "chatDynamicVariableModel": []
+                }
+            },
+            {
+                "inputText": "Wait,  For audio transcription what models are we using? Aren't we using BanglaASR?",
+                "attachments": [],
+                "mode": {
+                    "id": "agent",
+                    "kind": "agent"
+                },
+                "selectedModel": {
+                    "identifier": "copilot/claude-opus-4.5",
+                    "metadata": {
+                        "extension": {
+                            "value": "GitHub.copilot-chat",
+                            "_lower": "github.copilot-chat"
+                        },
+                        "id": "claude-opus-4.5",
+                        "vendor": "copilot",
+                        "name": "Claude Opus 4.5",
+                        "family": "claude-opus-4.5",
+                        "detail": "3x",
+                        "tooltip": "Claude Opus 4.5 (claude-opus-4.5) is counted at a 3x rate.",
+                        "version": "claude-opus-4.5",
+                        "maxInputTokens": 127805,
+                        "maxOutputTokens": 16000,
+                        "auth": {
+                            "providerLabel": "GitHub Copilot Chat",
+                            "accountLabel": "adibaislamkhan"
+                        },
+                        "isDefault": false,
+                        "isUserSelectable": true,
+                        "modelPickerCategory": {
+                            "label": "Premium Models",
+                            "order": 1
+                        },
+                        "capabilities": {
+                            "vision": true,
+                            "toolCalling": true,
+                            "agentMode": true
+                        }
+                    }
+                },
+                "selections": [
+                    {
+                        "startLineNumber": 1,
+                        "startColumn": 9,
+                        "endLineNumber": 1,
+                        "endColumn": 9,
+                        "selectionStartLineNumber": 1,
+                        "selectionStartColumn": 9,
+                        "positionLineNumber": 1,
+                        "positionColumn": 9
+                    }
+                ],
+                "contrib": {
+                    "chatDynamicVariableModel": []
+                }
+            },
+            {
+                "inputText": "breifly explain everything of this codebase so a LLM can understand the full context of our work. Mention every novelty models purppose of everything and their impact. Be breif",
+                "attachments": [],
+                "mode": {
+                    "id": "agent",
+                    "kind": "agent"
+                },
+                "selectedModel": {
+                    "identifier": "copilot/claude-opus-4.5",
+                    "metadata": {
+                        "extension": {
+                            "value": "GitHub.copilot-chat",
+                            "_lower": "github.copilot-chat"
+                        },
+                        "id": "claude-opus-4.5",
+                        "vendor": "copilot",
+                        "name": "Claude Opus 4.5",
+                        "family": "claude-opus-4.5",
+                        "detail": "3x",
+                        "tooltip": "Claude Opus 4.5 (claude-opus-4.5) is counted at a 3x rate.",
+                        "version": "claude-opus-4.5",
+                        "maxInputTokens": 127805,
+                        "maxOutputTokens": 16000,
+                        "auth": {
+                            "providerLabel": "GitHub Copilot Chat",
+                            "accountLabel": "adibaislamkhan"
+                        },
+                        "isDefault": false,
+                        "isUserSelectable": true,
+                        "modelPickerCategory": {
+                            "label": "Premium Models",
+                            "order": 1
+                        },
+                        "capabilities": {
+                            "vision": true,
+                            "toolCalling": true,
+                            "agentMode": true
+                        }
+                    }
+                },
+                "selections": [
+                    {
+                        "startLineNumber": 1,
+                        "startColumn": 177,
+                        "endLineNumber": 1,
+                        "endColumn": 177,
+                        "selectionStartLineNumber": 1,
+                        "selectionStartColumn": 177,
+                        "positionLineNumber": 1,
+                        "positionColumn": 177
+                    }
+                ],
+                "contrib": {
+                    "chatDynamicVariableModel": []
+                }
+            },
+            {
+                "inputText": "You listed bangla-speech-processing/BanglaASR (~17GB??).\r\n\r\nCorrection: bangla-speech-processing/BanglaASR is usually a Wav2Vec2 model, which is ~300MB - 1GB, not 17GB.\r\n\r\nWait: Did you mean seamless-m4t or another massive model? Or maybe you are loading it in a very inefficient way?\r\n\r\nCheck: If it's truly taking 17GB VRAM, something is wrong. A standard Wav2Vec2 model should be tiny compared to Qwen-7B. Verify this in model_registry.py.",
+                "attachments": [],
+                "mode": {
+                    "id": "agent",
+                    "kind": "agent"
+                },
+                "selectedModel": {
+                    "identifier": "copilot/claude-opus-4.5",
+                    "metadata": {
+                        "extension": {
+                            "value": "GitHub.copilot-chat",
+                            "_lower": "github.copilot-chat"
+                        },
+                        "id": "claude-opus-4.5",
+                        "vendor": "copilot",
+                        "name": "Claude Opus 4.5",
+                        "family": "claude-opus-4.5",
+                        "detail": "3x",
+                        "tooltip": "Claude Opus 4.5 (claude-opus-4.5) is counted at a 3x rate.",
+                        "version": "claude-opus-4.5",
+                        "maxInputTokens": 127805,
+                        "maxOutputTokens": 16000,
+                        "auth": {
+                            "providerLabel": "GitHub Copilot Chat",
+                            "accountLabel": "adibaislamkhan"
+                        },
+                        "isDefault": false,
+                        "isUserSelectable": true,
+                        "modelPickerCategory": {
+                            "label": "Premium Models",
+                            "order": 1
+                        },
+                        "capabilities": {
+                            "vision": true,
+                            "toolCalling": true,
+                            "agentMode": true
+                        }
+                    }
+                },
+                "selections": [
+                    {
+                        "startLineNumber": 7,
+                        "startColumn": 155,
+                        "endLineNumber": 7,
+                        "endColumn": 155,
+                        "selectionStartLineNumber": 7,
+                        "selectionStartColumn": 155,
+                        "positionLineNumber": 7,
+                        "positionColumn": 155
+                    }
+                ],
+                "contrib": {
+                    "chatDynamicVariableModel": []
+                }
+            },
+            {
+                "inputText": "if you were a world class supervisor and working on this PHD level thesis how do you rate this thesis? DO NOT BE SHY AND HOLD YOURSELF genuine criticism will be most helpful",
+                "attachments": [],
+                "mode": {
+                    "id": "agent",
+                    "kind": "agent"
+                },
+                "selectedModel": {
+                    "identifier": "copilot/claude-opus-4.5",
+                    "metadata": {
+                        "extension": {
+                            "value": "GitHub.copilot-chat",
+                            "_lower": "github.copilot-chat"
+                        },
+                        "id": "claude-opus-4.5",
+                        "vendor": "copilot",
+                        "name": "Claude Opus 4.5",
+                        "family": "claude-opus-4.5",
+                        "detail": "3x",
+                        "tooltip": "Claude Opus 4.5 (claude-opus-4.5) is counted at a 3x rate.",
+                        "version": "claude-opus-4.5",
+                        "maxInputTokens": 127805,
+                        "maxOutputTokens": 16000,
+                        "auth": {
+                            "providerLabel": "GitHub Copilot Chat",
+                            "accountLabel": "adibaislamkhan"
+                        },
+                        "isDefault": false,
+                        "isUserSelectable": true,
+                        "modelPickerCategory": {
+                            "label": "Premium Models",
+                            "order": 1
+                        },
+                        "capabilities": {
+                            "vision": true,
+                            "toolCalling": true,
+                            "agentMode": true
+                        }
+                    }
+                },
+                "selections": [
+                    {
+                        "startLineNumber": 1,
+                        "startColumn": 174,
+                        "endLineNumber": 1,
+                        "endColumn": 174,
+                        "selectionStartLineNumber": 1,
+                        "selectionStartColumn": 174,
+                        "positionLineNumber": 1,
+                        "positionColumn": 174
+                    }
+                ],
+                "contrib": {
+                    "chatDynamicVariableModel": []
+                }
+            },
+            {
+                "inputText": "Fix Whisper hallucinations FIRST - Use better decoding (beam search with length penalty), or chunk-level VAD, or post-processing with LLM to detect/remove loops\r\n\r\n\r\ndo it do whatever necessary",
+                "attachments": [],
+                "mode": {
+                    "id": "agent",
+                    "kind": "agent"
+                },
+                "selectedModel": {
+                    "identifier": "copilot/claude-opus-4.5",
+                    "metadata": {
+                        "extension": {
+                            "value": "GitHub.copilot-chat",
+                            "_lower": "github.copilot-chat"
+                        },
+                        "id": "claude-opus-4.5",
+                        "vendor": "copilot",
+                        "name": "Claude Opus 4.5",
+                        "family": "claude-opus-4.5",
+                        "detail": "3x",
+                        "tooltip": "Claude Opus 4.5 (claude-opus-4.5) is counted at a 3x rate.",
+                        "version": "claude-opus-4.5",
+                        "maxInputTokens": 127805,
+                        "maxOutputTokens": 16000,
+                        "auth": {
+                            "providerLabel": "GitHub Copilot Chat",
+                            "accountLabel": "adibaislamkhan"
+                        },
+                        "isDefault": false,
+                        "isUserSelectable": true,
+                        "modelPickerCategory": {
+                            "label": "Premium Models",
+                            "order": 1
+                        },
+                        "capabilities": {
+                            "vision": true,
+                            "toolCalling": true,
+                            "agentMode": true
+                        }
+                    }
+                },
+                "selections": [
+                    {
+                        "startLineNumber": 4,
+                        "startColumn": 28,
+                        "endLineNumber": 4,
+                        "endColumn": 28,
+                        "selectionStartLineNumber": 4,
+                        "selectionStartColumn": 28,
+                        "positionLineNumber": 4,
+                        "positionColumn": 28
+                    }
+                ],
+                "contrib": {
+                    "chatDynamicVariableModel": []
+                }
+            },
+            {
+                "inputText": "What is current state of the project?",
+                "attachments": [],
+                "mode": {
+                    "id": "agent",
+                    "kind": "agent"
+                },
+                "selectedModel": {
+                    "identifier": "copilot/claude-opus-4.5",
+                    "metadata": {
+                        "extension": {
+                            "value": "GitHub.copilot-chat",
+                            "_lower": "github.copilot-chat"
+                        },
+                        "id": "claude-opus-4.5",
+                        "vendor": "copilot",
+                        "name": "Claude Opus 4.5",
+                        "family": "claude-opus-4.5",
+                        "detail": "3x",
+                        "tooltip": "Claude Opus 4.5 (claude-opus-4.5) is counted at a 3x rate.",
+                        "version": "claude-opus-4.5",
+                        "maxInputTokens": 127805,
+                        "maxOutputTokens": 16000,
+                        "auth": {
+                            "providerLabel": "GitHub Copilot Chat",
+                            "accountLabel": "adibaislamkhan"
+                        },
+                        "isDefault": false,
+                        "isUserSelectable": true,
+                        "modelPickerCategory": {
+                            "label": "Premium Models",
+                            "order": 1
+                        },
+                        "capabilities": {
+                            "vision": true,
+                            "toolCalling": true,
+                            "agentMode": true
+                        }
+                    }
+                },
+                "selections": [
+                    {
+                        "startLineNumber": 1,
+                        "startColumn": 38,
+                        "endLineNumber": 1,
+                        "endColumn": 38,
+                        "selectionStartLineNumber": 1,
+                        "selectionStartColumn": 38,
+                        "positionLineNumber": 1,
+                        "positionColumn": 38
+                    }
+                ],
+                "contrib": {
+                    "chatDynamicVariableModel": []
+                }
+            },
+            {
+                "inputText": "Run pipeline without --mock to test real VLM extraction",
+                "attachments": [],
+                "mode": {
+                    "id": "agent",
+                    "kind": "agent"
+                },
+                "selectedModel": {
+                    "identifier": "copilot/claude-opus-4.5",
+                    "metadata": {
+                        "extension": {
+                            "value": "GitHub.copilot-chat",
+                            "_lower": "github.copilot-chat"
+                        },
+                        "id": "claude-opus-4.5",
+                        "vendor": "copilot",
+                        "name": "Claude Opus 4.5",
+                        "family": "claude-opus-4.5",
+                        "detail": "3x",
+                        "tooltip": "Claude Opus 4.5 (claude-opus-4.5) is counted at a 3x rate.",
+                        "version": "claude-opus-4.5",
+                        "maxInputTokens": 127805,
+                        "maxOutputTokens": 16000,
+                        "auth": {
+                            "providerLabel": "GitHub Copilot Chat",
+                            "accountLabel": "adibaislamkhan"
+                        },
+                        "isDefault": false,
+                        "isUserSelectable": true,
+                        "modelPickerCategory": {
+                            "label": "Premium Models",
+                            "order": 1
+                        },
+                        "capabilities": {
+                            "vision": true,
+                            "toolCalling": true,
+                            "agentMode": true
+                        }
+                    }
+                },
+                "selections": [
+                    {
+                        "startLineNumber": 1,
+                        "startColumn": 56,
+                        "endLineNumber": 1,
+                        "endColumn": 56,
+                        "selectionStartLineNumber": 1,
+                        "selectionStartColumn": 56,
+                        "positionLineNumber": 1,
+                        "positionColumn": 56
+                    }
+                ],
+                "contrib": {
+                    "chatDynamicVariableModel": []
+                }
+            },
+            {
+                "inputText": "What do you think of this result? Is this good? or this is just luck for this video? Also what does it mean? Does it mean now we have some novelty for our thesis? Like something which is worthy and arguable to the defense commitee?",
+                "attachments": [],
+                "mode": {
+                    "id": "agent",
+                    "kind": "agent"
+                },
+                "selectedModel": {
+                    "identifier": "copilot/claude-opus-4.5",
+                    "metadata": {
+                        "extension": {
+                            "value": "GitHub.copilot-chat",
+                            "_lower": "github.copilot-chat"
+                        },
+                        "id": "claude-opus-4.5",
+                        "vendor": "copilot",
+                        "name": "Claude Opus 4.5",
+                        "family": "claude-opus-4.5",
+                        "detail": "3x",
+                        "tooltip": "Claude Opus 4.5 (claude-opus-4.5) is counted at a 3x rate.",
+                        "version": "claude-opus-4.5",
+                        "maxInputTokens": 127805,
+                        "maxOutputTokens": 16000,
+                        "auth": {
+                            "providerLabel": "GitHub Copilot Chat",
+                            "accountLabel": "adibaislamkhan"
+                        },
+                        "isDefault": false,
+                        "isUserSelectable": true,
+                        "modelPickerCategory": {
+                            "label": "Premium Models",
+                            "order": 1
+                        },
+                        "capabilities": {
+                            "vision": true,
+                            "toolCalling": true,
+                            "agentMode": true
+                        }
+                    }
+                },
+                "selections": [
+                    {
+                        "startLineNumber": 1,
+                        "startColumn": 232,
+                        "endLineNumber": 1,
+                        "endColumn": 232,
+                        "selectionStartLineNumber": 1,
+                        "selectionStartColumn": 232,
+                        "positionLineNumber": 1,
+                        "positionColumn": 232
+                    }
+                ],
+                "contrib": {
+                    "chatDynamicVariableModel": []
+                }
+            },
+            {
+                "inputText": "To be honest this is not Thesis defense this is P2. In p3 we have defense. So we are now working with some random video from one of our teacher's online class recording. After p2 when we will submit pipeline and poster then we will create a custom dataset. The final evaluation will be based on this. ",
+                "attachments": [],
+                "mode": {
+                    "id": "agent",
+                    "kind": "agent"
+                },
+                "selectedModel": {
+                    "identifier": "copilot/claude-opus-4.5",
+                    "metadata": {
+                        "extension": {
+                            "value": "GitHub.copilot-chat",
+                            "_lower": "github.copilot-chat"
+                        },
+                        "id": "claude-opus-4.5",
+                        "vendor": "copilot",
+                        "name": "Claude Opus 4.5",
+                        "family": "claude-opus-4.5",
+                        "detail": "3x",
+                        "tooltip": "Claude Opus 4.5 (claude-opus-4.5) is counted at a 3x rate.",
+                        "version": "claude-opus-4.5",
+                        "maxInputTokens": 127805,
+                        "maxOutputTokens": 16000,
+                        "auth": {
+                            "providerLabel": "GitHub Copilot Chat",
+                            "accountLabel": "adibaislamkhan"
+                        },
+                        "isDefault": false,
+                        "isUserSelectable": true,
+                        "modelPickerCategory": {
+                            "label": "Premium Models",
+                            "order": 1
+                        },
+                        "capabilities": {
+                            "vision": true,
+                            "toolCalling": true,
+                            "agentMode": true
+                        }
+                    }
+                },
+                "selections": [
+                    {
+                        "startLineNumber": 1,
+                        "startColumn": 302,
+                        "endLineNumber": 1,
+                        "endColumn": 302,
+                        "selectionStartLineNumber": 1,
+                        "selectionStartColumn": 302,
+                        "positionLineNumber": 1,
+                        "positionColumn": 302
+                    }
+                ],
+                "contrib": {
+                    "chatDynamicVariableModel": []
+                }
+            },
+            {
+                "inputText": "I want to go strong in P2 so I need some actual real improvement. The visual bias is good but I need some more novelty which is actually meaningful and has impact to the AI/ML/VLM community.",
+                "attachments": [],
+                "mode": {
+                    "id": "agent",
+                    "kind": "agent"
+                },
+                "selectedModel": {
+                    "identifier": "copilot/claude-opus-4.5",
+                    "metadata": {
+                        "extension": {
+                            "value": "GitHub.copilot-chat",
+                            "_lower": "github.copilot-chat"
+                        },
+                        "id": "claude-opus-4.5",
+                        "vendor": "copilot",
+                        "name": "Claude Opus 4.5",
+                        "family": "claude-opus-4.5",
+                        "detail": "3x",
+                        "tooltip": "Claude Opus 4.5 (claude-opus-4.5) is counted at a 3x rate.",
+                        "version": "claude-opus-4.5",
+                        "maxInputTokens": 127805,
+                        "maxOutputTokens": 16000,
+                        "auth": {
+                            "providerLabel": "GitHub Copilot Chat",
+                            "accountLabel": "adibaislamkhan"
+                        },
+                        "isDefault": false,
+                        "isUserSelectable": true,
+                        "modelPickerCategory": {
+                            "label": "Premium Models",
+                            "order": 1
+                        },
+                        "capabilities": {
+                            "vision": true,
+                            "toolCalling": true,
+                            "agentMode": true
+                        }
+                    }
+                },
+                "selections": [
+                    {
+                        "startLineNumber": 1,
+                        "startColumn": 191,
+                        "endLineNumber": 1,
+                        "endColumn": 191,
+                        "selectionStartLineNumber": 1,
+                        "selectionStartColumn": 191,
+                        "positionLineNumber": 1,
+                        "positionColumn": 191
+                    }
+                ],
+                "contrib": {
+                    "chatDynamicVariableModel": []
+                }
+            },
+            {
+                "inputText": "start with Temporal Visual Bias Make sure you do everything nedded for this task. Like change everything. Then run the pipline with a random video from data/raw folder. To check the improvement. ",
+                "attachments": [],
+                "mode": {
+                    "id": "agent",
+                    "kind": "agent"
+                },
+                "selectedModel": {
+                    "identifier": "copilot/claude-opus-4.5",
+                    "metadata": {
+                        "extension": {
+                            "value": "GitHub.copilot-chat",
+                            "_lower": "github.copilot-chat"
+                        },
+                        "id": "claude-opus-4.5",
+                        "vendor": "copilot",
+                        "name": "Claude Opus 4.5",
+                        "family": "claude-opus-4.5",
+                        "detail": "3x",
+                        "tooltip": "Claude Opus 4.5 (claude-opus-4.5) is counted at a 3x rate.",
+                        "version": "claude-opus-4.5",
+                        "maxInputTokens": 127805,
+                        "maxOutputTokens": 16000,
+                        "auth": {
+                            "providerLabel": "GitHub Copilot Chat",
+                            "accountLabel": "adibaislamkhan"
+                        },
+                        "isDefault": false,
+                        "isUserSelectable": true,
+                        "modelPickerCategory": {
+                            "label": "Premium Models",
+                            "order": 1
+                        },
+                        "capabilities": {
+                            "vision": true,
+                            "toolCalling": true,
+                            "agentMode": true
+                        }
+                    }
+                },
+                "selections": [
+                    {
+                        "startLineNumber": 1,
+                        "startColumn": 196,
+                        "endLineNumber": 1,
+                        "endColumn": 196,
+                        "selectionStartLineNumber": 1,
+                        "selectionStartColumn": 196,
+                        "positionLineNumber": 1,
+                        "positionColumn": 196
+                    }
+                ],
+                "contrib": {
+                    "chatDynamicVariableModel": []
+                }
+            },
+            {
+                "inputText": "What do you think of this result? Numbers are looking not that much good. ",
+                "attachments": [],
+                "mode": {
+                    "id": "agent",
+                    "kind": "agent"
+                },
+                "selectedModel": {
+                    "identifier": "copilot/claude-opus-4.5",
+                    "metadata": {
+                        "extension": {
+                            "value": "GitHub.copilot-chat",
+                            "_lower": "github.copilot-chat"
+                        },
+                        "id": "claude-opus-4.5",
+                        "vendor": "copilot",
+                        "name": "Claude Opus 4.5",
+                        "family": "claude-opus-4.5",
+                        "detail": "3x",
+                        "tooltip": "Claude Opus 4.5 (claude-opus-4.5) is counted at a 3x rate.",
+                        "version": "claude-opus-4.5",
+                        "maxInputTokens": 127805,
+                        "maxOutputTokens": 16000,
+                        "auth": {
+                            "providerLabel": "GitHub Copilot Chat",
+                            "accountLabel": "adibaislamkhan"
+                        },
+                        "isDefault": false,
+                        "isUserSelectable": true,
+                        "modelPickerCategory": {
+                            "label": "Premium Models",
+                            "order": 1
+                        },
+                        "capabilities": {
+                            "vision": true,
+                            "toolCalling": true,
+                            "agentMode": true
+                        }
+                    }
+                },
+                "selections": [
+                    {
+                        "startLineNumber": 1,
+                        "startColumn": 75,
+                        "endLineNumber": 1,
+                        "endColumn": 75,
+                        "selectionStartLineNumber": 1,
+                        "selectionStartColumn": 75,
+                        "positionLineNumber": 1,
+                        "positionColumn": 75
+                    }
+                ],
+                "contrib": {
+                    "chatDynamicVariableModel": []
+                }
+            },
+            {
+                "inputText": "Want me to add this proper A/B comparison? It would run 3 transcriptions:\r\n\r\nBaseline (no bias, generate mode)\r\nGlobal Bias (all keywords, generate mode)\r\nTemporal Bias (time-aligned keywords, generate mode)\r\n\r\n\r\n\r\nyes do it",
+                "attachments": [],
+                "mode": {
+                    "id": "agent",
+                    "kind": "agent"
+                },
+                "selectedModel": {
+                    "identifier": "copilot/claude-opus-4.5",
+                    "metadata": {
+                        "extension": {
+                            "value": "GitHub.copilot-chat",
+                            "_lower": "github.copilot-chat"
+                        },
+                        "id": "claude-opus-4.5",
+                        "vendor": "copilot",
+                        "name": "Claude Opus 4.5",
+                        "family": "claude-opus-4.5",
+                        "detail": "3x",
+                        "tooltip": "Claude Opus 4.5 (claude-opus-4.5) is counted at a 3x rate.",
+                        "version": "claude-opus-4.5",
+                        "maxInputTokens": 127805,
+                        "maxOutputTokens": 16000,
+                        "auth": {
+                            "providerLabel": "GitHub Copilot Chat",
+                            "accountLabel": "adibaislamkhan"
+                        },
+                        "isDefault": false,
+                        "isUserSelectable": true,
+                        "modelPickerCategory": {
+                            "label": "Premium Models",
+                            "order": 1
+                        },
+                        "capabilities": {
+                            "vision": true,
+                            "toolCalling": true,
+                            "agentMode": true
+                        }
+                    }
+                },
+                "selections": [
+                    {
+                        "startLineNumber": 9,
+                        "startColumn": 10,
+                        "endLineNumber": 9,
+                        "endColumn": 10,
+                        "selectionStartLineNumber": 9,
+                        "selectionStartColumn": 10,
+                        "positionLineNumber": 9,
+                        "positionColumn": 10
+                    }
+                ],
+                "contrib": {
+                    "chatDynamicVariableModel": []
+                }
+            },
+            {
+                "inputText": "As an expert thesis supervisor what would you suggest?",
+                "attachments": [],
+                "mode": {
+                    "id": "agent",
+                    "kind": "agent"
+                },
+                "selectedModel": {
+                    "identifier": "copilot/claude-opus-4.5",
+                    "metadata": {
+                        "extension": {
+                            "value": "GitHub.copilot-chat",
+                            "_lower": "github.copilot-chat"
+                        },
+                        "id": "claude-opus-4.5",
+                        "vendor": "copilot",
+                        "name": "Claude Opus 4.5",
+                        "family": "claude-opus-4.5",
+                        "detail": "3x",
+                        "tooltip": "Claude Opus 4.5 (claude-opus-4.5) is counted at a 3x rate.",
+                        "version": "claude-opus-4.5",
+                        "maxInputTokens": 127805,
+                        "maxOutputTokens": 16000,
+                        "auth": {
+                            "providerLabel": "GitHub Copilot Chat",
+                            "accountLabel": "adibaislamkhan"
+                        },
+                        "isDefault": false,
+                        "isUserSelectable": true,
+                        "modelPickerCategory": {
+                            "label": "Premium Models",
+                            "order": 1
+                        },
+                        "capabilities": {
+                            "vision": true,
+                            "toolCalling": true,
+                            "agentMode": true
+                        }
+                    }
+                },
+                "selections": [
+                    {
+                        "startLineNumber": 1,
+                        "startColumn": 55,
+                        "endLineNumber": 1,
+                        "endColumn": 55,
+                        "selectionStartLineNumber": 1,
+                        "selectionStartColumn": 55,
+                        "positionLineNumber": 1,
+                        "positionColumn": 55
+                    }
+                ],
+                "contrib": {
+                    "chatDynamicVariableModel": []
+                }
+            },
+            {
+                "inputText": "No I do not want to do this. It's look like a loser. Go back to visual bias and check if this gives a better result than the baseline. Previously we checked and it did. This time try with some other video. \r\n\r\nOn the otherhand you can fully skip the temporal bias and look for new improvement section. ",
+                "attachments": [],
+                "mode": {
+                    "id": "agent",
+                    "kind": "agent"
+                },
+                "selectedModel": {
+                    "identifier": "copilot/claude-opus-4.5",
+                    "metadata": {
+                        "extension": {
+                            "value": "GitHub.copilot-chat",
+                            "_lower": "github.copilot-chat"
+                        },
+                        "id": "claude-opus-4.5",
+                        "vendor": "copilot",
+                        "name": "Claude Opus 4.5",
+                        "family": "claude-opus-4.5",
+                        "detail": "3x",
+                        "tooltip": "Claude Opus 4.5 (claude-opus-4.5) is counted at a 3x rate.",
+                        "version": "claude-opus-4.5",
+                        "maxInputTokens": 127805,
+                        "maxOutputTokens": 16000,
+                        "auth": {
+                            "providerLabel": "GitHub Copilot Chat",
+                            "accountLabel": "adibaislamkhan"
+                        },
+                        "isDefault": false,
+                        "isUserSelectable": true,
+                        "modelPickerCategory": {
+                            "label": "Premium Models",
+                            "order": 1
+                        },
+                        "capabilities": {
+                            "vision": true,
+                            "toolCalling": true,
+                            "agentMode": true
+                        }
+                    }
+                },
+                "selections": [
+                    {
+                        "startLineNumber": 3,
+                        "startColumn": 93,
+                        "endLineNumber": 3,
+                        "endColumn": 93,
+                        "selectionStartLineNumber": 3,
+                        "selectionStartColumn": 93,
+                        "positionLineNumber": 3,
+                        "positionColumn": 93
+                    }
+                ],
+                "contrib": {
+                    "chatDynamicVariableModel": []
+                }
+            },
+            {
+                "inputText": "Option A: Focus on What Works (Recommended)\r\nFrame your novelties around the complete multimodal pipeline:\r\n\r\nVLM-based Whiteboard OCR - Automatic technical term extraction\r\nDual-ASR for Banglish - Whisper + BanglaASR fusion\r\nMultimodal Summarization - LLM-driven note generation\r\nMetrics to highlight:\r\n\r\nKeywords extracted per video\r\nDual-language coverage\r\nLecture notes quality (qualitative)\r\n\r\n\r\n\r\n\r\n\r\n\r\nGo with Option A and find areas to improve and contribute to make it novel",
+                "attachments": [],
+                "mode": {
+                    "id": "agent",
+                    "kind": "agent"
+                },
+                "selectedModel": {
+                    "identifier": "copilot/claude-opus-4.5",
+                    "metadata": {
+                        "extension": {
+                            "value": "GitHub.copilot-chat",
+                            "_lower": "github.copilot-chat"
+                        },
+                        "id": "claude-opus-4.5",
+                        "vendor": "copilot",
+                        "name": "Claude Opus 4.5",
+                        "family": "claude-opus-4.5",
+                        "detail": "3x",
+                        "tooltip": "Claude Opus 4.5 (claude-opus-4.5) is counted at a 3x rate.",
+                        "version": "claude-opus-4.5",
+                        "maxInputTokens": 127805,
+                        "maxOutputTokens": 16000,
+                        "auth": {
+                            "providerLabel": "GitHub Copilot Chat",
+                            "accountLabel": "adibaislamkhan"
+                        },
+                        "isDefault": false,
+                        "isUserSelectable": true,
+                        "modelPickerCategory": {
+                            "label": "Premium Models",
+                            "order": 1
+                        },
+                        "capabilities": {
+                            "vision": true,
+                            "toolCalling": true,
+                            "agentMode": true
+                        }
+                    }
+                },
+                "selections": [
+                    {
+                        "startLineNumber": 18,
+                        "startColumn": 75,
+                        "endLineNumber": 18,
+                        "endColumn": 75,
+                        "selectionStartLineNumber": 18,
+                        "selectionStartColumn": 75,
+                        "positionLineNumber": 18,
+                        "positionColumn": 75
+                    }
+                ],
+                "contrib": {
+                    "chatDynamicVariableModel": []
+                }
+            },
+            {
+                "inputText": "Okay then please run the test on random 2 videos. I will run later on full dataset after analyzinfg this first two video",
+                "attachments": [],
+                "mode": {
+                    "id": "agent",
+                    "kind": "agent"
+                },
+                "selectedModel": {
+                    "identifier": "copilot/claude-opus-4.5",
+                    "metadata": {
+                        "extension": {
+                            "value": "GitHub.copilot-chat",
+                            "_lower": "github.copilot-chat"
+                        },
+                        "id": "claude-opus-4.5",
+                        "vendor": "copilot",
+                        "name": "Claude Opus 4.5",
+                        "family": "claude-opus-4.5",
+                        "detail": "3x",
+                        "tooltip": "Claude Opus 4.5 (claude-opus-4.5) is counted at a 3x rate.",
+                        "version": "claude-opus-4.5",
+                        "maxInputTokens": 127805,
+                        "maxOutputTokens": 16000,
+                        "auth": {
+                            "providerLabel": "GitHub Copilot Chat",
+                            "accountLabel": "adibaislamkhan"
+                        },
+                        "isDefault": false,
+                        "isUserSelectable": true,
+                        "modelPickerCategory": {
+                            "label": "Premium Models",
+                            "order": 1
+                        },
+                        "capabilities": {
+                            "vision": true,
+                            "toolCalling": true,
+                            "agentMode": true
+                        }
+                    }
+                },
+                "selections": [
+                    {
+                        "startLineNumber": 1,
+                        "startColumn": 121,
+                        "endLineNumber": 1,
+                        "endColumn": 121,
+                        "selectionStartLineNumber": 1,
+                        "selectionStartColumn": 121,
+                        "positionLineNumber": 1,
+                        "positionColumn": 121
+                    }
+                ],
+                "contrib": {
+                    "chatDynamicVariableModel": []
+                }
+            },
+            {
+                "inputText": "So what is your advice? Like the results are not looking good. LLM summarization looks good but there is no impact of our engineering or research. Our research has no impact on summarization. ",
+                "attachments": [],
+                "mode": {
+                    "id": "agent",
+                    "kind": "agent"
+                },
+                "selectedModel": {
+                    "identifier": "copilot/claude-opus-4.5",
+                    "metadata": {
+                        "extension": {
+                            "value": "GitHub.copilot-chat",
+                            "_lower": "github.copilot-chat"
+                        },
+                        "id": "claude-opus-4.5",
+                        "vendor": "copilot",
+                        "name": "Claude Opus 4.5",
+                        "family": "claude-opus-4.5",
+                        "detail": "3x",
+                        "tooltip": "Claude Opus 4.5 (claude-opus-4.5) is counted at a 3x rate.",
+                        "version": "claude-opus-4.5",
+                        "maxInputTokens": 127805,
+                        "maxOutputTokens": 16000,
+                        "auth": {
+                            "providerLabel": "GitHub Copilot Chat",
+                            "accountLabel": "adibaislamkhan"
+                        },
+                        "isDefault": false,
+                        "isUserSelectable": true,
+                        "modelPickerCategory": {
+                            "label": "Premium Models",
+                            "order": 1
+                        },
+                        "capabilities": {
+                            "vision": true,
+                            "toolCalling": true,
+                            "agentMode": true
+                        }
+                    }
+                },
+                "selections": [
+                    {
+                        "startLineNumber": 1,
+                        "startColumn": 193,
+                        "endLineNumber": 1,
+                        "endColumn": 193,
+                        "selectionStartLineNumber": 1,
+                        "selectionStartColumn": 193,
+                        "positionLineNumber": 1,
+                        "positionColumn": 193
+                    }
+                ],
+                "contrib": {
+                    "chatDynamicVariableModel": []
+                }
+            },
+            {
+                "inputText": "What about that previous visual bias?",
+                "attachments": [],
+                "mode": {
+                    "id": "agent",
+                    "kind": "agent"
+                },
+                "selectedModel": {
+                    "identifier": "copilot/claude-opus-4.5",
+                    "metadata": {
+                        "extension": {
+                            "value": "GitHub.copilot-chat",
+                            "_lower": "github.copilot-chat"
+                        },
+                        "id": "claude-opus-4.5",
+                        "vendor": "copilot",
+                        "name": "Claude Opus 4.5",
+                        "family": "claude-opus-4.5",
+                        "detail": "3x",
+                        "tooltip": "Claude Opus 4.5 (claude-opus-4.5) is counted at a 3x rate.",
+                        "version": "claude-opus-4.5",
+                        "maxInputTokens": 127805,
+                        "maxOutputTokens": 16000,
+                        "auth": {
+                            "providerLabel": "GitHub Copilot Chat",
+                            "accountLabel": "adibaislamkhan"
+                        },
+                        "isDefault": false,
+                        "isUserSelectable": true,
+                        "modelPickerCategory": {
+                            "label": "Premium Models",
+                            "order": 1
+                        },
+                        "capabilities": {
+                            "vision": true,
+                            "toolCalling": true,
+                            "agentMode": true
+                        }
+                    }
+                },
+                "selections": [
+                    {
+                        "startLineNumber": 1,
+                        "startColumn": 38,
+                        "endLineNumber": 1,
+                        "endColumn": 38,
+                        "selectionStartLineNumber": 1,
+                        "selectionStartColumn": 38,
+                        "positionLineNumber": 1,
+                        "positionColumn": 38
+                    }
+                ],
+                "contrib": {
+                    "chatDynamicVariableModel": []
+                }
+            },
+            {
+                "inputText": "Option C: Fix the Fusion (More Work)\r\nThe Dual-ASR Fusion isn't working because it's detecting everything as English. The Bengali detection needs improvement. But this requires more time.\r\n\r\n\r\n\r\n\r\nwhat can we do about this?",
+                "attachments": [],
+                "mode": {
+                    "id": "agent",
+                    "kind": "agent"
+                },
+                "selectedModel": {
+                    "identifier": "copilot/claude-opus-4.5",
+                    "metadata": {
+                        "extension": {
+                            "value": "GitHub.copilot-chat",
+                            "_lower": "github.copilot-chat"
+                        },
+                        "id": "claude-opus-4.5",
+                        "vendor": "copilot",
+                        "name": "Claude Opus 4.5",
+                        "family": "claude-opus-4.5",
+                        "detail": "3x",
+                        "tooltip": "Claude Opus 4.5 (claude-opus-4.5) is counted at a 3x rate.",
+                        "version": "claude-opus-4.5",
+                        "maxInputTokens": 127805,
+                        "maxOutputTokens": 16000,
+                        "auth": {
+                            "providerLabel": "GitHub Copilot Chat",
+                            "accountLabel": "adibaislamkhan"
+                        },
+                        "isDefault": false,
+                        "isUserSelectable": true,
+                        "modelPickerCategory": {
+                            "label": "Premium Models",
+                            "order": 1
+                        },
+                        "capabilities": {
+                            "vision": true,
+                            "toolCalling": true,
+                            "agentMode": true
+                        }
+                    }
+                },
+                "selections": [
+                    {
+                        "startLineNumber": 7,
+                        "startColumn": 27,
+                        "endLineNumber": 7,
+                        "endColumn": 27,
+                        "selectionStartLineNumber": 7,
+                        "selectionStartColumn": 27,
+                        "positionLineNumber": 7,
+                        "positionColumn": 27
+                    }
+                ],
+                "contrib": {
+                    "chatDynamicVariableModel": []
+                }
+            },
+            {
+                "inputText": "Option 2: Transliteration (More Work, More Novelty)\r\nAdd Bengali → Romanized transliteration to make them comparable:\r\n\r\nThis requires a transliteration library like bn-transliterate or AI-based conversion.\r\n\r\n\r\n\r\ndo these first in a separate file  then do the Option 3 in a separate after these two are complese run total 3 video as test and check which one works better. I know it's a long task so be careful. AGAIN DO NOT BREAK the existing codebase. ",
+                "attachments": [],
+                "mode": {
+                    "id": "agent",
+                    "kind": "agent"
+                },
+                "selectedModel": {
+                    "identifier": "copilot/claude-opus-4.5",
+                    "metadata": {
+                        "extension": {
+                            "value": "GitHub.copilot-chat",
+                            "_lower": "github.copilot-chat"
+                        },
+                        "id": "claude-opus-4.5",
+                        "vendor": "copilot",
+                        "name": "Claude Opus 4.5",
+                        "family": "claude-opus-4.5",
+                        "detail": "3x",
+                        "tooltip": "Claude Opus 4.5 (claude-opus-4.5) is counted at a 3x rate.",
+                        "version": "claude-opus-4.5",
+                        "maxInputTokens": 127805,
+                        "maxOutputTokens": 16000,
+                        "auth": {
+                            "providerLabel": "GitHub Copilot Chat",
+                            "accountLabel": "adibaislamkhan"
+                        },
+                        "isDefault": false,
+                        "isUserSelectable": true,
+                        "modelPickerCategory": {
+                            "label": "Premium Models",
+                            "order": 1
+                        },
+                        "capabilities": {
+                            "vision": true,
+                            "toolCalling": true,
+                            "agentMode": true
+                        }
+                    }
+                },
+                "selections": [
+                    {
+                        "startLineNumber": 8,
+                        "startColumn": 241,
+                        "endLineNumber": 8,
+                        "endColumn": 241,
+                        "selectionStartLineNumber": 8,
+                        "selectionStartColumn": 241,
+                        "positionLineNumber": 8,
+                        "positionColumn": 241
+                    }
+                ],
+                "contrib": {
+                    "chatDynamicVariableModel": []
+                }
+            },
+            {
+                "inputText": "Can we do both?\r\nIntegrate Transliteration Fusion into the main pipeline (run_thesis.py)\r\nRun the Full LLM Fusion test (uses actual LLM for intelligent merging)\r\n\r\n What do you think? First tell me then wait for my signal? Tell me pros and cons of each and how each of them will have impact on novelty of the research. ",
+                "attachments": [],
+                "mode": {
+                    "id": "agent",
+                    "kind": "agent"
+                },
+                "selectedModel": {
+                    "identifier": "copilot/claude-opus-4.5",
+                    "metadata": {
+                        "extension": {
+                            "value": "GitHub.copilot-chat",
+                            "_lower": "github.copilot-chat"
+                        },
+                        "id": "claude-opus-4.5",
+                        "vendor": "copilot",
+                        "name": "Claude Opus 4.5",
+                        "family": "claude-opus-4.5",
+                        "detail": "3x",
+                        "tooltip": "Claude Opus 4.5 (claude-opus-4.5) is counted at a 3x rate.",
+                        "version": "claude-opus-4.5",
+                        "maxInputTokens": 127805,
+                        "maxOutputTokens": 16000,
+                        "auth": {
+                            "providerLabel": "GitHub Copilot Chat",
+                            "accountLabel": "adibaislamkhan"
+                        },
+                        "isDefault": false,
+                        "isUserSelectable": true,
+                        "modelPickerCategory": {
+                            "label": "Premium Models",
+                            "order": 1
+                        },
+                        "capabilities": {
+                            "vision": true,
+                            "toolCalling": true,
+                            "agentMode": true
+                        }
+                    }
+                },
+                "selections": [
+                    {
+                        "startLineNumber": 5,
+                        "startColumn": 156,
+                        "endLineNumber": 5,
+                        "endColumn": 156,
+                        "selectionStartLineNumber": 5,
+                        "selectionStartColumn": 156,
+                        "positionLineNumber": 5,
+                        "positionColumn": 156
+                    }
+                ],
+                "contrib": {
+                    "chatDynamicVariableModel": []
+                }
+            },
+            {
+                "inputText": "Integrate Transliteration Fusion into run_thesis.py\r\n\r\nReplace current V2 Simple with Transliteration version\r\nAdd metrics logging (unique words, similarity scores)\r\n\r\n\r\n\r\nDo this again make sure the whole CODEBASE is alright nothing is broken. If and only If you think that this will make the model smart and there will be significant improvement in the result and it will help us to evaluate more then you can run the new updated pipeline with all 7 videos available in data/raw.",
+                "attachments": [],
+                "mode": {
+                    "id": "agent",
+                    "kind": "agent"
+                },
+                "selectedModel": {
+                    "identifier": "copilot/claude-opus-4.5",
+                    "metadata": {
+                        "extension": {
+                            "value": "GitHub.copilot-chat",
+                            "_lower": "github.copilot-chat"
+                        },
+                        "id": "claude-opus-4.5",
+                        "vendor": "copilot",
+                        "name": "Claude Opus 4.5",
+                        "family": "claude-opus-4.5",
+                        "detail": "3x",
+                        "tooltip": "Claude Opus 4.5 (claude-opus-4.5) is counted at a 3x rate.",
+                        "version": "claude-opus-4.5",
+                        "maxInputTokens": 127805,
+                        "maxOutputTokens": 16000,
+                        "auth": {
+                            "providerLabel": "GitHub Copilot Chat",
+                            "accountLabel": "adibaislamkhan"
+                        },
+                        "isDefault": false,
+                        "isUserSelectable": true,
+                        "modelPickerCategory": {
+                            "label": "Premium Models",
+                            "order": 1
+                        },
+                        "capabilities": {
+                            "vision": true,
+                            "toolCalling": true,
+                            "agentMode": true
+                        }
+                    }
+                },
+                "selections": [
+                    {
+                        "startLineNumber": 8,
+                        "startColumn": 310,
+                        "endLineNumber": 8,
+                        "endColumn": 310,
+                        "selectionStartLineNumber": 8,
+                        "selectionStartColumn": 310,
+                        "positionLineNumber": 8,
+                        "positionColumn": 310
+                    }
+                ],
+                "contrib": {
+                    "chatDynamicVariableModel": []
+                }
+            },
+            {
+                "inputText": "Check the output files (fusion_metrics.json, transcripts) first I think there is some problem there please check the output first. Also I deleted CSE443 lecture (Bioinformatics) how does it still have output in the output folder? \r\n",
+                "attachments": [],
+                "mode": {
+                    "id": "agent",
+                    "kind": "agent"
+                },
+                "selectedModel": {
+                    "identifier": "copilot/claude-opus-4.5",
+                    "metadata": {
+                        "extension": {
+                            "value": "GitHub.copilot-chat",
+                            "_lower": "github.copilot-chat"
+                        },
+                        "id": "claude-opus-4.5",
+                        "vendor": "copilot",
+                        "name": "Claude Opus 4.5",
+                        "family": "claude-opus-4.5",
+                        "detail": "3x",
+                        "tooltip": "Claude Opus 4.5 (claude-opus-4.5) is counted at a 3x rate.",
+                        "version": "claude-opus-4.5",
+                        "maxInputTokens": 127805,
+                        "maxOutputTokens": 16000,
+                        "auth": {
+                            "providerLabel": "GitHub Copilot Chat",
+                            "accountLabel": "adibaislamkhan"
+                        },
+                        "isDefault": false,
+                        "isUserSelectable": true,
+                        "modelPickerCategory": {
+                            "label": "Premium Models",
+                            "order": 1
+                        },
+                        "capabilities": {
+                            "vision": true,
+                            "toolCalling": true,
+                            "agentMode": true
+                        }
+                    }
+                },
+                "selections": [
+                    {
+                        "startLineNumber": 2,
+                        "startColumn": 1,
+                        "endLineNumber": 2,
+                        "endColumn": 1,
+                        "selectionStartLineNumber": 2,
+                        "selectionStartColumn": 1,
+                        "positionLineNumber": 2,
+                        "positionColumn": 1
+                    }
+                ],
+                "contrib": {
+                    "chatDynamicVariableModel": []
+                }
+            },
+            {
+                "inputText": "✅ Delete the CSE443 stale output folder\r\n\r\nLower the similarity threshold in _find_best_match() from 0.2 to 0.1 or 0.05.\r\nyou can do a validation with all these possible numbers to find the best hyperparameter. \r\n\r\nImprove word matching - currently uses Jaccard similarity which requires exact word matches. So add some other similarity because it discard words which is even 1 latter different. Find and add a suitable similarity matrics for this task.\r\n\r\n\r\n\r\nfinally  Add fuzzy matching for better transliteration comparison.\r\n\r\n\r\n\r\n\r\nMAKE SURE THE CODEBASE IS NOT BROKEN. ",
+                "attachments": [],
+                "mode": {
+                    "id": "agent",
+                    "kind": "agent"
+                },
+                "selectedModel": {
+                    "identifier": "copilot/claude-opus-4.5",
+                    "metadata": {
+                        "extension": {
+                            "value": "GitHub.copilot-chat",
+                            "_lower": "github.copilot-chat"
+                        },
+                        "id": "claude-opus-4.5",
+                        "vendor": "copilot",
+                        "name": "Claude Opus 4.5",
+                        "family": "claude-opus-4.5",
+                        "detail": "3x",
+                        "tooltip": "Claude Opus 4.5 (claude-opus-4.5) is counted at a 3x rate.",
+                        "version": "claude-opus-4.5",
+                        "maxInputTokens": 127805,
+                        "maxOutputTokens": 16000,
+                        "auth": {
+                            "providerLabel": "GitHub Copilot Chat",
+                            "accountLabel": "adibaislamkhan"
+                        },
+                        "isDefault": false,
+                        "isUserSelectable": true,
+                        "modelPickerCategory": {
+                            "label": "Premium Models",
+                            "order": 1
+                        },
+                        "capabilities": {
+                            "vision": true,
+                            "toolCalling": true,
+                            "agentMode": true
+                        }
+                    }
+                },
+                "selections": [
+                    {
+                        "startLineNumber": 15,
+                        "startColumn": 39,
+                        "endLineNumber": 15,
+                        "endColumn": 39,
+                        "selectionStartLineNumber": 15,
+                        "selectionStartColumn": 39,
+                        "positionLineNumber": 15,
+                        "positionColumn": 39
+                    }
+                ],
+                "contrib": {
+                    "chatDynamicVariableModel": []
+                }
+            },
+            {
+                "inputText": "Summarize all conversation history of this thread and tell me if this output is good, Bad or luck.",
+                "attachments": [],
+                "mode": {
+                    "id": "agent",
+                    "kind": "agent"
+                },
+                "selectedModel": {
+                    "identifier": "copilot/claude-opus-4.5",
+                    "metadata": {
+                        "extension": {
+                            "value": "GitHub.copilot-chat",
+                            "_lower": "github.copilot-chat"
+                        },
+                        "id": "claude-opus-4.5",
+                        "vendor": "copilot",
+                        "name": "Claude Opus 4.5",
+                        "family": "claude-opus-4.5",
+                        "detail": "3x",
+                        "tooltip": "Claude Opus 4.5 (claude-opus-4.5) is counted at a 3x rate.",
+                        "version": "claude-opus-4.5",
+                        "maxInputTokens": 127805,
+                        "maxOutputTokens": 16000,
+                        "auth": {
+                            "providerLabel": "GitHub Copilot Chat",
+                            "accountLabel": "adibaislamkhan"
+                        },
+                        "isDefault": false,
+                        "isUserSelectable": true,
+                        "modelPickerCategory": {
+                            "label": "Premium Models",
+                            "order": 1
+                        },
+                        "capabilities": {
+                            "vision": true,
+                            "toolCalling": true,
+                            "agentMode": true
+                        }
+                    }
+                },
+                "selections": [
+                    {
+                        "startLineNumber": 1,
+                        "startColumn": 99,
+                        "endLineNumber": 1,
+                        "endColumn": 99,
+                        "selectionStartLineNumber": 1,
+                        "selectionStartColumn": 99,
+                        "positionLineNumber": 1,
+                        "positionColumn": 99
+                    }
+                ],
+                "contrib": {
+                    "chatDynamicVariableModel": []
+                }
+            },
+            {
+                "inputText": "Currently does out thesis have something which is unique? And have real contribution to the field or community?",
+                "attachments": [],
+                "mode": {
+                    "id": "agent",
+                    "kind": "agent"
+                },
+                "selectedModel": {
+                    "identifier": "copilot/claude-opus-4.5",
+                    "metadata": {
+                        "extension": {
+                            "value": "GitHub.copilot-chat",
+                            "_lower": "github.copilot-chat"
+                        },
+                        "id": "claude-opus-4.5",
+                        "vendor": "copilot",
+                        "name": "Claude Opus 4.5",
+                        "family": "claude-opus-4.5",
+                        "detail": "3x",
+                        "tooltip": "Claude Opus 4.5 (claude-opus-4.5) is counted at a 3x rate.",
+                        "version": "claude-opus-4.5",
+                        "maxInputTokens": 127805,
+                        "maxOutputTokens": 16000,
+                        "auth": {
+                            "providerLabel": "GitHub Copilot Chat",
+                            "accountLabel": "adibaislamkhan"
+                        },
+                        "isDefault": false,
+                        "isUserSelectable": true,
+                        "modelPickerCategory": {
+                            "label": "Premium Models",
+                            "order": 1
+                        },
+                        "capabilities": {
+                            "vision": true,
+                            "toolCalling": true,
+                            "agentMode": true
+                        }
+                    }
+                },
+                "selections": [
+                    {
+                        "startLineNumber": 1,
+                        "startColumn": 112,
+                        "endLineNumber": 1,
+                        "endColumn": 112,
+                        "selectionStartLineNumber": 1,
+                        "selectionStartColumn": 112,
+                        "positionLineNumber": 1,
+                        "positionColumn": 112
+                    }
+                ],
+                "contrib": {
+                    "chatDynamicVariableModel": []
+                }
+            },
+            {
+                "inputText": "Quantitative evaluation needed:\r\n\r\nWER comparison: Whisper vs BanglaASR vs Fused\r\nHuman evaluation: Which transcript is more accurate?\r\nAblation: With/without suffix stripping, fuzzy matching\r\n\r\n\r\n\r\nis this possible with demo data like we already have? Or need custom dataset?",
+                "attachments": [],
+                "mode": {
+                    "id": "agent",
+                    "kind": "agent"
+                },
+                "selectedModel": {
+                    "identifier": "copilot/claude-opus-4.5",
+                    "metadata": {
+                        "extension": {
+                            "value": "GitHub.copilot-chat",
+                            "_lower": "github.copilot-chat"
+                        },
+                        "id": "claude-opus-4.5",
+                        "vendor": "copilot",
+                        "name": "Claude Opus 4.5",
+                        "family": "claude-opus-4.5",
+                        "detail": "3x",
+                        "tooltip": "Claude Opus 4.5 (claude-opus-4.5) is counted at a 3x rate.",
+                        "version": "claude-opus-4.5",
+                        "maxInputTokens": 127805,
+                        "maxOutputTokens": 16000,
+                        "auth": {
+                            "providerLabel": "GitHub Copilot Chat",
+                            "accountLabel": "adibaislamkhan"
+                        },
+                        "isDefault": false,
+                        "isUserSelectable": true,
+                        "modelPickerCategory": {
+                            "label": "Premium Models",
+                            "order": 1
+                        },
+                        "capabilities": {
+                            "vision": true,
+                            "toolCalling": true,
+                            "agentMode": true
+                        }
+                    }
+                },
+                "selections": [
+                    {
+                        "startLineNumber": 9,
+                        "startColumn": 78,
+                        "endLineNumber": 9,
+                        "endColumn": 78,
+                        "selectionStartLineNumber": 9,
+                        "selectionStartColumn": 78,
+                        "positionLineNumber": 9,
+                        "positionColumn": 78
+                    }
+                ],
+                "contrib": {
+                    "chatDynamicVariableModel": []
+                }
+            },
+            {
+                "inputText": "",
+                "attachments": [],
+                "mode": {
+                    "id": "agent",
+                    "kind": "agent"
+                },
+                "selectedModel": {
+                    "identifier": "copilot/claude-opus-4.5",
+                    "metadata": {
+                        "extension": {
+                            "value": "GitHub.copilot-chat",
+                            "_lower": "github.copilot-chat"
+                        },
+                        "id": "claude-opus-4.5",
+                        "vendor": "copilot",
+                        "name": "Claude Opus 4.5",
+                        "family": "claude-opus-4.5",
+                        "detail": "3x",
+                        "tooltip": "Claude Opus 4.5 (claude-opus-4.5) is counted at a 3x rate.",
+                        "version": "claude-opus-4.5",
+                        "maxInputTokens": 127805,
+                        "maxOutputTokens": 16000,
+                        "auth": {
+                            "providerLabel": "GitHub Copilot Chat",
+                            "accountLabel": "adibaislamkhan"
+                        },
+                        "isDefault": false,
+                        "isUserSelectable": true,
+                        "modelPickerCategory": {
+                            "label": "Premium Models",
+                            "order": 1
+                        },
+                        "capabilities": {
+                            "vision": true,
+                            "toolCalling": true,
+                            "agentMode": true
+                        }
+                    }
+                },
+                "selections": [
+                    {
+                        "startLineNumber": 1,
+                        "startColumn": 1,
+                        "endLineNumber": 1,
+                        "endColumn": 1,
+                        "selectionStartLineNumber": 1,
+                        "selectionStartColumn": 1,
+                        "positionLineNumber": 1,
+                        "positionColumn": 1
+                    }
+                ],
+                "contrib": {
+                    "chatDynamicVariableModel": []
+                }
+            },
+            {
+                "inputText": "Okay let's get to evluation after P2. But at P2 do you see any room for improvement? IF YES PLEASE MAKE A LIST ",
+                "attachments": [],
+                "mode": {
+                    "id": "agent",
+                    "kind": "agent"
+                },
+                "selectedModel": {
+                    "identifier": "copilot/claude-opus-4.5",
+                    "metadata": {
+                        "extension": {
+                            "value": "GitHub.copilot-chat",
+                            "_lower": "github.copilot-chat"
+                        },
+                        "id": "claude-opus-4.5",
+                        "vendor": "copilot",
+                        "name": "Claude Opus 4.5",
+                        "family": "claude-opus-4.5",
+                        "detail": "3x",
+                        "tooltip": "Claude Opus 4.5 (claude-opus-4.5) is counted at a 3x rate.",
+                        "version": "claude-opus-4.5",
+                        "maxInputTokens": 127805,
+                        "maxOutputTokens": 16000,
+                        "auth": {
+                            "providerLabel": "GitHub Copilot Chat",
+                            "accountLabel": "adibaislamkhan"
+                        },
+                        "isDefault": false,
+                        "isUserSelectable": true,
+                        "modelPickerCategory": {
+                            "label": "Premium Models",
+                            "order": 1
+                        },
+                        "capabilities": {
+                            "vision": true,
+                            "toolCalling": true,
+                            "agentMode": true
+                        }
+                    }
+                },
+                "selections": [
+                    {
+                        "startLineNumber": 1,
+                        "startColumn": 112,
+                        "endLineNumber": 1,
+                        "endColumn": 112,
+                        "selectionStartLineNumber": 1,
+                        "selectionStartColumn": 112,
+                        "positionLineNumber": 1,
+                        "positionColumn": 112
+                    }
+                ],
+                "contrib": {
+                    "chatDynamicVariableModel": []
+                }
+            },
+            {
+                "inputText": "OKAY CAN YOU PLEASE CHECK THE TERMINAL OUTPUT FROM START TO FINISH THEN TELL ME WHAT IS HAPPENING>\r\n",
+                "attachments": [],
+                "mode": {
+                    "id": "agent",
+                    "kind": "agent"
+                },
+                "selectedModel": {
+                    "identifier": "copilot/claude-opus-4.5",
+                    "metadata": {
+                        "extension": {
+                            "value": "GitHub.copilot-chat",
+                            "_lower": "github.copilot-chat"
+                        },
+                        "id": "claude-opus-4.5",
+                        "vendor": "copilot",
+                        "name": "Claude Opus 4.5",
+                        "family": "claude-opus-4.5",
+                        "detail": "3x",
+                        "tooltip": "Claude Opus 4.5 (claude-opus-4.5) is counted at a 3x rate.",
+                        "version": "claude-opus-4.5",
+                        "maxInputTokens": 127805,
+                        "maxOutputTokens": 16000,
+                        "auth": {
+                            "providerLabel": "GitHub Copilot Chat",
+                            "accountLabel": "adibaislamkhan"
+                        },
+                        "isDefault": false,
+                        "isUserSelectable": true,
+                        "modelPickerCategory": {
+                            "label": "Premium Models",
+                            "order": 1
+                        },
+                        "capabilities": {
+                            "vision": true,
+                            "toolCalling": true,
+                            "agentMode": true
+                        }
+                    }
+                },
+                "selections": [
+                    {
+                        "startLineNumber": 2,
+                        "startColumn": 1,
+                        "endLineNumber": 2,
+                        "endColumn": 1,
+                        "selectionStartLineNumber": 2,
+                        "selectionStartColumn": 1,
+                        "positionLineNumber": 2,
+                        "positionColumn": 1
+                    }
+                ],
+                "contrib": {
+                    "chatDynamicVariableModel": []
+                }
+            }
+        ]
+    }
+}

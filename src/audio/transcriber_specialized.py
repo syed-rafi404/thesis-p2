@@ -23,6 +23,13 @@ from transformers import pipeline
 from rich.console import Console
 from rich.progress import Progress, SpinnerColumn, TextColumn
 
+# ModelRegistry for GPU model caching (optimized batch/live processing)
+try:
+    from src.model_registry import ModelRegistry
+    REGISTRY_AVAILABLE = True
+except ImportError:
+    REGISTRY_AVAILABLE = False
+
 console = Console()
 
 
@@ -87,11 +94,32 @@ class BanglaASRTranscriber:
         self.pipe = None
         self._is_loaded = False
     
-    def load_model(self):
-        """Load the BanglaASR model pipeline."""
+    def load_model(self, use_registry: bool = True):
+        """Load the BanglaASR model pipeline.
+        
+        Args:
+            use_registry: If True, use ModelRegistry singleton (recommended for batch/live)
+        """
         if self._is_loaded:
             return
         
+        # Use ModelRegistry for shared model access (faster batch processing)
+        if use_registry and REGISTRY_AVAILABLE:
+            console.print(f"\n[bold cyan]🎤 Loading Specialized Bangla ASR Model (via Registry)[/bold cyan]")
+            console.print(f"[dim]Model: {self.model_name}[/dim]")
+            console.print(f"[dim]Device: {self.device}[/dim]\n")
+            
+            registry = ModelRegistry.get_instance()
+            self.pipe = registry.get_bangla_asr(
+                model_name=self.model_name,
+                device=self.device
+            )
+            self._is_loaded = True
+            self._using_registry = True
+            return
+        
+        # Direct loading (legacy behavior)
+        self._using_registry = False
         console.print(f"\n[bold cyan]🎤 Loading Specialized Bangla ASR Model[/bold cyan]")
         console.print(f"[dim]Model: {self.model_name}[/dim]")
         console.print(f"[dim]Device: {self.device}[/dim]\n")
@@ -218,7 +246,14 @@ class BanglaASRTranscriber:
         return transcript
     
     def unload_model(self):
-        """Unload model to free GPU memory."""
+        """Unload model to free GPU memory.
+        
+        Note: If using ModelRegistry, this is a no-op (registry manages lifecycle).
+        """
+        if getattr(self, '_using_registry', False):
+            console.print("[dim]BanglaASR model managed by registry (not unloading)[/dim]")
+            return
+            
         if self.pipe is not None:
             del self.pipe
             self.pipe = None
