@@ -55,7 +55,7 @@ For the full narrative read [README.md](README.md) and [THESIS_CONTEXT_SUMMARY.m
 - Total model footprint ~33 GB; `src/model_registry.py` loads/unloads sequentially to fit 24 GB
 - Repo root: `f:\thesisP2\thesisP2`
 - Git note: repo has a "dubious ownership" warning on this machine. For git reads, pass it per command (`git -c safe.directory=F:/thesisP2/thesisP2 status`) rather than changing global config. Only run `git config --global --add safe.directory F:/thesisP2/thesisP2` after confirming.
-- **Last commit is 2026-02-05.** All P3 work is uncommitted: `finetune/`, THESIS_DEFENSE.md, TRANSCRIPTION_GUIDE.md, this file, and 18 modified tracked files.
+- All work through 2026-09-20 is committed locally (five commits after the February P2 merge). Push status: check `git status -sb`; nothing is pushed automatically.
 
 ---
 
