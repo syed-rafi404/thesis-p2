@@ -72,7 +72,7 @@ class LectureNoteGenerator:
     
     def __init__(
         self,
-        model_name: str = "Qwen/Qwen2.5-7B-Instruct",
+        model_name: str = "Qwen/Qwen2.5-14B-Instruct",
         torch_dtype: torch.dtype = torch.float16,
         device_map: str = "auto",
         use_4bit: bool = False  # Enable 4-bit quantization for live mode

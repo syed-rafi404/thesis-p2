@@ -27,8 +27,14 @@ from rich import box
 console = Console()
 
 
-def run_simple_test(video_path: str, output_dir: str = "output/simple_test"):
-    """Run simplified 2-way comparison: Baseline vs Visual-Biased Whisper."""
+def run_simple_test(video_path: str, output_dir: str = "output/simple_test", low_vram: bool = False):
+    """Run simplified 2-way comparison: Baseline vs Visual-Biased Whisper.
+    
+    Args:
+        video_path: Path to the input video
+        output_dir: Output directory for results
+        low_vram: Use 4-bit quantization for GPUs with <16GB VRAM
+    """
     
     from src.ingest_video import VideoIngestor
     from src.audio.transcriber import BanglishTranscriber
@@ -55,7 +61,7 @@ def run_simple_test(video_path: str, output_dir: str = "output/simple_test"):
     
     # Step 2: Extract visual keywords
     console.print("\n[bold]Step 2: VLM Keyword Extraction[/bold]")
-    vlm = WhiteboardVLM()
+    vlm = WhiteboardVLM(use_4bit=low_vram)
     all_keywords = []
     
     for frame_path in frame_paths:
@@ -150,9 +156,13 @@ def run_simple_test(video_path: str, output_dir: str = "output/simple_test"):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        console.print("[red]Usage: python test_visual_bias_simple.py <video_path>[/red]")
-        sys.exit(1)
+    import argparse
+    parser = argparse.ArgumentParser(description="Simplified Visual Bias Test")
+    parser.add_argument("video_path", help="Path to the input video")
+    parser.add_argument("--output", "-o", default="output/simple_test",
+                        help="Output directory")
+    parser.add_argument("--low-vram", action="store_true",
+                        help="Use 4-bit quantization for GPUs with <16GB VRAM")
+    args = parser.parse_args()
     
-    video_path = sys.argv[1]
-    run_simple_test(video_path)
+    run_simple_test(args.video_path, args.output, low_vram=args.low_vram)

@@ -29,8 +29,14 @@ from rich import box
 console = Console()
 
 
-def run_demo(video_path: str, output_dir: str = "output/thesis_demo"):
-    """Run a quick thesis demo on a video."""
+def run_demo(video_path: str, output_dir: str = "output/thesis_demo", low_vram: bool = False):
+    """Run a quick thesis demo on a video.
+    
+    Args:
+        video_path: Path to the input video
+        output_dir: Output directory for results
+        low_vram: Use 4-bit quantization for GPUs with <16GB VRAM
+    """
     
     from src.ingest_video import VideoIngestor
     from src.audio.transcriber import BanglishTranscriber
@@ -68,7 +74,7 @@ def run_demo(video_path: str, output_dir: str = "output/thesis_demo"):
     # STEP 2: VLM Whiteboard Extraction (NOVELTY 1)
     # =====================================================================
     console.print("\n[bold green]STEP 2: VLM Whiteboard Extraction (NOVELTY 1)[/bold green]")
-    vlm = WhiteboardVLM()
+    vlm = WhiteboardVLM(use_4bit=low_vram)
     all_keywords = []
     
     import re
@@ -225,9 +231,13 @@ Generate well-structured Markdown lecture notes. Use visual keywords as the sour
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        console.print("[red]Usage: python thesis_demo.py <video_path>[/red]")
-        sys.exit(1)
+    import argparse
+    parser = argparse.ArgumentParser(description="Thesis Demo - Multimodal Summarizer")
+    parser.add_argument("video_path", help="Path to the input video")
+    parser.add_argument("--output", "-o", default="output/thesis_demo",
+                        help="Output directory")
+    parser.add_argument("--low-vram", action="store_true",
+                        help="Use 4-bit quantization for GPUs with <16GB VRAM")
+    args = parser.parse_args()
     
-    video_path = sys.argv[1]
-    run_demo(video_path)
+    run_demo(args.video_path, args.output, low_vram=args.low_vram)

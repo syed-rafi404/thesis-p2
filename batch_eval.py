@@ -33,8 +33,13 @@ def find_videos(data_dir: str = "data/raw") -> List[str]:
     return sorted([str(v) for v in videos])
 
 
-def run_batch_evaluation(max_videos: int = 5):
-    """Run visual bias evaluation on multiple videos."""
+def run_batch_evaluation(max_videos: int = 5, low_vram: bool = False):
+    """Run visual bias evaluation on multiple videos.
+    
+    Args:
+        max_videos: Maximum number of videos to process
+        low_vram: Use 4-bit quantization for GPUs with <16GB VRAM
+    """
     
     from src.ingest_video import VideoIngestor
     from src.audio.transcriber import BanglishTranscriber
@@ -44,6 +49,8 @@ def run_batch_evaluation(max_videos: int = 5):
     
     console.print("[bold cyan]" + "="*60 + "[/bold cyan]")
     console.print("[bold cyan]BATCH VISUAL BIAS EVALUATION[/bold cyan]")
+    if low_vram:
+        console.print("[yellow]Low VRAM mode: Using 4-bit quantization[/yellow]")
     console.print("[bold cyan]" + "="*60 + "[/bold cyan]\n")
     
     # Find videos
@@ -73,8 +80,8 @@ def run_batch_evaluation(max_videos: int = 5):
             
             console.print(f"  ✓ Ingested: {len(frame_paths)} frames, {ingest_result.duration:.0f}s")
             
-            # VLM extraction
-            vlm = WhiteboardVLM()
+            # VLM extraction (use 4-bit for low VRAM GPUs)
+            vlm = WhiteboardVLM(use_4bit=low_vram)
             all_keywords = []
             
             import re
@@ -194,5 +201,12 @@ def run_batch_evaluation(max_videos: int = 5):
 
 
 if __name__ == "__main__":
-    max_videos = int(sys.argv[1]) if len(sys.argv) > 1 else 5
-    run_batch_evaluation(max_videos)
+    import argparse
+    parser = argparse.ArgumentParser(description="Batch Visual Bias Evaluation")
+    parser.add_argument("--max-videos", "-n", type=int, default=5,
+                        help="Maximum number of videos to process")
+    parser.add_argument("--low-vram", action="store_true",
+                        help="Use 4-bit quantization for GPUs with <16GB VRAM")
+    args = parser.parse_args()
+    
+    run_batch_evaluation(args.max_videos, low_vram=args.low_vram)

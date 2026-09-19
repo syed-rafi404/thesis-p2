@@ -154,6 +154,12 @@ class ThesisPipeline:
         self.frame_interval = frame_interval
         self.use_mock_vlm = use_mock_vlm
         self.skip_gaze = skip_gaze
+        # Auto-enable live mode on GPUs with <16GB VRAM
+        if not live_mode and torch.cuda.is_available():
+            vram_gb = torch.cuda.get_device_properties(0).total_memory / (1024**3)
+            if vram_gb < 16:
+                console.print(f"[yellow]Auto-enabling live mode (GPU has {vram_gb:.0f}GB VRAM < 16GB)[/yellow]")
+                live_mode = True
         self.live_mode = live_mode
         
         # Create output directory
@@ -168,7 +174,7 @@ class ThesisPipeline:
         
     def _print_banner(self):
         """Print the thesis banner."""
-        mode_str = "[yellow]LIVE MODE (4-bit LLM)[/yellow]" if self.live_mode else "[green]BATCH MODE (FP16)[/green]"
+        mode_str = "[yellow]LIVE MODE (4-bit VLM+LLM for 12GB GPU)[/yellow]" if self.live_mode else "[green]BATCH MODE (FP16)[/green]"
         banner = f"""
 [bold cyan]╔══════════════════════════════════════════════════════════════════════╗
 ║     MULTIMODAL BANGLISH CLASSROOM SUMMARIZER                         ║
@@ -356,6 +362,12 @@ class ThesisPipeline:
             border_style="cyan"
         ))
         
+        # Free Whisper/ASR from VRAM before loading LLM
+        console.print("[dim]  Unloading ASR models to free VRAM for LLM...[/dim]")
+        registry = get_registry()
+        registry.unload("whisper")
+        registry.unload("bangla_asr")
+        
         # Use structured context for richer LLM prompt
         structured_context = structured_extraction.to_context_string()
         
@@ -500,7 +512,8 @@ class ThesisPipeline:
             return temporal_context, structured_extraction, text_boxes
         
         # Real VLM processing with structured extraction
-        self.vlm = WhiteboardVLM()
+        # Use 4-bit quantization in live mode for 12GB GPUs
+        self.vlm = WhiteboardVLM(use_8bit=self.live_mode)
         all_text_boxes = []
         
         console.print(f"[cyan]Processing {len(frame_paths)} frames with Qwen2.5-VL...[/cyan]")
@@ -1328,7 +1341,7 @@ Examples:
     parser.add_argument(
         "--live",
         action="store_true",
-        help="Enable live mode: uses 4-bit quantized LLM to fit all models in 24GB VRAM"
+        help="Enable live mode: sequential loading with 8-bit VLM + 14B 4-bit LLM for 12GB GPU"
     )
     
     args = parser.parse_args()
@@ -1343,12 +1356,11 @@ Examples:
     if args.live:
         console.print(Panel.fit(
             "[bold yellow]🚀 LIVE MODE ENABLED[/bold yellow]\n"
-            "Using 4-bit quantized LLM (~4GB) to fit all models in 24GB VRAM:\n"
+            "Sequential model loading for 12GB GPU:\n"
+            "  • Qwen2.5-VL-7B: ~8GB (8-bit quantized)\n"
             "  • Whisper large-v3-turbo: ~3GB (FP16)\n"
-            "  • Qwen2.5-VL-7B: ~15GB (FP16)\n"
-            "  • Qwen2.5-7B: ~4GB (4-bit quantized)\n"
-            "  • YOLOv8-Pose: ~0.5GB\n"
-            "  • Total: ~22.5GB ✓",
+            "  • Qwen2.5-14B: ~9GB (4-bit quantized)\n"
+            "  • Peak: ~9GB (one model at a time) ✓",
             border_style="yellow"
         ))
     

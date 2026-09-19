@@ -101,7 +101,7 @@ def run_single_video(
             frame_interval=interval,
             use_mock_vlm=False,  # Always use real VLM
             skip_gaze=skip_gaze,
-            live_mode=False,  # Use FP16 for quality
+            live_mode=True,  # Use 4-bit quantization for 12GB GPU
         )
         
         result = pipeline.run()

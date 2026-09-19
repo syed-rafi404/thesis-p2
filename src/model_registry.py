@@ -152,6 +152,8 @@ class ModelRegistry:
         model_name: str = "Qwen/Qwen2.5-VL-7B-Instruct",
         torch_dtype: torch.dtype = None,
         device_map: str = "auto",
+        use_4bit: bool = False,
+        use_8bit: bool = False,
         model_id: str = None  # Alias for model_name
     ) -> tuple:
         """Get VLM model and processor (loads if not cached).
@@ -160,17 +162,30 @@ class ModelRegistry:
             model_name: HuggingFace model identifier
             torch_dtype: Data type for model (defaults to float16)
             device_map: Device mapping strategy
+            use_4bit: If True, load model with 4-bit quantization (~4.5GB for 7B)
+            use_8bit: If True, load model with 8-bit quantization (~8GB for 7B, better quality)
             model_id: Alias for model_name (for backward compatibility)
         """
         model_id = model_name if model_id is None else model_id
-        key = f"vlm:{model_id}"
+        quant_suffix = "_8bit" if use_8bit else ("_4bit" if use_4bit else "")
+        key = f"vlm:{model_id}{quant_suffix}"
         
         if key not in self._models:
-            console.print(f"[cyan]📦 Loading VLM (caching for reuse)...[/cyan]")
-            model, processor = self._load_vlm(model_id)
-            vram = self._get_model_vram(model)
+            if use_8bit:
+                console.print(f"[cyan]📦 Loading VLM 8-bit quantized (~8GB, better quality)...[/cyan]")
+                model, processor = self._load_vlm_8bit(model_id)
+                vram = 8.0  # Approximate for 7B 8-bit VLM
+            elif use_4bit:
+                console.print(f"[cyan]📦 Loading VLM 4-bit quantized (saves ~11GB VRAM)...[/cyan]")
+                model, processor = self._load_vlm_4bit(model_id)
+                vram = 4.5  # Approximate for 7B 4-bit VLM
+            else:
+                console.print(f"[cyan]📦 Loading VLM FP16 (caching for reuse)...[/cyan]")
+                model, processor = self._load_vlm(model_id)
+                vram = self._get_model_vram(model)
+            
             self._models[key] = ModelInfo(
-                name="VLM",
+                name=f"VLM{quant_suffix}",
                 model=model,
                 processor=processor,
                 vram_gb=vram,
@@ -183,7 +198,7 @@ class ModelRegistry:
     
     def get_llm(
         self, 
-        model_name: str = "Qwen/Qwen2.5-7B-Instruct",
+        model_name: str = "Qwen/Qwen2.5-14B-Instruct",
         torch_dtype: torch.dtype = None,
         device_map: str = "auto",
         use_4bit: bool = False,
@@ -206,7 +221,7 @@ class ModelRegistry:
             if use_4bit:
                 console.print(f"[cyan]📦 Loading LLM 4-bit quantized (saves ~11GB VRAM)...[/cyan]")
                 model, tokenizer = self._load_llm_4bit(model_id)
-                vram = 4.0  # Approximate for 7B 4-bit
+                vram = 9.0  # Approximate for 14B 4-bit
             else:
                 console.print(f"[cyan]📦 Loading LLM FP16 (caching for reuse)...[/cyan]")
                 model, tokenizer = self._load_llm(model_id)
@@ -286,6 +301,59 @@ class ModelRegistry:
         processor = AutoProcessor.from_pretrained(model_id)
         return model, processor
     
+    def _load_vlm_4bit(self, model_id: str) -> tuple:
+        """Load Vision-Language Model with 4-bit quantization (saves ~11GB VRAM).
+        
+        Uses bitsandbytes NF4 quantization for efficient inference.
+        Recommended for GPUs with <16GB VRAM (e.g., RTX 3060 12GB).
+        """
+        from transformers import Qwen2_5_VLForConditionalGeneration, AutoProcessor, BitsAndBytesConfig
+        
+        # Configure 4-bit quantization
+        quantization_config = BitsAndBytesConfig(
+            load_in_4bit=True,
+            bnb_4bit_compute_dtype=torch.float16,
+            bnb_4bit_quant_type="nf4",  # Normalized float 4-bit
+            bnb_4bit_use_double_quant=True,  # Double quantization for more savings
+        )
+        
+        console.print(f"[dim]  VLM Quantization: NF4 with double quant[/dim]")
+        
+        model = Qwen2_5_VLForConditionalGeneration.from_pretrained(
+            model_id,
+            quantization_config=quantization_config,
+            device_map="auto",
+            low_cpu_mem_usage=True
+        )
+        
+        processor = AutoProcessor.from_pretrained(model_id)
+        return model, processor
+    
+    def _load_vlm_8bit(self, model_id: str) -> tuple:
+        """Load Vision-Language Model with 8-bit quantization (~8GB VRAM).
+        
+        Uses bitsandbytes LLM.int8() quantization for better quality than 4-bit.
+        Recommended for GPUs with 12GB VRAM when models are loaded sequentially.
+        """
+        from transformers import Qwen2_5_VLForConditionalGeneration, AutoProcessor, BitsAndBytesConfig
+        
+        # Configure 8-bit quantization
+        quantization_config = BitsAndBytesConfig(
+            load_in_8bit=True,
+        )
+        
+        console.print(f"[dim]  VLM Quantization: INT8 (higher quality than NF4)[/dim]")
+        
+        model = Qwen2_5_VLForConditionalGeneration.from_pretrained(
+            model_id,
+            quantization_config=quantization_config,
+            device_map="auto",
+            low_cpu_mem_usage=True
+        )
+        
+        processor = AutoProcessor.from_pretrained(model_id)
+        return model, processor
+    
     def _load_llm(self, model_id: str) -> tuple:
         """Load Language Model for summarization (FP16)."""
         from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -326,7 +394,6 @@ class ModelRegistry:
         )
         
         tokenizer = AutoTokenizer.from_pretrained(model_id)
-        return model, tokenizer
         return model, tokenizer
     
     # =========================================================================

@@ -2,7 +2,7 @@
 # SETUP COMMANDS - Copy and paste into PowerShell
 # =============================================================================
 # Multimodal Banglish Classroom Summarizer
-# Windows 11 | RTX 3090 (24GB) | CUDA 12.4
+# Windows 11 | RTX 3060 (12GB) / RTX 3090 (24GB) | CUDA 12.4
 # =============================================================================
 
 # -----------------------------------------------------------------------------
@@ -22,10 +22,10 @@ pip install torch torchvision torchaudio --index-url https://download.pytorch.or
 pip install -r requirements.txt
 
 # -----------------------------------------------------------------------------
-# STEP 4: (Optional) Install bitsandbytes for 4-bit quantization (Live Mode)
+# STEP 4: Install bitsandbytes for 4-bit quantization (REQUIRED for 12GB GPU)
 # -----------------------------------------------------------------------------
-# Note: bitsandbytes on Windows can be unstable, but works with recent versions
-pip install bitsandbytes>=0.42.0 --quiet
+# Note: bitsandbytes is REQUIRED for 4-bit quantization on RTX 3060 (12GB)
+pip install bitsandbytes>=0.42.0
 
 # -----------------------------------------------------------------------------
 # STEP 5: Verify Installation
@@ -64,25 +64,43 @@ pip install tqdm pyyaml python-dotenv rich pytest
 # QUICK TEST - Run the Full Pipeline
 # =============================================================================
 
-# Process a single video (all 3 novelties)
-python run_thesis.py "data/raw/lecture.mp4" -o "output/test" --interval 30
+# Process a single video (all 3 novelties) - 12GB GPU uses 4-bit by default
+python run_thesis.py "data/raw/lecture.mp4" -o "output/test" --interval 30 --live
 
-# Live mode (4-bit LLM, fits all models in 24GB VRAM)
+# Live mode with 4-bit VLM and LLM (fits all models in 12GB VRAM)
 python run_thesis.py "data/raw/lecture.mp4" --live --interval 45
 
 # Batch process all videos in data/raw/
 python batch_process.py --live --interval 45
 
 # =============================================================================
+# GPU MEMORY REQUIREMENTS
+# =============================================================================
+#
+# RTX 3060 (12GB VRAM) - Config: config/live_config.yaml
+#   Whisper large-v3-turbo:  ~3.0 GB (FP16)
+#   Qwen2.5-VL-7B 4-bit:     ~4.5 GB (quantized)
+#   Qwen2.5-7B 4-bit:        ~4.0 GB (quantized)
+#   YOLOv8-Pose:             ~0.5 GB
+#   ─────────────────────────────────────
+#   Total:                   ~12.0 GB ✅
+#
+# RTX 3090/4090 (24GB VRAM) - Can use FP16 VLM for better OCR:
+#   Set vlm.precision: "fp16" in config/live_config.yaml
+#
+# =============================================================================
 # TROUBLESHOOTING
 # =============================================================================
 # 
-# Issue: "CUDA out of memory"
-# Fix: Use --live mode (4-bit LLM) or close other GPU applications
+# Issue: "CUDA out of memory" on RTX 3060
+# Fix: 
+#   1. Ensure --live mode is used (enables 4-bit quantization)
+#   2. Close other GPU applications (browser, other models)
+#   3. Reduce frame_interval to process fewer frames (e.g., --interval 60)
 #
 # Issue: "bitsandbytes not working on Windows"
 # Fix: pip install bitsandbytes>=0.42.0 (recent versions work on Windows)
-#      Or use batch mode without --live flag (stage-based model loading)
+#      This is REQUIRED for 4-bit quantization on 12GB GPUs
 #
 # Issue: "torch.cuda.is_available() returns False"
 # Fix: 

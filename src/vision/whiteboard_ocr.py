@@ -87,17 +87,24 @@ class WhiteboardVLM:
     
     Uses Qwen2.5-VL-7B-Instruct to understand and transcribe
     whiteboard content including text, formulas, and diagrams.
+    
+    For GPUs with limited VRAM (e.g., RTX 3060 12GB), enable use_4bit=True
+    to load the model with 4-bit quantization (~4.5GB instead of ~15GB).
     """
     
     def __init__(
         self,
         model_name: str = "Qwen/Qwen2.5-VL-7B-Instruct",
         torch_dtype: torch.dtype = torch.float16,
-        device_map: str = "auto"
+        device_map: str = "auto",
+        use_4bit: bool = False,
+        use_8bit: bool = False
     ):
         self.model_name = model_name
         self.torch_dtype = torch_dtype
         self.device_map = device_map
+        self.use_4bit = use_4bit
+        self.use_8bit = use_8bit
         self.model = None
         self.processor = None
         self._is_loaded = False
@@ -111,17 +118,21 @@ class WhiteboardVLM:
         if self._is_loaded:
             return
         
+        precision_str = "8-bit quantized" if self.use_8bit else ("4-bit quantized" if self.use_4bit else "FP16")
+        
         # Use ModelRegistry for shared model access (faster batch processing)
         if use_registry and REGISTRY_AVAILABLE:
             console.print(f"\n[bold cyan]🖼️  Loading Vision Language Model (via Registry)[/bold cyan]")
             console.print(f"[dim]Model: {self.model_name}[/dim]")
-            console.print(f"[dim]Precision: FP16 | Device Map: {self.device_map}[/dim]\n")
+            console.print(f"[dim]Precision: {precision_str} | Device Map: {self.device_map}[/dim]\n")
             
             registry = ModelRegistry.get_instance()
             self.model, self.processor = registry.get_vlm(
                 model_name=self.model_name,
                 torch_dtype=self.torch_dtype,
-                device_map=self.device_map
+                device_map=self.device_map,
+                use_4bit=self.use_4bit,
+                use_8bit=self.use_8bit
             )
             self._is_loaded = True
             self._using_registry = True
@@ -131,7 +142,7 @@ class WhiteboardVLM:
         self._using_registry = False
         console.print(f"\n[bold cyan]🖼️  Loading Vision Language Model[/bold cyan]")
         console.print(f"[dim]Model: {self.model_name}[/dim]")
-        console.print(f"[dim]Precision: FP16 | Device Map: {self.device_map}[/dim]\n")
+        console.print(f"[dim]Precision: {precision_str} | Device Map: {self.device_map}[/dim]\n")
         
         with Progress(
             SpinnerColumn(),
@@ -142,12 +153,28 @@ class WhiteboardVLM:
             
             from transformers import Qwen2_5_VLForConditionalGeneration, AutoProcessor
             
-            # Load model with FP16
-            self.model = Qwen2_5_VLForConditionalGeneration.from_pretrained(
-                self.model_name,
-                torch_dtype=self.torch_dtype,
-                device_map=self.device_map,
-            )
+            if self.use_4bit:
+                # 4-bit quantized loading for low VRAM GPUs
+                from transformers import BitsAndBytesConfig
+                quantization_config = BitsAndBytesConfig(
+                    load_in_4bit=True,
+                    bnb_4bit_compute_dtype=torch.float16,
+                    bnb_4bit_quant_type="nf4",
+                    bnb_4bit_use_double_quant=True,
+                )
+                self.model = Qwen2_5_VLForConditionalGeneration.from_pretrained(
+                    self.model_name,
+                    quantization_config=quantization_config,
+                    device_map=self.device_map,
+                    low_cpu_mem_usage=True
+                )
+            else:
+                # Load model with FP16
+                self.model = Qwen2_5_VLForConditionalGeneration.from_pretrained(
+                    self.model_name,
+                    torch_dtype=self.torch_dtype,
+                    device_map=self.device_map,
+                )
             
             # Load processor
             self.processor = AutoProcessor.from_pretrained(self.model_name)
@@ -409,11 +436,13 @@ if __name__ == "__main__":
                         help="Output JSON path")
     parser.add_argument("--interval", "-i", type=int, default=30,
                         help="Time interval between frames in seconds")
+    parser.add_argument("--low-vram", action="store_true",
+                        help="Use 4-bit quantization for GPUs with <16GB VRAM")
     
     args = parser.parse_args()
     
     # Run extraction
-    vlm = WhiteboardVLM()
+    vlm = WhiteboardVLM(use_4bit=args.low_vram)
     context = vlm.extract_board_content(args.frames_dir, args.interval)
     
     # Save output
