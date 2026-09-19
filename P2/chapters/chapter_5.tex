@@ -419,6 +419,8 @@ Content extracted from multiple frames is aggregated to produce a unified visual
 %
 % Place as Figure 5.5.
 
+Figure~\ref{fig:visual_aggregation} illustrates the complete visual keyword aggregation process, from per-frame extraction to unified keyword set construction.
+
 Our aggregation algorithm proceeds as follows. First, we collect all keywords extracted from all frames. Second, we apply fuzzy deduplication using string similarity: keywords with similarity above 90\% are considered identical, with the most common spelling retained. Third, we compute a confidence score for each unique keyword based on the number of frames in which it appeared---a keyword visible in more frames is more likely to be important and correctly extracted. Fourth, we record the timestamp of first appearance for each keyword, enabling temporal alignment during fusion. Finally, we apply noise filtering to remove low-confidence extractions: single-character strings, common stop words, and keywords appearing in only one frame with low OCR confidence are discarded.
 
 Table~\ref{tab:aggregation_example} illustrates this process with a concrete example from our dataset.

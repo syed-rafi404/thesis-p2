@@ -118,7 +118,7 @@ Style: Modern tech diagram, rounded corners, subtle shadows, clean lines. Use ic
 ### Figure 5.3: Whisper ASR Processing Pipeline
 
 **LaTeX Label:** `fig:whisper_flow`  
-**Placement:** Chapter 5, Section 5.3.2 (line ~292), after "Figure~\ref{fig:whisper_flow} illustrates the internal processing flow..."  
+**Placement:** Chapter 5, Section 5.3.2 (line ~273), after "Figure~\ref{fig:whisper_flow} illustrates the internal processing flow..."  
 **File Name:** `fig_5_3_whisper_flow.pdf`
 
 **ASCII Layout:**
@@ -188,7 +188,7 @@ Style: Vertical flow with rounded rectangles, consistent spacing, thick downward
 ### Figure 5.4: Keyframe Sampling Strategy
 
 **LaTeX Label:** `fig:frame_sampling`  
-**Placement:** Chapter 5, Section 5.3.3 (line ~379), after "Figure~\ref{fig:frame_sampling} illustrates the sampling strategy..."  
+**Placement:** Chapter 5, Section 5.3.3 (line ~335), after "Figure~\ref{fig:frame_sampling} illustrates the sampling strategy..."  
 **File Name:** `fig_5_4_frame_sampling.pdf`
 
 **ASCII Layout:**
@@ -239,7 +239,7 @@ Style: Clean infographic style, use placeholder rectangles for thumbnails with i
 ### Figure 5.5: Visual Keyword Aggregation Process
 
 **LaTeX Label:** `fig:visual_aggregation`  
-**Placement:** Chapter 5, Section 5.3.3 (after line ~464), add reference in text  
+**Placement:** Chapter 5, Section 5.3.3 (line ~421), after "Figure~\ref{fig:visual_aggregation} illustrates the complete visual keyword aggregation..."  
 **File Name:** `fig_5_5_visual_aggregation.pdf`
 
 **ASCII Layout:**
@@ -306,7 +306,7 @@ Style: Vertical flow, use code-style monospace font for keywords, highlight high
 ### Figure 5.6: Cross-Modal Verification Fusion
 
 **LaTeX Label:** `fig:fusion_flow`  
-**Placement:** Chapter 5, Section 5.3.4 (line ~507), after "Figure~\ref{fig:fusion_flow} illustrates the complete fusion workflow."  
+**Placement:** Chapter 5, Section 5.3.4 (line ~463), after "Figure~\ref{fig:fusion_flow} illustrates the complete fusion workflow."  
 **File Name:** `fig_5_6_fusion_flow.pdf`
 
 **ASCII Layout:**
@@ -374,7 +374,7 @@ Style: Clean flowchart with rounded rectangles for processes, diamonds for decis
 ### Figure 5.8: Preprocessing Pipeline
 
 **LaTeX Label:** `fig:preprocessing_pipeline`  
-**Placement:** Chapter 5, Section 5.5.1 (line ~876), after "Figure~\ref{fig:preprocessing_pipeline} illustrates the complete preprocessing workflow."  
+**Placement:** Chapter 5, Section 5.5.1 (line ~832), after "Figure~\ref{fig:preprocessing_pipeline} illustrates the complete preprocessing workflow."  
 **File Name:** `fig_5_8_preprocessing.pdf`
 
 **ASCII Layout:**
@@ -441,7 +441,7 @@ Style: Clean dual-track diagram, arrows flowing downward, consistent spacing bet
 ### Figure 5.9: GPU Memory Timeline
 
 **LaTeX Label:** `fig:memory_timeline`  
-**Placement:** Chapter 5, Section 5.6.2 (line ~1132), after "Figure~\ref{fig:memory_timeline} illustrates GPU memory usage..."  
+**Placement:** Chapter 5, Section 5.6.2 (line ~1050), after "Figure~\ref{fig:memory_timeline} illustrates GPU memory usage..."  
 **File Name:** `fig_5_9_memory_timeline.pdf`
 
 **ASCII Layout:**
@@ -504,7 +504,7 @@ Style: Clean bar chart with gridlines, professional look, clear legend showing m
 ### Figure 5.10: Complete Processing Workflow
 
 **LaTeX Label:** `fig:processing_workflow`  
-**Placement:** Chapter 5, Section 5.6.3 (line ~1165), after "Figure~\ref{fig:processing_workflow} provides a detailed flowchart."  
+**Placement:** Chapter 5, Section 5.6.3 (line ~1083), after "Figure~\ref{fig:processing_workflow} provides a detailed flowchart."  
 **File Name:** `fig_5_10_workflow.pdf`
 
 **🤖 Figma AI Prompt:**
@@ -568,14 +568,14 @@ Style: Professional system architecture diagram, consistent color coding per mod
 |---|--------|-------|-----------|------|--------|
 | 5.1 | Research Methodology | `fig:methodology` | `fig_5_1_methodology.pdf` | ~64 | ⬜ TODO |
 | 5.2 | System Architecture | `fig:architecture` | `fig_5_2_architecture.pdf` | ~99 | ⬜ TODO |
-| 5.3 | Whisper ASR Pipeline | `fig:whisper_flow` | `fig_5_3_whisper_flow.pdf` | ~292 | ⬜ TODO |
-| 5.4 | Keyframe Sampling | `fig:frame_sampling` | `fig_5_4_frame_sampling.pdf` | ~379 | ⬜ TODO |
-| 5.5 | Visual Aggregation | `fig:visual_aggregation` | `fig_5_5_visual_aggregation.pdf` | ~464 | ⬜ TODO |
-| 5.6 | Cross-Modal Fusion | `fig:fusion_flow` | `fig_5_6_fusion_flow.pdf` | ~507 | ⬜ TODO |
-| **5.7** | **Dataset Distribution** | `fig:dataset_distribution` | `fig_5_7_dataset_distribution.pdf` | ~802 | ✅ DONE |
-| 5.8 | Preprocessing Pipeline | `fig:preprocessing_pipeline` | `fig_5_8_preprocessing.pdf` | ~876 | ⬜ TODO |
-| 5.9 | Memory Timeline | `fig:memory_timeline` | `fig_5_9_memory_timeline.pdf` | ~1132 | ⬜ TODO |
-| 5.10 | Processing Workflow | `fig:processing_workflow` | `fig_5_10_workflow.pdf` | ~1165 | ⬜ TODO |
+| 5.3 | Whisper ASR Pipeline | `fig:whisper_flow` | `fig_5_3_whisper_flow.pdf` | ~273 | ⬜ TODO |
+| 5.4 | Keyframe Sampling | `fig:frame_sampling` | `fig_5_4_frame_sampling.pdf` | ~335 | ⬜ TODO |
+| 5.5 | Visual Aggregation | `fig:visual_aggregation` | `fig_5_5_visual_aggregation.pdf` | ~421 | ⬜ TODO |
+| 5.6 | Cross-Modal Fusion | `fig:fusion_flow` | `fig_5_6_fusion_flow.pdf` | ~463 | ⬜ TODO |
+| **5.7** | **Dataset Distribution** | `fig:dataset_distribution` | `fig_5_7_dataset_distribution.pdf` | ~753 | ✅ DONE |
+| 5.8 | Preprocessing Pipeline | `fig:preprocessing_pipeline` | `fig_5_8_preprocessing.pdf` | ~832 | ⬜ TODO |
+| 5.9 | Memory Timeline | `fig:memory_timeline` | `fig_5_9_memory_timeline.pdf` | ~1050 | ⬜ TODO |
+| 5.10 | Processing Workflow | `fig:processing_workflow` | `fig_5_10_workflow.pdf` | ~1083 | ⬜ TODO |
 
 ### Chapter 6 Figures (ALL COMPLETED ✅)
 | # | Figure | Label | File Name | Status |
