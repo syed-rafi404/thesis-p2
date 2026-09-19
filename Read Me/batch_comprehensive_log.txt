@@ -1,0 +1,173 @@
++--------------------------------------+
+| COMPREHENSIVE BATCH PROCESSOR        |
+| P2 Thesis Evaluation Data Generation |
+|                                      |
+| � All 16 videos                      |
+| � 6 frame intervals (5-30s)          |
+| � Gaze variants for live classroom   |
++--------------------------------------+
+
+Videos Found:
+  Screen Recorded: 7
+    - L1 _ Java OOP _ Understanding Class _ Object_ A Comprehensive Bangla 
+Tutorial.mp4
+    - L2 _ Java OOP _ Creating a Design Class in a Separate File.mp4
+    - L3 - Java OOP - Intro to Class and Objects.mp4
+    - L4 - Java OOP - Working with Instance Variables- Access and 
+Modification.mp4
+    - L5 _ Java OOP _ Objects and Their Memory Locations Explained.mp4
+    - L6 _ Java OOP _ Java Instance Methods_ Simplified for Easy 
+Understanding.mp4
+    - L7 - Java OOP - Java Instance Methods- Using Methods to Update Instance 
+Variables.mp4
+  Live Classroom: 9
+    - BanglaASR1.MOV
+    - BanglaASR2.mov
+    - BanglaASR3.mp4
+    - BanglaASR4.MOV
+    - BanglaASR5-003.MOV
+    - BanglaASR6.MOV
+    - BanglaASR7-004.mp4
+    - BanglaASR8.mp4
+    - BanglaASR9-007.mp4
+
+Frame Intervals: [5, 10, 15, 20, 25, 30]
+
+Total Runs Planned: 150
+  - Screen Recorded: 42
+  - Live (no gaze): 54
+  - Live (with gaze): 54
+
+Estimated Time: 37h 30m (estimated)
+
+Starting in 5 seconds... Press Ctrl+C to cancel
+
+======================================================================
+RUN 1/150 (1%)
+======================================================================
+  → screen_recorded_int05_L1___Java_OOP___Understanding_Class___Object__A_Co
+    Video: L1 _ Java OOP _ Understanding Class _ Ob...
+    Interval: 5s, Gaze: OFF
+    Output: 
+output\comprehensive\screen_recorded\interval_05s\L1___Java_OOP___Understanding
+_Class___Object__A_Co
+
+╔══════════════════════════════════════════════════════════════════════╗
+║     MULTIMODAL BANGLISH CLASSROOM SUMMARIZER                         ║
+║     Master's Thesis - Full Pipeline Demo                             ║
+╠══════════════════════════════════════════════════════════════════════╣
+║  Novelty 1: Structured VLM Whiteboard Extraction                     ║
+║  Novelty 2: Smart Dual-ASR Fusion (Whisper + BanglaASR)              ║
+║  Novelty 3: Quality-Evaluated Multimodal Summarization               ║
+╚══════════════════════════════════════════════════════════════════════╝
+        Mode: BATCH MODE (FP16)
+        
+┌────────────────────────────────────────────────┐
+│ STEP 1: Video Ingestion                        │
+│ Extracting audio and frames from lecture video │
+└────────────────────────────────────────────────┘
+
+📹 Processing Video: L1 _ Java OOP _ Understanding Class _ Object_ A 
+Comprehensive Bangla Tutorial.mp4
+Duration: 0:15:45
+
+🎵 Extracting Audio...
+
+  ✓ Audio extracted: full_audio.wav (28.9 MB)
+
+🖼️  Extracting Frames (every 5s)...
+  Extracting frames... ---------------------------------------- 100%
+  ✓ Extracted 190 frames
+
+✅ Ingestion complete!
+Audio: 
+output\comprehensive\screen_recorded\interval_05s\L1___Java_OOP___Understanding
+_Class___Object__A_Co\ingested\full_audio.wav
+Frames: 190 extracted to 
+output\comprehensive\screen_recorded\interval_05s\L1___Java_OOP___Understanding
+_Class___Object__A_Co\ingested\frames
+Metadata: 
+output\comprehensive\screen_recorded\interval_05s\L1___Java_OOP___Understanding
+_Class___Object__A_Co\ingested\ingest_metadata.json
+✓ Extracted: 190 frames, audio file
+  Duration: 945.4s
+
+┌──────────────────────────────────────────────┐
+│ STEP 2: Vision Track (Whiteboard + Gaze)     │
+│ VLM extracts text WITH TEMPORAL ALIGNMENT    │
+│ NOVELTY: Keywords mapped to frame timestamps │
+└──────────────────────────────────────────────┘
+Processing 190 frames with Qwen2.5-VL...
+  → NOVELTY 1: Structured content extraction (code, definitions, keywords)
+
+🖼️  Loading Vision Language Model (via Registry)
+Model: Qwen/Qwen2.5-VL-7B-Instruct
+Precision: FP16 | Device Map: auto
+
+📦 Loading VLM (caching for reuse)...
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|##        | 1/5 [00:02<00:08,  2.08s/it]Loading checkpoint shards:  40%|####      | 2/5 [00:03<00:05,  1.78s/it]Loading checkpoint shards:  60%|######    | 3/5 [00:05<00:03,  1.69s/it]Loading checkpoint shards:  80%|########  | 4/5 [00:06<00:01,  1.65s/it]Loading checkpoint shards: 100%|##########| 5/5 [00:07<00:00,  1.27s/it]Loading checkpoint shards: 100%|##########| 5/5 [00:07<00:00,  1.48s/it]
+The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. Note that this behavior will be extended to all models in a future release.
+✓ VLM cached (15.45 GB VRAM)
+  Frame: frame_000000_000000s.jpg @ 0s → 8 keywords
+  Frame: frame_000001_000005s.jpg @ 5s → 8 keywords
+  Frame: frame_000002_000010s.jpg @ 10s → 4 keywords
+  Frame: frame_000003_000015s.jpg @ 15s → 4 keywords
+  Frame: frame_000004_000020s.jpg @ 20s → 4 keywords
+  Frame: frame_000005_000025s.jpg @ 25s → 4 keywords
+  Frame: frame_000006_000030s.jpg @ 30s → 4 keywords
+  Frame: frame_000007_000035s.jpg @ 35s → 4 keywords
+  Frame: frame_000008_000040s.jpg @ 40s → 4 keywords
+  Frame: frame_000009_000045s.jpg @ 45s → 4 keywords
+  Frame: frame_000010_000050s.jpg @ 50s → 4 keywords
+  Frame: frame_000011_000055s.jpg @ 55s → 4 keywords
+  Frame: frame_000012_000060s.jpg @ 60s → 4 keywords
+  Frame: frame_000013_000065s.jpg @ 65s → 4 keywords
+  Frame: frame_000014_000070s.jpg @ 70s → 11 keywords
+  Frame: frame_000015_000075s.jpg @ 75s → 8 keywords
+  Frame: frame_000016_000080s.jpg @ 80s → 8 keywords
+  Frame: frame_000017_000085s.jpg @ 85s → 8 keywords
+  Frame: frame_000018_000090s.jpg @ 90s → 5 keywords
+  Frame: frame_000019_000095s.jpg @ 95s → 5 keywords
+  Frame: frame_000020_000100s.jpg @ 100s → 5 keywords
+  Frame: frame_000021_000105s.jpg @ 105s → 5 keywords
+  Frame: frame_000022_000110s.jpg @ 110s → 5 keywords
+  Frame: frame_000023_000115s.jpg @ 115s → 5 keywords
+  Frame: frame_000024_000120s.jpg @ 120s → 5 keywords
+  Frame: frame_000025_000125s.jpg @ 125s → 5 keywords
+  Frame: frame_000026_000130s.jpg @ 130s → 5 keywords
+  Frame: frame_000027_000135s.jpg @ 135s → 5 keywords
+  Frame: frame_000028_000140s.jpg @ 140s → 5 keywords
+  Frame: frame_000029_000145s.jpg @ 145s → 5 keywords
+  Frame: frame_000030_000150s.jpg @ 150s → 5 keywords
+  Frame: frame_000031_000155s.jpg @ 155s → 5 keywords
+  Frame: frame_000032_000160s.jpg @ 160s → 5 keywords
+  Frame: frame_000033_000165s.jpg @ 165s → 5 keywords
+  Frame: frame_000034_000170s.jpg @ 170s → 5 keywords
+  Frame: frame_000035_000175s.jpg @ 175s → 5 keywords
+  Frame: frame_000036_000180s.jpg @ 180s → 5 keywords
+  Frame: frame_000037_000185s.jpg @ 185s → 5 keywords
+  Frame: frame_000038_000190s.jpg @ 190s → 5 keywords
+  Frame: frame_000039_000195s.jpg @ 195s → 5 keywords
+  Frame: frame_000040_000200s.jpg @ 200s → 5 keywords
+  Frame: frame_000041_000205s.jpg @ 205s → 5 keywords
+  Frame: frame_000042_000210s.jpg @ 210s → 5 keywords
+  Frame: frame_000043_000215s.jpg @ 215s → 5 keywords
+  Frame: frame_000044_000220s.jpg @ 220s → 5 keywords
+  Frame: frame_000045_000225s.jpg @ 225s → 5 keywords
+  Frame: frame_000046_000230s.jpg @ 230s → 5 keywords
+  Frame: frame_000047_000235s.jpg @ 235s → 5 keywords
+  Frame: frame_000048_000240s.jpg @ 240s → 5 keywords
+  Frame: frame_000049_000245s.jpg @ 245s → 5 keywords
+  Frame: frame_000050_000250s.jpg @ 250s → 5 keywords
+  Frame: frame_000051_000255s.jpg @ 255s → 5 keywords
+  Frame: frame_000052_000260s.jpg @ 260s → 5 keywords
+  Frame: frame_000053_000265s.jpg @ 265s → 5 keywords
+  Frame: frame_000054_000270s.jpg @ 270s → 5 keywords
+  Frame: frame_000055_000275s.jpg @ 275s → 3 keywords
+  Frame: frame_000056_000280s.jpg @ 280s → 2 keywords
+  Frame: frame_000057_000285s.jpg @ 285s → 3 keywords
+  Frame: frame_000058_000290s.jpg @ 290s → 3 keywords
+  Frame: frame_000059_000295s.jpg @ 295s → 3 keywords
+  Frame: frame_000060_000300s.jpg @ 300s → 3 keywords
+  Frame: frame_000061_000305s.jpg @ 305s → 3 keywords
