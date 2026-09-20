@@ -212,17 +212,116 @@ Frames selected from the lecture video, aligned to note sections by monotonic
 dynamic programming, with the lecturer removed and the occluded board rebuilt
 from temporally nearby clean frames.
 
-| Quantity | Value |
-|---|---|
-| Lectures illustrated | 3 |
-| Figures placed | 15 (5.0 per lecture) |
-| Board occluded by the lecturer | mean 24.8%, max 32% |
-| Board content recovered | mean 99.8%, min 98% |
-| Figures fully recovered (100%) | 13 of 15 |
+| Quantity | Value | Trustworthy? |
+|---|---|---|
+| Lectures illustrated | 3 | yes |
+| Figures placed | 15 (5.0 per lecture) | yes |
+| Board occluded by the lecturer | mean 24.8%, max 32% | yes |
+| Masked pixels that received a fill value | mean 99.8% | **yes, but see below** |
 
-So: **the lecturer hides about a quarter of the board, and we recover
-essentially all of it.** That is a concrete, checkable claim, and the before and
-after images are the strongest single slide in the deck.
+**CORRECTION (2026-09-21). Do not write "we recover 99.8% of the board."**
+That 99.8% is the fraction of masked pixels that were *assigned some value*. It
+says nothing about whether the value is correct. It is a coverage number being
+mistaken for a fidelity number, and the two are not the same thing.
+
+Visual inspection of `BanglaASR1/figures/fig_03_520.jpg` against its source
+frame `frame_000032_000320s.jpg` shows two real failures:
+
+1. **The lecturer is still visible** as a grey silhouette of his head,
+   shoulder and arm, plus blocky rectangular patches. The mask under-covers him,
+   most likely because his plaid shirt contains light squares that sit above the
+   `PERSON_DARK = 118` brightness cut and are therefore never masked.
+2. **Board text is lost.** At 5:20 he is writing `"App...` on the right. That
+   text does not survive into the figure. Its `figures.json` entry records
+   `rebuilt from 1 nearby frames` — a single donor frame, so wherever that donor
+   also had him standing, the fill is simply wrong.
+
+There is also a subtler problem: the figure shows *more* text than the source
+frame did (the full `i) String / ii) Integer / iii) Float / iv) Bool` list),
+because donors were drawn from later in the lecture. The figure is therefore not
+a faithful picture of the board at 5:20.
+
+**The inpainting approach above has been replaced.** See 4.1. Nothing in the
+new pipeline is synthesised, so the fidelity question does not arise.
+
+The occlusion percentage and the figure count are still fine to quote.
+
+---
+
+### 4.1 Tiled board reconstruction — measured over all 9 lectures
+
+`scripts/board_mosaic.py`. The frame is cut into a grid of overlapping tiles.
+For each tile independently, the pipeline finds a moment when the lecturer was
+not standing in front of *that tile* and takes the tile from there. The tiles
+are reassembled with raised-cosine blending.
+
+**Every pixel of every output board is unmodified camera output.** Nothing is
+inpainted, averaged or generated, which is why there is no fidelity number to
+argue about: the only question is whether a tile found a clear moment, and that
+is counted exactly.
+
+The lecturer is never absent from the frame. Measured on BanglaASR1 over 79
+frames: the board is 23.5% covered in the median frame, 7.0% in the best one,
+and no frame is under 5%. Tiles work because he occupies one place at a time.
+
+**Eras.** The board is erased and rewritten mid-lecture. On BanglaASR1 the
+board reads `Data Type: i) String ...` at 6:20 and `pi = ...`, `age = 10` at
+13:00. Taking each tile's latest clear view across the whole lecture would
+assemble pre-erase and post-erase writing into a single board **that never
+existed** — plausible and false. Erase events are therefore detected and each
+era is mosaicked separately.
+
+**Results, 9 lectures, 694 frames, 35 boards, 94 seconds total:**
+
+| Lecture | Eras | Tiles fully clear (min / median / max) |
+|---|---|---|
+| BanglaASR1 | 6 | 87.5% / 92.6% / 94.5% |
+| BanglaASR2 | 5 | 93.9% / 97.9% / 98.6% |
+| BanglaASR3 | 1 | **100% / 100% / 100%** |
+| BanglaASR4 | 4 | 97.9% / 98.0% / 98.2% |
+| BanglaASR5 | 3 | 96.2% / 96.7% / 97.8% |
+| BanglaASR6 | 6 | 96.6% / 97.3% / 97.7% |
+| BanglaASR7 | 5 | 95.1% / 100% / 100% |
+| BanglaASR8 | 3 | 88.6% / 91.3% / 100% |
+| BanglaASR9 | 2 | 98.5% / 98.7% / 99.0% |
+
+**Across all 35 boards: median 97.7% of tiles fully clear, mean 96.5%,
+range 87.5% to 100%.** Six boards reach 100%, 26 of 35 reach 95% or better,
+and only 2 fall below 90%.
+
+**Quote the range, not the best case.** Two things drive the weak boards:
+
+1. **Short eras.** Six eras are under 8 frames, and they cluster at the bottom
+   of the range (90.9%, 91.3%, 93.9%). Fewer frames means fewer chances for a
+   tile to be seen clear.
+2. **A lecturer who stands still.** BanglaASR1 is the worst lecture at every
+   era because he holds one position far longer than the others do. Its video
+   is also heavily compressed, so the whiteboard shows macroblocking in the
+   source file, which no amount of processing can remove.
+
+Where a tile never finds a clear moment the residue is left visible and
+reported as `worst_tile_covered` rather than filled in. A visible gap is honest;
+a plausible invention is not.
+
+Reproduce: `python scripts/board_mosaic.py --frames <dir> --out-dir <dir>`
+Artefacts: `output/annotation_demo/all9/*/mosaic.json`
+
+### 4.2 Region detection and annotation — status
+
+`scripts/board_regions.py` finds the content blocks on a reconstructed board by
+grouping ink, splitting oversized blocks and rejoining boxes that form one
+written line. On the BanglaASR7 NAND board it returns 6 regions matching the
+title, the gate name, its definition, the block diagram, the truth table and the
+standard symbol. `scripts/annotate_board.py` draws the boxes and an explanation
+panel onto the real pixels.
+
+**The labels are not yet produced by a model.** The VLM path has never run,
+because no Qwen weights exist on this machine. Every annotated figure shown so
+far carries labels written by hand in the exact JSON shape the model must
+return. Do not describe the annotation as working until it has run on the 5090.
+
+Claimable today: board reconstruction and region detection, with the numbers
+above. Not claimable today: annotation quality.
 
 Reproduce: `python scripts/illustrate_notes.py <run_dir>`
 Artefacts: `final_lecture_notes_illustrated.md`, `figures/figures.json`
