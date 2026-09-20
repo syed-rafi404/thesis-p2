@@ -39,9 +39,14 @@ split is what makes the headline result credible. This is the only urgent thing.
 - ffmpeg on PATH
 - Qwen2.5-VL weights, about 16 GB
 
-**2. Smoke test.** `python scripts/run_p3_experiment.py --skip curve`
+**2. Preflight.** `python scripts/check_environment.py`
 
-**3. When the 8 hour data lands:**
+It checks every package, the GPU, disk, ffmpeg, paths and the data, and prints the
+exact command to fix anything missing. Get it to zero failures before going on.
+
+**3. Smoke test.** `python scripts/run_p3_experiment.py --skip curve`
+
+**4. When the 8 hour data lands:**
 
 ```
 python scripts/run_p3_experiment.py --test-speakers B,SPK04,SPK05 \
@@ -50,7 +55,7 @@ python scripts/run_p3_experiment.py --test-speakers B,SPK04,SPK05 \
 
 Keep speaker B in the test set. It keeps the board ground truth valid.
 
-**4. The VLM experiment** (only if 1-3 are done and there is time):
+**5. The VLM experiment** (only if 1-4 are done and there is time):
 regenerate notes with the fine-tuned model and the reconstructed boards, then
 
 ```
