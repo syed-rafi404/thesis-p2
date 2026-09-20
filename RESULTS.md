@@ -274,7 +274,13 @@ strings drawn onto a figure.
 | "Visual-Only" mode = 42.3% | the pipeline has no visual-only mode |
 | Bias sweep: Light 69.8, Medium 67.1, Heavy 58.4 | see section 3.1 — the real sweep is 8.8% then flat 4.1% |
 | Light bias improves over no bias | it halves term recall; optimal bias is 0.0 |
-| NVIDIA RTX 3090, 24 GB | verify which machine ran P2 before claiming |
+
+The hardware claim in the abstract is **correct and stays**: P2 ran on an
+NVIDIA RTX 3090, 24 GB (confirmed by the author, 2026-09-20), on the machine
+with paths under `C:/Users/T2520785`. The RTX 3060, 12 GB referenced elsewhere
+in the repo is the current development machine and is what the P3 fine-tuning
+numbers were produced on. Keep the two straight when writing the setup section:
+P2 pipeline results come from the 3090, P3 fine-tuning results from the 3060.
 
 If a panellist asks how p = 0.003 was obtained, there is no answer, because no
 test was run. That single slide puts every other number in the thesis in doubt,

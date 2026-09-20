@@ -57,7 +57,7 @@ For the full narrative read [README.md](README.md) and [THESIS_CONTEXT_SUMMARY.m
 - GPU: **NVIDIA RTX 3060, 12 GB VRAM** (verified via `nvidia-smi`, 2026-09-20). Earlier notes here claimed an RTX 5090 with 32 GB; that is wrong for this machine. Plan VRAM against 12 GB.
 - Free disk is tight: about 21 GB on each of C: and F: (2026-09-20). A 16 GB VLM download does not fit comfortably.
 - Fine-tuning env: `F:\thesisP2\envs\thesis_ft\Scripts\python.exe` — torch 2.5.1+cu121, transformers 5.12.1, peft, datasets, accelerate, soundfile, jiwer. No bitsandbytes, and none is needed for LoRA.
-- No Qwen weights are on this machine; the P2 pipeline runs came from a different PC (paths under `C:\Users\T2520785`).
+- No Qwen weights are on this machine; the P2 pipeline runs came from a different PC (paths under `C:\Users\T2520785`), which has an **RTX 3090, 24 GB** (confirmed by the user 2026-09-20). So the abstract's hardware claim is correct. Two machines, do not conflate: **P2 pipeline results = 3090, P3 fine-tuning results = this 3060**.
 - Python: the `thesis_v2` conda env referenced by older notes **does not exist on this machine** (only `corner` and `pyenv` under `C:\Users\Rafi\miniconda3\envs`, and `conda` is not on PATH). Working interpreter for everything P3 is `F:/thesisP2/envs/thesis_ft/Scripts/python.exe`. **matplotlib is installed in none of them**, so `scripts/generate_thesis_figures.py` cannot render here.
 - Total model footprint ~33 GB; `src/model_registry.py` loads/unloads sequentially. The uncommitted-then-committed 12 GB adaptation (4-bit/8-bit VLM, 14B 4-bit LLM) matches this 3060, but needs bitsandbytes, which is not installed.
 - Repo root: `f:\thesisP2\thesisP2`
