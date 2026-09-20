@@ -33,15 +33,23 @@ from transformers import (
 )
 from peft import LoraConfig, get_peft_model
 
-OUT_DIR = r"F:\thesisP2\ft_work"
+# Set THESIS_FT_DIR (and optionally THESIS_REPO) to move this to another
+# machine, such as the 5090 box, without editing code.
+_REPO = os.environ.get("THESIS_REPO") or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+OUT_DIR = os.environ.get("THESIS_FT_DIR") or os.path.join(os.path.dirname(_REPO), "ft_work")
 CLIPS = os.path.join(OUT_DIR, "clips")
-MODEL = "openai/whisper-small"
+MODEL = os.path.join(OUT_DIR, "models", "whisper-small")   # local copy; avoids the hub at train time
 ADAPTER_OUT = os.path.join(OUT_DIR, "lora_whisper_small")
 LANG, TASK = "en", "transcribe"   # output is Latin/romanized; keep prefix consistent
 
+# Defaults kept separately so --data-dir / --adapter-out can override the
+# module-level values that load_manifest() and ClipDataset read.
+DEFAULT_OUT_DIR, DEFAULT_MODEL, DEFAULT_ADAPTER_OUT = OUT_DIR, MODEL, ADAPTER_OUT
+
 
 def load_manifest(name):
-    rows = [json.loads(l) for l in open(os.path.join(OUT_DIR, name), encoding="utf-8")]
+    path = name if os.path.isabs(name) else os.path.join(OUT_DIR, name)
+    rows = [json.loads(l) for l in open(path, encoding="utf-8")]
     for r in rows:
         r["abs"] = os.path.join(CLIPS, r["audio"].replace("/", os.sep))
     return rows
@@ -93,13 +101,44 @@ class Collator:
 
 
 def main():
+    global OUT_DIR, CLIPS, MODEL, ADAPTER_OUT
+
     ap = argparse.ArgumentParser()
     ap.add_argument("--smoke", action="store_true")
     ap.add_argument("--epochs", type=float, default=5.0)
     ap.add_argument("--batch", type=int, default=8)
+    ap.add_argument("--data-dir", default=DEFAULT_OUT_DIR,
+                    help="Folder holding train.jsonl, test.jsonl and clips/")
+    ap.add_argument("--adapter-out", default=DEFAULT_ADAPTER_OUT,
+                    help="Where to save the trained LoRA adapter")
+    ap.add_argument("--model", default=DEFAULT_MODEL, help="Base model path or hub id")
+    ap.add_argument("--seed", type=int, default=42)
+    ap.add_argument("--train-file", default="train.jsonl",
+                    help="Training manifest, relative to --data-dir or absolute. "
+                         "Lets a data-scaling curve reuse one set of extracted clips.")
+    ap.add_argument("--test-file", default="test.jsonl",
+                    help="Validation manifest, relative to --data-dir or absolute")
+    ap.add_argument("--lora-r", type=int, default=16, help="LoRA rank")
+    ap.add_argument("--lora-alpha", type=int, default=32)
+    ap.add_argument("--lr", type=float, default=1e-3)
+    ap.add_argument("--target-modules", default="q_proj,v_proj",
+                    help="Comma-separated attention projections to adapt. "
+                         "With more data and a bigger GPU try q_proj,k_proj,v_proj,o_proj")
+    ap.add_argument("--grad-checkpointing", action="store_true",
+                    help="Trade compute for memory; needed for large-v3 on smaller cards")
+    ap.add_argument("--grad-accum", type=int, default=1)
     args = ap.parse_args()
 
-    print(f"device: {torch.cuda.get_device_name(0)} | transformers smoke={args.smoke}")
+    OUT_DIR = args.data_dir
+    CLIPS = os.path.join(OUT_DIR, "clips")
+    MODEL = args.model
+    ADAPTER_OUT = args.adapter_out
+    torch.manual_seed(args.seed)
+
+    use_bf16 = torch.cuda.is_available() and torch.cuda.is_bf16_supported()
+    print(f"device: {torch.cuda.get_device_name(0)} | "
+          f"precision: {'bf16' if use_bf16 else 'fp16'} | smoke={args.smoke}")
+    print(f"model : {MODEL}")
     processor = WhisperProcessor.from_pretrained(MODEL)
     processor.tokenizer.set_prefix_tokens(language=LANG, task=TASK)
 
@@ -109,25 +148,41 @@ def main():
     model.generation_config.forced_decoder_ids = None
     model.config.use_cache = False
 
+    if args.grad_checkpointing:
+        model.gradient_checkpointing_enable()
+        model.enable_input_require_grads()
+
     model = get_peft_model(model, LoraConfig(
-        r=16, lora_alpha=32, target_modules=["q_proj", "v_proj"],
+        r=args.lora_r, lora_alpha=args.lora_alpha,
+        target_modules=[m.strip() for m in args.target_modules.split(",") if m.strip()],
         lora_dropout=0.05, bias="none",
     ))
     model.print_trainable_parameters()
 
-    train_ds = ClipDataset(load_manifest("train.jsonl"), processor)
-    eval_ds = ClipDataset(load_manifest("test.jsonl"), processor)
+    train_rows = load_manifest(args.train_file)
+    eval_rows = load_manifest(args.test_file)
+    train_minutes = sum(r.get("dur", 0.0) for r in train_rows) / 60
+    print(f"train: {len(train_rows)} clips ({train_minutes:.1f} min) from {args.train_file}")
+    print(f"eval : {len(eval_rows)} clips from {args.test_file}")
+
+    train_ds = ClipDataset(train_rows, processor)
+    eval_ds = ClipDataset(eval_rows, processor)
     collator = Collator(processor, model.config.decoder_start_token_id)
 
     targs = Seq2SeqTrainingArguments(
         output_dir=ADAPTER_OUT,
         per_device_train_batch_size=args.batch,
         per_device_eval_batch_size=args.batch,
-        gradient_accumulation_steps=1,
-        learning_rate=1e-3,
+        gradient_accumulation_steps=args.grad_accum,
+        learning_rate=args.lr,
         warmup_ratio=0.1,
         num_train_epochs=args.epochs,
-        fp16=True,
+        # bf16 where the card supports it (Ampere and newer, so both the 3060
+        # and the 5090). It avoids the loss-scaling failures fp16 hits on
+        # Whisper, and costs nothing when available.
+        bf16=use_bf16,
+        fp16=not use_bf16,
+        gradient_checkpointing=args.grad_checkpointing,
         eval_strategy="no" if args.smoke else "epoch",
         save_strategy="no",
         logging_steps=10,
