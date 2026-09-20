@@ -391,6 +391,74 @@ Artefacts: `final_lecture_notes_illustrated.md`, `figures/figures.json`
 
 Reproduce: `python scripts/evaluate_ground_truth.py`
 
+### 5.1 Board-content recall — the baseline, and why this metric
+
+The generated notes had never been evaluated against anything. `scripts/score_board_recall.py`
+scores them on the one thing the summarising model cannot fake: the specific
+facts written on the whiteboard.
+
+**Why not any existing metric.** Qwen knows digital logic, Python and database
+theory without watching the lecture. The baseline notes for BanglaASR7 print a
+correct NAND truth table beside a definition that is plainly wrong, which is
+what reciting from memory looks like. Anything scored on general content
+measures the model's priors. Term F1 additionally has the problems in 2.1.
+
+What a model cannot invent is that Adiba Noshin has a CGPA of 3.28 and studies
+Economics. Recall is the measure, not F1: good notes legitimately contain much
+that was never on the board, so precision would punish the desired behaviour.
+
+**Evaluation set.** The 10 boards of BanglaASR7, 8 and 9 — the held-out speaker,
+so there is no leakage from ASR fine-tuning. **Keep speaker B in the test set
+when the new data lands and this stays valid.** Ground truth drafted from the
+reconstructed boards in `data/board_truth/*.json`; every item still needs human
+verification before publication.
+
+**Baseline, current pipeline, 167 items over 10 boards:**
+
+| Lecture | Found | Items | Recall |
+|---|---|---|---|
+| BanglaASR7 (logic gates) | 12 | 21 | 57.1% |
+| BanglaASR8 (DBMS) | 25 | 77 | 32.5% |
+| BanglaASR9 (SQL) | 30 | 69 | 43.5% |
+| **Total** | **67** | **167** | **40.1%** |
+
+**By item kind, and this is the diagnostic part:**
+
+| Kind | Found | Total | Recall |
+|---|---|---|---|
+| term | 37 | 47 | **78.7%** |
+| code | 14 | 28 | 50.0% |
+| name | 12 | 40 | 30.0% |
+| number | 4 | 47 | **8.5%** |
+| phrase | 0 | 5 | **0.0%** |
+
+**Recall falls monotonically with how guessable an item is.** Generic terms the
+model already knows survive at 78.7%; the numbers that exist only on the board
+survive at 8.5%; the lecturer's own phrasings, such as `same input = 0` and
+`different input = 1`, survive at zero. BanglaASR7 scores highest overall
+precisely because gate truth tables are textbook content.
+
+That ordering is a validity check on the metric: it behaves the way a measure
+of "did board content reach the notes" should behave.
+
+**What the baseline loses.** On BanglaASR9 era 2 the notes contain none of the
+query `Select ID, CGPA from Student_Info`, none of its answer `110112 / 3.98`,
+and none of the student IDs or CGPAs.
+
+**This is the before. The after needs the 5090.** Regenerate notes with the
+fine-tuned Whisper and the reconstructed boards, then:
+
+```
+python scripts/score_board_recall.py --compare <baseline_run_dir> <full_run_dir>
+```
+
+which prints the paired comparison over the 10 boards with an exact sign test
+and a Wilcoxon. With 10 paired boards, 9 improvements would give p = 0.021 and
+10 would give p = 0.002, so the sample is large enough if the effect is real.
+
+Reproduce the baseline: `python scripts/score_board_recall.py --gt data/board_truth`
+Artefacts: `output/board_recall_baseline.json`
+
 ---
 
 ## 6. Blanks still to fill
