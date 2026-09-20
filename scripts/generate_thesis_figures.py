@@ -7,6 +7,7 @@ Generates publication-quality figures for Chapters 5 and 6
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import numpy as np
+import json
 import os
 
 # Set publication-quality defaults
@@ -27,7 +28,11 @@ plt.rcParams.update({
 })
 
 # Create output directory
-OUTPUT_DIR = r"c:\Users\T2520785\thesisP2\P2\figures"
+# Was hard-coded to c:/Users/T2520785/..., a path on the machine that ran P2.
+# Resolves inside this repo now, so the figures land next to the thesis source
+# wherever it is checked out.
+_REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+OUTPUT_DIR = os.environ.get("THESIS_FIGURES") or os.path.join(_REPO, "P2", "figures")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 # ============================================================================
@@ -68,21 +73,32 @@ DOMAIN_RESULTS = {
 }
 
 # Ablation results
+# Only the two endpoints below were ever measured. Both come from
+# output/fusion_statistics.json, computed by scripts/compute_fusion_stats.py
+# over the same 9 videos with the same scoring functions as the headline.
+# Two former rows were removed because no run in this repository produces them:
+#   'Whisper + Cleaning' (f1 71.5) - no such ablation stage exists
+#   'Visual-Only'        (f1 42.3) - the pipeline has no visual-only mode
+# The old 'Whisper-Only' row read 68.2/76.4/61.8; the measured baseline is below.
 ABLATION = {
-    'Whisper-Only': {'f1': 68.2, 'precision': 76.4, 'recall': 61.8},
-    'Whisper + Cleaning': {'f1': 71.5, 'precision': 82.1, 'recall': 63.2},
-    'Visual-Only': {'f1': 42.3, 'precision': 89.2, 'recall': 28.4},
+    'Whisper-Only': {'f1': 73.2, 'precision': 83.8, 'recall': 65.7},
     'Full Pipeline': {'f1': 73.9, 'precision': 83.6, 'recall': 66.5},
 }
 
 # Visual bias experiment
-VISUAL_BIAS = {
-    'No Bias': {'f1': 68.2, 'precision': 76.4, 'recall': 61.8},
-    'Light (α=0.1)': {'f1': 69.8, 'precision': 74.2, 'recall': 66.1},
-    'Medium (α=0.3)': {'f1': 67.1, 'precision': 68.5, 'recall': 65.8},
-    'Heavy (α=0.5)': {'f1': 58.4, 'precision': 55.2, 'recall': 62.1},
-    'Verification': {'f1': 73.9, 'precision': 83.6, 'recall': 66.5},
-}
+# Figure 6.6 now plots the real sweep in output/bias_parameter_sweep.json,
+# run 2026-01-27 on one Java OOP lecture with a 27-term list.
+#
+# The five rows that used to live here (No Bias 68.2, Light 69.8, Medium 67.1,
+# Heavy 58.4, Verification 73.9) were never measured. They also had the wrong
+# shape: they showed light bias helping, and the sweep shows every non-zero
+# bias hurting by the same amount.
+#
+# Note the scale difference when writing about this figure: the sweep reports
+# term recall against a 27-term list on a single video, not Term F1 against the
+# 82-word lexicon on the 9-video benchmark. It is a pilot experiment and should
+# be described as one.
+BIAS_SWEEP_PATH = os.path.join(_REPO, "output", "bias_parameter_sweep.json")
 
 # Failure modes
 FAILURE_MODES = {
@@ -416,56 +432,84 @@ def create_failure_mode_pie():
 # FIGURE 6.6: Visual Bias Intensity vs Performance
 # ============================================================================
 def create_visual_bias_line():
-    """Create Figure 6.6: Visual bias intensity effect on performance"""
-    fig, ax = plt.subplots(figsize=(10, 6))
-    
-    configs = list(VISUAL_BIAS.keys())
-    x = np.arange(len(configs))
-    
-    f1_vals = [VISUAL_BIAS[c]['f1'] for c in configs]
-    prec_vals = [VISUAL_BIAS[c]['precision'] for c in configs]
-    rec_vals = [VISUAL_BIAS[c]['recall'] for c in configs]
-    
-    # Plot lines with markers
-    ax.plot(x, f1_vals, 'o-', color=METRIC_COLORS['f1'], linewidth=2.5, 
-            markersize=10, label='Term F1', markeredgecolor='black')
-    ax.plot(x, prec_vals, 's-', color=METRIC_COLORS['precision'], linewidth=2.5, 
-            markersize=10, label='Precision', markeredgecolor='black')
-    ax.plot(x, rec_vals, '^-', color=METRIC_COLORS['recall'], linewidth=2.5, 
-            markersize=10, label='Recall', markeredgecolor='black')
-    
-    # Highlight the verification-based approach
-    ax.axvline(x=4, color='green', linestyle='--', linewidth=2, alpha=0.7)
-    ax.annotate('Our Approach\n(Verification)', xy=(4, 75), xytext=(4.2, 80),
-               fontsize=10, fontweight='bold', color='green',
-               arrowprops=dict(arrowstyle='->', color='green'))
-    
-    # Shade the "harmful" region
-    ax.axvspan(1.5, 3.5, alpha=0.1, color='red', label='Bias harms performance')
-    
-    # Add value labels
-    for i, (f1, prec, rec) in enumerate(zip(f1_vals, prec_vals, rec_vals)):
-        ax.text(i, f1 + 2, f'{f1:.1f}', ha='center', fontsize=9, color=METRIC_COLORS['f1'])
-    
-    ax.set_xlabel('Visual Bias Configuration', fontweight='bold')
-    ax.set_ylabel('Score (%)', fontweight='bold')
-    ax.set_title('Effect of Visual Bias Intensity on Performance', fontweight='bold', pad=15)
-    ax.set_xticks(x)
-    ax.set_xticklabels(configs, fontsize=10)
-    ax.set_ylim(45, 95)
-    ax.legend(loc='lower left')
+    """Create Figure 6.6: measured effect of visual bias strength.
+
+    Plots output/bias_parameter_sweep.json exactly as recorded. The sweep found
+    that any non-zero bias collapses the transcript to the same shorter output,
+    halving term recall, and that the harm does not grow with the bias strength.
+    """
+    if not os.path.exists(BIAS_SWEEP_PATH):
+        print("- Figure 6.6 skipped: output/bias_parameter_sweep.json not found")
+        return
+
+    with open(BIAS_SWEEP_PATH, encoding="utf-8") as fh:
+        sweep = json.load(fh)
+
+    points = sorted(((float(k), v) for k, v in sweep["results"].items()),
+                    key=lambda kv: kv[0])
+    alphas = [a for a, _ in points]
+    recall = [v["term_recall"] * 100 for _, v in points]
+    lengths = [v["transcript_length"] for _, v in points]
+
+    fig, (ax, ax2) = plt.subplots(1, 2, figsize=(12, 5))
+
+    ax.plot(alphas, recall, 'o-', color=METRIC_COLORS['recall'], linewidth=2.5,
+            markersize=9, markeredgecolor='black', label='Technical term recall')
+    ax.axvspan(min(a for a in alphas if a > 0) - 0.05, max(alphas) + 0.05,
+               alpha=0.10, color='red')
+    ax.annotate(f'unbiased: {recall[0]:.1f}%', xy=(alphas[0], recall[0]),
+                xytext=(0.35, recall[0] + 0.6), fontsize=10, fontweight='bold',
+                color='green', arrowprops=dict(arrowstyle='->', color='green'))
+    ax.annotate('every non-zero bias\ngives the same degraded output',
+                xy=(alphas[-1], recall[-1]), xytext=(0.55, recall[0] - 2.2),
+                fontsize=9, color='#c0392b',
+                arrowprops=dict(arrowstyle='->', color='#c0392b'))
+    ax.set_xlabel('Visual bias strength (logit boost)', fontweight='bold')
+    ax.set_ylabel('Technical term recall (%)', fontweight='bold')
+    ax.set_title('(a) Bias strength vs term recall', fontweight='bold')
+    ax.set_ylim(0, max(recall) * 1.35)
+    ax.legend(loc='upper right')
     ax.grid(True, alpha=0.3)
-    
+
+    ax2.plot(alphas, lengths, 's-', color=METRIC_COLORS['f1'], linewidth=2.5,
+             markersize=9, markeredgecolor='black', label='Transcript length')
+    ax2.set_xlabel('Visual bias strength (logit boost)', fontweight='bold')
+    ax2.set_ylabel('Transcript length (characters)', fontweight='bold')
+    ax2.set_title('(b) Bias truncates the transcript', fontweight='bold')
+    ax2.set_ylim(0, max(lengths) * 1.25)
+    ax2.legend(loc='upper right')
+    ax2.grid(True, alpha=0.3)
+
+    fig.suptitle(f"Visual biasing degrades transcription "
+                 f"(optimal bias = {sweep['optimal_bias']}, single lecture, "
+                 f"{len(sweep['technical_terms'])}-term list)",
+                 fontweight='bold')
     plt.tight_layout()
     plt.savefig(os.path.join(OUTPUT_DIR, 'fig_6_6_visual_bias.png'))
     plt.savefig(os.path.join(OUTPUT_DIR, 'fig_6_6_visual_bias.pdf'))
-    print("✓ Figure 6.6: Visual Bias Effect saved")
+    print("+ Figure 6.6: Visual Bias Effect saved (from measured sweep)")
     plt.close()
 
 
 # ============================================================================
 # BONUS: Combined Summary Figure
 # ============================================================================
+def load_fusion_stats():
+    """Measured baseline-vs-fusion statistics, or None if not computed yet.
+
+    Panels (c) and (d) below used to draw hard-coded numbers that no code in
+    this repository ever produced. They now read what
+    scripts/compute_fusion_stats.py measured from the saved transcripts. If the
+    file is absent, both panels say so instead of inventing a result.
+    """
+    path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                        "output", "fusion_statistics.json")
+    if not os.path.exists(path):
+        return None
+    with open(path, encoding="utf-8") as fh:
+        return json.load(fh)
+
+
 def create_summary_figure():
     """Create a summary figure combining key results"""
     fig = plt.figure(figsize=(14, 10))
@@ -500,31 +544,53 @@ def create_summary_figure():
     ax2.legend()
     ax2.grid(axis='y', alpha=0.3)
     
-    # Panel C: Improvement over baseline
+    # Panel C: Baseline vs fusion, as measured
+    stats = load_fusion_stats()
     ax3 = fig.add_subplot(gs[1, 0])
-    configs = ['Baseline\n(Whisper)', '+ Cleaning', '+ Fusion\n(Full)']
-    f1_vals = [68.2, 71.5, 73.9]
-    improvements = [0, 3.3, 5.7]
-    bars = ax3.bar(configs, f1_vals, color=['#95a5a6', '#3498db', '#27ae60'], edgecolor='black')
-    ax3.set_ylabel('Term F1 (%)', fontweight='bold')
-    ax3.set_title('(c) Cumulative Improvement', fontweight='bold')
-    ax3.set_ylim(0, 85)
-    for bar, val, imp in zip(bars, f1_vals, improvements):
-        ax3.text(bar.get_x() + bar.get_width()/2, val + 1, f'{val}%', ha='center', fontweight='bold')
-        if imp > 0:
-            ax3.text(bar.get_x() + bar.get_width()/2, val - 5, f'+{imp}%', ha='center', color='white', fontweight='bold')
-    ax3.grid(axis='y', alpha=0.3)
-    
-    # Panel D: Statistical significance
+    if stats is None:
+        ax3.text(0.5, 0.5, 'Run scripts/compute_fusion_stats.py',
+                 ha='center', va='center', fontsize=11, transform=ax3.transAxes)
+        ax3.axis('off')
+    else:
+        avg = stats['summary']['averages']
+        configs = ['Baseline\n(Whisper)', 'Fused\n(Full system)']
+        f1_vals = [avg['baseline']['term_f1'] * 100, avg['fused']['term_f1'] * 100]
+        delta = stats['summary']['term_f1_delta_mean_pp']
+        bars = ax3.bar(configs, f1_vals, color=['#95a5a6', '#27ae60'], edgecolor='black')
+        ax3.set_ylabel('Term F1 (%)', fontweight='bold')
+        ax3.set_title(f"(c) Effect of Fusion (n={stats['summary']['videos']})", fontweight='bold')
+        ax3.set_ylim(0, 85)
+        for bar, val in zip(bars, f1_vals):
+            ax3.text(bar.get_x() + bar.get_width()/2, val + 1, f'{val:.1f}%',
+                     ha='center', fontweight='bold')
+        ax3.text(0.5, 0.06, f'difference {delta:+.1f} pp', ha='center',
+                 fontsize=11, style='italic', transform=ax3.transAxes)
+        ax3.grid(axis='y', alpha=0.3)
+
+    # Panel D: Statistical significance, as measured
     ax4 = fig.add_subplot(gs[1, 1])
-    ax4.text(0.5, 0.7, 'Statistical Significance', ha='center', va='center', 
-            fontsize=16, fontweight='bold', transform=ax4.transAxes)
-    ax4.text(0.5, 0.5, 'p = 0.003 **', ha='center', va='center', 
-            fontsize=24, fontweight='bold', color='green', transform=ax4.transAxes)
-    ax4.text(0.5, 0.3, "Cohen's d = 0.96 (Large Effect)", ha='center', va='center', 
-            fontsize=14, transform=ax4.transAxes)
-    ax4.text(0.5, 0.15, 'Improvement: +5.7% Term F1', ha='center', va='center', 
-            fontsize=12, style='italic', transform=ax4.transAxes)
+    ax4.text(0.5, 0.82, 'Statistical Significance', ha='center', va='center',
+             fontsize=16, fontweight='bold', transform=ax4.transAxes)
+    if stats is None:
+        ax4.text(0.5, 0.45, 'not computed', ha='center', va='center',
+                 fontsize=14, transform=ax4.transAxes)
+    else:
+        summary = stats['summary']
+        perm_p = summary['permutation_test']['p_value']
+        wilcoxon_p = summary['wilcoxon']['p_value']
+        significant = perm_p < 0.05
+        ax4.text(0.5, 0.60, f'p = {perm_p:.2f}', ha='center', va='center',
+                 fontsize=24, fontweight='bold',
+                 color='green' if significant else '#c0392b', transform=ax4.transAxes)
+        ax4.text(0.5, 0.45, 'exact paired permutation test', ha='center', va='center',
+                 fontsize=10, transform=ax4.transAxes)
+        ax4.text(0.5, 0.32, f"Wilcoxon p = {wilcoxon_p:.2f}   "
+                            f"Cohen's d = {summary['cohens_d_paired']:.2f}",
+                 ha='center', va='center', fontsize=11, transform=ax4.transAxes)
+        ax4.text(0.5, 0.14,
+                 'Difference is not significant' if not significant else 'Difference is significant',
+                 ha='center', va='center', fontsize=12, style='italic',
+                 color='#c0392b' if not significant else 'green', transform=ax4.transAxes)
     ax4.set_xlim(0, 1)
     ax4.set_ylim(0, 1)
     ax4.axis('off')
@@ -567,6 +633,14 @@ def main():
     print("All figures generated successfully!")
     print(f"Files saved to: {OUTPUT_DIR}")
     print("=" * 60)
+
+    print("\nNOTE - Figure 6.6 plots output/bias_parameter_sweep.json: one")
+    print("lecture, 27-term list. Describe it as a pilot, not as a result on")
+    print("the 9-video benchmark.")
+    if load_fusion_stats() is None:
+        print("\nNOTE - output/fusion_statistics.json is missing, so the summary")
+        print("figure cannot show measured significance. Run:")
+        print("    python scripts/compute_fusion_stats.py")
     print("\nGenerated files:")
     for f in os.listdir(OUTPUT_DIR):
         if f.endswith(('.png', '.pdf')):
