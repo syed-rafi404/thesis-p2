@@ -323,6 +323,58 @@ return. Do not describe the annotation as working until it has run on the 5090.
 Claimable today: board reconstruction and region detection, with the numbers
 above. Not claimable today: annotation quality.
 
+### 4.3 Occlusion as a pointer — tried, and NOT supported
+
+`scripts/pointer_align.py`. The idea: where the lecturer stands is where the
+lecture currently is, so the occlusion mask we already compute is a free
+substitute for the gaze tracking that failed. It would give a region-level
+alignment between speech and board content.
+
+**The test, which needs no manual labels.** If standing in front of a region
+means working on it, that region should hold more ink after the lecturer leaves
+than before. Every occlusion episode is therefore measured as ink gained in the
+occluded region, against the median ink gained over the identical interval by
+the regions the lecturer was *not* standing in front of.
+
+**Result over all 9 lectures, 191 episodes:**
+
+| | |
+|---|---|
+| Occluded region gained more ink | 101 |
+| An unoccluded region gained more | 81 |
+| Median paired difference | 9 px |
+| Wilcoxon signed-rank | **p = 0.054** |
+| Exact sign test | **p = 0.159** |
+
+**This does not support the claim.** A 101 to 81 split is a weak majority, the
+sign test is nowhere near significant, and the Wilcoxon sits just the wrong side
+of 0.05. Per lecture the result swings wildly, from 20/26 on BanglaASR6 to
+**2/21 on BanglaASR8**, which is strongly against.
+
+**Why the test probably measures the wrong thing.** Ink gain detects *writing*,
+and a lecturer standing in front of a region is often *explaining* it, adding no
+ink at all. BanglaASR8 fits exactly that: it is the DBMS lecture, where a large
+table is drawn once and then discussed at length. Those episodes are precisely
+the ones where the pointer signal would still be useful for aligning speech, and
+they count as failures here. The test is a conservative proxy for attention, not
+a measure of it.
+
+**What is true anyway.** The strongest alignments are qualitatively convincing.
+At 10:50-12:10 the lecturer stands at region 2, gains 1,993 ink pixels against a
+control of 6, and says *"Ekhon ami jodi X-OR er logical circuit dekhi. Eta
+dekhte kirokom hoy? A ekta input B arekta input."* The speech is unmistakably
+about the region being written.
+
+**How to write this up.** As an attempted extension that did not validate, with
+the reason. Do not claim speech-to-region alignment works. Testing it properly
+needs the region's *content*, so that spoken terms can be matched against what
+is actually written there, and that needs the VLM to read each region, which has
+not run. Until then this is a third honest negative result, alongside visual
+bias and fusion.
+
+Reproduce: `python scripts/pointer_align.py --all`
+Artefacts: `output/pointer_alignment.json`
+
 Reproduce: `python scripts/illustrate_notes.py <run_dir>`
 Artefacts: `final_lecture_notes_illustrated.md`, `figures/figures.json`
 
