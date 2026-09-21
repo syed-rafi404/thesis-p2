@@ -44,8 +44,9 @@
         {"text": "Lists, Tuple and Arrays", "kind": "term", "alt": ["Lists, Tuples and Arrays"]},
         {"text": "import numpy as np", "kind": "code"},
         {"text": "list_1 = [7, 8, 9, 10]", "kind": "code", "alt": ["list_1=[7,8,9,10]", "list_1 = [7,8,9,10]"]},
-        {"text": "np.array([list_1])", "kind": "code", "alt": ["np.array(list_1)"], "verify": true,
-         "note": "the board reads list_1 = np.array([list_1]). The 2026-09-22 check marked this item wrong with list_1 = [7, 8, 9, 10], which is already the item above; kept pending the checker's confirmation"},
+        {"text": "list_1 = np.array([list_1])", "kind": "code",
+         "alt": ["np.array([list_1])", "np.array(list_1)", "list_1=np.array([list_1])"],
+         "note": "confirmed on the board in the 2026-09-22 check"},
         {"text": "list_2 = [\"Apple\", 07, True]", "kind": "code",
          "alt": ["list_2 = ['Apple', 07, True]", "list_2 = [\"Apple\", 7, True]"],
          "note": "the middle value reads as 07; confirmed in the 2026-09-22 check"}
