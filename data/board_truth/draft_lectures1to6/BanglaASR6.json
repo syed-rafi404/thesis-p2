@@ -7,16 +7,21 @@
     {
       "era": 1,
       "image": "output/annotation_demo/all9/BanglaASR6/board_era1_010.jpg",
+      "checked": "2026-09-22",
+      "note": "The 2026-09-22 check also asked for (Low) and Digital. The board reads 0 volt (Ground), so (Low) waits for the checker's confirmation; Digital alone is not scored because it is always found inside Digital Logic Design, and its line is covered by Discrete value.",
       "items": [
         {"text": "Digital Logic Design", "kind": "term"},
+        {"text": "Analog", "kind": "term", "alt": ["analogue"], "note": "added in the 2026-09-22 check"},
         {"text": "continuous value", "kind": "phrase", "alt": ["continuous values"]},
         {"text": "Discrete value", "kind": "phrase", "alt": ["Discrete values"]},
         {"text": "TTL", "kind": "term"},
         {"text": "5 volt", "kind": "number", "alt": ["5 volts", "5V", "5 V"]},
+        {"text": "(High)", "kind": "phrase", "alt": ["High)", "5 volt high", "5 volts high"], "note": "added in the 2026-09-22 check"},
         {"text": "0 volt", "kind": "number", "alt": ["0 volts", "0V", "0 V"]},
         {"text": "Logic 1", "kind": "term"},
         {"text": "Logic 0", "kind": "term"},
-        {"text": "1011", "kind": "number", "verify": true, "note": "small writing at the bottom right"}
+        {"text": "Key -> A", "kind": "phrase", "alt": ["Key->A", "Key → A", "Key →A", "Key: A"], "note": "added in the 2026-09-22 check"},
+        {"text": "1011", "kind": "number", "note": "small writing at the bottom right; confirmed in the 2026-09-22 check"}
       ]
     },
     {

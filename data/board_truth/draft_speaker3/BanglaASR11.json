@@ -7,12 +7,15 @@
     {
       "era": 1,
       "image": "output/annotation_demo/all9/BanglaASR11/board_era1_040.jpg",
+      "checked": "2026-09-22",
+      "note": "The 2026-09-22 check also asked for 0 and IF. A lone 0 is not scored because it matches any 0 anywhere; IF is scored as the line it sits on, IF -> Reset.",
       "items": [
         {"text": "TTL", "kind": "term"},
         {"text": "time to Live", "kind": "term"},
-        {"text": "24", "kind": "number", "verify": true, "note": "the digit could be 24 or 29"},
+        {"text": "24", "kind": "number", "note": "confirmed as 24 in the 2026-09-22 check"},
         {"text": "Endless looping", "kind": "phrase", "alt": ["Endless loop"]},
         {"text": "Reset", "kind": "term"},
+        {"text": "IF -> Reset", "kind": "phrase", "alt": ["IF → Reset", "IF->Reset", "IF: Reset", "IF - Reset"], "note": "added in the 2026-09-22 check"},
         {"text": "DF", "kind": "term"},
         {"text": "Don't Fragment", "kind": "term", "alt": ["Dont Fragment"]},
         {"text": "MF", "kind": "term"},

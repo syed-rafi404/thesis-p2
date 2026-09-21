@@ -6,6 +6,7 @@
     {
       "era": 1,
       "image": "output/annotation_demo/all9/BanglaASR9_007/board_era1_010.jpg",
+      "checked": "2026-09-22",
       "items": [
         {"text": "Database Management System", "kind": "term"},
         {"text": "DBMS", "kind": "term"},
@@ -16,7 +17,7 @@
         {"text": "Enrollment_Date", "kind": "code", "alt": ["Enrollment Date"]},
         {"text": "max()", "kind": "code", "alt": ["max ()", "MAX()"]},
         {"text": "min()", "kind": "code", "alt": ["min ()", "MIN()"]},
-        {"text": "sum()", "kind": "code", "alt": ["sum ()", "SUM()"], "verify": true},
+        {"text": "sum()", "kind": "code", "alt": ["sum ()", "SUM()"], "note": "confirmed in the 2026-09-22 check"},
         {"text": "241412", "kind": "number"},
         {"text": "151216", "kind": "number"},
         {"text": "202011", "kind": "number"},
@@ -33,6 +34,7 @@
         {"text": "Israt", "kind": "name"},
         {"text": "Jahan", "kind": "name"},
         {"text": "3.55", "kind": "number"},
+        {"text": "3.77", "kind": "number", "note": "added in the 2026-09-22 check"},
         {"text": "3.28", "kind": "number"},
         {"text": "3.98", "kind": "number"},
         {"text": "3.40", "kind": "number", "alt": ["3.4"]},

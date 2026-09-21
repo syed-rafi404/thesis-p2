@@ -97,7 +97,9 @@ button.ghost{background:transparent;color:var(--accent)}
 """
 
 SCRIPT = r"""
-const KEY = "boardcheck:v1";
+// v2: boards checked in an earlier round come from the JSON ("checked"), and
+// item ticks from v1 are dropped because corrections can shift item positions.
+const KEY = "boardcheck:v2";
 let state = {};
 try { state = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { state = {}; }
 function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
@@ -110,6 +112,7 @@ function refresh() {
 document.querySelectorAll(".board").forEach(b => {
   const s = state[b.dataset.id] = state[b.dataset.id] || {items: {}};
   s.items = s.items || {};
+  if (b.dataset.checked && s.done === undefined) s.done = true;
   const done = b.querySelector(".done-box"), miss = b.querySelector(".missing");
   done.checked = !!s.done; miss.value = s.missing || "";
   done.addEventListener("change", () => { s.done = done.checked; save(); refresh(); });
@@ -218,10 +221,13 @@ def main():
                 rel = os.path.relpath(REPO / img, out_path.parent).replace(os.sep, "/") if img else ""
                 note = board.get("note", "")
                 label = f"{lecture} era {board.get('era')}"
+                checked = board.get("checked", "")
+                done_note = (f'<small> &middot; checked {html.escape(str(checked))}, corrections '
+                             f'already applied</small>') if checked else ""
                 boards_html.append(f"""
-<section class="board" data-id="{html.escape(folder + '|' + label, quote=True)}" data-label="{html.escape(label, quote=True)}">
+<section class="board" data-id="{html.escape(folder + '|' + label, quote=True)}" data-label="{html.escape(label, quote=True)}" data-checked="{html.escape(str(checked), quote=True)}">
   <h2>{html.escape(lecture)} &middot; era {board.get('era')}
-      <small>&mdash; {len(items)} items{', ' + str(flagged) + ' flagged' if flagged else ''}</small></h2>
+      <small>&mdash; {len(items)} items{', ' + str(flagged) + ' flagged' if flagged else ''}</small>{done_note}</h2>
   <div class="row">
     <div class="imgwrap">{'<img loading="lazy" src="' + html.escape(rel) + '" alt="board">'
                           if rel else '<p class="counts">no image</p>'}</div>

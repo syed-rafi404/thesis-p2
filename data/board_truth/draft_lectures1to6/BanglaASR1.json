@@ -26,10 +26,11 @@
     {
       "era": 3,
       "image": "output/annotation_demo/all9/BanglaASR1/board_era3_340.jpg",
+      "checked": "2026-09-22",
       "items": [
         {"text": "Data Type", "kind": "term"},
         {"text": "String", "kind": "term"},
-        {"text": "Integer", "kind": "term", "alt": ["Integar"], "verify": true},
+        {"text": "Integar", "kind": "term", "alt": ["Integer"], "note": "the board spells it Integar (2026-09-22 check); notes that write Integer still count"},
         {"text": "Float", "kind": "term"},
         {"text": "Bool", "kind": "term"},
         {"text": "Fruit = 'Apple'", "kind": "code", "alt": ["Fruit='Apple'", "Fruit = \"Apple\"", "Fruit=\"Apple\""]},
@@ -52,12 +53,13 @@
     {
       "era": 5,
       "image": "output/annotation_demo/all9/BanglaASR1/board_era5_1000.jpg",
+      "checked": "2026-09-22",
       "items": [
         {"text": "Data Type", "kind": "term"},
         {"text": "1name = \"Rafi\"", "kind": "code", "alt": ["1name=\"Rafi\"", "1name = 'Rafi'", "1name='Rafi'"]},
         {"text": "name1 = \"Rafi\"", "kind": "code", "alt": ["name1=\"Rafi\"", "name1 = 'Rafi'", "name1='Rafi'"]},
         {"text": "my_name = \"Rafi\"", "kind": "code", "alt": ["my_name=\"Rafi\"", "my_name = 'Rafi'", "my_name='Rafi'"]},
-        {"text": "myName", "kind": "code", "verify": true, "note": "only 'myNam' is visible; cut off by the era boundary"},
+        {"text": "myName", "kind": "code", "note": "only 'myNam' is visible; cut off by the era boundary. Kept in the 2026-09-22 check"},
         {"text": "Rafi", "kind": "name"}
       ]
     },

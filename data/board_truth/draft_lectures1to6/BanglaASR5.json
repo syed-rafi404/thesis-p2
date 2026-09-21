@@ -7,13 +7,14 @@
     {
       "era": 1,
       "image": "output/annotation_demo/all9/BanglaASR5_003/board_era1_000.jpg",
+      "checked": "2026-09-22",
       "items": [
         {"text": "Lists, Tuple and Arrays", "kind": "term", "alt": ["Lists, Tuples and Arrays"]},
         {"text": "fruit = [\"Apple\", \"Orange\", \"Mango\"]", "kind": "code",
          "alt": ["fruit = ['Apple', 'Orange', 'Mango']", "fruit=[\"Apple\",\"Orange\",\"Mango\"]"]},
         {"text": "elements = [\"Apple\", 7, 3.14, True]", "kind": "code",
-         "alt": ["elements = ['Apple', 7, 3.14, True]", "elements=[\"Apple\",7,3.14,True]"], "verify": true,
-         "note": "3.14 is written close to 3:14"},
+         "alt": ["elements = ['Apple', 7, 3.14, True]", "elements=[\"Apple\",7,3.14,True]"],
+         "note": "3.14 is written close to 3:14; confirmed in the 2026-09-22 check"},
         {"text": "print(elements[0])", "kind": "code"},
         {"text": "print(len(elements))", "kind": "code"},
         {"text": "elements[0] = \"Mango\"", "kind": "code", "alt": ["elements[0] = 'Mango'", "elements[0]=\"Mango\""]},
@@ -38,15 +39,16 @@
     {
       "era": 3,
       "image": "output/annotation_demo/all9/BanglaASR5_003/board_era3_1100.jpg",
+      "checked": "2026-09-22",
       "items": [
         {"text": "Lists, Tuple and Arrays", "kind": "term", "alt": ["Lists, Tuples and Arrays"]},
         {"text": "import numpy as np", "kind": "code"},
         {"text": "list_1 = [7, 8, 9, 10]", "kind": "code", "alt": ["list_1=[7,8,9,10]", "list_1 = [7,8,9,10]"]},
         {"text": "np.array([list_1])", "kind": "code", "alt": ["np.array(list_1)"], "verify": true,
-         "note": "the board appears to wrap list_1 in extra square brackets"},
+         "note": "the board reads list_1 = np.array([list_1]). The 2026-09-22 check marked this item wrong with list_1 = [7, 8, 9, 10], which is already the item above; kept pending the checker's confirmation"},
         {"text": "list_2 = [\"Apple\", 07, True]", "kind": "code",
-         "alt": ["list_2 = ['Apple', 07, True]", "list_2 = [\"Apple\", 7, True]"], "verify": true,
-         "note": "the middle value reads as 07"}
+         "alt": ["list_2 = ['Apple', 07, True]", "list_2 = [\"Apple\", 7, True]"],
+         "note": "the middle value reads as 07; confirmed in the 2026-09-22 check"}
       ]
     }
   ]

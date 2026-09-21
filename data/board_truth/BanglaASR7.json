@@ -51,13 +51,18 @@
     {
       "era": 5,
       "image": "output/annotation_demo/all9/BanglaASR7_004/board_era5_1050.jpg",
+      "checked": "2026-09-22",
       "items": [
         {"text": "Digital Logic Design", "kind": "term"},
         {"text": "X-NOR gate", "kind": "term", "alt": ["XNOR gate", "X-NOR"]},
         {"text": "X-OR+NOT", "kind": "phrase",
          "alt": ["X-OR + NOT", "XOR + NOT", "XOR plus NOT"]},
-        {"text": "AB + AB", "kind": "code",
-         "alt": ["A'B' + AB", "ABbar + AB", "AB̅ + AB"], "verify": true},
+        {"text": "A'B' + AB", "kind": "code",
+         "alt": ["A'B'+AB", "NOT(A)NOT(B) + AB", "NOT(A) NOT(B) + AB", "NOT(A).NOT(B) + AB", "NOT(A)·NOT(B) + AB"],
+         "note": "corrected in the 2026-09-22 check; was drafted as AB + AB"},
+        {"text": "(A⊕B)'", "kind": "code",
+         "alt": ["(A XOR B)'", "NOT(A⊕B)", "NOT(A XOR B)", "(A ⊕ B)'", "NOT(A ⊕ B)"],
+         "note": "added in the 2026-09-22 check: the output label of the X-NOR gate"},
         {"text": "X-NOR", "kind": "term", "alt": ["XNOR"]}
       ]
     }
