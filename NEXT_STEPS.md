@@ -17,6 +17,14 @@ If you are lost, start here. One page. Updated 2026-09-21.
   noise. **Drop the old "the curve is still falling" argument**; it came from the leaked split.
 - Old run kept untouched in `D:\T2520875\thesisP2\ft_work_v1_video6_in_train\`.
 
+## Your job: check the board answer keys (no JSON editing)
+
+Double-click `F:\thesisP2\thesisP2\output\annotation_demo\verify_all_boards.html` (after
+`git pull`). For each board: tick **wrong** and type the fix, add anything missing, tick
+**I checked this board**. Start with **Show only boards with red items**. When done, press
+**Copy my corrections** and paste the text to Claude. Ticks are saved in that browser only,
+so finish on the same PC you started on. 45 boards; teammates can split them.
+
 ## On the 3060 (or any other PC): two commands
 
 ```
