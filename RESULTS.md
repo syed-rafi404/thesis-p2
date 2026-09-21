@@ -257,6 +257,36 @@ Folders: `ft_work_BCtoA` (test A), `ft_work_AC` (test B), `ft_work_ABtoC` (test 
 Adapters that trained on B must never produce transcripts for notes scored on
 B's boards.
 
+### 1.6 Is the high WER only a spelling problem? No (2026-09-21)
+
+Banglish has no standard spelling, so a panel will ask whether the ~75% WER is
+inflated by "aami" against "ami". Two spelling-fair variants of WER were
+computed on the same saved outputs, with rules committed before any rescoring
+(`b98c422`, `scripts/banglish_wer.py`):
+
+- **nWER**: both sides mapped to the transcription guide's section 4.1 spellings
+  (the `CANONICAL` table `validate_ground_truth.py` already enforces), and runs
+  of the same vowel collapsed.
+- **fWER**: as nWER, and a word also counts as correct at >= 0.8 character
+  similarity to the reference word (so words of 3 letters or fewer must match).
+
+Headline runs of 1.5 (plain greedy decoding), mean of the six per-run medians:
+
+| Metric | Base | Fine-tuned |
+|---|---|---|
+| Plain WER | 95.3% | 75.7% |
+| Spelling-fair nWER | 95.0% | 74.8% |
+| Fuzzy fWER | 92.7% | 68.2% |
+
+The fine-tune is better in all six runs on all three measures (Wilcoxon p between
+2.2e-16 and 2.7e-06). **The guide's spelling table moves WER by about 1 point and
+near-miss spellings by about 7 more, so most of the word error is genuine
+recognition error, not spelling.** Report plain WER and CER as the headline; use
+this section to answer the spelling question. Per-run numbers: rerun the command.
+
+Reproduce: `python scripts/banglish_wer.py --mean "hold out A s42=<parent>/ft_work_BCtoA/eval_turbo_seed42_greedy.json" ...`
+(the six greedy files listed in 1.5).
+
 ### 1.3 Superseded: the leaked split (do not quote)
 
 Kept so the correction is documented. The old run is untouched in
