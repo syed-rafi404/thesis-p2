@@ -7,7 +7,7 @@
     {
       "era": 1,
       "image": "output/annotation_demo/all9/BanglaASR5_003/board_era1_000.jpg",
-      "checked": "2026-09-22",
+      "red_items_checked": "2026-09-22",
       "items": [
         {"text": "Lists, Tuple and Arrays", "kind": "term", "alt": ["Lists, Tuples and Arrays"]},
         {"text": "fruit = [\"Apple\", \"Orange\", \"Mango\"]", "kind": "code",
@@ -39,7 +39,7 @@
     {
       "era": 3,
       "image": "output/annotation_demo/all9/BanglaASR5_003/board_era3_1100.jpg",
-      "checked": "2026-09-22",
+      "red_items_checked": "2026-09-22",
       "items": [
         {"text": "Lists, Tuple and Arrays", "kind": "term", "alt": ["Lists, Tuples and Arrays"]},
         {"text": "import numpy as np", "kind": "code"},

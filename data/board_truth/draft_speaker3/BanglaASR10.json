@@ -35,7 +35,7 @@
     {
       "era": 4,
       "image": "output/annotation_demo/all9/BanglaASR10/board_era4_520.jpg",
-      "checked": "2026-09-22",
+      "red_items_checked": "2026-09-22",
       "items": [
         {"text": "time to Live", "kind": "term"},
         {"text": "Endless looping", "kind": "phrase", "alt": ["Endless loop"]},

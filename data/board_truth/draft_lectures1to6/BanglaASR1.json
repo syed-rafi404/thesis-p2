@@ -26,7 +26,7 @@
     {
       "era": 3,
       "image": "output/annotation_demo/all9/BanglaASR1/board_era3_340.jpg",
-      "checked": "2026-09-22",
+      "red_items_checked": "2026-09-22",
       "items": [
         {"text": "Data Type", "kind": "term"},
         {"text": "String", "kind": "term"},
@@ -53,7 +53,7 @@
     {
       "era": 5,
       "image": "output/annotation_demo/all9/BanglaASR1/board_era5_1000.jpg",
-      "checked": "2026-09-22",
+      "red_items_checked": "2026-09-22",
       "items": [
         {"text": "Data Type", "kind": "term"},
         {"text": "1name = \"Rafi\"", "kind": "code", "alt": ["1name=\"Rafi\"", "1name = 'Rafi'", "1name='Rafi'"]},

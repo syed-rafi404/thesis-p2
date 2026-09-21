@@ -7,7 +7,7 @@
     {
       "era": 1,
       "image": "output/annotation_demo/all9/BanglaASR11/board_era1_040.jpg",
-      "checked": "2026-09-22",
+      "red_items_checked": "2026-09-22",
       "note": "The 2026-09-22 check also asked for 0 and IF. A lone 0 is not scored because it matches any 0 anywhere; IF is scored as the line it sits on, IF -> Reset.",
       "items": [
         {"text": "TTL", "kind": "term"},

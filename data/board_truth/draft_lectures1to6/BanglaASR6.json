@@ -7,7 +7,7 @@
     {
       "era": 1,
       "image": "output/annotation_demo/all9/BanglaASR6/board_era1_010.jpg",
-      "checked": "2026-09-22",
+      "red_items_checked": "2026-09-22",
       "note": "The 2026-09-22 check also asked for Digital; it is not scored alone because it is always found inside Digital Logic Design, and its line is covered by Discrete value. The checker confirmed the board reads (Ground), not (Low).",
       "items": [
         {"text": "Digital Logic Design", "kind": "term"},

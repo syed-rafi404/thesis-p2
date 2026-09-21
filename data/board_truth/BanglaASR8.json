@@ -15,7 +15,7 @@
     {
       "era": 2,
       "image": "output/annotation_demo/all9/BanglaASR8/board_era2_110.jpg",
-      "checked": "2026-09-22",
+      "red_items_checked": "2026-09-22",
       "items": [
         {"text": "Database Management System", "kind": "term"},
         {"text": "DBMS", "kind": "term"},
