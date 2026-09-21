@@ -1,0 +1,51 @@
+{
+  "lecture": "BanglaASR10",
+  "topic": "IPv4 header fields: TTL and the fragmentation flags",
+  "note": "DRAFT by Claude reading the reconstructed board images on 2026-09-21, before any Qwen transcription of these boards existed. Not verified. A human must check every item before any number from this file is used. Items marked verify:true were hard to read.",
+  "caveat": "Speaker C lecture, different camera and room. The reconstructions here are poor (67-91% of tiles clear): the lecturer is partly visible and the board runs off the right edge of the frame, so some writing is cut off. Speaker C is held out from the speaker-A-only adapters.",
+  "boards": [
+    {
+      "era": 1,
+      "image": "output/annotation_demo/all9/BanglaASR10/board_era1_020.jpg",
+      "items": [
+        {"text": "TTL", "kind": "term"},
+        {"text": "time to Live", "kind": "term"}
+      ]
+    },
+    {
+      "era": 2,
+      "image": "output/annotation_demo/all9/BanglaASR10/board_era2_140.jpg",
+      "items": [
+        {"text": "TTL", "kind": "term"},
+        {"text": "time to Live", "kind": "term"},
+        {"text": "Endless looping", "kind": "phrase", "alt": ["Endless loop"]}
+      ]
+    },
+    {
+      "era": 3,
+      "image": "output/annotation_demo/all9/BanglaASR10/board_era3_300.jpg",
+      "items": [
+        {"text": "time to Live", "kind": "term"},
+        {"text": "Endless looping", "kind": "phrase", "alt": ["Endless loop"]},
+        {"text": "24", "kind": "number", "verify": true, "note": "TTL counting down 24 -> 0; the digit could be 24 or 29"},
+        {"text": "Reset", "kind": "term"},
+        {"text": "Don't Fragment", "kind": "term", "alt": ["Dont Fragment"]}
+      ]
+    },
+    {
+      "era": 4,
+      "image": "output/annotation_demo/all9/BanglaASR10/board_era4_520.jpg",
+      "items": [
+        {"text": "time to Live", "kind": "term"},
+        {"text": "Endless looping", "kind": "phrase", "alt": ["Endless loop"]},
+        {"text": "Reset", "kind": "term"},
+        {"text": "DF", "kind": "term"},
+        {"text": "MF", "kind": "term"},
+        {"text": "Don't Fragment", "kind": "term", "alt": ["Dont Fragment"]},
+        {"text": "4000", "kind": "number", "verify": true, "note": "written 4000B; the first digit is ambiguous on the board, and the lecture audio says four thousand"},
+        {"text": "1500", "kind": "number", "note": "written 1500B"},
+        {"text": "R1", "kind": "code", "note": "router label"}
+      ]
+    }
+  ]
+}

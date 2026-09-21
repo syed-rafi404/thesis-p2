@@ -1,0 +1,38 @@
+{
+  "lecture": "BanglaASR11",
+  "topic": "IPv4 fragmentation flags: DF and MF",
+  "note": "DRAFT by Claude reading the reconstructed board images on 2026-09-21, before any Qwen transcription of these boards existed. Not verified. A human must check every item before any number from this file is used. Items marked verify:true were hard to read.",
+  "caveat": "Speaker C lecture. The second board is only 59% clear: the lecturer covers its left side.",
+  "boards": [
+    {
+      "era": 1,
+      "image": "output/annotation_demo/all9/BanglaASR11/board_era1_040.jpg",
+      "items": [
+        {"text": "TTL", "kind": "term"},
+        {"text": "time to Live", "kind": "term"},
+        {"text": "24", "kind": "number", "verify": true, "note": "the digit could be 24 or 29"},
+        {"text": "Endless looping", "kind": "phrase", "alt": ["Endless loop"]},
+        {"text": "Reset", "kind": "term"},
+        {"text": "DF", "kind": "term"},
+        {"text": "Don't Fragment", "kind": "term", "alt": ["Dont Fragment"]},
+        {"text": "MF", "kind": "term"},
+        {"text": "More Fragment", "kind": "term", "alt": ["More Fragments"]}
+      ]
+    },
+    {
+      "era": 2,
+      "image": "output/annotation_demo/all9/BanglaASR11/board_era2_140.jpg",
+      "items": [
+        {"text": "time to Live", "kind": "term"},
+        {"text": "Endless looping", "kind": "phrase", "alt": ["Endless loop"]},
+        {"text": "Don't Fragment", "kind": "term", "alt": ["Dont Fragment"]},
+        {"text": "More Fragment", "kind": "term", "alt": ["More Fragments"]},
+        {"text": "4000", "kind": "number", "note": "written 4000B"},
+        {"text": "1500", "kind": "number"},
+        {"text": "1000", "kind": "number"},
+        {"text": "Pack 2", "kind": "phrase", "alt": ["Pack2", "Packet 2"]},
+        {"text": "Pack 3", "kind": "phrase", "alt": ["Pack3", "Packet 3"]}
+      ]
+    }
+  ]
+}

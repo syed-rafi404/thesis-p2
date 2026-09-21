@@ -1,0 +1,25 @@
+{
+  "lecture": "BanglaASR12",
+  "topic": "MTU, maximum transmission unit",
+  "note": "DRAFT by Claude reading the reconstructed board images on 2026-09-21, before any Qwen transcription of these boards existed. Not verified. A human must check every item before any number from this file is used.",
+  "caveat": "Speaker C lecture. Both boards carry very little writing; the lecturer is partly visible in both reconstructions.",
+  "boards": [
+    {
+      "era": 1,
+      "image": "output/annotation_demo/all9/BanglaASR12/board_era1_000.jpg",
+      "items": [
+        {"text": "MTU", "kind": "term"},
+        {"text": "Maximum transmission unit", "kind": "term"}
+      ]
+    },
+    {
+      "era": 2,
+      "image": "output/annotation_demo/all9/BanglaASR12/board_era2_140.jpg",
+      "items": [
+        {"text": "MTU", "kind": "term"},
+        {"text": "Maximum transmission unit", "kind": "term"},
+        {"text": "DF", "kind": "term"}
+      ]
+    }
+  ]
+}

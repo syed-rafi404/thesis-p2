@@ -1,0 +1,47 @@
+{
+  "lecture": "BanglaASR13",
+  "topic": "MTU and an IPv4 fragmentation worked example",
+  "note": "DRAFT by Claude reading the reconstructed board images on 2026-09-21, before any Qwen transcription of these boards existed. Not verified. A human must check every item before any number from this file is used. Items marked verify:true were hard to read.",
+  "caveat": "Speaker C lecture. The second board is the most number-dense board in the whole set: a full fragmentation calculation. Its offsets and byte ranges cannot be guessed from general knowledge without doing the arithmetic, so they are the most diagnostic items here.",
+  "boards": [
+    {
+      "era": 1,
+      "image": "output/annotation_demo/all9/BanglaASR13/board_era1_000.jpg",
+      "items": [
+        {"text": "MTU", "kind": "term"},
+        {"text": "Maximum transmission unit", "kind": "term"},
+        {"text": "Total packet size", "kind": "phrase"},
+        {"text": "Header sec", "kind": "phrase", "alt": ["Header section"]},
+        {"text": "Data sec", "kind": "phrase", "alt": ["Data section"]},
+        {"text": "Header + Data", "kind": "phrase", "alt": ["Header+Data"]},
+        {"text": "20B - 60B", "kind": "phrase", "alt": ["20B-60B", "20 B - 60 B", "20B to 60B", "20-60 bytes", "20 to 60 bytes"]}
+      ]
+    },
+    {
+      "era": 2,
+      "image": "output/annotation_demo/all9/BanglaASR13/board_era2_400.jpg",
+      "items": [
+        {"text": "MTU", "kind": "term"},
+        {"text": "Packet Size", "kind": "term"},
+        {"text": "Data size", "kind": "term"},
+        {"text": "4000", "kind": "number", "note": "written 4000B"},
+        {"text": "1480", "kind": "number"},
+        {"text": "1500", "kind": "number"},
+        {"text": "1480 + 20", "kind": "code", "alt": ["1480+20"]},
+        {"text": "1479", "kind": "number"},
+        {"text": "2959", "kind": "number"},
+        {"text": "2960", "kind": "number"},
+        {"text": "DF=0; MF=1", "kind": "code", "alt": ["DF=0, MF=1", "DF = 0; MF = 1", "DF = 0, MF = 1", "DF=0;MF=1"]},
+        {"text": "DF=0; MF=0", "kind": "code", "alt": ["DF=0, MF=0", "DF = 0; MF = 0", "DF = 0, MF = 0", "DF=0;MF=0"]},
+        {"text": "4000/1480", "kind": "code", "alt": ["4000 / 1480"]},
+        {"text": "2.7", "kind": "number", "note": "ceil(2.7) -> 3 fragments"},
+        {"text": "fragment offset", "kind": "term"},
+        {"text": "1480/8", "kind": "code", "alt": ["1480 / 8"]},
+        {"text": "185", "kind": "number"},
+        {"text": "2960/8", "kind": "code", "alt": ["2960 / 8"]},
+        {"text": "370", "kind": "number"},
+        {"text": "Frag 1", "kind": "term", "alt": ["Frag-1", "Frag1"]}
+      ]
+    }
+  ]
+}
