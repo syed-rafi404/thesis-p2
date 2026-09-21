@@ -15,10 +15,16 @@ goes stale, fix it rather than adding a contradictory note.
 3. Every number the thesis may claim is in [RESULTS.md](RESULTS.md) with the command that
    regenerates it. Section 7 lists retired, fabricated claims. Never reuse one.
 
-**Where things stood at the last checkpoint (2026-09-21):** work on the RTX 3060 was finished and
-pushed. The **RTX 5090** environment is now set up and passes the preflight (see "Two machines").
-The copy of the repo on the 5090 predated the final push; run `git pull` before starting on a
-freshly copied folder.
+**Where things stood at the last checkpoint (2026-09-21, 21:40, end of the 5090 session):**
+everything is committed and pushed. That session found and fixed the video-6 speaker leak, added
+Speaker3 (videos 10–13), ran the VLM and notes experiments, the large-Whisper fine-tunes and a full
+leave-one-speaker-out (RESULTS.md 1.5, the new headline). The next session is expected on the
+**3060**: `git pull`, then `scripts/restore_artifacts.py --apply` with the 3060's fine-tune Python.
+**Waiting on the user:** (1) checking the board answer keys with
+`output/annotation_demo/verify_all_boards.html`; they will paste corrections as text, then apply
+them to the JSON under `data/board_truth/` and re-score. (2) A yes/no on fixing the broken lecturer
+quotes in the `mixed` notes prompt (a summarizer edit; ask first). (3) Whether to add
+spelling-normalized and fuzzy WER (proposed, not computed). Qwen runs need the 5090.
 The 5090's first job is NEXT_STEPS.md step 5: the VLM board transcription (raw frame vs
 reconstructed board) and regenerating the notes one change at a time. Those two need Qwen weights,
 which the 3060 never had.
