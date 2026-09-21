@@ -252,6 +252,12 @@ def main():
                          "frames after the earlier era's end, never before it. The earlier run "
                          "says roughly when the board was wiped; the denser frames say exactly "
                          "when, so the clean moments just after the old end are not cut off")
+    ap.add_argument("--person-model", choices=("temporal", "deeplab", "deeplab+shadow"),
+                    default="temporal",
+                    help="How to find the lecturer. temporal (default): deviation from the usual "
+                         "board. deeplab: a pretrained person-segmentation network, frame by frame "
+                         "(scripts/person_segment.py). deeplab+shadow: the network plus his "
+                         "shadow on the board, with each frame's exposure corrected")
     ap.add_argument("--save-occluder", action="store_true",
                     help="Also write board_eraN_*_occluder.png: where the board still shows the "
                          "lecturer (white = person). scripts/clean_board.py --mask uses it")
@@ -262,8 +268,15 @@ def main():
         sys.exit(f"no frames in {args.frames}")
     print(f"loading {len(frames)} frames ...")
     smalls, sizes = load_small(frames)
-    masks, _ = temporal_person_masks(np, smalls)
-    inks = [ink_mask(np, s) & ~m for s, m in zip(smalls, masks)]
+    if args.person_model.startswith("deeplab"):
+        from person_segment import deeplab_person_masks, shadow_masks
+        masks = deeplab_person_masks(smalls)
+        if args.person_model == "deeplab+shadow":
+            shadows, _ = shadow_masks(smalls, masks)
+            masks = [p | s for p, s in zip(masks, shadows)]
+    else:
+        masks, _ = temporal_person_masks(np, smalls)
+    inks =[ink_mask(np, s) & ~m for s, m in zip(smalls, masks)]
 
     if args.eras_from:
         def secs(stamp_text):

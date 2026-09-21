@@ -651,6 +651,39 @@ the clean-up cannot recover it. Automatic cropping to the writing was tried and 
 reliable (leftover specks chain the crop out to the whole board); crop by hand.
 Before/after: `output/annotation_demo/speaker3_2s_hybrid_clean/sheet_1.jpg`, `sheet_2.jpg`.
 
+#### 4.1.2 A learned person mask (2026-09-22)
+
+The default lecturer mask (`temporal_person_masks`) is "whatever differs from the usual board".
+It fails two ways on Speaker3: when he stands still the usual board contains him, and when the
+camera's auto-exposure darkens the frame every pixel differs, so whole frames read as covered
+(BanglaASR10 at 4:30: 100% of the writing area "covered" while most of it is visible). Tiles
+then skip exactly the late frames that hold the last writing.
+
+`--person-model deeplab+shadow` replaces it with (1) torchvision's pretrained
+DeepLabV3-ResNet101 person class, frame by frame, and (2) a shadow mask: board darker than
+usual after dividing out each frame's exposure gain, with pen-stroke-thin marks eroded away
+(`scripts/person_segment.py`). Same eras, same frames, same tiling.
+
+Checked by eye on all 10 Speaker3 boards (before/after sheets below), **not measured**: the
+"% tiles clear" figure is computed with the mask itself, so it is not comparable across masks.
+- Writing the old mask lost is recovered: the diagram drawn at the end of the TTL board
+  (BanglaASR10 era 3) and "MF -> More Fragment" (BanglaASR11 era 1).
+- The network alone leaves the shadow as sharp blocks; with the shadow mask and the display
+  clean-up (4.1.1) the boards are as clean as or cleaner than the old method's, with faint
+  grey smudges left on some.
+- Not yet run on lectures 1-9, and the VLM has not read these boards.
+
+```
+python scripts/board_mosaic.py --frames output/speaker3_runs_2s/BanglaASR{n}/ingested/frames --interval 2 \
+  --eras-from output/annotation_demo/speaker3_2s_hybrid/BanglaASR{n}/mosaic.json \
+  --person-model deeplab+shadow --save-occluder \
+  --out-dir output/annotation_demo/speaker3_2s_deeplab_shadow/BanglaASR{n} --json .../mosaic.json
+```
+Sheets: `output/annotation_demo/speaker3_2s_deeplab_shadow/compare_1.jpg`, `compare_2.jpg`
+(old + clean-up | new | new + clean-up). Cleaned boards in `.../speaker3_2s_deeplab_shadow/clean/`.
+Generative inpainting was not tried on purpose: it fills the covered area with plausible
+pixels, which on a board means invented writing.
+
 ### 4.2 Region detection and annotation — status
 
 `scripts/board_regions.py` finds the content blocks on a reconstructed board by
