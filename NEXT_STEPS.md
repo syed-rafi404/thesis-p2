@@ -4,6 +4,28 @@ If you are lost, start here. One page. Updated 2026-09-21.
 
 ---
 
+## Moving to the 5090 — copy these four things
+
+Git only carries the code. Copy these from the 3060 as well:
+
+| From the 3060 | Why |
+|---|---|
+| `F:\thesisP2\thesisP2\output\` | fine-tuned transcripts for all 9 lectures, board mosaics, baseline notes |
+| `F:\thesisP2\thesisP2\data\` | videos and ground truth |
+| `F:\thesisP2\ft_work\` | the trained adapter, whisper-small, clips |
+| `F:\thesisP2\claude_checkpoint\` | Claude's memory; read `RESTORE.md` inside |
+
+Easiest: copy the whole `F:\thesisP2\` folder, but skip `envs\`, because environments don't work
+when moved to another machine. If you can, put the repo at the same path, `F:\thesisP2\thesisP2`.
+Then the paths and Claude's memory need no changes.
+
+Your first message to Claude on the 5090:
+
+> Repo is at `<path>`. ft_work is at `<path>`. output\ and data\ are copied.
+> Read CLAUDE.md and NEXT_STEPS.md, then run scripts/check_environment.py.
+
+---
+
 ## Already done. Do not touch these.
 
 - Fine-tune result: WER 96.1% -> 81.8%, p = 0.009, replicated. **This is your thesis.**
@@ -11,6 +33,9 @@ If you are lost, start here. One page. Updated 2026-09-21.
 - Honest statistics; every fabricated number removed
 - Board reconstruction for all 9 lectures, median 97.7% clean
 - Board-content recall baseline: 40.1%
+- Fine-tuned transcripts for all 9 lectures (`transcript_finetuned.txt` in each lecture folder)
+- New note prompts with the language switch: english / banglish / mixed. **Built but not run yet.**
+  They need Qwen, so they run on the 5090.
 - Everything committed and pushed to GitHub
 
 **If nothing else happens, you can defend with this.**

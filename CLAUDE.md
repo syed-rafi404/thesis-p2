@@ -1,141 +1,244 @@
 # CLAUDE.md — Working Agreement for Thesis P2
 
-This file is the persistent context Claude loads on every session. Keep it short and current. If something here goes stale, fix it — don't add a contradictory note.
+This file is the persistent context Claude loads on every session, on any machine. It is also
+the handoff: a session on a new machine has none of the earlier conversation, only this file,
+[NEXT_STEPS.md](NEXT_STEPS.md) and [RESULTS.md](RESULTS.md). Keep it current. If something here
+goes stale, fix it rather than adding a contradictory note.
+
+---
+
+## Start here (new session, new machine)
+
+1. Read [NEXT_STEPS.md](NEXT_STEPS.md). It is the user's one-page tracker and the ordered plan.
+2. Run `python scripts/check_environment.py`. It checks GPU and torch build, packages, ffmpeg,
+   disk, paths, data and weights, and prints the fix for anything missing.
+3. Every number the thesis may claim is in [RESULTS.md](RESULTS.md) with the command that
+   regenerates it. Section 7 lists retired, fabricated claims. Never reuse one.
+
+**Where things stood at the last checkpoint (2026-09-21):** everything was committed and pushed.
+Work on the RTX 3060 machine was finished; the next session is expected on the **RTX 5090** machine.
+The 5090's first job is NEXT_STEPS.md step 5: the VLM board transcription (raw frame vs
+reconstructed board) and regenerating the notes one change at a time. Those two need Qwen weights,
+which the 3060 never had.
+
+---
+
+## The user
+
+- Syed Ar Rafi, BRAC University CSE, **undergraduate**. Team of 3. Career-critical thesis.
+  Full identity and supervisors are in the auto-memory, not here.
+- **Defense is about one week from 2026-09-20.** Writing (chapters) is the user's job; coding and
+  results are where they want help. Do not drift into writing unless asked.
+- **Easily overwhelmed by volume.** They said so directly. Keep replies short, put tracking in
+  NEXT_STEPS.md rather than in chat, ask one decision at a time, and act rather than list options.
+- **Always give absolute Windows paths** for any file they should open, e.g.
+  `F:\thesisP2\thesisP2\output\...`, never bare shorthand like `BanglaASR8/board_era1_000.jpg`.
+- Wants blunt honesty ("am I cooked?", "be honest"). Give it.
+- **The supervisor is a strong vision-language-model enthusiast** and wants the VLM story kept.
+  Find real VLM results; never manufacture one. The honest framing is in the section below.
 
 ---
 
 ## What this project is
 
-**Multimodal Banglish Classroom Summarizer** — Undergraduate thesis (P2 phase, complete as of 2026-02-03).
-Pipeline: lecture video → audio (Whisper + BanglaASR) + vision (Qwen2.5-VL whiteboard OCR) → fusion → Qwen2.5-7B-Instruct LLM → Markdown lecture notes.
+**InsightLens.** Pipeline: lecture video → audio (Whisper + BanglaASR) + vision (Qwen2.5-VL
+whiteboard reading) → Qwen2.5-7B-Instruct → Markdown lecture notes.
 
-Banglish = code-mixed Bengali + English (Romanized). Standard WER is unsuitable; we use **term-based metrics** (Recall / Precision / F1). Despite older docs, term matching is **exact**, over a fixed 82-term English lexicon; F1 equals the Sorensen-Dice of term counts. See THESIS_DEFENSE.md section 2.
+Banglish = code-mixed Bengali + English written in the Roman alphabet, no standard spelling.
 
-For the full narrative read [README.md](README.md) and [THESIS_CONTEXT_SUMMARY.md](THESIS_CONTEXT_SUMMARY.md). For official results read [P2_REPORT/EVALUATION_SUMMARY.md](P2_REPORT/EVALUATION_SUMMARY.md). Do not duplicate those into this file.
-
----
-
-## Current status (as of 2026-09-20)
-
-- P2 evaluation: **Term F1 = 73.9%**, Precision = 83.6%, Recall = 66.5% across 9 BanglaASR videos. **NOT frozen** — user confirmed (2026-07-02) the poster and report can be regenerated, so pipeline improvements that change these numbers are allowed. Keep the old results reproducible for before/after comparison.
-- The earlier poster-vs-"novelties failed" consistency concern is **resolved** — don't re-raise it.
-- **Measured 2026-09-20 on output/live_focused/no_gaze/interval_10s, same term functions as the headline:** `transcript_whisper_baseline.txt` is an **English translation**, not a Banglish transcript (Bengali function words: 3,078 in GT vs 54 in Whisper output). Term F1 is 73.2% baseline vs 73.9% fused, a +0.66 pp gain with exact paired permutation p = 0.32 and Wilcoxon p = 0.36 (n = 9). WER is 82.6% baseline vs 146.8% fused. The global- and temporal-biased transcripts are byte-identical to the baseline for all 9 videos. The vision branch does not affect the scored transcript.
-- **Defense is about ONE WEEK out (user, 2026-09-20), 3 team members.** The plan and checklist live in [THESIS_DEFENSE.md](THESIS_DEFENSE.md). Its section 1 code fixes are now **done** (torch import, rouge-score, missing deps, `__init__.py`). The fabricated statistics are also **done (2026-09-20)**: `generate_thesis_figures.py` panels (c) and (d) now compute from `output/fusion_statistics.json`, Figure 6.6 plots the real `output/bias_parameter_sweep.json`, `ABLATION` lost two rows no run produces, `OUTPUT_DIR` no longer points at the T2520785 machine, and the abstract clause now reports the null result. **matplotlib is not installed anywhere on this machine**, so the figures compile-check but cannot be rendered here. User says writing time exists; coding help is the constraint. Active P3 work:
-  1. **Whisper LoRA fine-tune on Banglish — DONE as of 2026-09-20, and it works.** Weights re-downloaded (967 MB, verified), `train_lora.py` points at the local copy, training takes ~3 min on the 3060. Adapter: `F:\thesisP2\ft_work\lora_whisper_small`. Step-4 `finetune/evaluate.py` is written and run. On the 137 held-out clips of speaker B, never seen in training: WER median 96.1% -> 81.8%, CER median 75.3% -> 60.7%, Term F1 65.0% -> 76.1%. Fine-tune wins on 86/137 clips for WER (Wilcoxon p = 0.009) and 97/137 for CER (p = 2.2e-05). Report: `ft_work/eval_whisper_small_1.9h.md`. **Read medians, not means**: both models occasionally loop and emit more words than were spoken, which pushes mean error rates over 100% and swamps mean-based tests.
-  2. **Scaling curve DONE (2026-09-20).** `ft_work/curve/scaling_curve.md`: 0.3 h -> WER median 91.3%, 0.6 h -> 91.7% (p = 0.92, not significant), 1.17 h -> **77.1% WER / 57.4% CER, 106/137 wins, p = 3.86e-08**. Under an hour buys little; the curve is still falling steeply at the top, which is the argument for the 8 h corpus.
-  3. **Run-to-run variance is a finding, see RESULTS.md 2.1.** Two runs on the identical 219 clips give WER median 81.8% vs 77.1% and Term F1 76.1% vs 68.0%. WER/CER are stable and significant in both; **Term F1 swings 8.1 pp**, driven by an 11.4 pp precision swing, because better Banglish transcription emits fewer of the 82 English lexicon words. **Never quote a Term F1 difference under ~8 pp** — that noise floor alone disposes of the +0.7 pp fusion claim.
-  4. **[RESULTS.md](RESULTS.md) is the single source of truth for every number.** If a number is not there with a command that regenerates it, it does not go in the paper. Section 7 lists retired (fabricated) claims so nobody re-pastes them.
-  5. Thesis chapters 3, 7, 9 in `P2/chapters/` are stubs/empty; `chapter_7.tex` is 0 bytes and **not `\input` in main.tex**.
-  6. **Dataset expansion is in flight.** User reported 2026-09-20: 6.5 hours of video in hand, 8+ hours with ground truth expected within days. Not yet on this machine. Transcribers follow [TRANSCRIPTION_GUIDE.md](TRANSCRIPTION_GUIDE.md) v1.0, and every incoming file should be run through `scripts/validate_ground_truth.py` before training. `data/ground_truth/` in the repo still holds only the original 9 files.
-- Scope is **undergrad** — keep methodological additions minimal.
+**Title is being revised.** Current: "InsightLens: A Vision-Language Based Accessibility Framework for
+Extracting and Understanding Classroom Content in Dual Languages". The user will drop
+"Accessibility". Advice given: replace "Dual Languages" with "Code-Mixed Banglish" (the correct,
+searchable term); keep vision-language, which is now defensible via the board experiments below;
+avoid "Understanding", which overclaims.
 
 ---
 
-## What works vs. what doesn't (don't re-litigate these unless asked)
+## The thesis as it now stands (details and numbers in RESULTS.md)
+
+**One significant, replicated positive — the headline.** LoRA fine-tune of whisper-small on 1.17 h of
+Banglish, tested on 137 clips of a speaker never seen in training: WER median 96.1% → 81.8%
+(Wilcoxon p = 0.009), CER 75.3% → 60.7% (p = 2.2e-05). A second independent run on the same data
+reached WER 77.1%, CER 57.4%, p < 1e-05. Scaling curve: under 1 h is unreliable; the curve is still
+falling at 1.17 h, which argues for the larger corpus. **Read medians, not means**: runaway
+repetition loops push mean error over 100%.
+
+**Three measured negatives.** Fusion: +0.7 pp Term F1, p = 0.32, and the visually biased
+transcripts are byte-identical to the baseline. Visual bias: any non-zero strength halves term
+recall, `optimal_bias = 0.0`. Occlusion-as-pointer (speech-to-region alignment): 101 vs 81 over
+191 episodes, Wilcoxon p = 0.054, sign test p = 0.159, not supported.
+
+**One methodological finding, possibly the most interesting page.** The inherited Term F1 metric is
+anti-correlated with transcription quality (better Banglish emits fewer of the 82 English lexicon
+words) and swings 8.1 pp between two runs on identical data. **Never quote a Term F1 difference
+under about 8 pp.**
+
+**The visual deliverable.** Board reconstruction by tiled mosaicking over erase-separated eras:
+across 9 lectures, 35 boards, median 97.7% of tiles fully clear, 6 boards at 100%, every pixel
+unmodified camera output. It is engineering, not algorithmic novelty; whiteboard occlusion removal
+is an established area. Say so if asked.
+
+**The honest VLM story for the supervisor.** The VLM result so far is not negative; the
+*fusion* result is. The VLM's actual job, reading the board, was never evaluated, and it was
+crippled by its inputs: keyword prompts on occluded raw frames. For the DBMS lecture it returned
+four broken fragments of one name, four words not on the board, and **not one CGPA or student ID**.
+The experiment that can give a real VLM positive is ready: same model and prompt, raw frame vs
+reconstructed board, scored by board-content recall on the 10 held-out boards.
+
+---
+
+## Board-content recall (the note-quality metric)
+
+The generated notes had never been evaluated. `scripts/score_board_recall.py` scores recall of
+facts written on the board, which the summarising model cannot invent from prior knowledge.
+Baseline notes: **40.1%** over 167 items. By kind: terms 78.7%, code 50.0%, names 30.0%,
+**numbers 8.5%**, the lecturer's phrasings **0%**. Recall falls with guessability, a validity check.
+
+- Evaluation set: the 10 boards of BanglaASR7, 8, 9, the held-out speaker, so no fine-tune leakage.
+  **Keep speaker B in `--test-speakers` when new data arrives** so this stays valid.
+- Ground truth: `data/board_truth/*.json`, drafted by reading the boards. **The user is verifying it
+  by hand.** Three items are flagged `"verify": true`.
+- `data/board_truth` is the answer key. **Never feed it to any generator.** `regenerate_notes.py`
+  refuses the path outright.
+
+---
+
+## Why the notes were bland, and the fix
+
+Two independent causes. (1) The prompt asked for "comprehensive notes that explain each concept
+clearly", so Qwen recited a textbook, including a NAND definition the lecturer never said. (2) The
+input transcript was unusable: "tait gate involve. তর্মানে 9 gate হচে" where the lecturer said NOR
+gate. The fine-tuned transcript of the same passage: "and baani kichilo multiplication. so a into b.
+erpor e ami ki korbo? not korbo."
+
+- `src/summarizer/prompts.py`: grounded prompts. **Language is a switch, by the user's choice:**
+  `english`, `banglish`, `mixed` (English with the lecturer's Banglish quoted), plus `legacy`.
+- **`legacy` is the original prompt, verified character-identical by AST comparison, and is the
+  default**, because the 40.1% baseline was produced with it. Do not edit it.
+- Fine-tuned transcripts for all 9 lectures were **already produced on the 3060** and sit in each
+  lecture folder as `transcript_finetuned.txt`. Videos 1–6 are training lectures for that adapter;
+  only 7–9 are valid for evaluation.
+- The new notes have **not been generated or seen yet**. That needs Qwen on the 5090. Do not claim
+  they are better until they have been generated and scored.
+
+---
+
+## Two machines
+
+| | RTX 3060, 12 GB (dev, `F:\thesisP2`) | RTX 5090, 32 GB (final runs) |
+|---|---|---|
+| Role | Built and tested everything | Qwen VLM + LLM runs, 8 h fine-tune |
+| torch | 2.5.1+cu121 — **do not disturb** | needs a **fresh env, torch ≥ 2.7, CUDA 12.8** (Blackwell, sm_120). 2.5.1+cu121 will import, see the card, then fail |
+| Weights | whisper-small + LoRA only, no Qwen | Qwen2.5-VL-7B-Instruct, Qwen2.5-7B-Instruct |
+
+A third machine produced the original P2 pipeline results: **RTX 3090, 24 GB**, paths under
+`C:\Users\T2520785`. The abstract's hardware claim is about that machine and is correct.
+**P2 pipeline results = 3090; P3 fine-tuning results = 3060.**
+
+3060 interpreters: `F:\thesisP2\envs\thesis_ft\Scripts\python.exe` (torch, transformers 5.12.1, peft,
+soundfile, jiwer, numpy; **no Pillow, no matplotlib**). `C:\Users\Rafi\miniconda3\envs\pyenv\python.exe`
+has **Pillow and numpy** and ran all the vision scripts. matplotlib is installed nowhere on the 3060.
+The `thesis_v2` conda env in older notes does not exist here. On the 5090, put everything in one env.
+
+**Not in git — must be copied between machines:**
+- `output\` (gitignored): past runs, the 9 `transcript_finetuned.txt`, the board mosaics in
+  `output\annotation_demo\all9\`, the baseline notes the comparison needs.
+- `data\` (gitignored), except `data\board_truth\` which was force-added.
+- `ft_work\`, a sibling of the repo: clips, manifests, `split.json`, adapters, `models\whisper-small`.
+- Environments are not portable; rebuild them.
+
+Paths resolve through env vars with inferred defaults: `THESIS_REPO`, `THESIS_FT_DIR`
+(default: sibling `ft_work`), `THESIS_PYTHON`, `THESIS_QWEN`, `THESIS_FIGURES`.
+
+Git on the 3060 warns about dubious ownership. Pass `-c safe.directory=F:/thesisP2/thesisP2` per
+command; only change global config after asking.
+
+---
+
+## What works vs. what doesn't (don't re-litigate unless asked)
 
 | Component | State | Notes |
 |---|---|---|
-| Whisper large-v3-turbo ASR (no visual bias) | ✅ Working | Primary transcript |
-| BanglaASR (Bengali Unicode) | ✅ Working | Wav2Vec2 fine-tuned |
-| Qwen2.5-VL-7B whiteboard OCR | ✅ Working | Structured extraction |
-| Qwen2.5-7B-Instruct summarizer | ✅ Working | FP16 batch / 4-bit live |
-| Anti-hallucination post-processing | ✅ Working | `src/audio/visual_bias_processor.py` |
-| Term-based evaluator | ✅ Working | Headline numbers: `scripts/evaluate_ground_truth.py` (exact match, 82-term lexicon). `src/evaluation/evaluator.py` is a different fuzzy, recall-only evaluator |
-| Transliteration fusion (dual-ASR) | ⚠️ Partial | Low similarity (0.02–0.07) |
-| Cross-modal verification (CMV) | ⚠️ Partial | Detects errors, doesn't correct |
-| Visual bias via LogitsProcessor | ❌ Failed → **disabled** | `output/bias_parameter_sweep.json` (1 lecture, 27 terms): bias off = 8.8% term recall, **every** non-zero strength 0.25–2.0 = 4.1% and byte-identical output. Recorded `optimal_bias: 0.0`. Note `config/live_config.yaml` still defaults `bias_strength: 2.0` |
-| YOLOv8-Pose gaze tracking | ❌ Failed | 0 detections across all videos |
-| Temporal visual bias | ❌ Abandoned | No gain over global |
+| Whisper large-v3-turbo ASR | Working | Outputs an English translation, not Banglish |
+| Whisper-small + LoRA fine-tune | **Working, significant** | The headline result |
+| BanglaASR (Bengali Unicode) | Working | Wav2Vec2 |
+| Qwen2.5-VL whiteboard reading | Runs; **never evaluated** | Keyword prompt discards numbers; fix is `transcribe_boards.py` |
+| Qwen2.5-7B-Instruct notes | Runs; output was bland | Grounded prompts added, not yet run |
+| Board reconstruction (tiled mosaic) | **Working, measured** | median 97.7% tiles clear, 35 boards |
+| Region detection | Working, **not evaluated** | No layout ground truth exists |
+| Fusion (dual-ASR, CMV) | Negative | +0.7 pp, p = 0.32 |
+| Visual bias via LogitsProcessor | Failed, disabled | `config/live_config.yaml` still defaults `bias_strength: 2.0` |
+| YOLOv8-Pose gaze tracking | Failed | 0 detections |
+| Occlusion-as-pointer alignment | Not supported | p = 0.054 / 0.159 |
+| Old inpainting in `illustrate_notes.py` | **Superseded** | Left a ghost and lost text; replaced by the mosaic |
 
-**Don't suggest reviving the failed approaches unless the user explicitly raises them.** They are documented as negative results.
-
----
-
-## Environment
-
-- OS: Windows 11, shell: PowerShell (use PS syntax: `$null`, `$env:VAR`, backtick continuation)
-- GPU: **NVIDIA RTX 3060, 12 GB VRAM** (verified via `nvidia-smi`, 2026-09-20). Earlier notes here claimed an RTX 5090 with 32 GB; that is wrong for this machine. Plan VRAM against 12 GB.
-- Free disk is tight: about 21 GB on each of C: and F: (2026-09-20). A 16 GB VLM download does not fit comfortably.
-- Fine-tuning env: `F:\thesisP2\envs\thesis_ft\Scripts\python.exe` — torch 2.5.1+cu121, transformers 5.12.1, peft, datasets, accelerate, soundfile, jiwer. No bitsandbytes, and none is needed for LoRA.
-- No Qwen weights are on this machine; the P2 pipeline runs came from a different PC (paths under `C:\Users\T2520785`), which has an **RTX 3090, 24 GB** (confirmed by the user 2026-09-20). So the abstract's hardware claim is correct. Two machines, do not conflate: **P2 pipeline results = 3090, P3 fine-tuning results = this 3060**.
-- Python: the `thesis_v2` conda env referenced by older notes **does not exist on this machine** (only `corner` and `pyenv` under `C:\Users\Rafi\miniconda3\envs`, and `conda` is not on PATH). Working interpreter for everything P3 is `F:/thesisP2/envs/thesis_ft/Scripts/python.exe`. **matplotlib is installed in none of them**, so `scripts/generate_thesis_figures.py` cannot render here.
-- Total model footprint ~33 GB; `src/model_registry.py` loads/unloads sequentially. The uncommitted-then-committed 12 GB adaptation (4-bit/8-bit VLM, 14B 4-bit LLM) matches this 3060, but needs bitsandbytes, which is not installed.
-- Repo root: `f:\thesisP2\thesisP2`
-- Git note: repo has a "dubious ownership" warning on this machine. For git reads, pass it per command (`git -c safe.directory=F:/thesisP2/thesisP2 status`) rather than changing global config. Only run `git config --global --add safe.directory F:/thesisP2/thesisP2` after confirming.
-- Commits: five landed 2026-09-20 covering work up to that point; the tooling listed below is **not yet committed**. Nothing is pushed automatically; check `git status -sb`.
+Don't suggest reviving failed approaches unless the user raises them.
 
 ---
 
-## New tooling (2026-09-20)
+## Tooling added 2026-09-20/21 (all standalone; the P2 pipeline was not modified except as noted)
 
-Written this session, all standalone, none touch the P2 pipeline:
-
-| Script | What it does |
+| Script | Purpose |
 |---|---|
-| `finetune/evaluate.py` | Base vs LoRA on held-out clips: WER/CER median and mean, term metric, Wilcoxon and sign tests, runaway-clip count |
-| `scripts/compute_fusion_stats.py` | Recomputes every ASR number from saved transcripts. Replaces the hard-coded `p = 0.003` and `+5.7 pp`. Real answer: **+0.66 pp, p = 0.32**, and all 9 fused transcripts are byte-identical across frame intervals |
-| `scripts/validate_ground_truth.py` | Checks incoming transcripts against TRANSCRIPTION_GUIDE.md: 30 s limit, timestamp format, gaps, ASCII, spelling list, speaking rate, filler rate. `--fix` repairs only meaning-preserving issues |
-| `scripts/run_scaling_curve.py` | Trains and evaluates across training-set sizes, writes `ft_work/curve/scaling_curve.md` |
-| `scripts/illustrate_notes.py` | Adds annotated frames to generated notes, rebuilding the board with the lecturer removed |
+| `scripts/check_environment.py` | **Run first on a new machine.** Checks the torch build against the card's architecture |
+| `scripts/run_p3_experiment.py` | One command: validate, prepare, train, evaluate, scaling curve |
+| `finetune/prepare_data.py` | Speaker-independent split from `# Speaker ID:` headers; missing header → `UNKNOWN`, silently breaking the split |
+| `finetune/train_lora.py` | LoRA training; bf16 auto; `--model`, `--data-dir`, `--train-file`, LoRA flags |
+| `finetune/evaluate.py` | Base vs LoRA: median and mean WER/CER, rank tests, runaway count |
+| `scripts/run_scaling_curve.py` | Nested data budgets |
+| `scripts/validate_ground_truth.py` | Checks transcripts against TRANSCRIPTION_GUIDE.md |
+| `scripts/compute_fusion_stats.py` | Measured fusion statistics |
+| `scripts/board_mosaic.py` | Tiled board reconstruction by era |
+| `scripts/board_regions.py` | Content regions on a board; temporal occluder masks |
+| `scripts/best_frames.py` | Clearest frame per region (simpler, superseded by the mosaic) |
+| `scripts/annotate_board.py` | Draws boxes and labels on real pixels; the VLM supplies text only |
+| `scripts/illustrate_from_mosaic.py` | Puts mosaic boards into notes behind a 95% clear gate |
+| `scripts/pointer_align.py` | Occlusion-as-pointer experiment (negative) |
+| `scripts/score_board_recall.py` | Note-quality metric; `--compare`, `--compare-names` |
+| `scripts/make_verify_sheet.py` | HTML sheet for verifying board ground truth |
+| `scripts/transcribe_finetuned.py` | Whole-lecture fine-tuned transcripts; quiet-point chunking; loop collapse |
+| `scripts/transcribe_boards.py` | Full VLM board transcription; `--source frame` or `mosaic` |
+| `scripts/regenerate_notes.py` | Notes from a finished run; `--language`, `--board-source`, `--dry-run` |
+| `src/summarizer/prompts.py` | Legacy and grounded prompts. `generator.py` gained a `notes_language` argument, default `legacy` |
 
-`finetune/prepare_data.py` now reads Speaker IDs from file headers, splits by speaker rather than
-video number, extracts audio from raw video with ffmpeg when needed, supports `--train-hours` for
-scaling curves, and writes `split.json`. Regression-checked: reproduces the original 219/137 split exactly.
-
-`finetune/train_lora.py` takes `--data-dir`, `--train-file`, `--test-file`, `--adapter-out`, `--model`, `--seed`.
-
----
-
-## Entry points
-
-```powershell
-# Single video, full pipeline
-python run_thesis.py "data\raw\lecture.mp4" -o "output\my_lecture"
-
-# Live mode (4-bit LLM, lower VRAM)
-python run_thesis.py "data\raw\lecture.mp4" --live --interval 45
-
-# Mock VLM, no gaze (fast iteration)
-python run_thesis.py "data\raw\lecture.mp4" --mock --skip-gaze
-
-# Batch over data\raw\
-python batch_process.py
-python batch_process.py --limit 3
-
-# Official P2 evaluation. evaluate_ground_truth.py reproduces the headline numbers (per THESIS_DEFENSE.md, not re-run 2026-09-20).
-# p2_evaluation.py writes to a hard-coded C:/Users/T2520785 path from another machine.
-python scripts\evaluate_ground_truth.py
-python scripts\p2_evaluation.py
-python scripts\evaluate_existing_transcripts.py
-```
-
-Configs: `config\config.yaml` (FP16 batch), `config\live_config.yaml` (4-bit live).
+`scripts/generate_thesis_figures.py` now computes rather than asserts: fusion panels, the real bias
+sweep, per-video transcript lengths counted from files. **Figure 6.5 (failure modes) has no
+analysis behind it** and prints a warning; label a sample of errors or drop it.
 
 ---
 
 ## How to work in this repo
 
-- **Treat the pipeline as a working artifact.** It produced the reported numbers. Edits that touch ASR, fusion, evaluator, or summarizer should be discussed before being made.
-- **`scripts/` is exploratory.** Many one-off evaluation/analysis scripts live there. It's fine to add new ones; don't delete old ones without checking — they're part of the experimental record.
-- **`output/` is full of past runs.** Don't clean it up. Specific dirs like `output/comprehensive/`, `output/live_focused/`, `output/L1..L7/`, `output/test_*/` are evidence of prior experiments.
-- **`data/ground_truth/`** holds the manually transcribed reference text — treat it as read-only.
-- **Models are heavy.** Don't run the full pipeline just to "verify" a small change — use `--mock --skip-gaze` or hit a single module's unit path.
-- **Romanization is non-standard.** Multiple spellings of the same Bengali word are valid; that's why WER is excluded. When generating examples or test strings, follow what already appears in transcripts and ground truth.
-- **No emoji in code or new docs** unless the user explicitly asks. (Existing files have some — leave them.)
+- **Compute, never assert.** Every reported number needs a command in RESULTS.md. This thesis had
+  a fabricated p = 0.003, an invented alpha sweep, invented ablation rows, wrong per-video lengths and
+  unsourced failure-mode shares. Check provenance before trusting any number in a figure or table.
+- **Report negatives as negatives.** The user accepted this; don't spin a null result.
+- Edits to ASR, fusion, evaluator or summarizer: discuss first, keep old behaviour reproducible.
+- `scripts/` is the experimental record; add freely, don't delete. `output/` is evidence; don't clean it.
+- `data/ground_truth/` is read-only. The original 9 files break the 30 s rule (98% of segments over
+  30 s) and lack Speaker IDs; leave them, they produced the headline result.
+- Heavy models: don't run the full pipeline to verify a small change; use `--mock --skip-gaze` or a
+  dry run.
+- No emoji in new code or docs. Existing files have some; leave them.
+- Bash heredocs have mangled `\n` and backslashes several times here. Use the Edit/Write tools for code
+  containing escapes.
+- Commit and push when the user asks; end commit messages with the Co-Authored-By line in effect.
 
 ---
 
-## Open threads / known gaps
+## Open threads
 
-- Thesis chapters 3, 7, 9 are stubs (1, 2, 5, 6 have content); no chapter_4/chapter_8 files exist — confirm the required chapter list against the BRAC template.
-- Dataset expansion to ~8 hours is under way; transcription effort (~5–8× real time) is the bottleneck. When it lands: run the validator, then `prepare_data.py --test-speakers <ids>`, then `scripts/run_scaling_curve.py --hours 2 4 6 8`.
-- **Defense is ~1 week out as of 2026-09-20**, not a month. Priorities in order: the fine-tune result (done), honest statistics (done), chapters 3/7/9 (writing, user says there is time), illustrated notes as the visible contribution.
-- Validator output on the existing 9 ground-truth files: 95 errors, 63 warnings. Mostly segments over the 30 s Whisper window, plus smart quotes and a few spellings that contradict the guide. Ground truth is read-only; do not auto-fix without asking.
-- Transliteration fusion similarity scores are low — open question whether to improve or document as a limitation.
-- `THESIS_P2_PROGRESS_LOG.md` is 0 bytes in the working tree. The 525-line version is in HEAD and a 2026-02-03 copy is in `Read Me/`; THESIS_DEFENSE.md cites its line 515.
-- `config/config.yaml` and `src/model_registry.py` still default to Qwen2.5-14B, `gpu_memory_gb: 12` and `enable_wer: true`, contradicting the documented 7B setup (THESIS_DEFENSE.md section 5).
-- Gaze tracking is a documented negative result; revisiting it would need a different model or different recordings.
+- **New data** (~8 h) arriving from transcribers. They were told on 2026-09-21: 10–25 s segments,
+  never over 30, and `# Speaker ID:` on every file. Validate with `scripts/validate_ground_truth.py`,
+  then `run_p3_experiment.py --test-speakers B,<new ids> --model openai/whisper-large-v3-turbo
+  --curve-hours 2 4 6 8`.
+- **Board ground truth** being verified by the user; three items flagged.
+- **Reference notes** for 2 lectures would close the "summarizer never evaluated" gap as a pilot.
+- **Chapters 3, 7, 9** are stubs; `chapter_7.tex` is 0 bytes and not `\input` in main.tex.
+- **Figure 6.5** needs an error analysis or removal.
+- `config/config.yaml` and `src/model_registry.py` default to Qwen2.5-14B, contradicting the 7B setup.
+- `THESIS_P2_PROGRESS_LOG.md` is 0 bytes in the working tree; the full version is in HEAD.
 
 ---
 
-*Maintained by Claude. Last refreshed: 2026-09-20 (fine-tune trained and evaluated; fusion statistics computed; GPU corrected to RTX 3060 12 GB; validator, scaling-curve and illustration tooling added).*
+*Maintained by Claude. Last refreshed 2026-09-21 as the handoff from the 3060 to the 5090.*
