@@ -1,0 +1,26 @@
+[
+  {
+    "era": 1,
+    "from": "0:40",
+    "to": "1:30",
+    "frames": 6,
+    "tiles_total": 858,
+    "tiles_fully_clear": 733,
+    "clear_fraction": 0.8543,
+    "worst_tile_covered": 0.7666,
+    "distinct_frames_used": 5,
+    "image": "output\\annotation_demo\\all9\\BanglaASR11\\board_era1_040.jpg"
+  },
+  {
+    "era": 2,
+    "from": "1:40",
+    "to": "2:30",
+    "frames": 6,
+    "tiles_total": 858,
+    "tiles_fully_clear": 506,
+    "clear_fraction": 0.5897,
+    "worst_tile_covered": 1.0,
+    "distinct_frames_used": 5,
+    "image": "output\\annotation_demo\\all9\\BanglaASR11\\board_era2_140.jpg"
+  }
+]
