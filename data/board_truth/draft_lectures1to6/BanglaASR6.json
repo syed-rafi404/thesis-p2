@@ -1,0 +1,73 @@
+{
+  "lecture": "BanglaASR6",
+  "topic": "Digital logic design: analog vs digital, logic gates, AND, OR, NOT",
+  "note": "DRAFT by Claude reading the reconstructed board images on 2026-09-21, without looking at any Qwen transcription. Not verified. A human must check every item before any number from this file is used. Items marked verify:true were hard to read.",
+  "caveat": "Speaker B lecture, held out from the corrected fine-tune, so valid for the VLM and for notes. Gate truth tables are textbook content. 'AND gate' and 'OR gate' are not scored on the gate-list board because the substring test would find them inside 'NAND gate' and 'NOR gate'.",
+  "boards": [
+    {
+      "era": 1,
+      "image": "output/annotation_demo/all9/BanglaASR6/board_era1_010.jpg",
+      "items": [
+        {"text": "Digital Logic Design", "kind": "term"},
+        {"text": "continuous value", "kind": "phrase", "alt": ["continuous values"]},
+        {"text": "Discrete value", "kind": "phrase", "alt": ["Discrete values"]},
+        {"text": "TTL", "kind": "term"},
+        {"text": "5 volt", "kind": "number", "alt": ["5 volts", "5V", "5 V"]},
+        {"text": "0 volt", "kind": "number", "alt": ["0 volts", "0V", "0 V"]},
+        {"text": "Logic 1", "kind": "term"},
+        {"text": "Logic 0", "kind": "term"},
+        {"text": "1011", "kind": "number", "verify": true, "note": "small writing at the bottom right"}
+      ]
+    },
+    {
+      "era": 2,
+      "image": "output/annotation_demo/all9/BanglaASR6/board_era2_320.jpg",
+      "items": [
+        {"text": "Logic gates", "kind": "term"},
+        {"text": "NOT gate", "kind": "term"},
+        {"text": "NAND gate", "kind": "term"},
+        {"text": "X-OR gate", "kind": "term", "alt": ["XOR gate"]},
+        {"text": "X-NOR gate", "kind": "term", "alt": ["XNOR gate"]},
+        {"text": "Fundamental gates", "kind": "phrase", "alt": ["Fundamental gate"]},
+        {"text": "Universal gate", "kind": "phrase", "alt": ["Universal gates"]},
+        {"text": "Exclusive gate", "kind": "phrase", "alt": ["Exclusive gates"]}
+      ]
+    },
+    {
+      "era": 3,
+      "image": "output/annotation_demo/all9/BanglaASR6/board_era3_600.jpg",
+      "items": [
+        {"text": "AND gate", "kind": "term"},
+        {"text": "A.B = X", "kind": "code", "alt": ["A.B=X", "A·B = X", "A · B = X", "A . B = X"]},
+        {"text": "Light ON", "kind": "phrase"},
+        {"text": "Light OFF", "kind": "phrase"},
+        {"text": "Bulb", "kind": "phrase", "note": "the lecturer's light-bulb analogy for inputs"}
+      ]
+    },
+    {
+      "era": 4,
+      "image": "output/annotation_demo/all9/BanglaASR6/board_era4_1010.jpg",
+      "items": [
+        {"text": "AND gate", "kind": "term"},
+        {"text": "X = AB", "kind": "code", "alt": ["X=AB"]}
+      ]
+    },
+    {
+      "era": 5,
+      "image": "output/annotation_demo/all9/BanglaASR6/board_era5_1110.jpg",
+      "items": [
+        {"text": "OR Gate", "kind": "term"},
+        {"text": "A+B = X", "kind": "code", "alt": ["A + B = X", "A+B=X", "X = A+B", "X = A + B"]}
+      ]
+    },
+    {
+      "era": 6,
+      "image": "output/annotation_demo/all9/BanglaASR6/board_era6_1310.jpg",
+      "items": [
+        {"text": "NOT gate", "kind": "term"},
+        {"text": "Inverter", "kind": "term"},
+        {"text": "alternate of A", "kind": "phrase"}
+      ]
+    }
+  ]
+}

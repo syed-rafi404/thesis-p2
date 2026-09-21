@@ -1,0 +1,48 @@
+{
+  "lecture": "BanglaASR4",
+  "topic": "Python while and for loops",
+  "note": "DRAFT by Claude reading the reconstructed board images on 2026-09-21, without looking at any Qwen transcription. Not verified. A human must check every item before any number from this file is used.",
+  "caveat": "Speaker A lecture. Valid for scoring the VLM, which never sees audio. Do NOT use it to score notes built from a fine-tuned transcript made by an adapter trained on speaker A. The list values 70, 80, 50, 60 are the diagnostic item.",
+  "boards": [
+    {
+      "era": 1,
+      "image": "output/annotation_demo/all9/BanglaASR4/board_era1_000.jpg",
+      "items": [
+        {"text": "While and For Loops", "kind": "term", "alt": ["While and For Loop"]},
+        {"text": "print(\"Yes\")", "kind": "code", "alt": ["print('Yes')"]}
+      ]
+    },
+    {
+      "era": 2,
+      "image": "output/annotation_demo/all9/BanglaASR4/board_era2_120.jpg",
+      "items": [
+        {"text": "While and For Loops", "kind": "term", "alt": ["While and For Loop"]},
+        {"text": "num = 0", "kind": "code", "alt": ["num=0"]},
+        {"text": "while num < 10:", "kind": "code", "alt": ["while num<10:", "while num < 10"]},
+        {"text": "print(\"yes\")", "kind": "code", "alt": ["print('yes')"]},
+        {"text": "num = num + 1", "kind": "code", "alt": ["num=num+1", "num = num+1"]}
+      ]
+    },
+    {
+      "era": 3,
+      "image": "output/annotation_demo/all9/BanglaASR4/board_era3_320.jpg",
+      "items": [
+        {"text": "While and For Loops", "kind": "term", "alt": ["While and For Loop"]},
+        {"text": "for i in range(10):", "kind": "code", "alt": ["for i in range(10)"]}
+      ]
+    },
+    {
+      "era": 4,
+      "image": "output/annotation_demo/all9/BanglaASR4/board_era4_530.jpg",
+      "note": "The last line is cut off; it looks like print(Sum).",
+      "items": [
+        {"text": "While and For Loops", "kind": "term", "alt": ["While and For Loop"]},
+        {"text": "list_1 = [70, 80, 50, 60]", "kind": "code", "alt": ["list_1=[70,80,50,60]", "list_1 = [70,80,50,60]"]},
+        {"text": "length = len(list_1)", "kind": "code", "alt": ["length=len(list_1)"]},
+        {"text": "Sum = 0", "kind": "code", "alt": ["Sum=0"]},
+        {"text": "for i in range(length):", "kind": "code", "alt": ["for i in range(length)"]},
+        {"text": "Sum = Sum + list_1[i]", "kind": "code", "alt": ["Sum=Sum+list_1[i]", "Sum = Sum+list_1[i]"]}
+      ]
+    }
+  ]
+}
