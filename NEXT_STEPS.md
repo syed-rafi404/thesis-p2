@@ -17,6 +17,18 @@ If you are lost, start here. One page. Updated 2026-09-21.
   noise. **Drop the old "the curve is still falling" argument**; it came from the leaked split.
 - Old run kept untouched in `D:\T2520875\thesisP2\ft_work_v1_video6_in_train\`.
 
+## 2026-09-21 evening: the best result so far (5090, while you were away)
+
+- **whisper-large-v3-turbo trained on Speaker1+3, tested on unseen Speaker2:**
+  CER 70.0% -> **48.8-52.1%**, WER 93.8% -> **73.5-74.8%**, plain decoding, two seeds,
+  p < 1e-08. No loop safeguard needed. This is the headline candidate (RESULTS.md 1.4).
+- Adding the second training speaker helps the large model significantly (p <= 0.004).
+- The large model trained on Speaker1 alone is not reliably better than whisper-small,
+  but it is robust: its gain survives plain decoding.
+- VLM on Speaker3's boards: 89.9% recall. Board reconstruction fails for that speaker
+  (lecturer never moves away); raw frames work as well or better.
+- All 35 boards of lectures 1-9: VLM keyword 34.8% -> full transcription 91.5%.
+
 ## Your job: check the board answer keys (no JSON editing)
 
 Double-click `F:\thesisP2\thesisP2\output\annotation_demo\verify_all_boards.html` (after

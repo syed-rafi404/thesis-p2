@@ -1,0 +1,66 @@
+# Fine-tune evaluation: base vs LoRA
+
+Base model: `openai/whisper-large-v3-turbo`
+Adapter: `D:\T2520875\thesisP2\ft_work_AC\lora_turbo_AC_seed1`
+Split: `test.jsonl`, clips scored: 184
+
+All text is compared after `normalize_banglish()` from `finetune/prepare_data.py`.
+
+Decoding: greedy.
+
+| Metric | Base | Fine-tuned |
+|---|---|---|
+| WER, per clip median | 93.8% | 74.8% |
+| WER, per clip mean | 111.9% | 88.4% |
+| WER, whole split | 92.0% | 63.7% |
+| CER, per clip median | 70.0% | 52.1% |
+| CER, per clip mean | 80.7% | 63.6% |
+| Term recall | 88.3% | 88.3% |
+| Term precision | 60.0% | 84.4% |
+| Term F1 | 71.5% | 86.3% |
+| Clips that run away | 12 of 184 | 11 of 184 |
+
+Means are reported for completeness but are dominated by a few clips where a
+model falls into a repetition loop and emits far more words than were spoken,
+which pushes error rates above 100%. The rank-based tests below are the ones
+to read.
+
+- **WER**: fine-tune wins on 139 of 184 clips. Wilcoxon signed-rank p = 9.56e-12, sign test p = 2.31e-12.
+- **CER**: fine-tune wins on 138 of 184 clips. Wilcoxon signed-rank p = 2.59e-11, sign test p = 7.09e-12.
+
+Paired test on the mean per-clip WER, for reference: p = 0.0008 (sign-flip Monte Carlo, n=177, 20000 resamples).
+
+Term F1 here is exact matching against a fixed 82-word English lexicon,
+reported only so these numbers sit on the same scale as the 73.9% baseline.
+
+## Examples
+
+**BanglaASR7/seg_043.wav**
+
+- reference: now, a and b, x-nor gate er amra logical circuit ta dekhchi. toh x-or gate aage akbo. x-or gate akar pore ami ekta not gate evabe apply kore dibo. tahole ami peye jabo x-nor gate.
+- base: x not gate is, i am logical circuit to see x or gate is a good x or gate is a good x or gate is a good x or gate is a good x or gate is a good x or gate is a good x or gate is a good x or gate is a good x or gate is a good x or gate is a good x or gate is a good x or gate is a good x or gate is a good x or gate is a good x or gate is a good x or gate is a good x or gate is a good x or gate is a good x or gate is a good x or gate is a good x or gate is a good x or gate is a good x or gate is a good x or gate is a good x or gate is a good x or gate is a good x or gate is a good x or gate is a good x or gate is a good x or gate is a good x or gate is a good x or gate
+- tuned: toh x not gate er amra logical circuit ta dekchi. toh x or gate aage akbo, x or gate akar pore, ami ekta not gate kebabe apply kache.
+
+**BanglaASR7/seg_019.wav**
+
+- reference: ekhon ami jodi abar etar jonno similar table create kori. okay. a, b amar duita input. so amar possible combination hocche 0 0, 0 1, 1 0 and 1 1. ekhon ami ki korchi first e?
+- base: so, we will see the same table as we will see the same table as we will see the same table as we will see the same table as we will see the same table as we will see the same table as we will see the same table as we will see the same table as we will see the same table as we will see the same table as we will see the same table as we will see the same table as we will see the same table as we will see the same table as we will see the same table as we will see the same table as we will see the same table as we will see the same table as we will see the same table as we will see the same table as we will see the same table as we will see the same table as we will see the same table as we will see the same table as we will see the same table as we will see the same table as we will see the same table as we will see the same table as we will
+- tuned: ekhon ami jodi abr etar jonno similar table create kori, okay. a bi amar doita input, so amr possible combination hocche zero, zero, zero.
+
+**BanglaASR8/seg_022.wav**
+
+- reference: so eitai hocche query language er kaj. so mysql e ami first e eije table ta, ei table tao toh kono bhabe create kora hoyeche, right? so eitao kintu query er maddhomei create kora hoy.
+- base: result a output is a bit different so it is a query language so mysql is first a is a table that a table that is create a table that is a table that is a table that is create a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a
+- tuned: so, my sql-er ami first a ei jitai table ta. ei table teoto kono bhabe create kora hoyeche, right? so eta o kintu query er my sql-er jeta dibe.
+
+**BanglaASR6/seg_031.wav**
+
+- reference: so eita hocche one kind of analogy. ekhon and gate er jodi ami logic circuit ta dekhi, logic circuit ta dekhte kirokom hoy. and gate ki hocche? duita input jacche. duita input er ei device ta ami kivabe aa visualize kori.
+- base: so, this is one kind of analogy. now, i will see the logic side of the logic side of the logic side of the logic side of the logic side of the logic side of the logic side of the logic side of the logic side of the logic side of the logic side of the logic side of the logic side of the logic side of the logic side of the logic side of the logic side of the logic side of the logic side of the logic side of the logic side of the logic side of the logic side of the logic side of the logic side of the logic side of the logic side of the logic side of the logic side of the logic side of the logic side of the logic side of the logic side of the logic side of the logic side of the logic side of the logic side of the logic side of the logic side of the logic side of the logic side of the logic side of the logic side of the logic side of the logic side of the logic side of the logic
+- tuned: so, eta hocche one kind of analogy. ekhon, and gate er jodi ami logic side kita dekhi, logic side kita dekhte ki rokom hoy. and gate er ki hocche? duita input jakche. duita input er ei device taake ami ki bhaber aa visualize korte korte parbo.
+
+**BanglaASR6/seg_036.wav**
+
+- reference: suppose input ta hocche a and output ta hocche b and amar output jeta ber hobe sheta hocche x. ekhon jodi ami similarly ekta table draw kori a, b as a input and a x output.
+- base: so, output is not available. so, the output is not available. so, the output is not available. so, the output is not available. so, the output is not available. so, the output is not available. so, the output is not available. so, the output is not available. so, the output is not available. so, the output is not available. so, the output is not available. so, the output is not available. so, the output is not available. so, the output is not available. so, the output is not available. so, the output is not available. so, the output is not available. so, the output is not available. so, the output is not available. so, the output is not available. so, the output is not available. so, the output is not available. so, the output is not available. so, the output is not available. so, the output is not available. so
+- tuned: so amar output jeta ber hobe, sheta hocche x. akhn ami jodi similarly table draw kori, a b as a input, ar hocche a x output. tahole, zeros and ones tiye ami a and b er kichu kortechi.

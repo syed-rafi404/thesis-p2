@@ -192,7 +192,33 @@ then `evaluate.py --base openai/whisper-large-v3-turbo --adapter <ft_work>/lora_
 (and `greedy`; and with `THESIS_FT_DIR=<ft_work_3spk> --split test_C.jsonl` for speaker C).
 Artefacts: `ft_work/eval_turbo_*.json`, `ft_work_3spk/eval_C_turbo_*.json`.
 
-Training on A + C with the large model: running, results to follow in this section.
+**Training the large model on A + C (80.0 min, two speakers), test on B — the
+strongest configuration measured:**
+
+| Decode | WER median, base -> tuned (s42 / s1) | CER median, base -> tuned (s42 / s1) | Wilcoxon | Runaway |
+|---|---|---|---|---|
+| **greedy** | 93.8% -> **73.5% / 74.8%** | 70.0% -> **48.8% / 52.1%** | WER p = 2.3e-11 / 9.6e-12, CER p = 5.9e-09 / 2.6e-11 | 12 -> 12 / 11 |
+| safeguard | 91.8% -> 72.1% / 73.1% | 68.9% -> 48.3% / 51.2% | all p < 1e-12 | 3 -> 2 / 3 |
+
+Better than base on 134-143 of 184 clips. **No loop safeguard needed**: under
+plain greedy decoding the fine-tune loops no more than the base model does.
+
+A + C against A alone, large model, per clip, same seed, safeguard: A + C is
+better on WER (z = +4.41 and +6.03, p < 0.001) and on CER (p = 0.004 and
+< 0.001), in both seeds. **With the larger model, adding a second training
+speaker helps significantly**; with whisper-small it was only a trend (1.2).
+Caveat: A + C adds both a speaker and 24 minutes, so this cannot say which of
+the two caused it.
+
+**If one headline is needed, it is this row:** whisper-large-v3-turbo, LoRA,
+trained on two lecturers (80 min), tested on a third it never heard: CER
+70.0% -> 48.8-52.1%, WER 93.8% -> 73.5-74.8%, plain greedy decoding, two seeds,
+p < 1e-08. It is also the design the user proposed before seeing any of these
+numbers: train on every speaker except the test one.
+
+Reproduce: `THESIS_FT_DIR=<ft_work_AC>`, `train_lora.py --model openai/whisper-large-v3-turbo --data-dir <ft_work_AC> --adapter-out <ft_work_AC>/lora_turbo_AC_seed42 --epochs 8 --batch 8 --seed 42`,
+then `evaluate.py --base openai/whisper-large-v3-turbo --adapter <ft_work_AC>/lora_turbo_AC_seed42 --decode greedy`.
+Artefacts: `ft_work_AC/eval_AC_turbo_*.json`.
 
 ### 1.3 Superseded: the leaked split (do not quote)
 
