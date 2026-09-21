@@ -161,6 +161,39 @@ scale"**, no stronger. Under greedy decoding A+C still loops (51 and 59 clips).
 
 Artefacts: `ft_work_AC/eval_AC_*.json`.
 
+### 1.4 whisper-large-v3-turbo instead of whisper-small (2026-09-21, RTX 5090)
+
+Same corrected split (train speaker A, 55.6 min), **same recipe unchanged**
+(8 epochs, batch 8, LoRA r 16 on q/v, lr 1e-3; not re-tuned for the bigger
+model, deliberately, to avoid tuning on the test set). Base model
+`openai/whisper-large-v3-turbo`, 809M parameters. Training takes 101 s.
+
+| Test speaker | Decode | WER median, base -> tuned | CER median, base -> tuned | Wilcoxon WER / CER |
+|---|---|---|---|---|
+| B (184 clips) | safeguard | 91.8% -> 79.2% (s42), 85.7% (s1) | 68.9% -> 58.2% (s42), 61.0% (s1) | all p < 1e-04 |
+| B (184 clips) | **greedy** | 93.8% -> 82.8% (s42), 90.0% (s1) | 70.0% -> 61.4% (s42), 63.8% (s1) | p = 0.005 / 0.015 (s42), 0.048 / 0.034 (s1) |
+| C (75 clips) | safeguard | 94.4% -> 76.9% (s42), 77.6% (s1) | 73.3% -> 51.8% (s42), 44.2% (s1) | all p < 1e-08 |
+| C (75 clips) | **greedy** | 94.6% -> 79.2% (s42), 79.5% (s1) | 74.2% -> 54.4% (s42), 46.7% (s1) | all p < 6e-04 |
+
+**The useful finding: the larger model's gain survives plain greedy decoding**,
+on both unseen speakers and both seeds (all positive, all p < 0.05). It loops
+far less (22-26 runaway clips of 184 against 58 for whisper-small), so with it
+the headline does not depend on the loop safeguard. This answers the obvious
+question about a safeguard adopted after seeing results.
+
+**Large vs small, per clip, both fine-tuned, safeguard, same seed:** on speaker B
+no significant difference (WER p = 0.16 and 0.52, CER p = 0.62 and 0.16); on
+speaker C the large model is better on WER (p = 0.039 and 0.002) but not on CER
+(p = 0.44 and 0.30). **Say: at one hour of data the larger model is not reliably
+more accurate, but it is more robust.**
+
+Reproduce: `python finetune/train_lora.py --model openai/whisper-large-v3-turbo --adapter-out <ft_work>/lora_turbo_seed42 --epochs 8 --batch 8 --seed 42`,
+then `evaluate.py --base openai/whisper-large-v3-turbo --adapter <ft_work>/lora_turbo_seed42 --decode fallback`
+(and `greedy`; and with `THESIS_FT_DIR=<ft_work_3spk> --split test_C.jsonl` for speaker C).
+Artefacts: `ft_work/eval_turbo_*.json`, `ft_work_3spk/eval_C_turbo_*.json`.
+
+Training on A + C with the large model: running, results to follow in this section.
+
 ### 1.3 Superseded: the leaked split (do not quote)
 
 Kept so the correction is documented. The old run is untouched in
