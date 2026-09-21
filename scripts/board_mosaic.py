@@ -157,7 +157,12 @@ def tile_sources(masks, era, xs, ys, tile):
     cover = np.ones((len(ys), len(xs)), dtype=np.float32)
     for gy, y0 in enumerate(ys):
         for gx, x0 in enumerate(xs):
-            best_frac = 1.0
+            # Starts above any possible coverage so that the first frame
+            # examined always wins. Starting at 1.0 meant a tile the lecturer
+            # covered completely in every frame of the era never beat its own
+            # initial value, kept a source of -1, and was then skipped during
+            # assembly, leaving a black rectangle in the output.
+            best_frac = float("inf")
             best_idx = -1
             for i in range(end - 1, start - 1, -1):
                 frac = float(masks[i][y0:y0 + tile, x0:x0 + tile].mean())
@@ -204,6 +209,9 @@ def assemble(frames, sizes, sources, xs, ys, tile, scale):
             acc[y0:y0 + ftile, x0:x0 + ftile] += patch * window
             wsum[y0:y0 + ftile, x0:x0 + ftile] += window
 
+    uncovered = int((wsum == 0).sum())
+    if uncovered:
+        print(f"    warning: {uncovered} pixels had no tile and are left black")
     wsum[wsum == 0] = 1.0
     return Image.fromarray(np.clip(acc / wsum, 0, 255).astype(np.uint8))
 
