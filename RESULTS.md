@@ -671,7 +671,14 @@ Checked by eye on all 10 Speaker3 boards (before/after sheets below), **not meas
 - The network alone leaves the shadow as sharp blocks; with the shadow mask and the display
   clean-up (4.1.1) the boards are as clean as or cleaner than the old method's, with faint
   grey smudges left on some.
-- Not yet run on lectures 1-9, and the VLM has not read these boards.
+- **Lectures 1-9 (35 boards, 10 s frames, the same eras as 4.1):** the new mosaic matches the old
+  on every board and recovers a little on some: BanglaASR2 era 2 "Name = R" (old "Name="),
+  BanglaASR9 era 1 "sum()" (old "su"), and the BanglaASR6 binary number (the loss in 5.0,
+  true value 01011011): old board "0 _ _ _ 1011", new board "0 _ 011011", 7 of 8 digits.
+  With the clean-up every one of the 35 is a clean white board. Sheets:
+  `output/annotation_demo/all9_deeplab_shadow/compare_1.jpg` ... `compare_6.jpg`, made by
+  `python scripts/compare_board_sets.py --old output/annotation_demo/all9 --new output/annotation_demo/all9_deeplab_shadow`.
+- The VLM has not read any of the new boards; the 5.0 numbers are on the old ones.
 
 ```
 python scripts/board_mosaic.py --frames output/speaker3_runs_2s/BanglaASR{n}/ingested/frames --interval 2 \
