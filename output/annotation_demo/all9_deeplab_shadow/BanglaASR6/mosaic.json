@@ -1,0 +1,74 @@
+[
+  {
+    "era": 1,
+    "from": "0:10",
+    "to": "3:10",
+    "frames": 19,
+    "tiles_total": 858,
+    "tiles_fully_clear": 856,
+    "clear_fraction": 0.9977,
+    "worst_tile_covered": 0.0469,
+    "distinct_frames_used": 6,
+    "image": "output\\annotation_demo\\all9_deeplab_shadow\\BanglaASR6\\board_era1_010.jpg"
+  },
+  {
+    "era": 2,
+    "from": "3:20",
+    "to": "5:50",
+    "frames": 16,
+    "tiles_total": 858,
+    "tiles_fully_clear": 858,
+    "clear_fraction": 1.0,
+    "worst_tile_covered": 0.0186,
+    "distinct_frames_used": 6,
+    "image": "output\\annotation_demo\\all9_deeplab_shadow\\BanglaASR6\\board_era2_320.jpg"
+  },
+  {
+    "era": 3,
+    "from": "6:00",
+    "to": "10:00",
+    "frames": 25,
+    "tiles_total": 858,
+    "tiles_fully_clear": 858,
+    "clear_fraction": 1.0,
+    "worst_tile_covered": 0.0137,
+    "distinct_frames_used": 6,
+    "image": "output\\annotation_demo\\all9_deeplab_shadow\\BanglaASR6\\board_era3_600.jpg"
+  },
+  {
+    "era": 4,
+    "from": "10:10",
+    "to": "11:00",
+    "frames": 6,
+    "tiles_total": 858,
+    "tiles_fully_clear": 858,
+    "clear_fraction": 1.0,
+    "worst_tile_covered": 0.0176,
+    "distinct_frames_used": 3,
+    "image": "output\\annotation_demo\\all9_deeplab_shadow\\BanglaASR6\\board_era4_1010.jpg"
+  },
+  {
+    "era": 5,
+    "from": "11:10",
+    "to": "13:00",
+    "frames": 12,
+    "tiles_total": 858,
+    "tiles_fully_clear": 846,
+    "clear_fraction": 0.986,
+    "worst_tile_covered": 0.5332,
+    "distinct_frames_used": 8,
+    "image": "output\\annotation_demo\\all9_deeplab_shadow\\BanglaASR6\\board_era5_1110.jpg"
+  },
+  {
+    "era": 6,
+    "from": "13:10",
+    "to": "14:50",
+    "frames": 11,
+    "tiles_total": 858,
+    "tiles_fully_clear": 858,
+    "clear_fraction": 1.0,
+    "worst_tile_covered": 0.0195,
+    "distinct_frames_used": 6,
+    "image": "output\\annotation_demo\\all9_deeplab_shadow\\BanglaASR6\\board_era6_1310.jpg"
+  }
+]

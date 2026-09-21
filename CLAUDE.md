@@ -15,19 +15,13 @@ goes stale, fix it rather than adding a contradictory note.
 3. Every number the thesis may claim is in [RESULTS.md](RESULTS.md) with the command that
    regenerates it. Section 7 lists retired, fabricated claims. Never reuse one.
 
-**Where things stood at the last checkpoint (2026-09-21, 21:40, end of the 5090 session):**
-everything is committed and pushed. That session found and fixed the video-6 speaker leak, added
-Speaker3 (videos 10–13), ran the VLM and notes experiments, the large-Whisper fine-tunes and a full
-leave-one-speaker-out (RESULTS.md 1.5, the new headline). The next session is expected on the
-**3060**: `git pull`, then `scripts/restore_artifacts.py --apply` with the 3060's fine-tune Python.
-**Waiting on the user:** (1) checking the board answer keys with
-`output/annotation_demo/verify_all_boards.html`; they will paste corrections as text, then apply
-them to the JSON under `data/board_truth/` and re-score. (2) A yes/no on fixing the broken lecturer
-quotes in the `mixed` notes prompt (a summarizer edit; ask first). (3) Whether to add
-spelling-normalized and fuzzy WER (proposed, not computed). Qwen runs need the 5090.
-The 5090's first job is NEXT_STEPS.md step 5: the VLM board transcription (raw frame vs
-reconstructed board) and regenerating the notes one change at a time. Those two need Qwen weights,
-which the 3060 never had.
+**Where things stood at the last checkpoint (2026-09-22, on the 3060):** everything committed and
+pushed. Since the 5090 session: the user hand-checked all 45 board answer keys (RESULTS.md 5.0 now
+rests on them); spelling-fair WER computed (1.6); all 45 boards rebuilt with a learned person mask
+plus a display clean-up (4.1.1-4.1.2); and **the user stated the final deliverable** (next section
+but one; plan, status and open decisions in NEXT_STEPS.md "THE GOAL"). **Next:** build stage A on
+the 3060 once the user says "go", then stage B (all Qwen runs) on the 5090. Qwen never runs on the
+3060, by the user's choice ("let the 5090 do the hard work").
 
 ---
 
@@ -62,6 +56,42 @@ avoid "Understanding", which overclaims.
 
 ---
 
+## The final deliverable (the user's spec, 2026-09-22): build toward this
+
+Video in, a usable lecture note out:
+1. Fine-tuned Whisper -> Banglish transcript (`transcribe_finetuned.py`; done, measured).
+2. Per board era: the clean board (`board_mosaic.py --person-model deeplab+shadow`, then
+   `clean_board.py --mask`), numbered coloured boxes from `board_regions.find_regions`, each box
+   **named and transcribed by the VLM** (Set-of-Mark style: boxes drawn and numbered on the image,
+   Qwen2.5-VL answers per number). Look: `Temp/mockup_nand_board.jpg`.
+3. A notes LLM combines board and transcript into a lecture note that refers to the boxes
+   ("look at purple box 5"). Target look: `Temp/MOCKUP_lecture_note.html`.
+4. Three versions per lecture: `english`, `banglish`, `bangla` (Bengali script, English technical
+   terms kept). The student picks.
+
+Agreed with the user, who asked to be pushed back on expectations:
+- **The mockup is Claude's handwork.** Box names and all its text are Claude's; the first quote was
+  hand-edited ("ma" -> "mane", "barcho lash" -> "bar"). Real parts: the board pixels, the box
+  positions, the quotes (from `transcript_finetuned_v2.txt`, lecture 7). Never present it as output.
+- Always the clean board; the raw-frame-with-teacher route is dropped.
+- Quotes only word for word from `transcript_finetuned_v2.txt`; a checker drops the rest. This
+  replaces "fix the broken `mixed` quotes".
+- Bangla is the weakest version; the user judges it. Usefulness needs a human rating (5 classmates,
+  2-3 lectures, 1-5); until then the thesis says "demonstrate".
+- New prompt styles go beside the old ones; `legacy` stays the default. The design is agreed; the
+  build waits for the user's "go".
+- Notes model: Qwen3-32B at 4-bit on the 5090 is proposed, **not confirmed**; the 7B produced the
+  88.0%. Any new model gets board recall re-scored. Practical: Qwen3-32B in bf16 is about 65 GB to
+  download, so check free space on the 5090's D: first and how 4-bit loading works there
+  (bitsandbytes on Windows); Qwen3-14B loaded in 8-bit is the fallback. A paid-API row only if the
+  user accepts sending lecture text out.
+- **Scope frozen until the defense.** The 10 h of new data comes after it.
+- Stages: A = build on the 3060 with a stand-in model; B = Qwen runs on the 5090 (VLM re-read of the
+  new boards with old-vs-new scoring, box naming, notes x 3 languages, 7B vs 32B vs mockup side by
+  side); C = the user's classmate rating and Bangla check. Details: NEXT_STEPS.md "THE GOAL".
+
+---
+
 ## The thesis as it now stands (details and numbers in RESULTS.md)
 
 **THE HEADLINE NOW (RESULTS.md 1.5): leave-one-speaker-out, whisper-large-v3-turbo + LoRA, plain
@@ -84,12 +114,9 @@ old "still falling, so more data" argument came from the leaked split; drop it.
 **Second unseen speaker (RESULTS.md 1.1):** Speaker3, videos 10–13 (label C, 75 clips): the A-only
 adapters give CER 68.4% → 46.4–46.7%, p < 1e-08, significant even under greedy. Training on A+C
 leans better on B in both seeds but is not significant (Wilcoxon p = 0.06–0.29; `ft_work_AC/`).
-**Pending the user's yes:** leave-one-speaker-out folds (train A+B test C, train B+C test A), and
-drafting answer keys for the 25 boards of lectures 1–6 (the VLM already read all 35; the key only
-covers 7–9 because those were the test lectures when it was made; the VLM result does not depend
-on the ASR split). The user asked about
-spelling-normalized / fuzzy WER for Banglish; proposed, not yet computed. The safeguard was adopted after seeing the greedy
-result; say so, and report both. The old split re-run on the 5090 reproduces 81.8%, so the machine
+Done since: leave-one-speaker-out (1.5, the headline), answer keys for all 45 boards (5.0), and
+spelling-fair / fuzzy WER (1.6: 74.8% and 68.2%, so the gap is not only spelling). The safeguard was
+adopted after seeing the greedy result; say so, and report both. The old split re-run on the 5090 reproduces 81.8%, so the machine
 is not the cause. **Read medians, not means, and read the sign of z, not just p.**
 
 **Three measured negatives.** Fusion: +0.7 pp Term F1, p = 0.32, and the visually biased
@@ -105,7 +132,12 @@ under about 8 pp.**
 **The visual deliverable.** Board reconstruction by tiled mosaicking over erase-separated eras:
 across 9 lectures, 35 boards, median 97.7% of tiles fully clear, 6 boards at 100%, every pixel
 unmodified camera output. It is engineering, not algorithmic novelty; whiteboard occlusion removal
-is an established area. Say so if asked.
+is an established area. Say so if asked. **2026-09-22 (RESULTS.md 4.1.1-4.1.2):** a pretrained
+person-segmentation network (DeepLabV3) plus an exposure-corrected shadow mask replaces the temporal
+lecturer mask as an option; it recovers writing the old mask lost (the TTL diagram; 7 of 8 digits of
+the BanglaASR6 binary number, old 5), judged by eye, not yet scored by the VLM. The display clean-up
+(`clean_board.py`) whitens the background, so a cleaned board is "enhanced", not unmodified; the
+mosaic underneath still is unmodified. Generative inpainting was ruled out: it would invent writing.
 
 **The VLM result for the supervisor — on hand-verified answer keys (RESULTS.md 5.0, 2026-09-22).**
 Same Qwen2.5-VL-7B, only the prompt changed, 35 boards of lectures 1–9, 349 items: board-content
@@ -221,7 +253,9 @@ command; only change global config after asking.
 | Qwen2.5-VL whiteboard reading | **Evaluated, strong** | 88.8% board recall on 35 verified boards with `transcribe_boards.py`; keyword prompt 31.2% |
 | Qwen2.5-7B-Instruct notes | Board recall 88.0% (C, 35 boards) | Lecturer-quote instruction broken; readability unmeasured |
 | Board reconstruction (tiled mosaic) | **Working, measured** | median 97.7% tiles clear, 35 boards |
+| Learned lecturer mask + clean-up | **Working, judged by eye** | All 45 boards; VLM scoring pending (5090) |
 | Region detection | Working, **not evaluated** | No layout ground truth exists |
+| VLM box naming, box-referring notes, Bangla notes | **Not built** | The final deliverable; see its section above |
 | Fusion (dual-ASR, CMV) | Negative | +0.7 pp, p = 0.32 |
 | Visual bias via LogitsProcessor | Failed, disabled | `config/live_config.yaml` still defaults `bias_strength: 2.0` |
 | YOLOv8-Pose gaze tracking | Failed | 0 detections |
@@ -262,6 +296,13 @@ Don't suggest reviving failed approaches unless the user raises them.
 | `prepare_data.py --speaker-map` | `v2` (default, video 6 = B) or `v1` (the superseded leaked split, reproduction only) |
 | `prepare_data.py --only-speakers` | Use only some speakers. **The section 1.0 headline is `--only-speakers A,B --test-speakers B`**; without it speaker C now joins training |
 | `scripts/restore_artifacts.py` | After `git pull` elsewhere: restore `artifacts\` beside the repo and rebuild clips |
+| `scripts/rescore_verified_keys.py` | Every RESULTS.md 5.0 number in one command |
+| `scripts/banglish_wer.py` | Spelling-fair nWER and fuzzy fWER (RESULTS.md 1.6) |
+| `scripts/place_note_figures.py` | Fixes `[[FIGURE n]]` markers in existing notes without the LLM |
+| `board_mosaic.py` new flags (2026-09-22) | `--eras-from` / `--extend-to-erase` (denser frames, reused eras), `--save-occluder`, `--person-model temporal/deeplab/deeplab+shadow`. Defaults unchanged; boards byte-identical without the flags (checked) |
+| `scripts/person_segment.py` | DeepLabV3 person masks and exposure-corrected shadow masks; needs torchvision (3060: the pyenv env; weights cached under `C:\Users\Rafi\.cache\torch`) |
+| `scripts/clean_board.py` | Display clean-up ("whiteboard mode") and `--mask` occluder blanking; replaces background pixels. `--auto-crop` is unreliable; crop by hand |
+| `scripts/compare_board_sets.py` | Sheets of old / new / new-cleaned boards |
 
 `scripts/generate_thesis_figures.py` now computes rather than asserts: fusion panels, the real bias
 sweep, per-video transcript lengths counted from files. **Figure 6.5 (failure modes) has no
@@ -306,7 +347,13 @@ analysis behind it** and prints a warning; label a sample of errors or drop it.
 - ffmpeg on the 5090: installed with winget 2026-09-21 (new shells find it).
 - `prepare_data.py` now skips lectures with no known speaker instead of training on them, and warns
   when labels disagree with the `data\raw\SpeakerN` folders.
-- **Lecturer quotes** in the `mixed` notes do not work (see above).
+- **Lecturer quotes** in the `mixed` notes do not work (see above); the planned quote checker in
+  the final deliverable replaces this fix.
+- **New board pictures in git (2026-09-22):** `output/annotation_demo/all9_deeplab_shadow/` and
+  `output/annotation_demo/speaker3_2s_deeplab_shadow/` (boards, `_occluder.png`, `mosaic.json`,
+  `clean/`, `compare_*.jpg`). Use these on the 5090 rather than regenerating: that needs the video
+  frames, torchvision and, for Speaker3, the 2 s frames in `output/speaker3_runs_2s/`, which exist
+  only on the 3060. The intermediate `speaker3_2s*` test folders are local to the 3060.
 - **Reference notes** for 2 lectures would close the "summarizer never evaluated" gap as a pilot.
 - **Chapters 3, 7, 9** are stubs; `chapter_7.tex` is 0 bytes and not `\input` in main.tex.
 - **Figure 6.5** needs an error analysis or removal.
@@ -315,4 +362,5 @@ analysis behind it** and prints a warning; label a sample of errors or drop it.
 
 ---
 
-*Maintained by Claude. Last refreshed 2026-09-21 as the handoff from the 3060 to the 5090.*
+*Maintained by Claude. Last refreshed 2026-09-22 on the 3060: the final deliverable spec, the new
+board pictures, and the handoff for stage B on the 5090.*

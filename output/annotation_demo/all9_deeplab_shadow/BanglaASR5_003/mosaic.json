@@ -1,0 +1,38 @@
+[
+  {
+    "era": 1,
+    "from": "0:00",
+    "to": "6:00",
+    "frames": 37,
+    "tiles_total": 858,
+    "tiles_fully_clear": 858,
+    "clear_fraction": 1.0,
+    "worst_tile_covered": 0.0176,
+    "distinct_frames_used": 8,
+    "image": "output\\annotation_demo\\all9_deeplab_shadow\\BanglaASR5_003\\board_era1_000.jpg"
+  },
+  {
+    "era": 2,
+    "from": "7:10",
+    "to": "10:40",
+    "frames": 22,
+    "tiles_total": 858,
+    "tiles_fully_clear": 858,
+    "clear_fraction": 1.0,
+    "worst_tile_covered": 0.0195,
+    "distinct_frames_used": 7,
+    "image": "output\\annotation_demo\\all9_deeplab_shadow\\BanglaASR5_003\\board_era2_710.jpg"
+  },
+  {
+    "era": 3,
+    "from": "11:00",
+    "to": "14:00",
+    "frames": 19,
+    "tiles_total": 858,
+    "tiles_fully_clear": 858,
+    "clear_fraction": 1.0,
+    "worst_tile_covered": 0.0146,
+    "distinct_frames_used": 2,
+    "image": "output\\annotation_demo\\all9_deeplab_shadow\\BanglaASR5_003\\board_era3_1100.jpg"
+  }
+]

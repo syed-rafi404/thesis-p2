@@ -1,0 +1,50 @@
+[
+  {
+    "era": 1,
+    "from": "0:20",
+    "to": "1:00",
+    "frames": 21,
+    "tiles_total": 858,
+    "tiles_fully_clear": 742,
+    "clear_fraction": 0.8648,
+    "worst_tile_covered": 1.0,
+    "distinct_frames_used": 12,
+    "image": "output\\annotation_demo\\speaker3_2s_deeplab_shadow\\BanglaASR10\\board_era1_020.jpg"
+  },
+  {
+    "era": 2,
+    "from": "1:40",
+    "to": "2:52",
+    "frames": 37,
+    "tiles_total": 858,
+    "tiles_fully_clear": 825,
+    "clear_fraction": 0.9615,
+    "worst_tile_covered": 0.9385,
+    "distinct_frames_used": 8,
+    "image": "output\\annotation_demo\\speaker3_2s_deeplab_shadow\\BanglaASR10\\board_era2_140.jpg"
+  },
+  {
+    "era": 3,
+    "from": "3:00",
+    "to": "4:34",
+    "frames": 48,
+    "tiles_total": 858,
+    "tiles_fully_clear": 853,
+    "clear_fraction": 0.9942,
+    "worst_tile_covered": 0.0664,
+    "distinct_frames_used": 16,
+    "image": "output\\annotation_demo\\speaker3_2s_deeplab_shadow\\BanglaASR10\\board_era3_300.jpg"
+  },
+  {
+    "era": 4,
+    "from": "5:20",
+    "to": "7:04",
+    "frames": 53,
+    "tiles_total": 858,
+    "tiles_fully_clear": 858,
+    "clear_fraction": 1.0,
+    "worst_tile_covered": 0.0195,
+    "distinct_frames_used": 6,
+    "image": "output\\annotation_demo\\speaker3_2s_deeplab_shadow\\BanglaASR10\\board_era4_520.jpg"
+  }
+]

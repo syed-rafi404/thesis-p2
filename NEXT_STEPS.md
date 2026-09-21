@@ -1,12 +1,88 @@
 # NEXT STEPS — read this file, ignore everything else
 
-If you are lost, start here. One page. Updated 2026-09-22.
+If you are lost, start here. Updated 2026-09-22 (on the 3060).
 
 ---
 
-## Where we are (2026-09-22)
+## THE GOAL: what the finished thesis does (your words, 2026-09-22)
 
-**The final numbers.** Quote only these; each has its command in RESULTS.md.
+Put in a Banglish lecture video; get back a lecture note a student can actually use.
+
+1. **Speech.** Fine-tuned Whisper writes a Banglish transcript. Not 100% right, but better than
+   off-the-shelf Whisper.
+2. **Board.** A clean picture of each board with the lecturer removed, numbered coloured boxes
+   around each part (title, definition, truth table, ...), each box named by the VLM.
+   Look: `F:\thesisP2\thesisP2\Temp\mockup_nand_board.jpg`
+3. **Notes.** An LLM combines the board (from the VLM) and the transcript into a real lecture note
+   that points at the boxes ("look at the purple box 5").
+   Target look: `F:\thesisP2\thesisP2\Temp\MOCKUP_lecture_note.html`
+4. **Three versions of every note:** English, Banglish, Bangla. The student picks one.
+
+### Where each part stands
+
+| Part | Status |
+|---|---|
+| 1. Fine-tuned Whisper transcript | **Done, measured.** 72.8% -> 50.3% of characters wrong, for every lecturer |
+| 2a. Clean board | **Done** for all 45 boards (person-detection network + shadow + clean-up). Judged by eye; VLM score still to come |
+| 2b. Box positions | **Done** (found from the ink). Never measured; sometimes splits or merges boxes |
+| 2c. Box names by the VLM | **Not built** |
+| 3. Notes that point at the boxes | **Not built** (the parts exist) |
+| 4. Three languages | English and Banglish exist in the code; **Bangla script not built** |
+
+### What we agreed to expect (honest limits)
+
+- **The mockup is Claude's handwork, not pipeline output.** Box names and all the text were
+  written by Claude; the first lecturer quote was hand-edited ("ma" -> "mane", "barcho lash" ->
+  "bar"). Call it the target design, never a result.
+- The real notes will be plainer than the mockup. A bigger notes model (Qwen3-32B) closes part of
+  the gap, not all: it only reads the VLM's text, never the board itself.
+- **Always the clean board.** The "VLM draws boxes around the teacher" route is dropped.
+- **Bangla will be the weakest version.** Bengali script with the English technical terms kept
+  ("NAND gate"). You read a few Bangla notes and judge them; Claude cannot judge Bengali quality.
+- **Every version inherits the transcript's errors** (about half the characters wrong). The board
+  carries most of the facts.
+- **"The notes are good" needs people.** 5 classmates rate 2-3 lectures from 1 to 5. Without it,
+  say "we demonstrate", not "we show the notes are good".
+
+### The plan (scope frozen; nothing new until the defense)
+
+**A. Build on the 3060 (Claude, about a day). Waiting for your "go".**
+1. VLM box naming: numbered boxes drawn on the clean board; Qwen2.5-VL names each box and writes
+   what is in it.
+2. New notes prompt: one section per board, points at the boxes, three languages (english,
+   banglish, bangla). Quotes only word for word from the transcript: a checker drops any quote
+   that is not in it (this also fixes the old broken-quotes problem). The old prompts stay.
+3. Page builder: Markdown + HTML with the annotated board, like the mockup.
+4. One command for a whole lecture.
+5. Tested here with a stand-in for Qwen (the 3060 cannot hold it).
+
+**B. Run on the 5090 (a few hours).**
+1. `git pull`
+2. The VLM reads the new clean boards; score old vs new boards on your answer keys. This gives the
+   board work a real number instead of "looks better".
+3. Notes for all lectures x 3 languages with the chosen notes model; re-score board recall (the
+   88.0% came from the 7B model).
+4. Side by side: the NAND section from Qwen2.5-7B vs Qwen3-32B vs the mockup.
+
+**C. You (no coding).**
+1. Ask 5 classmates to rate the notes of 2-3 lectures (1-5: useful? correct? easy to read?).
+2. Read a few Bangla notes and say whether they are acceptable.
+
+**After the defense:** the 10 hours of new data; re-run leave-one-speaker-out on the 5090.
+
+### Decisions still open (one at a time)
+
+1. "Go" on building A.
+2. Notes model: Qwen3-32B on the 5090 (recommended) or keep the 7B. Optional extra row: a paid API
+   model (Claude or GPT) as "best possible", only if you accept sending lecture text out and a few
+   dollars.
+3. Figure 6.5: an error analysis, or drop the figure.
+
+---
+
+## The final numbers
+
+Quote only these; each has its command in RESULTS.md.
 
 | What | Result | RESULTS.md |
 |---|---|---|
@@ -18,237 +94,62 @@ If you are lost, start here. One page. Updated 2026-09-22.
 
 - **Never quote:** 96.1% -> 81.8% (leaked split), "the curve is still falling", or board-recall
   numbers from RESULTS.md 5.1-5.3 (draft keys).
-- **Board answer keys: all 45 boards checked by you on 2026-09-22. Done.**
-- Plain-language map of the whole project: `F:\thesisP2\thesisP2\Temp\WHERE_WE_ARE.md`.
+- Board answer keys: all 45 boards checked by you on 2026-09-22. Done.
+- Example transcript lines (lecture 6, clip 22: human / off-the-shelf / fine-tuned) are real,
+  word for word, from `artifacts\ft_work_AC\eval_AC_turbo_seed42_greedy.json`. Keep the "..."
+  when showing them: the full clip gets worse after the cut.
 
-## Still open, each a yes/no for you
+## The board pictures (2026-09-22, on the 3060)
 
-1. Fix the broken lecturer quotes in the `mixed` notes (a prompt edit).
-2. Error analysis of what the ASR still gets wrong (Figure 6.5 has no analysis behind it).
-3. When the 10 hours arrive: re-run leave-one-speaker-out on the 5090.
-
-## Next time on the 5090 (board pictures, 2026-09-22)
-
-The boards were rebuilt on the 3060 with a pretrained person-detection network (RESULTS.md
-4.1.2): lecturer removed, shadow removed, whiteboard cleaned. All 45 boards look clean; it is
-judged by eye only. Two Qwen jobs remain:
-
-1. Have the VLM read the new boards and score them against the answer keys, old vs new. That
-   gives a measured number instead of "looks better".
-2. Build the annotated notes (real board picture, numbered boxes drawn by the VLM, text that
-   says "see box 3"). Decide first: cleaned board or real video frame with the lecturer in it.
-
----
-
-## History: 2026-09-21, the speaker split was wrong, and is now fixed
-
-- Video 6 is the same lecturer as 7-9 (your `data\raw\Speaker2` folder; the audio agrees:
-  `output\speaker_check\speaker_similarity.md`). The old split trained on it, so the "unseen
-  speaker" had been heard. **Do not quote 96.1% -> 81.8% any more.**
-- New split: train 1-5 (55.6 min), test 6-9 (184 clips). Plain greedy decoding: no gain,
-  the fine-tune loops on 58 clips. With Whisper's standard loop safeguard on both models:
-  **WER 95.0% -> 78.8-83.3%, CER 73.4% -> 54.6-59.4%, p < 1e-05, replicated 3 times**, better
-  in all four lectures.
-- Scaling curve: 18 minutes of data already gives most of the gain; after that it is flat within
-  noise. **Drop the old "the curve is still falling" argument**; it came from the leaked split.
-- Old run kept untouched in `D:\T2520875\thesisP2\ft_work_v1_video6_in_train\`.
-
-## THE HEADLINE (RESULTS.md 1.5): leave-one-speaker-out, large Whisper
-
-Every lecturer held out once, model trained on the other two, plain decoding, two seeds:
-**CER 72.8% -> 50.3%, WER 95.3% -> 75.7%, all six runs significant (p < 1e-05).**
-Works for each of the three lecturers. This replaces every older fine-tune number.
-
-## 2026-09-21 evening: the best result so far (5090, while you were away)
-
-- **whisper-large-v3-turbo trained on Speaker1+3, tested on unseen Speaker2:**
-  CER 70.0% -> **48.8-52.1%**, WER 93.8% -> **73.5-74.8%**, plain decoding, two seeds,
-  p < 1e-08. No loop safeguard needed. This is the headline candidate (RESULTS.md 1.4).
-- Adding the second training speaker helps the large model significantly (p <= 0.004).
-- The large model trained on Speaker1 alone is not reliably better than whisper-small,
-  but it is robust: its gain survives plain decoding.
-- VLM on Speaker3's boards: 89.7% recall (verified keys). Board reconstruction fails for that
-  speaker (lecturer never moves away); raw frames work as well or better.
-- All 35 boards of lectures 1-9, verified keys: VLM keyword 31.2% -> full transcription 88.8%.
-
-## On the 3060 (or any other PC): two commands
-
-```
-git pull
-python scripts/restore_artifacts.py --apply
-```
-
-The second one puts the corrected adapters and results beside the repo, archives the old leaked
-`F:\thesisP2\ft_work` as `ft_work_v1_video6_in_train`, and rebuilds the audio clips. Run it with
-the 3060's fine-tune Python: `F:\thesisP2\envs\thesis_ft\Scripts\python.exe`. The 3060 cannot run
-Qwen; the Qwen results are already in the repo.
-
-## 2026-09-21: Speaker3 (videos 10-13) added
-
-- A genuinely third lecturer (voiceprints agree). The adapter trained on Speaker1 alone also
-  improves on Speaker3: **CER 68.4% -> 46.4-46.7%, p < 1e-08, both runs**; significant even
-  without the loop safeguard. The thesis claim is now "generalizes to two unseen lecturers".
-- Training on Speaker1+3 leans slightly better on Speaker2 in both runs, but not significantly.
-- Proposed, waiting for a yes: leave-one-speaker-out training, and answer keys for the other 25
-  boards (lectures 1-6) so the VLM result rests on 35 boards, not 10.
-- Open question from the user: add spelling-normalized and fuzzy WER (fairer for Banglish).
-
-## 2026-09-21: step 5 done — the VLM result
-
-- On the verified keys, lectures 7-9: **VLM 41.2% -> 96.9%**, only the prompt changed (p = 0.004).
-- **Notes:** 38.7% -> 95.9% with the VLM board text (p = 0.008). The new prompt alone went *down*
-  (25.8%); the fine-tuned transcript did not add recall (92.3%).
-- **Broken:** the lecturer quotes in `mixed` notes. Needs a prompt fix; ask Claude.
-- All numbers and commands: RESULTS.md section 5.0.
-
----
-
-## Moving to the 5090 — copy these four things
-
-**DONE 2026-09-21**, except `claude_checkpoint\`, which was not copied. Optional: CLAUDE.md
-carries everything needed to work.
-
-Git only carries the code. Copy these from the 3060 as well:
-
-| From the 3060 | Why |
-|---|---|
-| `F:\thesisP2\thesisP2\output\` | fine-tuned transcripts for all 9 lectures, board mosaics, baseline notes |
-| `F:\thesisP2\thesisP2\data\` | videos and ground truth |
-| `F:\thesisP2\ft_work\` | the trained adapter, whisper-small, clips |
-| `F:\thesisP2\claude_checkpoint\` | Claude's memory; read `RESTORE.md` inside |
-
-Easiest: copy the whole `F:\thesisP2\` folder, but skip `envs\`, because environments don't work
-when moved to another machine. If you can, put the repo at the same path, `F:\thesisP2\thesisP2`.
-Then the paths and Claude's memory need no changes.
-
-Your first message to Claude on the 5090:
-
-> Repo is at `<path>`. ft_work is at `<path>`. output\ and data\ are copied.
-> Read CLAUDE.md and NEXT_STEPS.md, then run scripts/check_environment.py.
-
----
-
-## Already done. Do not touch these.
-
-- Fine-tune result: WER 96.1% -> 81.8%, p = 0.009, replicated. **This is your thesis.**
-- Scaling curve at 0.3 / 0.6 / 1.17 h
-- Honest statistics; every fabricated number removed
-- Board reconstruction for all 9 lectures, median 97.7% clean
-- Board-content recall baseline: 40.1%
-- Fine-tuned transcripts for all 9 lectures (`transcript_finetuned.txt` in each lecture folder)
-- New note prompts with the language switch: english / banglish / mixed. **Built but not run yet.**
-  They need Qwen, so they run on the 5090.
-- Everything committed and pushed to GitHub
-
-**If nothing else happens, you can defend with this.**
-
----
-
-## Do now, before the 5090 (5 minutes, not technical)
-
-**Message your transcribers:**
-
-> Two rules for the new files. Every segment 10-25 seconds, never over 30,
-> broken at a natural pause. And one line at the top of each file:
-> `# Speaker ID: SPK04` — same ID for the same lecturer across videos.
-
-Without the Speaker ID the speaker-independent split silently breaks, and that
-split is what makes the headline result credible. This is the only urgent thing.
-
----
-
-## When the 5090 is ready (in order, stop when tired)
-
-**Steps 1 and 2 are DONE (2026-09-21).** Only the Qwen weights are left; they download
-automatically on the first run of step 5a, to `D:\T2520875\hf_cache`.
-
-**1. Set up the environment.** One env with everything:
-
-- torch for Blackwell: **CUDA 12.8, torch >= 2.7**. The current 2.5.1+cu121 will not run.
-- numpy, Pillow, matplotlib, transformers, peft, soundfile, jiwer
-- ffmpeg on PATH
-- Qwen2.5-VL weights, about 16 GB
-
-**2. Preflight.** `python scripts/check_environment.py`
-
-It checks every package, the GPU, disk, ffmpeg, paths and the data, and prints the
-exact command to fix anything missing. Get it to zero failures before going on.
-
-**3. Smoke test.** `python scripts/run_p3_experiment.py --skip curve`
-
-**4. When the 8 hour data lands:**
-
-```
-python scripts/run_p3_experiment.py --test-speakers B,SPK04,SPK05 \
-    --model openai/whisper-large-v3-turbo --curve-hours 2 4 6 8 --batch 8
-```
-
-Keep speaker B in the test set. It keeps the board ground truth valid.
-
-**5. The VLM experiment and the better notes.** Copy-paste in order. Each step
-changes one thing, so you can say which change caused which gain.
-
-The fine-tuned transcripts are **already done** (made on the 3060), in each
-lecture folder as `transcript_finetuned.txt`. Copy `output\` across and skip
-straight to 5a.
-
-5a. The VLM on its own: raw frame vs reconstructed board. **This is the result
-your supervisor wants.**
-
-```
-python scripts/transcribe_boards.py --all --source frame
-python scripts/transcribe_boards.py --all --source mosaic
-python scripts/score_board_recall.py --notes-name board_text_frame.md
-python scripts/score_board_recall.py --notes-name board_text_mosaic.md
-```
-
-5b. The notes, one change at a time. Baseline is 40.1%.
-
-```
-python scripts/regenerate_notes.py --all --language mixed --board-source keywords --out-name notes_B_prompt.md
-python scripts/regenerate_notes.py --all --language mixed --board-source boards   --out-name notes_C_vlm.md
-python scripts/regenerate_notes.py --all --language mixed --board-source boards   --transcript-file transcript_finetuned.txt --out-name notes_D_full.md
-```
-
-5c. Score each step against the one before:
-
-```
-python scripts/score_board_recall.py --compare-names final_lecture_notes.md notes_B_prompt.md
-python scripts/score_board_recall.py --compare-names notes_B_prompt.md notes_C_vlm.md
-python scripts/score_board_recall.py --compare-names notes_C_vlm.md notes_D_full.md
-```
-
-B tells you what the new prompt alone did. C tells you what the VLM reading the
-reconstructed board added. D tells you what the fine-tuned transcript added.
-
-5d. To show your supervisor the language options, run the D command three times
-with `--language english`, `--language banglish` and `--language mixed`, and
-compare them side by side.
-
----
-
-## Jobs for your teammates (no coding)
-
-- **Verify the board ground truth** in `data/board_truth/*.json`, about 40 minutes.
-  It was drafted by reading images; items marked `"verify": true` were unclear.
-  One CGPA is either 3.77 or 3.57 — check the video.
-- **Writing.** Chapters 3, 7, 9 are still stubs. `chapter_7.tex` is 0 bytes and
-  is not `\input` in main.tex.
-
----
+- All 45 boards rebuilt with a pretrained person-detection network (DeepLabV3) plus a shadow
+  detector, then a whiteboard clean-up. Recovers writing the old method lost: the TTL diagram
+  (lecture 10), and 7 of 8 digits of lecture 6's binary number (old: 5). RESULTS.md 4.1.1-4.1.2.
+- Cleaned boards: `F:\thesisP2\thesisP2\output\annotation_demo\all9_deeplab_shadow\clean\`
+  (lectures 1-9) and `F:\thesisP2\thesisP2\output\annotation_demo\speaker3_2s_deeplab_shadow\clean\`
+  (lectures 10-13). Side-by-side sheets `compare_*.jpg` in the two folders above. Both are in git.
+- A cleaned board's white background is not camera pixels (the writing is). Say "enhanced" when
+  you show one.
+- Generative AI fill-in was not used on purpose: it would invent writing.
 
 ## If someone asks "what is the thesis"
 
-> Banglish classroom ASR is unsolved. We built the full pipeline and measured
-> every branch. Fine-tuning works: 19 points of WER on a speaker the model never
-> heard, replicated. Visual fusion does not, and we show why. The metric the
-> field uses is anti-correlated with transcription quality, and we show that too.
-> We also reconstruct the whiteboard with the lecturer removed, from real pixels
-> only.
+> Banglish classroom speech is unsolved. We fine-tuned Whisper on our own lectures: on a lecturer
+> it never heard, the share of characters it gets wrong drops from 73% to 50%, for each of three
+> lecturers. A vision-language model reads the whiteboard: 31% -> 89% of the board content, by
+> changing only how we ask it. Together they produce lecture notes that carry 88% of what was on
+> the board, against 37% before. Fusing vision into the speech model does not work, and we show
+> why; the metric the field used is anti-correlated with transcription quality, and we show that
+> too.
 
-One positive, three negatives, one methodological finding. That is a thesis.
+## Writing (your team)
+
+Chapters 3, 7, 9 are still stubs. `chapter_7.tex` is 0 bytes and is not `\input` in main.tex.
+
+## Moving between PCs
+
+After `git pull` on a PC that has not run it yet:
+
+```
+python scripts/restore_artifacts.py --apply
+```
+
+On the 3060 use `F:\thesisP2\envs\thesis_ft\Scripts\python.exe`. It puts the adapters and results
+beside the repo and rebuilds the audio clips.
 
 ---
+
+## History (older entries, kept as a record)
+
+- **2026-09-21, the speaker split was wrong, and is fixed.** Video 6 is the same lecturer as 7-9;
+  the old split trained on it. Everything was re-run. The old run is kept untouched as
+  `ft_work_v1_video6_in_train`.
+- **2026-09-21, Speaker3 (videos 10-13) added.** A genuinely third lecturer (voiceprints agree).
+  This made leave-one-speaker-out possible, which is now the headline (RESULTS.md 1.5).
+- **2026-09-21, the VLM and notes experiments** ran on the 5090 (keyword vs full-transcription
+  prompt; notes A-D one change at a time). Commands and final numbers on the verified keys:
+  RESULTS.md 5.0. The 5.1-5.3 numbers used draft keys and are superseded.
+- **2026-09-22, on the 3060:** answer keys verified; spelling-fair WER (1.6); boards rebuilt
+  (4.1.1-4.1.2); the mockup; this plan.
 
 ## Where the detail lives
 
