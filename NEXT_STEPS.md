@@ -27,6 +27,17 @@ If you are lost, start here. One page. Updated 2026-09-22.
 2. Error analysis of what the ASR still gets wrong (Figure 6.5 has no analysis behind it).
 3. When the 10 hours arrive: re-run leave-one-speaker-out on the 5090.
 
+## Next time on the 5090 (board pictures, 2026-09-22)
+
+The boards were rebuilt on the 3060 with a pretrained person-detection network (RESULTS.md
+4.1.2): lecturer removed, shadow removed, whiteboard cleaned. All 45 boards look clean; it is
+judged by eye only. Two Qwen jobs remain:
+
+1. Have the VLM read the new boards and score them against the answer keys, old vs new. That
+   gives a measured number instead of "looks better".
+2. Build the annotated notes (real board picture, numbered boxes drawn by the VLM, text that
+   says "see box 3"). Decide first: cleaned board or real video frame with the lecturer in it.
+
 ---
 
 ## History: 2026-09-21, the speaker split was wrong, and is now fixed
