@@ -225,6 +225,16 @@ def main():
     ap.add_argument("--no-eras", action="store_true",
                     help="Treat the whole lecture as one era (will mix pre/post erase)")
     ap.add_argument("--json", dest="json_out", default=None)
+    ap.add_argument("--eras-from", default=None,
+                    help="Reuse the eras (time ranges) of an earlier mosaic.json instead of "
+                         "detecting erases here. For denser frames: at 2 s spacing the erase "
+                         "detector mistakes the lecturer's movement for erasing and splits the "
+                         "lecture into many short eras")
+    ap.add_argument("--extend-to-erase", action="store_true",
+                    help="With --eras-from: end each era at the first erase detected in THESE "
+                         "frames after the earlier era's end, never before it. The earlier run "
+                         "says roughly when the board was wiped; the denser frames say exactly "
+                         "when, so the clean moments just after the old end are not cut off")
     args = ap.parse_args()
 
     frames = sorted(glob.glob(str(Path(args.frames) / "*.jpg")))
@@ -235,8 +245,26 @@ def main():
     masks, _ = temporal_person_masks(np, smalls)
     inks = [ink_mask(np, s) & ~m for s, m in zip(smalls, masks)]
 
-    events = [] if args.no_eras else detect_erases(inks, masks)
-    eras = to_eras(events, len(frames))
+    if args.eras_from:
+        def secs(stamp_text):
+            m_, s_ = stamp_text.split(":")
+            return int(m_) * 60 + int(s_)
+        dt = int(args.interval)
+        old = json.loads(Path(args.eras_from).read_text(encoding="utf-8"))
+        dense = detect_erases(inks, masks) if args.extend_to_erase else []
+        events, eras = [], []
+        for k, e in enumerate(old):
+            a = -(-secs(e["from"]) // dt)                            # ceiling division
+            b = min(len(frames), secs(e["to"]) // dt + 1)            # the old end
+            if args.extend_to_erase:
+                gap_end = (-(-secs(old[k + 1]["from"]) // dt)) if k + 1 < len(old) else len(frames)
+                later = [ev for ev in dense if b <= ev <= gap_end]
+                b = min(later) if later else (gap_end if k + 1 == len(old) else b)
+            if a < b:
+                eras.append((a, b))
+    else:
+        events = [] if args.no_eras else detect_erases(inks, masks)
+        eras = to_eras(events, len(frames))
     stamp = lambda i: f"{int(i*args.interval)//60}:{int(i*args.interval)%60:02d}"
     print(f"erase points : {[stamp(e) for e in events] or 'none detected'}")
     print(f"eras         : {[(stamp(a), stamp(b-1)) for a, b in eras]}\n")
