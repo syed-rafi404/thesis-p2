@@ -1,0 +1,23 @@
+Request to Revise the Thesis Title
+
+Current title:
+InsightLens: A Vision-Language Based Accessibility Framework for Extracting and Understanding Classroom Content in Dual Languages
+
+Proposed title:
+InsightLens: A Vision-Language Based Framework for Extracting and Understanding Classroom Content in Dual Languages
+
+Change: the word "Accessibility" is removed. The rest of the title is unchanged.
+
+Reasons for the change
+
+1. The thesis does not evaluate accessibility. Accessibility motivated the project, but no part of the completed work measures an accessibility outcome: there is no study with learners who have hearing or visual impairments, no user or usability study, and no assessment against accessibility guidelines. A title that names an "Accessibility Framework" implies such an evaluation, which a reader or examiner would reasonably expect and not find.
+
+2. Every contribution that was evaluated is still described by the revised title.
+   - Vision-language: a vision-language model (Qwen2.5-VL) transcribes the whiteboard, raising the recall of hand-verified board content from 31.2% to 88.8% across 35 boards.
+   - Extracting: speech recognition fine-tuned for code-mixed Bengali-English speech lowers the character error rate on unseen lecturers from 72.8% to 50.3%, and the board content above is extracted from the lecture video.
+   - Understanding: a language model combines the extracted speech and board content into structured lecture notes, which retain 88.0% of the board content against 37.2% for the original pipeline.
+   - Dual languages: all recognition and note generation works on lectures delivered in code-mixed Bengali and English.
+
+3. The change narrows a claim rather than changing the topic. The research questions, methods, data, results and chapter structure are unaffected; only a word describing an outcome the work did not measure is removed.
+
+4. Accessibility remains the motivation of the work and is discussed as an application and as future work, where a study with learners who depend on lecture notes would be the natural next step.
