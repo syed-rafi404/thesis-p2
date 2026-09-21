@@ -107,11 +107,12 @@ across 9 lectures, 35 boards, median 97.7% of tiles fully clear, 6 boards at 100
 unmodified camera output. It is engineering, not algorithmic novelty; whiteboard occlusion removal
 is an established area. Say so if asked.
 
-**The VLM result for the supervisor — measured 2026-09-21 (RESULTS.md 5.2).** Same Qwen2.5-VL-7B,
-same boards, only the prompt changed: board-content recall **47.3% (keyword prompt) → 97.0% (full
-transcription)**, better on 8 of 10 boards, worse on none, sign test p = 0.0078; numbers 0/47 →
-47/47. Reconstructed board 98.2% vs raw frame 97.0%, not significant: **the gain is the prompt, not
-the reconstruction.** Say that plainly. The answer key is still not hand-verified.
+**The VLM result for the supervisor — on hand-verified answer keys (RESULTS.md 5.0, 2026-09-22).**
+Same Qwen2.5-VL-7B, only the prompt changed, 35 boards of lectures 1–9, 349 items: board-content
+recall **31.2% (keyword prompt) → 88.8% (full transcription)**, better on 34 boards, worse on none,
+sign p = 1.2e-10; numbers 0/67 → 65/67. A third lecturer's boards: 89.7%. Reconstructed board 96.0%
+vs raw frame 88.8%: a trend (Wilcoxon p = 0.056, sign p = 0.23), absent for Speaker3: **the gain is
+the prompt, not the reconstruction.** Say that plainly.
 
 ---
 
@@ -119,13 +120,15 @@ the reconstruction.** Say that plainly. The answer key is still not hand-verifie
 
 The generated notes had never been evaluated. `scripts/score_board_recall.py` scores recall of
 facts written on the board, which the summarising model cannot invent from prior knowledge.
-Baseline notes: **40.1%** over 167 items. By kind: terms 78.7%, code 50.0%, names 30.0%,
-**numbers 8.5%**, the lecturer's phrasings **0%**. Recall falls with guessability, a validity check.
+Baseline notes on the verified keys: **38.7%** over 194 items on lectures 7–9, **37.2%** over 349
+items on lectures 1–9; numbers 6/67. (The draft-key figure was 40.1% over 167 items.) Recall falls
+with guessability, a validity check. Items of 3 characters or fewer match as whole words only.
 
 - Evaluation set: the 10 boards of BanglaASR7, 8, 9, the held-out speaker, so no fine-tune leakage.
   **Keep speaker B in `--test-speakers` when new data arrives** so this stays valid.
-- Ground truth: `data/board_truth/*.json`, drafted by reading the boards. **The user is verifying it
-  by hand.** Three items are flagged `"verify": true`.
+- Ground truth: `data/board_truth/*.json` (lectures 7–9), `draft_lectures1to6/`, `draft_speaker3/`.
+  Drafted by Claude, then **every one of the 45 boards checked by hand by the user on 2026-09-22**
+  without seeing model output (67 added, 3 corrected). The "draft" folder names are historical.
 - `data/board_truth` is the answer key. **Never feed it to any generator.** `regenerate_notes.py`
   refuses the path outright.
 
@@ -145,10 +148,10 @@ erpor e ami ki korbo? not korbo."
   default**, because the 40.1% baseline was produced with it. Do not edit it.
 - Fine-tuned transcripts for all 9 lectures sit in each lecture folder. Videos 1–5 are training
   lectures for the corrected adapter; only 6–9 are valid for evaluation.
-- **Measured 2026-09-21 (RESULTS.md 5.3), board recall:** A original 40.1%, B grounded prompt +
-  keywords 27.5% (down, n.s.), C + VLM board text **95.8%** (p = 0.0078), D + fine-tuned transcript
-  92.2% (n.s. vs C). C's jump is mostly the board transcription pasted into the notes; recall does
-  not measure readability.
+- **Board recall, verified keys (RESULTS.md 5.0), lectures 7–9:** A original 38.7%, B grounded prompt
+  + keywords 25.8% (down, n.s.), C + VLM board text **95.9%** (p = 0.0078), D + fine-tuned transcript
+  92.3% (n.s. vs C). On 35 boards A → C is 37.2% → 88.0% (30 better, 1 worse). C's jump is mostly the
+  board transcription passed into the notes; recall does not measure readability.
 - **Known defect:** the `mixed` style's lecturer quotes do not work. D has none; C labels board text
   as "Lecturer:" and once pastes a whole English transcript paragraph. Fixing it is a summarizer
   prompt edit: discuss with the user first.
@@ -214,8 +217,8 @@ command; only change global config after asking.
 | Whisper large-v3-turbo ASR | Working | Outputs an English translation, not Banglish |
 | Whisper-small + LoRA fine-tune | **Working, significant** (with loop safeguard) | Headline; corrected split, see above |
 | BanglaASR (Bengali Unicode) | Working | Wav2Vec2 |
-| Qwen2.5-VL whiteboard reading | **Evaluated, strong** | 97.0% board recall with `transcribe_boards.py`; keyword prompt 47.3% |
-| Qwen2.5-7B-Instruct notes | Board recall 95.8% (C) | Lecturer-quote instruction broken; readability unmeasured |
+| Qwen2.5-VL whiteboard reading | **Evaluated, strong** | 88.8% board recall on 35 verified boards with `transcribe_boards.py`; keyword prompt 31.2% |
+| Qwen2.5-7B-Instruct notes | Board recall 88.0% (C, 35 boards) | Lecturer-quote instruction broken; readability unmeasured |
 | Board reconstruction (tiled mosaic) | **Working, measured** | median 97.7% tiles clear, 35 boards |
 | Region detection | Working, **not evaluated** | No layout ground truth exists |
 | Fusion (dual-ASR, CMV) | Negative | +0.7 pp, p = 0.32 |
@@ -290,8 +293,8 @@ analysis behind it** and prints a warning; label a sample of errors or drop it.
   never over 30, and `# Speaker ID:` on every file. Validate with `scripts/validate_ground_truth.py`,
   then `run_p3_experiment.py --test-speakers B,<new ids> --model openai/whisper-large-v3-turbo
   --curve-hours 2 4 6 8`.
-- **Board ground truth** being verified by the user; three items flagged. Both VLM and notes results
-  now rest on it, so this matters more than before.
+- **Board ground truth: verified** by the user on 2026-09-22, all 45 boards. Rescore everything with
+  `scripts/rescore_verified_keys.py`. Checking sheet: `output/annotation_demo/verify_all_boards.html`.
 - **ft_work layout on the 5090:** `ft_work\` is the corrected split; `ft_work_v1_video6_in_train\` is
   the 3060 run (evidence); `ft_work_v1_repro_5090\` is the old split re-run as a control;
   `ft_work_3spk\` holds speaker C clips and its evaluation; `ft_work_AC\` the A+C training run.

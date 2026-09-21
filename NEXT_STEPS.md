@@ -1,10 +1,35 @@
 # NEXT STEPS — read this file, ignore everything else
 
-If you are lost, start here. One page. Updated 2026-09-21.
+If you are lost, start here. One page. Updated 2026-09-22.
 
 ---
 
-## 2026-09-21: the speaker split was wrong, and is now fixed
+## Where we are (2026-09-22)
+
+**The final numbers.** Quote only these; each has its command in RESULTS.md.
+
+| What | Result | RESULTS.md |
+|---|---|---|
+| Speech: fine-tuned Whisper, each lecturer held out once | CER 72.8% -> **50.3%**, WER 95.3% -> **75.7%**; 6 of 6 runs p < 1e-05, plain decoding | 1.5 |
+| Is the WER only spelling? | No: spelling-fair WER 74.8%, fuzzy WER 68.2% | 1.6 |
+| VLM reading the board, 35 hand-verified boards | keyword prompt 31.2% -> full transcription **88.8%**; better on 34 boards, worse on 0 | 5.0 |
+| VLM on a third lecturer's boards | **89.7%** | 5.0 |
+| Notes, 35 boards | board content in the notes: 37.2% -> **88.0%** | 5.0 |
+
+- **Never quote:** 96.1% -> 81.8% (leaked split), "the curve is still falling", or board-recall
+  numbers from RESULTS.md 5.1-5.3 (draft keys).
+- **Board answer keys: all 45 boards checked by you on 2026-09-22. Done.**
+- Plain-language map of the whole project: `F:\thesisP2\thesisP2\Temp\WHERE_WE_ARE.md`.
+
+## Still open, each a yes/no for you
+
+1. Fix the broken lecturer quotes in the `mixed` notes (a prompt edit).
+2. Error analysis of what the ASR still gets wrong (Figure 6.5 has no analysis behind it).
+3. When the 10 hours arrive: re-run leave-one-speaker-out on the 5090.
+
+---
+
+## History: 2026-09-21, the speaker split was wrong, and is now fixed
 
 - Video 6 is the same lecturer as 7-9 (your `data\raw\Speaker2` folder; the audio agrees:
   `output\speaker_check\speaker_similarity.md`). The old split trained on it, so the "unseen
@@ -31,17 +56,9 @@ Works for each of the three lecturers. This replaces every older fine-tune numbe
 - Adding the second training speaker helps the large model significantly (p <= 0.004).
 - The large model trained on Speaker1 alone is not reliably better than whisper-small,
   but it is robust: its gain survives plain decoding.
-- VLM on Speaker3's boards: 89.9% recall. Board reconstruction fails for that speaker
-  (lecturer never moves away); raw frames work as well or better.
-- All 35 boards of lectures 1-9: VLM keyword 34.8% -> full transcription 91.5%.
-
-## Your job: check the board answer keys (no JSON editing)
-
-Double-click `F:\thesisP2\thesisP2\output\annotation_demo\verify_all_boards.html` (after
-`git pull`). For each board: tick **wrong** and type the fix, add anything missing, tick
-**I checked this board**. Start with **Show only boards with red items**. When done, press
-**Copy my corrections** and paste the text to Claude. Ticks are saved in that browser only,
-so finish on the same PC you started on. 45 boards; teammates can split them.
+- VLM on Speaker3's boards: 89.7% recall (verified keys). Board reconstruction fails for that
+  speaker (lecturer never moves away); raw frames work as well or better.
+- All 35 boards of lectures 1-9, verified keys: VLM keyword 31.2% -> full transcription 88.8%.
 
 ## On the 3060 (or any other PC): two commands
 
@@ -67,13 +84,11 @@ Qwen; the Qwen results are already in the repo.
 
 ## 2026-09-21: step 5 done — the VLM result
 
-- **VLM reading the board: 47.3% -> 97.0%** board-content recall, same model, only the prompt
-  changed (p = 0.008). Numbers 0/47 -> 47/47. Reconstructed board adds almost nothing (98.2%).
-- **Notes:** 40.1% -> 95.8% with the VLM board text (p = 0.008). The new prompt alone went *down*
-  (27.5%); the fine-tuned transcript did not add recall (92.2%).
+- On the verified keys, lectures 7-9: **VLM 41.2% -> 96.9%**, only the prompt changed (p = 0.004).
+- **Notes:** 38.7% -> 95.9% with the VLM board text (p = 0.008). The new prompt alone went *down*
+  (25.8%); the fine-tuned transcript did not add recall (92.3%).
 - **Broken:** the lecturer quotes in `mixed` notes. Needs a prompt fix; ask Claude.
-- **Your job now:** verify `data\board_truth\*.json` by hand. Every VLM number rests on it.
-- All numbers and commands: RESULTS.md sections 1.0, 5.2, 5.3.
+- All numbers and commands: RESULTS.md section 5.0.
 
 ---
 

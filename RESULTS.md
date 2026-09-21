@@ -696,7 +696,54 @@ Artefacts: `final_lecture_notes_illustrated.md`, `figures/figures.json`
 
 Reproduce: `python scripts/evaluate_ground_truth.py`
 
+### 5.0 Board-content recall on the hand-verified answer keys — QUOTE THESE (2026-09-22)
+
+On 2026-09-22 the user checked every one of the 45 boards against its image,
+**without seeing any model output**: 67 items added, 3 corrected, the disputed
+CGPA confirmed as 3.77 from the video frame at 5:00 (commit `76f91c4`; the exact
+corrections are in `scripts/apply_board_check_2026_09_22.py`). The scorer was
+also tightened: items of 3 characters or fewer, and items marked `whole_word`,
+must stand alone, so "CS" is no longer found inside "economics" or "OR gate"
+inside "NOR gate". Everything below is rescored on those keys with nothing
+regenerated. **These numbers replace those in 5.1 to 5.3, which were computed on
+the draft keys; the conclusions did not change.**
+
+**The VLM reading the board, same Qwen2.5-VL-7B, only the prompt changes:**
+
+| Boards | Keyword prompt | Full transcription, raw frame | Reconstructed board | Keyword -> frame |
+|---|---|---|---|---|
+| 10 boards, lectures 7-9, 194 items | 41.2% | **96.9%** | 97.9% | better on 9, worse on 0, sign p = 0.0039 |
+| **35 boards, lectures 1-9, 349 items** | **31.2%** | **88.8%** | 96.0% | **better on 34, worse on 0, sign p = 1.2e-10, Wilcoxon p = 3.7e-07** |
+| Speaker3, 10 boards, 87 items | not run | 89.7% | 85.1% | — |
+
+By kind, 35 boards, keyword -> full transcription: numbers **0/67 -> 65/67**,
+names 43/47 -> 45/47, code 14/111 -> 90/111, terms 47/94 -> 89/94, phrases
+5/30 -> 21/30.
+
+**Reconstructed board against raw frame:** 35 boards 88.8% -> 96.0%, better on 8,
+worse on 3, sign p = 0.23, Wilcoxon p = 0.056; Speaker3 89.7% -> 85.1%, worse on
+one board. **A trend on lectures 1-9, not significant, and absent for Speaker3.**
+Keep saying: the prompt is what makes the VLM read the board.
+
+**The notes:**
+
+| Notes | 10 boards (7-9), 194 items | 35 boards (1-9), 349 items |
+|---|---|---|
+| A. original pipeline | 38.7% | 37.2% |
+| B. grounded prompt, keyword board input | 25.8% (vs A: better 1, worse 3, p = 0.62) | — |
+| C. + VLM board transcription | **95.9%** (vs B: better 8, worse 0, p = 0.0078) | **88.0%** (vs A: better 30, worse 1, p = 3e-08) |
+| D. + fine-tuned transcript | 92.3% (vs C: better 1, worse 6, p = 0.12) | — |
+
+A -> C on 10 boards: better on 8, worse on 0, p = 0.0078. By kind on 35 boards,
+A -> C: numbers 6/67 -> 65/67, names 19/47 -> 45/47. The readings of 5.3 still
+apply: B's drop is the textbook recitation going away; C's jump is mostly the
+board transcription passing into the notes; D adds no board recall.
+
+Reproduce every number in this section: `python scripts/rescore_verified_keys.py --json output/board_recall_verified.json`
+
 ### 5.1 Board-content recall — the baseline, and why this metric
+
+*(Numbers in 5.1 to 5.3 were computed on the draft keys and are superseded by 5.0.)*
 
 The generated notes had never been evaluated against anything. `scripts/score_board_recall.py`
 scores them on the one thing the summarising model cannot fake: the specific

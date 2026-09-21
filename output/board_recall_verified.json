@@ -1,0 +1,456 @@
+{
+  "10 boards (lectures 7-9)": {
+    "scores": {
+      "visual_keywords.json": {
+        "recall": 0.41237113402061853,
+        "found": 80,
+        "items": 194,
+        "by_kind": {
+          "term": [
+            35,
+            51
+          ],
+          "phrase": [
+            0,
+            7
+          ],
+          "code": [
+            7,
+            36
+          ],
+          "number": [
+            0,
+            60
+          ],
+          "name": [
+            38,
+            40
+          ]
+        }
+      },
+      "board_text_frame.md": {
+        "recall": 0.9690721649484536,
+        "found": 188,
+        "items": 194,
+        "by_kind": {
+          "term": [
+            51,
+            51
+          ],
+          "phrase": [
+            5,
+            7
+          ],
+          "code": [
+            34,
+            36
+          ],
+          "number": [
+            60,
+            60
+          ],
+          "name": [
+            38,
+            40
+          ]
+        }
+      },
+      "board_text_mosaic.md": {
+        "recall": 0.979381443298969,
+        "found": 190,
+        "items": 194,
+        "by_kind": {
+          "term": [
+            51,
+            51
+          ],
+          "phrase": [
+            7,
+            7
+          ],
+          "code": [
+            34,
+            36
+          ],
+          "number": [
+            60,
+            60
+          ],
+          "name": [
+            38,
+            40
+          ]
+        }
+      },
+      "final_lecture_notes.md": {
+        "recall": 0.3865979381443299,
+        "found": 75,
+        "items": 194,
+        "by_kind": {
+          "term": [
+            41,
+            51
+          ],
+          "phrase": [
+            1,
+            7
+          ],
+          "code": [
+            17,
+            36
+          ],
+          "number": [
+            4,
+            60
+          ],
+          "name": [
+            12,
+            40
+          ]
+        }
+      },
+      "notes_B_prompt.md": {
+        "recall": 0.25773195876288657,
+        "found": 50,
+        "items": 194,
+        "by_kind": {
+          "term": [
+            27,
+            51
+          ],
+          "phrase": [
+            1,
+            7
+          ],
+          "code": [
+            20,
+            36
+          ],
+          "number": [
+            2,
+            60
+          ],
+          "name": [
+            0,
+            40
+          ]
+        }
+      },
+      "notes_C_vlm.md": {
+        "recall": 0.9587628865979382,
+        "found": 186,
+        "items": 194,
+        "by_kind": {
+          "term": [
+            51,
+            51
+          ],
+          "phrase": [
+            7,
+            7
+          ],
+          "code": [
+            30,
+            36
+          ],
+          "number": [
+            60,
+            60
+          ],
+          "name": [
+            38,
+            40
+          ]
+        }
+      },
+      "notes_D_full.md": {
+        "recall": 0.9226804123711341,
+        "found": 179,
+        "items": 194,
+        "by_kind": {
+          "term": [
+            49,
+            51
+          ],
+          "phrase": [
+            1,
+            7
+          ],
+          "code": [
+            31,
+            36
+          ],
+          "number": [
+            60,
+            60
+          ],
+          "name": [
+            38,
+            40
+          ]
+        }
+      }
+    },
+    "paired": {
+      "visual_keywords.json -> board_text_frame.md": {
+        "better": 9,
+        "worse": 0,
+        "sign_p": 0.00390625,
+        "wilcoxon_p": 0.007685883169014973
+      },
+      "board_text_frame.md -> board_text_mosaic.md": {
+        "better": 1,
+        "worse": 0,
+        "sign_p": 1.0,
+        "wilcoxon_p": null
+      },
+      "final_lecture_notes.md -> notes_B_prompt.md": {
+        "better": 1,
+        "worse": 3,
+        "sign_p": 0.625,
+        "wilcoxon_p": null
+      },
+      "notes_B_prompt.md -> notes_C_vlm.md": {
+        "better": 8,
+        "worse": 0,
+        "sign_p": 0.0078125,
+        "wilcoxon_p": 0.011718723529785868
+      },
+      "notes_C_vlm.md -> notes_D_full.md": {
+        "better": 1,
+        "worse": 6,
+        "sign_p": 0.125,
+        "wilcoxon_p": 0.06297892800194749
+      },
+      "final_lecture_notes.md -> notes_C_vlm.md": {
+        "better": 8,
+        "worse": 0,
+        "sign_p": 0.0078125,
+        "wilcoxon_p": 0.011718723529785868
+      },
+      "final_lecture_notes.md -> notes_D_full.md": {
+        "better": 8,
+        "worse": 0,
+        "sign_p": 0.0078125,
+        "wilcoxon_p": 0.011718723529785868
+      }
+    }
+  },
+  "35 boards (lectures 1-9)": {
+    "scores": {
+      "visual_keywords.json": {
+        "recall": 0.3123209169054441,
+        "found": 109,
+        "items": 349,
+        "by_kind": {
+          "term": [
+            47,
+            94
+          ],
+          "phrase": [
+            5,
+            30
+          ],
+          "name": [
+            43,
+            47
+          ],
+          "code": [
+            14,
+            111
+          ],
+          "number": [
+            0,
+            67
+          ]
+        }
+      },
+      "board_text_frame.md": {
+        "recall": 0.8882521489971347,
+        "found": 310,
+        "items": 349,
+        "by_kind": {
+          "term": [
+            89,
+            94
+          ],
+          "phrase": [
+            21,
+            30
+          ],
+          "name": [
+            45,
+            47
+          ],
+          "code": [
+            90,
+            111
+          ],
+          "number": [
+            65,
+            67
+          ]
+        }
+      },
+      "board_text_mosaic.md": {
+        "recall": 0.9598853868194842,
+        "found": 335,
+        "items": 349,
+        "by_kind": {
+          "term": [
+            94,
+            94
+          ],
+          "phrase": [
+            28,
+            30
+          ],
+          "name": [
+            45,
+            47
+          ],
+          "code": [
+            102,
+            111
+          ],
+          "number": [
+            66,
+            67
+          ]
+        }
+      },
+      "final_lecture_notes.md": {
+        "recall": 0.37249283667621774,
+        "found": 130,
+        "items": 349,
+        "by_kind": {
+          "term": [
+            67,
+            94
+          ],
+          "phrase": [
+            6,
+            30
+          ],
+          "name": [
+            19,
+            47
+          ],
+          "code": [
+            32,
+            111
+          ],
+          "number": [
+            6,
+            67
+          ]
+        }
+      },
+      "notes_C_vlm.md": {
+        "recall": 0.8796561604584527,
+        "found": 307,
+        "items": 349,
+        "by_kind": {
+          "term": [
+            83,
+            94
+          ],
+          "phrase": [
+            21,
+            30
+          ],
+          "name": [
+            45,
+            47
+          ],
+          "code": [
+            93,
+            111
+          ],
+          "number": [
+            65,
+            67
+          ]
+        }
+      }
+    },
+    "paired": {
+      "visual_keywords.json -> board_text_frame.md": {
+        "better": 34,
+        "worse": 0,
+        "sign_p": 1.1641532182693481e-10,
+        "wilcoxon_p": 3.659109063525179e-07
+      },
+      "board_text_frame.md -> board_text_mosaic.md": {
+        "better": 8,
+        "worse": 3,
+        "sign_p": 0.2265625,
+        "wilcoxon_p": 0.055929546738209934
+      },
+      "final_lecture_notes.md -> notes_C_vlm.md": {
+        "better": 30,
+        "worse": 1,
+        "sign_p": 2.9802322387695312e-08,
+        "wilcoxon_p": 2.5644998900009597e-06
+      }
+    }
+  },
+  "Speaker3 (lectures 10-13)": {
+    "scores": {
+      "board_text_frame.md": {
+        "recall": 0.896551724137931,
+        "found": 78,
+        "items": 87,
+        "by_kind": {
+          "term": [
+            37,
+            39
+          ],
+          "phrase": [
+            21,
+            23
+          ],
+          "number": [
+            14,
+            16
+          ],
+          "code": [
+            6,
+            9
+          ]
+        }
+      },
+      "board_text_mosaic.md": {
+        "recall": 0.8505747126436781,
+        "found": 74,
+        "items": 87,
+        "by_kind": {
+          "term": [
+            37,
+            39
+          ],
+          "phrase": [
+            21,
+            23
+          ],
+          "number": [
+            13,
+            16
+          ],
+          "code": [
+            3,
+            9
+          ]
+        }
+      }
+    },
+    "paired": {
+      "board_text_frame.md -> board_text_mosaic.md": {
+        "better": 0,
+        "worse": 1,
+        "sign_p": 1.0,
+        "wilcoxon_p": null
+      }
+    }
+  }
+}
