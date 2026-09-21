@@ -1,0 +1,20 @@
+[
+  {
+    "figure": 1,
+    "era": 1,
+    "from": "0:10",
+    "to": "9:10",
+    "clear_fraction": 0.9848,
+    "section": "Basic Syntax",
+    "image": "figures_board/board_01_era1.jpg"
+  },
+  {
+    "figure": 2,
+    "era": 2,
+    "from": "9:20",
+    "to": "16:20",
+    "clear_fraction": 0.9895,
+    "section": "Key Definitions",
+    "image": "figures_board/board_02_era2.jpg"
+  }
+]

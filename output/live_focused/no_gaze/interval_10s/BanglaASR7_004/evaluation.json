@@ -1,0 +1,44 @@
+{
+  "baseline_recall": 1.0,
+  "global_recall": 1.0,
+  "temporal_recall": 1.0,
+  "global_vs_baseline_pct": 0.0,
+  "temporal_vs_baseline_pct": 0.0,
+  "temporal_vs_global_pct": 0.0,
+  "baseline_found": [
+    "Design",
+    "Digital Logic Design",
+    "Digital",
+    "Universal",
+    "Inverse",
+    "Logic",
+    "NOR",
+    "NAND",
+    "NOT",
+    "XOR"
+  ],
+  "global_found": [
+    "Design",
+    "Digital Logic Design",
+    "Digital",
+    "Universal",
+    "Inverse",
+    "Logic",
+    "NOR",
+    "NAND",
+    "NOT",
+    "XOR"
+  ],
+  "temporal_found": [
+    "Design",
+    "Digital Logic Design",
+    "Digital",
+    "Universal",
+    "Inverse",
+    "Logic",
+    "NOR",
+    "NAND",
+    "NOT",
+    "XOR"
+  ]
+}

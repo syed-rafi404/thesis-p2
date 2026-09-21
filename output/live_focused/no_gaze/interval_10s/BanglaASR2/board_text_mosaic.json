@@ -1,0 +1,48 @@
+{
+  "lecture": "BanglaASR2",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "source": "mosaic",
+  "prompt": "This is a photograph of a classroom whiteboard during a university lecture.\n\nTranscribe everything written on the whiteboard, exactly as written.\n\n- Copy every number, name, identifier, date and symbol exactly. Do not round,\n  correct or reformat values.\n- Write tables as Markdown tables with the same rows and columns as the board.\n- Write code, SQL and program text inside ``` fences, keeping line breaks.\n- Write formulas as they appear. For a bar over a term write it as NOT(...),\n  for example NOT(A+B).\n- Keep diagrams short: name what they are and copy any labels on them, for\n  example \"Gate diagram: inputs A, B into a box labelled NAND, output NOT(AB)\".\n- If part of the board cannot be read, write [illegible]. Never guess, and never\n  add anything that is not written on the board.\n- Ignore any person in the picture. Describe only what is written.\n\nOutput only the transcription.",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:00",
+      "to": "1:00",
+      "clear_fraction": 0.9779,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\annotation_demo\\all9\\BanglaASR2\\board_era1_000.jpg",
+      "text": "Input and Type Casting\n\nage = 92\ninput()"
+    },
+    {
+      "era": 2,
+      "from": "1:10",
+      "to": "3:10",
+      "clear_fraction": 0.979,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\annotation_demo\\all9\\BanglaASR2\\board_era2_110.jpg",
+      "text": "```\nInput and Type Casting\n\nname = input(\"What is your name?\")\nprint(\"Hello\", name)\n```"
+    },
+    {
+      "era": 3,
+      "from": "4:20",
+      "to": "7:30",
+      "clear_fraction": 0.9848,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\annotation_demo\\all9\\BanglaASR2\\board_era3_420.jpg",
+      "text": "```markdown\n| Input and Type Casting |\n|------------------------|\n| num1 = input(\"What is the first number?\") |\n| num2 = input(\"What is the second number?\") |\n| sum = num1 + num2 |\n| print(sum)            |\n| \"10\" String           |\n| \"20\" String           |\n| \"1\" String            |\n```"
+    },
+    {
+      "era": 4,
+      "from": "7:40",
+      "to": "8:30",
+      "clear_fraction": 0.9394,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\annotation_demo\\all9\\BanglaASR2\\board_era4_740.jpg",
+      "text": "```markdown\nInput and Type Casting\n\nnum1 = input(\"What is the first number?\")\nnum2 = input(\"What is the second number?\")\nnum = int(num1)\n\n\"10\" String\nint(num1) -> integer\n```"
+    },
+    {
+      "era": 5,
+      "from": "8:40",
+      "to": "14:00",
+      "clear_fraction": 0.986,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\annotation_demo\\all9\\BanglaASR2\\board_era5_840.jpg",
+      "text": "| Input and Type Casting |\n| --- |\n| num1=20 |\n| num2=30 |\n| The Sum of 20 and 30 is 50 |\n| num1 = input(\"What is the first number?\") |\n| num2 = input(\"What is the second number?\") |\n| num1 = int(num1) |\n| num2 = int(num2) |\n| sum = num1 + num2 |\n| print(\"Result is\", sum) |\n| print(f\"The sum of {num1} and {num2} is {sum}\") |"
+    }
+  ]
+}

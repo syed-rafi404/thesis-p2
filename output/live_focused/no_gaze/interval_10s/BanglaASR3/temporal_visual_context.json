@@ -1,0 +1,628 @@
+{
+  "frame_keywords": [
+    {
+      "frame_path": "C:\\Users\\T2520785\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR3\\ingested\\frames\\frame_000000_000000s.jpg",
+      "timestamp_sec": 0.0,
+      "keywords": [
+        "Conditional Statements",
+        "Conditional",
+        "Statements"
+      ]
+    },
+    {
+      "frame_path": "C:\\Users\\T2520785\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR3\\ingested\\frames\\frame_000001_000010s.jpg",
+      "timestamp_sec": 10.0,
+      "keywords": [
+        "Conditional Statements",
+        "Conditional",
+        "Statements"
+      ]
+    },
+    {
+      "frame_path": "C:\\Users\\T2520785\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR3\\ingested\\frames\\frame_000002_000020s.jpg",
+      "timestamp_sec": 20.0,
+      "keywords": [
+        "Conditional Statements",
+        "Conditional",
+        "Statements"
+      ]
+    },
+    {
+      "frame_path": "C:\\Users\\T2520785\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR3\\ingested\\frames\\frame_000003_000030s.jpg",
+      "timestamp_sec": 30.0,
+      "keywords": [
+        "Conditional Statements",
+        "Conditional",
+        "Statements"
+      ]
+    },
+    {
+      "frame_path": "C:\\Users\\T2520785\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR3\\ingested\\frames\\frame_000004_000040s.jpg",
+      "timestamp_sec": 40.0,
+      "keywords": [
+        "Conditional Statements",
+        "Conditional",
+        "Statements"
+      ]
+    },
+    {
+      "frame_path": "C:\\Users\\T2520785\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR3\\ingested\\frames\\frame_000005_000050s.jpg",
+      "timestamp_sec": 50.0,
+      "keywords": [
+        "Conditional Statements\nRain",
+        "Conditional",
+        "Statements",
+        "Rain"
+      ]
+    },
+    {
+      "frame_path": "C:\\Users\\T2520785\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR3\\ingested\\frames\\frame_000006_000060s.jpg",
+      "timestamp_sec": 60.0,
+      "keywords": [
+        "Conditional Statements\nRain User",
+        "Conditional",
+        "Statements",
+        "Rain",
+        "User"
+      ]
+    },
+    {
+      "frame_path": "C:\\Users\\T2520785\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR3\\ingested\\frames\\frame_000007_000070s.jpg",
+      "timestamp_sec": 70.0,
+      "keywords": [
+        "Conditional Statements",
+        "Conditional",
+        "Statements",
+        "Rain",
+        "Umbrella"
+      ]
+    },
+    {
+      "frame_path": "C:\\Users\\T2520785\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR3\\ingested\\frames\\frame_000008_000080s.jpg",
+      "timestamp_sec": 80.0,
+      "keywords": [
+        "Conditional Statements\n\nRain",
+        "Conditional",
+        "Statements",
+        "Rain",
+        "Umbrella"
+      ]
+    },
+    {
+      "frame_path": "C:\\Users\\T2520785\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR3\\ingested\\frames\\frame_000009_000090s.jpg",
+      "timestamp_sec": 90.0,
+      "keywords": [
+        "Conditional Statements\n\nIf Rain",
+        "Umbrella\nIf",
+        "Conditional",
+        "Statements",
+        "Rain",
+        "Umbrella"
+      ]
+    },
+    {
+      "frame_path": "C:\\Users\\T2520785\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR3\\ingested\\frames\\frame_000010_000100s.jpg",
+      "timestamp_sec": 100.0,
+      "keywords": [
+        "Conditional Statements",
+        "Umbrella\nIf",
+        "Conditional",
+        "Statements",
+        "Rain",
+        "Umbrella"
+      ]
+    },
+    {
+      "frame_path": "C:\\Users\\T2520785\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR3\\ingested\\frames\\frame_000011_000110s.jpg",
+      "timestamp_sec": 110.0,
+      "keywords": [
+        "Conditional Statements\n\nWeather",
+        "Umbrella\nIf",
+        "Conditional",
+        "Statements",
+        "Weather",
+        "Rain",
+        "Umbrella"
+      ]
+    },
+    {
+      "frame_path": "C:\\Users\\T2520785\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR3\\ingested\\frames\\frame_000012_000120s.jpg",
+      "timestamp_sec": 120.0,
+      "keywords": [
+        "Conditional Statements\n\nWeather",
+        "Umbrella\nIf",
+        "Conditional",
+        "Statements",
+        "Weather",
+        "Today",
+        "Rain",
+        "Umbrella"
+      ]
+    },
+    {
+      "frame_path": "C:\\Users\\T2520785\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR3\\ingested\\frames\\frame_000013_000130s.jpg",
+      "timestamp_sec": 130.0,
+      "keywords": [
+        "Conditional Statements\n\nWeather",
+        "Umbrella\nIf",
+        "Conditional",
+        "Statements",
+        "Weather",
+        "Today",
+        "Rain",
+        "Umbrella",
+        "input(\"Today's weather: \")"
+      ]
+    },
+    {
+      "frame_path": "C:\\Users\\T2520785\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR3\\ingested\\frames\\frame_000014_000140s.jpg",
+      "timestamp_sec": 140.0,
+      "keywords": [
+        "Conditional Statements\n\nWeather",
+        "Umbrella\nIf",
+        "Conditional",
+        "Statements",
+        "Weather",
+        "Today",
+        "Rain",
+        "Umbrella",
+        "input(\"Today's weather: \")"
+      ]
+    },
+    {
+      "frame_path": "C:\\Users\\T2520785\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR3\\ingested\\frames\\frame_000015_000150s.jpg",
+      "timestamp_sec": 150.0,
+      "keywords": [
+        "Conditional Statements\n\nWeather",
+        "Umbrella\nIf",
+        "Conditional",
+        "Statements",
+        "Weather",
+        "Today",
+        "Rain",
+        "Umbrella",
+        "input(\"Today's weather:\")"
+      ]
+    },
+    {
+      "frame_path": "C:\\Users\\T2520785\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR3\\ingested\\frames\\frame_000016_000160s.jpg",
+      "timestamp_sec": 160.0,
+      "keywords": [
+        "Conditional Statements",
+        "Umbrella\nIf",
+        "Conditional",
+        "Statements",
+        "Today",
+        "Rain",
+        "Umbrella",
+        "input(\"Today's weather:\")"
+      ]
+    },
+    {
+      "frame_path": "C:\\Users\\T2520785\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR3\\ingested\\frames\\frame_000017_000170s.jpg",
+      "timestamp_sec": 170.0,
+      "keywords": [
+        "Conditional Statements",
+        "Bring Umbrella",
+        "Conditional",
+        "Statements",
+        "Today",
+        "Rain",
+        "Bring",
+        "Umbrella",
+        "Don",
+        "input(\"Today's weather:\")",
+        "print(\"Bring Umbrella\")",
+        "print(\"Don't bring umbrella\")"
+      ]
+    },
+    {
+      "frame_path": "C:\\Users\\T2520785\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR3\\ingested\\frames\\frame_000018_000180s.jpg",
+      "timestamp_sec": 180.0,
+      "keywords": [
+        "Conditional Statements\n\nWeather",
+        "Bring Umbrella",
+        "Umbrella\nIf",
+        "Conditional",
+        "Statements",
+        "Weather",
+        "Today",
+        "Rain",
+        "Bring",
+        "Umbrella",
+        "input(\"Today's weather:\")",
+        "print(\"Bring Umbrella\")"
+      ]
+    },
+    {
+      "frame_path": "C:\\Users\\T2520785\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR3\\ingested\\frames\\frame_000019_000190s.jpg",
+      "timestamp_sec": 190.0,
+      "keywords": [
+        "Conditional Statements\n\nWeather",
+        "Bring Umbrella",
+        "Umbrella\nIf",
+        "Conditional",
+        "Statements",
+        "Weather",
+        "Today",
+        "Rain",
+        "Bring",
+        "Umbrella",
+        "input(\"Today's weather: \")",
+        "print(\"Bring Umbrella\")"
+      ]
+    },
+    {
+      "frame_path": "C:\\Users\\T2520785\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR3\\ingested\\frames\\frame_000020_000200s.jpg",
+      "timestamp_sec": 200.0,
+      "keywords": [
+        "Conditional Statements\n\nWeather",
+        "Bring Umbrella",
+        "Umbrella\n    If",
+        "Conditional",
+        "Statements",
+        "Weather",
+        "Today",
+        "Rain",
+        "Bring",
+        "Umbrella",
+        "input(\"Today's weather:\")",
+        "print(\"Bring Umbrella\")"
+      ]
+    },
+    {
+      "frame_path": "C:\\Users\\T2520785\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR3\\ingested\\frames\\frame_000021_000210s.jpg",
+      "timestamp_sec": 210.0,
+      "keywords": [
+        "Conditional Statements",
+        "Bring Umbrella",
+        "If Rain",
+        "Umbrella\nIf",
+        "Conditional",
+        "Statements",
+        "Today",
+        "Rain",
+        "Bring",
+        "Umbrella",
+        "input(\"Today's weather: \")",
+        "print(\"Bring Umbrella\")",
+        "print(\"Just\")"
+      ]
+    },
+    {
+      "frame_path": "C:\\Users\\T2520785\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR3\\ingested\\frames\\frame_000022_000220s.jpg",
+      "timestamp_sec": 220.0,
+      "keywords": [
+        "Conditional Statements\n\nWeather",
+        "Bring Umbrella",
+        "Just Come",
+        "Umbrella\nIf",
+        "Conditional",
+        "Statements",
+        "Weather",
+        "Today",
+        "Rain",
+        "Bring",
+        "Umbrella",
+        "Come",
+        "input(\"Today's weather:\")",
+        "print(\"Bring Umbrella\")",
+        "print(\"Just Come\")"
+      ]
+    },
+    {
+      "frame_path": "C:\\Users\\T2520785\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR3\\ingested\\frames\\frame_000023_000230s.jpg",
+      "timestamp_sec": 230.0,
+      "keywords": [
+        "Conditional Statements\n\nWeather",
+        "Bring Umbrella",
+        "Umbrella\nIf",
+        "Conditional",
+        "Statements",
+        "Weather",
+        "Today",
+        "Rain",
+        "Bring",
+        "Umbrella",
+        "Come",
+        "input(\"Today's weather: \")",
+        "print(\"Bring Umbrella\")",
+        "print(\"- Come\")"
+      ]
+    },
+    {
+      "frame_path": "C:\\Users\\T2520785\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR3\\ingested\\frames\\frame_000024_000240s.jpg",
+      "timestamp_sec": 240.0,
+      "keywords": [
+        "Conditional Statements\n\nWeather",
+        "Bring Umbrella",
+        "Just Come",
+        "Umbrella\nIf",
+        "Conditional",
+        "Statements",
+        "Weather",
+        "Today",
+        "Rain",
+        "Bring",
+        "Umbrella",
+        "Come",
+        "input(\"Today's weather: \")",
+        "print(\"Bring Umbrella\")",
+        "print(\"Just Come\")"
+      ]
+    },
+    {
+      "frame_path": "C:\\Users\\T2520785\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR3\\ingested\\frames\\frame_000025_000250s.jpg",
+      "timestamp_sec": 250.0,
+      "keywords": [
+        "Conditional Statements\n\nWeather",
+        "Just Come",
+        "Umbrella\nIf",
+        "Conditional",
+        "Statements",
+        "Weather",
+        "Today",
+        "Rain",
+        "Umbrella",
+        "Come",
+        "input(\"Today's weather:\")",
+        "print(\"Umbrella\")",
+        "print(\"Just Come\")"
+      ]
+    },
+    {
+      "frame_path": "C:\\Users\\T2520785\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR3\\ingested\\frames\\frame_000026_000260s.jpg",
+      "timestamp_sec": 260.0,
+      "keywords": [
+        "Conditional Statements\n\nWeather",
+        "Bring Umbrella",
+        "Umbrella\nIf",
+        "Conditional",
+        "Statements",
+        "Weather",
+        "Today",
+        "Rain",
+        "Bring",
+        "Umbrella",
+        "input(\"Today's weather:\")",
+        "print(\"Bring Umbrella\")"
+      ]
+    },
+    {
+      "frame_path": "C:\\Users\\T2520785\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR3\\ingested\\frames\\frame_000027_000270s.jpg",
+      "timestamp_sec": 270.0,
+      "keywords": [
+        "Conditional Statements",
+        "Bring Umbrella",
+        "Conditional",
+        "Statements",
+        "Today",
+        "Rain",
+        "Bring",
+        "Umbrella",
+        "Sunny",
+        "Don",
+        "input(\"Today's weather:\")",
+        "print(\"Bring Umbrella\")",
+        "print(\"Don't bring Umbrella\")"
+      ]
+    },
+    {
+      "frame_path": "C:\\Users\\T2520785\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR3\\ingested\\frames\\frame_000028_000280s.jpg",
+      "timestamp_sec": 280.0,
+      "keywords": [
+        "Conditional Statements",
+        "Bring Umbrella",
+        "Umbrella\n    If",
+        "Conditional",
+        "Statements",
+        "Today",
+        "Rain",
+        "Bring",
+        "Umbrella",
+        "Sunny",
+        "input(\"Today's weather:\")",
+        "print(\"Bring Umbrella\")"
+      ]
+    },
+    {
+      "frame_path": "C:\\Users\\T2520785\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR3\\ingested\\frames\\frame_000029_000290s.jpg",
+      "timestamp_sec": 290.0,
+      "keywords": [
+        "Conditional Statements\n\nWeather",
+        "Bring Umbrella",
+        "Umbrella\nIf",
+        "Conditional",
+        "Statements",
+        "Weather",
+        "Today",
+        "Rain",
+        "Bring",
+        "Umbrella",
+        "Sunny",
+        "input(\"Today's weather: \")",
+        "print(\"Bring Umbrella\")",
+        "print(\"\")"
+      ]
+    },
+    {
+      "frame_path": "C:\\Users\\T2520785\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR3\\ingested\\frames\\frame_000030_000300s.jpg",
+      "timestamp_sec": 300.0,
+      "keywords": [
+        "Conditional Statements\n\nWeather",
+        "Wear White Clothes\nIf",
+        "Bring Umbrella",
+        "Conditional",
+        "Statements",
+        "Weather",
+        "Today",
+        "Rain",
+        "User",
+        "Umbrella",
+        "Sun",
+        "Sunny",
+        "Wear",
+        "White",
+        "Clothes",
+        "Bring"
+      ]
+    },
+    {
+      "frame_path": "C:\\Users\\T2520785\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR3\\ingested\\frames\\frame_000031_000310s.jpg",
+      "timestamp_sec": 310.0,
+      "keywords": [
+        "Conditional Statements\n\nWeather",
+        "Bring Umbrella",
+        "Wear White Colou",
+        "Umbrella\n    If",
+        "Conditional",
+        "Statements",
+        "Weather",
+        "Today",
+        "Rain",
+        "Bring",
+        "Umbrella",
+        "Sunny",
+        "Wear",
+        "White",
+        "Colou",
+        "input(\"Today's weather: \")",
+        "print(\"Bring Umbrella\")",
+        "print(\"Wear White Colou\")"
+      ]
+    },
+    {
+      "frame_path": "C:\\Users\\T2520785\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR3\\ingested\\frames\\frame_000032_000320s.jpg",
+      "timestamp_sec": 320.0,
+      "keywords": [
+        "Conditional Statements",
+        "Bring Umbrella",
+        "Wear White Colou",
+        "If Rain",
+        "Conditional",
+        "Statements",
+        "Today",
+        "Rain",
+        "Bring",
+        "Umbrella",
+        "Sunny",
+        "Wear",
+        "White",
+        "Colou",
+        "input(\"Today's weather:\")",
+        "print(\"Bring Umbrella\")",
+        "print(\"Wear White Colou\")",
+        "print(\"If Rain user will bring Umbrella\")"
+      ]
+    },
+    {
+      "frame_path": "C:\\Users\\T2520785\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR3\\ingested\\frames\\frame_000033_000330s.jpg",
+      "timestamp_sec": 330.0,
+      "keywords": [
+        "Conditional Statements\n\nWeather",
+        "Bring Umbrella",
+        "Wear White Coat",
+        "Just Come",
+        "Umbrella\nIf",
+        "Conditional",
+        "Statements",
+        "Weather",
+        "Today",
+        "Rain",
+        "Bring",
+        "Umbrella",
+        "Sunny",
+        "Wear",
+        "White",
+        "Coat",
+        "Come",
+        "input(\"Today's weather:\")"
+      ]
+    },
+    {
+      "frame_path": "C:\\Users\\T2520785\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR3\\ingested\\frames\\frame_000034_000340s.jpg",
+      "timestamp_sec": 340.0,
+      "keywords": [
+        "Conditional Statements\n\nWeather",
+        "Bring Umbrella",
+        "Wear White Color",
+        "Just Come",
+        "Umbrella\nIf",
+        "Conditional",
+        "Statements",
+        "Weather",
+        "Today",
+        "Rain",
+        "Bring",
+        "Umbrella",
+        "Sunny",
+        "Wear",
+        "White",
+        "Color",
+        "Come",
+        "input(\"Today's weather:\")",
+        "print(\"Bring Umbrella\")",
+        "print(\"Wear White Color\")",
+        "print(\"Just Come\")"
+      ]
+    },
+    {
+      "frame_path": "C:\\Users\\T2520785\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR3\\ingested\\frames\\frame_000035_000350s.jpg",
+      "timestamp_sec": 350.0,
+      "keywords": [
+        "Conditional Statements\n\nWeather",
+        "Bring Umbrella",
+        "Wear White Color",
+        "Just Come",
+        "Umbrella\nIf",
+        "Conditional",
+        "Statements",
+        "Weather",
+        "Today",
+        "Rain",
+        "Bring",
+        "Umbrella",
+        "Sunny",
+        "Wear",
+        "White",
+        "Color",
+        "Come",
+        "input(\"Today's weather: \")",
+        "print(\"Bring Umbrella\")",
+        "print(\"Wear White Color\")",
+        "print(\"Just Come\")"
+      ]
+    },
+    {
+      "frame_path": "C:\\Users\\T2520785\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR3\\ingested\\frames\\frame_000036_000360s.jpg",
+      "timestamp_sec": 360.0,
+      "keywords": [
+        "Conditional Statements\n\nWeather",
+        "Bring Umbrella",
+        "Wear White Coat",
+        "Just Come",
+        "Umbrella\nIf",
+        "Conditional",
+        "Statements",
+        "Weather",
+        "Today",
+        "Rain",
+        "Bring",
+        "Umbrella",
+        "Sunny",
+        "Wear",
+        "White",
+        "Coat",
+        "Come",
+        "input(\"Today's weather: \")",
+        "print(\"Bring Umbrella\")",
+        "print(\"Wear White Coat\")",
+        "print(\"Just Come\")"
+      ]
+    }
+  ],
+  "window_before_sec": 10,
+  "window_after_sec": 10,
+  "total_unique_keywords": 46,
+  "temporal_mode": true
+}

@@ -1,0 +1,47 @@
+# BanglaASR8 Ground Truth Transcription
+# Real Classroom Video
+# 
+# Format: [M:SS-M:SS] Romanized Banglish transcription
+# 
+# INSTRUCTIONS:
+# 1. Watch the video: data/raw/BanglaASR8.mp4
+# 2. Transcribe what the lecturer says in Romanized Banglish
+# 3. Include timestamps for each segment
+# 4. Use Roman script (English letters) even for Bengali words
+# 5. Include technical terms exactly as spoken
+# 
+# Example:
+# [0:00-0:30] Assalamualaikum, aj amra class e dekhbo...
+# [0:30-1:00] Java te amra object oriented programming...
+#
+# TECHNICAL TERMS TO WATCH FOR:
+# (List key technical terms that appear in this video)
+#
+# ============================================================
+# PASTE YOUR TRANSCRIPTION BELOW:
+# ============================================================
+
+
+[0:00-1:14]
+Hello everyone ajker topic ta hocche database management system which is DBMS in a short form. So, ajker topic tar amra ektu surface level ei thakbo beshi deep e jabo na. So ahh database jinish ta ki? Database onekgula data ke hold kore. So, ei data gula ki thakte pare? Multiple tables e thakte pare. Toh dhorlam ei rokom amar kacheo onekgula tables ache. So ei shob gula table e amar kichu informative aaa information ache. Jeigula ke ami use kore ami  jekono dhoroner performance chalate pari. Jekono dhoroner software chalate pari. So amader aaa internet er ba amader aaa amader wi wa aa digital world e database er importance kintu onek. So suppose ami ekta, jehetu amra khub simple aaa example diye start korbo toh table o ami etogula multiple tables na niye ami just ekta table e focus kori. 
+
+[1:14-2:59]
+So first ei amar ekta database er name dite hobe. Suppose database er nam hocche ‘University’. Er moddhe ekta table ache, shetar nam dhorlam ‘Student_Info’. Okay? Tar mane ki amar University-r database er moddhe Student Information er ekta table ache jekhane amar shob students er kichu information store kora thakbe. So dhorlam amar first ei ache student ‘ID’, Erpore ‘First Name’ thakte pare. Tarpore ‘Last Name’ thakte pare. Ar dhoro ‘CGPA’ thakte pare. And ‘Department’ thakte pare. And last dhorlam ‘Enrollment Date’. Okay. So eigula hocche amar table er head. So etar moddhhe amar sequentially kichu information store kora thakbe, right? Ekhon ami kichu dummy data dhore nei. Karon amar kache toh in real life billions of information thakte pare. Billions of data thakte pare.
+
+[2:59-6:44]
+But amra jehetu choto ekta example niye kaj korsi so amra dui tin ta or tin char ta data niye example dilei hoye jaoar kotha. Okay. So 1st e dhorlam amar student ID, ami kichu random numbers diye. Okay. So ekhane ami dhoro pachta data rakhlam pachta different student er different different ID ache, egula kintu unique ID. Accha. Erpore First Name dhorlam. Last Name kichu dilam. Kichu CGPA dilam. Okay. Department dilam. Enrollment Date e uuum kichu random dates diye dilam. So ekhane ami kichu dummy data create kore fellam. Toh ekhan theke ami bivinno shomoy e amar proyojon moto kichu kichu information fetch kore  nite pari. Jemon dhoro ami particular suppose 110112, ei student er student ID je hold korche tar nam jante chacchi, othoba CGPA jante chacchi, tar Department jante chacchi, ar tar Enrollment jante chachhi. So eirokom type er multiplemm multiple bhabe ami kichu information table theke fetch kore ante pari.
+
+[6:44-8:01]
+So etar jonno ahm erkom dhoroner table er sathe amra kivabe dekhbo je amar ki ki data ache, ki ki columns ache, ki ki aaa kotogulo data ache? Eta toh amader pokkhe dekha possible na. Karon ekta table toh ar ekta database er moddhe thakbe na. Ekta database e multiple tables thakte pare. So ei database er sathe communicate korar jonno ekta language use kori sheta hocche SQL othoba MySQL. Erokom type er aro onek dhoroner language hoy. Ajke amra shudhu MySQL dekhbo. So MySQL amader normal je programming language jemon Java, Python, C, C# egular theke kintu different. MySQL egula hocche Query Language. Query language jinishta ki? Je user kono aa question korbe database shekhan theke aa result ta amake output hishabe dibe. So eitai hocche Query language er kaj. So MySQL e ami  first e eije table ta, ei table tao toh kono bhabe create kora hoyeche, right? So eitao kintu query er maddhomei create kora hoy. 
+
+[8:01-8:42]
+Bibhinno dhoroner amra table ke manupulate o korte pari. Table er data manupulate bolte table er data change korte pari. Notun kono data insert korte pari othoba kono data aaa delete kore felte pari. Shudhu data na ami table er pura ekta row kei delete kore felte pari, ekta row add korte pari. Othoba kono column add korte pari, column ke delete o korte pari. In fact ami kintu pura table ta keo, amar jodi unnecessary kono table theke thake shetakeo kintu amra fully delete kore felte pari. So eishob kichui kintu amar SQL command er maddhome hoy. So, ajke first e ami amra dekhbo je SQL diye kivabe ekta table ke create kora jay. 
+
+[8:42-10:36]
+So, first e jodi ashi ami dilam Create table. Ami table er nam a ki rakhte chacchi? Eije, eta hocche amar table er nam which is Student underscore Info, erpore ami ekta bracket diye dilam. Okay? Tahole ei command dekhe amar aa query bujhte parlo je amake ekhane ekta  Student Info namer ekta notun table ke create korte hobe. So, ei table er ki ki data ami rakhte chai? Aaa kon kon table head ami rakhbo. So ekhane ki ki ache? ID, First Name, Last Name, CGPA, Department and Enrollment Date. So eigulai kintu amar column ta. Ekhane hocche ami serial wise aa sequential jevabe ami sequen je sequence e ami rakhte chai shei bhabe aaa likhe felbo. So first ei amar ashlo ID, erpore First Name, erpor Last name. Last underscore Name. Erpore CGPA, erpore Department, erpore Enrollment Date. Okay. So, ei je ami column gula line by line likhe fellam, so ei porjontoi ki amar done? Eita korle kintu amar aaa table ta create hoye gelo na. 
+
+[10:36-12:04]
+Amake prottekta column er datatype ta ke mention kore dite hobe je ami ID er moddhe ki type er data rakhte chacchi, othoba First Name e ki de eh ki type er datatype ki type er data rakhte chacchi, sherokom bhabe Last Name, CGPA, aaa Department and Enrollment Date. So ID, ID te ki hobe? Ekhane amar mostly thakbe shobshomoy ki digits? So ekhane amra likhte pari integer. I-n-t ekta comma. Tarpore First underscore Name. First Name er je column ta ekhane ki thakbe? Students der name thakbe.  Ekhon name ki diye toiri hoy? Different characters. Abar name gula ki? Different length er hote pare. So, characters er jonno amra use kori varchar. Varchar hocche Variable Characters. So, eikhane First Name and second name duitai kintu amar shobshomoy ekta character er variable e thakbe. So dui jayga tei ami varchar likhe dilam. Varchar likhar sathe ekhane amar ekhankar kichu length ta fix kore dite hoy. Jemon ami ekhane koto maximan koto length er ekta name rakhte pari? Suppose dhorlam 10. Karon ekta student er aa nam er modhe up to toh 10 character e thakte pare. Er beshi usually hoy na. So 10 likhe dilam. Tar mane holo ekhane amar up to 10 length er shob name consider kora jabe.
+
+[12:04-13:03]
+Okay, then CGPA. CGPA  e te amar ki thakbe? Amar float numbers. So etar jonno etar datatype hobe float. Department. Department o kintu First Name arLast Name er motoi. So etateo ami likhbo varchar, etar character limitation diye dilam maximum 15 porjonto for example. Ar Enrollment Date. Since eta ekta date, date namer amader SQL e alada ekta datatype e ache. So etar datatype ta hobe Date. Eta likhle automatically evabe date format e numbers gula chole ashbe. So etar je first bracket start hoyechilo etake end kore dibo and last ekta semicolon diye dibo. So ajker class e amra dekhlam aaa DBMS ki, DBMS kivabe kaj kore, DBMS er table kivabe create korte hoy through SQL. So next class e amra aro kichu operations gula dekhbo.

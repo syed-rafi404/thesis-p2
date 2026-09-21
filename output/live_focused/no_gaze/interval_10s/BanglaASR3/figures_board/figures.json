@@ -1,0 +1,11 @@
+[
+  {
+    "figure": 1,
+    "era": 1,
+    "from": "0:00",
+    "to": "5:50",
+    "clear_fraction": 1.0,
+    "section": "Example: Using `if` and `else`",
+    "image": "figures_board/board_01_era1.jpg"
+  }
+]

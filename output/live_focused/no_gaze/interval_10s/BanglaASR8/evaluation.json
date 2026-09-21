@@ -1,0 +1,47 @@
+{
+  "baseline_recall": 0.55,
+  "global_recall": 0.55,
+  "temporal_recall": 0.55,
+  "global_vs_baseline_pct": 0.0,
+  "temporal_vs_baseline_pct": 0.0,
+  "temporal_vs_global_pct": 0.0,
+  "baseline_found": [
+    "Database Management System",
+    "Management",
+    "University",
+    "Department",
+    "Enrollment Date",
+    "Enrollment",
+    "Query Language",
+    "Database",
+    "System",
+    "Student",
+    "Language"
+  ],
+  "global_found": [
+    "Database Management System",
+    "Management",
+    "University",
+    "Department",
+    "Enrollment Date",
+    "Enrollment",
+    "Query Language",
+    "Database",
+    "System",
+    "Student",
+    "Language"
+  ],
+  "temporal_found": [
+    "Database Management System",
+    "Management",
+    "University",
+    "Department",
+    "Enrollment Date",
+    "Enrollment",
+    "Query Language",
+    "Database",
+    "System",
+    "Student",
+    "Language"
+  ]
+}

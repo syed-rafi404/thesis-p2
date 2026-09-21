@@ -58,12 +58,22 @@ avoid "Understanding", which overclaims.
 
 ## The thesis as it now stands (details and numbers in RESULTS.md)
 
-**One significant, replicated positive — the headline.** LoRA fine-tune of whisper-small on 1.17 h of
-Banglish, tested on 137 clips of a speaker never seen in training: WER median 96.1% → 81.8%
-(Wilcoxon p = 0.009), CER 75.3% → 60.7% (p = 2.2e-05). A second independent run on the same data
-reached WER 77.1%, CER 57.4%, p < 1e-05. Scaling curve: under 1 h is unreliable; the curve is still
-falling at 1.17 h, which argues for the larger corpus. **Read medians, not means**: runaway
-repetition loops push mean error over 100%.
+**One significant, replicated positive — the headline (corrected 2026-09-21).** The old split had
+a leak: video 6 is the test speaker (user's `data/raw/Speaker2`; `scripts/verify_speakers.py`
+confirms, 0.99 vs 0.77 similarity) but was trained on. **Never quote 96.1% → 81.8% again.**
+Corrected: train videos 1–5 (55.6 min, speaker A), test 6–9 (184 clips, speaker B). Under plain
+greedy decoding the fine-tune loops on 58 clips and does not beat base. With Whisper's standard
+compression-ratio loop safeguard on both models (`evaluate.py --decode fallback`): **WER median
+95.0% → 78.8–83.3%, CER 73.4% → 54.6–59.4%, p < 1e-05** over three training runs and two
+safeguard seeds, every held-out lecture improves. Scaling curve (0.3 / 0.6 / 0.93 h): 84.6 / 80.6 /
+83.3% WER, **flat within the 4.5 pp run-to-run noise after 0.3 h**, significant at every budget. The
+old "still falling, so more data" argument came from the leaked split; drop it.
+**Second unseen speaker (RESULTS.md 1.1):** Speaker3, videos 10–13 (label C, 75 clips): the A-only
+adapters give CER 68.4% → 46.4–46.7%, p < 1e-08, significant even under greedy. Training on A+C
+did not measurably help B (one run, rest interrupted; `ft_work_AC/`). The user asked about
+spelling-normalized / fuzzy WER for Banglish; proposed, not yet computed. The safeguard was adopted after seeing the greedy
+result; say so, and report both. The old split re-run on the 5090 reproduces 81.8%, so the machine
+is not the cause. **Read medians, not means, and read the sign of z, not just p.**
 
 **Three measured negatives.** Fusion: +0.7 pp Term F1, p = 0.32, and the visually biased
 transcripts are byte-identical to the baseline. Visual bias: any non-zero strength halves term
@@ -80,12 +90,11 @@ across 9 lectures, 35 boards, median 97.7% of tiles fully clear, 6 boards at 100
 unmodified camera output. It is engineering, not algorithmic novelty; whiteboard occlusion removal
 is an established area. Say so if asked.
 
-**The honest VLM story for the supervisor.** The VLM result so far is not negative; the
-*fusion* result is. The VLM's actual job, reading the board, was never evaluated, and it was
-crippled by its inputs: keyword prompts on occluded raw frames. For the DBMS lecture it returned
-four broken fragments of one name, four words not on the board, and **not one CGPA or student ID**.
-The experiment that can give a real VLM positive is ready: same model and prompt, raw frame vs
-reconstructed board, scored by board-content recall on the 10 held-out boards.
+**The VLM result for the supervisor — measured 2026-09-21 (RESULTS.md 5.2).** Same Qwen2.5-VL-7B,
+same boards, only the prompt changed: board-content recall **47.3% (keyword prompt) → 97.0% (full
+transcription)**, better on 8 of 10 boards, worse on none, sign test p = 0.0078; numbers 0/47 →
+47/47. Reconstructed board 98.2% vs raw frame 97.0%, not significant: **the gain is the prompt, not
+the reconstruction.** Say that plainly. The answer key is still not hand-verified.
 
 ---
 
@@ -117,11 +126,17 @@ erpor e ami ki korbo? not korbo."
   `english`, `banglish`, `mixed` (English with the lecturer's Banglish quoted), plus `legacy`.
 - **`legacy` is the original prompt, verified character-identical by AST comparison, and is the
   default**, because the 40.1% baseline was produced with it. Do not edit it.
-- Fine-tuned transcripts for all 9 lectures were **already produced on the 3060** and sit in each
-  lecture folder as `transcript_finetuned.txt`. Videos 1–6 are training lectures for that adapter;
-  only 7–9 are valid for evaluation.
-- The new notes have **not been generated or seen yet**. That needs Qwen on the 5090. Do not claim
-  they are better until they have been generated and scored.
+- Fine-tuned transcripts for all 9 lectures sit in each lecture folder. Videos 1–5 are training
+  lectures for the corrected adapter; only 6–9 are valid for evaluation.
+- **Measured 2026-09-21 (RESULTS.md 5.3), board recall:** A original 40.1%, B grounded prompt +
+  keywords 27.5% (down, n.s.), C + VLM board text **95.8%** (p = 0.0078), D + fine-tuned transcript
+  92.2% (n.s. vs C). C's jump is mostly the board transcription pasted into the notes; recall does
+  not measure readability.
+- **Known defect:** the `mixed` style's lecturer quotes do not work. D has none; C labels board text
+  as "Lecturer:" and once pastes a whole English transcript paragraph. Fixing it is a summarizer
+  prompt edit: discuss with the user first.
+- Fine-tuned transcripts: use `transcript_finetuned_v2.txt` (corrected adapter, safeguard).
+  `transcript_finetuned.txt` came from the leaked adapter; kept as a record only.
 
 ---
 
@@ -151,12 +166,21 @@ soundfile, jiwer, numpy; **no Pillow, no matplotlib**). `C:\Users\Rafi\miniconda
 has **Pillow and numpy** and ran all the vision scripts. matplotlib is installed nowhere on the 3060.
 The `thesis_v2` conda env in older notes does not exist here. On the 5090, put everything in one env.
 
-**Not in git — must be copied between machines:**
-- `output\` (gitignored): past runs, the 9 `transcript_finetuned.txt`, the board mosaics in
-  `output\annotation_demo\all9\`, the baseline notes the comparison needs.
-- `data\` (gitignored), except `data\board_truth\` which was force-added.
-- `ft_work\`, a sibling of the repo: clips, manifests, `split.json`, adapters, `models\whisper-small`.
-- Environments are not portable; rebuild them.
+**What git carries now (force-added 2026-09-21, the repo is private):**
+- `data\ground_truth\` (all 13 transcripts) and `data\board_truth\`. Not the videos.
+- The text outputs of every lecture run in `output\live_focused\no_gaze\interval_10s\` (notes,
+  transcripts, board transcriptions, evaluations), `output\annotation_demo\` (board mosaics),
+  `output\speaker_check\`.
+- `artifacts\<work dir>\`: adapters, evaluations, manifests, `split.json`, logs for `ft_work`,
+  `ft_work_3spk` (including Speaker3's extracted audio), `ft_work_AC`, `ft_work_v1_repro_5090`.
+  **After `git pull` on another machine run `python scripts/restore_artifacts.py --apply`.** It puts
+  them beside the repo, archives a leaked old `ft_work`, reuses or downloads whisper-small, rebuilds
+  clips and checks the manifests match. Tested on a mock 3060 layout.
+
+**Still not in git — copy by hand if a machine needs them:** videos (`data\raw\SpeakerN\`), video
+frames and `full_audio.wav` under `output\` (the 3060 already has them for videos 1–9), the older
+P2 experiment folders in `output\`, and whisper-small weights (922 MB, over GitHub's file limit).
+Environments are not portable; rebuild them.
 
 Paths resolve through env vars with inferred defaults: `THESIS_REPO`, `THESIS_FT_DIR`
 (default: sibling `ft_work`), `THESIS_PYTHON`, `THESIS_QWEN`, `THESIS_FIGURES`.
@@ -171,10 +195,10 @@ command; only change global config after asking.
 | Component | State | Notes |
 |---|---|---|
 | Whisper large-v3-turbo ASR | Working | Outputs an English translation, not Banglish |
-| Whisper-small + LoRA fine-tune | **Working, significant** | The headline result |
+| Whisper-small + LoRA fine-tune | **Working, significant** (with loop safeguard) | Headline; corrected split, see above |
 | BanglaASR (Bengali Unicode) | Working | Wav2Vec2 |
-| Qwen2.5-VL whiteboard reading | Runs; **never evaluated** | Keyword prompt discards numbers; fix is `transcribe_boards.py` |
-| Qwen2.5-7B-Instruct notes | Runs; output was bland | Grounded prompts added, not yet run |
+| Qwen2.5-VL whiteboard reading | **Evaluated, strong** | 97.0% board recall with `transcribe_boards.py`; keyword prompt 47.3% |
+| Qwen2.5-7B-Instruct notes | Board recall 95.8% (C) | Lecturer-quote instruction broken; readability unmeasured |
 | Board reconstruction (tiled mosaic) | **Working, measured** | median 97.7% tiles clear, 35 boards |
 | Region detection | Working, **not evaluated** | No layout ground truth exists |
 | Fusion (dual-ASR, CMV) | Negative | +0.7 pp, p = 0.32 |
@@ -211,6 +235,12 @@ Don't suggest reviving failed approaches unless the user raises them.
 | `scripts/transcribe_boards.py` | Full VLM board transcription; `--source frame` or `mosaic` |
 | `scripts/regenerate_notes.py` | Notes from a finished run; `--language`, `--board-source`, `--dry-run` |
 | `src/summarizer/prompts.py` | Legacy and grounded prompts. `generator.py` gained a `notes_language` argument, default `legacy` |
+| `scripts/verify_speakers.py` | WavLM speaker embeddings per lecture; checks the speaker labels behind the split |
+| `scripts/compare_evals.py` | Side-by-side table of `evaluate.py` results, with the direction of each test |
+| `evaluate.py --decode fallback` | Whisper's compression-ratio loop safeguard for both models; `--fallback-seed`. Also in `run_p3_experiment.py`, `run_scaling_curve.py` (`--hours ... all`), `transcribe_finetuned.py` |
+| `prepare_data.py --speaker-map` | `v2` (default, video 6 = B) or `v1` (the superseded leaked split, reproduction only) |
+| `prepare_data.py --only-speakers` | Use only some speakers. **The section 1.0 headline is `--only-speakers A,B --test-speakers B`**; without it speaker C now joins training |
+| `scripts/restore_artifacts.py` | After `git pull` elsewhere: restore `artifacts\` beside the repo and rebuild clips |
 
 `scripts/generate_thesis_figures.py` now computes rather than asserts: fusion panels, the real bias
 sweep, per-video transcript lengths counted from files. **Figure 6.5 (failure modes) has no
@@ -243,7 +273,19 @@ analysis behind it** and prints a warning; label a sample of errors or drop it.
   never over 30, and `# Speaker ID:` on every file. Validate with `scripts/validate_ground_truth.py`,
   then `run_p3_experiment.py --test-speakers B,<new ids> --model openai/whisper-large-v3-turbo
   --curve-hours 2 4 6 8`.
-- **Board ground truth** being verified by the user; three items flagged.
+- **Board ground truth** being verified by the user; three items flagged. Both VLM and notes results
+  now rest on it, so this matters more than before.
+- **ft_work layout on the 5090:** `ft_work\` is the corrected split; `ft_work_v1_video6_in_train\` is
+  the 3060 run (evidence); `ft_work_v1_repro_5090\` is the old split re-run as a control;
+  `ft_work_3spk\` holds speaker C clips and its evaluation; `ft_work_AC\` the A+C training run.
+- **Qwen runs happened on the 5090 only.** Their outputs live in `output\` (gitignored):
+  `board_text_frame.*`, `board_text_mosaic.*`, `board_text.json`, `notes_B_prompt.md`,
+  `notes_C_vlm.md`, `notes_D_full.md`, `transcript_finetuned_v2.txt` in each lecture folder.
+  The 3060 has no Qwen: copy `output\` across to see them; do not try to regenerate there.
+- ffmpeg on the 5090: installed with winget 2026-09-21 (new shells find it).
+- `prepare_data.py` now skips lectures with no known speaker instead of training on them, and warns
+  when labels disagree with the `data\raw\SpeakerN` folders.
+- **Lecturer quotes** in the `mixed` notes do not work (see above).
 - **Reference notes** for 2 lectures would close the "summarizer never evaluated" gap as a pilot.
 - **Chapters 3, 7, 9** are stubs; `chapter_7.tex` is 0 bytes and not `\input` in main.tex.
 - **Figure 6.5** needs an error analysis or removal.

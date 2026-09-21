@@ -1,0 +1,86 @@
+﻿
+🧠 Loading Language Model (via Registry)
+Model: Qwen/Qwen2.5-7B-Instruct
+Precision: FP16 | Device Map: auto
+
+📦 Loading LLM FP16 (caching for reuse)...
+python : Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate 
+limits and faster downloads.
+At line:1 char:333
++ ... ED='1'; & { python -u scripts/regenerate_notes.py --all --language mi ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Warning: You ar...ster downloads.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+
+Loading weights:   0%|          | 0/339 [00:00<?, ?it/s]
+Loading weights:   0%|          | 1/339 [00:00<03:45,  1.50it/s]
+Loading weights:   1%|          | 2/339 [00:00<01:58,  2.83it/s]
+Loading weights:  15%|█▍        | 50/339 [00:00<00:03, 92.79it/s]
+Loading weights:  21%|██        | 71/339 [00:01<00:02, 115.10it/s]
+Loading weights:  27%|██▋       | 91/339 [00:01<00:01, 125.74it/s]
+Loading weights:  32%|███▏      | 110/339 [00:01<00:01, 139.79it/s]
+Loading weights:  38%|███▊      | 129/339 [00:01<00:01, 147.52it/s]
+Loading weights:  44%|████▎     | 148/339 [00:01<00:01, 149.39it/s]
+Loading weights:  51%|█████     | 172/339 [00:01<00:01, 164.82it/s]
+Loading weights:  58%|█████▊    | 196/339 [00:01<00:00, 160.65it/s]
+Loading weights:  65%|██████▍   | 220/339 [00:01<00:00, 167.16it/s]
+Loading weights:  72%|███████▏  | 244/339 [00:02<00:00, 176.78it/s]
+Loading weights:  79%|███████▉  | 268/339 [00:02<00:00, 183.85it/s]
+Loading weights:  86%|████████▌ | 292/339 [00:02<00:00, 182.37it/s]
+Loading weights:  93%|█████████▎| 316/339 [00:02<00:00, 181.14it/s]
+Loading weights: 100%|██████████| 339/339 [00:02<00:00, 135.98it/s]
+✓ LLM cached (14.19 GB VRAM)
+BanglaASR1         0/0 figures placed  -> D:\T2520875\thesisP2\thesisP2\output\live_focused\no_gaze\interval_10s\BanglaASR1\notes_B_prompt.md
+BanglaASR2         3/4 figures placed  -> D:\T2520875\thesisP2\thesisP2\output\live_focused\no_gaze\interval_10s\BanglaASR2\notes_B_prompt.md
+BanglaASR3         1/1 figures placed  -> D:\T2520875\thesisP2\thesisP2\output\live_focused\no_gaze\interval_10s\BanglaASR3\notes_B_prompt.md
+BanglaASR4         3/4 figures placed  -> D:\T2520875\thesisP2\thesisP2\output\live_focused\no_gaze\interval_10s\BanglaASR4\notes_B_prompt.md
+BanglaASR5_003     2/3 figures placed  -> D:\T2520875\thesisP2\thesisP2\output\live_focused\no_gaze\interval_10s\BanglaASR5_003\notes_B_prompt.md
+BanglaASR6         2/6 figures placed  -> D:\T2520875\thesisP2\thesisP2\output\live_focused\no_gaze\interval_10s\BanglaASR6\notes_B_prompt.md
+BanglaASR7_004     4/5 figures placed  -> D:\T2520875\thesisP2\thesisP2\output\live_focused\no_gaze\interval_10s\BanglaASR7_004\notes_B_prompt.md
+BanglaASR8         1/1 figures placed  -> D:\T2520875\thesisP2\thesisP2\output\live_focused\no_gaze\interval_10s\BanglaASR8\notes_B_prompt.md
+BanglaASR9_007     2/2 figures placed  -> D:\T2520875\thesisP2\thesisP2\output\live_focused\no_gaze\interval_10s\BanglaASR9_007\notes_B_prompt.md
+
+🧠 Loading Language Model (via Registry)
+Model: Qwen/Qwen2.5-7B-Instruct
+Precision: FP16 | Device Map: auto
+
+📦 Loading LLM FP16 (caching for reuse)...
+python : Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate 
+limits and faster downloads.
+At line:1 char:479
++ ... { exit 1 }; python -u scripts/regenerate_notes.py --all --language mi ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Warning: You ar...ster downloads.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+
+Loading weights:   0%|          | 0/339 [00:00<?, ?it/s]
+Loading weights:   0%|          | 1/339 [00:00<01:29,  3.77it/s]
+Loading weights:   5%|▍         | 16/339 [00:00<00:05, 54.86it/s]
+Loading weights:  12%|█▏        | 40/339 [00:00<00:03, 96.38it/s]
+Loading weights:  19%|█▉        | 64/339 [00:00<00:02, 125.28it/s]
+Loading weights:  26%|██▌       | 88/339 [00:00<00:01, 146.01it/s]
+Loading weights:  33%|███▎      | 112/339 [00:00<00:01, 161.68it/s]
+Loading weights:  40%|████      | 136/339 [00:01<00:01, 163.56it/s]
+Loading weights:  47%|████▋     | 160/339 [00:01<00:01, 173.68it/s]
+Loading weights:  54%|█████▍    | 184/339 [00:01<00:00, 167.69it/s]
+Loading weights:  61%|██████▏   | 208/339 [00:01<00:00, 175.01it/s]
+Loading weights:  68%|██████▊   | 232/339 [00:01<00:00, 171.97it/s]
+Loading weights:  76%|███████▌  | 256/339 [00:01<00:00, 182.74it/s]
+Loading weights:  83%|████████▎ | 280/339 [00:01<00:00, 181.40it/s]
+Loading weights:  89%|████████▉ | 302/339 [00:01<00:00, 187.71it/s]
+Loading weights:  95%|█████████▍| 322/339 [00:02<00:00, 186.31it/s]
+Loading weights: 100%|██████████| 339/339 [00:02<00:00, 159.23it/s]
+✓ LLM cached (14.19 GB VRAM)
+BanglaASR1         0/0 figures placed  -> D:\T2520875\thesisP2\thesisP2\output\live_focused\no_gaze\interval_10s\BanglaASR1\notes_C_vlm.md
+BanglaASR2         3/4 figures placed  -> D:\T2520875\thesisP2\thesisP2\output\live_focused\no_gaze\interval_10s\BanglaASR2\notes_C_vlm.md
+BanglaASR3         0/1 figures placed  -> D:\T2520875\thesisP2\thesisP2\output\live_focused\no_gaze\interval_10s\BanglaASR3\notes_C_vlm.md
+BanglaASR4         3/4 figures placed  -> D:\T2520875\thesisP2\thesisP2\output\live_focused\no_gaze\interval_10s\BanglaASR4\notes_C_vlm.md
+BanglaASR5_003     3/3 figures placed  -> D:\T2520875\thesisP2\thesisP2\output\live_focused\no_gaze\interval_10s\BanglaASR5_003\notes_C_vlm.md
+BanglaASR6         5/6 figures placed  -> D:\T2520875\thesisP2\thesisP2\output\live_focused\no_gaze\interval_10s\BanglaASR6\notes_C_vlm.md
+BanglaASR7_004     4/5 figures placed  -> D:\T2520875\thesisP2\thesisP2\output\live_focused\no_gaze\interval_10s\BanglaASR7_004\notes_C_vlm.md
+BanglaASR8         0/1 figures placed  -> D:\T2520875\thesisP2\thesisP2\output\live_focused\no_gaze\interval_10s\BanglaASR8\notes_C_vlm.md
+BanglaASR9_007     0/2 figures placed  -> D:\T2520875\thesisP2\thesisP2\output\live_focused\no_gaze\interval_10s\BanglaASR9_007\notes_C_vlm.md

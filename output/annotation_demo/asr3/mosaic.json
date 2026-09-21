@@ -1,0 +1,14 @@
+[
+  {
+    "era": 1,
+    "from": "0:00",
+    "to": "5:50",
+    "frames": 36,
+    "tiles_total": 858,
+    "tiles_fully_clear": 858,
+    "clear_fraction": 1.0,
+    "worst_tile_covered": 0.0186,
+    "distinct_frames_used": 11,
+    "image": "output\\annotation_demo\\asr3\\board_era1_000.jpg"
+  }
+]

@@ -1,0 +1,32 @@
+{
+  "baseline_recall": 0.3,
+  "global_recall": 0.3,
+  "temporal_recall": 0.3,
+  "global_vs_baseline_pct": 0.0,
+  "temporal_vs_baseline_pct": 0.0,
+  "temporal_vs_global_pct": 0.0,
+  "baseline_found": [
+    "Conditional Statements",
+    "Conditional",
+    "Statements",
+    "Bring Umbrella",
+    "Umbrella",
+    "Weather"
+  ],
+  "global_found": [
+    "Conditional Statements",
+    "Conditional",
+    "Statements",
+    "Bring Umbrella",
+    "Umbrella",
+    "Weather"
+  ],
+  "temporal_found": [
+    "Conditional Statements",
+    "Conditional",
+    "Statements",
+    "Bring Umbrella",
+    "Umbrella",
+    "Weather"
+  ]
+}

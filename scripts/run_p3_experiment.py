@@ -110,6 +110,11 @@ def main():
     ap.add_argument("--extra-train-args", default="",
                     help='Passed to train_lora.py, e.g. "--grad-checkpointing --lora-r 32"')
     ap.add_argument("--tag", default="run")
+    ap.add_argument("--only-speakers", default=None,
+                    help="Passed to prepare_data.py: use only these speakers, e.g. A,B")
+    ap.add_argument("--decode", nargs="+", default=["greedy"], choices=("greedy", "fallback"),
+                    help="Decoding(s) to evaluate with. fallback adds Whisper's loop "
+                         "safeguard to both models; greedy alone reproduces earlier numbers")
     ap.add_argument("--skip", nargs="*", default=[], choices=STAGES,
                     help="Stages to leave out")
     ap.add_argument("--allow-validation-errors", action="store_true",
@@ -138,7 +143,8 @@ def main():
         announce("prepare", f"clips and split, holding out {args.test_speakers}")
         if not run([str(PYTHON), str(REPO / "finetune" / "prepare_data.py"),
                     "--test-speakers", args.test_speakers,
-                    "--out", str(FT_DIR)]):
+                    "--out", str(FT_DIR)]
+                   + (["--only-speakers", args.only_speakers] if args.only_speakers else [])):
             return 1
 
     if "train" in todo:
@@ -155,18 +161,21 @@ def main():
             return 1
 
     if "evaluate" in todo:
-        announce("evaluate", "base vs fine-tuned on the held-out speakers")
-        cmd = [str(PYTHON), str(REPO / "finetune" / "evaluate.py"),
-               "--adapter", str(adapter),
-               "--batch", str(args.batch),
-               "--tag", args.tag]
-        if args.model:
-            cmd += ["--base", args.model]
-        if not run(cmd):
-            return 1
-        report = FT_DIR / f"eval_{args.tag}.md"
-        if report.exists():
-            print("\n" + report.read_text(encoding="utf-8").split("## Examples")[0])
+        for decode in args.decode:
+            announce("evaluate", f"base vs fine-tuned on the held-out speakers, {decode}")
+            tag = args.tag if decode == "greedy" else f"{args.tag}_{decode}"
+            cmd = [str(PYTHON), str(REPO / "finetune" / "evaluate.py"),
+                   "--adapter", str(adapter),
+                   "--batch", str(args.batch),
+                   "--decode", decode,
+                   "--tag", tag]
+            if args.model:
+                cmd += ["--base", args.model]
+            if not run(cmd):
+                return 1
+            report = FT_DIR / f"eval_{tag}.md"
+            if report.exists():
+                print("\n" + report.read_text(encoding="utf-8").split("## Examples")[0])
 
     if "curve" in todo and args.curve_hours:
         announce("curve", f"budgets {args.curve_hours} hours")
@@ -174,6 +183,7 @@ def main():
                "--hours", *[str(h) for h in args.curve_hours],
                "--epochs", str(args.epochs),
                "--batch", str(args.batch),
+               "--decode", *args.decode,
                "--skip-existing"]
         if args.model:
             cmd += ["--model", args.model]

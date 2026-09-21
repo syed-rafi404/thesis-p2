@@ -1,0 +1,8 @@
+{
+  "language": "mixed",
+  "transcript_file": "transcript_finetuned_v2.txt",
+  "board_source": "boards",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "figures_available": 2,
+  "figures_placed": []
+}

@@ -1,0 +1,56 @@
+[
+  {
+    "figure": 1,
+    "era": 1,
+    "from": "0:10",
+    "to": "3:10",
+    "clear_fraction": 0.972,
+    "section": "Key Definitions",
+    "image": "figures_board/board_01_era1.jpg"
+  },
+  {
+    "figure": 2,
+    "era": 2,
+    "from": "3:20",
+    "to": "5:50",
+    "clear_fraction": 0.9697,
+    "section": "Digital Signals",
+    "image": "figures_board/board_02_era2.jpg"
+  },
+  {
+    "figure": 3,
+    "era": 3,
+    "from": "6:00",
+    "to": "10:00",
+    "clear_fraction": 0.9767,
+    "section": "Example: Keyboard Input",
+    "image": "figures_board/board_03_era3.jpg"
+  },
+  {
+    "figure": 4,
+    "era": 4,
+    "from": "10:10",
+    "to": "11:00",
+    "clear_fraction": 0.9755,
+    "section": "AND Gate",
+    "image": "figures_board/board_04_era4.jpg"
+  },
+  {
+    "figure": 5,
+    "era": 5,
+    "from": "11:10",
+    "to": "13:00",
+    "clear_fraction": 0.9662,
+    "section": "Example: NOT Gate Circuit",
+    "image": "figures_board/board_05_era5.jpg"
+  },
+  {
+    "figure": 6,
+    "era": 6,
+    "from": "13:10",
+    "to": "14:50",
+    "clear_fraction": 0.9744,
+    "section": "Fundamental and Universal Gates",
+    "image": "figures_board/board_06_era6.jpg"
+  }
+]

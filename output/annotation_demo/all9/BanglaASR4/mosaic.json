@@ -1,0 +1,50 @@
+[
+  {
+    "era": 1,
+    "from": "0:00",
+    "to": "1:10",
+    "frames": 8,
+    "tiles_total": 858,
+    "tiles_fully_clear": 840,
+    "clear_fraction": 0.979,
+    "worst_tile_covered": 0.9463,
+    "distinct_frames_used": 8,
+    "image": "output\\annotation_demo\\all9\\BanglaASR4\\board_era1_000.jpg"
+  },
+  {
+    "era": 2,
+    "from": "1:20",
+    "to": "3:10",
+    "frames": 12,
+    "tiles_total": 858,
+    "tiles_fully_clear": 843,
+    "clear_fraction": 0.9825,
+    "worst_tile_covered": 0.5879,
+    "distinct_frames_used": 3,
+    "image": "output\\annotation_demo\\all9\\BanglaASR4\\board_era2_120.jpg"
+  },
+  {
+    "era": 3,
+    "from": "3:20",
+    "to": "4:30",
+    "frames": 8,
+    "tiles_total": 858,
+    "tiles_fully_clear": 840,
+    "clear_fraction": 0.979,
+    "worst_tile_covered": 0.9609,
+    "distinct_frames_used": 4,
+    "image": "output\\annotation_demo\\all9\\BanglaASR4\\board_era3_320.jpg"
+  },
+  {
+    "era": 4,
+    "from": "5:30",
+    "to": "9:00",
+    "frames": 22,
+    "tiles_total": 858,
+    "tiles_fully_clear": 841,
+    "clear_fraction": 0.9802,
+    "worst_tile_covered": 0.9209,
+    "distinct_frames_used": 9,
+    "image": "output\\annotation_demo\\all9\\BanglaASR4\\board_era4_530.jpg"
+  }
+]

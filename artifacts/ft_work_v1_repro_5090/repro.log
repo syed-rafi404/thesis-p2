@@ -1,0 +1,727 @@
+﻿python : D:\T2520875\thesisP2\thesisP2\finetune\prepare_data.py:1: SyntaxWarning: invalid escape sequence '\c'
+At line:1 char:512
++ ... ED='1'; & { python -u finetune/prepare_data.py --speaker-map v1 --out ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (D:\T2520875\the...e sequence '\c':String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  """
+found 9 ground-truth files; test speakers: ['B']
+  BanglaASR1 [train/spk A]: 44 clips, 13.0min kept of 13.0min audio
+  BanglaASR2 [train/spk A]: 44 clips, 14.0min kept of 14.0min audio
+  BanglaASR3 [train/spk A]: 17 clips, 6.0min kept of 6.1min audio
+  BanglaASR4 [train/spk A]: 25 clips, 8.5min kept of 9.2min audio
+  BanglaASR5 [train/spk A]: 42 clips, 14.0min kept of 14.1min audio
+  BanglaASR6 [train/spk A]: 47 clips, 14.8min kept of 14.9min audio
+  BanglaASR7 [test/spk B]: 46 clips, 14.2min kept of 14.2min audio
+  BanglaASR8 [test/spk B]: 39 clips, 13.1min kept of 13.1min audio
+  BanglaASR9 [test/spk B]: 52 clips, 16.4min kept of 16.4min audio
+
+=== SUMMARY ===
+Train: 219 clips, 70.4 min (speakers ['A'])
+Test : 137 clips, 43.6 min (speakers ['B'])
+Minutes per speaker: A=70.4, B=43.6
+Wrote manifests, split.json and 356 clips to D:\T2520875\thesisP2\ft_work_v1_repro_5090
+device: NVIDIA GeForce RTX 5090 | precision: bf16 | smoke=False
+model : D:\T2520875\thesisP2\ft_work\models\whisper-small
+python : 
+At line:1 char:605
++ ... { exit 1 }; python -u finetune/train_lora.py --data-dir $r --adapter- ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Loading weights:   0%|          | 0/479 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 479/479 [00:00<00:00, 23872.90it/s]
+trainable params: 1,769,472 || all params: 243,504,384 || trainable%: 0.7267
+train: 219 clips (70.4 min) from train.jsonl
+eval : 137 clips from test.jsonl
+[transformers] warmup_ratio is deprecated and will be removed in v5.2. Use `warmup_steps` instead.
+
+  0%|          | 0/224 [00:00<?, ?it/s]
+  0%|          | 1/224 [00:00<01:32,  2.41it/s]
+  1%|          | 2/224 [00:00<00:56,  3.94it/s]
+  1%|▏         | 3/224 [00:00<00:42,  5.25it/s]
+  2%|▏         | 4/224 [00:00<00:36,  6.07it/s]
+  2%|▏         | 5/224 [00:00<00:32,  6.72it/s]
+  3%|▎         | 6/224 [00:01<00:30,  7.21it/s]
+  3%|▎         | 7/224 [00:01<00:28,  7.65it/s]
+  4%|▎         | 8/224 [00:01<00:28,  7.71it/s]
+  4%|▍         | 9/224 [00:01<00:27,  7.89it/s]
+  4%|▍         | 10/224 [00:01<00:26,  8.08it/s]
+{'loss': '3.316', 'grad_norm': '1.34', 'learning_rate': '0.0003913', 'epoch': '0.3571'}
+                                                
+
+  4%|▍         | 10/224 [00:01<00:26,  8.08it/s]
+  5%|▍         | 11/224 [00:01<00:28,  7.58it/s]
+  5%|▌         | 12/224 [00:01<00:27,  7.76it/s]
+  6%|▌         | 13/224 [00:01<00:28,  7.52it/s]
+  6%|▋         | 14/224 [00:02<00:26,  7.79it/s]
+  7%|▋         | 15/224 [00:02<00:25,  8.12it/s]
+  7%|▋         | 16/224 [00:02<00:25,  8.00it/s]
+  8%|▊         | 17/224 [00:02<00:25,  8.22it/s]
+  8%|▊         | 18/224 [00:02<00:24,  8.31it/s]
+  8%|▊         | 19/224 [00:02<00:23,  8.69it/s]
+  9%|▉         | 20/224 [00:02<00:24,  8.32it/s]
+{'loss': '2.847', 'grad_norm': '1.917', 'learning_rate': '0.0008261', 'epoch': '0.7143'}
+                                                
+
+  9%|▉         | 20/224 [00:02<00:24,  8.32it/s]
+  9%|▉         | 21/224 [00:02<00:24,  8.40it/s]
+ 10%|▉         | 22/224 [00:02<00:24,  8.36it/s]
+ 10%|█         | 23/224 [00:03<00:23,  8.54it/s]
+ 11%|█         | 24/224 [00:03<00:23,  8.48it/s]
+ 11%|█         | 25/224 [00:03<00:23,  8.57it/s]
+ 12%|█▏        | 26/224 [00:03<00:23,  8.50it/s]
+ 12%|█▏        | 27/224 [00:03<00:23,  8.31it/s]
+
+  0%|          | 0/18 [00:00<?, ?it/s][A
+
+ 22%|██▏       | 4/18 [00:00<00:00, 30.34it/s][A
+
+ 44%|████▍     | 8/18 [00:00<00:00, 25.83it/s][A
+
+ 61%|██████    | 11/18 [00:00<00:00, 22.78it/s][A
+
+ 78%|███████▊  | 14/18 [00:00<00:00, 22.72it/s][A
+
+ 94%|█████████▍| 17/18 [00:00<00:00, 22.78it/s][A
+                                                
+
+
+                                               
+{'eval_loss': '2.269', 'eval_runtime': '0.7953', 'eval_samples_per_second': '172.3', 'eval_steps_per_second': '22.63', 'epoch': '1'}
+[A
+ 12%|█▎        | 28/224 [00:04<00:23,  8.31it/s]
+
+100%|██████████| 18/18 [00:00<00:00, 22.78it/s][A
+
+                                               [A
+ 13%|█▎        | 29/224 [00:04<00:57,  3.41it/s]
+ 13%|█▎        | 30/224 [00:04<00:48,  4.02it/s]
+{'loss': '2.421', 'grad_norm': '1.664', 'learning_rate': '0.0009701', 'epoch': '1.071'}
+                                                
+
+ 13%|█▎        | 30/224 [00:04<00:48,  4.02it/s]
+ 14%|█▍        | 31/224 [00:04<00:41,  4.63it/s]
+ 14%|█▍        | 32/224 [00:04<00:35,  5.39it/s]
+ 15%|█▍        | 33/224 [00:05<00:32,  5.89it/s]
+ 15%|█▌        | 34/224 [00:05<00:28,  6.57it/s]
+ 16%|█▌        | 35/224 [00:05<00:26,  7.13it/s]
+ 16%|█▌        | 36/224 [00:05<00:25,  7.30it/s]
+ 17%|█▋        | 37/224 [00:05<00:24,  7.62it/s]
+ 17%|█▋        | 38/224 [00:05<00:23,  7.81it/s]
+ 17%|█▋        | 39/224 [00:05<00:23,  8.01it/s]
+ 18%|█▊        | 40/224 [00:05<00:22,  8.01it/s]
+{'loss': '2.166', 'grad_norm': '1.36', 'learning_rate': '0.0009204', 'epoch': '1.429'}
+                                                
+
+ 18%|█▊        | 40/224 [00:05<00:22,  8.01it/s]
+ 18%|█▊        | 41/224 [00:06<00:23,  7.92it/s]
+ 19%|█▉        | 42/224 [00:06<00:23,  7.86it/s]
+ 19%|█▉        | 43/224 [00:06<00:21,  8.32it/s]
+ 20%|█▉        | 44/224 [00:06<00:21,  8.41it/s]
+ 20%|██        | 45/224 [00:06<00:21,  8.30it/s]
+ 21%|██        | 46/224 [00:06<00:20,  8.58it/s]
+ 21%|██        | 47/224 [00:06<00:21,  8.40it/s]
+ 21%|██▏       | 48/224 [00:06<00:21,  8.31it/s]
+ 22%|██▏       | 49/224 [00:06<00:21,  8.27it/s]
+ 22%|██▏       | 50/224 [00:07<00:20,  8.41it/s]
+{'loss': '1.94', 'grad_norm': '1.472', 'learning_rate': '0.0008706', 'epoch': '1.786'}
+                                                
+
+ 22%|██▏       | 50/224 [00:07<00:20,  8.41it/s]
+ 23%|██▎       | 51/224 [00:07<00:20,  8.52it/s]
+ 23%|██▎       | 52/224 [00:07<00:20,  8.37it/s]
+ 24%|██▎       | 53/224 [00:07<00:21,  7.92it/s]
+ 24%|██▍       | 54/224 [00:07<00:21,  8.09it/s]
+ 25%|██▍       | 55/224 [00:07<00:20,  8.24it/s]
+
+  0%|          | 0/18 [00:00<?, ?it/s][A
+
+ 22%|██▏       | 4/18 [00:00<00:00, 30.87it/s][A
+
+ 44%|████▍     | 8/18 [00:00<00:00, 26.20it/s][A
+
+ 61%|██████    | 11/18 [00:00<00:00, 25.67it/s][A
+
+ 78%|███████▊  | 14/18 [00:00<00:00, 24.30it/s][A
+
+ 94%|█████████▍| 17/18 [00:00<00:00, 23.90it/s][A
+                                                
+
+
+                                               
+{'eval_loss': '1.99', 'eval_runtime': '0.7454', 'eval_samples_per_second': '183.8', 'eval_steps_per_second': '24.15', 'epoch': '2'}
+[A
+ 25%|██▌       | 56/224 [00:08<00:20,  8.24it/s]
+
+100%|██████████| 18/18 [00:00<00:00, 23.90it/s][A
+
+                                               [A
+ 25%|██▌       | 57/224 [00:08<00:47,  3.52it/s]
+ 26%|██▌       | 58/224 [00:08<00:40,  4.09it/s]
+ 26%|██▋       | 59/224 [00:08<00:35,  4.69it/s]
+ 27%|██▋       | 60/224 [00:08<00:30,  5.31it/s]
+{'loss': '1.869', 'grad_norm': '1.304', 'learning_rate': '0.0008209', 'epoch': '2.143'}
+                                                
+
+ 27%|██▋       | 60/224 [00:08<00:30,  5.31it/s]
+ 27%|██▋       | 61/224 [00:09<00:28,  5.69it/s]
+ 28%|██▊       | 62/224 [00:09<00:25,  6.25it/s]
+ 28%|██▊       | 63/224 [00:09<00:23,  6.72it/s]
+ 29%|██▊       | 64/224 [00:09<00:22,  7.13it/s]
+ 29%|██▉       | 65/224 [00:09<00:21,  7.55it/s]
+ 29%|██▉       | 66/224 [00:09<00:20,  7.75it/s]
+ 30%|██▉       | 67/224 [00:09<00:19,  8.09it/s]
+ 30%|███       | 68/224 [00:09<00:20,  7.64it/s]
+ 31%|███       | 69/224 [00:10<00:19,  7.81it/s]
+ 31%|███▏      | 70/224 [00:10<00:19,  7.83it/s]
+{'loss': '1.588', 'grad_norm': '1.628', 'learning_rate': '0.0007711', 'epoch': '2.5'}
+                                                
+
+ 31%|███▏      | 70/224 [00:10<00:19,  7.83it/s]
+ 32%|███▏      | 71/224 [00:10<00:18,  8.07it/s]
+ 32%|███▏      | 72/224 [00:10<00:18,  8.23it/s]
+ 33%|███▎      | 73/224 [00:10<00:18,  8.26it/s]
+ 33%|███▎      | 74/224 [00:10<00:18,  8.28it/s]
+ 33%|███▎      | 75/224 [00:10<00:18,  8.28it/s]
+ 34%|███▍      | 76/224 [00:10<00:17,  8.33it/s]
+ 34%|███▍      | 77/224 [00:11<00:17,  8.36it/s]
+ 35%|███▍      | 78/224 [00:11<00:18,  7.88it/s]
+ 35%|███▌      | 79/224 [00:11<00:18,  8.03it/s]
+ 36%|███▌      | 80/224 [00:11<00:17,  8.21it/s]
+{'loss': '1.401', 'grad_norm': '1.455', 'learning_rate': '0.0007214', 'epoch': '2.857'}
+                                                
+
+ 36%|███▌      | 80/224 [00:11<00:17,  8.21it/s]
+ 36%|███▌      | 81/224 [00:11<00:17,  8.31it/s]
+ 37%|███▋      | 82/224 [00:11<00:16,  8.42it/s]
+ 37%|███▋      | 83/224 [00:11<00:16,  8.46it/s]
+
+  0%|          | 0/18 [00:00<?, ?it/s][A
+
+ 22%|██▏       | 4/18 [00:00<00:00, 31.00it/s][A
+
+ 44%|████▍     | 8/18 [00:00<00:00, 25.86it/s][A
+
+ 61%|██████    | 11/18 [00:00<00:00, 24.52it/s][A
+
+ 78%|███████▊  | 14/18 [00:00<00:00, 20.61it/s][A
+
+ 94%|█████████▍| 17/18 [00:00<00:00, 20.81it/s][A
+                                                
+
+
+                                               
+{'eval_loss': '1.941', 'eval_runtime': '0.8311', 'eval_samples_per_second': '164.9', 'eval_steps_per_second': '21.66', 'epoch': '3'}
+[A
+ 38%|███▊      | 84/224 [00:12<00:16,  8.46it/s]
+
+100%|██████████| 18/18 [00:00<00:00, 20.81it/s][A
+
+                                               [A
+ 38%|███▊      | 85/224 [00:12<00:41,  3.33it/s]
+ 38%|███▊      | 86/224 [00:12<00:35,  3.90it/s]
+ 39%|███▉      | 87/224 [00:13<00:30,  4.52it/s]
+ 39%|███▉      | 88/224 [00:13<00:26,  5.11it/s]
+ 40%|███▉      | 89/224 [00:13<00:22,  5.89it/s]
+ 40%|████      | 90/224 [00:13<00:21,  6.26it/s]
+{'loss': '1.327', 'grad_norm': '1.122', 'learning_rate': '0.0006716', 'epoch': '3.214'}
+                                                
+
+ 40%|████      | 90/224 [00:13<00:21,  6.26it/s]
+ 41%|████      | 91/224 [00:13<00:19,  6.95it/s]
+ 41%|████      | 92/224 [00:13<00:17,  7.44it/s]
+ 42%|████▏     | 93/224 [00:13<00:17,  7.47it/s]
+ 42%|████▏     | 94/224 [00:13<00:16,  7.69it/s]
+ 42%|████▏     | 95/224 [00:14<00:16,  7.94it/s]
+ 43%|████▎     | 96/224 [00:14<00:15,  8.07it/s]
+ 43%|████▎     | 97/224 [00:14<00:16,  7.72it/s]
+ 44%|████▍     | 98/224 [00:14<00:15,  7.89it/s]
+ 44%|████▍     | 99/224 [00:14<00:16,  7.79it/s]
+ 45%|████▍     | 100/224 [00:14<00:15,  7.99it/s]
+{'loss': '1.214', 'grad_norm': '1.277', 'learning_rate': '0.0006219', 'epoch': '3.571'}
+                                                 
+
+ 45%|████▍     | 100/224 [00:14<00:15,  7.99it/s]
+ 45%|████▌     | 101/224 [00:14<00:15,  8.17it/s]
+ 46%|████▌     | 102/224 [00:14<00:14,  8.36it/s]
+ 46%|████▌     | 103/224 [00:15<00:14,  8.22it/s]
+ 46%|████▋     | 104/224 [00:15<00:14,  8.30it/s]
+ 47%|████▋     | 105/224 [00:15<00:14,  8.36it/s]
+ 47%|████▋     | 106/224 [00:15<00:13,  8.52it/s]
+ 48%|████▊     | 107/224 [00:15<00:14,  8.05it/s]
+ 48%|████▊     | 108/224 [00:15<00:13,  8.35it/s]
+ 49%|████▊     | 109/224 [00:15<00:14,  8.20it/s]
+ 49%|████▉     | 110/224 [00:15<00:14,  8.09it/s]
+{'loss': '1.233', 'grad_norm': '1.325', 'learning_rate': '0.0005721', 'epoch': '3.929'}
+                                                 
+
+ 49%|████▉     | 110/224 [00:15<00:14,  8.09it/s]
+ 50%|████▉     | 111/224 [00:15<00:13,  8.34it/s]
+
+  0%|          | 0/18 [00:00<?, ?it/s][A
+
+ 22%|██▏       | 4/18 [00:00<00:00, 32.29it/s][A
+
+ 44%|████▍     | 8/18 [00:00<00:00, 26.57it/s][A
+
+ 61%|██████    | 11/18 [00:00<00:00, 25.28it/s][A
+
+ 78%|███████▊  | 14/18 [00:00<00:00, 25.03it/s][A
+
+ 94%|█████████▍| 17/18 [00:00<00:00, 23.61it/s][A
+                                                 
+
+
+                                               
+{'eval_loss': '1.921', 'eval_runtime': '0.7522', 'eval_samples_per_second': '182.1', 'eval_steps_per_second': '23.93', 'epoch': '4'}
+[A
+ 50%|█████     | 112/224 [00:16<00:13,  8.34it/s]
+
+100%|██████████| 18/18 [00:00<00:00, 23.61it/s][A
+
+                                               [A
+ 50%|█████     | 113/224 [00:16<00:31,  3.54it/s]
+ 51%|█████     | 114/224 [00:17<00:26,  4.11it/s]
+ 51%|█████▏    | 115/224 [00:17<00:22,  4.76it/s]
+ 52%|█████▏    | 116/224 [00:17<00:19,  5.40it/s]
+ 52%|█████▏    | 117/224 [00:17<00:17,  6.11it/s]
+ 53%|█████▎    | 118/224 [00:17<00:16,  6.46it/s]
+ 53%|█████▎    | 119/224 [00:17<00:15,  6.92it/s]
+ 54%|█████▎    | 120/224 [00:17<00:14,  7.07it/s]
+{'loss': '0.9439', 'grad_norm': '1.155', 'learning_rate': '0.0005224', 'epoch': '4.286'}
+                                                 
+
+ 54%|█████▎    | 120/224 [00:17<00:14,  7.07it/s]
+ 54%|█████▍    | 121/224 [00:17<00:13,  7.47it/s]
+ 54%|█████▍    | 122/224 [00:18<00:13,  7.55it/s]
+ 55%|█████▍    | 123/224 [00:18<00:12,  7.81it/s]
+ 55%|█████▌    | 124/224 [00:18<00:12,  7.97it/s]
+ 56%|█████▌    | 125/224 [00:18<00:12,  8.24it/s]
+ 56%|█████▋    | 126/224 [00:18<00:12,  8.01it/s]
+ 57%|█████▋    | 127/224 [00:18<00:11,  8.14it/s]
+ 57%|█████▋    | 128/224 [00:18<00:11,  8.18it/s]
+ 58%|█████▊    | 129/224 [00:18<00:11,  8.28it/s]
+ 58%|█████▊    | 130/224 [00:18<00:11,  8.28it/s]
+{'loss': '1.05', 'grad_norm': '1.301', 'learning_rate': '0.0004726', 'epoch': '4.643'}
+                                                 
+
+ 58%|█████▊    | 130/224 [00:18<00:11,  8.28it/s]
+ 58%|█████▊    | 131/224 [00:19<00:11,  8.34it/s]
+ 59%|█████▉    | 132/224 [00:19<00:11,  7.88it/s]
+ 59%|█████▉    | 133/224 [00:19<00:11,  7.63it/s]
+ 60%|█████▉    | 134/224 [00:19<00:11,  7.86it/s]
+ 60%|██████    | 135/224 [00:19<00:11,  7.92it/s]
+ 61%|██████    | 136/224 [00:19<00:10,  8.13it/s]
+ 61%|██████    | 137/224 [00:19<00:10,  8.36it/s]
+ 62%|██████▏   | 138/224 [00:19<00:10,  8.19it/s]
+ 62%|██████▏   | 139/224 [00:20<00:09,  8.51it/s]
+{'loss': '1.053', 'grad_norm': '1.626', 'learning_rate': '0.0004229', 'epoch': '5'}
+                                                 
+
+ 62%|██████▎   | 140/224 [00:20<00:09,  8.51it/s]
+
+  0%|          | 0/18 [00:00<?, ?it/s][A
+
+ 22%|██▏       | 4/18 [00:00<00:00, 31.79it/s][A
+
+ 44%|████▍     | 8/18 [00:00<00:00, 26.59it/s][A
+
+ 61%|██████    | 11/18 [00:00<00:00, 24.24it/s][A
+
+ 78%|███████▊  | 14/18 [00:00<00:00, 23.73it/s][A
+
+ 94%|█████████▍| 17/18 [00:00<00:00, 23.57it/s][A
+                                                 
+
+
+                                               
+{'eval_loss': '1.974', 'eval_runtime': '0.7556', 'eval_samples_per_second': '181.3', 'eval_steps_per_second': '23.82', 'epoch': '5'}
+[A
+ 62%|██████▎   | 140/224 [00:20<00:09,  8.51it/s]
+
+100%|██████████| 18/18 [00:00<00:00, 23.57it/s][A
+
+                                               [A
+ 63%|██████▎   | 141/224 [00:21<00:23,  3.50it/s]
+ 63%|██████▎   | 142/224 [00:21<00:20,  4.07it/s]
+ 64%|██████▍   | 143/224 [00:21<00:17,  4.72it/s]
+ 64%|██████▍   | 144/224 [00:21<00:15,  5.28it/s]
+ 65%|██████▍   | 145/224 [00:21<00:13,  5.82it/s]
+ 65%|██████▌   | 146/224 [00:21<00:12,  6.37it/s]
+ 66%|██████▌   | 147/224 [00:21<00:11,  6.84it/s]
+ 66%|██████▌   | 148/224 [00:21<00:10,  7.31it/s]
+ 67%|██████▋   | 149/224 [00:22<00:09,  7.59it/s]
+ 67%|██████▋   | 150/224 [00:22<00:09,  7.79it/s]
+{'loss': '0.8418', 'grad_norm': '1.712', 'learning_rate': '0.0003731', 'epoch': '5.357'}
+                                                 
+
+ 67%|██████▋   | 150/224 [00:22<00:09,  7.79it/s]
+ 67%|██████▋   | 151/224 [00:22<00:09,  7.71it/s]
+ 68%|██████▊   | 152/224 [00:22<00:09,  7.92it/s]
+ 68%|██████▊   | 153/224 [00:22<00:08,  7.97it/s]
+ 69%|██████▉   | 154/224 [00:22<00:08,  8.05it/s]
+ 69%|██████▉   | 155/224 [00:22<00:08,  8.16it/s]
+ 70%|██████▉   | 156/224 [00:22<00:08,  8.28it/s]
+ 70%|███████   | 157/224 [00:22<00:08,  8.13it/s]
+ 71%|███████   | 158/224 [00:23<00:08,  7.49it/s]
+ 71%|███████   | 159/224 [00:23<00:08,  7.67it/s]
+ 71%|███████▏  | 160/224 [00:23<00:08,  7.50it/s]
+{'loss': '0.7806', 'grad_norm': '1.423', 'learning_rate': '0.0003234', 'epoch': '5.714'}
+                                                 
+
+ 71%|███████▏  | 160/224 [00:23<00:08,  7.50it/s]
+ 72%|███████▏  | 161/224 [00:23<00:08,  7.73it/s]
+ 72%|███████▏  | 162/224 [00:23<00:08,  7.45it/s]
+ 73%|███████▎  | 163/224 [00:23<00:08,  7.32it/s]
+ 73%|███████▎  | 164/224 [00:23<00:07,  7.66it/s]
+ 74%|███████▎  | 165/224 [00:24<00:07,  7.91it/s]
+ 74%|███████▍  | 166/224 [00:24<00:07,  8.07it/s]
+ 75%|███████▍  | 167/224 [00:24<00:06,  8.24it/s]
+
+  0%|          | 0/18 [00:00<?, ?it/s][A
+
+ 22%|██▏       | 4/18 [00:00<00:00, 29.93it/s][A
+
+ 39%|███▉      | 7/18 [00:00<00:00, 25.64it/s][A
+
+ 56%|█████▌    | 10/18 [00:00<00:00, 24.81it/s][A
+
+ 72%|███████▏  | 13/18 [00:00<00:00, 23.94it/s][A
+
+ 89%|████████▉ | 16/18 [00:00<00:00, 23.46it/s][A
+                                                 
+
+
+                                               
+{'eval_loss': '2.014', 'eval_runtime': '0.7723', 'eval_samples_per_second': '177.4', 'eval_steps_per_second': '23.31', 'epoch': '6'}
+[A
+ 75%|███████▌  | 168/224 [00:25<00:06,  8.24it/s]
+
+100%|██████████| 18/18 [00:00<00:00, 23.46it/s][A
+
+                                               [A
+ 75%|███████▌  | 169/224 [00:25<00:15,  3.46it/s]
+ 76%|███████▌  | 170/224 [00:25<00:13,  4.05it/s]
+{'loss': '0.9244', 'grad_norm': '1.183', 'learning_rate': '0.0002736', 'epoch': '6.071'}
+                                                 
+
+ 76%|███████▌  | 170/224 [00:25<00:13,  4.05it/s]
+ 76%|███████▋  | 171/224 [00:25<00:11,  4.70it/s]
+ 77%|███████▋  | 172/224 [00:25<00:09,  5.28it/s]
+ 77%|███████▋  | 173/224 [00:25<00:08,  5.93it/s]
+ 78%|███████▊  | 174/224 [00:25<00:07,  6.51it/s]
+ 78%|███████▊  | 175/224 [00:25<00:07,  6.87it/s]
+ 79%|███████▊  | 176/224 [00:26<00:06,  7.29it/s]
+ 79%|███████▉  | 177/224 [00:26<00:06,  7.28it/s]
+ 79%|███████▉  | 178/224 [00:26<00:06,  7.63it/s]
+ 80%|███████▉  | 179/224 [00:26<00:05,  7.56it/s]
+ 80%|████████  | 180/224 [00:26<00:05,  7.93it/s]
+{'loss': '0.6116', 'grad_norm': '1.182', 'learning_rate': '0.0002239', 'epoch': '6.429'}
+                                                 
+
+ 80%|████████  | 180/224 [00:26<00:05,  7.93it/s]
+ 81%|████████  | 181/224 [00:26<00:05,  8.04it/s]
+ 81%|████████▏ | 182/224 [00:26<00:05,  8.19it/s]
+ 82%|████████▏ | 184/224 [00:27<00:04,  8.59it/s]
+ 83%|████████▎ | 185/224 [00:27<00:04,  8.56it/s]
+ 83%|████████▎ | 186/224 [00:27<00:04,  8.50it/s]
+ 83%|████████▎ | 187/224 [00:27<00:04,  8.36it/s]
+ 84%|████████▍ | 188/224 [00:27<00:04,  8.39it/s]
+ 84%|████████▍ | 189/224 [00:27<00:04,  8.46it/s]
+ 85%|████████▍ | 190/224 [00:27<00:04,  8.40it/s]
+{'loss': '0.6643', 'grad_norm': '1.206', 'learning_rate': '0.0001741', 'epoch': '6.786'}
+                                                 
+
+ 85%|████████▍ | 190/224 [00:27<00:04,  8.40it/s]
+ 85%|████████▌ | 191/224 [00:27<00:03,  8.40it/s]
+ 86%|████████▌ | 192/224 [00:28<00:03,  8.00it/s]
+ 86%|████████▌ | 193/224 [00:28<00:03,  8.18it/s]
+ 87%|████████▋ | 194/224 [00:28<00:03,  8.10it/s]
+ 87%|████████▋ | 195/224 [00:28<00:03,  8.50it/s]
+
+  0%|          | 0/18 [00:00<?, ?it/s][A
+
+ 22%|██▏       | 4/18 [00:00<00:00, 29.37it/s][A
+
+ 39%|███▉      | 7/18 [00:00<00:00, 25.75it/s][A
+
+ 56%|█████▌    | 10/18 [00:00<00:00, 24.60it/s][A
+
+ 72%|███████▏  | 13/18 [00:00<00:00, 24.02it/s][A
+
+ 89%|████████▉ | 16/18 [00:00<00:00, 23.77it/s][A
+                                                 
+
+
+                                               
+{'eval_loss': '2.049', 'eval_runtime': '0.7473', 'eval_samples_per_second': '183.3', 'eval_steps_per_second': '24.09', 'epoch': '7'}
+[A
+ 88%|████████▊ | 196/224 [00:29<00:03,  8.50it/s]
+
+100%|██████████| 18/18 [00:00<00:00, 23.77it/s][A
+
+                                               [A
+ 88%|████████▊ | 197/224 [00:29<00:07,  3.53it/s]
+ 88%|████████▊ | 198/224 [00:29<00:06,  4.09it/s]
+ 89%|████████▉ | 199/224 [00:29<00:05,  4.75it/s]
+ 89%|████████▉ | 200/224 [00:29<00:04,  5.37it/s]
+{'loss': '0.6998', 'grad_norm': '1.031', 'learning_rate': '0.0001244', 'epoch': '7.143'}
+                                                 
+
+ 89%|████████▉ | 200/224 [00:29<00:04,  5.37it/s]
+ 90%|████████▉ | 201/224 [00:29<00:03,  6.03it/s]
+ 90%|█████████ | 202/224 [00:29<00:03,  6.56it/s]
+ 91%|█████████ | 203/224 [00:30<00:03,  6.99it/s]
+ 91%|█████████ | 204/224 [00:30<00:02,  7.33it/s]
+ 92%|█████████▏| 205/224 [00:30<00:02,  7.60it/s]
+ 92%|█████████▏| 206/224 [00:30<00:02,  7.43it/s]
+ 92%|█████████▏| 207/224 [00:30<00:02,  7.71it/s]
+ 93%|█████████▎| 208/224 [00:30<00:02,  7.96it/s]
+ 93%|█████████▎| 209/224 [00:30<00:01,  7.91it/s]
+ 94%|█████████▍| 210/224 [00:30<00:01,  8.06it/s]
+{'loss': '0.526', 'grad_norm': '1.022', 'learning_rate': '7.463e-05', 'epoch': '7.5'}
+                                                 
+
+ 94%|█████████▍| 210/224 [00:30<00:01,  8.06it/s]
+ 94%|█████████▍| 211/224 [00:31<00:01,  8.24it/s]
+ 95%|█████████▍| 212/224 [00:31<00:01,  8.33it/s]
+ 95%|█████████▌| 213/224 [00:31<00:01,  8.37it/s]
+ 96%|█████████▌| 214/224 [00:31<00:01,  7.94it/s]
+ 96%|█████████▌| 215/224 [00:31<00:01,  7.63it/s]
+ 96%|█████████▋| 216/224 [00:31<00:01,  7.87it/s]
+ 97%|█████████▋| 217/224 [00:31<00:00,  8.07it/s]
+ 97%|█████████▋| 218/224 [00:31<00:00,  8.42it/s]
+ 98%|█████████▊| 219/224 [00:32<00:00,  8.16it/s]
+ 98%|█████████▊| 220/224 [00:32<00:00,  8.25it/s]
+{'loss': '0.6852', 'grad_norm': '1.209', 'learning_rate': '2.488e-05', 'epoch': '7.857'}
+                                                 
+
+ 98%|█████████▊| 220/224 [00:32<00:00,  8.25it/s]
+ 99%|█████████▊| 221/224 [00:32<00:00,  8.40it/s]
+ 99%|█████████▉| 222/224 [00:32<00:00,  8.36it/s]
+100%|█████████▉| 223/224 [00:32<00:00,  8.04it/s]
+
+  0%|          | 0/18 [00:00<?, ?it/s][A
+
+ 22%|██▏       | 4/18 [00:00<00:00, 33.48it/s][A
+
+ 44%|████▍     | 8/18 [00:00<00:00, 24.61it/s][A
+
+ 61%|██████    | 11/18 [00:00<00:00, 23.66it/s][A
+
+ 78%|███████▊  | 14/18 [00:00<00:00, 23.64it/s][A
+
+ 94%|█████████▍| 17/18 [00:00<00:00, 23.69it/s][A
+                                                 
+
+
+                                               
+{'eval_loss': '2.081', 'eval_runtime': '0.767', 'eval_samples_per_second': '178.6', 'eval_steps_per_second': '23.47', 'epoch': '8'}
+[A
+100%|██████████| 224/224 [00:33<00:00,  8.04it/s]
+
+100%|██████████| 18/18 [00:00<00:00, 23.69it/s][A
+
+                                               [A
+{'train_runtime': '33.37', 'train_samples_per_second': '52.51', 'train_steps_per_second': '6.713', 'train_loss': '1.355', 'epoch': '8'}
+                                                 
+
+100%|██████████| 224/224 [00:33<00:00,  8.04it/s]
+100%|██████████| 224/224 [00:33<00:00,  6.71it/s]
+
+Saved LoRA adapter + processor to D:\T2520875\thesisP2\ft_work_v1_repro_5090\lora_run
+device: cuda
+gpu   : NVIDIA GeForce RTX 5090
+clips : 137 from test.jsonl
+  decoding with base model ...
+python : 
+At line:1 char:744
++ ... { exit 1 }; python -u finetune/evaluate.py --adapter "$r\lora_run" -- ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Loading weights:   0%|          | 0/479 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 479/479 [00:00<00:00, 4821.51it/s]
+[transformers] The attention mask is not set and cannot be inferred from input because pad token is same as eos token. 
+As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable 
+results.
+[transformers] Both `max_new_tokens` (=200) and `max_length`(=448) seem to have been set. `max_new_tokens` will take 
+precedence. Please refer to the documentation for more information. 
+(https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] A custom logits processor of type <class 
+'transformers.generation.logits_process.SuppressTokensLogitsProcessor'> has been passed to `.generate()`, but it was 
+also created in `.generate()`, given its parameterization. The custom <class 
+'transformers.generation.logits_process.SuppressTokensLogitsProcessor'> will take precedence. Please check the 
+docstring of <class 'transformers.generation.logits_process.SuppressTokensLogitsProcessor'> to see related 
+`.generate()` flags.
+[transformers] A custom logits processor of type <class 
+'transformers.generation.logits_process.SuppressTokensAtBeginLogitsProcessor'> has been passed to `.generate()`, but 
+it was also created in `.generate()`, given its parameterization. The custom <class 
+'transformers.generation.logits_process.SuppressTokensAtBeginLogitsProcessor'> will take precedence. Please check the 
+docstring of <class 'transformers.generation.logits_process.SuppressTokensAtBeginLogitsProcessor'> to see related 
+`.generate()` flags.
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer WhisperTokenizer. The 
+clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips 
+spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set 
+clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+[transformers] Both `max_new_tokens` (=200) and `max_length`(=448) seem to have been set. `max_new_tokens` will take 
+precedence. Please refer to the documentation for more information. 
+(https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+    base: 8/137 clips
+[transformers] Both `max_new_tokens` (=200) and `max_length`(=448) seem to have been set. `max_new_tokens` will take 
+precedence. Please refer to the documentation for more information. 
+(https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+    base: 16/137 clips
+[transformers] Both `max_new_tokens` (=200) and `max_length`(=448) seem to have been set. `max_new_tokens` will take 
+precedence. Please refer to the documentation for more information. 
+(https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+    base: 24/137 clips
+[transformers] Both `max_new_tokens` (=200) and `max_length`(=448) seem to have been set. `max_new_tokens` will take 
+precedence. Please refer to the documentation for more information. 
+(https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+    base: 32/137 clips
+[transformers] Both `max_new_tokens` (=200) and `max_length`(=448) seem to have been set. `max_new_tokens` will take 
+precedence. Please refer to the documentation for more information. 
+(https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+    base: 40/137 clips
+[transformers] Both `max_new_tokens` (=200) and `max_length`(=448) seem to have been set. `max_new_tokens` will take 
+precedence. Please refer to the documentation for more information. 
+(https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+    base: 48/137 clips
+[transformers] Both `max_new_tokens` (=200) and `max_length`(=448) seem to have been set. `max_new_tokens` will take 
+precedence. Please refer to the documentation for more information. 
+(https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+    base: 56/137 clips
+[transformers] Both `max_new_tokens` (=200) and `max_length`(=448) seem to have been set. `max_new_tokens` will take 
+precedence. Please refer to the documentation for more information. 
+(https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+    base: 64/137 clips
+[transformers] Both `max_new_tokens` (=200) and `max_length`(=448) seem to have been set. `max_new_tokens` will take 
+precedence. Please refer to the documentation for more information. 
+(https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+    base: 72/137 clips
+[transformers] Both `max_new_tokens` (=200) and `max_length`(=448) seem to have been set. `max_new_tokens` will take 
+precedence. Please refer to the documentation for more information. 
+(https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+    base: 80/137 clips
+[transformers] Both `max_new_tokens` (=200) and `max_length`(=448) seem to have been set. `max_new_tokens` will take 
+precedence. Please refer to the documentation for more information. 
+(https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+    base: 88/137 clips
+[transformers] Both `max_new_tokens` (=200) and `max_length`(=448) seem to have been set. `max_new_tokens` will take 
+precedence. Please refer to the documentation for more information. 
+(https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+    base: 96/137 clips
+[transformers] Both `max_new_tokens` (=200) and `max_length`(=448) seem to have been set. `max_new_tokens` will take 
+precedence. Please refer to the documentation for more information. 
+(https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+    base: 104/137 clips
+[transformers] Both `max_new_tokens` (=200) and `max_length`(=448) seem to have been set. `max_new_tokens` will take 
+precedence. Please refer to the documentation for more information. 
+(https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+    base: 112/137 clips
+[transformers] Both `max_new_tokens` (=200) and `max_length`(=448) seem to have been set. `max_new_tokens` will take 
+precedence. Please refer to the documentation for more information. 
+(https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+    base: 120/137 clips
+[transformers] Both `max_new_tokens` (=200) and `max_length`(=448) seem to have been set. `max_new_tokens` will take 
+precedence. Please refer to the documentation for more information. 
+(https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+    base: 128/137 clips
+[transformers] Both `max_new_tokens` (=200) and `max_length`(=448) seem to have been set. `max_new_tokens` will take 
+precedence. Please refer to the documentation for more information. 
+(https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+    base: 136/137 clips
+    base: 137/137 clips
+    base: 137/137 clips done
+  decoding with fine-tuned model ...
+
+Loading weights:   0%|          | 0/479 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 479/479 [00:00<00:00, 5258.84it/s]
+[transformers] Both `max_new_tokens` (=200) and `max_length`(=448) seem to have been set. `max_new_tokens` will take 
+precedence. Please refer to the documentation for more information. 
+(https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=200) and `max_length`(=448) seem to have been set. `max_new_tokens` will take 
+precedence. Please refer to the documentation for more information. 
+(https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+    tuned: 8/137 clips
+[transformers] Both `max_new_tokens` (=200) and `max_length`(=448) seem to have been set. `max_new_tokens` will take 
+precedence. Please refer to the documentation for more information. 
+(https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+    tuned: 16/137 clips
+[transformers] Both `max_new_tokens` (=200) and `max_length`(=448) seem to have been set. `max_new_tokens` will take 
+precedence. Please refer to the documentation for more information. 
+(https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+    tuned: 24/137 clips
+[transformers] Both `max_new_tokens` (=200) and `max_length`(=448) seem to have been set. `max_new_tokens` will take 
+precedence. Please refer to the documentation for more information. 
+(https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+    tuned: 32/137 clips
+[transformers] Both `max_new_tokens` (=200) and `max_length`(=448) seem to have been set. `max_new_tokens` will take 
+precedence. Please refer to the documentation for more information. 
+(https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+    tuned: 40/137 clips
+[transformers] Both `max_new_tokens` (=200) and `max_length`(=448) seem to have been set. `max_new_tokens` will take 
+precedence. Please refer to the documentation for more information. 
+(https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+    tuned: 48/137 clips
+[transformers] Both `max_new_tokens` (=200) and `max_length`(=448) seem to have been set. `max_new_tokens` will take 
+precedence. Please refer to the documentation for more information. 
+(https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+    tuned: 56/137 clips
+[transformers] Both `max_new_tokens` (=200) and `max_length`(=448) seem to have been set. `max_new_tokens` will take 
+precedence. Please refer to the documentation for more information. 
+(https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+    tuned: 64/137 clips
+[transformers] Both `max_new_tokens` (=200) and `max_length`(=448) seem to have been set. `max_new_tokens` will take 
+precedence. Please refer to the documentation for more information. 
+(https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+    tuned: 72/137 clips
+[transformers] Both `max_new_tokens` (=200) and `max_length`(=448) seem to have been set. `max_new_tokens` will take 
+precedence. Please refer to the documentation for more information. 
+(https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+    tuned: 80/137 clips
+[transformers] Both `max_new_tokens` (=200) and `max_length`(=448) seem to have been set. `max_new_tokens` will take 
+precedence. Please refer to the documentation for more information. 
+(https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+    tuned: 88/137 clips
+[transformers] Both `max_new_tokens` (=200) and `max_length`(=448) seem to have been set. `max_new_tokens` will take 
+precedence. Please refer to the documentation for more information. 
+(https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+    tuned: 96/137 clips
+[transformers] Both `max_new_tokens` (=200) and `max_length`(=448) seem to have been set. `max_new_tokens` will take 
+precedence. Please refer to the documentation for more information. 
+(https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+    tuned: 104/137 clips
+[transformers] Both `max_new_tokens` (=200) and `max_length`(=448) seem to have been set. `max_new_tokens` will take 
+precedence. Please refer to the documentation for more information. 
+(https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+    tuned: 112/137 clips
+[transformers] Both `max_new_tokens` (=200) and `max_length`(=448) seem to have been set. `max_new_tokens` will take 
+precedence. Please refer to the documentation for more information. 
+(https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+    tuned: 120/137 clips
+[transformers] Both `max_new_tokens` (=200) and `max_length`(=448) seem to have been set. `max_new_tokens` will take 
+precedence. Please refer to the documentation for more information. 
+(https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+    tuned: 128/137 clips
+[transformers] Both `max_new_tokens` (=200) and `max_length`(=448) seem to have been set. `max_new_tokens` will take 
+precedence. Please refer to the documentation for more information. 
+(https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+    tuned: 136/137 clips
+    tuned: 137/137 clips
+    tuned: 137/137 clips done
+
+--- summary ---
+  wer_mean_per_clip    base  117.2%   tuned  126.1%   delta +8.9
+  cer_mean_per_clip    base   88.5%   tuned   91.8%   delta +3.3
+  term_f1              base   64.4%   tuned   65.4%   delta +1.0
+  wer wins 83/137 clips   wilcoxon p=3.52e-02   sign p=1.64e-02
+  cer wins 96/137 clips   wilcoxon p=1.22e-03   sign p=2.95e-06
+
+wrote D:\T2520875\thesisP2\ft_work_v1_repro_5090\eval_run.json
+wrote D:\T2520875\thesisP2\ft_work_v1_repro_5090\eval_run.md

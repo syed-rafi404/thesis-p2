@@ -1,0 +1,63 @@
+{
+  "definitions": [],
+  "code_snippets": [],
+  "formulas": [],
+  "keywords": [
+    {
+      "text": "Digital",
+      "type": "keyword"
+    },
+    {
+      "text": "Logic",
+      "type": "keyword"
+    },
+    {
+      "text": "Design",
+      "type": "keyword"
+    },
+    {
+      "text": "Universal",
+      "type": "keyword"
+    },
+    {
+      "text": "NOR",
+      "type": "keyword"
+    },
+    {
+      "text": "NAND",
+      "type": "keyword"
+    },
+    {
+      "text": "AND",
+      "type": "keyword"
+    },
+    {
+      "text": "OR",
+      "type": "keyword"
+    },
+    {
+      "text": "NOT",
+      "type": "keyword"
+    },
+    {
+      "text": "Inverse",
+      "type": "keyword"
+    },
+    {
+      "text": "Output",
+      "type": "keyword"
+    },
+    {
+      "text": "AB",
+      "type": "keyword"
+    },
+    {
+      "text": "Diagram",
+      "type": "keyword"
+    },
+    {
+      "text": "XOR",
+      "type": "keyword"
+    }
+  ]
+}

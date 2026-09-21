@@ -1,0 +1,204 @@
+{
+  "definitions": [
+    {
+      "text": "MySQL: > Query Language",
+      "type": "definition"
+    },
+    {
+      "text": "MySQL: Query Language",
+      "type": "definition"
+    }
+  ],
+  "code_snippets": [],
+  "formulas": [],
+  "keywords": [
+    {
+      "text": "DBMS",
+      "type": "keyword"
+    },
+    {
+      "text": "Database",
+      "type": "keyword"
+    },
+    {
+      "text": "Management",
+      "type": "keyword"
+    },
+    {
+      "text": "System",
+      "type": "keyword"
+    },
+    {
+      "text": "University",
+      "type": "keyword"
+    },
+    {
+      "text": "ID",
+      "type": "keyword"
+    },
+    {
+      "text": "First",
+      "type": "keyword"
+    },
+    {
+      "text": "CGPA",
+      "type": "keyword"
+    },
+    {
+      "text": "Degree",
+      "type": "keyword"
+    },
+    {
+      "text": "Department",
+      "type": "keyword"
+    },
+    {
+      "text": "Enrollment",
+      "type": "keyword"
+    },
+    {
+      "text": "Date",
+      "type": "keyword"
+    },
+    {
+      "text": "Syed",
+      "type": "keyword"
+    },
+    {
+      "text": "Ahsan",
+      "type": "keyword"
+    },
+    {
+      "text": "Adil",
+      "type": "keyword"
+    },
+    {
+      "text": "Adiba",
+      "type": "keyword"
+    },
+    {
+      "text": "Maria",
+      "type": "keyword"
+    },
+    {
+      "text": "Urm",
+      "type": "keyword"
+    },
+    {
+      "text": "Istrat",
+      "type": "keyword"
+    },
+    {
+      "text": "Rafi",
+      "type": "keyword"
+    },
+    {
+      "text": "Habib",
+      "type": "keyword"
+    },
+    {
+      "text": "Noa",
+      "type": "keyword"
+    },
+    {
+      "text": "Noshin",
+      "type": "keyword"
+    },
+    {
+      "text": "Islam",
+      "type": "keyword"
+    },
+    {
+      "text": "Ashin",
+      "type": "keyword"
+    },
+    {
+      "text": "Student",
+      "type": "keyword"
+    },
+    {
+      "text": "Info",
+      "type": "keyword"
+    },
+    {
+      "text": "CS",
+      "type": "keyword"
+    },
+    {
+      "text": "Math",
+      "type": "keyword"
+    },
+    {
+      "text": "Economics",
+      "type": "keyword"
+    },
+    {
+      "text": "English",
+      "type": "keyword"
+    },
+    {
+      "text": "Jahan",
+      "type": "keyword"
+    },
+    {
+      "text": "MicroBiology",
+      "type": "keyword"
+    },
+    {
+      "text": "Istr",
+      "type": "keyword"
+    },
+    {
+      "text": "Nasir",
+      "type": "keyword"
+    },
+    {
+      "text": "Istro",
+      "type": "keyword"
+    },
+    {
+      "text": "Ali",
+      "type": "keyword"
+    },
+    {
+      "text": "Hashin",
+      "type": "keyword"
+    },
+    {
+      "text": "Query",
+      "type": "keyword"
+    },
+    {
+      "text": "Language",
+      "type": "keyword"
+    },
+    {
+      "text": "Srat",
+      "type": "keyword"
+    },
+    {
+      "text": "Create",
+      "type": "keyword"
+    },
+    {
+      "text": "Int",
+      "type": "keyword"
+    },
+    {
+      "text": "Varchar",
+      "type": "keyword"
+    },
+    {
+      "text": "TABLE",
+      "type": "keyword"
+    },
+    {
+      "text": "FLOAT",
+      "type": "keyword"
+    },
+    {
+      "text": "Physics",
+      "type": "keyword"
+    }
+  ]
+}

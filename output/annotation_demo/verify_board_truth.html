@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Board Truth Check</title><style>
+:root{--bg:#f6f7f9;--fg:#15181d;--muted:#5b6472;--card:#fff;--line:#dde1e7;
+      --flag:#b3261e;--flagbg:#fdecea;--accent:#1b6ef3}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#12151a;--fg:#e8ecf1;--muted:#98a2b3;--card:#1a1f27;--line:#2b323d;
+  --flag:#ff8a80;--flagbg:#3a1f1d;--accent:#7aa7ff}}
+*{box-sizing:border-box}
+body{margin:0;padding:0 16px 64px;background:var(--bg);color:var(--fg);
+     font:15px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+header{max-width:1200px;margin:0 auto;padding:28px 0 8px}
+h1{font-size:26px;margin:0 0 6px}
+.sub{color:var(--muted);max-width:70ch}
+.board{max-width:1200px;margin:22px auto;background:var(--card);
+       border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.board h2{font-size:17px;margin:0;padding:12px 16px;border-bottom:1px solid var(--line)}
+.board h2 small{color:var(--muted);font-weight:400}
+.row{display:grid;grid-template-columns:1.35fr 1fr;gap:0}
+@media (max-width:860px){.row{grid-template-columns:1fr}}
+.imgwrap{padding:14px;border-right:1px solid var(--line)}
+@media (max-width:860px){.imgwrap{border-right:none;border-bottom:1px solid var(--line)}}
+img{width:100%;height:auto;border-radius:8px;display:block;background:#0003}
+.items{padding:14px 16px}
+.kind{margin:12px 0 4px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;
+      color:var(--muted)}
+.kind span{text-transform:none;letter-spacing:0;font-size:12px}
+ul{list-style:none;margin:0;padding:0}
+li{padding:3px 0;border-bottom:1px dotted var(--line)}
+li:last-child{border-bottom:none}
+code{background:#8883;padding:1px 5px;border-radius:4px;font-size:13px}
+.flag{background:var(--flagbg);color:var(--flag);border-radius:6px;padding:3px 6px}
+.flag b{font-weight:600}
+.note{color:var(--muted);font-size:13px;padding:8px 16px;border-top:1px solid var(--line)}
+.counts{color:var(--muted);font-size:13px}
+</style></head>
+<body>
+<header>
+  <h1>Board ground truth &mdash; verification sheet</h1>
+  <p class="sub">Look at each board, read the list beside it. Mark anything that is
+  wrong, missing, or not actually on that board. Items in red are ones the drafter
+  could not read confidently. The numbers and names matter most, because those are
+  the items a language model cannot invent, which is what the measurement depends on.</p>
+  <p class="counts">10 boards &middot; 167 items &middot;
+  3 flagged for checking &middot; corrections go into
+  <code>data/board_truth/*.json</code></p>
+</header>
+
+<section class="board">
+  <h2>BanglaASR7 &middot; era 1
+      <small>&mdash; 1 items</small></h2>
+  <div class="row">
+    <div class="imgwrap"><img loading="lazy" src="all9/BanglaASR7_004/board_era1_000.jpg" alt="board"></div>
+    <div class="items"><div class="kind">term <span>&mdash; Mostly generic; the model may know these anyway.</span></div><ul><li><code>Digital Logic Design</code></li></ul></div>
+  </div>
+  <p class="note">Lecture opening, 6 frames, 95.1% clear. Very little written yet.</p>
+</section>
+<section class="board">
+  <h2>BanglaASR7 &middot; era 2
+      <small>&mdash; 5 items</small></h2>
+  <div class="row">
+    <div class="imgwrap"><img loading="lazy" src="all9/BanglaASR7_004/board_era2_100.jpg" alt="board"></div>
+    <div class="items"><div class="kind">code <span>&mdash; Partly guessable.</span></div><ul><li><code>A+B</code> <span class="counts">also accepts: A + B</span></li></ul><div class="kind">phrase <span>&mdash; The lecturer&#x27;s own wording.</span></div><ul><li><code>OR+NOT</code> <span class="counts">also accepts: OR + NOT, OR plus NOT</span></li></ul><div class="kind">term <span>&mdash; Mostly generic; the model may know these anyway.</span></div><ul><li><code>Digital Logic Design</code></li><li><code>NOR gate</code></li><li><code>NOR</code></li></ul></div>
+  </div>
+  
+</section>
+<section class="board">
+  <h2>BanglaASR7 &middot; era 3
+      <small>&mdash; 5 items</small></h2>
+  <div class="row">
+    <div class="imgwrap"><img loading="lazy" src="all9/BanglaASR7_004/board_era3_440.jpg" alt="board"></div>
+    <div class="items"><div class="kind">code <span>&mdash; Partly guessable.</span></div><ul><li><code>AB</code></li></ul><div class="kind">phrase <span>&mdash; The lecturer&#x27;s own wording.</span></div><ul><li><code>AND+NOT</code> <span class="counts">also accepts: AND + NOT, AND plus NOT</span></li></ul><div class="kind">term <span>&mdash; Mostly generic; the model may know these anyway.</span></div><ul><li><code>Digital Logic Design</code></li><li><code>NAND gate</code></li><li><code>NAND</code></li></ul></div>
+  </div>
+  
+</section>
+<section class="board">
+  <h2>BanglaASR7 &middot; era 4
+      <small>&mdash; 5 items</small></h2>
+  <div class="row">
+    <div class="imgwrap"><img loading="lazy" src="all9/BanglaASR7_004/board_era4_720.jpg" alt="board"></div>
+    <div class="items"><div class="kind">phrase <span>&mdash; The lecturer&#x27;s own wording.</span></div><ul><li><code>same input = 0</code> <span class="counts">also accepts: same input=0, same inputs = 0, same input gives 0</span></li><li><code>different input = 1</code> <span class="counts">also accepts: different input=1, different inputs = 1, different input gives 1</span></li></ul><div class="kind">term <span>&mdash; Mostly generic; the model may know these anyway.</span></div><ul><li><code>Digital Logic Design</code></li><li><code>X-OR gate</code> <span class="counts">also accepts: XOR gate, X-OR</span></li><li><code>X-OR</code> <span class="counts">also accepts: XOR</span></li></ul></div>
+  </div>
+  <p class="note">The truth table on this board is partially erased at the era boundary. The two phrases on the right are the diagnostic items.</p>
+</section>
+<section class="board">
+  <h2>BanglaASR7 &middot; era 5
+      <small>&mdash; 5 items, 1 flagged</small></h2>
+  <div class="row">
+    <div class="imgwrap"><img loading="lazy" src="all9/BanglaASR7_004/board_era5_1050.jpg" alt="board"></div>
+    <div class="items"><div class="kind">code <span>&mdash; Partly guessable.</span></div><ul><li class="flag"><b>CHECK THIS:</b> <code>AB + AB</code> &mdash; the drafter was unsure <span class="counts">also accepts: A&#x27;B&#x27; + AB, ABbar + AB, AB̅ + AB</span></li></ul><div class="kind">phrase <span>&mdash; The lecturer&#x27;s own wording.</span></div><ul><li><code>X-OR+NOT</code> <span class="counts">also accepts: X-OR + NOT, XOR + NOT, XOR plus NOT</span></li></ul><div class="kind">term <span>&mdash; Mostly generic; the model may know these anyway.</span></div><ul><li><code>Digital Logic Design</code></li><li><code>X-NOR gate</code> <span class="counts">also accepts: XNOR gate, X-NOR</span></li><li><code>X-NOR</code> <span class="counts">also accepts: XNOR</span></li></ul></div>
+  </div>
+  
+</section>
+<section class="board">
+  <h2>BanglaASR8 &middot; era 1
+      <small>&mdash; 2 items</small></h2>
+  <div class="row">
+    <div class="imgwrap"><img loading="lazy" src="all9/BanglaASR8/board_era1_000.jpg" alt="board"></div>
+    <div class="items"><div class="kind">term <span>&mdash; Mostly generic; the model may know these anyway.</span></div><ul><li><code>Database Management System</code></li><li><code>DBMS</code></li></ul></div>
+  </div>
+  <p class="note">Lecture opening, 6 frames, 91.3% clear. Board holds only the title and three empty boxes, so there is little to score. A black rectangular artifact is present near the bottom centre and should be investigated.</p>
+</section>
+<section class="board">
+  <h2>BanglaASR8 &middot; era 2
+      <small>&mdash; 42 items, 1 flagged</small></h2>
+  <div class="row">
+    <div class="imgwrap"><img loading="lazy" src="all9/BanglaASR8/board_era2_110.jpg" alt="board"></div>
+    <div class="items"><div class="kind">number <span>&mdash; Unguessable. These matter most.</span></div><ul><li><code>241412</code></li><li><code>151216</code></li><li><code>202011</code></li><li><code>110112</code></li><li><code>401201</code></li><li><code>3.55</code></li><li class="flag"><b>CHECK THIS:</b> <code>3.77</code> &mdash; the drafter was unsure <span class="counts">also accepts: 3.57</span></li><li><code>3.28</code></li><li><code>3.98</code></li><li><code>3.40</code> <span class="counts">also accepts: 3.4</span></li><li><code>01-01-2024</code> <span class="counts">also accepts: 01/01/2024</span></li><li><code>20-09-2024</code> <span class="counts">also accepts: 20/09/2024</span></li><li><code>21-10-2021</code> <span class="counts">also accepts: 21/10/2021</span></li><li><code>02-02-2020</code> <span class="counts">also accepts: 02/02/2020</span></li><li><code>11-11-2025</code> <span class="counts">also accepts: 11/11/2025</span></li></ul><div class="kind">name <span>&mdash; Unguessable.</span></div><ul><li><code>Syed</code></li><li><code>Rafi</code></li><li><code>Ahsan</code></li><li><code>Habib</code></li><li><code>Adiba</code></li><li><code>Noshin</code></li><li><code>Maria</code></li><li><code>Islam</code></li><li><code>Israt</code></li><li><code>Jahan</code></li></ul><div class="kind">code <span>&mdash; Partly guessable.</span></div><ul><li><code>Student_Info</code> <span class="counts">also accepts: Student Info, student_info</span></li><li><code>Create table Student_info</code> <span class="counts">also accepts: create table student_info</span></li><li><code>First_Name</code> <span class="counts">also accepts: First Name</span></li><li><code>Last_Name</code> <span class="counts">also accepts: Last Name</span></li><li><code>Department</code></li><li><code>Enrollment_Date</code> <span class="counts">also accepts: Enrollment Date</span></li></ul><div class="kind">term <span>&mdash; Mostly generic; the model may know these anyway.</span></div><ul><li><code>Database Management System</code></li><li><code>DBMS</code></li><li><code>MySQL</code></li><li><code>Query Language</code></li><li><code>University</code></li><li><code>CGPA</code></li><li><code>CS</code></li><li><code>Math</code></li><li><code>Economics</code></li><li><code>English</code></li><li><code>MicroBiology</code> <span class="counts">also accepts: Microbiology, Micro Biology</span></li></ul></div>
+  </div>
+  
+</section>
+<section class="board">
+  <h2>BanglaASR8 &middot; era 3
+      <small>&mdash; 33 items</small></h2>
+  <div class="row">
+    <div class="imgwrap"><img loading="lazy" src="all9/BanglaASR8/board_era3_1100.jpg" alt="board"></div>
+    <div class="items"><div class="kind">number <span>&mdash; Unguessable. These matter most.</span></div><ul><li><code>241412</code></li><li><code>151216</code></li><li><code>202011</code></li><li><code>110112</code></li><li><code>401201</code></li><li><code>3.55</code></li><li><code>3.28</code></li><li><code>3.98</code></li><li><code>3.40</code> <span class="counts">also accepts: 3.4</span></li></ul><div class="kind">name <span>&mdash; Unguessable.</span></div><ul><li><code>Syed</code></li><li><code>Rafi</code></li><li><code>Ahsan</code></li><li><code>Habib</code></li><li><code>Adiba</code></li><li><code>Noshin</code></li><li><code>Maria</code></li><li><code>Islam</code></li><li><code>Israt</code></li><li><code>Jahan</code></li></ul><div class="kind">code <span>&mdash; Partly guessable.</span></div><ul><li><code>Create table Student_info</code> <span class="counts">also accepts: create table student_info</span></li><li><code>ID Int</code> <span class="counts">also accepts: ID int, ID  Int</span></li><li><code>Varchar(10)</code> <span class="counts">also accepts: varchar (10), VARCHAR(10)</span></li><li><code>Varchar(15)</code> <span class="counts">also accepts: varchar (15), VARCHAR(15)</span></li><li><code>CGPA float</code> <span class="counts">also accepts: CGPA  float</span></li><li><code>Enrollment_Date Date</code> <span class="counts">also accepts: Enrollment_Date  Date</span></li><li><code>Student_Info</code> <span class="counts">also accepts: Student Info</span></li></ul><div class="kind">term <span>&mdash; Mostly generic; the model may know these anyway.</span></div><ul><li><code>MySQL</code></li><li><code>Query Language</code></li><li><code>University</code></li><li><code>Economics</code></li><li><code>English</code></li><li><code>MicroBiology</code> <span class="counts">also accepts: Microbiology</span></li><li><code>Varchar</code> <span class="counts">also accepts: varchar</span></li></ul></div>
+  </div>
+  
+</section>
+<section class="board">
+  <h2>BanglaASR9 &middot; era 1
+      <small>&mdash; 39 items, 1 flagged</small></h2>
+  <div class="row">
+    <div class="imgwrap"><img loading="lazy" src="all9/BanglaASR9_007/board_era1_010.jpg" alt="board"></div>
+    <div class="items"><div class="kind">number <span>&mdash; Unguessable. These matter most.</span></div><ul><li><code>241412</code></li><li><code>151216</code></li><li><code>202011</code></li><li><code>110112</code></li><li><code>401201</code></li><li><code>3.55</code></li><li><code>3.28</code></li><li><code>3.98</code></li><li><code>3.40</code> <span class="counts">also accepts: 3.4</span></li><li><code>01-01-2024</code> <span class="counts">also accepts: 01/01/2024</span></li><li><code>20-09-2024</code> <span class="counts">also accepts: 20/09/2024</span></li><li><code>21-10-2021</code> <span class="counts">also accepts: 21/10/2021</span></li><li><code>02-02-2020</code> <span class="counts">also accepts: 02/02/2020</span></li><li><code>11-11-2025</code> <span class="counts">also accepts: 11/11/2025</span></li></ul><div class="kind">name <span>&mdash; Unguessable.</span></div><ul><li><code>Syed</code></li><li><code>Rafi</code></li><li><code>Ahsan</code></li><li><code>Habib</code></li><li><code>Adiba</code></li><li><code>Noshin</code></li><li><code>Maria</code></li><li><code>Islam</code></li><li><code>Israt</code></li><li><code>Jahan</code></li></ul><div class="kind">code <span>&mdash; Partly guessable.</span></div><ul><li><code>Student_Info</code> <span class="counts">also accepts: Student Info</span></li><li><code>First_Name</code> <span class="counts">also accepts: First Name</span></li><li><code>Last_Name</code> <span class="counts">also accepts: Last Name</span></li><li><code>Enrollment_Date</code> <span class="counts">also accepts: Enrollment Date</span></li><li><code>max()</code> <span class="counts">also accepts: max (), MAX()</span></li><li><code>min()</code> <span class="counts">also accepts: min (), MIN()</span></li><li class="flag"><b>CHECK THIS:</b> <code>sum()</code> &mdash; the drafter was unsure <span class="counts">also accepts: sum (), SUM()</span></li></ul><div class="kind">term <span>&mdash; Mostly generic; the model may know these anyway.</span></div><ul><li><code>Database Management System</code></li><li><code>DBMS</code></li><li><code>University</code></li><li><code>CS</code></li><li><code>Math</code></li><li><code>Economics</code></li><li><code>English</code></li><li><code>MicroBiology</code> <span class="counts">also accepts: Microbiology</span></li></ul></div>
+  </div>
+  
+</section>
+<section class="board">
+  <h2>BanglaASR9 &middot; era 2
+      <small>&mdash; 30 items</small></h2>
+  <div class="row">
+    <div class="imgwrap"><img loading="lazy" src="all9/BanglaASR9_007/board_era2_920.jpg" alt="board"></div>
+    <div class="items"><div class="kind">number <span>&mdash; Unguessable. These matter most.</span></div><ul><li><code>110112</code></li><li><code>3.98</code></li><li><code>241412</code></li><li><code>151216</code></li><li><code>202011</code></li><li><code>401201</code></li><li><code>3.55</code></li><li><code>3.28</code></li><li><code>3.40</code> <span class="counts">also accepts: 3.4</span></li></ul><div class="kind">name <span>&mdash; Unguessable.</span></div><ul><li><code>Syed</code></li><li><code>Rafi</code></li><li><code>Ahsan</code></li><li><code>Habib</code></li><li><code>Adiba</code></li><li><code>Noshin</code></li><li><code>Maria</code></li><li><code>Islam</code></li><li><code>Israt</code></li><li><code>Jahan</code></li></ul><div class="kind">code <span>&mdash; Partly guessable.</span></div><ul><li><code>Select ID, CGPA from Student_Info</code> <span class="counts">also accepts: select ID, CGPA from Student_Info, SELECT ID, CGPA FROM Student_Info</span></li><li><code>select max(CGPA) from Student_Info</code> <span class="counts">also accepts: SELECT MAX(CGPA) FROM Student_Info, select max (CGPA) from Student_Info</span></li><li><code>where CGPA =</code> <span class="counts">also accepts: WHERE CGPA =</span></li><li><code>max(CGPA)</code> <span class="counts">also accepts: MAX(CGPA), max (CGPA)</span></li><li><code>Student_Info</code> <span class="counts">also accepts: Student Info</span></li></ul><div class="kind">term <span>&mdash; Mostly generic; the model may know these anyway.</span></div><ul><li><code>Database Management System</code></li><li><code>DBMS</code></li><li><code>University</code></li><li><code>Economics</code></li><li><code>English</code></li><li><code>MicroBiology</code> <span class="counts">also accepts: Microbiology</span></li></ul></div>
+  </div>
+  <p class="note">The subquery and its result are the most diagnostic items on any board in the corpus: neither the query text nor the answer 110112 / 3.98 can be produced from prior knowledge.</p>
+</section>
+</body></html>

@@ -1,0 +1,94 @@
+﻿interpreter  : C:\Program Files\Python312\python.exe
+training pool: 172 clips, 0.93 hours
+budgets      : ['0.3', '0.6', 'all'] hours, 8.0 epochs each
+
+[0p3h] 54 clips, 0.30h actual
+    $ C:\Program Files\Python312\python.exe D:\T2520875\thesisP2\thesisP2\finetune\train_lora.py --train-file ...
+python : Exception in thread Thread-2 (_readerthread):
+At line:1 char:329
++ ... FFERED='1'; python -u scripts/run_scaling_curve.py --hours 0.3 0.6 al ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Exception in th..._readerthread)::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Traceback (most recent call last):
+  File "C:\Program Files\Python312\Lib\threading.py", line 1073, in _bootstrap_inner
+    self.run()
+  File "C:\Program Files\Python312\Lib\threading.py", line 1010, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Program Files\Python312\Lib\subprocess.py", line 1599, in _readerthread
+    buffer.append(fh.read())
+                  ^^^^^^^^^
+  File "C:\Program Files\Python312\Lib\encodings\cp1252.py", line 23, in decode
+    return codecs.charmap_decode(input,self.errors,decoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeDecodeError: 'charmap' codec can't decode byte 0x8f in position 296: character maps to <undefined>
+    train finished in 31s
+    $ C:\Program Files\Python312\python.exe D:\T2520875\thesisP2\thesisP2\finetune\evaluate.py --adapter ...
+    evaluate (greedy) finished in 613s
+    $ C:\Program Files\Python312\python.exe D:\T2520875\thesisP2\thesisP2\finetune\evaluate.py --adapter ...
+    evaluate (fallback) finished in 504s
+    greedy   WER median 94.0%  CER median 74.3%  Term F1 68.7%
+    fallback WER median 84.6%  CER median 59.5%  Term F1 83.5%
+
+[0p6h] 109 clips, 0.60h actual
+    $ C:\Program Files\Python312\python.exe D:\T2520875\thesisP2\thesisP2\finetune\train_lora.py --train-file ...
+Exception in thread Thread-8 (_readerthread):
+Traceback (most recent call last):
+  File "C:\Program Files\Python312\Lib\threading.py", line 1073, in _bootstrap_inner
+    self.run()
+  File "C:\Program Files\Python312\Lib\threading.py", line 1010, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Program Files\Python312\Lib\subprocess.py", line 1599, in _readerthread
+    buffer.append(fh.read())
+                  ^^^^^^^^^
+  File "C:\Program Files\Python312\Lib\encodings\cp1252.py", line 23, in decode
+    return codecs.charmap_decode(input,self.errors,decoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeDecodeError: 'charmap' codec can't decode byte 0x8f in position 345: character maps to <undefined>
+    train finished in 43s
+    $ C:\Program Files\Python312\python.exe D:\T2520875\thesisP2\thesisP2\finetune\evaluate.py --adapter ...
+Exception in thread Thread-10 (_readerthread):
+Traceback (most recent call last):
+  File "C:\Program Files\Python312\Lib\threading.py", line 1073, in _bootstrap_inner
+    self.run()
+  File "C:\Program Files\Python312\Lib\threading.py", line 1010, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Program Files\Python312\Lib\subprocess.py", line 1599, in _readerthread
+    buffer.append(fh.read())
+                  ^^^^^^^^^
+  File "C:\Program Files\Python312\Lib\encodings\cp1252.py", line 23, in decode
+    return codecs.charmap_decode(input,self.errors,decoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeDecodeError: 'charmap' codec can't decode byte 0x8d in position 106: character maps to <undefined>
+    evaluate (greedy) finished in 687s
+    $ C:\Program Files\Python312\python.exe D:\T2520875\thesisP2\thesisP2\finetune\evaluate.py --adapter ...
+    evaluate (fallback) finished in 329s
+    greedy   WER median 92.6%  CER median 64.5%  Term F1 65.9%
+    fallback WER median 80.6%  CER median 56.6%  Term F1 84.7%
+
+[all] 172 clips, 0.93h actual
+    $ C:\Program Files\Python312\python.exe D:\T2520875\thesisP2\thesisP2\finetune\train_lora.py --train-file ...
+Exception in thread Thread-14 (_readerthread):
+Traceback (most recent call last):
+  File "C:\Program Files\Python312\Lib\threading.py", line 1073, in _bootstrap_inner
+    self.run()
+  File "C:\Program Files\Python312\Lib\threading.py", line 1010, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Program Files\Python312\Lib\subprocess.py", line 1599, in _readerthread
+    buffer.append(fh.read())
+                  ^^^^^^^^^
+  File "C:\Program Files\Python312\Lib\encodings\cp1252.py", line 23, in decode
+    return codecs.charmap_decode(input,self.errors,decoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeDecodeError: 'charmap' codec can't decode byte 0x8f in position 393: character maps to <undefined>
+    train finished in 35s
+    $ C:\Program Files\Python312\python.exe D:\T2520875\thesisP2\thesisP2\finetune\evaluate.py --adapter ...
+    evaluate (greedy) finished in 345s
+    $ C:\Program Files\Python312\python.exe D:\T2520875\thesisP2\thesisP2\finetune\evaluate.py --adapter ...
+    evaluate (fallback) finished in 280s
+    greedy   WER median 92.9%  CER median 66.2%  Term F1 57.8%
+    fallback WER median 83.3%  CER median 58.4%  Term F1 84.8%
+
+wrote D:\T2520875\thesisP2\ft_work\curve\scaling_curve.json
+wrote D:\T2520875\thesisP2\ft_work\curve\scaling_curve.md

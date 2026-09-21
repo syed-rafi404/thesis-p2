@@ -1,0 +1,38 @@
+[
+  {
+    "era": 1,
+    "from": "0:00",
+    "to": "0:50",
+    "frames": 6,
+    "tiles_total": 858,
+    "tiles_fully_clear": 783,
+    "clear_fraction": 0.9126,
+    "worst_tile_covered": 1.0,
+    "distinct_frames_used": 6,
+    "image": "output\\annotation_demo\\all9\\BanglaASR8\\board_era1_000.jpg"
+  },
+  {
+    "era": 2,
+    "from": "1:10",
+    "to": "10:50",
+    "frames": 59,
+    "tiles_total": 858,
+    "tiles_fully_clear": 858,
+    "clear_fraction": 1.0,
+    "worst_tile_covered": 0.0176,
+    "distinct_frames_used": 5,
+    "image": "output\\annotation_demo\\all9\\BanglaASR8\\board_era2_110.jpg"
+  },
+  {
+    "era": 3,
+    "from": "11:00",
+    "to": "13:00",
+    "frames": 13,
+    "tiles_total": 858,
+    "tiles_fully_clear": 760,
+    "clear_fraction": 0.8858,
+    "worst_tile_covered": 0.876,
+    "distinct_frames_used": 12,
+    "image": "output\\annotation_demo\\all9\\BanglaASR8\\board_era3_1100.jpg"
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "overall_score": 85.09803921568627,
+  "keyword_coverage": 0.6274509803921569,
+  "lexical_diversity": 0.42857142857142855,
+  "keywords_found": 32,
+  "keywords_total": 51,
+  "heading_count": 19,
+  "code_block_count": 10,
+  "list_item_count": 24,
+  "word_count": 602,
+  "paragraph_count": 21
+}

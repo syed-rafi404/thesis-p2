@@ -1,0 +1,362 @@
+[
+  {
+    "hours_requested": "0.3",
+    "hours_actual": 0.3025250000000001,
+    "clips": 54,
+    "decode": "greedy",
+    "base": {
+      "clips": 184,
+      "wer_mean_per_clip": 1.123434376181693,
+      "cer_mean_per_clip": 0.8499185376699472,
+      "wer_median_per_clip": 0.9603921568627451,
+      "cer_median_per_clip": 0.7420203735144313,
+      "wer_corpus": 0.8986452584044154,
+      "cer_corpus": 0.640825988102283,
+      "runaway_clips": 10,
+      "words_emitted": 5063,
+      "words_reference": 5979,
+      "term_recall": 0.7259786476868327,
+      "term_precision": 0.6455696202531646,
+      "term_f1": 0.6834170854271356,
+      "clips_fell_back": 0,
+      "clips_still_looping": 9
+    },
+    "tuned": {
+      "clips": 184,
+      "wer_mean_per_clip": 1.7821242280941767,
+      "cer_mean_per_clip": 1.3417866397177796,
+      "wer_median_per_clip": 0.9402852049910874,
+      "cer_median_per_clip": 0.7433545048223947,
+      "wer_corpus": 1.440876400735909,
+      "cer_corpus": 0.9760799825583206,
+      "runaway_clips": 65,
+      "words_emitted": 10677,
+      "words_reference": 5979,
+      "term_recall": 0.8327402135231317,
+      "term_precision": 0.585,
+      "term_f1": 0.6872246696035241,
+      "clips_fell_back": 0,
+      "clips_still_looping": 70
+    },
+    "rank_tests": {
+      "wer": {
+        "metric": "wer",
+        "better": 85,
+        "total": 184,
+        "wilcoxon_p": 0.000915851167231807,
+        "wilcoxon_z": -3.315176992318584,
+        "wilcoxon_n": 175,
+        "sign_p": 1.0
+      },
+      "cer": {
+        "metric": "cer",
+        "better": 97,
+        "total": 184,
+        "wilcoxon_p": 0.0057577660956078525,
+        "wilcoxon_z": -2.7612665630920668,
+        "wilcoxon_n": 180,
+        "sign_p": 0.5071267761548864
+      }
+    }
+  },
+  {
+    "hours_requested": "0.3",
+    "hours_actual": 0.3025250000000001,
+    "clips": 54,
+    "decode": "fallback",
+    "base": {
+      "clips": 184,
+      "wer_mean_per_clip": 0.9544033388151467,
+      "cer_mean_per_clip": 0.7380438530111162,
+      "wer_median_per_clip": 0.95,
+      "cer_median_per_clip": 0.7335731414868105,
+      "wer_corpus": 0.8464626191670848,
+      "cer_corpus": 0.6122029463979818,
+      "runaway_clips": 1,
+      "words_emitted": 3917,
+      "words_reference": 5979,
+      "term_recall": 0.6654804270462633,
+      "term_precision": 0.7923728813559322,
+      "term_f1": 0.723404255319149,
+      "clips_fell_back": 9,
+      "clips_still_looping": 0
+    },
+    "tuned": {
+      "clips": 184,
+      "wer_mean_per_clip": 0.9062171498300026,
+      "cer_mean_per_clip": 0.6265068067228415,
+      "wer_median_per_clip": 0.8461538461538461,
+      "cer_median_per_clip": 0.5950122202212503,
+      "wer_corpus": 0.6947650108713832,
+      "cer_corpus": 0.3681751642943906,
+      "runaway_clips": 6,
+      "words_emitted": 6029,
+      "words_reference": 5979,
+      "term_recall": 0.800711743772242,
+      "term_precision": 0.872093023255814,
+      "term_f1": 0.8348794063079777,
+      "clips_fell_back": 70,
+      "clips_still_looping": 0
+    },
+    "rank_tests": {
+      "wer": {
+        "metric": "wer",
+        "better": 116,
+        "total": 184,
+        "wilcoxon_p": 2.2951369951229594e-06,
+        "wilcoxon_z": 4.725531988664743,
+        "wilcoxon_n": 170,
+        "sign_p": 0.0004966173618627178
+      },
+      "cer": {
+        "metric": "cer",
+        "better": 136,
+        "total": 184,
+        "wilcoxon_p": 3.206679366485332e-11,
+        "wilcoxon_z": 6.636753467214559,
+        "wilcoxon_n": 180,
+        "sign_p": 6.112420868260564e-11
+      }
+    }
+  },
+  {
+    "hours_requested": "0.6",
+    "hours_actual": 0.6007111111111115,
+    "clips": 109,
+    "decode": "greedy",
+    "base": {
+      "clips": 184,
+      "wer_mean_per_clip": 1.123434376181693,
+      "cer_mean_per_clip": 0.8499185376699472,
+      "wer_median_per_clip": 0.9603921568627451,
+      "cer_median_per_clip": 0.7420203735144313,
+      "wer_corpus": 0.8986452584044154,
+      "cer_corpus": 0.640825988102283,
+      "runaway_clips": 10,
+      "words_emitted": 5063,
+      "words_reference": 5979,
+      "term_recall": 0.7259786476868327,
+      "term_precision": 0.6455696202531646,
+      "term_f1": 0.6834170854271356,
+      "clips_fell_back": 0,
+      "clips_still_looping": 9
+    },
+    "tuned": {
+      "clips": 184,
+      "wer_mean_per_clip": 1.5183348896153408,
+      "cer_mean_per_clip": 1.1311624668754678,
+      "wer_median_per_clip": 0.9258241758241759,
+      "cer_median_per_clip": 0.6447214647448383,
+      "wer_corpus": 1.260578692088978,
+      "cer_corpus": 0.8520571837916965,
+      "runaway_clips": 48,
+      "words_emitted": 9795,
+      "words_reference": 5979,
+      "term_recall": 0.9608540925266904,
+      "term_precision": 0.5009276437847866,
+      "term_f1": 0.6585365853658537,
+      "clips_fell_back": 0,
+      "clips_still_looping": 48
+    },
+    "rank_tests": {
+      "wer": {
+        "metric": "wer",
+        "better": 99,
+        "total": 184,
+        "wilcoxon_p": 0.4014705322983336,
+        "wilcoxon_z": -0.838997821126551,
+        "wilcoxon_n": 173,
+        "sign_p": 0.3378942799553427
+      },
+      "cer": {
+        "metric": "cer",
+        "better": 116,
+        "total": 184,
+        "wilcoxon_p": 0.735451729092675,
+        "wilcoxon_z": 0.3378825088769342,
+        "wilcoxon_n": 181,
+        "sign_p": 0.0004966173618627178
+      }
+    }
+  },
+  {
+    "hours_requested": "0.6",
+    "hours_actual": 0.6007111111111115,
+    "clips": 109,
+    "decode": "fallback",
+    "base": {
+      "clips": 184,
+      "wer_mean_per_clip": 0.9544033388151467,
+      "cer_mean_per_clip": 0.7380438530111162,
+      "wer_median_per_clip": 0.95,
+      "cer_median_per_clip": 0.7335731414868105,
+      "wer_corpus": 0.8464626191670848,
+      "cer_corpus": 0.6122029463979818,
+      "runaway_clips": 1,
+      "words_emitted": 3917,
+      "words_reference": 5979,
+      "term_recall": 0.6654804270462633,
+      "term_precision": 0.7923728813559322,
+      "term_f1": 0.723404255319149,
+      "clips_fell_back": 9,
+      "clips_still_looping": 0
+    },
+    "tuned": {
+      "clips": 184,
+      "wer_mean_per_clip": 0.8801221647134854,
+      "cer_mean_per_clip": 0.589567120916465,
+      "wer_median_per_clip": 0.8060035842293907,
+      "cer_median_per_clip": 0.5664534697793412,
+      "wer_corpus": 0.666499414617829,
+      "cer_corpus": 0.33793253807580903,
+      "runaway_clips": 4,
+      "words_emitted": 6105,
+      "words_reference": 5979,
+      "term_recall": 0.8576512455516014,
+      "term_precision": 0.8368055555555556,
+      "term_f1": 0.8471001757469245,
+      "clips_fell_back": 48,
+      "clips_still_looping": 0
+    },
+    "rank_tests": {
+      "wer": {
+        "metric": "wer",
+        "better": 115,
+        "total": 184,
+        "wilcoxon_p": 4.2814969347659826e-07,
+        "wilcoxon_z": 5.055996273209563,
+        "wilcoxon_n": 165,
+        "sign_p": 0.0008597408292289979
+      },
+      "cer": {
+        "metric": "cer",
+        "better": 145,
+        "total": 184,
+        "wilcoxon_p": 1.3322676295501878e-15,
+        "wilcoxon_z": 8.000244897360124,
+        "wilcoxon_n": 180,
+        "sign_p": 1.5045525941542065e-15
+      }
+    }
+  },
+  {
+    "hours_requested": "all",
+    "hours_actual": 0.9259722222222226,
+    "clips": 172,
+    "decode": "greedy",
+    "base": {
+      "clips": 184,
+      "wer_mean_per_clip": 1.123434376181693,
+      "cer_mean_per_clip": 0.8499185376699472,
+      "wer_median_per_clip": 0.9603921568627451,
+      "cer_median_per_clip": 0.7420203735144313,
+      "wer_corpus": 0.8986452584044154,
+      "cer_corpus": 0.640825988102283,
+      "runaway_clips": 10,
+      "words_emitted": 5063,
+      "words_reference": 5979,
+      "term_recall": 0.7259786476868327,
+      "term_precision": 0.6455696202531646,
+      "term_f1": 0.6834170854271356,
+      "clips_fell_back": 0,
+      "clips_still_looping": 9
+    },
+    "tuned": {
+      "clips": 184,
+      "wer_mean_per_clip": 1.602667556340849,
+      "cer_mean_per_clip": 1.244559905266385,
+      "wer_median_per_clip": 0.9285714285714286,
+      "cer_median_per_clip": 0.661938178780284,
+      "wer_corpus": 1.2756313764843619,
+      "cer_corpus": 0.8819883514498396,
+      "runaway_clips": 51,
+      "words_emitted": 9844,
+      "words_reference": 5979,
+      "term_recall": 0.896797153024911,
+      "term_precision": 0.4263959390862944,
+      "term_f1": 0.5779816513761468,
+      "clips_fell_back": 0,
+      "clips_still_looping": 54
+    },
+    "rank_tests": {
+      "wer": {
+        "metric": "wer",
+        "better": 96,
+        "total": 184,
+        "wilcoxon_p": 0.11736953621342483,
+        "wilcoxon_z": -1.5659106501101308,
+        "wilcoxon_n": 174,
+        "sign_p": 0.6059427533583791
+      },
+      "cer": {
+        "metric": "cer",
+        "better": 108,
+        "total": 184,
+        "wilcoxon_p": 0.5201291142143565,
+        "wilcoxon_z": -0.6431463921455877,
+        "wilcoxon_n": 183,
+        "sign_p": 0.02203513596599088
+      }
+    }
+  },
+  {
+    "hours_requested": "all",
+    "hours_actual": 0.9259722222222226,
+    "clips": 172,
+    "decode": "fallback",
+    "base": {
+      "clips": 184,
+      "wer_mean_per_clip": 0.9544033388151467,
+      "cer_mean_per_clip": 0.7380438530111162,
+      "wer_median_per_clip": 0.95,
+      "cer_median_per_clip": 0.7335731414868105,
+      "wer_corpus": 0.8464626191670848,
+      "cer_corpus": 0.6122029463979818,
+      "runaway_clips": 1,
+      "words_emitted": 3917,
+      "words_reference": 5979,
+      "term_recall": 0.6654804270462633,
+      "term_precision": 0.7923728813559322,
+      "term_f1": 0.723404255319149,
+      "clips_fell_back": 9,
+      "clips_still_looping": 0
+    },
+    "tuned": {
+      "clips": 184,
+      "wer_mean_per_clip": 0.879682495254894,
+      "cer_mean_per_clip": 0.6065537233444733,
+      "wer_median_per_clip": 0.8333333333333334,
+      "cer_median_per_clip": 0.5839688328912467,
+      "wer_corpus": 0.6623181133968891,
+      "cer_corpus": 0.3628803687669356,
+      "runaway_clips": 4,
+      "words_emitted": 6103,
+      "words_reference": 5979,
+      "term_recall": 0.8469750889679716,
+      "term_precision": 0.85,
+      "term_f1": 0.8484848484848485,
+      "clips_fell_back": 54,
+      "clips_still_looping": 0
+    },
+    "rank_tests": {
+      "wer": {
+        "metric": "wer",
+        "better": 119,
+        "total": 184,
+        "wilcoxon_p": 4.824000465752931e-08,
+        "wilcoxon_z": 5.457678520367268,
+        "wilcoxon_n": 168,
+        "sign_p": 8.380650820779783e-05
+      },
+      "cer": {
+        "metric": "cer",
+        "better": 142,
+        "total": 184,
+        "wilcoxon_p": 7.904787935331115e-14,
+        "wilcoxon_z": 7.47178630875096,
+        "wilcoxon_n": 183,
+        "sign_p": 6.761099047366041e-14
+      }
+    }
+  }
+]

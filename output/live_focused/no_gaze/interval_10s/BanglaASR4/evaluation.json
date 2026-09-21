@@ -1,0 +1,26 @@
+{
+  "baseline_recall": 0.2857142857142857,
+  "global_recall": 0.2857142857142857,
+  "temporal_recall": 0.2857142857142857,
+  "global_vs_baseline_pct": 0.0,
+  "temporal_vs_baseline_pct": 0.0,
+  "temporal_vs_global_pct": 0.0,
+  "baseline_found": [
+    "For Loops",
+    "While",
+    "Loops",
+    "Sum"
+  ],
+  "global_found": [
+    "For Loops",
+    "While",
+    "Loops",
+    "Sum"
+  ],
+  "temporal_found": [
+    "For Loops",
+    "While",
+    "Loops",
+    "Sum"
+  ]
+}

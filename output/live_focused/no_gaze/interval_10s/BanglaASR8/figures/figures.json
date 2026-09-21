@@ -1,0 +1,184 @@
+[
+  {
+    "figure": 1,
+    "image": "figures/fig_01_000.jpg",
+    "timestamp_sec": 0.0,
+    "timestamp": "0:00",
+    "source_frame": "frame_000000_000000s.jpg",
+    "section": "Introduction to DBMS",
+    "match_score": 3.25,
+    "matched_terms": [
+      "database",
+      "dbms",
+      "management",
+      "system"
+    ],
+    "new_keywords_in_frame": [
+      "Database Management System",
+      "Database",
+      "Management",
+      "System",
+      "DBMS"
+    ],
+    "visual_change_from_previous": 255.0,
+    "annotation_source": "keywords",
+    "board_reconstruction": "lecturer covered 20%, 98% rebuilt from 10 nearby frames",
+    "regions": [
+      {
+        "label": "Database Management System",
+        "bbox": null
+      },
+      {
+        "label": "Database",
+        "bbox": null
+      },
+      {
+        "label": "Management",
+        "bbox": null
+      },
+      {
+        "label": "System",
+        "bbox": null
+      }
+    ]
+  },
+  {
+    "figure": 2,
+    "image": "figures/fig_02_240.jpg",
+    "timestamp_sec": 160.0,
+    "timestamp": "2:40",
+    "source_frame": "frame_000016_000160s.jpg",
+    "section": "Explanation:",
+    "match_score": 2.083,
+    "matched_terms": [
+      "cgpa",
+      "date",
+      "department",
+      "enrollment"
+    ],
+    "new_keywords_in_frame": [
+      "Enrollment Date",
+      "Enrollment",
+      "Date"
+    ],
+    "visual_change_from_previous": 4.06,
+    "annotation_source": "keywords",
+    "board_reconstruction": "lecturer covered 25%, 100% rebuilt from 9 nearby frames",
+    "regions": [
+      {
+        "label": "Enrollment Date",
+        "bbox": null
+      },
+      {
+        "label": "Enrollment",
+        "bbox": null
+      },
+      {
+        "label": "Date",
+        "bbox": null
+      }
+    ]
+  },
+  {
+    "figure": 3,
+    "image": "figures/fig_03_410.jpg",
+    "timestamp_sec": 250.0,
+    "timestamp": "4:10",
+    "source_frame": "frame_000025_000250s.jpg",
+    "section": "Key Concepts in DBMS",
+    "match_score": 1.905,
+    "matched_terms": [
+      "database",
+      "dbms",
+      "management",
+      "system"
+    ],
+    "new_keywords_in_frame": [
+      "Syed",
+      "Ahsan",
+      "Adil"
+    ],
+    "visual_change_from_previous": 4.83,
+    "annotation_source": "keywords",
+    "board_reconstruction": "lecturer covered 24%, 100% rebuilt from 12 nearby frames",
+    "regions": [
+      {
+        "label": "Syed",
+        "bbox": null
+      },
+      {
+        "label": "Ahsan",
+        "bbox": null
+      },
+      {
+        "label": "Adil",
+        "bbox": null
+      }
+    ]
+  },
+  {
+    "figure": 4,
+    "image": "figures/fig_04_550.jpg",
+    "timestamp_sec": 350.0,
+    "timestamp": "5:50",
+    "source_frame": "frame_000035_000350s.jpg",
+    "section": "Example Data Insertion",
+    "match_score": 1.894,
+    "matched_terms": [
+      "ahsan",
+      "cgpa",
+      "department",
+      "syed"
+    ],
+    "new_keywords_in_frame": [
+      "Nasir",
+      "01-",
+      "20-",
+      "09-"
+    ],
+    "visual_change_from_previous": 1.71,
+    "annotation_source": "keywords",
+    "board_reconstruction": "lecturer covered 23%, 100% rebuilt from 6 nearby frames",
+    "regions": [
+      {
+        "label": "Nasir",
+        "bbox": null
+      }
+    ]
+  },
+  {
+    "figure": 5,
+    "image": "figures/fig_05_600.jpg",
+    "timestamp_sec": 360.0,
+    "timestamp": "6:00",
+    "source_frame": "frame_000036_000360s.jpg",
+    "section": "Summary",
+    "match_score": 3.126,
+    "matched_terms": [
+      "cgpa",
+      "database",
+      "dbms",
+      "department",
+      "management",
+      "system"
+    ],
+    "new_keywords_in_frame": [
+      "Istro",
+      "21-",
+      "10-",
+      "02-",
+      "11-",
+      "03-",
+      "12-"
+    ],
+    "visual_change_from_previous": 1.38,
+    "annotation_source": "keywords",
+    "board_reconstruction": "lecturer covered 23%, 100% rebuilt from 4 nearby frames",
+    "regions": [
+      {
+        "label": "Istro",
+        "bbox": null
+      }
+    ]
+  }
+]

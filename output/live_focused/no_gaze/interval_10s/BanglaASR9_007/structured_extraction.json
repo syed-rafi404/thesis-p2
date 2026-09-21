@@ -1,0 +1,188 @@
+{
+  "definitions": [
+    {
+      "text": "ID: 202011;",
+      "type": "definition"
+    },
+    {
+      "text": "CGPA: (select max(CGPA) from info)",
+      "type": "definition"
+    },
+    {
+      "text": "CGPA: (select max(CGPA) from Student_Info",
+      "type": "definition"
+    },
+    {
+      "text": "CGPA: (select max(CGPA) from Student_Info);",
+      "type": "definition"
+    }
+  ],
+  "code_snippets": [],
+  "formulas": [],
+  "keywords": [
+    {
+      "text": "MicroBiology",
+      "type": "keyword"
+    },
+    {
+      "text": "DBMS",
+      "type": "keyword"
+    },
+    {
+      "text": "ID",
+      "type": "keyword"
+    },
+    {
+      "text": "CGPA",
+      "type": "keyword"
+    },
+    {
+      "text": "CS",
+      "type": "keyword"
+    },
+    {
+      "text": "Database",
+      "type": "keyword"
+    },
+    {
+      "text": "Management",
+      "type": "keyword"
+    },
+    {
+      "text": "System",
+      "type": "keyword"
+    },
+    {
+      "text": "University",
+      "type": "keyword"
+    },
+    {
+      "text": "Department",
+      "type": "keyword"
+    },
+    {
+      "text": "Syed",
+      "type": "keyword"
+    },
+    {
+      "text": "Rafi",
+      "type": "keyword"
+    },
+    {
+      "text": "Aban",
+      "type": "keyword"
+    },
+    {
+      "text": "Habib",
+      "type": "keyword"
+    },
+    {
+      "text": "Math",
+      "type": "keyword"
+    },
+    {
+      "text": "Nashin",
+      "type": "keyword"
+    },
+    {
+      "text": "Economics",
+      "type": "keyword"
+    },
+    {
+      "text": "Sam",
+      "type": "keyword"
+    },
+    {
+      "text": "English",
+      "type": "keyword"
+    },
+    {
+      "text": "Man",
+      "type": "keyword"
+    },
+    {
+      "text": "Ahsan",
+      "type": "keyword"
+    },
+    {
+      "text": "Adiba",
+      "type": "keyword"
+    },
+    {
+      "text": "Noshin",
+      "type": "keyword"
+    },
+    {
+      "text": "Maria",
+      "type": "keyword"
+    },
+    {
+      "text": "Islam",
+      "type": "keyword"
+    },
+    {
+      "text": "Israt",
+      "type": "keyword"
+    },
+    {
+      "text": "Jahan",
+      "type": "keyword"
+    },
+    {
+      "text": "Israf",
+      "type": "keyword"
+    },
+    {
+      "text": "Select",
+      "type": "keyword"
+    },
+    {
+      "text": "MA",
+      "type": "keyword"
+    },
+    {
+      "text": "LE",
+      "type": "keyword"
+    },
+    {
+      "text": "Istrat",
+      "type": "keyword"
+    },
+    {
+      "text": "Student",
+      "type": "keyword"
+    },
+    {
+      "text": "GPA",
+      "type": "keyword"
+    },
+    {
+      "text": "FROM",
+      "type": "keyword"
+    },
+    {
+      "text": "Idrat",
+      "type": "keyword"
+    },
+    {
+      "text": "Moul",
+      "type": "keyword"
+    },
+    {
+      "text": "Depart",
+      "type": "keyword"
+    },
+    {
+      "text": "Order",
+      "type": "keyword"
+    },
+    {
+      "text": "Nosl",
+      "type": "keyword"
+    },
+    {
+      "text": "Zoology",
+      "type": "keyword"
+    }
+  ]
+}

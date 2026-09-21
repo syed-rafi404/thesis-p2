@@ -34,6 +34,7 @@ import math
 import os
 import statistics
 import sys
+import zlib
 import contextlib
 from pathlib import Path
 
@@ -47,6 +48,16 @@ FT_DIR = Path(os.environ.get("THESIS_FT_DIR") or (REPO.parent / "ft_work"))
 CLIPS = FT_DIR / "clips"
 DEFAULT_BASE = str(FT_DIR / "models" / "whisper-small")
 LANG, TASK = "en", "transcribe"
+
+# Whisper's own loop safeguard (Radford et al. 2023, section 4.5): when a
+# transcript compresses too well it is a repetition loop, so decode that clip
+# again with sampling at rising temperatures. Only the compression-ratio half
+# is used; the log-probability half would resample most Banglish clips, not
+# just the loops. It reads the hypothesis only, never the reference, and is
+# applied identically to the base and the fine-tuned model.
+FALLBACK_TEMPERATURES = (0.2, 0.4, 0.6, 0.8, 1.0)
+COMPRESSION_RATIO_THRESHOLD = 2.4
+FALLBACK_SEED = 0
 
 
 # --------------------------------------------------------------------------- imports
@@ -192,10 +203,14 @@ def load_rows(split_file, limit=None):
     return rows[:limit] if limit else rows
 
 
-def decode_all(model, processor, rows, batch_size, device, label):
-    """Greedy decode every clip, in batches."""
+def compression_ratio(text):
+    """gzip compression ratio of a transcript, as Whisper defines it."""
+    data = text.encode("utf-8")
+    return len(data) / len(zlib.compress(data)) if data else 0.0
+
+
+def _decode_batches(model, processor, rows, batch_size, device, label, **gen):
     outputs = []
-    model.eval()
     for start in range(0, len(rows), batch_size):
         chunk = rows[start:start + batch_size]
         audio = []
@@ -209,13 +224,53 @@ def decode_all(model, processor, rows, batch_size, device, label):
         ).input_features.to(device, dtype=model.dtype)
         with torch.no_grad():
             ids = model.generate(
-                feats, language=LANG, task=TASK, max_new_tokens=200, do_sample=False
+                feats, language=LANG, task=TASK, max_new_tokens=200, **gen
             )
         outputs.extend(processor.batch_decode(ids, skip_special_tokens=True))
         done = min(start + batch_size, len(rows))
         print(f"    {label}: {done}/{len(rows)} clips", end="\r", flush=True)
-    print(f"    {label}: {len(rows)}/{len(rows)} clips done")
     return outputs
+
+
+def decode_all(model, processor, rows, batch_size, device, label, decode="greedy",
+               seed=FALLBACK_SEED):
+    """Greedy decode every clip, in batches.
+
+    With decode="fallback", clips whose transcript compresses above the
+    threshold are decoded again at each fallback temperature in turn, until
+    they no longer look like a loop. A clip that still loops at the last
+    temperature keeps that last attempt, as Whisper does.
+
+    Returns the transcripts and, per clip, the temperature that produced it.
+    """
+    model.eval()
+    outputs = _decode_batches(model, processor, rows, batch_size, device, label,
+                              do_sample=False)
+    print(f"    {label}: {len(rows)}/{len(rows)} clips done")
+    temps = [0.0] * len(rows)
+    if decode != "fallback":
+        return outputs, temps
+
+    for t in FALLBACK_TEMPERATURES:
+        todo = [i for i, h in enumerate(outputs)
+                if compression_ratio(h) > COMPRESSION_RATIO_THRESHOLD]
+        if not todo:
+            break
+        torch.manual_seed(seed)
+        redo =_decode_batches(model, processor, [rows[i] for i in todo], batch_size,
+                               device, f"{label} T={t}", do_sample=True, temperature=t)
+        for i, h in zip(todo, redo):
+            outputs[i], temps[i] = h, t
+        print(f"    {label}: {len(todo)} looping clips re-decoded at T={t}")
+    return outputs, temps
+
+
+def fallback_summary(hyps, temps):
+    return {
+        "clips_fell_back": sum(1 for t in temps if t > 0),
+        "clips_still_looping": sum(1 for h in hyps
+                                   if compression_ratio(h) > COMPRESSION_RATIO_THRESHOLD),
+    }
 
 
 def build_model(base_path, adapter_path, device):
@@ -315,6 +370,24 @@ def markdown_report(base_sum, tuned_sum, p_value, p_note, examples, args,
         "",
         "All text is compared after `normalize_banglish()` from `finetune/prepare_data.py`.",
         "",
+    ]
+    if getattr(args, "decode", "greedy") == "fallback":
+        lines += [
+            "Decoding: greedy, then Whisper's loop safeguard for both models alike: a clip "
+            f"whose transcript has gzip compression ratio above {COMPRESSION_RATIO_THRESHOLD} "
+            f"is decoded again with sampling at T = {', '.join(map(str, FALLBACK_TEMPERATURES))} "
+            f"in turn (seed {getattr(args, 'fallback_seed', FALLBACK_SEED)}) until it no "
+            "longer looks like a loop. "
+            f"Fell back: base {base_sum.get('clips_fell_back', 0)}, "
+            f"tuned {tuned_sum.get('clips_fell_back', 0)} clips. "
+            f"Still looping after T = {FALLBACK_TEMPERATURES[-1]}: "
+            f"base {base_sum.get('clips_still_looping', 0)}, "
+            f"tuned {tuned_sum.get('clips_still_looping', 0)}.",
+            "",
+        ]
+    else:
+        lines += ["Decoding: greedy.", ""]
+    lines += [
         "| Metric | Base | Fine-tuned |",
         "|---|---|---|",
         f"| WER, per clip median | {pct(base_sum, 'wer_median_per_clip')} | {pct(tuned_sum, 'wer_median_per_clip')} |",
@@ -371,6 +444,12 @@ def main():
     ap.add_argument("--batch", type=int, default=8)
     ap.add_argument("--tag", default="whisper_small")
     ap.add_argument("--base-only", action="store_true", help="Score the base model alone")
+    ap.add_argument("--decode", default="greedy", choices=("greedy", "fallback"),
+                    help="greedy reproduces every earlier number. fallback adds Whisper's "
+                         "compression-ratio loop safeguard, to both models alike")
+    ap.add_argument("--fallback-seed", type=int, default=FALLBACK_SEED,
+                    help="Sampling seed for the fallback, to check the result does not "
+                         "hinge on one draw")
     args = ap.parse_args()
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -386,12 +465,16 @@ def main():
 
     print("  decoding with base model ...")
     base_model, processor = build_model(args.base, None, device)
-    base_hyps = decode_all(base_model, processor, rows, args.batch, device, "base")
+    base_hyps, base_temps = decode_all(base_model, processor, rows, args.batch, device,
+                                       "base", args.decode, args.fallback_seed)
     del base_model
     if device == "cuda":
         torch.cuda.empty_cache()
 
     base_clips, base_sum = summarise(rows, base_hyps, normalize, egt)
+    base_sum.update(fallback_summary(base_hyps, base_temps))
+    for clip, t in zip(base_clips, base_temps):
+        clip["temperature"] = t
 
     tuned_clips, tuned_sum, p_value, p_note, examples = [], {}, 1.0, "not run", []
     stats_wer = stats_cer = None
@@ -401,12 +484,16 @@ def main():
             sys.exit(f"adapter not found: {adapter}. Train it first, or pass --base-only.")
         print("  decoding with fine-tuned model ...")
         tuned_model, processor = build_model(args.base, str(adapter), device)
-        tuned_hyps = decode_all(tuned_model, processor, rows, args.batch, device, "tuned")
+        tuned_hyps, tuned_temps = decode_all(tuned_model, processor, rows, args.batch, device,
+                                             "tuned", args.decode, args.fallback_seed)
         del tuned_model
         if device == "cuda":
             torch.cuda.empty_cache()
 
         tuned_clips, tuned_sum = summarise(rows, tuned_hyps, normalize, egt)
+        tuned_sum.update(fallback_summary(tuned_hyps, tuned_temps))
+        for clip, t in zip(tuned_clips, tuned_temps):
+            clip["temperature"] = t
         deltas = [t["wer"] - b["wer"] for b, t in zip(base_clips, tuned_clips)]
         p_value, p_note = paired_permutation_p(deltas)
         stats_wer = rank_stats(base_clips, tuned_clips, "wer")
@@ -426,6 +513,8 @@ def main():
         "base_model": args.base,
         "adapter": None if args.base_only else args.adapter,
         "split": args.split,
+        "decode": args.decode,
+        "fallback_seed": args.fallback_seed if args.decode == "fallback" else None,
         "base": base_sum,
         "tuned": tuned_sum,
         "paired_test": {"p_value": p_value, "method": p_note},

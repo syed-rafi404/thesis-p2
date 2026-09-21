@@ -1,0 +1,56 @@
+{
+  "lecture": "BanglaASR1",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "source": "frame",
+  "prompt": "This is a photograph of a classroom whiteboard during a university lecture.\n\nTranscribe everything written on the whiteboard, exactly as written.\n\n- Copy every number, name, identifier, date and symbol exactly. Do not round,\n  correct or reformat values.\n- Write tables as Markdown tables with the same rows and columns as the board.\n- Write code, SQL and program text inside ``` fences, keeping line breaks.\n- Write formulas as they appear. For a bar over a term write it as NOT(...),\n  for example NOT(A+B).\n- Keep diagrams short: name what they are and copy any labels on them, for\n  example \"Gate diagram: inputs A, B into a box labelled NAND, output NOT(AB)\".\n- If part of the board cannot be read, write [illegible]. Never guess, and never\n  add anything that is not written on the board.\n- Ignore any person in the picture. Describe only what is written.\n\nOutput only the transcription.",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:00",
+      "to": "1:40",
+      "clear_fraction": 0.9184,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR1\\ingested\\frames\\frame_000010_000100s.jpg",
+      "text": "Python Variables\n\nWhat is a variable?\nApple\nBox"
+    },
+    {
+      "era": 2,
+      "from": "1:50",
+      "to": "3:20",
+      "clear_fraction": 0.8753,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR1\\ingested\\frames\\frame_000020_000200s.jpg",
+      "text": "Python Variables\n\n| int (num) = 10 |\n| num = 10 |\n| Box | Value |"
+    },
+    {
+      "era": 3,
+      "from": "3:40",
+      "to": "7:00",
+      "clear_fraction": 0.9452,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR1\\ingested\\frames\\frame_000042_000420s.jpg",
+      "text": "| Python Variables |\n|------------------|\n| Data Type:       |\n| i) Str           |\n| ii) Int          |\n| iii) Float       |\n| iv) Boolean      |\n| Fruit = 'Apple'  |\n| Age = 10         |\n| Float = 3.5      |\n| True / False     |\n| isValid          |"
+    },
+    {
+      "era": 4,
+      "from": "7:10",
+      "to": "9:50",
+      "clear_fraction": 0.9417,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR1\\ingested\\frames\\frame_000059_000590s.jpg",
+      "text": "Python Variables\nData Typ\nIname = \"Rafi\"\nName1 = 'Raf"
+    },
+    {
+      "era": 5,
+      "from": "10:00",
+      "to": "10:50",
+      "clear_fraction": 0.9091,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR1\\ingested\\frames\\frame_000065_000650s.jpg",
+      "text": "Python Variables\nData Type\n1name = \"Rafi\" X\nName1=\"Rafi\" √\nmy_name = \"Rafi\"\nmyName1"
+    },
+    {
+      "era": 6,
+      "from": "11:20",
+      "to": "12:50",
+      "clear_fraction": 0.9336,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR1\\ingested\\frames\\frame_000077_000770s.jpg",
+      "text": "Python Variables\n\nData Type:\n\npi = 3.1414\n\nage = 10\nageE = 10"
+    }
+  ]
+}

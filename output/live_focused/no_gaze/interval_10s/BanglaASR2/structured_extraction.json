@@ -1,0 +1,56 @@
+{
+  "definitions": [
+    {
+      "text": "Name: input(\"",
+      "type": "definition"
+    },
+    {
+      "text": "Name: input(\"What is your name?\")",
+      "type": "definition"
+    }
+  ],
+  "code_snippets": [],
+  "formulas": [],
+  "keywords": [
+    {
+      "text": "Input",
+      "type": "keyword"
+    },
+    {
+      "text": "Type",
+      "type": "keyword"
+    },
+    {
+      "text": "Casting",
+      "type": "keyword"
+    },
+    {
+      "text": "Name",
+      "type": "keyword"
+    },
+    {
+      "text": "What",
+      "type": "keyword"
+    },
+    {
+      "text": "Hello",
+      "type": "keyword"
+    },
+    {
+      "text": "Print",
+      "type": "keyword"
+    },
+    {
+      "text": "String",
+      "type": "keyword"
+    },
+    {
+      "text": "Result",
+      "type": "keyword"
+    },
+    {
+      "text": "Sum",
+      "type": "keyword"
+    }
+  ]
+}

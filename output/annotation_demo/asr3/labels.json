@@ -1,0 +1,11 @@
+[
+ {"id": 1, "label": "Topic and input line",
+  "note": "Conditional Statements. weather = input(\"Today's weather: \") reads a value typed by the user into the variable weather"},
+ {"id": 2, "label": "Plain-language rule",
+  "note": "If the user types Rain, bring an umbrella; if not, do not bring one. This is the behaviour the code below implements"},
+ {"id": 3, "label": "if and elif branches",
+  "note": "if weather == \"Rain\": print(\"Bring Umbrella\"), elif weather == \"Sunny\": print(\"Wear White Color\"). Note the double equals for comparison"},
+ {"id": 4, "label": "Condition marker", "note": "The If that opens the second sentence of the rule"},
+ {"id": 5, "label": "else keyword", "note": "The fallback branch, taken when no earlier condition matched"},
+ {"id": 6, "label": "else body", "note": "print(\"Just Come\") runs for any weather that is neither Rain nor Sunny"}
+]

@@ -117,22 +117,44 @@ def load_model(base, adapter, device):
     return model.to(device).eval(), processor
 
 
-def transcribe(model, processor, wave, device, batch, chunk_s):
+def _decode(model, processor, audio, device, **gen):
+    import torch
+    feats = processor.feature_extractor(
+        audio, sampling_rate=SR, return_tensors="pt"
+    ).input_features.to(device, dtype=model.dtype)
+    with torch.no_grad():
+        ids = model.generate(feats, language=LANG, task=TASK, max_new_tokens=200, **gen)
+    return processor.batch_decode(ids, skip_special_tokens=True)
+
+
+def transcribe(model, processor, wave, device, batch, chunk_s, decode="greedy"):
+    """Greedy decode each chunk. decode="fallback" re-decodes looping chunks with
+    Whisper's compression-ratio safeguard, the same one finetune/evaluate.py uses."""
     import torch
     spans = quiet_cuts(wave, chunk_s)
     texts = []
     for start in range(0, len(spans), batch):
         group = spans[start:start + batch]
-        audio = [wave[a:b] for a, b in group]
-        feats = processor.feature_extractor(
-            audio, sampling_rate=SR, return_tensors="pt"
-        ).input_features.to(device, dtype=model.dtype)
-        with torch.no_grad():
-            ids = model.generate(feats, language=LANG, task=TASK,
-                                 max_new_tokens=200, do_sample=False)
-        texts.extend(processor.batch_decode(ids, skip_special_tokens=True))
+        texts.extend(_decode(model, processor, [wave[a:b] for a, b in group], device,
+                             do_sample=False))
         print(f"    {min(start + batch, len(spans))}/{len(spans)} chunks", end="\r", flush=True)
     print()
+    if decode == "fallback":
+        from evaluate import (COMPRESSION_RATIO_THRESHOLD, FALLBACK_SEED,
+                              FALLBACK_TEMPERATURES, compression_ratio)
+        for t in FALLBACK_TEMPERATURES:
+            todo = [i for i, h in enumerate(texts)
+                    if compression_ratio(h) > COMPRESSION_RATIO_THRESHOLD]
+            if not todo:
+                break
+            torch.manual_seed(FALLBACK_SEED)
+            for k in range(0, len(todo), batch):
+                idx = todo[k:k + batch]
+                redo = _decode(model, processor, [wave[spans[i][0]:spans[i][1]] for i in idx],
+                               device, do_sample=True, temperature=t)
+                for i, h in zip(idx, redo):
+                    texts[i] = h
+            print(f"    {len(todo)} looping chunks re-decoded at T={t}")
     return spans, [collapse_loops(t) for t in texts]
 
 
@@ -149,6 +171,8 @@ def main():
     ap.add_argument("--out-name", default="transcript_finetuned.txt")
     ap.add_argument("--timestamps", action="store_true",
                     help="Prefix each chunk with its [M:SS-M:SS] span")
+    ap.add_argument("--decode", default="greedy", choices=("greedy", "fallback"),
+                    help="fallback re-decodes looping chunks with Whisper's safeguard")
     args = ap.parse_args()
 
     try:
@@ -174,6 +198,7 @@ def main():
         sys.exit(f"adapter not found: {adapter}")
     print(f"base    : {args.base}")
     print(f"adapter : {adapter or '(none, base model only)'}")
+    print(f"decode  : {args.decode}")
     print(f"device  : {device}\n")
     model, processor = load_model(args.base, adapter, device)
 
@@ -192,7 +217,8 @@ def main():
             continue
         wave = wave.astype(np.float32)
         print(f"{run_dir.name:<18} {len(wave)/SR/60:.1f} min of audio")
-        spans, texts = transcribe(model, processor, wave, device, args.batch, args.chunk_s)
+        spans, texts = transcribe(model, processor, wave, device, args.batch, args.chunk_s,
+                                  args.decode)
 
         lines = []
         for (a, b), text in zip(spans, texts):

@@ -1,0 +1,38 @@
+[
+  {
+    "figure": 1,
+    "era": 1,
+    "from": "0:00",
+    "to": "1:00",
+    "clear_fraction": 0.9779,
+    "section": "1.1 Declaring Variables",
+    "image": "figures_board/board_01_era1.jpg"
+  },
+  {
+    "figure": 2,
+    "era": 2,
+    "from": "1:10",
+    "to": "3:10",
+    "clear_fraction": 0.979,
+    "section": "2. User Input in Python",
+    "image": "figures_board/board_02_era2.jpg"
+  },
+  {
+    "figure": 3,
+    "era": 3,
+    "from": "4:20",
+    "to": "7:30",
+    "clear_fraction": 0.9848,
+    "section": "2.2 Practical Example",
+    "image": "figures_board/board_03_era3.jpg"
+  },
+  {
+    "figure": 4,
+    "era": 5,
+    "from": "8:40",
+    "to": "14:00",
+    "clear_fraction": 0.986,
+    "section": "2.4 F-Strings for Formatting",
+    "image": "figures_board/board_04_era5.jpg"
+  }
+]

@@ -1,0 +1,11 @@
+{
+  "language": "mixed",
+  "transcript_file": "transcript_whisper_baseline.txt",
+  "board_source": "keywords",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "figures_available": 2,
+  "figures_placed": [
+    1,
+    2
+  ]
+}

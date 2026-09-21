@@ -1,0 +1,100 @@
+{
+  "definitions": [
+    {
+      "text": "Weather: input(\"Today's weather: \")",
+      "type": "definition"
+    },
+    {
+      "text": "Weather: input(\"Today's weather:\")",
+      "type": "definition"
+    }
+  ],
+  "code_snippets": [],
+  "formulas": [],
+  "keywords": [
+    {
+      "text": "Conditional",
+      "type": "keyword"
+    },
+    {
+      "text": "Statements",
+      "type": "keyword"
+    },
+    {
+      "text": "Rain",
+      "type": "keyword"
+    },
+    {
+      "text": "User",
+      "type": "keyword"
+    },
+    {
+      "text": "Umbrella",
+      "type": "keyword"
+    },
+    {
+      "text": "If",
+      "type": "keyword"
+    },
+    {
+      "text": "Weather",
+      "type": "keyword"
+    },
+    {
+      "text": "Today",
+      "type": "keyword"
+    },
+    {
+      "text": "Bring",
+      "type": "keyword"
+    },
+    {
+      "text": "Don",
+      "type": "keyword"
+    },
+    {
+      "text": "Just",
+      "type": "keyword"
+    },
+    {
+      "text": "Come",
+      "type": "keyword"
+    },
+    {
+      "text": "Sunny",
+      "type": "keyword"
+    },
+    {
+      "text": "Sun",
+      "type": "keyword"
+    },
+    {
+      "text": "Wear",
+      "type": "keyword"
+    },
+    {
+      "text": "White",
+      "type": "keyword"
+    },
+    {
+      "text": "Clothes",
+      "type": "keyword"
+    },
+    {
+      "text": "Else",
+      "type": "keyword"
+    },
+    {
+      "text": "Colou",
+      "type": "keyword"
+    },
+    {
+      "text": "Coat",
+      "type": "keyword"
+    },
+    {
+      "text": "Color",
+      "type": "keyword"
+    }
+  ]
+}

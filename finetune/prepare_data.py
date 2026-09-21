@@ -1,12 +1,17 @@
-"""
+r"""
 Step 1 - Data preparation for the Whisper Banglish fine-tuning PoC.
 
 Turns the 9 BanglaASR lecture recordings + their human-timestamped ground-truth
 transcripts into a Whisper-ready dataset of (<=30s audio clip, romanized text)
 pairs, with a SPEAKER-INDEPENDENT split:
 
-    Train  = BanglaASR1-6  (speaker A)
-    Test   = BanglaASR7-9  (speaker B, never seen in training)
+    Train  = BanglaASR1-5  (speaker A, data/raw/Speaker1)
+    Test   = BanglaASR6-9  (speaker B, data/raw/Speaker2, never seen in training)
+
+The first version of this split put BanglaASR6 in training as speaker A. It is
+speaker B: the user sorted the videos by lecturer, and speaker embeddings agree
+(scripts/verify_speakers.py). That split leaked the test speaker into training.
+It is kept only to reproduce the superseded numbers: --speaker-map v1.
 
 Why this design:
 - The ground-truth files are already segmented with [M:SS-M:SS] timestamps by the
@@ -51,8 +56,14 @@ CLIPS_DIR = os.path.join(OUT_DIR, "clips")
 
 # Legacy fallback for the original nine lectures, which have no Speaker ID in
 # their headers. Newer files declare "# Speaker ID: SPKnn" and that wins.
-LEGACY_SPEAKERS = {1: "A", 2: "A", 3: "A", 4: "A", 5: "A", 6: "A",
-                   7: "B", 8: "B", 9: "B"}
+# A = data/raw/Speaker1, B = data/raw/Speaker2, C = data/raw/Speaker3.
+LEGACY_SPEAKERS = {1: "A", 2: "A", 3: "A", 4: "A", 5: "A",
+                   6: "B", 7: "B", 8: "B", 9: "B",
+                   10: "C", 11: "C", 12: "C", 13: "C"}
+# Superseded: put BanglaASR6 (speaker B) in training. Reproduction only.
+LEGACY_SPEAKERS_V1 = {1: "A", 2: "A", 3: "A", 4: "A", 5: "A", 6: "A",
+                      7: "B", 8: "B", 9: "B"}
+SPEAKER_MAPS = {"v2": LEGACY_SPEAKERS, "v1": LEGACY_SPEAKERS_V1}
 DEFAULT_TEST_SPEAKERS = ["B"]
 AUDIO_CACHE = os.path.join(OUT_DIR, "audio_cache")
 VIDEO_EXTS = (".mp4", ".MOV", ".mov", ".mkv", ".avi", ".webm", ".MP4")
@@ -93,7 +104,7 @@ def find_wav(n: int) -> str:
     best, best_frames = None, -1
     pattern = os.path.join(REPO, "output", "live_focused", "**", "full_audio.wav")
     for p in glob.glob(pattern, recursive=True):
-        m = re.search(r"BanglaASR(\d)", p)
+        m = re.search(r"BanglaASR(\d+)", p)      # \d+: BanglaASR10 is not BanglaASR1
         if not m or int(m.group(1)) != n:
             continue
         frames = sf.info(p).frames
@@ -163,7 +174,7 @@ def split_segment(start, end, text, audio_dur, max_s=MAX_CLIP_S):
 
 
 # ----------------------------------------------------------------------------- discovery
-def read_speaker(gt_path: str, stem: str) -> str:
+def read_speaker(gt_path: str, stem: str, legacy_map: dict = LEGACY_SPEAKERS) -> str:
     """Speaker ID from the file header, else the legacy per-video mapping."""
     with open(gt_path, encoding="utf-8", errors="replace") as fh:
         for line in fh:
@@ -174,7 +185,7 @@ def read_speaker(gt_path: str, stem: str) -> str:
                 return m.group(1)
     m = re.search(r"BanglaASR(\d+)", stem)
     if m:
-        return LEGACY_SPEAKERS.get(int(m.group(1)), "UNKNOWN")
+        return legacy_map.get(int(m.group(1)), "UNKNOWN")
     return "UNKNOWN"
 
 
@@ -225,6 +236,44 @@ def find_audio(stem: str, audio_dir: str = None) -> str:
     return cached
 
 
+def check_against_raw_folders(labels: dict):
+    """Warn when speaker labels disagree with how data/raw is sorted into folders.
+
+    The user files videos by lecturer (data/raw/Speaker1, Speaker2, ...). A split
+    that trained on video 6 went unnoticed because nothing compared the two.
+    labels: lecture stem -> speaker label. Returns the number of conflicts.
+    """
+    raw = os.path.join(REPO, "data", "raw")
+    folder_of = {}
+    for root, _dirs, files in os.walk(raw):
+        if os.path.normpath(root) == os.path.normpath(raw):
+            continue
+        for name in files:
+            base, ext = os.path.splitext(name)
+            if ext in VIDEO_EXTS:
+                folder_of[base] = os.path.basename(root)
+    by_folder, by_label = {}, {}
+    for stem, label in labels.items():
+        folder = folder_of.get(stem)
+        if folder is None:
+            continue
+        by_folder.setdefault(folder, set()).add(label)
+        by_label.setdefault(label, set()).add(folder)
+    conflicts = 0
+    for folder, found in sorted(by_folder.items()):
+        if len(found) > 1:
+            conflicts += 1
+            print(f"  WARNING: data/raw/{folder} holds lectures labelled {sorted(found)}")
+    for label, found in sorted(by_label.items()):
+        if len(found) > 1:
+            conflicts += 1
+            print(f"  WARNING: speaker {label} spans data/raw folders {sorted(found)}")
+    if conflicts:
+        print("  Speaker labels disagree with the data/raw folders. Fix the labels "
+              "before trusting any speaker-independent result.")
+    return conflicts
+
+
 def discover(gt_dir: str):
     """Every *_ground_truth.txt file, with its lecture stem."""
     found = []
@@ -264,6 +313,12 @@ def main():
     ap.add_argument("--seed", type=int, default=0, help="Seed for the training cap")
     ap.add_argument("--keep-clips", action="store_true",
                     help="Do not wipe previously extracted clips")
+    ap.add_argument("--only-speakers", default=None,
+                    help="Comma-separated speakers to use at all; others are left out. "
+                         "The section 1.0 headline used A,B, before speaker C existed")
+    ap.add_argument("--speaker-map", default="v2", choices=sorted(SPEAKER_MAPS),
+                    help="Speakers for files without a Speaker ID header. v1 is the "
+                         "superseded split that put BanglaASR6 in training")
     args = ap.parse_args()
 
     out_dir = args.out
@@ -273,17 +328,29 @@ def main():
     os.makedirs(clips_dir, exist_ok=True)
 
     test_speakers = {s.strip() for s in args.test_speakers.split(",") if s.strip()}
+    only_speakers = ({s.strip() for s in args.only_speakers.split(",") if s.strip()}
+                     if args.only_speakers else None)
     lectures = discover(args.gt_dir)
     if not lectures:
         print(f"no ground-truth files in {args.gt_dir}")
         return
 
     print(f"found {len(lectures)} ground-truth files; test speakers: {sorted(test_speakers)}")
+    labels = {stem: read_speaker(p, stem, SPEAKER_MAPS[args.speaker_map]) for stem, p in lectures}
+    check_against_raw_folders(labels)
 
     manifest, stats, speaker_minutes = [], {}, {}
 
     for stem, gt_path in lectures:
-        speaker = read_speaker(gt_path, stem)
+        speaker = read_speaker(gt_path, stem, SPEAKER_MAPS[args.speaker_map])
+        if speaker == "UNKNOWN":
+            # Never guess: an unlabelled lecture silently joining training is how
+            # a test speaker leaks in. Add "# Speaker ID:" to the file instead.
+            print(f"  [skip] {stem}: no Speaker ID header and no known speaker; not used")
+            continue
+        if only_speakers and speaker not in only_speakers:
+            print(f"  [skip] {stem}: speaker {speaker} not in --only-speakers")
+            continue
         split = "test" if speaker in test_speakers else "train"
         wav = find_audio(stem, args.audio_dir)
         if not wav:
@@ -358,6 +425,8 @@ def main():
         "test_hours": sum(r["dur"] for r in test_rows) / 3600,
         "train_cap": args.train_hours,
         "seed": args.seed,
+        "speaker_map": args.speaker_map,
+        "only_speakers": sorted(only_speakers) if only_speakers else None,
         "minutes_per_speaker": {k: round(v, 1) for k, v in sorted(speaker_minutes.items())},
         "lectures": {k: {"split": v[0], "speaker": v[1], "clips": v[2],
                          "minutes_kept": round(v[3], 1), "minutes_audio": round(v[4], 1)}

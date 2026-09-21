@@ -1,0 +1,11 @@
+{
+  "method": "Transliteration Fusion",
+  "unique_bengali_words": 583,
+  "average_similarity": 0.0669924277032854,
+  "whisper_segments": 54,
+  "bangla_segments": 76,
+  "merged_segments": 95,
+  "whisper_word_count": 505,
+  "bangla_word_count": 679,
+  "fused_word_count": 977
+}

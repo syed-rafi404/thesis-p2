@@ -1,0 +1,29 @@
+{
+  "baseline_recall": 0.25,
+  "global_recall": 0.25,
+  "temporal_recall": 0.25,
+  "global_vs_baseline_pct": 0.0,
+  "temporal_vs_baseline_pct": 0.0,
+  "temporal_vs_global_pct": 0.0,
+  "baseline_found": [
+    "Department",
+    "Database",
+    "Select",
+    "Student",
+    "Depart"
+  ],
+  "global_found": [
+    "Department",
+    "Database",
+    "Select",
+    "Student",
+    "Depart"
+  ],
+  "temporal_found": [
+    "Department",
+    "Database",
+    "Select",
+    "Student",
+    "Depart"
+  ]
+}

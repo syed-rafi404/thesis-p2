@@ -1,0 +1,168 @@
+{
+  "definitions": [
+    {
+      "text": "What: Variable",
+      "type": "definition"
+    },
+    {
+      "text": "What: Variable?",
+      "type": "definition"
+    },
+    {
+      "text": "Type: String",
+      "type": "definition"
+    },
+    {
+      "text": "Type: String \u2014 Fruit = 'Apple'",
+      "type": "definition"
+    },
+    {
+      "text": "Type: i) String \u2014 Fruit = 'Apple'",
+      "type": "definition"
+    },
+    {
+      "text": "Fruit: 'Apple'",
+      "type": "definition"
+    },
+    {
+      "text": "Type: type()",
+      "type": "definition"
+    },
+    {
+      "text": "Type: Name X",
+      "type": "definition"
+    },
+    {
+      "text": "Iname: \"Rafi\"",
+      "type": "definition"
+    },
+    {
+      "text": "Type: - Name X",
+      "type": "definition"
+    },
+    {
+      "text": "Iname: \"Rafi\"  X",
+      "type": "definition"
+    },
+    {
+      "text": "Iname: \"Rafi\" X",
+      "type": "definition"
+    },
+    {
+      "text": "Type: age = 10",
+      "type": "definition"
+    }
+  ],
+  "code_snippets": [],
+  "formulas": [],
+  "keywords": [
+    {
+      "text": "Python",
+      "type": "keyword"
+    },
+    {
+      "text": "Variables",
+      "type": "keyword"
+    },
+    {
+      "text": "What",
+      "type": "keyword"
+    },
+    {
+      "text": "Variable",
+      "type": "keyword"
+    },
+    {
+      "text": "Apple",
+      "type": "keyword"
+    },
+    {
+      "text": "Int",
+      "type": "keyword"
+    },
+    {
+      "text": "Box",
+      "type": "keyword"
+    },
+    {
+      "text": "Value",
+      "type": "keyword"
+    },
+    {
+      "text": "Data",
+      "type": "keyword"
+    },
+    {
+      "text": "Type",
+      "type": "keyword"
+    },
+    {
+      "text": "String",
+      "type": "keyword"
+    },
+    {
+      "text": "Integer",
+      "type": "keyword"
+    },
+    {
+      "text": "Float",
+      "type": "keyword"
+    },
+    {
+      "text": "Bool",
+      "type": "keyword"
+    },
+    {
+      "text": "Kono",
+      "type": "keyword"
+    },
+    {
+      "text": "Types",
+      "type": "keyword"
+    },
+    {
+      "text": "App",
+      "type": "keyword"
+    },
+    {
+      "text": "Fruit",
+      "type": "keyword"
+    },
+    {
+      "text": "Age",
+      "type": "keyword"
+    },
+    {
+      "text": "Str",
+      "type": "keyword"
+    },
+    {
+      "text": "Num",
+      "type": "keyword"
+    },
+    {
+      "text": "True",
+      "type": "keyword"
+    },
+    {
+      "text": "False",
+      "type": "keyword"
+    },
+    {
+      "text": "Sakib",
+      "type": "keyword"
+    },
+    {
+      "text": "Name",
+      "type": "keyword"
+    },
+    {
+      "text": "Iname",
+      "type": "keyword"
+    },
+    {
+      "text": "Rafi",
+      "type": "keyword"
+    }
+  ]
+}

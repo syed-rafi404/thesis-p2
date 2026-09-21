@@ -91,7 +91,10 @@ def subset_for(rows, hours, seed):
 def run(cmd, label):
     print(f"    $ {' '.join(str(c) for c in cmd[:3])} ...")
     started = time.time()
-    result = subprocess.run(cmd, capture_output=True, text=True)
+    # Explicit UTF-8: on Windows the default cp1252 cannot decode the children's
+    # progress bars and Banglish examples, and the reader thread crashes noisily.
+    result = subprocess.run(cmd, capture_output=True, text=True,
+                            encoding="utf-8", errors="replace")
     if result.returncode != 0:
         tail = (result.stderr or result.stdout or "").strip().splitlines()[-12:]
         print(f"    {label} FAILED:")
@@ -104,8 +107,10 @@ def run(cmd, label):
 
 def main():
     ap = argparse.ArgumentParser(description="Train and evaluate across training-set sizes")
-    ap.add_argument("--hours", nargs="+", type=float, default=[0.3, 0.6, 1.2],
-                    help="Training budgets in hours")
+    ap.add_argument("--hours", nargs="+", default=["0.3", "0.6", "1.2"],
+                    help="Training budgets in hours; 'all' means the whole training pool")
+    ap.add_argument("--decode", nargs="+", default=["greedy"], choices=("greedy", "fallback"),
+                    help="Decoding(s) to evaluate each adapter with; see finetune/evaluate.py")
     ap.add_argument("--epochs", type=float, default=8.0)
     ap.add_argument("--batch", type=int, default=8)
     ap.add_argument("--seed", type=int, default=0)
@@ -129,58 +134,67 @@ def main():
     CURVE_DIR.mkdir(parents=True, exist_ok=True)
     points = []
 
-    for hours in args.hours:
+    for requested in args.hours:
+        hours = available if requested == "all" else float(requested)
         if hours > available + 1e-6:
             print(f"  [skip] {hours}h requested but only {available:.2f}h available")
             continue
 
-        tag = f"{hours:g}h".replace(".", "p")
+        tag = "all" if requested == "all" else f"{hours:g}h".replace(".", "p")
         subset, actual = subset_for(rows, hours, args.seed)
         manifest_path = CURVE_DIR / f"train_{tag}.jsonl"
         adapter_path = CURVE_DIR / f"adapter_{tag}"
-        eval_tag = f"curve_{tag}"
-        eval_json = FT_DIR / f"eval_{eval_tag}.json"
+        # Greedy keeps the original file names so earlier curves still line up.
+        eval_tags = {d: f"curve_{tag}" + ("" if d == "greedy" else f"_{d}") for d in args.decode}
+        eval_jsons = {d: FT_DIR / f"eval_{t}.json" for d, t in eval_tags.items()}
 
-        print(f"[{hours:g}h] {len(subset)} clips, {actual:.2f}h actual")
+        print(f"[{tag}] {len(subset)} clips, {actual:.2f}h actual")
         if args.dry_run:
             continue
-        if args.skip_existing and eval_json.exists():
+        pending = [d for d in args.decode
+                   if not (args.skip_existing and eval_jsons[d].exists())]
+        if not pending:
             print("    already evaluated, reusing")
         else:
-            write_manifest(manifest_path, subset)
-            if run([str(PYTHON), str(REPO / "finetune" / "train_lora.py"),
-                    "--train-file", str(manifest_path),
-                    "--adapter-out", str(adapter_path),
-                    "--epochs", str(args.epochs),
-                    "--batch", str(args.batch),
-                    "--seed", "42"]
-                   + (["--model", args.model] if args.model else [])
-                   + args.extra_train_args.split(), "train") is None:
-                continue
-            if run([str(PYTHON), str(REPO / "finetune" / "evaluate.py"),
-                    "--adapter", str(adapter_path),
-                    "--split", args.test_manifest,
-                    "--batch", str(args.batch),
-                    "--tag", eval_tag]
-                   + (["--base", args.model] if args.model else []), "evaluate") is None:
-                continue
+            if not (args.skip_existing and (adapter_path / "adapter_config.json").exists()):
+                write_manifest(manifest_path, subset)
+                if run([str(PYTHON), str(REPO / "finetune" / "train_lora.py"),
+                        "--train-file", str(manifest_path),
+                        "--adapter-out", str(adapter_path),
+                        "--epochs", str(args.epochs),
+                        "--batch", str(args.batch),
+                        "--seed", "42"]
+                       + (["--model", args.model] if args.model else [])
+                       + args.extra_train_args.split(), "train") is None:
+                    continue
+            for d in pending:
+                run([str(PYTHON), str(REPO / "finetune" / "evaluate.py"),
+                     "--adapter", str(adapter_path),
+                     "--split", args.test_manifest,
+                     "--batch", str(args.batch),
+                     "--decode", d,
+                     "--tag", eval_tags[d]]
+                    + (["--base", args.model] if args.model else []), f"evaluate ({d})")
 
-        if not eval_json.exists():
-            print("    no evaluation output, skipping this point")
-            continue
-        record = json.loads(eval_json.read_text(encoding="utf-8"))
-        points.append({
-            "hours_requested": hours,
-            "hours_actual": actual,
-            "clips": len(subset),
-            "base": record["base"],
-            "tuned": record["tuned"],
-            "rank_tests": record.get("rank_tests", {}),
-        })
-        tuned = record["tuned"]
-        print(f"    WER median {tuned.get('wer_median_per_clip', 0) * 100:.1f}%  "
-              f"CER median {tuned.get('cer_median_per_clip', 0) * 100:.1f}%  "
-              f"Term F1 {tuned.get('term_f1', 0) * 100:.1f}%\n")
+        for d in args.decode:
+            if not eval_jsons[d].exists():
+                print(f"    no {d} evaluation output, skipping")
+                continue
+            record = json.loads(eval_jsons[d].read_text(encoding="utf-8"))
+            points.append({
+                "hours_requested": requested,
+                "hours_actual": actual,
+                "clips": len(subset),
+                "decode": d,
+                "base": record["base"],
+                "tuned": record["tuned"],
+                "rank_tests": record.get("rank_tests", {}),
+            })
+            tuned = record["tuned"]
+            print(f"    {d:8} WER median {tuned.get('wer_median_per_clip', 0) * 100:.1f}%  "
+                  f"CER median {tuned.get('cer_median_per_clip', 0) * 100:.1f}%  "
+                  f"Term F1 {tuned.get('term_f1', 0) * 100:.1f}%")
+        print()
 
     if not points:
         print("no points completed")
@@ -188,27 +202,34 @@ def main():
 
     (CURVE_DIR / "scaling_curve.json").write_text(json.dumps(points, indent=2), encoding="utf-8")
 
-    base = points[0]["base"]
     pct = lambda d, k: f"{d.get(k, 0) * 100:.1f}%"
-    lines = [
-        "# Data-scaling curve, Banglish LoRA fine-tune",
+    lines = ["# Data-scaling curve, Banglish LoRA fine-tune", ""]
+    for d in args.decode:
+        first = next((p for p in points if p["decode"] == d), None)
+        if first:
+            base = first["base"]
+            lines.append(f"Base model, {d} decoding, same held-out speaker: "
+                         f"WER median {pct(base, 'wer_median_per_clip')}, "
+                         f"CER median {pct(base, 'cer_median_per_clip')}, "
+                         f"Term F1 {pct(base, 'term_f1')}.")
+    lines += [
         "",
-        f"Base model scored on the same held-out speaker: "
-        f"WER median {pct(base, 'wer_median_per_clip')}, "
-        f"CER median {pct(base, 'cer_median_per_clip')}, "
-        f"Term F1 {pct(base, 'term_f1')}.",
+        "A positive z means the fine-tune beats the base model on that metric.",
         "",
-        "| Training audio | Clips | WER median | CER median | Term recall | Term F1 | Wins on CER |",
-        "|---|---|---|---|---|---|---|",
+        "| Training audio | Clips | Decode | WER median | CER median | Term F1 "
+        "| Wins on CER | CER Wilcoxon | Runaway clips |",
+        "|---|---|---|---|---|---|---|---|---|",
     ]
     for p in points:
         t = p["tuned"]
         cer_stats = (p.get("rank_tests") or {}).get("cer") or {}
         wins = f"{cer_stats.get('better', '?')}/{cer_stats.get('total', '?')}"
+        z, pv = cer_stats.get("wilcoxon_z"), cer_stats.get("wilcoxon_p")
+        wil = f"z = {z:+.2f}, p = {pv:.1e}" if z is not None and pv is not None else "n/a"
         lines.append(
-            f"| {p['hours_actual']:.2f} h | {p['clips']} | {pct(t, 'wer_median_per_clip')} "
-            f"| {pct(t, 'cer_median_per_clip')} | {pct(t, 'term_recall')} "
-            f"| {pct(t, 'term_f1')} | {wins} |"
+            f"| {p['hours_actual']:.2f} h | {p['clips']} | {p['decode']} "
+            f"| {pct(t, 'wer_median_per_clip')} | {pct(t, 'cer_median_per_clip')} "
+            f"| {pct(t, 'term_f1')} | {wins} | {wil} | {t.get('runaway_clips', '?')} |"
         )
     lines += [
         "",

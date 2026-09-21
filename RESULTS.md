@@ -8,19 +8,159 @@ reviewer or panellist asks "where did that come from", the answer is a command,
 not a memory. Numbers that were typed by hand and never computed are listed at
 the bottom under "Retired claims" so nobody reuses them by accident.
 
-Last regenerated: 2026-09-20.
+Last regenerated: 2026-09-21 (speaker split corrected; VLM and notes measured on the RTX 5090).
 
 ---
 
 ## 1. Fine-tuning Whisper for Banglish — the headline result
 
-This is the result the thesis rests on. It is new, it is significant, and it is
-speaker-independent.
+This is the result the thesis rests on. It is significant, it replicated, and it
+is speaker-independent. **It was re-run on 2026-09-21 after the speaker split
+was found to be wrong; the numbers in 1.0 replace the ones in 1.3.**
+
+### 1.0 Corrected split (current)
+
+**What was wrong.** The original nine transcripts carry no Speaker ID, so
+`finetune/prepare_data.py` labelled them by hand: videos 1-6 speaker A, 7-9
+speaker B. Video 6 is speaker B. The user sorted the videos by lecturer into
+`data/raw/Speaker1` (1-5) and `data/raw/Speaker2` (6-9), and a speaker-
+verification model agrees without ambiguity: mean-voiceprint cosine similarity
+0.99-1.00 within each group, 0.75-0.80 across, and 18 of 20 video-6 clips sit
+closest to video 7. The old split therefore trained on 47 clips of the "unseen"
+test speaker.
+
+Reproduce: `python scripts/verify_speakers.py` -> `output/speaker_check/speaker_similarity.md`
+
+**Setup.** LoRA adapter on whisper-small, same recipe as before (8 epochs, batch
+8, r 16). Trained on 55.6 minutes (172 clips, videos 1-5) from speaker A.
+Evaluated on 58.4 minutes (184 clips, videos 6-9) from speaker B, who appears in
+no training clip. Training takes under a minute on the RTX 5090.
+
+**Decoding, and why two numbers.** Under plain greedy decoding the corrected
+fine-tune falls into repetition loops on 58 of 184 clips (base: 10), and the
+loops decide the result. We therefore also report Whisper's standard loop
+safeguard (Radford et al. 2023, section 4.5): a transcript whose gzip
+compression ratio exceeds 2.4 is decoded again with sampling at T = 0.2, 0.4 ...
+1.0 until it stops looping. It reads only the hypothesis, never the reference,
+and is applied identically to the base and the fine-tuned model. **Be open that
+it was adopted after the greedy result was seen**; the defence is that it is the
+reference implementation's default, not something tuned here, and that both
+numbers are reported. Only the compression-ratio half is used; the
+log-probability half would resample most Banglish clips, not just loops.
+
+| Metric (184 held-out clips) | Base | Fine-tuned, safeguard | Fine-tuned, greedy |
+|---|---|---|---|
+| WER, per-clip median | 95.0% | **78.8%** | 95.1% (base 96.0%) |
+| CER, per-clip median | 73.4% | **54.6%** | 71.5% (base 74.2%) |
+| Runaway clips | 1 | 4 | 58 (base 10) |
+| Clips re-decoded by the safeguard | 9 | 64 | — |
+
+**Significance, safeguard, paired per clip:**
+
+| Test | Wins | Wilcoxon | Sign test |
+|---|---|---|---|
+| WER | 125 of 184 | p = 8.41e-07 (z = +4.93) | p = 1.29e-06 |
+| CER | 139 of 184 | p = 1.20e-12 (z = +7.11) | p = 2.31e-12 |
+
+Under greedy decoding the same adapter is significantly **worse** than base
+(WER z = -2.62, p = 8.7e-03), driven entirely by loops. Read the sign of z: a
+two-sided p alone does not say which way the difference goes.
+
+**It replicated, and it is not one lucky draw.**
+
+| Run | WER median | CER median | WER Wilcoxon | CER Wilcoxon |
+|---|---|---|---|---|
+| Run A, training seed 42, safeguard seed 0 | 78.8% | 54.6% | 8.4e-07 | 1.2e-12 |
+| Run A, training seed 42, safeguard seed 1 | 82.0% | 57.6% | 8.5e-06 | 4.2e-11 |
+| Run B, training seed 1, safeguard seed 0 | 82.4% | 59.4% | 1.0e-06 | 1.1e-12 |
+| Run C, scaling-curve top point (same data, seed 42) | 83.3% | 58.4% | 4.8e-08 | 7.9e-14 |
+
+Quote a range: **WER median 95.0% -> 78.8-83.3%, CER median 73.4% -> 54.6-59.4%,
+p < 1e-05 in every run.** Under greedy decoding Run B gives WER 90.2%, CER 65.1%,
+better but not significant (p = 0.92 and 0.15): greedy results are unstable
+because they depend on which clips happen to loop.
+
+**Every held-out lecture improves** (Run A, safeguard, WER / CER medians):
+video 6 92.5 -> 70.0 / 72.0 -> 45.6; video 7 96.2 -> 79.7 / 68.5 -> 52.1;
+video 8 96.1 -> 88.9 / 79.8 -> 66.7; video 9 94.4 -> 83.4 / 73.4 -> 57.2.
+
+**On exactly the old 137 test clips** (videos 7-9, byte-identical clips), the
+corrected adapter with the safeguard gives WER 95.7% -> 87.9% (p = 4.9e-03) and
+CER 74.1% -> 59.8% (p = 1.4e-07). Smaller than on 184 clips because video 6
+gains the most.
+
+**Ruling out the new machine.** The superseded split, re-run on the 5090 with the
+current software, gives WER median 81.8% under greedy decoding, the same as the
+3060 run. So the change is caused by the split, not by the hardware or library
+versions. With the safeguard the superseded split gives 77.4%, so the honest
+result is close in size to the leaked one.
+
+Reproduce:
+
+```
+python scripts/run_p3_experiment.py --skip curve --allow-validation-errors --only-speakers A,B --decode greedy fallback
+python finetune/train_lora.py --adapter-out <ft_work>/lora_run_seed1 --epochs 8 --batch 8 --seed 1
+python finetune/evaluate.py --adapter <ft_work>/lora_run_seed1 --decode fallback --tag run_seed1_fallback
+python finetune/evaluate.py --adapter <ft_work>/lora_run --decode fallback --fallback-seed 1 --tag run_fallback_seed1
+python scripts/compare_evals.py A=<ft_work>/eval_run_fallback.json B=<ft_work>/eval_run_seed1_fallback.json
+```
+
+Artefacts: `ft_work/eval_run*.json` and `.md`, `ft_work/split.json`
+(`"speaker_map": "v2"`), control run in `ft_work_v1_repro_5090/`.
+
+**Term F1** moves from 72.3% to 85.0% with the safeguard, but see 2.1: it swings
+8 pp between identical runs and is anti-correlated with transcription quality.
+Do not headline it.
+
+### 1.1 A second unseen speaker (Speaker3, added 2026-09-21)
+
+Four new lectures, BanglaASR10-13, in `data/raw/Speaker3`, labelled speaker C.
+75 clips, 24.4 minutes. Voiceprints confirm a third, distinct lecturer:
+similarity 0.99-1.00 within C, 0.81-0.85 to A, 0.59-0.67 to B.
+
+The adapters trained on speaker A only (section 1.0, unchanged, identical
+training clips) were scored on speaker C:
+
+| Run | Decode | WER median | CER median | WER Wilcoxon | CER wins, Wilcoxon |
+|---|---|---|---|---|---|
+| Run A (seed 42) | safeguard | 93.0% -> **80.7%** | 68.4% -> **46.4%** | p = 2.7e-04 | 63/75, p = 2.8e-09 |
+| Run B (seed 1) | safeguard | 93.0% -> **81.4%** | 68.4% -> **46.7%** | p = 4.4e-04 | 67/75, p = 2.3e-09 |
+| Run A (seed 42) | greedy | 93.0% -> 83.3% | 68.6% -> 48.2% | p = 0.053 | 56/75, p = 1.1e-04 |
+| Run B (seed 1) | greedy | 93.0% -> 86.2% | 68.6% -> 49.9% | p = 0.49 | 56/75, p = 4.9e-03 |
+
+**The fine-tune generalizes to a second lecturer it never heard, in both runs.**
+On this speaker the CER gain is significant even under plain greedy decoding
+(runaway clips 7-8 of 75), so here the result does not depend on the safeguard.
+
+Reproduce:
+
+```
+set THESIS_FT_DIR=<repo parent>\ft_work_3spk
+python finetune/prepare_data.py --test-speakers B,C --out %THESIS_FT_DIR%
+python scripts/verify_speakers.py
+python finetune/evaluate.py --adapter <ft_work>\lora_run --base <ft_work>\models\whisper-small --split test_C.jsonl --decode fallback --tag C_runA_fallback
+```
+
+(`test_C.jsonl` is `test.jsonl` filtered to speaker C.) Artefacts: `ft_work_3spk/eval_C_*.json`.
+
+### 1.2 Adding speaker C to training — one run, no measurable gain
+
+Train on A + C (80.0 min), test on B (the same 184 clips): WER 95.0% -> 78.5%,
+CER 73.4% -> 53.7% (seed 42, safeguard), against 78.8% / 54.6% for A alone.
+Inside the 4.5 pp run-to-run noise, so no measurable effect of 24 more minutes
+from a second speaker at this scale. **Incomplete:** the greedy score for this
+adapter and the whole seed-1 run were interrupted; rerun before quoting.
+Artefacts: `ft_work_AC/`.
+
+### 1.3 Superseded: the leaked split (do not quote)
+
+Kept so the correction is documented. The old run is untouched in
+`ft_work_v1_video6_in_train/`; reproduce it with `prepare_data.py --speaker-map v1`.
 
 **Setup.** LoRA adapter on whisper-small. Trained on 70.4 minutes (1.17 h, 219
-clips) from speaker A. Evaluated on 43.6 minutes (137 clips) from speaker B, who
-appears in no training clip. Total corpus 1.9 h. Training takes about 3 minutes
-on an RTX 3060.
+clips) labelled speaker A, **of which 47 clips (video 6) were in fact speaker B**.
+Evaluated on 43.6 minutes (137 clips) from speaker B. Total corpus 1.9 h.
+Training takes about 3 minutes on an RTX 3060.
 
 | Metric (137 held-out clips) | Base | Fine-tuned | Absolute | Relative |
 |---|---|---|---|---|
@@ -56,8 +196,10 @@ transcribes Banglish. Example, BanglaASR7/seg_034:
 - base: `so, x or gate and x or gate and x or gate and x or gate and ...` (repeats to the token limit)
 - tuned: `done. so, x or jodi amra bujhe jai, tahole last je exclusive gate, sheta o kintu amader bujha easier hoye chabe.`
 
-Reproduce: `python scripts/run_p3_experiment.py --skip curve`
-Artefacts: `ft_work/eval_whisper_small_1.9h.md` and `.json`
+Reproduce (superseded split): `THESIS_FT_DIR=<new dir>`, then
+`python finetune/prepare_data.py --speaker-map v1 --out <new dir>`, `train_lora.py`,
+`evaluate.py`. Done on the 5090 into `ft_work_v1_repro_5090/`: WER 96.7% -> 81.8%.
+Artefacts: `ft_work_v1_video6_in_train/eval_whisper_small_1.9h.md` and `.json`
 
 ---
 
@@ -65,6 +207,34 @@ Artefacts: `ft_work/eval_whisper_small_1.9h.md` and `.json`
 
 Same recipe, same held-out speaker, nested subsets with a fixed seed, so the
 only variable is the amount of training audio.
+
+### 2.0 Corrected split (current), with the loop safeguard
+
+Speaker A videos 1-5 only; tested on all 184 clips of speaker B (videos 6-9).
+Base model: WER median 95.0%, CER median 73.4%.
+
+| Training audio | Clips | WER median | CER median | WER wins, Wilcoxon | CER wins, Wilcoxon |
+|---|---|---|---|---|---|
+| 0.30 h | 54 | 84.6% | 59.5% | 116/184, p = 2.3e-06 | 136/184, p = 3.2e-11 |
+| 0.60 h | 109 | 80.6% | 56.6% | 115/184, p = 4.3e-07 | 145/184, p = 1.3e-15 |
+| 0.93 h (all) | 172 | 83.3% | 58.4% | 119/184, p = 4.8e-08 | 142/184, p = 7.9e-14 |
+
+**Read it honestly: the curve is flat within noise after 0.3 h.** Three runs on
+the identical 0.93 h gave WER 78.8%, 82.4% and 83.3%, a spread of 4.5 pp, which
+is larger than any step on this curve. What the data does support: **18 minutes
+of transcribed Banglish already buys most of the gain, and the gain is
+significant at every budget.** What it no longer supports: the old claim that
+the curve "is still falling steeply at 1.17 h". That claim came from the leaked
+split. Whether 8 hours and several speakers move it further is exactly what the
+new corpus will answer.
+
+Under greedy decoding the same adapters are erratic (runaway clips 65, 48, 51;
+CER z = -2.76, +0.34, -0.64): greedy numbers measure the loops, not the model.
+
+Reproduce: `python scripts/run_scaling_curve.py --hours 0.3 0.6 all --epochs 8 --batch 8 --decode greedy fallback`
+Artefacts: `ft_work/curve/scaling_curve.md`, `ft_work/eval_curve_*.json`
+
+### 2.0b Superseded: the curve on the leaked split (do not quote)
 
 | Training audio | Clips | WER median | CER median | Term F1 | CER wins | Wilcoxon (CER) |
 |---|---|---|---|---|---|---|
@@ -445,19 +615,90 @@ of "did board content reach the notes" should behave.
 query `Select ID, CGPA from Student_Info`, none of its answer `110112 / 3.98`,
 and none of the student IDs or CGPAs.
 
-**This is the before. The after needs the 5090.** Regenerate notes with the
-fine-tuned Whisper and the reconstructed boards, then:
-
-```
-python scripts/score_board_recall.py --compare <baseline_run_dir> <full_run_dir>
-```
-
-which prints the paired comparison over the 10 boards with an exact sign test
-and a Wilcoxon. With 10 paired boards, 9 improvements would give p = 0.021 and
-10 would give p = 0.002, so the sample is large enough if the effect is real.
-
 Reproduce the baseline: `python scripts/score_board_recall.py --gt data/board_truth`
 Artefacts: `output/board_recall_baseline.json`
+
+### 5.2 The vision-language model reading the board — a measured positive (2026-09-21)
+
+Same model (Qwen2.5-VL-7B-Instruct), same 10 held-out boards, same 167 items,
+same scorer. What changes is the prompt: the original pipeline asked for
+keywords; `scripts/transcribe_boards.py` asks for a full transcription, every
+number exactly, `[illegible]` rather than a guess.
+
+| VLM output scored | Recall | Numbers | Names | Code | Terms | Phrases |
+|---|---|---|---|---|---|---|
+| Keyword prompt, raw frames (`visual_keywords.json`) | 47.3% | **0/47** | 38/40 | 5/28 | 36/47 | 0/5 |
+| Keyword prompt, every per-frame output pooled | 49.1% | — | — | — | — | — |
+| **Full transcription, raw frame** | **97.0%** | **47/47** | 38/40 | 27/28 | 47/47 | 3/5 |
+| Full transcription, reconstructed board | 98.2% | 47/47 | 38/40 | 27/28 | 47/47 | 5/5 |
+
+**Keyword vs full transcription, raw frames:** better on 8 of 10 boards, worse on
+none; exact sign test p = 0.0078, Wilcoxon p = 0.012. **This is the VLM result:
+the model reads the board; the keyword prompt threw the content away.** On the
+DBMS board it now returns the whole student table, every ID, name, CGPA,
+department and date, where the keyword prompt returned name fragments and not
+one number.
+
+**Reconstruction adds little on top.** Raw frame 97.0% vs reconstructed board
+98.2%: one board better, none worse, sign test p = 1.0. The raw frame used is the
+last frame of each era, when the board is fullest, which is often clear enough.
+Say so plainly: the reconstruction is a visual deliverable, not the reason the
+VLM reads well. Also note the answer key was drafted from the reconstructed
+boards, which if anything favours the mosaic.
+
+**Caveats.** (1) The answer key is not yet hand-verified; three items are flagged.
+The VLM read the disputed CGPA as 3.77 on one board and 3.7 on the next. (2) Ten
+boards from three lectures of one speaker.
+
+Reproduce:
+
+```
+python scripts/transcribe_boards.py --all --source frame
+python scripts/transcribe_boards.py --all --source mosaic
+python scripts/score_board_recall.py --compare-names visual_keywords.json board_text_frame.md
+python scripts/score_board_recall.py --compare-names board_text_frame.md board_text_mosaic.md
+```
+
+### 5.3 The notes, one change at a time (2026-09-21)
+
+Qwen2.5-7B-Instruct, `--language mixed`, all 9 lectures regenerated, scored on
+the same 10 boards.
+
+| Notes | What changed | Recall | vs previous row |
+|---|---|---|---|
+| A. `final_lecture_notes.md` | original pipeline | 40.1% | — |
+| B. `notes_B_prompt.md` | grounded prompt, keyword board input | 27.5% | better 1, worse 3, p = 0.63 |
+| C. `notes_C_vlm.md` | + VLM full board transcription | **95.8%** | better 8, worse 0, **p = 0.0078** |
+| D. `notes_D_full.md` | + fine-tuned transcript (corrected adapter, safeguard) | 92.2% | better 1, worse 6, p = 0.13 |
+
+C vs A directly: better on 8 boards, worse on 0, p = 0.0078. D vs A: 6 and 0,
+p = 0.031.
+
+**How to read this honestly.**
+
+- **B went down, not up.** The grounded prompt stops the model reciting a
+  textbook, and the textbook was where some guessable terms came from. With
+  keywords as the only board input there is nothing better to replace them.
+- **C's jump is mostly pass-through.** The notes paste the VLM's board
+  transcription into the figures nearly verbatim, so C's recall is close to the
+  VLM's own 97%. Claim "board content now reaches the notes", not "the notes are
+  better written". Recall does not measure readability.
+- **D does not add recall, and should not be expected to.** This metric counts
+  board content, which comes from the VLM. The transcript's value is the
+  lecturer's words, which this metric does not score.
+- **Known defect, visible by reading the notes:** the `mixed` style is meant to
+  quote the lecturer 2-5 times. D contains no quotes at all; C labels lines
+  copied from the board as "Lecturer:", and one C note pastes a whole paragraph
+  of the English baseline transcript. The quote instruction does not work yet.
+
+Reproduce: the three `regenerate_notes.py` commands in NEXT_STEPS.md step 5b,
+with `transcript_finetuned_v2.txt` for D, then
+`score_board_recall.py --compare-names <before> <after>`.
+
+The fine-tuned transcripts used for D were remade with the corrected adapter:
+`scripts/transcribe_finetuned.py --all --adapter <ft_work>/lora_run --decode fallback
+--out-name transcript_finetuned_v2.txt`. The older `transcript_finetuned.txt` came
+from the leaked adapter and is kept only as a record.
 
 ---
 
@@ -485,6 +726,7 @@ strings drawn onto a figure.
 
 | Retired claim | What it should be |
 |---|---|
+| Fine-tune WER 96.1% -> 81.8%, CER 75.3% -> 60.7% "on a speaker never seen in training" (and the 77.1% / 57.4% replication, and the 0.3 / 0.6 / 1.17 h curve) | **computed, but on a leaked split**: video 6 is the test speaker and was in training. Use section 1.0: WER 95.0% -> 78.8-83.3%, CER 73.4% -> 54.6-59.4%, with the loop safeguard. The "curve still falling, so more data" argument also goes: the corrected curve is flat within noise after 0.3 h (section 2.0) |
 | Baseline Whisper Term F1 = 68.2% | 73.2% |
 | Fusion improves baseline by 5.7 pp | +0.7 pp |
 | p = 0.003 | p = 0.32 (permutation), 0.36 (Wilcoxon) |
@@ -493,7 +735,7 @@ strings drawn onto a figure.
 | "Visual-Only" mode = 42.3% | the pipeline has no visual-only mode |
 | Bias sweep: Light 69.8, Medium 67.1, Heavy 58.4 | see section 3.1 — the real sweep is 8.8% then flat 4.1% |
 | Light bias improves over no bias | it halves term recall; optimal bias is 0.0 |
-| Figure 6.5 failure modes: phonetic 35%, term confusion 25%, repetition 18%, visual 12%, alignment 10% | **no analysis produced these**. Round numbers summing to 100. Label a sample of errors or drop the figure. Only repetition is measurable today: 8/137 clips base, 18/137 fine-tuned |
+| Figure 6.5 failure modes: phonetic 35%, term confusion 25%, repetition 18%, visual 12%, alignment 10% | **no analysis produced these**. Round numbers summing to 100. Label a sample of errors or drop the figure. Only repetition is measurable today: under greedy decoding 10/184 clips base, 58/184 fine-tuned (corrected split) |
 | Per-video transcript lengths in Figure 5.7 (e.g. BanglaASR3 = 16,558 chars) | wrong for 8 of 9 videos; now counted from the files. BanglaASR3 is 3,561. The corpus **total** in the abstract, 73,141, is within 1.7% of the measured 71,885 and can stay |
 
 The hardware claim in the abstract is **correct and stays**: P2 ran on an

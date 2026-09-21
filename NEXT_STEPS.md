@@ -4,6 +4,51 @@ If you are lost, start here. One page. Updated 2026-09-21.
 
 ---
 
+## 2026-09-21: the speaker split was wrong, and is now fixed
+
+- Video 6 is the same lecturer as 7-9 (your `data\raw\Speaker2` folder; the audio agrees:
+  `output\speaker_check\speaker_similarity.md`). The old split trained on it, so the "unseen
+  speaker" had been heard. **Do not quote 96.1% -> 81.8% any more.**
+- New split: train 1-5 (55.6 min), test 6-9 (184 clips). Plain greedy decoding: no gain,
+  the fine-tune loops on 58 clips. With Whisper's standard loop safeguard on both models:
+  **WER 95.0% -> 78.8-83.3%, CER 73.4% -> 54.6-59.4%, p < 1e-05, replicated 3 times**, better
+  in all four lectures.
+- Scaling curve: 18 minutes of data already gives most of the gain; after that it is flat within
+  noise. **Drop the old "the curve is still falling" argument**; it came from the leaked split.
+- Old run kept untouched in `D:\T2520875\thesisP2\ft_work_v1_video6_in_train\`.
+
+## On the 3060 (or any other PC): two commands
+
+```
+git pull
+python scripts/restore_artifacts.py --apply
+```
+
+The second one puts the corrected adapters and results beside the repo, archives the old leaked
+`F:\thesisP2\ft_work` as `ft_work_v1_video6_in_train`, and rebuilds the audio clips. Run it with
+the 3060's fine-tune Python: `F:\thesisP2\envs\thesis_ft\Scripts\python.exe`. The 3060 cannot run
+Qwen; the Qwen results are already in the repo.
+
+## 2026-09-21: Speaker3 (videos 10-13) added
+
+- A genuinely third lecturer (voiceprints agree). The adapter trained on Speaker1 alone also
+  improves on Speaker3: **CER 68.4% -> 46.4-46.7%, p < 1e-08, both runs**; significant even
+  without the loop safeguard. The thesis claim is now "generalizes to two unseen lecturers".
+- Training on Speaker1+3 did not measurably help Speaker2 (one run; the rest was interrupted).
+- Open question from the user: add spelling-normalized and fuzzy WER (fairer for Banglish).
+
+## 2026-09-21: step 5 done — the VLM result
+
+- **VLM reading the board: 47.3% -> 97.0%** board-content recall, same model, only the prompt
+  changed (p = 0.008). Numbers 0/47 -> 47/47. Reconstructed board adds almost nothing (98.2%).
+- **Notes:** 40.1% -> 95.8% with the VLM board text (p = 0.008). The new prompt alone went *down*
+  (27.5%); the fine-tuned transcript did not add recall (92.2%).
+- **Broken:** the lecturer quotes in `mixed` notes. Needs a prompt fix; ask Claude.
+- **Your job now:** verify `data\board_truth\*.json` by hand. Every VLM number rests on it.
+- All numbers and commands: RESULTS.md sections 1.0, 5.2, 5.3.
+
+---
+
 ## Moving to the 5090 — copy these four things
 
 **DONE 2026-09-21**, except `claude_checkpoint\`, which was not copied. Optional: CLAUDE.md

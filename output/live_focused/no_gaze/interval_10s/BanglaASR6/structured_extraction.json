@@ -1,0 +1,128 @@
+{
+  "definitions": [
+    {
+      "text": "Digital: Discrete",
+      "type": "definition"
+    },
+    {
+      "text": "Digital: discrete value",
+      "type": "definition"
+    }
+  ],
+  "code_snippets": [],
+  "formulas": [],
+  "keywords": [
+    {
+      "text": "Digital",
+      "type": "keyword"
+    },
+    {
+      "text": "Logic",
+      "type": "keyword"
+    },
+    {
+      "text": "Design",
+      "type": "keyword"
+    },
+    {
+      "text": "Discrete",
+      "type": "keyword"
+    },
+    {
+      "text": "ON",
+      "type": "keyword"
+    },
+    {
+      "text": "OFF",
+      "type": "keyword"
+    },
+    {
+      "text": "TTL",
+      "type": "keyword"
+    },
+    {
+      "text": "High",
+      "type": "keyword"
+    },
+    {
+      "text": "Ground",
+      "type": "keyword"
+    },
+    {
+      "text": "Key",
+      "type": "keyword"
+    },
+    {
+      "text": "AND",
+      "type": "keyword"
+    },
+    {
+      "text": "OR",
+      "type": "keyword"
+    },
+    {
+      "text": "NOT",
+      "type": "keyword"
+    },
+    {
+      "text": "NOR",
+      "type": "keyword"
+    },
+    {
+      "text": "NAND",
+      "type": "keyword"
+    },
+    {
+      "text": "XOR",
+      "type": "keyword"
+    },
+    {
+      "text": "Fundamental",
+      "type": "keyword"
+    },
+    {
+      "text": "Universal",
+      "type": "keyword"
+    },
+    {
+      "text": "Excel",
+      "type": "keyword"
+    },
+    {
+      "text": "Exclusive",
+      "type": "keyword"
+    },
+    {
+      "text": "XNOR",
+      "type": "keyword"
+    },
+    {
+      "text": "Universe",
+      "type": "keyword"
+    },
+    {
+      "text": "Diagram",
+      "type": "keyword"
+    },
+    {
+      "text": "Light",
+      "type": "keyword"
+    },
+    {
+      "text": "Bulb",
+      "type": "keyword"
+    },
+    {
+      "text": "AB",
+      "type": "keyword"
+    },
+    {
+      "text": "Gate",
+      "type": "keyword"
+    },
+    {
+      "text": "Inverter",
+      "type": "keyword"
+    }
+  ]
+}

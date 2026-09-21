@@ -1,0 +1,26 @@
+{
+  "baseline_recall": 0.2,
+  "global_recall": 0.2,
+  "temporal_recall": 0.2,
+  "global_vs_baseline_pct": 0.0,
+  "temporal_vs_baseline_pct": 0.0,
+  "temporal_vs_global_pct": 0.0,
+  "baseline_found": [
+    "String",
+    "Type Casting",
+    "Casting",
+    "String2"
+  ],
+  "global_found": [
+    "String",
+    "Type Casting",
+    "Casting",
+    "String2"
+  ],
+  "temporal_found": [
+    "String",
+    "Type Casting",
+    "Casting",
+    "String2"
+  ]
+}

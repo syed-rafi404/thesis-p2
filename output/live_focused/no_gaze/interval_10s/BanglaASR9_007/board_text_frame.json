@@ -1,0 +1,24 @@
+{
+  "lecture": "BanglaASR9_007",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "source": "frame",
+  "prompt": "This is a photograph of a classroom whiteboard during a university lecture.\n\nTranscribe everything written on the whiteboard, exactly as written.\n\n- Copy every number, name, identifier, date and symbol exactly. Do not round,\n  correct or reformat values.\n- Write tables as Markdown tables with the same rows and columns as the board.\n- Write code, SQL and program text inside ``` fences, keeping line breaks.\n- Write formulas as they appear. For a bar over a term write it as NOT(...),\n  for example NOT(A+B).\n- Keep diagrams short: name what they are and copy any labels on them, for\n  example \"Gate diagram: inputs A, B into a box labelled NAND, output NOT(AB)\".\n- If part of the board cannot be read, write [illegible]. Never guess, and never\n  add anything that is not written on the board.\n- Ignore any person in the picture. Describe only what is written.\n\nOutput only the transcription.",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:10",
+      "to": "9:10",
+      "clear_fraction": 0.9848,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR9_007\\ingested\\frames\\frame_000055_000550s.jpg",
+      "text": "```markdown\n| Database Management System (DBMS) |\n|------------------------------------|\n| University                        |\n| Student_Info                      |\n| ID | First_Name | Last_Name | CGPA | Department | Enrollment_Date |\n| 241412   Syed        Rafi       3.55  CS         01-01-2024    |\n| 151216   Ahsan       Habib      3.77  Math       20-09-2024    |\n| 202011   Adiba       Noshin     3.28  Economics  21-10-2021    |\n| 110112   Maria       Islam      3.98  English    02-02-2020    |\n| 401201   Israt       Jahan      3.40  MicroBiology 11-11-2025    |\n```\n\n```sql\nmax()\nmin()\nsum()\navg\n```"
+    },
+    {
+      "era": 2,
+      "from": "9:20",
+      "to": "16:20",
+      "clear_fraction": 0.9895,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR9_007\\ingested\\frames\\frame_000098_000980s.jpg",
+      "text": "```markdown\nDatabase Management System\n(DBMS)\n\nUniversity\n\n| ID | First_Name | Last_Name | CGPA | Department | Enrollment_Date |\n|----|------------|-----------|-------|-------------|-----------------|\n| 241412 | Syed | Rafi | 3.55 | CS | 01-01-2024 |\n| 151216 | Ahsan | Habib | 3.77 | Math | 20-09-2024 |\n| 202011 | Adiba | | 3.87 | Economics | 21-10-2021 |\n| 110112 | Maria | | 3.98 | English | 02-02-2020 |\n| 401201 | Istrat | | 3.98 | Zoology | 11-11-2025 |\n\nStudent_Info\n\n```sql\nselect ID, CGPA from Student_Info\nwhere CGPA = (select max(CGPA) from Student_Info);\n```\n\nID | CGPA\n---|------\n110112 | 3.98\n```"
+    }
+  ]
+}

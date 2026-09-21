@@ -1,0 +1,716 @@
+{
+  "mode": "compare",
+  "baseline": "final_lecture_notes.md",
+  "full": "notes_D_full.md",
+  "boards": 10,
+  "sign_p": 0.03125,
+  "wilcoxon_p": 0.027707753728375306,
+  "baseline_results": {
+    "BanglaASR7": {
+      "boards": [
+        {
+          "era": 1,
+          "items": 1,
+          "found": 1,
+          "recall": 1.0,
+          "by_kind": {
+            "term": {
+              "found": 1,
+              "total": 1
+            }
+          },
+          "missed": []
+        },
+        {
+          "era": 2,
+          "items": 5,
+          "found": 3,
+          "recall": 0.6,
+          "by_kind": {
+            "term": {
+              "found": 3,
+              "total": 3
+            },
+            "phrase": {
+              "found": 0,
+              "total": 1
+            },
+            "code": {
+              "found": 0,
+              "total": 1
+            }
+          },
+          "missed": [
+            "OR+NOT",
+            "A+B"
+          ]
+        },
+        {
+          "era": 3,
+          "items": 5,
+          "found": 4,
+          "recall": 0.8,
+          "by_kind": {
+            "term": {
+              "found": 3,
+              "total": 3
+            },
+            "phrase": {
+              "found": 0,
+              "total": 1
+            },
+            "code": {
+              "found": 1,
+              "total": 1
+            }
+          },
+          "missed": [
+            "AND+NOT"
+          ]
+        },
+        {
+          "era": 4,
+          "items": 5,
+          "found": 3,
+          "recall": 0.6,
+          "by_kind": {
+            "term": {
+              "found": 3,
+              "total": 3
+            },
+            "phrase": {
+              "found": 0,
+              "total": 2
+            }
+          },
+          "missed": [
+            "same input = 0",
+            "different input = 1"
+          ]
+        },
+        {
+          "era": 5,
+          "items": 5,
+          "found": 1,
+          "recall": 0.2,
+          "by_kind": {
+            "term": {
+              "found": 1,
+              "total": 3
+            },
+            "phrase": {
+              "found": 0,
+              "total": 1
+            },
+            "code": {
+              "found": 0,
+              "total": 1
+            }
+          },
+          "missed": [
+            "X-NOR gate",
+            "X-OR+NOT",
+            "AB + AB",
+            "X-NOR"
+          ]
+        }
+      ],
+      "items": 21,
+      "found": 12,
+      "recall": 0.5714285714285714,
+      "by_kind": {
+        "term": {
+          "found": 11,
+          "total": 13,
+          "recall": 0.8461538461538461
+        },
+        "phrase": {
+          "found": 0,
+          "total": 5,
+          "recall": 0.0
+        },
+        "code": {
+          "found": 1,
+          "total": 3,
+          "recall": 0.3333333333333333
+        }
+      }
+    },
+    "BanglaASR8": {
+      "boards": [
+        {
+          "era": 1,
+          "items": 2,
+          "found": 2,
+          "recall": 1.0,
+          "by_kind": {
+            "term": {
+              "found": 2,
+              "total": 2
+            }
+          },
+          "missed": []
+        },
+        {
+          "era": 2,
+          "items": 42,
+          "found": 13,
+          "recall": 0.30952380952380953,
+          "by_kind": {
+            "term": {
+              "found": 6,
+              "total": 11
+            },
+            "code": {
+              "found": 4,
+              "total": 6
+            },
+            "number": {
+              "found": 1,
+              "total": 15
+            },
+            "name": {
+              "found": 2,
+              "total": 10
+            }
+          },
+          "missed": [
+            "Student_Info",
+            "Create table Student_info",
+            "241412",
+            "151216",
+            "202011",
+            "401201",
+            "Rafi",
+            "Habib",
+            "Adiba",
+            "Noshin",
+            "Maria",
+            "Islam",
+            "Israt",
+            "Jahan",
+            "3.55",
+            "3.77",
+            "3.28",
+            "3.98",
+            "3.40",
+            "CS",
+            "Math",
+            "Economics",
+            "English",
+            "MicroBiology",
+            "01-01-2024",
+            "20-09-2024",
+            "21-10-2021",
+            "02-02-2020",
+            "11-11-2025"
+          ]
+        },
+        {
+          "era": 3,
+          "items": 33,
+          "found": 10,
+          "recall": 0.30303030303030304,
+          "by_kind": {
+            "term": {
+              "found": 4,
+              "total": 7
+            },
+            "code": {
+              "found": 3,
+              "total": 7
+            },
+            "number": {
+              "found": 1,
+              "total": 9
+            },
+            "name": {
+              "found": 2,
+              "total": 10
+            }
+          },
+          "missed": [
+            "Create table Student_info",
+            "Varchar(10)",
+            "CGPA float",
+            "Student_Info",
+            "241412",
+            "151216",
+            "202011",
+            "401201",
+            "Rafi",
+            "Habib",
+            "Adiba",
+            "Noshin",
+            "Maria",
+            "Islam",
+            "Israt",
+            "Jahan",
+            "3.55",
+            "3.28",
+            "3.98",
+            "3.40",
+            "Economics",
+            "English",
+            "MicroBiology"
+          ]
+        }
+      ],
+      "items": 77,
+      "found": 25,
+      "recall": 0.3246753246753247,
+      "by_kind": {
+        "term": {
+          "found": 12,
+          "total": 20,
+          "recall": 0.6
+        },
+        "code": {
+          "found": 7,
+          "total": 13,
+          "recall": 0.5384615384615384
+        },
+        "number": {
+          "found": 2,
+          "total": 24,
+          "recall": 0.08333333333333333
+        },
+        "name": {
+          "found": 4,
+          "total": 20,
+          "recall": 0.2
+        }
+      }
+    },
+    "BanglaASR9": {
+      "boards": [
+        {
+          "era": 1,
+          "items": 39,
+          "found": 16,
+          "recall": 0.41025641025641024,
+          "by_kind": {
+            "term": {
+              "found": 8,
+              "total": 8
+            },
+            "code": {
+              "found": 3,
+              "total": 7
+            },
+            "number": {
+              "found": 1,
+              "total": 14
+            },
+            "name": {
+              "found": 4,
+              "total": 10
+            }
+          },
+          "missed": [
+            "Enrollment_Date",
+            "max()",
+            "min()",
+            "sum()",
+            "241412",
+            "151216",
+            "110112",
+            "401201",
+            "Ahsan",
+            "Adiba",
+            "Noshin",
+            "Maria",
+            "Israt",
+            "Jahan",
+            "3.55",
+            "3.28",
+            "3.98",
+            "3.40",
+            "01-01-2024",
+            "20-09-2024",
+            "21-10-2021",
+            "02-02-2020",
+            "11-11-2025"
+          ]
+        },
+        {
+          "era": 2,
+          "items": 30,
+          "found": 14,
+          "recall": 0.4666666666666667,
+          "by_kind": {
+            "code": {
+              "found": 3,
+              "total": 5
+            },
+            "number": {
+              "found": 1,
+              "total": 9
+            },
+            "term": {
+              "found": 6,
+              "total": 6
+            },
+            "name": {
+              "found": 4,
+              "total": 10
+            }
+          },
+          "missed": [
+            "Select ID, CGPA from Student_Info",
+            "where CGPA =",
+            "110112",
+            "3.98",
+            "241412",
+            "151216",
+            "401201",
+            "Ahsan",
+            "Adiba",
+            "Noshin",
+            "Maria",
+            "Israt",
+            "Jahan",
+            "3.55",
+            "3.28",
+            "3.40"
+          ]
+        }
+      ],
+      "items": 69,
+      "found": 30,
+      "recall": 0.43478260869565216,
+      "by_kind": {
+        "term": {
+          "found": 14,
+          "total": 14,
+          "recall": 1.0
+        },
+        "code": {
+          "found": 6,
+          "total": 12,
+          "recall": 0.5
+        },
+        "number": {
+          "found": 2,
+          "total": 23,
+          "recall": 0.08695652173913043
+        },
+        "name": {
+          "found": 8,
+          "total": 20,
+          "recall": 0.4
+        }
+      }
+    }
+  },
+  "full_results": {
+    "BanglaASR7": {
+      "boards": [
+        {
+          "era": 1,
+          "items": 1,
+          "found": 1,
+          "recall": 1.0,
+          "by_kind": {
+            "term": {
+              "found": 1,
+              "total": 1
+            }
+          },
+          "missed": []
+        },
+        {
+          "era": 2,
+          "items": 5,
+          "found": 4,
+          "recall": 0.8,
+          "by_kind": {
+            "term": {
+              "found": 3,
+              "total": 3
+            },
+            "phrase": {
+              "found": 0,
+              "total": 1
+            },
+            "code": {
+              "found": 1,
+              "total": 1
+            }
+          },
+          "missed": [
+            "OR+NOT"
+          ]
+        },
+        {
+          "era": 3,
+          "items": 5,
+          "found": 4,
+          "recall": 0.8,
+          "by_kind": {
+            "term": {
+              "found": 3,
+              "total": 3
+            },
+            "phrase": {
+              "found": 0,
+              "total": 1
+            },
+            "code": {
+              "found": 1,
+              "total": 1
+            }
+          },
+          "missed": [
+            "AND+NOT"
+          ]
+        },
+        {
+          "era": 4,
+          "items": 5,
+          "found": 3,
+          "recall": 0.6,
+          "by_kind": {
+            "term": {
+              "found": 3,
+              "total": 3
+            },
+            "phrase": {
+              "found": 0,
+              "total": 2
+            }
+          },
+          "missed": [
+            "same input = 0",
+            "different input = 1"
+          ]
+        },
+        {
+          "era": 5,
+          "items": 5,
+          "found": 3,
+          "recall": 0.6,
+          "by_kind": {
+            "term": {
+              "found": 3,
+              "total": 3
+            },
+            "phrase": {
+              "found": 0,
+              "total": 1
+            },
+            "code": {
+              "found": 0,
+              "total": 1
+            }
+          },
+          "missed": [
+            "X-OR+NOT",
+            "AB + AB"
+          ]
+        }
+      ],
+      "items": 21,
+      "found": 15,
+      "recall": 0.7142857142857143,
+      "by_kind": {
+        "term": {
+          "found": 13,
+          "total": 13,
+          "recall": 1.0
+        },
+        "phrase": {
+          "found": 0,
+          "total": 5,
+          "recall": 0.0
+        },
+        "code": {
+          "found": 2,
+          "total": 3,
+          "recall": 0.6666666666666666
+        }
+      }
+    },
+    "BanglaASR8": {
+      "boards": [
+        {
+          "era": 1,
+          "items": 2,
+          "found": 2,
+          "recall": 1.0,
+          "by_kind": {
+            "term": {
+              "found": 2,
+              "total": 2
+            }
+          },
+          "missed": []
+        },
+        {
+          "era": 2,
+          "items": 42,
+          "found": 40,
+          "recall": 0.9523809523809523,
+          "by_kind": {
+            "term": {
+              "found": 10,
+              "total": 11
+            },
+            "code": {
+              "found": 6,
+              "total": 6
+            },
+            "number": {
+              "found": 15,
+              "total": 15
+            },
+            "name": {
+              "found": 9,
+              "total": 10
+            }
+          },
+          "missed": [
+            "MySQL",
+            "Israt"
+          ]
+        },
+        {
+          "era": 3,
+          "items": 33,
+          "found": 31,
+          "recall": 0.9393939393939394,
+          "by_kind": {
+            "term": {
+              "found": 6,
+              "total": 7
+            },
+            "code": {
+              "found": 7,
+              "total": 7
+            },
+            "number": {
+              "found": 9,
+              "total": 9
+            },
+            "name": {
+              "found": 9,
+              "total": 10
+            }
+          },
+          "missed": [
+            "MySQL",
+            "Israt"
+          ]
+        }
+      ],
+      "items": 77,
+      "found": 73,
+      "recall": 0.948051948051948,
+      "by_kind": {
+        "term": {
+          "found": 18,
+          "total": 20,
+          "recall": 0.9
+        },
+        "code": {
+          "found": 13,
+          "total": 13,
+          "recall": 1.0
+        },
+        "number": {
+          "found": 24,
+          "total": 24,
+          "recall": 1.0
+        },
+        "name": {
+          "found": 18,
+          "total": 20,
+          "recall": 0.9
+        }
+      }
+    },
+    "BanglaASR9": {
+      "boards": [
+        {
+          "era": 1,
+          "items": 39,
+          "found": 36,
+          "recall": 0.9230769230769231,
+          "by_kind": {
+            "term": {
+              "found": 8,
+              "total": 8
+            },
+            "code": {
+              "found": 4,
+              "total": 7
+            },
+            "number": {
+              "found": 14,
+              "total": 14
+            },
+            "name": {
+              "found": 10,
+              "total": 10
+            }
+          },
+          "missed": [
+            "max()",
+            "min()",
+            "sum()"
+          ]
+        },
+        {
+          "era": 2,
+          "items": 30,
+          "found": 30,
+          "recall": 1.0,
+          "by_kind": {
+            "code": {
+              "found": 5,
+              "total": 5
+            },
+            "number": {
+              "found": 9,
+              "total": 9
+            },
+            "term": {
+              "found": 6,
+              "total": 6
+            },
+            "name": {
+              "found": 10,
+              "total": 10
+            }
+          },
+          "missed": []
+        }
+      ],
+      "items": 69,
+      "found": 66,
+      "recall": 0.9565217391304348,
+      "by_kind": {
+        "term": {
+          "found": 14,
+          "total": 14,
+          "recall": 1.0
+        },
+        "code": {
+          "found": 9,
+          "total": 12,
+          "recall": 0.75
+        },
+        "number": {
+          "found": 23,
+          "total": 23,
+          "recall": 1.0
+        },
+        "name": {
+          "found": 20,
+          "total": 20,
+          "recall": 1.0
+        }
+      }
+    }
+  }
+}

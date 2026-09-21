@@ -1,0 +1,56 @@
+{
+  "lecture": "BanglaASR6",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "source": "frame",
+  "prompt": "This is a photograph of a classroom whiteboard during a university lecture.\n\nTranscribe everything written on the whiteboard, exactly as written.\n\n- Copy every number, name, identifier, date and symbol exactly. Do not round,\n  correct or reformat values.\n- Write tables as Markdown tables with the same rows and columns as the board.\n- Write code, SQL and program text inside ``` fences, keeping line breaks.\n- Write formulas as they appear. For a bar over a term write it as NOT(...),\n  for example NOT(A+B).\n- Keep diagrams short: name what they are and copy any labels on them, for\n  example \"Gate diagram: inputs A, B into a box labelled NAND, output NOT(AB)\".\n- If part of the board cannot be read, write [illegible]. Never guess, and never\n  add anything that is not written on the board.\n- Ignore any person in the picture. Describe only what is written.\n\nOutput only the transcription.",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:10",
+      "to": "3:10",
+      "clear_fraction": 0.972,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR6\\ingested\\frames\\frame_000019_000190s.jpg",
+      "text": "Digital Logic Design\n\nanalog → continuous value\nDigital → Discrete value\n\n(TTL)\n→ 5 V\n→ 0 V\n\nlogic 1\nlogic 0"
+    },
+    {
+      "era": 2,
+      "from": "3:20",
+      "to": "5:50",
+      "clear_fraction": 0.9697,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR6\\ingested\\frames\\frame_000035_000350s.jpg",
+      "text": "Digital Logic Design\n\nLogic gates\nFundamental gates\nUniversal gate\nInclusive gate"
+    },
+    {
+      "era": 3,
+      "from": "6:00",
+      "to": "10:00",
+      "clear_fraction": 0.9767,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR6\\ingested\\frames\\frame_000060_000600s.jpg",
+      "text": "| Digital Logic Design |\n|----------------------|\n| AND gate:            |\n| A | B | Y           |\n| 0 | 0 | 0           |\n| 0 | 1 | 0           |\n| 1 | 0 | 0           |\n| 1 | 1 | 1           |\n| AND gate            |\n| A ----> X           |\n| B ----> gate        |\n| Bulb blub           |\n| A . B = X           |\n| 0 . 0 = 0           |\n| 0 . 1 = 0           |\n| 1 . 0 = 0           |\n| 1 . 1 = 1           |\n| 0 -> Light OFF      |\n| 1 -> Light ON       |"
+    },
+    {
+      "era": 4,
+      "from": "10:10",
+      "to": "11:00",
+      "clear_fraction": 0.9755,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR6\\ingested\\frames\\frame_000066_000660s.jpg",
+      "text": "Digital Logic Design\n\nAND gate:\n\n| A | B | X |\n|---|---|---|\n| 0 | 0 | 0 |\n| 0 | 1 | 0 |\n| 1 | 0 | 0 |\n| 1 | 1 | 1 |\n\nAND gate:\nA ---[AND]--- X\nB\n\nGate diagram: inputs A, B into a box labelled AND, output X = AB"
+    },
+    {
+      "era": 5,
+      "from": "11:10",
+      "to": "13:00",
+      "clear_fraction": 0.9662,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR6\\ingested\\frames\\frame_000078_000780s.jpg",
+      "text": "Digital Logic Design\n\n| OR Gate: |\n| --- | --- | --- |\n| A | B | X |\n| 0 | 0 | 0 |\n| 0 | 1 | 0 |\n| 1 | 0 | 0 |\n| 1 | 1 | 1 |\n\nA → OR → X\nB → OR → X\n\nA + B = X"
+    },
+    {
+      "era": 6,
+      "from": "13:10",
+      "to": "14:50",
+      "clear_fraction": 0.9744,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR6\\ingested\\frames\\frame_000089_000890s.jpg",
+      "text": "| Digital Logic Design |\n|----------------------|\n| NOT gate: (Inverter) |\n| A | ¬A |\n| 0 | 1 |\n| A -- NOT -- ¬A |\n| alternate of A |\n| A -- ¬ -- ¬A |"
+    }
+  ]
+}

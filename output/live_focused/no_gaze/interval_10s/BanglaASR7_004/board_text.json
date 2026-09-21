@@ -1,0 +1,48 @@
+{
+  "lecture": "BanglaASR7_004",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "source": "mosaic",
+  "prompt": "This is a photograph of a classroom whiteboard during a university lecture.\n\nTranscribe everything written on the whiteboard, exactly as written.\n\n- Copy every number, name, identifier, date and symbol exactly. Do not round,\n  correct or reformat values.\n- Write tables as Markdown tables with the same rows and columns as the board.\n- Write code, SQL and program text inside ``` fences, keeping line breaks.\n- Write formulas as they appear. For a bar over a term write it as NOT(...),\n  for example NOT(A+B).\n- Keep diagrams short: name what they are and copy any labels on them, for\n  example \"Gate diagram: inputs A, B into a box labelled NAND, output NOT(AB)\".\n- If part of the board cannot be read, write [illegible]. Never guess, and never\n  add anything that is not written on the board.\n- Ignore any person in the picture. Describe only what is written.\n\nOutput only the transcription.",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:00",
+      "to": "0:50",
+      "clear_fraction": 0.951,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\annotation_demo\\all9\\BanglaASR7_004\\board_era1_000.jpg",
+      "text": "Digital Logic Design\n\nUniversal gate → NOR gate\n→ NAND gate"
+    },
+    {
+      "era": 2,
+      "from": "1:00",
+      "to": "4:20",
+      "clear_fraction": 1.0,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\annotation_demo\\all9\\BanglaASR7_004\\board_era2_100.jpg",
+      "text": "Digital Logic Design\n\nNOR gate\n\n| A | B | A+B | NOT(A+B) = X |\n|---|---|-----|--------------|\n| 0 | 0 |   0 |            1 |\n| 0 | 1 |   1 |            0 |\n| 1 | 0 |   1 |            0 |\n| 1 | 1 |   1 |            0 |\n\nOR + NOT = NOR\n\nA --- NOR --- A+B\nB\n\nGate diagram: inputs A, B into a box labelled NOR, output A+B"
+    },
+    {
+      "era": 3,
+      "from": "4:40",
+      "to": "7:00",
+      "clear_fraction": 1.0,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\annotation_demo\\all9\\BanglaASR7_004\\board_era3_440.jpg",
+      "text": "Digital Logic Design\n\nNAND gate = AND + NOT\n\n| A | B | AB | NOT(AB) |\n|---|---|----|---------|\n| 0 | 0 | 0  | 1       |\n| 0 | 1 | 0  | 1       |\n| 1 | 0 | 0  | 1       |\n| 1 | 1 | 1  | 0       |\n\nGate diagram: inputs A, B into a box labelled NAND, output NOT(AB)\n\nGate diagram: inputs A, B into a box labelled NAND, output NOT(AB)"
+    },
+    {
+      "era": 4,
+      "from": "7:20",
+      "to": "10:40",
+      "clear_fraction": 1.0,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\annotation_demo\\all9\\BanglaASR7_004\\board_era4_720.jpg",
+      "text": "Digital Logic Design\n\nX-OR gate:\n\n|   | 0 | 1 |\n|---|---|---|\n| 0 | 0 | 1 |\n| 1 | 1 | 0 |\n\nA → X-OR → A⊕B\nB\n\nA → AND → A⊕B\nB\n\nsame input = 0\ndifferent input = 1"
+    },
+    {
+      "era": 5,
+      "from": "10:50",
+      "to": "14:00",
+      "clear_fraction": 1.0,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\annotation_demo\\all9\\BanglaASR7_004\\board_era5_1050.jpg",
+      "text": "Digital Logic Design\n\nX-NOR gate:\n| A | B | A⊕B | A⊕B |\n|---|---|-----|-----|\n| 0 | 0 |   0 |   1 |\n| 0 | 1 |   1 |   0 |\n| 1 | 0 |   1 |   0 |\n| 1 | 1 |   0 |   1 |\n\nX-OR + NOT\n\nA - X-NOR - A⊕B\nB\n\nX-NOR → A⊕B + AB"
+    }
+  ]
+}
