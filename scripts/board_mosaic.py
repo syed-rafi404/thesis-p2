@@ -183,15 +183,26 @@ def cosine_window(tile):
     return np.outer(win, win).astype(np.float32)
 
 
-def assemble(frames, sizes, sources, xs, ys, tile, scale):
-    """Paste each tile from its chosen frame at full resolution, with blending."""
+def assemble(frames, sizes, sources, xs, ys, tile, scale, masks=None):
+    """Paste each tile from its chosen frame at full resolution, with blending.
+
+    With masks, also return the occluder mask blended the same way: at each
+    pixel, how much of it is the lecturer in the frames that pixel was taken
+    from (0 = clear board, 1 = person).
+    """
     full_w, full_h = sizes[0]
     acc = np.zeros((full_h, full_w, 3), dtype=np.float32)
     wsum = np.zeros((full_h, full_w, 1), dtype=np.float32)
+    macc = np.zeros((full_h, full_w, 1), dtype=np.float32) if masks is not None else None
 
     needed = sorted({int(v) for v in np.unique(sources) if v >= 0})
     cache = {i: np.asarray(Image.open(frames[i]).convert("RGB"), dtype=np.float32)
              for i in needed}
+    mcache = {}
+    if masks is not None:
+        for i in needed:
+            big = Image.fromarray(masks[i].astype(np.uint8) * 255).resize((full_w, full_h), Image.NEAREST)
+            mcache[i] = np.asarray(big, dtype=np.float32)[:, :, None] / 255.0
 
     ftile = max(2, int(round(tile / scale)))
     window = cosine_window(ftile)[:, :, None]
@@ -208,12 +219,18 @@ def assemble(frames, sizes, sources, xs, ys, tile, scale):
                 continue
             acc[y0:y0 + ftile, x0:x0 + ftile] += patch * window
             wsum[y0:y0 + ftile, x0:x0 + ftile] += window
+            if macc is not None:
+                macc[y0:y0 + ftile, x0:x0 + ftile] += mcache[idx][y0:y0 + ftile, x0:x0 + ftile] * window
 
     uncovered = int((wsum == 0).sum())
     if uncovered:
         print(f"    warning: {uncovered} pixels had no tile and are left black")
     wsum[wsum == 0] = 1.0
-    return Image.fromarray(np.clip(acc / wsum, 0, 255).astype(np.uint8))
+    board = Image.fromarray(np.clip(acc / wsum, 0, 255).astype(np.uint8))
+    if macc is None:
+        return board
+    occ = Image.fromarray(np.clip(macc[:, :, 0] / wsum[:, :, 0] * 255, 0, 255).astype(np.uint8))
+    return board, occ
 
 
 def main():
@@ -235,6 +252,9 @@ def main():
                          "frames after the earlier era's end, never before it. The earlier run "
                          "says roughly when the board was wiped; the denser frames say exactly "
                          "when, so the clean moments just after the old end are not cut off")
+    ap.add_argument("--save-occluder", action="store_true",
+                    help="Also write board_eraN_*_occluder.png: where the board still shows the "
+                         "lecturer (white = person). scripts/clean_board.py --mask uses it")
     args = ap.parse_args()
 
     frames = sorted(glob.glob(str(Path(args.frames) / "*.jpg")))
@@ -287,8 +307,12 @@ def main():
         clean = int((cover <= CLEAN_TOL).sum())
         total = cover.size
         used = len({int(v) for v in np.unique(sources) if v >= 0})
-        board = assemble(frames, sizes, sources, xs, ys, tile, scale)
         path = out_dir / f"board_era{n}_{stamp(era[0]).replace(':','')}.jpg"
+        if args.save_occluder:
+            board, occ = assemble(frames, sizes, sources, xs, ys, tile, scale, masks=masks)
+            occ.save(path.with_name(path.stem + "_occluder.png"))
+        else:
+            board = assemble(frames, sizes, sources, xs, ys, tile, scale)
         board.save(path, quality=94)
 
         print(f"era {n}  {stamp(era[0])}-{stamp(era[1]-1)}  "

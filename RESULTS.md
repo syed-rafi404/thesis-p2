@@ -611,6 +611,46 @@ a plausible invention is not.
 Reproduce: `python scripts/board_mosaic.py --frames <dir> --out-dir <dir>`
 Artefacts: `output/annotation_demo/all9/*/mosaic.json`
 
+#### 4.1.1 Speaker3 boards: denser frames (2026-09-22)
+
+Speaker3 (videos 10-13) stands in front of the board far more, and at the default 10 s
+frame spacing only 1 of his 10 boards reached 95% clear (worst 59%; the TTL board 67%).
+Re-extracting frames every 2 s gives each tile five times as many chances to be seen
+clear. At 2 s the erase detector mistakes his movement for erasing, so the eras are taken
+from the 10 s run and each is extended to the first erase the 2 s frames detect after it
+(`--eras-from ... --extend-to-erase`); ending at the old 10 s boundary cut off "Don't
+Fragment", written in the last seconds before the wipe.
+
+| Lecture | 10 s frames | 2 s frames, same eras extended |
+|---|---|---|
+| BanglaASR10 | 71 / 70 / 67 / 91% | 80 / 90 / 95 / 96% |
+| BanglaASR11 | 85 / 59% | 96 / 88% |
+| BanglaASR12 | 85 / 83% | 93 / 94% |
+| BanglaASR13 | 90 / 99% | 98 / 100% |
+
+Boards at 95% or better: 1 -> 5 of 10; worst 59% -> 88%.
+
+```
+python scripts/board_mosaic.py --frames output/speaker3_runs_2s/BanglaASR{n}/ingested/frames --interval 2 \
+  --eras-from output/annotation_demo/all9/BanglaASR{n}/mosaic.json --extend-to-erase --save-occluder \
+  --out-dir output/annotation_demo/speaker3_2s_hybrid_occ/BanglaASR{n} --json .../mosaic.json
+```
+
+The VLM recall numbers in 5.0 used the 10 s boards; these have not been read by the VLM.
+
+**Display clean-up (not a measurement).** Where the lecturer stood for most of an era the
+mosaic still shows a faint blocky ghost of him. `scripts/clean_board.py` applies the
+"whiteboard mode" of document-scanner apps: flatten the background and fade everything that
+is not clearly darker than its surroundings to white, then blank the pixels the mosaic itself
+flags as the lecturer (`--mask`, from `--save-occluder`). Every board becomes readable on a
+white background; a few dark scraps of shirt remain near the bottom-left of 3 boards, plus the
+board frame and a sticker. **This replaces background pixels**, so a cleaned board is not
+"unmodified camera output": the strokes are camera pixels, the background is not. Say so
+wherever one is shown. Writing that was behind the lecturer for a whole era is still missing;
+the clean-up cannot recover it. Automatic cropping to the writing was tried and was not
+reliable (leftover specks chain the crop out to the whole board); crop by hand.
+Before/after: `output/annotation_demo/speaker3_2s_hybrid_clean/sheet_1.jpg`, `sheet_2.jpg`.
+
 ### 4.2 Region detection and annotation — status
 
 `scripts/board_regions.py` finds the content blocks on a reconstructed board by
