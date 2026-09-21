@@ -32,7 +32,11 @@ tabe chai, tarbo bolte pare weather jodi sunny hoy, tahole program kibol bejio, 
 tokhn ki korbe? print korbe, ekhon amra abad dite pari age er moto just come. achah thikase. toh ami ekta jinish trace kore dekhai, ekta first a variable declare korlam, variable ta user theke ekta input jinke shke korbe, ebong input ta ekta string hisabe first a if er kache check korbe, je hae weather ki rain, jodi hoy rain tahole ki korbe bring umbrella.
 so, whether jodi rain na hoy, jodi sunny check korbe, weather ki sunny? sudhu sunny hote hobe. karon rain ami check kore ashti erpa sunny check korbo. sunny jodi hoy, where white color. tarpore jodi rain o na hoy, sunny o na hoy, duniar onno jekono word er jonno, ami print korbo, print just come, okay?
 
-[[FIGURE 1]]  board during 0:00-5:50: | Conditional Statements | | --- | | Weather = input("Today's weather:") | | if weather == "Rain": | | print("Bring Umbrella") | | elif weather == "Sunny": | | print("Wear White Colou") | | else: | | print("Just Come") | | if Rain user | | will bring Umbrella | | If not doesn't | | bring umbrella |
+![Board 0:00-5:50](figures_board/board_01_era1.jpg)
+
+*Figure 1. The whiteboard during 0:00–5:50, reconstructed from 11 video frames with the lecturer removed; 100% of the board is unobstructed.*
+
+| Conditional Statements | | --- | | Weather = input("Today's weather:") | | if weather == "Rain": | | print("Bring Umbrella") | | elif weather == "Sunny": | | print("Wear White Colou") | | else: | | print("Just Come") | | if Rain user | | will bring Umbrella | | If not doesn't | | bring umbrella |
 
 ### Worked Example
 We will use the example provided in the lecture:

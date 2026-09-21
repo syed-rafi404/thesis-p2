@@ -85,7 +85,11 @@ This retrieves the `ID` and `CGPA` of the student with the lowest CGPA.
 4. `SELECT ID FROM Student_Info ORDER BY ID ASC;`
 5. `SELECT MAX(CGPA) FROM Student_Info;`
 
-[[FIGURE 1]] Database Management System (DBMS) University  
+![Board 0:10-9:10](figures_board/board_01_era1.jpg)
+
+*Figure 1. The whiteboard during 0:10–9:10, reconstructed from 13 video frames with the lecturer removed; 98% of the board is unobstructed.*
+
+Database Management System (DBMS) University
 | Student Info |  
 | --- | --- | --- | --- | --- | --- |  
 | ID | First_Name | Last_Name | CGPA | Department | Enrollment_Date |  
@@ -95,7 +99,11 @@ This retrieves the `ID` and `CGPA` of the student with the lowest CGPA.
 | 110112 | Maria | Islam | 3.98 | English | 02-02-2020 |  
 | 401201 | Israt | Jahan | 3.40 | MicroBiology | 11-11-2025 |  
 
-[[FIGURE 2]] Database Management System (DBMS) University  
+![Board 9:20-16:20](figures_board/board_02_era2.jpg)
+
+*Figure 2. The whiteboard during 9:20–16:20, reconstructed from 5 video frames with the lecturer removed; 99% of the board is unobstructed.*
+
+Database Management System (DBMS) University
 | ID | First_Name | Last_Name | CGPA | Department | Enrollment_Date |  
 |----|------------|-----------|-------|-------------|-----------------|  
 | 241412 | Syed | Rafi | 3.55 | CS | 01-01-2024 |  

@@ -86,9 +86,17 @@ The `SELECT` query allows you to specify which columns or all columns you want t
   SELECT ID, (SELECT CGPA FROM student_info WHERE CGPA = (SELECT MAX(CGPA) FROM student_info)) AS max_cgpa FROM student_info;
   ```
 
-[[FIGURE 1]]  board during 0:10-9:10: ```markdown Database Management System (DBMS) University | Student Info | | --- | --- | --- | --- | --- | --- | | ID | First_Name | Last_Name | CGPA | Department | Enrollment_Date | | 241412 | Syed | Rafi | 3.55 | CS | 01-01-2024 | | 151216 | Ahsan | Habib | 3.77 | Math | 20-09-2024 | | 202011 | Adiba | Noshin | 3.28 | Economics | 21-10-2021 | | 110112 | Maria | Islam | 3.98 | English | 02-02-2020 | | 401201 | Israt | Jahan | 3.40 | MicroBiology | 11-11-2025 |
+![Board 0:10-9:10](figures_board/board_01_era1.jpg)
 
-[[FIGURE 2]]  board during 9:20-16:20: ```markdown Database Management System (DBMS) University | ID | First_Name | Last_Name | CGPA | Department | Enrollment_Date | |----|------------|-----------|-------|-------------|-----------------| | 241412 | Syed | Rafi | 3.55 | CS | 01-01-2024 | | 151216 | Ahsan | Habib | 3.7 | Math | 20-09-2024 | | 202011 | Adiba | Noshin | 3.28 | Economics | 21-10-2021 | | 110112 | Maria | Islam | 3.98 | English | 02-02-2020 | | 401201 | Israt | Jahan | 3.40 | MicroBiology | 11-11-2025 |
+*Figure 1. The whiteboard during 0:10–9:10, reconstructed from 13 video frames with the lecturer removed; 98% of the board is unobstructed.*
+
+Database Management System (DBMS) University | Student Info | | --- | --- | --- | --- | --- | --- | | ID | First_Name | Last_Name | CGPA | Department | Enrollment_Date | | 241412 | Syed | Rafi | 3.55 | CS | 01-01-2024 | | 151216 | Ahsan | Habib | 3.77 | Math | 20-09-2024 | | 202011 | Adiba | Noshin | 3.28 | Economics | 21-10-2021 | | 110112 | Maria | Islam | 3.98 | English | 02-02-2020 | | 401201 | Israt | Jahan | 3.40 | MicroBiology | 11-11-2025 |
+
+![Board 9:20-16:20](figures_board/board_02_era2.jpg)
+
+*Figure 2. The whiteboard during 9:20–16:20, reconstructed from 5 video frames with the lecturer removed; 99% of the board is unobstructed.*
+
+Database Management System (DBMS) University | ID | First_Name | Last_Name | CGPA | Department | Enrollment_Date | |----|------------|-----------|-------|-------------|-----------------| | 241412 | Syed | Rafi | 3.55 | CS | 01-01-2024 | | 151216 | Ahsan | Habib | 3.7 | Math | 20-09-2024 | | 202011 | Adiba | Noshin | 3.28 | Economics | 21-10-2021 | | 110112 | Maria | Islam | 3.98 | English | 02-02-2020 | | 401201 | Israt | Jahan | 3.40 | MicroBiology | 11-11-2025 |
 
 ## Check yourself
 1. Write a query to retrieve all data from the `student_info` table.

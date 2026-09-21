@@ -75,7 +75,32 @@ RUNS = REPO / "output" / "live_focused" / "no_gaze" / "interval_10s"
 BOARDS = REPO / "output" / "annotation_demo" / "all9"
 FORBIDDEN = (REPO / "data" / "board_truth").resolve()
 MIN_CLEAR = 0.95
-FIGURE_MARK = re.compile(r"^\s*\[\[\s*FIGURE\s+(\d+)\s*\]\]\s*$", re.IGNORECASE)
+# The model sometimes writes words after the marker ("[[FIGURE 1]] board during
+# 1:10-10:50:"), occasionally a whole board transcription on the same line. The
+# first version required the marker alone on its line, so those figures were
+# silently dropped (10 of 58 across the 2026-09-21 notes). Now the marker becomes
+# the picture and everything after it is kept as text, minus a leading
+# "board during m:ss-m:ss:" label, which the caption repeats.
+# A marker can also sit after a model-written label ("**Figure 3** [[FIGURE 3]]");
+# such a label is dropped too, anything else before the marker is kept.
+FIGURE_MARK = re.compile(r"^(.*?)\[\[\s*FIGURE\s+(\d+)\s*\]\](.*)$", re.IGNORECASE)
+BOARD_LABEL = re.compile(r"^\s*board\s+during\s+\d+:\d+\s*[-–]\s*\d+:\d+\s*:?", re.IGNORECASE)
+FIGURE_LABEL = re.compile(r"^\s*(\*\*|\*)?\s*figure\s+\d+\s*[.:]?\s*(\*\*|\*)?\s*$", re.IGNORECASE)
+
+
+def marker_number(match):
+    return int(match.group(2))
+
+
+def marker_rest(match):
+    """Text around a figure marker worth keeping: not a bare "Figure n" label
+    before it, and not the redundant time label after it."""
+    before = "" if FIGURE_LABEL.match(match.group(1)) else match.group(1).strip()
+    after = BOARD_LABEL.sub("", match.group(3)).strip()
+    # A one-line board dump sometimes carries ``` marks; on a line of its own they
+    # would open a code block that swallows the rest of the notes.
+    after = re.sub(r"```\w*", "", after).strip()
+    return " ".join(t for t in (before, after) if t)
 
 
 def guard(path):
@@ -155,16 +180,21 @@ def place_figures(markdown, figures):
         if not m:
             out.append(line)
             continue
-        n = int(m.group(1))
+        n = marker_number(m)
         fig = by_n.get(n)
+        rest = marker_rest(m)
         if not fig or n in placed:
-            continue                       # unknown or repeated marker: drop it
+            if rest:
+                out.append(rest)           # unknown or repeated marker: keep its text
+            continue
         placed.add(n)
         out.append(f"![Board {fig['from']}-{fig['to']}]({fig['image']})")
         out.append("")
         out.append(f"*Figure {n}. The whiteboard during {fig['from']}–{fig['to']}, "
                    f"reconstructed from {fig['frames']} video frames with the lecturer "
                    f"removed; {fig['clear']*100:.0f}% of the board is unobstructed.*")
+        if rest:
+            out += ["", rest]
     if figures:
         out += ["", "---", "",
                 "*Figures are reconstructed whiteboards assembled from moments when the "

@@ -38,7 +38,9 @@ A --- AND --- X
 B --- gate
 ```
 
-**Figure 3** [[FIGURE 3]]
+![Board 6:00-10:00](figures_board/board_03_era3.jpg)
+
+*Figure 3. The whiteboard during 6:00–10:00, reconstructed from 9 video frames with the lecturer removed; 98% of the board is unobstructed.*
 
 ### OR Gate
 An OR gate takes two inputs and produces an output based on the OR operation.
@@ -53,7 +55,9 @@ An OR gate takes two inputs and produces an output based on the OR operation.
 - **Inputs**: A = 1, B = 1
 - **Output**: X = 1 (1 OR 1 = 1)
 
-**Figure 5** [[FIGURE 5]]
+![Board 11:10-13:00](figures_board/board_05_era5.jpg)
+
+*Figure 5. The whiteboard during 11:10–13:00, reconstructed from 8 video frames with the lecturer removed; 97% of the board is unobstructed.*
 
 ### NOT Gate
 A NOT gate (inverter) takes one input and produces an output that is the inverse of the input.
@@ -64,7 +68,9 @@ A NOT gate (inverter) takes one input and produces an output that is the inverse
 - **Input**: A = 1
 - **Output**: ¬A = 0
 
-**Figure 6** [[FIGURE 6]]
+![Board 13:10-14:50](figures_board/board_06_era6.jpg)
+
+*Figure 6. The whiteboard during 13:10–14:50, reconstructed from 7 video frames with the lecturer removed; 97% of the board is unobstructed.*
 
 ## Check Yourself
 1. What is the output of an AND gate when both inputs are 0?
