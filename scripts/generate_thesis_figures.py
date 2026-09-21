@@ -52,6 +52,36 @@ VIDEOS = {
     'BanglaASR9': {'topic': 'SQL SELECT', 'domain': 'DBMS', 'gt_chars': 4178, 'keywords': 31},
 }
 
+def _measured_gt_chars():
+    """Transcript length per video, counted from the ground-truth files.
+
+    The gt_chars values typed into VIDEOS above were wrong for 8 of the 9 videos,
+    some badly: BanglaASR3 was listed as 16,558 characters when its file holds
+    3,569, and BanglaASR9 as 4,178 when it holds 9,395. Their total happened to
+    land near the real one, which is why the abstract's corpus size survived.
+
+    Counted as transcribed speech only: header comment lines and [M:SS-M:SS]
+    timestamps are removed, whitespace is collapsed. Measured total: 71,885,
+    against 73,141 in the abstract, a 1.7% difference in counting method.
+    """
+    import re as _re
+    gt_dir = os.path.join(_REPO, "data", "ground_truth")
+    out = {}
+    for video in VIDEOS:
+        path = os.path.join(gt_dir, f"{video}_ground_truth.txt")
+        if not os.path.exists(path):
+            continue
+        with open(path, encoding="utf-8", errors="ignore") as fh:
+            lines = [ln for ln in fh.read().splitlines()
+                     if ln.strip() and not ln.lstrip().startswith("#")]
+        body = _re.sub(r"\[\d+:\d+\s*-\s*\d+:\d+\]", "", " ".join(lines))
+        out[video] = len(" ".join(body.split()))
+    return out
+
+
+for _video, _chars in _measured_gt_chars().items():
+    VIDEOS[_video]["gt_chars"] = _chars
+
 # Per-video results (Table 6.X)
 RESULTS = {
     'BanglaASR1': {'f1': 70.5, 'precision': 81.6, 'recall': 62.0, 'fuzzy': 43.1},
@@ -101,6 +131,16 @@ ABLATION = {
 BIAS_SWEEP_PATH = os.path.join(_REPO, "output", "bias_parameter_sweep.json")
 
 # Failure modes
+# UNVERIFIED - DO NOT PUBLISH FIGURE 6.5 AS MEASURED.
+# No error analysis in this repository produces these shares. They are round
+# numbers summing to exactly 100, and the only other place they appear is
+# P2/FIGURE_CREATION_GUIDE.md, which lists the figure as done without a source.
+# Categories such as "phonetic approximation" need a person to label a sample of
+# errors. One category is measurable today: repetition runaways, 8 of 137
+# held-out clips for the base model and 18 of 137 for the fine-tune
+# (ft_work/eval_whisper_small_1.9h.md). Either run a labelled error analysis on a
+# sample, or drop the figure. main() prints a warning while this stands.
+FAILURE_MODES_UNVERIFIED = True
 FAILURE_MODES = {
     'Phonetic Approximation': 35,
     'Technical Term Confusion': 25,
@@ -634,6 +674,9 @@ def main():
     print(f"Files saved to: {OUTPUT_DIR}")
     print("=" * 60)
 
+    if FAILURE_MODES_UNVERIFIED:
+        print("\nWARNING - Figure 6.5 (failure modes) shows shares that no analysis")
+        print("in this repository produced. Label a sample of errors, or drop it.")
     print("\nNOTE - Figure 6.6 plots output/bias_parameter_sweep.json: one")
     print("lecture, 27-term list. Describe it as a pilot, not as a result on")
     print("the 9-video benchmark.")

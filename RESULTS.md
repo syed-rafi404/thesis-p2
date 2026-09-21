@@ -493,6 +493,8 @@ strings drawn onto a figure.
 | "Visual-Only" mode = 42.3% | the pipeline has no visual-only mode |
 | Bias sweep: Light 69.8, Medium 67.1, Heavy 58.4 | see section 3.1 — the real sweep is 8.8% then flat 4.1% |
 | Light bias improves over no bias | it halves term recall; optimal bias is 0.0 |
+| Figure 6.5 failure modes: phonetic 35%, term confusion 25%, repetition 18%, visual 12%, alignment 10% | **no analysis produced these**. Round numbers summing to 100. Label a sample of errors or drop the figure. Only repetition is measurable today: 8/137 clips base, 18/137 fine-tuned |
+| Per-video transcript lengths in Figure 5.7 (e.g. BanglaASR3 = 16,558 chars) | wrong for 8 of 9 videos; now counted from the files. BanglaASR3 is 3,561. The corpus **total** in the abstract, 73,141, is within 1.7% of the measured 71,885 and can stay |
 
 The hardware claim in the abstract is **correct and stays**: P2 ran on an
 NVIDIA RTX 3090, 24 GB (confirmed by the author, 2026-09-20), on the machine

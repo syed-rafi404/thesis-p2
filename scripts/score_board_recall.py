@@ -197,6 +197,10 @@ def main():
     ap.add_argument("--runs", default=RUNS, help="Run directory for a single scoring pass")
     ap.add_argument("--compare", nargs=2, metavar=("BASELINE", "FULL"),
                     help="Two run directories to compare, baseline first")
+    ap.add_argument("--compare-names", nargs=2, metavar=("BEFORE_FILE", "AFTER_FILE"),
+                    help="Two notes filenames inside the same run directories, before "
+                         "first. For an ablation where every variant sits beside the "
+                         "original, e.g. final_lecture_notes.md final_lecture_notes_mixed.md")
     ap.add_argument("--json", dest="json_out", default="output/board_recall.json")
     args = ap.parse_args()
 
@@ -204,10 +208,11 @@ def main():
     if not truth:
         sys.exit(f"no board truth JSON found in {args.gt}")
 
-    def run_over(root, label):
+    def run_over(root, label, name=None):
+        name = name or args.notes_name
         results, missing = {}, []
         for lecture, boards in truth.items():
-            path = find_notes(root, lecture, args.notes_name)
+            path = find_notes(root, lecture, name)
             if not path:
                 missing.append(lecture)
                 continue
@@ -217,7 +222,7 @@ def main():
             print(f"  [{label}] no notes found for: {', '.join(missing)}")
         return results
 
-    if not args.compare:
+    if not args.compare and not args.compare_names:
         results = run_over(args.runs, "single")
         print(f"{'lecture':<18} {'found':>7} {'items':>7} {'recall':>8}")
         print("-" * 44)
@@ -230,9 +235,15 @@ def main():
         print(f"{'TOTAL':<18} {found:>7} {items:>7} {(found/items*100) if items else 0:>7.1f}%")
         payload = {"mode": "single", "root": args.runs, "results": results}
     else:
-        base_root, full_root = args.compare
-        base = run_over(base_root, "baseline")
-        full = run_over(full_root, "full")
+        if args.compare_names:
+            before_name, after_name = args.compare_names
+            base_root, full_root = before_name, after_name       # labels in the report
+            base = run_over(args.runs, "before", before_name)
+            full = run_over(args.runs, "after", after_name)
+        else:
+            base_root, full_root = args.compare
+            base = run_over(base_root, "baseline")
+            full = run_over(full_root, "full")
         shared = sorted(set(base) & set(full))
         if not shared:
             sys.exit("no lecture has notes in both directories")

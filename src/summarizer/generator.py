@@ -214,57 +214,43 @@ class LectureNoteGenerator:
     def generate_notes(
         self,
         context: MultimodalContext,
-        max_new_tokens: int = 2048
+        max_new_tokens: int = 2048,
+        notes_language: str = "legacy",
+        transcript: str = "",
+        board_content: str = "",
+        figures=None,
+        topic_hint: str = "",
     ) -> str:
         """
         Generate structured lecture notes from multimodal context.
-        
+
         Args:
             context: MultimodalContext with all input sources
             max_new_tokens: Maximum tokens to generate
-            
+            notes_language: "legacy" reproduces the original prompt exactly and is
+                the default, because the board-recall baseline was produced with it.
+                "english", "banglish" and "mixed" use the grounded prompts in
+                src/summarizer/prompts.py.
+            transcript, board_content, figures, topic_hint: inputs for the grounded
+                prompts; ignored in legacy mode.
+
         Returns:
             Markdown formatted lecture notes
         """
+        from src.summarizer.prompts import build_messages
+
         self.load_model()
-        
-        console.print("[bold]📝 Generating lecture notes...[/bold]\n")
-        
-        # Construct the prompt
-        system_prompt = """You are an expert lecture note generator. Your task is to merge multiple sources of information from a classroom lecture into clean, accurate, structured notes.
 
-You have access to:
-1. AUDIO TRANSCRIPTS - May contain errors, especially for technical terms
-2. VISUAL CONTENT - Accurate text extracted from the whiteboard by a Vision AI
+        console.print(f"[bold]📝 Generating lecture notes ({notes_language})...[/bold]\n")
 
-CRITICAL INSTRUCTIONS:
-- Use the VISUAL CONTENT as the source of truth for technical terms, formulas, and definitions
-- The audio may mishear terms like "A*" as "A-Store" or "A-Star" - correct these using visual evidence
-- Use the audio transcripts for the flow and explanation of concepts
-- If Bengali text appears, transliterate key terms to English where appropriate
-- Output clean, well-structured Markdown lecture notes
-- Include all formulas exactly as shown on the whiteboard
-- Organize by topic with clear headings"""
-
-        user_prompt = f"""Please merge the following sources into structured lecture notes in Markdown format.
-
-{context.to_prompt_context()}
-
----
-
-Generate comprehensive lecture notes that:
-1. Correct any technical term errors using the whiteboard content
-2. Preserve the mathematical formulas exactly as written
-3. Explain each concept clearly
-4. Include a summary section
-
-Output the lecture notes in Markdown:"""
-
-        # Build messages
-        messages = [
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_prompt}
-        ]
+        messages = build_messages(
+            notes_language,
+            prompt_context=context.to_prompt_context(),
+            transcript=transcript,
+            board_content=board_content,
+            figures=figures,
+            topic_hint=topic_hint,
+        )
         
         # Apply chat template
         text = self.tokenizer.apply_chat_template(
