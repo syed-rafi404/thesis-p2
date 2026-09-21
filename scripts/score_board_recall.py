@@ -74,13 +74,20 @@ def normalise(text):
     return text.strip()
 
 
+SHORT_ITEM = 3   # items this short must match as whole words
+
+
 def contains(haystack, item):
     """Is this board item present in the notes?
 
     Numbers are matched on a word boundary so that 3.5 does not match 3.55 and
-    an ID does not match a substring of a longer number. Everything else is a
-    normalised substring test, which tolerates the model rewrapping or
-    re-capitalising a phrase.
+    an ID does not match a substring of a longer number. Short items (3
+    characters or fewer) and items marked "whole_word" must also stand alone,
+    with no letter, digit or hyphen touching them: otherwise "CS" is found
+    inside "economics", "DF" inside "pdf" and "OR gate" inside "NOR gate" or
+    "X-OR gate". (Found while hand-checking the answer keys, 2026-09-22.)
+    Everything else is a normalised substring test, which tolerates the model
+    rewrapping or re-capitalising a phrase.
     """
     candidates = [item["text"]] + list(item.get("alt", []))
     for candidate in candidates:
@@ -89,6 +96,9 @@ def contains(haystack, item):
             continue
         if item.get("kind") == "number":
             if re.search(rf"(?<![\d.]){re.escape(needle)}(?![\d.])", haystack):
+                return True
+        elif item.get("whole_word") or len(needle) <= SHORT_ITEM:
+            if re.search(rf"(?<![a-z0-9\-]){re.escape(needle)}(?![a-z0-9\-])", haystack):
                 return True
         elif needle in haystack:
             return True

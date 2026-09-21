@@ -1,13 +1,13 @@
 {
   "lecture": "BanglaASR11",
   "topic": "IPv4 fragmentation flags: DF and MF",
-  "note": "DRAFT by Claude reading the reconstructed board images on 2026-09-21, before any Qwen transcription of these boards existed. Not verified. A human must check every item before any number from this file is used. Items marked verify:true were hard to read.",
+  "note": "Drafted by Claude from the reconstructed boards (2026-09-20/21). Every board checked by hand by the user on 2026-09-22 against the board images, without seeing any model output; corrections applied (see item notes).",
   "caveat": "Speaker C lecture. The second board is only 59% clear: the lecturer covers its left side.",
   "boards": [
     {
       "era": 1,
       "image": "output/annotation_demo/all9/BanglaASR11/board_era1_040.jpg",
-      "red_items_checked": "2026-09-22",
+      "checked": "2026-09-22",
       "note": "The 2026-09-22 check also asked for 0 and IF. A lone 0 is not scored because it matches any 0 anywhere; IF is scored as the line it sits on, IF -> Reset.",
       "items": [
         {"text": "TTL", "kind": "term"},
@@ -25,16 +25,18 @@
     {
       "era": 2,
       "image": "output/annotation_demo/all9/BanglaASR11/board_era2_140.jpg",
+      "checked": "2026-09-22",
       "items": [
         {"text": "time to Live", "kind": "term"},
         {"text": "Endless looping", "kind": "phrase", "alt": ["Endless loop"]},
         {"text": "Don't Fragment", "kind": "term", "alt": ["Dont Fragment"]},
         {"text": "More Fragment", "kind": "term", "alt": ["More Fragments"]},
-        {"text": "4000", "kind": "number", "note": "written 4000B"},
+        {"text": "4000B", "kind": "number", "note": "written 4000B, confirmed in the 2026-09-22 check", "alt": ["4000", "4000 B", "4000 bytes"]},
         {"text": "1500", "kind": "number"},
         {"text": "1000", "kind": "number"},
         {"text": "Pack 2", "kind": "phrase", "alt": ["Pack2", "Packet 2"]},
-        {"text": "Pack 3", "kind": "phrase", "alt": ["Pack3", "Packet 3"]}
+        {"text": "Pack 3", "kind": "phrase", "alt": ["Pack3", "Packet 3"]},
+        {"text": "Pack1", "kind": "phrase", "alt": ["Pack 1", "Packet 1"], "note": "added in the 2026-09-22 check"}
       ]
     }
   ]

@@ -1,21 +1,23 @@
 {
   "lecture": "BanglaASR2",
   "topic": "Python input and type casting",
-  "note": "DRAFT by Claude reading the reconstructed board images on 2026-09-21, without looking at any Qwen transcription. Not verified. A human must check every item before any number from this file is used. Items marked verify:true were hard to read.",
+  "note": "Drafted by Claude from the reconstructed boards (2026-09-20/21). Every board checked by hand by the user on 2026-09-22 against the board images, without seeing any model output; corrections applied (see item notes).",
   "caveat": "Speaker A lecture. Valid for scoring the VLM, which never sees audio. Do NOT use it to score notes built from a fine-tuned transcript made by an adapter trained on speaker A. The worked example (20 and 30 giving 50) and the exact prompt strings are the diagnostic items.",
   "boards": [
     {
       "era": 1,
       "image": "output/annotation_demo/all9/BanglaASR2/board_era1_000.jpg",
+      "checked": "2026-09-22",
       "items": [
         {"text": "Input and Type Casting", "kind": "term"},
-        {"text": "age = 42", "kind": "code", "alt": ["age=42"], "verify": true, "note": "the first digit could be 4 or 1"},
+        {"text": "age = 42", "kind": "code", "alt": ["age=42"], "note": "the first digit could be 4 or 1"},
         {"text": "input()", "kind": "code"}
       ]
     },
     {
       "era": 2,
       "image": "output/annotation_demo/all9/BanglaASR2/board_era2_110.jpg",
+      "checked": "2026-09-22",
       "items": [
         {"text": "Input and Type Casting", "kind": "term"},
         {"text": "input(\"What is your name?\")", "kind": "code", "alt": ["input('What is your name?')", "input(\"What is your name? \")"]},
@@ -25,26 +27,37 @@
     {
       "era": 3,
       "image": "output/annotation_demo/all9/BanglaASR2/board_era3_420.jpg",
+      "checked": "2026-09-22",
       "note": "The right side shows \"10\" and \"20\" labelled String: input() returns text, so the sum concatenates.",
       "items": [
         {"text": "Input and Type Casting", "kind": "term"},
         {"text": "What is the first number?", "kind": "phrase", "alt": ["What is the first number"]},
         {"text": "What is the second number?", "kind": "phrase", "alt": ["What is the second number"]},
         {"text": "sum = num1 + num2", "kind": "code", "alt": ["sum=num1+num2", "sum = num1+num2"]},
-        {"text": "print(sum)", "kind": "code"}
+        {"text": "print(sum)", "kind": "code"},
+        {"text": "num1 = input(\"What is the first number?\")", "kind": "code", "note": "added in the 2026-09-22 check", "alt": ["num1 = input('What is the first number?')", "num1=input(\"What is the first number?\")", "num1 = input(\"What is the first number? \")"]},
+        {"text": "num2 = input(\"What is the second number?\")", "kind": "code", "note": "added in the 2026-09-22 check", "alt": ["num2 = input('What is the second number?')", "num2=input(\"What is the second number?\")", "num2 = input(\"What is the second number? \")"]},
+        {"text": "\"10\"", "kind": "code", "alt": ["'10'"], "note": "added in the 2026-09-22 check"},
+        {"text": "\"20\"", "kind": "code", "alt": ["'20'"], "note": "added in the 2026-09-22 check"}
       ]
     },
     {
       "era": 4,
       "image": "output/annotation_demo/all9/BanglaASR2/board_era4_740.jpg",
+      "checked": "2026-09-22",
       "items": [
         {"text": "Input and Type Casting", "kind": "term"},
-        {"text": "num1 = int(num1)", "kind": "code", "alt": ["num1=int(num1)"]}
+        {"text": "num1 = int(num1)", "kind": "code", "alt": ["num1=int(num1)"]},
+        {"text": "num1 = input(\"What is the first number?\")", "kind": "code", "note": "added in the 2026-09-22 check", "alt": ["num1 = input('What is the first number?')", "num1=input(\"What is the first number?\")", "num1 = input(\"What is the first number? \")"]},
+        {"text": "num2 = input(\"What is the second number?\")", "kind": "code", "note": "added in the 2026-09-22 check", "alt": ["num2 = input('What is the second number?')", "num2=input(\"What is the second number?\")", "num2 = input(\"What is the second number? \")"]},
+        {"text": "\"10\"", "kind": "code", "alt": ["'10'"], "note": "added in the 2026-09-22 check"},
+        {"text": "int(num1)", "kind": "code", "note": "added in the 2026-09-22 check"}
       ]
     },
     {
       "era": 5,
       "image": "output/annotation_demo/all9/BanglaASR2/board_era5_840.jpg",
+      "checked": "2026-09-22",
       "items": [
         {"text": "Input and Type Casting", "kind": "term"},
         {"text": "num2 = int(num2)", "kind": "code", "alt": ["num2=int(num2)"]},
@@ -53,7 +66,11 @@
         {"text": "The sum of 20 and 30 is 50", "kind": "phrase"},
         {"text": "50", "kind": "number"},
         {"text": "print(\"Result is\", sum)", "kind": "code", "alt": ["print('Result is', sum)", "print(\"Result is\",sum)"]},
-        {"text": "The sum of {num1} and {num2} is {sum}", "kind": "code", "alt": ["The sum of {num1} and {num2} is {sum}\""]}
+        {"text": "The sum of {num1} and {num2} is {sum}", "kind": "code", "alt": ["The sum of {num1} and {num2} is {sum}\""]},
+        {"text": "num1 = input(\"What is the first number?\")", "kind": "code", "note": "added in the 2026-09-22 check", "alt": ["num1 = input('What is the first number?')", "num1=input(\"What is the first number?\")", "num1 = input(\"What is the first number? \")"]},
+        {"text": "num2 = input(\"What is the second number?\")", "kind": "code", "note": "added in the 2026-09-22 check", "alt": ["num2 = input('What is the second number?')", "num2=input(\"What is the second number?\")", "num2 = input(\"What is the second number? \")"]},
+        {"text": "num1 = int(num1)", "kind": "code", "alt": ["num1=int(num1)"], "note": "added in the 2026-09-22 check"},
+        {"text": "sum = num1 + num2", "kind": "code", "alt": ["sum=num1+num2", "sum = num1+num2"], "note": "added in the 2026-09-22 check"}
       ]
     }
   ]

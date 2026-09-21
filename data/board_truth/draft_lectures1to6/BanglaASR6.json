@@ -1,13 +1,13 @@
 {
   "lecture": "BanglaASR6",
   "topic": "Digital logic design: analog vs digital, logic gates, AND, OR, NOT",
-  "note": "DRAFT by Claude reading the reconstructed board images on 2026-09-21, without looking at any Qwen transcription. Not verified. A human must check every item before any number from this file is used. Items marked verify:true were hard to read.",
-  "caveat": "Speaker B lecture, held out from the corrected fine-tune, so valid for the VLM and for notes. Gate truth tables are textbook content. 'AND gate' and 'OR gate' are not scored on the gate-list board because the substring test would find them inside 'NAND gate' and 'NOR gate'.",
+  "note": "Drafted by Claude from the reconstructed boards (2026-09-20/21). Every board checked by hand by the user on 2026-09-22 against the board images, without seeing any model output; corrections applied (see item notes).",
+  "caveat": "Speaker B lecture, held out from the corrected fine-tune, so valid for the VLM and for notes. Gate truth tables are textbook content. 'AND gate' and 'OR gate' are scored as whole words, so they are not found inside 'NAND gate', 'NOR gate' or 'X-OR gate'.",
   "boards": [
     {
       "era": 1,
       "image": "output/annotation_demo/all9/BanglaASR6/board_era1_010.jpg",
-      "red_items_checked": "2026-09-22",
+      "checked": "2026-09-22",
       "note": "The 2026-09-22 check also asked for Digital; it is not scored alone because it is always found inside Digital Logic Design, and its line is covered by Discrete value. The checker confirmed the board reads (Ground), not (Low).",
       "items": [
         {"text": "Digital Logic Design", "kind": "term"},
@@ -22,12 +22,15 @@
         {"text": "Logic 1", "kind": "term"},
         {"text": "Logic 0", "kind": "term"},
         {"text": "Key -> A", "kind": "phrase", "alt": ["Key->A", "Key → A", "Key →A", "Key: A"], "note": "added in the 2026-09-22 check"},
-        {"text": "1011", "kind": "number", "note": "small writing at the bottom right; confirmed in the 2026-09-22 check"}
+        {"text": "1011", "kind": "number", "note": "small writing at the bottom right; confirmed in the 2026-09-22 check"},
+        {"text": "analog -> continuous value", "kind": "phrase", "note": "added in the 2026-09-22 check", "alt": ["analog → continuous value", "analog→continuous value", "analog->continuous value", "analog: continuous value"]},
+        {"text": "Digital -> Discrete value", "kind": "phrase", "note": "added in the 2026-09-22 check", "alt": ["Digital → Discrete value", "Digital→Discrete value", "Digital->Discrete value", "digital: discrete value"]}
       ]
     },
     {
       "era": 2,
       "image": "output/annotation_demo/all9/BanglaASR6/board_era2_320.jpg",
+      "checked": "2026-09-22",
       "items": [
         {"text": "Logic gates", "kind": "term"},
         {"text": "NOT gate", "kind": "term"},
@@ -36,23 +39,29 @@
         {"text": "X-NOR gate", "kind": "term", "alt": ["XNOR gate"]},
         {"text": "Fundamental gates", "kind": "phrase", "alt": ["Fundamental gate"]},
         {"text": "Universal gate", "kind": "phrase", "alt": ["Universal gates"]},
-        {"text": "Exclusive gate", "kind": "phrase", "alt": ["Exclusive gates"]}
+        {"text": "Exclusive gate", "kind": "phrase", "alt": ["Exclusive gates"]},
+        {"text": "AND gate", "kind": "term", "whole_word": true, "note": "added in the 2026-09-22 check"},
+        {"text": "OR gate", "kind": "term", "whole_word": true, "note": "added in the 2026-09-22 check"}
       ]
     },
     {
       "era": 3,
       "image": "output/annotation_demo/all9/BanglaASR6/board_era3_600.jpg",
+      "checked": "2026-09-22",
       "items": [
         {"text": "AND gate", "kind": "term"},
         {"text": "A.B = X", "kind": "code", "alt": ["A.B=X", "A·B = X", "A · B = X", "A . B = X"]},
         {"text": "Light ON", "kind": "phrase"},
         {"text": "Light OFF", "kind": "phrase"},
-        {"text": "Bulb", "kind": "phrase", "note": "the lecturer's light-bulb analogy for inputs"}
+        {"text": "Bulb", "kind": "phrase", "note": "the lecturer's light-bulb analogy for inputs"},
+        {"text": "1 -> Light ON", "kind": "phrase", "note": "added in the 2026-09-22 check", "alt": ["1 → Light ON", "1→Light ON", "1->Light ON", "1: Light ON", "1 = Light ON"]},
+        {"text": "0 -> Light OFF", "kind": "phrase", "note": "added in the 2026-09-22 check", "alt": ["0 → Light OFF", "0→Light OFF", "0->Light OFF", "0: Light OFF", "0 = Light OFF"]}
       ]
     },
     {
       "era": 4,
       "image": "output/annotation_demo/all9/BanglaASR6/board_era4_1010.jpg",
+      "checked": "2026-09-22",
       "items": [
         {"text": "AND gate", "kind": "term"},
         {"text": "X = AB", "kind": "code", "alt": ["X=AB"]}
@@ -61,6 +70,7 @@
     {
       "era": 5,
       "image": "output/annotation_demo/all9/BanglaASR6/board_era5_1110.jpg",
+      "checked": "2026-09-22",
       "items": [
         {"text": "OR Gate", "kind": "term"},
         {"text": "A+B = X", "kind": "code", "alt": ["A + B = X", "A+B=X", "X = A+B", "X = A + B"]}
@@ -69,6 +79,7 @@
     {
       "era": 6,
       "image": "output/annotation_demo/all9/BanglaASR6/board_era6_1310.jpg",
+      "checked": "2026-09-22",
       "items": [
         {"text": "NOT gate", "kind": "term"},
         {"text": "Inverter", "kind": "term"},

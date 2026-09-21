@@ -1,12 +1,13 @@
 {
   "lecture": "BanglaASR1",
   "topic": "Python variables and data types",
-  "note": "DRAFT by Claude reading the reconstructed board images on 2026-09-21, without looking at any Qwen transcription. Not verified. A human must check every item before any number from this file is used. Items marked verify:true were hard to read.",
+  "note": "Drafted by Claude from the reconstructed boards (2026-09-20/21). Every board checked by hand by the user on 2026-09-22 against the board images, without seeing any model output; corrections applied (see item notes).",
   "caveat": "Speaker A lecture. Valid for scoring the VLM, which never sees audio. Do NOT use it to score notes built from a fine-tuned transcript made by an adapter trained on speaker A. Python basics are guessable textbook content; the specific example values (Apple, Rafi, 3.1416) are the diagnostic items. The scorer lowercases text, so case-only examples on the board (Name vs name, age vs agE) cannot be scored and are left out.",
   "boards": [
     {
       "era": 1,
       "image": "output/annotation_demo/all9/BanglaASR1/board_era1_000.jpg",
+      "checked": "2026-09-22",
       "items": [
         {"text": "Python Variables", "kind": "term"},
         {"text": "What is Variable?", "kind": "phrase", "alt": ["What is Variable", "What is a variable"]},
@@ -16,6 +17,7 @@
     {
       "era": 2,
       "image": "output/annotation_demo/all9/BanglaASR1/board_era2_150.jpg",
+      "checked": "2026-09-22",
       "items": [
         {"text": "Python Variables", "kind": "term"},
         {"text": "int num = 10", "kind": "code", "alt": ["int num=10", "int (num) = 10"]},
@@ -26,7 +28,7 @@
     {
       "era": 3,
       "image": "output/annotation_demo/all9/BanglaASR1/board_era3_340.jpg",
-      "red_items_checked": "2026-09-22",
+      "checked": "2026-09-22",
       "items": [
         {"text": "Data Type", "kind": "term"},
         {"text": "String", "kind": "term"},
@@ -43,29 +45,34 @@
     {
       "era": 4,
       "image": "output/annotation_demo/all9/BanglaASR1/board_era4_710.jpg",
+      "checked": "2026-09-22",
       "note": "1name is crossed out on the board as an invalid variable name.",
       "items": [
         {"text": "Data Type", "kind": "term"},
         {"text": "1name = \"Rafi\"", "kind": "code", "alt": ["1name=\"Rafi\"", "1name = 'Rafi'", "1name='Rafi'"]},
-        {"text": "Rafi", "kind": "name"}
+        {"text": "Rafi", "kind": "name"},
+        {"text": "Python Variables", "kind": "term", "note": "added in the 2026-09-22 check"},
+        {"text": "name1", "kind": "code", "alt": ["name1 ="], "note": "added in the 2026-09-22 check"}
       ]
     },
     {
       "era": 5,
       "image": "output/annotation_demo/all9/BanglaASR1/board_era5_1000.jpg",
-      "red_items_checked": "2026-09-22",
+      "checked": "2026-09-22",
       "items": [
         {"text": "Data Type", "kind": "term"},
         {"text": "1name = \"Rafi\"", "kind": "code", "alt": ["1name=\"Rafi\"", "1name = 'Rafi'", "1name='Rafi'"]},
         {"text": "name1 = \"Rafi\"", "kind": "code", "alt": ["name1=\"Rafi\"", "name1 = 'Rafi'", "name1='Rafi'"]},
         {"text": "my_name = \"Rafi\"", "kind": "code", "alt": ["my_name=\"Rafi\"", "my_name = 'Rafi'", "my_name='Rafi'"]},
         {"text": "myName", "kind": "code", "note": "only 'myNam' is visible; cut off by the era boundary. Kept in the 2026-09-22 check"},
-        {"text": "Rafi", "kind": "name"}
+        {"text": "Rafi", "kind": "name"},
+        {"text": "Python Variables", "kind": "term", "note": "added in the 2026-09-22 check"}
       ]
     },
     {
       "era": 6,
       "image": "output/annotation_demo/all9/BanglaASR1/board_era6_1120.jpg",
+      "checked": "2026-09-22",
       "items": [
         {"text": "Data Type", "kind": "term"},
         {"text": "pi = 3.1416", "kind": "code", "alt": ["pi=3.1416"]},

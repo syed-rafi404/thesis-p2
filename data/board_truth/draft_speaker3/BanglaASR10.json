@@ -1,12 +1,13 @@
 {
   "lecture": "BanglaASR10",
   "topic": "IPv4 header fields: TTL and the fragmentation flags",
-  "note": "DRAFT by Claude reading the reconstructed board images on 2026-09-21, before any Qwen transcription of these boards existed. Not verified. A human must check every item before any number from this file is used. Items marked verify:true were hard to read.",
+  "note": "Drafted by Claude from the reconstructed boards (2026-09-20/21). Every board checked by hand by the user on 2026-09-22 against the board images, without seeing any model output; corrections applied (see item notes).",
   "caveat": "Speaker C lecture, different camera and room. The reconstructions here are poor (67-91% of tiles clear): the lecturer is partly visible and the board runs off the right edge of the frame, so some writing is cut off. Speaker C is held out from the speaker-A-only adapters.",
   "boards": [
     {
       "era": 1,
       "image": "output/annotation_demo/all9/BanglaASR10/board_era1_020.jpg",
+      "checked": "2026-09-22",
       "items": [
         {"text": "TTL", "kind": "term"},
         {"text": "time to Live", "kind": "term"}
@@ -15,6 +16,7 @@
     {
       "era": 2,
       "image": "output/annotation_demo/all9/BanglaASR10/board_era2_140.jpg",
+      "checked": "2026-09-22",
       "items": [
         {"text": "TTL", "kind": "term"},
         {"text": "time to Live", "kind": "term"},
@@ -24,18 +26,21 @@
     {
       "era": 3,
       "image": "output/annotation_demo/all9/BanglaASR10/board_era3_300.jpg",
+      "checked": "2026-09-22",
       "items": [
         {"text": "time to Live", "kind": "term"},
         {"text": "Endless looping", "kind": "phrase", "alt": ["Endless loop"]},
-        {"text": "24", "kind": "number", "verify": true, "note": "TTL counting down 24 -> 0; the digit could be 24 or 29"},
+        {"text": "24", "kind": "number", "note": "TTL counting down 24 -> 0; the digit could be 24 or 29"},
         {"text": "Reset", "kind": "term"},
-        {"text": "Don't Fragment", "kind": "term", "alt": ["Dont Fragment"]}
+        {"text": "Don't Fragment", "kind": "term", "alt": ["Dont Fragment"]},
+        {"text": "24 -> 0", "kind": "phrase", "note": "added in the 2026-09-22 check", "alt": ["24 → 0", "24→0", "24->0"]},
+        {"text": "TTL", "kind": "term", "note": "added in the 2026-09-22 check"}
       ]
     },
     {
       "era": 4,
       "image": "output/annotation_demo/all9/BanglaASR10/board_era4_520.jpg",
-      "red_items_checked": "2026-09-22",
+      "checked": "2026-09-22",
       "items": [
         {"text": "time to Live", "kind": "term"},
         {"text": "Endless looping", "kind": "phrase", "alt": ["Endless loop"]},
@@ -45,7 +50,9 @@
         {"text": "Don't Fragment", "kind": "term", "alt": ["Dont Fragment"]},
         {"text": "4000B", "kind": "number", "alt": ["4000", "4000 B", "4000 bytes"], "note": "confirmed as 4000B in the 2026-09-22 check"},
         {"text": "1500B", "kind": "number", "alt": ["1500", "1500 B", "1500 bytes"], "note": "written 1500B, confirmed in the 2026-09-22 check"},
-        {"text": "R1", "kind": "code", "note": "router label"}
+        {"text": "R1", "kind": "code", "note": "router label"},
+        {"text": "R2", "kind": "code", "note": "added in the 2026-09-22 check: second router label"},
+        {"text": "TTL", "kind": "term", "note": "added in the 2026-09-22 check"}
       ]
     }
   ]

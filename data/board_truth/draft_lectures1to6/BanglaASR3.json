@@ -1,15 +1,16 @@
 {
   "lecture": "BanglaASR3",
   "topic": "Python conditional statements",
-  "note": "DRAFT by Claude reading the reconstructed board images on 2026-09-21, without looking at any Qwen transcription. Not verified. A human must check every item before any number from this file is used.",
+  "note": "Drafted by Claude from the reconstructed boards (2026-09-20/21). Every board checked by hand by the user on 2026-09-22 against the board images, without seeing any model output; corrections applied (see item notes).",
   "caveat": "Speaker A lecture. Valid for scoring the VLM, which never sees audio. Do NOT use it to score notes built from a fine-tuned transcript made by an adapter trained on speaker A. 'Rain' is not scored on its own because the substring test would find it inside 'training'; it is covered by the if-line.",
   "boards": [
     {
       "era": 1,
       "image": "output/annotation_demo/all9/BanglaASR3/board_era1_000.jpg",
+      "checked": "2026-09-22",
       "items": [
         {"text": "Conditional Statements", "kind": "term"},
-        {"text": "Today's weather", "kind": "phrase", "alt": ["Todays weather"]},
+        {"text": "weather = input(\"Today's weather: \")", "kind": "code", "alt": ["weather = input(\"Today's weather:\")", "weather=input(\"Today's weather: \")", "weather = input('Today\\'s weather: ')"], "note": "corrected in the 2026-09-22 check: the whole line, not just the prompt text"},
         {"text": "if weather == \"Rain\":", "kind": "code", "alt": ["if weather == 'Rain':", "if weather==\"Rain\":", "if weather == \"Rain\""]},
         {"text": "print(\"Bring Umbrella\")", "kind": "code", "alt": ["print('Bring Umbrella')"]},
         {"text": "elif weather == \"Sunny\":", "kind": "code", "alt": ["elif weather == 'Sunny':", "elif weather==\"Sunny\":", "elif weather == \"Sunny\""]},
@@ -18,7 +19,8 @@
         {"text": "Sunny", "kind": "name"},
         {"text": "Umbrella", "kind": "name"},
         {"text": "if Rain user will bring Umbrella", "kind": "phrase", "alt": ["If rain, user will bring umbrella"]},
-        {"text": "If not doesn't bring umbrella", "kind": "phrase", "alt": ["if not, doesn't bring umbrella"]}
+        {"text": "If not doesn't bring umbrella", "kind": "phrase", "alt": ["if not, doesn't bring umbrella"]},
+        {"text": "else:", "kind": "code", "note": "added in the 2026-09-22 check"}
       ]
     }
   ]

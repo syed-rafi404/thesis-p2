@@ -1,20 +1,17 @@
 {
   "lecture": "BanglaASR5",
   "topic": "Python lists, tuples and arrays",
-  "note": "DRAFT by Claude reading the reconstructed board images on 2026-09-21, without looking at any Qwen transcription. Not verified. A human must check every item before any number from this file is used. Items marked verify:true were hard to read.",
+  "note": "Drafted by Claude from the reconstructed boards (2026-09-20/21). Every board checked by hand by the user on 2026-09-22 against the board images, without seeing any model output; corrections applied (see item notes).",
   "caveat": "Speaker A lecture. Valid for scoring the VLM, which never sees audio. Do NOT use it to score notes built from a fine-tuned transcript made by an adapter trained on speaker A.",
   "boards": [
     {
       "era": 1,
       "image": "output/annotation_demo/all9/BanglaASR5_003/board_era1_000.jpg",
-      "red_items_checked": "2026-09-22",
+      "checked": "2026-09-22",
       "items": [
         {"text": "Lists, Tuple and Arrays", "kind": "term", "alt": ["Lists, Tuples and Arrays"]},
-        {"text": "fruit = [\"Apple\", \"Orange\", \"Mango\"]", "kind": "code",
-         "alt": ["fruit = ['Apple', 'Orange', 'Mango']", "fruit=[\"Apple\",\"Orange\",\"Mango\"]"]},
-        {"text": "elements = [\"Apple\", 7, 3.14, True]", "kind": "code",
-         "alt": ["elements = ['Apple', 7, 3.14, True]", "elements=[\"Apple\",7,3.14,True]"],
-         "note": "3.14 is written close to 3:14; confirmed in the 2026-09-22 check"},
+        {"text": "fruit = [\"Apple\", \"Orange\", \"Mango\"]", "kind": "code", "alt": ["fruit = ['Apple', 'Orange', 'Mango']", "fruit=[\"Apple\",\"Orange\",\"Mango\"]"]},
+        {"text": "elements = [\"Apple\", 7, 3.14, True]", "kind": "code", "alt": ["elements = ['Apple', 7, 3.14, True]", "elements=[\"Apple\",7,3.14,True]"], "note": "3.14 is written close to 3:14; confirmed in the 2026-09-22 check"},
         {"text": "print(elements[0])", "kind": "code"},
         {"text": "print(len(elements))", "kind": "code"},
         {"text": "elements[0] = \"Mango\"", "kind": "code", "alt": ["elements[0] = 'Mango'", "elements[0]=\"Mango\""]},
@@ -25,10 +22,10 @@
     {
       "era": 2,
       "image": "output/annotation_demo/all9/BanglaASR5_003/board_era2_710.jpg",
+      "checked": "2026-09-22",
       "items": [
         {"text": "Lists, Tuple and Arrays", "kind": "term", "alt": ["Lists, Tuples and Arrays"]},
-        {"text": "elements = (\"Apple\", 7, 3.1416, True)", "kind": "code",
-         "alt": ["elements = ('Apple', 7, 3.1416, True)", "elements=(\"Apple\",7,3.1416,True)"]},
+        {"text": "elements = (\"Apple\", 7, 3.1416, True)", "kind": "code", "alt": ["elements = ('Apple', 7, 3.1416, True)", "elements=(\"Apple\",7,3.1416,True)"]},
         {"text": "3.1416", "kind": "number"},
         {"text": "element_list = list(elements)", "kind": "code", "alt": ["element_list=list(elements)"]},
         {"text": "element_list[2] = 5", "kind": "code", "alt": ["element_list[2]=5"]},
@@ -39,17 +36,13 @@
     {
       "era": 3,
       "image": "output/annotation_demo/all9/BanglaASR5_003/board_era3_1100.jpg",
-      "red_items_checked": "2026-09-22",
+      "checked": "2026-09-22",
       "items": [
         {"text": "Lists, Tuple and Arrays", "kind": "term", "alt": ["Lists, Tuples and Arrays"]},
         {"text": "import numpy as np", "kind": "code"},
         {"text": "list_1 = [7, 8, 9, 10]", "kind": "code", "alt": ["list_1=[7,8,9,10]", "list_1 = [7,8,9,10]"]},
-        {"text": "list_1 = np.array([list_1])", "kind": "code",
-         "alt": ["np.array([list_1])", "np.array(list_1)", "list_1=np.array([list_1])"],
-         "note": "confirmed on the board in the 2026-09-22 check"},
-        {"text": "list_2 = [\"Apple\", 07, True]", "kind": "code",
-         "alt": ["list_2 = ['Apple', 07, True]", "list_2 = [\"Apple\", 7, True]"],
-         "note": "the middle value reads as 07; confirmed in the 2026-09-22 check"}
+        {"text": "list_1 = np.array([list_1])", "kind": "code", "alt": ["np.array([list_1])", "np.array(list_1)", "list_1=np.array([list_1])"], "note": "confirmed on the board in the 2026-09-22 check"},
+        {"text": "list_2 = [\"Apple\", 07, True]", "kind": "code", "alt": ["list_2 = ['Apple', 07, True]", "list_2 = [\"Apple\", 7, True]"], "note": "the middle value reads as 07; confirmed in the 2026-09-22 check"}
       ]
     }
   ]

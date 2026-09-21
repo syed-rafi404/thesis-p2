@@ -1,12 +1,12 @@
 {
   "lecture": "BanglaASR9",
   "topic": "SQL SELECT, aggregate functions, subquery",
-  "note": "DRAFT produced by reading the reconstructed boards. A human must verify every item before this is used in the thesis. Items marked verify:true were hard to read.",
+  "note": "Drafted by Claude from the reconstructed boards (2026-09-20/21). Every board checked by hand by the user on 2026-09-22 against the board images, without seeing any model output; corrections applied (see item notes).",
   "boards": [
     {
       "era": 1,
       "image": "output/annotation_demo/all9/BanglaASR9_007/board_era1_010.jpg",
-      "red_items_checked": "2026-09-22",
+      "checked": "2026-09-22",
       "items": [
         {"text": "Database Management System", "kind": "term"},
         {"text": "DBMS", "kind": "term"},
@@ -53,12 +53,11 @@
     {
       "era": 2,
       "image": "output/annotation_demo/all9/BanglaASR9_007/board_era2_920.jpg",
+      "checked": "2026-09-22",
       "note": "The subquery and its result are the most diagnostic items on any board in the corpus: neither the query text nor the answer 110112 / 3.98 can be produced from prior knowledge.",
       "items": [
-        {"text": "Select ID, CGPA from Student_Info", "kind": "code",
-         "alt": ["select ID, CGPA from Student_Info", "SELECT ID, CGPA FROM Student_Info"]},
-        {"text": "select max(CGPA) from Student_Info", "kind": "code",
-         "alt": ["SELECT MAX(CGPA) FROM Student_Info", "select max (CGPA) from Student_Info"]},
+        {"text": "Select ID, CGPA from Student_Info", "kind": "code", "alt": ["select ID, CGPA from Student_Info", "SELECT ID, CGPA FROM Student_Info"]},
+        {"text": "select max(CGPA) from Student_Info", "kind": "code", "alt": ["SELECT MAX(CGPA) FROM Student_Info", "select max (CGPA) from Student_Info"]},
         {"text": "where CGPA =", "kind": "code", "alt": ["WHERE CGPA ="]},
         {"text": "max(CGPA)", "kind": "code", "alt": ["MAX(CGPA)", "max (CGPA)"]},
         {"text": "Student_Info", "kind": "code", "alt": ["Student Info"]},
@@ -86,7 +85,16 @@
         {"text": "3.40", "kind": "number", "alt": ["3.4"]},
         {"text": "Economics", "kind": "term"},
         {"text": "English", "kind": "term"},
-        {"text": "MicroBiology", "kind": "term", "alt": ["Microbiology"]}
+        {"text": "MicroBiology", "kind": "term", "alt": ["Microbiology"]},
+        {"text": "3.77", "kind": "number", "note": "added in the 2026-09-22 check"},
+        {"text": "01-01-2024", "kind": "number", "note": "added in the 2026-09-22 check", "alt": ["01/01/2024"]},
+        {"text": "20-09-2024", "kind": "number", "note": "added in the 2026-09-22 check", "alt": ["20/09/2024"]},
+        {"text": "21-10-2021", "kind": "number", "note": "added in the 2026-09-22 check", "alt": ["21/10/2021"]},
+        {"text": "02-02-2020", "kind": "number", "note": "added in the 2026-09-22 check", "alt": ["02/02/2020"]},
+        {"text": "11-11-2025", "kind": "number", "note": "added in the 2026-09-22 check", "alt": ["11/11/2025"]},
+        {"text": "Department", "kind": "code", "note": "added in the 2026-09-22 check"},
+        {"text": "CS", "kind": "term", "note": "added in the 2026-09-22 check"},
+        {"text": "Math", "kind": "term", "note": "added in the 2026-09-22 check"}
       ]
     }
   ]

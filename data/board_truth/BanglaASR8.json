@@ -1,11 +1,12 @@
 {
   "lecture": "BanglaASR8",
   "topic": "DBMS introduction, CREATE TABLE",
-  "note": "DRAFT produced by reading the reconstructed boards. A human must verify every item before this is used in the thesis. Items marked verify:true were hard to read.",
+  "note": "Drafted by Claude from the reconstructed boards (2026-09-20/21). Every board checked by hand by the user on 2026-09-22 against the board images, without seeing any model output; corrections applied (see item notes).",
   "boards": [
     {
       "era": 1,
       "image": "output/annotation_demo/all9/BanglaASR8/board_era1_000.jpg",
+      "checked": "2026-09-22",
       "note": "Lecture opening, 6 frames, 91.3% clear. Board holds only the title and three empty boxes, so there is little to score. A black rectangular artifact is present near the bottom centre and should be investigated.",
       "items": [
         {"text": "Database Management System", "kind": "term"},
@@ -15,7 +16,7 @@
     {
       "era": 2,
       "image": "output/annotation_demo/all9/BanglaASR8/board_era2_110.jpg",
-      "red_items_checked": "2026-09-22",
+      "checked": "2026-09-22",
       "items": [
         {"text": "Database Management System", "kind": "term"},
         {"text": "DBMS", "kind": "term"},
@@ -64,6 +65,7 @@
     {
       "era": 3,
       "image": "output/annotation_demo/all9/BanglaASR8/board_era3_1100.jpg",
+      "checked": "2026-09-22",
       "items": [
         {"text": "MySQL", "kind": "term"},
         {"text": "Query Language", "kind": "term"},
@@ -97,7 +99,16 @@
         {"text": "Economics", "kind": "term"},
         {"text": "English", "kind": "term"},
         {"text": "MicroBiology", "kind": "term", "alt": ["Microbiology"]},
-        {"text": "Varchar", "kind": "term", "alt": ["varchar"]}
+        {"text": "Varchar", "kind": "term", "alt": ["varchar"]},
+        {"text": "3.77", "kind": "number", "note": "added in the 2026-09-22 check"},
+        {"text": "First_Name", "kind": "code", "alt": ["First Name"], "note": "added in the 2026-09-22 check"},
+        {"text": "Last_Name", "kind": "code", "alt": ["Last Name"], "note": "added in the 2026-09-22 check"},
+        {"text": "Department", "kind": "code", "note": "added in the 2026-09-22 check"},
+        {"text": "01-01-2024", "kind": "number", "note": "added in the 2026-09-22 check", "alt": ["01/01/2024"]},
+        {"text": "20-09-2024", "kind": "number", "note": "added in the 2026-09-22 check", "alt": ["20/09/2024"]},
+        {"text": "21-10-2021", "kind": "number", "note": "added in the 2026-09-22 check", "alt": ["21/10/2021"]},
+        {"text": "02-02-2020", "kind": "number", "note": "added in the 2026-09-22 check", "alt": ["02/02/2020"]},
+        {"text": "11-11-2025", "kind": "number", "note": "added in the 2026-09-22 check", "alt": ["11/11/2025"]}
       ]
     }
   ]

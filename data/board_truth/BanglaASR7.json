@@ -1,69 +1,73 @@
 {
   "lecture": "BanglaASR7",
   "topic": "Universal gates: NOR, NAND, X-OR, X-NOR",
-  "note": "DRAFT produced by reading the reconstructed boards. A human must verify every item before this is used in the thesis. Items marked verify:true were hard to read.",
+  "note": "Drafted by Claude from the reconstructed boards (2026-09-20/21). Every board checked by hand by the user on 2026-09-22 against the board images, without seeing any model output; corrections applied (see item notes).",
   "caveat": "This lecture is the least diagnostic of the three. Truth tables and gate symbols for NAND, NOR, XOR and XNOR are standard textbook content that the summarising model can reproduce from prior knowledge without reading the board at all. Read recall here with that in mind; the DBMS boards in BanglaASR8 and BanglaASR9 carry the unguessable content. The items most worth watching here are the lecturer's own phrasings, marked kind: phrase.",
   "boards": [
     {
       "era": 1,
       "image": "output/annotation_demo/all9/BanglaASR7_004/board_era1_000.jpg",
+      "checked": "2026-09-22",
       "note": "Lecture opening, 6 frames, 95.1% clear. Very little written yet.",
       "items": [
-        {"text": "Digital Logic Design", "kind": "term"}
+        {"text": "Digital Logic Design", "kind": "term"},
+        {"text": "Universal gate", "kind": "phrase", "alt": ["Universal gates"], "note": "added in the 2026-09-22 check"},
+        {"text": "NOR gate", "kind": "term", "alt": ["N OR gate"], "whole_word": true, "note": "added in the 2026-09-22 check"},
+        {"text": "NAND gate", "kind": "term", "note": "added in the 2026-09-22 check"}
       ]
     },
     {
       "era": 2,
       "image": "output/annotation_demo/all9/BanglaASR7_004/board_era2_100.jpg",
+      "checked": "2026-09-22",
       "items": [
         {"text": "Digital Logic Design", "kind": "term"},
         {"text": "NOR gate", "kind": "term"},
         {"text": "OR+NOT", "kind": "phrase", "alt": ["OR + NOT", "OR plus NOT"]},
         {"text": "A+B", "kind": "code", "alt": ["A + B"]},
-        {"text": "NOR", "kind": "term"}
+        {"text": "NOR", "kind": "term"},
+        {"text": "OR+NOT = NOR", "kind": "phrase", "alt": ["OR + NOT = NOR", "OR+NOT=NOR"], "note": "added in the 2026-09-22 check"}
       ]
     },
     {
       "era": 3,
       "image": "output/annotation_demo/all9/BanglaASR7_004/board_era3_440.jpg",
+      "checked": "2026-09-22",
       "items": [
         {"text": "Digital Logic Design", "kind": "term"},
         {"text": "NAND gate", "kind": "term"},
         {"text": "AND+NOT", "kind": "phrase", "alt": ["AND + NOT", "AND plus NOT"]},
         {"text": "NAND", "kind": "term"},
-        {"text": "AB", "kind": "code"}
+        {"text": "AB", "kind": "code"},
+        {"text": "(AB)'", "kind": "code", "alt": ["NOT(AB)", "(A.B)'", "(A·B)'", "NOT(A.B)"], "note": "added in the 2026-09-22 check: one bar over AB, the NAND output. The check read it as A'B', which is a different formula (two separate bars)"}
       ]
     },
     {
       "era": 4,
       "image": "output/annotation_demo/all9/BanglaASR7_004/board_era4_720.jpg",
+      "checked": "2026-09-22",
       "note": "The truth table on this board is partially erased at the era boundary. The two phrases on the right are the diagnostic items.",
       "items": [
         {"text": "Digital Logic Design", "kind": "term"},
         {"text": "X-OR gate", "kind": "term", "alt": ["XOR gate", "X-OR"]},
-        {"text": "same input = 0", "kind": "phrase",
-         "alt": ["same input=0", "same inputs = 0", "same input gives 0"]},
-        {"text": "different input = 1", "kind": "phrase",
-         "alt": ["different input=1", "different inputs = 1", "different input gives 1"]},
-        {"text": "X-OR", "kind": "term", "alt": ["XOR"]}
+        {"text": "same input = 0", "kind": "phrase", "alt": ["same input=0", "same inputs = 0", "same input gives 0"]},
+        {"text": "different input = 1", "kind": "phrase", "alt": ["different input=1", "different inputs = 1", "different input gives 1"]},
+        {"text": "X-OR", "kind": "term", "alt": ["XOR"]},
+        {"text": "A⊕B", "kind": "code", "alt": ["A ⊕ B", "A XOR B"], "note": "added in the 2026-09-22 check"}
       ]
     },
     {
       "era": 5,
       "image": "output/annotation_demo/all9/BanglaASR7_004/board_era5_1050.jpg",
-      "red_items_checked": "2026-09-22",
+      "checked": "2026-09-22",
       "items": [
         {"text": "Digital Logic Design", "kind": "term"},
         {"text": "X-NOR gate", "kind": "term", "alt": ["XNOR gate", "X-NOR"]},
-        {"text": "X-OR+NOT", "kind": "phrase",
-         "alt": ["X-OR + NOT", "XOR + NOT", "XOR plus NOT"]},
-        {"text": "A'B' + AB", "kind": "code",
-         "alt": ["A'B'+AB", "NOT(A)NOT(B) + AB", "NOT(A) NOT(B) + AB", "NOT(A).NOT(B) + AB", "NOT(A)·NOT(B) + AB"],
-         "note": "corrected in the 2026-09-22 check; was drafted as AB + AB"},
-        {"text": "(A⊕B)'", "kind": "code",
-         "alt": ["(A XOR B)'", "NOT(A⊕B)", "NOT(A XOR B)", "(A ⊕ B)'", "NOT(A ⊕ B)"],
-         "note": "added in the 2026-09-22 check: the output label of the X-NOR gate"},
-        {"text": "X-NOR", "kind": "term", "alt": ["XNOR"]}
+        {"text": "X-OR+NOT", "kind": "phrase", "alt": ["X-OR + NOT", "XOR + NOT", "XOR plus NOT"]},
+        {"text": "A'B' + AB", "kind": "code", "alt": ["A'B'+AB", "NOT(A)NOT(B) + AB", "NOT(A) NOT(B) + AB", "NOT(A).NOT(B) + AB", "NOT(A)·NOT(B) + AB"], "note": "corrected in the 2026-09-22 check; was drafted as AB + AB"},
+        {"text": "(A⊕B)'", "kind": "code", "alt": ["(A XOR B)'", "NOT(A⊕B)", "NOT(A XOR B)", "(A ⊕ B)'", "NOT(A ⊕ B)"], "note": "added in the 2026-09-22 check: the output label of the X-NOR gate"},
+        {"text": "X-NOR", "kind": "term", "alt": ["XNOR"]},
+        {"text": "A⊕B", "kind": "code", "alt": ["A ⊕ B", "A XOR B"], "note": "added in the 2026-09-22 check"}
       ]
     }
   ]
