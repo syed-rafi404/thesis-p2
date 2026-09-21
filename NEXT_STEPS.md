@@ -6,6 +6,9 @@ If you are lost, start here. One page. Updated 2026-09-21.
 
 ## Moving to the 5090 — copy these four things
 
+**DONE 2026-09-21**, except `claude_checkpoint\`, which was not copied. Optional: CLAUDE.md
+carries everything needed to work.
+
 Git only carries the code. Copy these from the 3060 as well:
 
 | From the 3060 | Why |
@@ -56,6 +59,9 @@ split is what makes the headline result credible. This is the only urgent thing.
 ---
 
 ## When the 5090 is ready (in order, stop when tired)
+
+**Steps 1 and 2 are DONE (2026-09-21).** Only the Qwen weights are left; they download
+automatically on the first run of step 5a, to `D:\T2520875\hf_cache`.
 
 **1. Set up the environment.** One env with everything:
 

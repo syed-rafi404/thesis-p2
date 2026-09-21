@@ -15,8 +15,10 @@ goes stale, fix it rather than adding a contradictory note.
 3. Every number the thesis may claim is in [RESULTS.md](RESULTS.md) with the command that
    regenerates it. Section 7 lists retired, fabricated claims. Never reuse one.
 
-**Where things stood at the last checkpoint (2026-09-21):** everything was committed and pushed.
-Work on the RTX 3060 machine was finished; the next session is expected on the **RTX 5090** machine.
+**Where things stood at the last checkpoint (2026-09-21):** work on the RTX 3060 was finished and
+pushed. The **RTX 5090** environment is now set up and passes the preflight (see "Two machines").
+The copy of the repo on the 5090 predated the final push; run `git pull` before starting on a
+freshly copied folder.
 The 5090's first job is NEXT_STEPS.md step 5: the VLM board transcription (raw frame vs
 reconstructed board) and regenerating the notes one change at a time. Those two need Qwen weights,
 which the 3060 never had.
@@ -128,8 +130,17 @@ erpor e ami ki korbo? not korbo."
 | | RTX 3060, 12 GB (dev, `F:\thesisP2`) | RTX 5090, 32 GB (final runs) |
 |---|---|---|
 | Role | Built and tested everything | Qwen VLM + LLM runs, 8 h fine-tune |
-| torch | 2.5.1+cu121 — **do not disturb** | needs a **fresh env, torch ≥ 2.7, CUDA 12.8** (Blackwell, sm_120). 2.5.1+cu121 will import, see the card, then fail |
-| Weights | whisper-small + LoRA only, no Qwen | Qwen2.5-VL-7B-Instruct, Qwen2.5-7B-Instruct |
+| torch | 2.5.1+cu121 — **do not disturb** | 2.11.0+cu128 (Blackwell, sm_120, needs torch ≥ 2.7). 2.5.1+cu121 would import, see the card, then fail |
+| Weights | whisper-small + LoRA only, no Qwen | Qwen2.5-VL-7B-Instruct, Qwen2.5-7B-Instruct (download to `HF_HOME`) |
+
+**5090 setup (done 2026-09-21).** Repo `D:\T2520875\thesisP2\thesisP2`, ft_work
+`D:\T2520875\thesisP2\ft_work` (the default sibling, no env var needed). One interpreter for
+everything: `C:\Program Files\Python312\python.exe` (packages in the user site), with transformers
+5.12.1 (same as the 3060), peft 0.21.0, accelerate, matplotlib, Pillow, rich, scipy.
+**`HF_HOME=D:\T2520875\hf_cache`** is set as a user env var because C: has only 25 GB free and the
+two Qwen models are about 31 GB. No ffmpeg; step 5 does not need it, new audio data will.
+The LoRA `adapter_config.json` still names the 3060's `F:\` base path; harmless, both loaders
+pass the base model in explicitly.
 
 A third machine produced the original P2 pipeline results: **RTX 3090, 24 GB**, paths under
 `C:\Users\T2520785`. The abstract's hardware claim is about that machine and is correct.

@@ -93,6 +93,8 @@ def check_packages():
         "numpy": "numpy", "PIL": "Pillow", "matplotlib": "matplotlib",
         "transformers": "transformers", "peft": "peft",
         "soundfile": "soundfile", "jiwer": "jiwer",
+        # device_map="auto" in the Qwen loaders needs accelerate; the generator needs rich
+        "accelerate": "accelerate", "rich": "rich",
     }
     missing = []
     for module, package in needed.items():
@@ -197,7 +199,9 @@ def check_data():
 
 
 def check_vlm():
+    hf_home = os.environ.get("HF_HOME")
     candidates = [os.environ.get("THESIS_QWEN"), FT_DIR / "models" / "qwen2.5-vl",
+                  Path(hf_home) / "hub" if hf_home else None,
                   Path.home() / ".cache" / "huggingface" / "hub"]
     for c in candidates:
         if c and Path(c).exists():
