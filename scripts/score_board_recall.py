@@ -173,11 +173,17 @@ def wilcoxon(diffs):
     return min(1.0, 1.0 - erf)
 
 
-def load_truth(gt_dir):
+def load_truth(gt_dirs):
+    """Answer keys from one folder or several; a lecture may appear only once."""
+    if isinstance(gt_dirs, (str, Path)):
+        gt_dirs = [gt_dirs]
     out = {}
-    for path in sorted(Path(gt_dir).glob("*.json")):
-        data = json.loads(path.read_text(encoding="utf-8"))
-        out[data["lecture"]] = data["boards"]
+    for gt_dir in gt_dirs:
+        for path in sorted(Path(gt_dir).glob("*.json")):
+            data = json.loads(path.read_text(encoding="utf-8"))
+            if data["lecture"] in out:
+                sys.exit(f"{data['lecture']} has an answer key in more than one --gt folder")
+            out[data["lecture"]] = data["boards"]
     return out
 
 
@@ -192,7 +198,9 @@ def find_notes(root, lecture, name):
 
 def main():
     ap = argparse.ArgumentParser(description="Score board-content recall in generated notes")
-    ap.add_argument("--gt", default="data/board_truth", help="Directory of board truth JSON")
+    ap.add_argument("--gt", nargs="+", default=["data/board_truth"],
+                    help="Folder(s) of board truth JSON. Default: the original 10 boards. "
+                         "All 35: data/board_truth data/board_truth/draft_lectures1to6")
     ap.add_argument("--notes-name", default="final_lecture_notes.md")
     ap.add_argument("--runs", default=RUNS, help="Run directory for a single scoring pass")
     ap.add_argument("--compare", nargs=2, metavar=("BASELINE", "FULL"),

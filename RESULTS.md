@@ -659,6 +659,37 @@ boards, which if anything favours the mosaic.
 The VLM read the disputed CGPA as 3.77 on one board and 3.7 on the next. (2) Ten
 boards from three lectures of one speaker.
 
+#### 5.2b The same comparison on all 35 boards of the 9 lectures (2026-09-21)
+
+An answer key for the other 25 boards (lectures 1-6, 126 items) was drafted by
+reading the reconstructed board images, **without looking at any Qwen output**,
+and committed before scoring (commit `4fd21d1`, folder
+`data/board_truth/draft_lectures1to6/`). The VLM is valid on every lecture,
+because it reads images and never touches the audio or the ASR split.
+
+| VLM output, 35 boards, 293 items | Recall | Numbers | Names | Code | Terms | Phrases |
+|---|---|---|---|---|---|---|
+| Keyword prompt | 34.8% | **0/54** | 43/47 | 8/85 | 46/85 | 5/22 |
+| **Full transcription, raw frame** | **91.5%** | **52/54** | 45/47 | 75/85 | 80/85 | 16/22 |
+| Full transcription, reconstructed board | 95.9% | 53/54 | 45/47 | 78/85 | 85/85 | 20/22 |
+
+- Keyword -> full transcription (raw frame): better on **32 of 35 boards, worse
+  on none**; sign test p = 4.7e-10, Wilcoxon p = 8.0e-07. On the 25 new boards
+  alone: 18.3% -> 84.1%, better on 24, worse on 0, p = 1.2e-07.
+- Raw frame -> reconstructed board: 91.5% -> 95.9%, better on 7, worse on 2,
+  sign p = 0.18, Wilcoxon p = 0.066. **A trend, not significant.** On the 25 new,
+  code-heavy boards the gap is larger (84.1% -> 92.9%, 6 vs 2, p = 0.29).
+- Notes (5.3 C) on the same 35 boards: 38.9% -> 88.7%, better on 28, worse on 1,
+  sign p = 1.1e-07. Notes C for lectures 1-5 use the baseline Whisper transcript,
+  not the fine-tuned one, so they carry no speaker-A leakage.
+
+**Caveat that matters for the 35-board numbers:** the 25-board key was drafted
+by an AI model (Claude) and is unverified; the original 10-board key was drafted
+the same way. Two AI readers can misread the same handwriting the same way, so
+human verification of both keys is what makes these numbers publishable.
+Reproduce: `python scripts/score_board_recall.py --gt data/board_truth data/board_truth/draft_lectures1to6 --compare-names visual_keywords.json board_text_frame.md`
+(`--gt` alone keeps the original 10 boards, so every earlier number is unchanged).
+
 Reproduce:
 
 ```
