@@ -713,17 +713,24 @@ the draft keys; the conclusions did not change.**
 | Boards | Keyword prompt | Full transcription, raw frame | Reconstructed board | Keyword -> frame |
 |---|---|---|---|---|
 | 10 boards, lectures 7-9, 194 items | 41.2% | **96.9%** | 97.9% | better on 9, worse on 0, sign p = 0.0039 |
-| **35 boards, lectures 1-9, 349 items** | **31.2%** | **88.8%** | 96.0% | **better on 34, worse on 0, sign p = 1.2e-10, Wilcoxon p = 3.7e-07** |
+| **35 boards, lectures 1-9, 349 items** | **31.2%** | **88.8%** | 95.7% | **better on 34, worse on 0, sign p = 1.2e-10, Wilcoxon p = 3.7e-07** |
 | Speaker3, 10 boards, 87 items | not run | 89.7% | 85.1% | — |
 
 By kind, 35 boards, keyword -> full transcription: numbers **0/67 -> 65/67**,
 names 43/47 -> 45/47, code 14/111 -> 90/111, terms 47/94 -> 89/94, phrases
 5/30 -> 21/30.
 
-**Reconstructed board against raw frame:** 35 boards 88.8% -> 96.0%, better on 8,
+**Reconstructed board against raw frame:** 35 boards 88.8% -> 95.7%, better on 8,
 worse on 3, sign p = 0.23, Wilcoxon p = 0.056; Speaker3 89.7% -> 85.1%, worse on
 one board. **A trend on lectures 1-9, not significant, and absent for Speaker3.**
 Keep saying: the prompt is what makes the VLM read the board.
+
+**Two limits of the reconstruction the hand check exposed**, worth a sentence each
+in the thesis: (1) **glare** from the ceiling lights sits in every frame, so no
+choice of frame removes it (BanglaASR8, the CGPA 3.77 cell); (2) **content visible
+in only one frame can be lost**: on BanglaASR6 the binary number 01011011 is fully
+written only at 3:00, covered at 3:10 and wiped by 3:20, so the reconstruction
+fills the middle digits from earlier frames and shows only "0 ... 1011".
 
 **The notes:**
 

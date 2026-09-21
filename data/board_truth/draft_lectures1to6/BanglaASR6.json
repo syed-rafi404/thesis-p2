@@ -22,7 +22,7 @@
         {"text": "Logic 1", "kind": "term"},
         {"text": "Logic 0", "kind": "term"},
         {"text": "Key -> A", "kind": "phrase", "alt": ["Key->A", "Key → A", "Key →A", "Key: A"], "note": "added in the 2026-09-22 check"},
-        {"text": "1011", "kind": "number", "note": "small writing at the bottom right; confirmed in the 2026-09-22 check"},
+        {"text": "01011011", "kind": "number", "note": "corrected 2026-09-22: the full number is visible only in the frame at 3:00 (head covers it at 3:10, board wiped by 3:20), so the reconstruction shows only 0 and 1011. The checker read 0101011; the enlarged 3:00 frame shows eight digits, 01011011 (Temp/binary_number_at_3m00s.jpg)"},
         {"text": "analog -> continuous value", "kind": "phrase", "note": "added in the 2026-09-22 check", "alt": ["analog → continuous value", "analog→continuous value", "analog->continuous value", "analog: continuous value"]},
         {"text": "Digital -> Discrete value", "kind": "phrase", "note": "added in the 2026-09-22 check", "alt": ["Digital → Discrete value", "Digital→Discrete value", "Digital->Discrete value", "digital: discrete value"]}
       ]

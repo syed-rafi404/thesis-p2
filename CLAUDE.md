@@ -110,9 +110,10 @@ is an established area. Say so if asked.
 **The VLM result for the supervisor — on hand-verified answer keys (RESULTS.md 5.0, 2026-09-22).**
 Same Qwen2.5-VL-7B, only the prompt changed, 35 boards of lectures 1–9, 349 items: board-content
 recall **31.2% (keyword prompt) → 88.8% (full transcription)**, better on 34 boards, worse on none,
-sign p = 1.2e-10; numbers 0/67 → 65/67. A third lecturer's boards: 89.7%. Reconstructed board 96.0%
+sign p = 1.2e-10; numbers 0/67 → 65/67. A third lecturer's boards: 89.7%. Reconstructed board 95.7%
 vs raw frame 88.8%: a trend (Wilcoxon p = 0.056, sign p = 0.23), absent for Speaker3: **the gain is
-the prompt, not the reconstruction.** Say that plainly.
+the prompt, not the reconstruction.** Say that plainly. Reconstruction limits found in the hand
+check: it cannot remove glare, and loses content visible in only one frame (RESULTS.md 5.0).
 
 ---
 
