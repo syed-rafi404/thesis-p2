@@ -66,8 +66,10 @@ Video in, a usable lecture note out:
    Qwen2.5-VL answers per number). Look: `Temp/mockup_nand_board.jpg`.
 3. A notes LLM combines board and transcript into a lecture note that refers to the boxes
    ("look at purple box 5"). Target look: `Temp/MOCKUP_lecture_note.html`.
-4. Three versions per lecture: `english`, `banglish`, `bangla` (Bengali script, English technical
-   terms kept). The student picks.
+4. Two versions per lecture: `english` (English text with the lecturer's Banglish words quoted and
+   translated, as in the mockup) and `banglish`. The student picks. **Bangla (Bengali script) was
+   dropped by the user on 2026-09-22** on Claude's advice: weakest quality, only LLM translation
+   (not a contribution), extra checking before the defense. Future work; do not build it.
 
 Agreed with the user, who asked to be pushed back on expectations:
 - **The mockup is Claude's handwork.** Box names and all its text are Claude's; the first quote was
@@ -76,8 +78,9 @@ Agreed with the user, who asked to be pushed back on expectations:
 - Always the clean board; the raw-frame-with-teacher route is dropped.
 - Quotes only word for word from `transcript_finetuned_v2.txt`; a checker drops the rest. This
   replaces "fix the broken `mixed` quotes".
-- Bangla is the weakest version; the user judges it. Usefulness needs a human rating (5 classmates,
-  2-3 lectures, 1-5); until then the thesis says "demonstrate".
+- Usefulness needs people: a survey of about 20 once everything is done, old vs new notes of the
+  same lecture ("which helps more?", a paired before/after result) plus 1-5 ratings. Until then the
+  thesis says "demonstrate". Offer to build the form.
 - New prompt styles go beside the old ones; `legacy` stays the default. The design is agreed; the
   build waits for the user's "go".
 - Notes model: Qwen3-32B at 4-bit on the 5090 is proposed, **not confirmed**; the 7B produced the
@@ -87,8 +90,8 @@ Agreed with the user, who asked to be pushed back on expectations:
   user accepts sending lecture text out.
 - **Scope frozen until the defense.** The 10 h of new data comes after it.
 - Stages: A = build on the 3060 with a stand-in model; B = Qwen runs on the 5090 (VLM re-read of the
-  new boards with old-vs-new scoring, box naming, notes x 3 languages, 7B vs 32B vs mockup side by
-  side); C = the user's classmate rating and Bangla check. Details: NEXT_STEPS.md "THE GOAL".
+  new boards with old-vs-new scoring, box naming, notes x 2 languages, 7B vs 32B vs mockup side by
+  side); C = the user's survey. Details: NEXT_STEPS.md "THE GOAL".
 
 ---
 
@@ -255,7 +258,7 @@ command; only change global config after asking.
 | Board reconstruction (tiled mosaic) | **Working, measured** | median 97.7% tiles clear, 35 boards |
 | Learned lecturer mask + clean-up | **Working, judged by eye** | All 45 boards; VLM scoring pending (5090) |
 | Region detection | Working, **not evaluated** | No layout ground truth exists |
-| VLM box naming, box-referring notes, Bangla notes | **Not built** | The final deliverable; see its section above |
+| VLM box naming, box-referring notes | **Not built** | The final deliverable; see its section above. Bangla notes dropped |
 | Fusion (dual-ASR, CMV) | Negative | +0.7 pp, p = 0.32 |
 | Visual bias via LogitsProcessor | Failed, disabled | `config/live_config.yaml` still defaults `bias_strength: 2.0` |
 | YOLOv8-Pose gaze tracking | Failed | 0 detections |

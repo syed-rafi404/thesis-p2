@@ -16,7 +16,10 @@ Put in a Banglish lecture video; get back a lecture note a student can actually 
 3. **Notes.** An LLM combines the board (from the VLM) and the transcript into a real lecture note
    that points at the boxes ("look at the purple box 5").
    Target look: `F:\thesisP2\thesisP2\Temp\MOCKUP_lecture_note.html`
-4. **Three versions of every note:** English, Banglish, Bangla. The student picks one.
+4. **Two versions of every note:** English (with the lecturer's own Banglish words quoted and
+   translated, like the mockup) and Banglish. The student picks one.
+   **Bangla dropped (decided 2026-09-22):** it would be the weakest version, it is only the LLM
+   translating (not our contribution), and it adds checking work before the defense. Future work.
 
 ### Where each part stands
 
@@ -27,7 +30,7 @@ Put in a Banglish lecture video; get back a lecture note a student can actually 
 | 2b. Box positions | **Done** (found from the ink). Never measured; sometimes splits or merges boxes |
 | 2c. Box names by the VLM | **Not built** |
 | 3. Notes that point at the boxes | **Not built** (the parts exist) |
-| 4. Three languages | English and Banglish exist in the code; **Bangla script not built** |
+| 4. Two languages | English and Banglish options exist in the code; the new layout is not built |
 
 ### What we agreed to expect (honest limits)
 
@@ -37,21 +40,22 @@ Put in a Banglish lecture video; get back a lecture note a student can actually 
 - The real notes will be plainer than the mockup. A bigger notes model (Qwen3-32B) closes part of
   the gap, not all: it only reads the VLM's text, never the board itself.
 - **Always the clean board.** The "VLM draws boxes around the teacher" route is dropped.
-- **Bangla will be the weakest version.** Bengali script with the English technical terms kept
-  ("NAND gate"). You read a few Bangla notes and judge them; Claude cannot judge Bengali quality.
 - **Every version inherits the transcript's errors** (about half the characters wrong). The board
   carries most of the facts.
-- **"The notes are good" needs people.** 5 classmates rate 2-3 lectures from 1 to 5. Without it,
-  say "we demonstrate", not "we show the notes are good".
+- **"The notes are good" needs people.** A survey of about 20 people once everything is done.
+  Show each person the old notes and the new notes of the same lecture: "which helps you more?"
+  plus a 1-5 rating. That gives a before/after result ("16 of 20 preferred the new notes"), not
+  just a score. Without it, say "we demonstrate", not "we show the notes are good".
 
 ### The plan (scope frozen; nothing new until the defense)
 
 **A. Build on the 3060 (Claude, about a day). Waiting for your "go".**
 1. VLM box naming: numbered boxes drawn on the clean board; Qwen2.5-VL names each box and writes
    what is in it.
-2. New notes prompt: one section per board, points at the boxes, three languages (english,
-   banglish, bangla). Quotes only word for word from the transcript: a checker drops any quote
-   that is not in it (this also fixes the old broken-quotes problem). The old prompts stay.
+2. New notes prompt: one section per board, points at the boxes, two languages (english with
+   quoted Banglish, and banglish). Quotes only word for word from the transcript: a checker drops
+   any quote that is not in it (this also fixes the old broken-quotes problem). The old prompts
+   stay.
 3. Page builder: Markdown + HTML with the annotated board, like the mockup.
 4. One command for a whole lecture.
 5. Tested here with a stand-in for Qwen (the 3060 cannot hold it).
@@ -60,13 +64,13 @@ Put in a Banglish lecture video; get back a lecture note a student can actually 
 1. `git pull`
 2. The VLM reads the new clean boards; score old vs new boards on your answer keys. This gives the
    board work a real number instead of "looks better".
-3. Notes for all lectures x 3 languages with the chosen notes model; re-score board recall (the
+3. Notes for all lectures x 2 languages with the chosen notes model; re-score board recall (the
    88.0% came from the 7B model).
 4. Side by side: the NAND section from Qwen2.5-7B vs Qwen3-32B vs the mockup.
 
 **C. You (no coding).**
-1. Ask 5 classmates to rate the notes of 2-3 lectures (1-5: useful? correct? easy to read?).
-2. Read a few Bangla notes and say whether they are acceptable.
+1. Once the notes exist: the survey of about 20 people (old vs new notes of the same lecture,
+   which helps more, plus 1-5 for useful / correct / easy to read). Claude can make the form.
 
 **After the defense:** the 10 hours of new data; re-run leave-one-speaker-out on the 5090.
 
