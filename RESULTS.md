@@ -143,14 +143,23 @@ python finetune/evaluate.py --adapter <ft_work>\lora_run --base <ft_work>\models
 
 (`test_C.jsonl` is `test.jsonl` filtered to speaker C.) Artefacts: `ft_work_3spk/eval_C_*.json`.
 
-### 1.2 Adding speaker C to training — one run, no measurable gain
+### 1.2 Adding speaker C to training — a weak trend, not a result
 
-Train on A + C (80.0 min), test on B (the same 184 clips): WER 95.0% -> 78.5%,
-CER 73.4% -> 53.7% (seed 42, safeguard), against 78.8% / 54.6% for A alone.
-Inside the 4.5 pp run-to-run noise, so no measurable effect of 24 more minutes
-from a second speaker at this scale. **Incomplete:** the greedy score for this
-adapter and the whole seed-1 run were interrupted; rerun before quoting.
-Artefacts: `ft_work_AC/`.
+Train on A + C (80.0 min), test on B (the same 184 clips), safeguard:
+
+| Training | Seed 42 WER / CER | Seed 1 WER / CER |
+|---|---|---|
+| A only (55.6 min) | 78.8% / 54.6% | 82.4% / 59.4% |
+| A + C (80.0 min) | 78.5% / 53.7% | 76.9% / 55.3% |
+
+Paired per clip, A+C against A-only, same seed: A+C wins more of the clips
+where the two differ on WER (sign test p = 0.006 and 0.014), but the size of the
+gain is not significant (Wilcoxon p = 0.22 and 0.058), and CER shows no
+significant difference (Wilcoxon p = 0.29 and 0.13). **Say "adding a second
+training speaker leans better in both runs but is not significant at this
+scale"**, no stronger. Under greedy decoding A+C still loops (51 and 59 clips).
+
+Artefacts: `ft_work_AC/eval_AC_*.json`.
 
 ### 1.3 Superseded: the leaked split (do not quote)
 

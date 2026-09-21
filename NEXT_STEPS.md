@@ -34,7 +34,9 @@ Qwen; the Qwen results are already in the repo.
 - A genuinely third lecturer (voiceprints agree). The adapter trained on Speaker1 alone also
   improves on Speaker3: **CER 68.4% -> 46.4-46.7%, p < 1e-08, both runs**; significant even
   without the loop safeguard. The thesis claim is now "generalizes to two unseen lecturers".
-- Training on Speaker1+3 did not measurably help Speaker2 (one run; the rest was interrupted).
+- Training on Speaker1+3 leans slightly better on Speaker2 in both runs, but not significantly.
+- Proposed, waiting for a yes: leave-one-speaker-out training, and answer keys for the other 25
+  boards (lectures 1-6) so the VLM result rests on 35 boards, not 10.
 - Open question from the user: add spelling-normalized and fuzzy WER (fairer for Banglish).
 
 ## 2026-09-21: step 5 done — the VLM result

@@ -70,7 +70,11 @@ safeguard seeds, every held-out lecture improves. Scaling curve (0.3 / 0.6 / 0.9
 old "still falling, so more data" argument came from the leaked split; drop it.
 **Second unseen speaker (RESULTS.md 1.1):** Speaker3, videos 10–13 (label C, 75 clips): the A-only
 adapters give CER 68.4% → 46.4–46.7%, p < 1e-08, significant even under greedy. Training on A+C
-did not measurably help B (one run, rest interrupted; `ft_work_AC/`). The user asked about
+leans better on B in both seeds but is not significant (Wilcoxon p = 0.06–0.29; `ft_work_AC/`).
+**Pending the user's yes:** leave-one-speaker-out folds (train A+B test C, train B+C test A), and
+drafting answer keys for the 25 boards of lectures 1–6 (the VLM already read all 35; the key only
+covers 7–9 because those were the test lectures when it was made; the VLM result does not depend
+on the ASR split). The user asked about
 spelling-normalized / fuzzy WER for Banglish; proposed, not yet computed. The safeguard was adopted after seeing the greedy
 result; say so, and report both. The old split re-run on the 5090 reproduces 81.8%, so the machine
 is not the cause. **Read medians, not means, and read the sign of z, not just p.**
