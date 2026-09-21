@@ -1,0 +1,24 @@
+{
+  "lecture": "BanglaASR11",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "source": "mosaic",
+  "prompt": "This is a photograph of a classroom whiteboard during a university lecture.\n\nTranscribe everything written on the whiteboard, exactly as written.\n\n- Copy every number, name, identifier, date and symbol exactly. Do not round,\n  correct or reformat values.\n- Write tables as Markdown tables with the same rows and columns as the board.\n- Write code, SQL and program text inside ``` fences, keeping line breaks.\n- Write formulas as they appear. For a bar over a term write it as NOT(...),\n  for example NOT(A+B).\n- Keep diagrams short: name what they are and copy any labels on them, for\n  example \"Gate diagram: inputs A, B into a box labelled NAND, output NOT(AB)\".\n- If part of the board cannot be read, write [illegible]. Never guess, and never\n  add anything that is not written on the board.\n- Ignore any person in the picture. Describe only what is written.\n\nOutput only the transcription.",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:40",
+      "to": "1:30",
+      "clear_fraction": 0.8543,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\annotation_demo\\all9\\BanglaASR11\\board_era1_040.jpg",
+      "text": "| TTL → time to Live → 29 → 0 |\n| Endless looping |\n| IF → Reset / Res |\n| DF → Don't Fragment → 0 |\n| MF → More Fragment → 1 |"
+    },
+    {
+      "era": 2,
+      "from": "1:40",
+      "to": "2:30",
+      "clear_fraction": 0.5897,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\annotation_demo\\all9\\BanglaASR11\\board_era2_140.jpg",
+      "text": "| time to Live | →29 | →0 |\n|---|---|---|\n| Endless looping |\n| IF → Reset/Res |\n| DF → Don't Fragment →0 |\n| MF → More Fragment |\n| Pack1 1500 → 1 |\n| 4000B → Pack2 1500 → |\n| Pack3 1000 |"
+    }
+  ]
+}

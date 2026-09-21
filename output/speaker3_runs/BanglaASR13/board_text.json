@@ -1,0 +1,24 @@
+{
+  "lecture": "BanglaASR13",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "source": "mosaic",
+  "prompt": "This is a photograph of a classroom whiteboard during a university lecture.\n\nTranscribe everything written on the whiteboard, exactly as written.\n\n- Copy every number, name, identifier, date and symbol exactly. Do not round,\n  correct or reformat values.\n- Write tables as Markdown tables with the same rows and columns as the board.\n- Write code, SQL and program text inside ``` fences, keeping line breaks.\n- Write formulas as they appear. For a bar over a term write it as NOT(...),\n  for example NOT(A+B).\n- Keep diagrams short: name what they are and copy any labels on them, for\n  example \"Gate diagram: inputs A, B into a box labelled NAND, output NOT(AB)\".\n- If part of the board cannot be read, write [illegible]. Never guess, and never\n  add anything that is not written on the board.\n- Ignore any person in the picture. Describe only what is written.\n\nOutput only the transcription.",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:00",
+      "to": "3:50",
+      "clear_fraction": 0.9033,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\annotation_demo\\all9\\BanglaASR13\\board_era1_000.jpg",
+      "text": "```\nMTU\nMaximum transmission\nunit → Pak\nDF → 0\n* Total packet size → 1. Header sec.\n2. Data sec.\nHeader + Data\n→ 20B - 60B\n```"
+    },
+    {
+      "era": 2,
+      "from": "4:00",
+      "to": "12:30",
+      "clear_fraction": 0.9942,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\annotation_demo\\all9\\BanglaASR13\\board_era2_400.jpg",
+      "text": "| M+U | Maximum transmission |\n| --- | --- |\n| unit | Packet size |\n\nData size → 1000B\nDF → 0\n\n* Total packet size → 1. Header sec.\n2. Data sec.\n\nF = 0; MF = 1 → 0 - 1479 → Frag 1\nF = 0; MF = 1 → 1480 - 2959 → Frag-2\nF = 0; MF = 0 → 2960 - 4000 → Frag-3\n\nFor the\nFirst frag → 0/8 → 0 → fragment offset → ceil → √2.7 → 3\n\n2nd → 1480 → 185 →\n3rd → 2960 → 370 →"
+    }
+  ]
+}

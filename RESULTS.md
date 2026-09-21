@@ -690,6 +690,35 @@ human verification of both keys is what makes these numbers publishable.
 Reproduce: `python scripts/score_board_recall.py --gt data/board_truth data/board_truth/draft_lectures1to6 --compare-names visual_keywords.json board_text_frame.md`
 (`--gt` alone keeps the original 10 boards, so every earlier number is unchanged).
 
+#### 5.2c A third speaker's boards (Speaker3, lectures 10-13, 2026-09-21)
+
+A different room, camera and lecturer. Frames every 10 s were extracted from the
+videos (`output/speaker3_runs/*/ingested/frames`), boards reconstructed with the
+same `board_mosaic.py` defaults, and a 69-item answer key drafted from the
+reconstructions and committed before the VLM ran (`bb1a28d`,
+`data/board_truth/draft_speaker3/`).
+
+**The reconstruction does much worse here:** 59-99% of tiles clear, against a
+median of 97.7% on lectures 1-9. The eras are short and the lecturer stays in
+front of the same part of the board, so there is often no clear view to borrow;
+the lecturer remains partly visible, and the board runs off the right edge of the
+camera frame. This is a real limit of the method: it needs the lecturer to move.
+
+| VLM, full transcription, 10 boards, 69 items | Recall |
+|---|---|
+| Raw frame | **89.9%** |
+| Reconstructed board | 84.1% |
+
+The reconstruction is equal on 9 boards and worse on one (lecture 13's
+fragmentation worked example, 85% -> 65%). There is no keyword baseline for this
+speaker: the original pipeline never ran on these videos. What this adds: **the
+full-transcription VLM reads a third lecturer's boards at 90%**, including the
+fragment offsets 185 and 370, and the reconstruction is not what makes it work.
+
+Reproduce: `python scripts/transcribe_boards.py --run-dir output/speaker3_runs/BanglaASR1N --source frame`
+(and `mosaic`) for N = 0..3, then
+`python scripts/score_board_recall.py --gt data/board_truth/draft_speaker3 --runs output/speaker3_runs --notes-name board_text_frame.md`.
+
 Reproduce:
 
 ```

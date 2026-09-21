@@ -1,0 +1,40 @@
+{
+  "lecture": "BanglaASR10",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "source": "frame",
+  "prompt": "This is a photograph of a classroom whiteboard during a university lecture.\n\nTranscribe everything written on the whiteboard, exactly as written.\n\n- Copy every number, name, identifier, date and symbol exactly. Do not round,\n  correct or reformat values.\n- Write tables as Markdown tables with the same rows and columns as the board.\n- Write code, SQL and program text inside ``` fences, keeping line breaks.\n- Write formulas as they appear. For a bar over a term write it as NOT(...),\n  for example NOT(A+B).\n- Keep diagrams short: name what they are and copy any labels on them, for\n  example \"Gate diagram: inputs A, B into a box labelled NAND, output NOT(AB)\".\n- If part of the board cannot be read, write [illegible]. Never guess, and never\n  add anything that is not written on the board.\n- Ignore any person in the picture. Describe only what is written.\n\nOutput only the transcription.",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:20",
+      "to": "1:00",
+      "clear_fraction": 0.7133,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\speaker3_runs\\BanglaASR10\\ingested\\frames\\frame_000006_000060s.jpg",
+      "text": "TTL -> time to Live"
+    },
+    {
+      "era": 2,
+      "from": "1:40",
+      "to": "2:50",
+      "clear_fraction": 0.704,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\speaker3_runs\\BanglaASR10\\ingested\\frames\\frame_000017_000170s.jpg",
+      "text": "```\n-1 -> time to Live -> 29 -> 0\nEndless looping\n```"
+    },
+    {
+      "era": 3,
+      "from": "3:00",
+      "to": "4:10",
+      "clear_fraction": 0.669,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\speaker3_runs\\BanglaASR10\\ingested\\frames\\frame_000025_000250s.jpg",
+      "text": "| TL -> time to Live | →29 →0 |\n| Endless looping | |\n| IF → Reset+/Res | |\n| DF → Don't Fragm en | |\n| MF → | |"
+    },
+    {
+      "era": 4,
+      "from": "5:20",
+      "to": "7:00",
+      "clear_fraction": 0.9068,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\speaker3_runs\\BanglaASR10\\ingested\\frames\\frame_000042_000420s.jpg",
+      "text": "| TTL -> time to Live | →29 →0 |\n| Endless looping | |\n| IF → Reset+/Res | |\n| DF → Don't Fragmen | |\n| MF → | |\n| 4000B | |\n| 1500B | |\n| R1 | |\n| R2 | |"
+    }
+  ]
+}
