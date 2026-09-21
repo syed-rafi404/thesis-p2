@@ -55,14 +55,45 @@ python scripts/run_p3_experiment.py --test-speakers B,SPK04,SPK05 \
 
 Keep speaker B in the test set. It keeps the board ground truth valid.
 
-**5. The VLM experiment** (only if 1-4 are done and there is time):
-regenerate notes with the fine-tuned model and the reconstructed boards, then
+**5. The VLM experiment and the better notes.** Copy-paste in order. Each step
+changes one thing, so you can say which change caused which gain.
+
+The fine-tuned transcripts are **already done** (made on the 3060), in each
+lecture folder as `transcript_finetuned.txt`. Copy `output\` across and skip
+straight to 5a.
+
+5a. The VLM on its own: raw frame vs reconstructed board. **This is the result
+your supervisor wants.**
 
 ```
-python scripts/score_board_recall.py --compare <old_run_dir> <new_run_dir>
+python scripts/transcribe_boards.py --all --source frame
+python scripts/transcribe_boards.py --all --source mosaic
+python scripts/score_board_recall.py --notes-name board_text_frame.md
+python scripts/score_board_recall.py --notes-name board_text_mosaic.md
 ```
 
-Baseline to beat: **40.1%**.
+5b. The notes, one change at a time. Baseline is 40.1%.
+
+```
+python scripts/regenerate_notes.py --all --language mixed --board-source keywords --out-name notes_B_prompt.md
+python scripts/regenerate_notes.py --all --language mixed --board-source boards   --out-name notes_C_vlm.md
+python scripts/regenerate_notes.py --all --language mixed --board-source boards   --transcript-file transcript_finetuned.txt --out-name notes_D_full.md
+```
+
+5c. Score each step against the one before:
+
+```
+python scripts/score_board_recall.py --compare-names final_lecture_notes.md notes_B_prompt.md
+python scripts/score_board_recall.py --compare-names notes_B_prompt.md notes_C_vlm.md
+python scripts/score_board_recall.py --compare-names notes_C_vlm.md notes_D_full.md
+```
+
+B tells you what the new prompt alone did. C tells you what the VLM reading the
+reconstructed board added. D tells you what the fine-tuned transcript added.
+
+5d. To show your supervisor the language options, run the D command three times
+with `--language english`, `--language banglish` and `--language mixed`, and
+compare them side by side.
 
 ---
 
