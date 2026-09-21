@@ -1,0 +1,114 @@
+{
+  "test_speakers": [
+    "C"
+  ],
+  "train_speakers": [
+    "A",
+    "B"
+  ],
+  "train_hours_used": 1.9000916666666667,
+  "train_hours_available": 1.9000916666666667,
+  "test_hours": 0.40726944444444446,
+  "train_cap": null,
+  "seed": 0,
+  "speaker_map": "v2",
+  "only_speakers": null,
+  "minutes_per_speaker": {
+    "A": 55.6,
+    "B": 58.4,
+    "C": 24.4
+  },
+  "lectures": {
+    "BanglaASR10": {
+      "split": "test",
+      "speaker": "C",
+      "clips": 19,
+      "minutes_kept": 7.2,
+      "minutes_audio": 7.2
+    },
+    "BanglaASR11": {
+      "split": "test",
+      "speaker": "C",
+      "clips": 8,
+      "minutes_kept": 3.4,
+      "minutes_audio": 3.4
+    },
+    "BanglaASR12": {
+      "split": "test",
+      "speaker": "C",
+      "clips": 11,
+      "minutes_kept": 3.7,
+      "minutes_audio": 3.7
+    },
+    "BanglaASR13": {
+      "split": "test",
+      "speaker": "C",
+      "clips": 37,
+      "minutes_kept": 10.2,
+      "minutes_audio": 12.6
+    },
+    "BanglaASR1": {
+      "split": "train",
+      "speaker": "A",
+      "clips": 44,
+      "minutes_kept": 13.0,
+      "minutes_audio": 13.0
+    },
+    "BanglaASR2": {
+      "split": "train",
+      "speaker": "A",
+      "clips": 44,
+      "minutes_kept": 14.0,
+      "minutes_audio": 14.0
+    },
+    "BanglaASR3": {
+      "split": "train",
+      "speaker": "A",
+      "clips": 17,
+      "minutes_kept": 6.0,
+      "minutes_audio": 6.1
+    },
+    "BanglaASR4": {
+      "split": "train",
+      "speaker": "A",
+      "clips": 25,
+      "minutes_kept": 8.5,
+      "minutes_audio": 9.2
+    },
+    "BanglaASR5": {
+      "split": "train",
+      "speaker": "A",
+      "clips": 42,
+      "minutes_kept": 14.0,
+      "minutes_audio": 14.1
+    },
+    "BanglaASR6": {
+      "split": "train",
+      "speaker": "B",
+      "clips": 47,
+      "minutes_kept": 14.8,
+      "minutes_audio": 14.9
+    },
+    "BanglaASR7": {
+      "split": "train",
+      "speaker": "B",
+      "clips": 46,
+      "minutes_kept": 14.2,
+      "minutes_audio": 14.2
+    },
+    "BanglaASR8": {
+      "split": "train",
+      "speaker": "B",
+      "clips": 39,
+      "minutes_kept": 13.1,
+      "minutes_audio": 13.1
+    },
+    "BanglaASR9": {
+      "split": "train",
+      "speaker": "B",
+      "clips": 52,
+      "minutes_kept": 16.4,
+      "minutes_audio": 16.4
+    }
+  }
+}

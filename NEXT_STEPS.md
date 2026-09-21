@@ -17,6 +17,12 @@ If you are lost, start here. One page. Updated 2026-09-21.
   noise. **Drop the old "the curve is still falling" argument**; it came from the leaked split.
 - Old run kept untouched in `D:\T2520875\thesisP2\ft_work_v1_video6_in_train\`.
 
+## THE HEADLINE (RESULTS.md 1.5): leave-one-speaker-out, large Whisper
+
+Every lecturer held out once, model trained on the other two, plain decoding, two seeds:
+**CER 72.8% -> 50.3%, WER 95.3% -> 75.7%, all six runs significant (p < 1e-05).**
+Works for each of the three lecturers. This replaces every older fine-tune number.
+
 ## 2026-09-21 evening: the best result so far (5090, while you were away)
 
 - **whisper-large-v3-turbo trained on Speaker1+3, tested on unseen Speaker2:**

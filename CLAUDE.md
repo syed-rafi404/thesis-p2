@@ -58,7 +58,14 @@ avoid "Understanding", which overclaims.
 
 ## The thesis as it now stands (details and numbers in RESULTS.md)
 
-**One significant, replicated positive — the headline (corrected 2026-09-21).** The old split had
+**THE HEADLINE NOW (RESULTS.md 1.5): leave-one-speaker-out, whisper-large-v3-turbo + LoRA, plain
+greedy decoding, two seeds per fold.** Each of the three lecturers held out once, trained on the
+other two (80–114 min): **CER 72.8% → 50.3%, WER 95.3% → 75.7%** (mean of six per-run medians), all
+six runs significant (max p = 2.7e-06), every fold improves. No loop safeguard needed with the
+large model. Folders `ft_work_BCtoA`, `ft_work_AC`, `ft_work_ABtoC`. The whisper-small results
+below are the supporting history, and the reason the safeguard exists.
+
+**Earlier whisper-small result (corrected 2026-09-21).** The old split had
 a leak: video 6 is the test speaker (user's `data/raw/Speaker2`; `scripts/verify_speakers.py`
 confirms, 0.99 vs 0.77 similarity) but was trained on. **Never quote 96.1% → 81.8% again.**
 Corrected: train videos 1–5 (55.6 min, speaker A), test 6–9 (184 clips, speaker B). Under plain

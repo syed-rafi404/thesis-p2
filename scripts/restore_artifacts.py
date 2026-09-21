@@ -48,6 +48,8 @@ PREPARE = {
     "ft_work_3spk": ["--test-speakers", "B,C", "--audio-dir", "{3spk}/audio_cache"],
     "ft_work_AC": ["--test-speakers", "B", "--audio-dir", "{3spk}/audio_cache"],
     "ft_work_v1_repro_5090": ["--speaker-map", "v1"],
+    "ft_work_ABtoC": ["--test-speakers", "C", "--audio-dir", "{3spk}/audio_cache"],
+    "ft_work_BCtoA": ["--test-speakers", "A", "--audio-dir", "{3spk}/audio_cache"],
 }
 
 

@@ -220,6 +220,43 @@ Reproduce: `THESIS_FT_DIR=<ft_work_AC>`, `train_lora.py --model openai/whisper-l
 then `evaluate.py --base openai/whisper-large-v3-turbo --adapter <ft_work_AC>/lora_turbo_AC_seed42 --decode greedy`.
 Artefacts: `ft_work_AC/eval_AC_turbo_*.json`.
 
+### 1.5 Leave-one-speaker-out with the large model — the headline (2026-09-21)
+
+Every lecturer is held out once; the model trains on the other two. Same recipe
+(whisper-large-v3-turbo, LoRA r 16, 8 epochs, batch 8, lr 1e-3), two training
+seeds per fold, **plain greedy decoding, no loop safeguard**.
+
+| Held-out lecturer | Trained on | WER median, base -> tuned (s42 / s1) | CER median, base -> tuned (s42 / s1) | Clips better (CER) | Wilcoxon |
+|---|---|---|---|---|---|
+| A, videos 1-5 (172 clips) | B + C, 82.9 min | 97.5% -> 76.2% / 75.8% | 74.2% -> 51.8% / 49.9% | 134, 138 of 172 | p < 1e-10 |
+| B, videos 6-9 (184 clips) | A + C, 80.0 min | 93.8% -> 73.5% / 74.8% | 70.0% -> 48.8% / 52.1% | 124, 138 of 184 | p < 1e-08 |
+| C, videos 10-13 (75 clips) | A + B, 114.0 min | 94.6% -> 74.5% / 79.8% | 74.2% -> 45.2% / 54.0% | 65, 67 of 75 | p < 1e-05 |
+
+**Six of six runs significant under plain decoding.** Averaged over the six runs
+(unweighted mean of per-run medians): **CER 72.8% -> 50.3%, WER 95.3% -> 75.7%.**
+Runaway clips fall or stay level in every fold (A 15 -> 6-8, B 12 -> 11-12,
+C 6 -> 3). With the loop safeguard the numbers are within about 1 pp and all
+p < 1e-07.
+
+**What to claim:** fine-tuning Whisper on about 80-114 minutes of transcribed
+Banglish from two lecturers cuts the character error rate on a third, unseen
+lecturer by about a third (72.8% -> 50.3% CER), for every one of the three
+lecturers, in both seeds. **What not to claim:** that this is usable ASR (a 50%
+CER is still high), or that it holds for many speakers (three is few).
+
+Reproduce one fold (the others differ only in `--test-speakers`):
+
+```
+set THESIS_FT_DIR=<parent>\ft_work_BCtoA
+python finetune/prepare_data.py --test-speakers A --out %THESIS_FT_DIR% --audio-dir <parent>\ft_work_3spk\audio_cache
+python finetune/train_lora.py --model openai/whisper-large-v3-turbo --data-dir %THESIS_FT_DIR% --adapter-out %THESIS_FT_DIR%\lora_turbo_seed42 --epochs 8 --batch 8 --seed 42
+python finetune/evaluate.py --base openai/whisper-large-v3-turbo --adapter %THESIS_FT_DIR%\lora_turbo_seed42 --decode greedy --tag turbo_seed42_greedy
+```
+
+Folders: `ft_work_BCtoA` (test A), `ft_work_AC` (test B), `ft_work_ABtoC` (test C).
+Adapters that trained on B must never produce transcripts for notes scored on
+B's boards.
+
 ### 1.3 Superseded: the leaked split (do not quote)
 
 Kept so the correction is documented. The old run is untouched in

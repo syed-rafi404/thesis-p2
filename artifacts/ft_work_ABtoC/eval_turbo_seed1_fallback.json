@@ -1,0 +1,1571 @@
+{
+  "base_model": "openai/whisper-large-v3-turbo",
+  "adapter": "D:\\T2520875\\thesisP2\\ft_work_ABtoC\\lora_turbo_seed1",
+  "split": "test.jsonl",
+  "decode": "fallback",
+  "fallback_seed": 0,
+  "base": {
+    "clips": 75,
+    "wer_mean_per_clip": 0.9377084910350988,
+    "cer_mean_per_clip": 0.7573616377227604,
+    "wer_median_per_clip": 0.9444444444444444,
+    "cer_median_per_clip": 0.7325581395348837,
+    "wer_corpus": 0.9106474050294275,
+    "cer_corpus": 0.7271510174937522,
+    "runaway_clips": 1,
+    "words_emitted": 1753,
+    "words_reference": 3738,
+    "term_recall": 0.689922480620155,
+    "term_precision": 0.8725490196078431,
+    "term_f1": 0.7705627705627706,
+    "clips_fell_back": 11,
+    "clips_still_looping": 0
+  },
+  "tuned": {
+    "clips": 75,
+    "wer_mean_per_clip": 0.8102275844639745,
+    "cer_mean_per_clip": 0.5356896942212102,
+    "wer_median_per_clip": 0.7931034482758621,
+    "cer_median_per_clip": 0.5387931034482759,
+    "wer_corpus": 0.7348849652220438,
+    "cer_corpus": 0.4943770082113531,
+    "runaway_clips": 2,
+    "words_emitted": 2568,
+    "words_reference": 3738,
+    "term_recall": 0.689922480620155,
+    "term_precision": 0.956989247311828,
+    "term_f1": 0.8018018018018018,
+    "clips_fell_back": 5,
+    "clips_still_looping": 0
+  },
+  "paired_test": {
+    "p_value": 0.000999950002499875,
+    "method": "sign-flip Monte Carlo, n=74, 20000 resamples"
+  },
+  "rank_tests": {
+    "wer": {
+      "metric": "wer",
+      "better": 63,
+      "total": 75,
+      "wilcoxon_p": 7.596395334985573e-08,
+      "wilcoxon_z": 5.376461452214004,
+      "wilcoxon_n": 74,
+      "sign_p": 1.693839376410126e-09
+    },
+    "cer": {
+      "metric": "cer",
+      "better": 67,
+      "total": 75,
+      "wilcoxon_p": 4.632982886221271e-10,
+      "wilcoxon_z": 6.231057037294845,
+      "wilcoxon_n": 75,
+      "sign_p": 1.0098638262297781e-12
+    }
+  },
+  "per_clip": {
+    "base": [
+      {
+        "audio": "BanglaASR10/seg_000.wav",
+        "video": 10,
+        "speaker": "C",
+        "reference": "assalamu alaikum guys, toh goto class e amra dekhechilam amader ip aa ip v4 datagram header ta ache, header er section mane bibhinno choto choto component. toh ajke amra tar modhhe theke kichhu important component er aa ekta brief overview dekhbo. toh cholen shuru kora jak. first of all, amra jeta dekhbo sheta hocche amra je detail tar kotha bolechilam, time to live, shetar ekta importance bola jay.",
+        "hypothesis": "assalamualaikum guys, so in the class we have seen ip 4g diagram header and dissection. so we have a little bit of a component. so today we have a little bit of a component. first of all, we have seen the detail about time to live, which is important.",
+        "wer": 0.8529411764705882,
+        "cer": 0.5845771144278606,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR10/seg_001.wav",
+        "video": 10,
+        "speaker": "C",
+        "reference": "toh amra goto class e khub brief idea diyechilam, but ajke amra full length e jinishta ke shikhbo. to basically ttl as we know, amader time to live. time to live, eita basically ki dey? ekta hop count dey, je hocche o kotogula hop jete parbe. toh onek shomoy hoy ki, je ekta network e aa jokhon onekgula aa connections thake, bolte paren roadmap thake, je ei rasta diye oi rasta te jabe.",
+        "hypothesis": "i have given a brief idea but i will learn full length of the information. so basically ttl as we know is time to live. time to live. basically what is the hop count. it is a hop count. in the same way, there is a network where there are connections and road map.",
+        "wer": 0.7534246575342466,
+        "cer": 0.5581395348837209,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR10/seg_002.wav",
+        "video": 10,
+        "speaker": "C",
+        "reference": "ekta certain device e pouchanor jonno, right? toh onek shomoy hoy je connection ta distorted hoye jacche, noshto hoye jacche, onek lagging issue dicche, buffering kortese, emon onek jhamela hote pare. jar jonno hoytoba aa je amader design packet ta destination porjonto pouchaite pare na, ba ekta delay hoy. toh onek shomoy delay ta acceptable na, toh shei khetre amra ki kori? packet ta notun kore pathai. but kono packet notun kore pathanor age amra to previously je packet ta amra send korechi, sheita ke destroy kora lagbe, right?",
+        "hypothesis": "so, in the same way, the connection is distorted and not distorted and lagging issues. the buffer is in the same way. the desired packet is not allowed to be destroyed.",
+        "wer": 0.9438202247191011,
+        "cer": 0.7640449438202247,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR10/seg_003.wav",
+        "video": 10,
+        "speaker": "C",
+        "reference": "toh ei je destroy korar je technique ta ba method ta, eitake amra hocche set kori ttl diye. ttl bolte gele je etogula hop, hop bolte ekhane bujhachchi apnar router ba pc. toh etogula router-to-router jump er poreo jodi o destination theke kono acknowledgment na ashe, tahole amra aa packet ta ke destroy kore notun packet pathabo.",
+        "hypothesis": "so, the destroyer method is set for ttl. ttl is called hop, hop is called router and pc. so, if the router is a router, then the destination is not available. so, we destroy the packet and then we will destroy the packet.",
+        "wer": 0.8596491228070176,
+        "cer": 0.6181818181818182,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR10/seg_004.wav",
+        "video": 10,
+        "speaker": "C",
+        "reference": "eta hocche ttl-er khub basic concept. toh eta diye ki prevent kora hoy? main shomossha jeta eta diye amra prevent korte pari, sheita hocche amader jekono packet er endless looping.",
+        "hypothesis": "this is a basic concept of etl. the main solution that we have to prevent is the main solution. this is the main solution that we have to prevent is the main solution. we have to make the package of the endless looping.",
+        "wer": 1.2666666666666666,
+        "cer": 0.7388888888888889,
+        "temperature": 0.2
+      },
+      {
+        "audio": "BanglaASR10/seg_005.wav",
+        "video": 10,
+        "speaker": "C",
+        "reference": "looping. okay. so basically eta ki hoy je jokhon ekta network destroy hoye geche ba down hoye ache, kono duita network er moddhe connection, tokhon loop amader je packet, eta khujte thake onno shob network e giye giye je kon network e basically path ta ache ekhono. toh jehetu ektai path chilo ebong sheita destroyed hoye giyeche.",
+        "hypothesis": "looping okay so basically it is key which when the network is destroyed or downed or downed or downed or downed or downed or downed or downed or downed in the network of the network which is a connection so now the package is not a key because the network will be able to get to this network so when the network was a bit destroyed or downed or the other things i will search for a lot of",
+        "wer": 1.280701754385965,
+        "cer": 0.7484848484848485,
+        "temperature": 0.6
+      },
+      {
+        "audio": "BanglaASR10/seg_006.wav",
+        "video": 10,
+        "speaker": "C",
+        "reference": "toh or ei je ei mane search korata ar thame na, oita hocche amra boli endless looping. toh endless looping amader bandwidth er jonno onek kharap. eijonno amra ki kori? aa for example chobbish ta hop ba amader ttl level ta diye dilam 24, right? ttl level e jokhon 24, o 24 ba chobbish ta router ba like chobbishta jump-er pore ek router theke arek router-e o nijei aa jodi ttl er value ta zero hoye jay, ekta shomoy aa ore down kore dibe ba ore drop kore dibe amader oi router-ta theke.",
+        "hypothesis": "endless looping. so endless looping is a bandwidth which is a bandwidth. for example, the 20th hop, which is 24, the 24th hop is 24. the 24th hop is a router, which is a router, which is a router, which is a router. the way the ktla is a router is 0, which is a router.",
+        "wer": 0.9354838709677419,
+        "cer": 0.6597938144329897,
+        "temperature": 0.2
+      },
+      {
+        "audio": "BanglaASR10/seg_007.wav",
+        "video": 10,
+        "speaker": "C",
+        "reference": "eibhabe amra basically aa ekta mane noshto je packet ta ba ekta distorted packet tare drop kore dite pari, with the help of ttl. ekhon amra goto class e koekta flag er kotha bolechilam, jeta amader ekta header e dekha jay ipv4 header er moddhe.",
+        "hypothesis": "i have to drop the packet with the help of ttl. i have got a flag that i have to see the header in the ipv4 header.",
+        "wer": 0.8,
+        "cer": 0.639344262295082,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR10/seg_008.wav",
+        "video": 10,
+        "speaker": "C",
+        "reference": "toh prothom ta hocche if flag. eitake onek shomoy reset flag-o bola hoy. i think slide e reset flag-e likha ache.toh if ba reset flag. aa eita identification flag o bole or reset flag, you can call whatever you want.",
+        "hypothesis": "so, if you want to use the id flag, you can call it whatever you want.",
+        "wer": 0.825,
+        "cer": 0.7407407407407407,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR10/seg_009.wav",
+        "video": 10,
+        "speaker": "C",
+        "reference": "tarpor hocche df flag, ei. amra oikhane bolechilam je hocche poroborti video te basically ei video te amra df ar mf niye beshi aa kotha bolbo. toh oitai dekhbo ajke amra je ei duita flag-er importance ki. arekta hocche mf flag. toh basically aa eita hocche ki reset flag ta ekhane aa reserve kore rakha hoy arki. ekhane hocche slider e dekha jacche res bole reserve. thik ache? to eita basically mane ekhon kono kaje nai, future e kono kajer jonno use kora jete pare erokom.",
+        "hypothesis": "i will tell you about this video about df and mf.",
+        "wer": 0.9767441860465116,
+        "cer": 0.9113924050632911,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR10/seg_010.wav",
+        "video": 10,
+        "speaker": "C",
+        "reference": "ar df flag ta jeta ache seta hocche don't fragment. don't fragment flag ta thakle ki hoy? amra toh ekta concept, aa mane, common sense diye chinta korleo pari je jokhon duita network amader exist kore, ba duita network bolte ki ar ki, multiple network bujhachchi ami. jokhon multiple network amader exist kore, tokhon amra ki kori je eigular moddhe je, for example, copper wire use kori,",
+        "hypothesis": "foreign",
+        "wer": 1.0,
+        "cer": 0.9844961240310077,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR10/seg_011.wav",
+        "video": 10,
+        "speaker": "C",
+        "reference": "onnyanno onek type er wire amra use korte pari for connections. ekhon shob wire ba shob je connection, bakider to capability same na. for example, amra jodi optical fiber use kori, eita long range er khetre onek beshi capable. but amra short range e toh ar optical fiber use kori na, tokhon copper wire use kora hoy. oneke bole copper straight through je coppergula, cablegula, sorry. toh eigula amader basically ekta device theke onno device e connection er jonno toiri kora. for example, router to router, pc to pc.",
+        "hypothesis": "for example, we use the wire for connections. for example, if we use optical fiber for long range, it is very capable. but if we use optical fiber for short range, it is a copper wire.",
+        "wer": 0.8651685393258427,
+        "cer": 0.723404255319149,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR10/seg_012.wav",
+        "video": 10,
+        "speaker": "C",
+        "reference": "ba hoyto pc to router. toh hocche, erokom. prottyek type er cable er jonno protteker connection speed, bandwidth shobgulo different different thake. ekhon etar jonno hoy ki, eder moddhe je performance ta vary kore. for example, ami jodi ekta char hajar megabyte-er, ba sorry, beshi hoye jacche, char hajar byte.",
+        "hypothesis": "for example, we have 400 megabytes",
+        "wer": 0.96,
+        "cer": 0.909967845659164,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR10/seg_013.wav",
+        "video": 10,
+        "speaker": "C",
+        "reference": "eta char hajar byte-er data ami ekhane theke pathaite chai, kintu amar je ei cable-ta, ei cable diye char hajar byte ashte pare, thik ache? usually capability ache oita. but eikhane je connection-ta, ba cable-ta, er hoytoba bandwidth kom.",
+        "hypothesis": "but if you have a connection, it is a bandwidth comp.",
+        "wer": 0.9743589743589743,
+        "cer": 0.8151260504201681,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR10/seg_014.wav",
+        "video": 10,
+        "speaker": "C",
+        "reference": "othoba kono ekta karone e ponerosho byte porjontoi data ekbare transfer korte pare, thik ache? tahole amra ki kori? jokhon ei router, router to obviously jane je etar capability koto. mane, e jokhon ei router tar sathe connection korte chai, e ore bole dey je tumi amare ponerosho byte porjonto pathaite parba. right? o bole dicche router, for example 1 re. toh router 2, router 1 re bole dicche je tumi amare shorboccho ponerosho byte porjonto data pathaite parba, right? to tokhon ki kore.",
+        "hypothesis": "right",
+        "wer": 1.0,
+        "cer": 0.9898167006109979,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR10/seg_015.wav",
+        "video": 10,
+        "speaker": "C",
+        "reference": "ei router ta, for example router ta, oi mane data ta asche ei computer source theke, toh jokhon hocche aa ekhane amar mane packet ta astese, o jane je amar hocche ponerosho byte er beshi ami ei pothe pathaite parbo na. thik ache? toh tokhon o ki kore, ei je char hajar byte, char hajar byte bhenge prottekta ponerosho, ponerosho ekta ekta kore aa packet create kore ekta fragment create kore.",
+        "hypothesis": "for example, the data has a computer source. so, when we get to our packet, we can get to the data. so, what do we do? we can get to the data.",
+        "wer": 0.9577464788732394,
+        "cer": 0.7295918367346939,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR10/seg_016.wav",
+        "video": 10,
+        "speaker": "C",
+        "reference": "eder then sequence number diye o porobortite organize kore. to basically ei pothei je shudhu jabe erokom na, ei poth diyeo kichu jaite pare, ei poth to ei poth.",
+        "hypothesis": "then sequence number of people organize them. basically, they can't get a spot, but they can't get a spot.",
+        "wer": 0.8620689655172413,
+        "cer": 0.55,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR10/seg_017.wav",
+        "video": 10,
+        "speaker": "C",
+        "reference": "but router ki kore, always shortest path-tai ney. toh eibhabe amader ekta router hocche fragment kore thake. ekhon jodi don't fragment factor zero deya thake, tokhoni shudhumatro router ei fragmentation ta korte parbe. jodi non-fragment zero na thake, for example jodi 1 thake, tar mane ki je router er kache shei permission nai, etake fragment korar.",
+        "hypothesis": "but it is always the shortest path time. so, if we have a router, we have to fragment the router. now, the router is not fragmenting the router. for example, the router is not fragmenting the router.",
+        "wer": 0.8928571428571429,
+        "cer": 0.6182336182336182,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR10/seg_018.wav",
+        "video": 10,
+        "speaker": "C",
+        "reference": "ejonno hocche router tokhon ar fragment korte pare na router bole je ei poth diye jaite pare ponerosho, but tumi pathaicho char hajar. toh tumi amare fragmentation ta kore dao. got it? sorryi, ekta call asche.",
+        "hypothesis": "got it? sorry, call us check.",
+        "wer": 0.9444444444444444,
+        "cer": 0.8947368421052632,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR11/seg_000.wav",
+        "video": 11,
+        "speaker": "C",
+        "reference": "so sorry for the interruption, guys. toh amra hocche jeikhan theke skip korechilam, amra oikhan theke continue korbo. toh basically, amra jeta bolchilam je don't fragment jeta ache. don't fragment er jodi value ta zero set kora thake, tar mane router er kache permission ache packet tare fragment kore onnanno router e pathanor, right? kintu jodi don't fragment er value ta 1 thake, router ar packet re fragment korte parbe na. packet-ta.",
+        "hypothesis": "so sorry for the interruption guys. so basically, we just said that the value of the value is 0. so the router says that the router has a permission to get the packet to fragment and the router is a password. right. but the value of the router is 1. so the router is a password.",
+        "wer": 0.8472222222222222,
+        "cer": 0.591324200913242,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR11/seg_001.wav",
+        "video": 11,
+        "speaker": "C",
+        "reference": "drop kore diye ekta error message pathabe, sender re je tumi packet ta fragment kore dao ponerosho byte e. ami eta korte parbo na, thik ache? don't fragment tumi zero kore pathaiso. sorry, one kore pathaiso. toh eta hocche basically \"don't fragment\" er main task. eta keno kora hoy? question astei pare. toh mainly onek shomoy privacy concern thake, thik ache? je packet e onek shomoy third party o je attacker ra boisha thake jeshob mane packetgulo ektu beshi private.",
+        "hypothesis": "so, you can see the packet is a bit more than you can see.",
+        "wer": 0.9875,
+        "cer": 0.8848614072494669,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR11/seg_002.wav",
+        "video": 11,
+        "speaker": "C",
+        "reference": "ba jetar privacy niye kono risk like neoa jabe na, oigulote \"don't fragment\" one set kore deoa hoy jate shudhumatro je sender, shei hocche packetgulo fragment kore pathaite parbe oibhabe. encrypted kore. okay. tarpor asha jak hocche mf. mf bolte bujhay. mf bolte bujhay more fragment.",
+        "hypothesis": "okay",
+        "wer": 1.0,
+        "cer": 0.9859154929577465,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR11/seg_003.wav",
+        "video": 11,
+        "speaker": "C",
+        "reference": "okay. so more fragment bolte tumi bujhtei partechho jokhon ekta fragment bhag korar pore jotokkhon na porjonto last fragment ta ache, oi je for example ami je char hajar byte er ekta data ke bhag korlam, for example ponerosho byte prothome ami dilam, ekta packet one. then amader porer ponerosho byte, eta hoye gelo terosho aa 300 byte, right? packet 2. porer packet-ta amar hocche tin hajar hoy, just ek hajar baki thake,",
+        "hypothesis": "okay so more fragment book thing goes to the next fragment",
+        "wer": 0.9452054794520548,
+        "cer": 0.8696682464454977,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR11/seg_004.wav",
+        "video": 11,
+        "speaker": "C",
+        "reference": "toh porer packet-ta jabe ek hajar byte-e, packet three. toh eita hocche porer eita first er ponerosho byte, eita porer ponerosho byte, eita hocche ek jhajar byte, right? toh amar more fragment ki kore? more fragment bole dey je erpore ar ki kon fragment ashbe? jemon jodi ei case e chinta kori, ei je packet ta ami send korbo, ekhane header er field er moddhe more fragment e deoya thakbe one.",
+        "hypothesis": "the packet is 100 bytes packet 3, so here is the packet faster than 15 bytes, here is the packet, 100 bytes, right? so what do we do with the more fragment? more fragment is 1, so if the packet is 1, the packet is 1,",
+        "wer": 0.9436619718309859,
+        "cer": 0.6463104325699746,
+        "temperature": 0.4
+      },
+      {
+        "audio": "BanglaASR11/seg_005.wav",
+        "video": 11,
+        "speaker": "C",
+        "reference": "tar mane hae, amar ekhono aro packet ashbe. to packet two er khetre same, more fragment e amra header er moddhe je more fragment thakbe, mf flag ta sekhane dekhte pabo one. tar mane ki? je packet two-er poreo ekhono packet ashbe. kotogula packet ashbe seta bola thake na, but hae, packet ekhono baki ache, eta bole.",
+        "hypothesis": "we have packet to add more fragment and more fragment. we have a flag that says 1. so we have packet to add more fragment. we have packet to add more fragment.",
+        "wer": 0.8771929824561403,
+        "cer": 0.6571428571428571,
+        "temperature": 0.2
+      },
+      {
+        "audio": "BanglaASR11/seg_006.wav",
+        "video": 11,
+        "speaker": "C",
+        "reference": "but jokhon amra packet three te chole jabo, jekhane ek hajar byte matro jabe, because achei ar ek hajar byte, so 100 byte jabe, tokhon amra dekhte pabo mf-er moddhe value-ta zero. tar mane o bujhachche je amar eitai last packet chilo.",
+        "hypothesis": "but when you have to use the package 3, you can use 100 bytes, because it is 100 bytes. so, when you have to use the token, you can use the value of 0. so, i have to ask you to use the last package.",
+        "wer": 1.0238095238095237,
+        "cer": 0.6239316239316239,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR11/seg_007.wav",
+        "video": 11,
+        "speaker": "C",
+        "reference": "amar je fragment er packet gula theke last packet, tar mane purata chole giyeche ei porjonto. okay. so eita bujha khub-e important chilo jokhon amra mtu er math gula dekhbo. mtu er math er khetre/ ar next video theke amra inshaallah mtu er math shuru korbo. thik ache. best of luck. assalamu alaikum.",
+        "hypothesis": "so, this is a very important thing to know about mtu or maths.",
+        "wer": 0.9622641509433962,
+        "cer": 0.84,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_000.wav",
+        "video": 12,
+        "speaker": "C",
+        "reference": "toh guys, ajke amra hocche mtu er math gulo shuru korte jachchi. toh as you can see, mtu-r full form hocche maximum transmission unit. unit. so unit amra keno boltesi, eitake unit bolte ki bujhay.",
+        "hypothesis": "so guys, today we are going to be able to do the same thing as you can see. maximum transmission unit unit",
+        "wer": 0.8,
+        "cer": 0.6428571428571429,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_001.wav",
+        "video": 12,
+        "speaker": "C",
+        "reference": "actually je jekono kono kichu measure korar ekta standard format ba standard form.",
+        "hypothesis": "so, what do you think about unit? what do you think about unit? what do you think about unit? you can't do it. you can't do it. you can't do it. it's a standard form.",
+        "wer": 2.5384615384615383,
+        "cer": 1.4390243902439024,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_002.wav",
+        "video": 12,
+        "speaker": "C",
+        "reference": "liike jeta amra hocche overall oi system-e use korbo. ekhon, toh maximum transmission unit ki hobe? prottekta system-er khetre different, because aa prottekta system bolte bujhacchii je hocche collection systemgula. tomar hocche duita router-er moddhe je connection ta ache, oi connection system er jonno prottekta system-er o different hobe mtu ta, because prottekta system different bhabe banano hoy. eta different approach follow kore, algorithm follow kore.",
+        "hypothesis": "i will use the system to use the system. so, the maximum transmission unit is different because the system is different because the system is different. the system is different, the algorithm follows the system.",
+        "wer": 0.8787878787878788,
+        "cer": 0.6767895878524945,
+        "temperature": 0.2
+      },
+      {
+        "audio": "BanglaASR12/seg_003.wav",
+        "video": 12,
+        "speaker": "C",
+        "reference": "aa oder quality different hoy, oder bandwidth different hoy. ei shobkichui related for fixing this mtu size. maximum transfer unit size. je packet-ta kototuku jabe shorboccho, ei yaa ki bola jay, je ei hocche aa system-ta diye.",
+        "hypothesis": "the quality different or the bandwidth different. this is related for fixing this mtu size maximum transfer unit size.",
+        "wer": 0.6756756756756757,
+        "cer": 0.5242290748898678,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_004.wav",
+        "video": 12,
+        "speaker": "C",
+        "reference": "tokhon connection system-ta diye. so mtu-er first je jinishta tomader explain korte try korsi, je tomra jokhon kono packet ekta router theke arekta router pathaite chaccho.",
+        "hypothesis": "so, mtware, fast, jgn, i tried to explain, when there was a packet, a calculator, and a calculator was sent to me,",
+        "wer": 1.0,
+        "cer": 0.7325581395348837,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_005.wav",
+        "video": 12,
+        "speaker": "C",
+        "reference": "tomader oi router ekta hocche acknowledgment dey. jokhon hocche je three way handshaking amra boli, ekta acknowledgment dey je tumi etotuku byte, oi je for example ager moto ponero-sho byte, tumi amare pathaite parba. er beshi dile ami nite parbo na. so aa because ei side hocche router-ta ache, tar hocche tomar ekta aa buffer ache je buffer-e basically message-ta rakhte pare ba je packet aa packet-ta ashe sheta rakhte pare.",
+        "hypothesis": "so, because inside the router is the best way to get the router, so you can get the router, and you can get the router.",
+        "wer": 0.971830985915493,
+        "cer": 0.8079625292740047,
+        "temperature": 0.2
+      },
+      {
+        "audio": "BanglaASR12/seg_006.wav",
+        "video": 12,
+        "speaker": "C",
+        "reference": "toh oita amra pore, oita arektu in-depth kothabarta. toh tomar apatoto jeta bujhte hobe je e bole dicche ei router-re je tumi amar kache at max eto byte porjonto pathaite parba data ta. toh ekhon ami jehetu ager video te df ar mf ta explain korechi. for example amra maximum case-e dhore nibo je df-ta zero deoya. tahole ami fragment korte parbo ba amar packet ta throughout the transmission fragment hoite parbe if be necessary, okay?",
+        "hypothesis": "so, we have to use this router to add next to the byte version. so, i will explain the df and mf for example, we have to make maximum cases of df to 0. but we have to fragment through the transmission if necessary.",
+        "wer": 0.8947368421052632,
+        "cer": 0.6758620689655173,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_007.wav",
+        "video": 12,
+        "speaker": "C",
+        "reference": "so for example, ekhetre amar df ta deoya chhilo zero, jar jonne amar ei router-ta packet-ta onno router-e fragment kore pathaite shokkhom hoyeche, right? ekhon, for example, amar packet-tate, aa, ekta uneven aa size deoya ache. for example, which is not multiple aa mane exponent of two. thik ache? oii khetre amra ki korbo? amra hocche etate padding add korbo.",
+        "hypothesis": "so, for example, we have a df to give 0, and we have a router to fragment the packet. for example, we have an uneven size for example, which is not an exponent of 2.",
+        "wer": 0.7666666666666667,
+        "cer": 0.6260387811634349,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_008.wav",
+        "video": 12,
+        "speaker": "C",
+        "reference": "amra shikhechilam goto video-te je hocche padding kivabe add kora jay. jodi multipla aa, mane multiple of four na hoy, tahole amra kichu padding add kore oitare header ta re multiple of four banai. multiple of four banai, tokhon sheitare hocche shamne pathai. shei kajta ekhane kora lagbe.",
+        "hypothesis": "we have to learn how to do the padding. if we don't have multiple forms, we can add multiple forms. we can learn how to do the padding.",
+        "wer": 0.9375,
+        "cer": 0.6955017301038062,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_009.wav",
+        "video": 12,
+        "speaker": "C",
+        "reference": "porikkhar shomoy erokom kichu question chole ashe je hocche ekta size diyeche, tumi dekhteso eta ekta, aa mane, four diye divisible na, four-er multiple na, ba hocche two to the power three jeta ache, two-er exponent, oitar multiple na. tokhon tumi padding kichu add kore shetake hocche pore fragment kore niba.",
+        "hypothesis": "but i am guessing",
+        "wer": 1.0,
+        "cer": 0.954983922829582,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_010.wav",
+        "video": 12,
+        "speaker": "C",
+        "reference": "but ei type-er math porikkhay last dui tin semester-e ashe nai, so i am guessing je eibar-o ashbe na.",
+        "hypothesis": "i will see you in the next one.",
+        "wer": 1.0,
+        "cer": 0.7920792079207921,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_000.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "okay guys. so amader ekhon aa mtu math-er kichu fundamental aa jinis aa dekhe hobe. sheta hocche, first of all, total packet size.",
+        "hypothesis": "okay guys, welcome to mta methods fundamentals genish. first of all, total packet size.",
+        "wer": 0.6956521739130435,
+        "cer": 0.45384615384615384,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_001.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "ami one by one shobkichu explain korte korte jabo. toh, what is basically total packet size? total packet jeita amra pathai, aa ekta network theke onno network-e. it has two sections. one is header section.",
+        "hypothesis": "i will expand everything by one what is basically total packet size? total packet, which i am a part of the actor network, it has two sections, one is header section",
+        "wer": 0.6285714285714286,
+        "cer": 0.3786407766990291,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_002.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "one is data section.",
+        "hypothesis": "one is data section",
+        "wer": 0.25,
+        "cer": 0.05,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_003.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "okay, toh header section ar data section-ta ki jinish? data section basically jeta thake amader, usually data-ta. oi data-ta pura-ta kei just data section bole. but header section-ta ki jinis? ei je amra etokkhon dekhailam, aa header-ta re fragment kore, header-ta re dissect kore. je header-er moddhe ki ki value thake. tarpor ei je duita flag: df flag, mf flag. ei shobkichu mile jeita toiri hoy, sheta hocche amader header section.",
+        "hypothesis": "okay so header section and data section are what are the reasons? data section basically are what we have here usually data to data is not just data section but header section are what is the reason? these are what we have seen the header to fragment and the header to dice it we have to have what the value to do is to do that flag, df flag, mf flag all of the things that we can get the header section",
+        "wer": 0.9154929577464789,
+        "cer": 0.4976958525345622,
+        "temperature": 0.6
+      },
+      {
+        "audio": "BanglaASR13/seg_004.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "toh basically eita mane identification-er jonno lage. er moddhe ekta identification number thake je amar kon aa fragment-e jaitese, prottekta fragment-e ekta identification number thake jeta porobortite match kore kore ami je fragmented aa packet gulare abar eksathe kore pore reassemble korte pari.",
+        "hypothesis": "so basically a data identification number is the same as we have a fragmented identification number.",
+        "wer": 0.9069767441860465,
+        "cer": 0.7123745819397993,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_005.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "mane eta hocche receiver-er device-e hoy. transport layer-e hoy. sorry. network layer-e hoy basically kaj gula. toh thik ache. ekhon tahole amra bujhte partesii je ekta packet-er moddhe header section ar data section mile hobe total packet-er size. right?",
+        "hypothesis": "right",
+        "wer": 1.0,
+        "cer": 0.9803921568627451,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_006.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "header plus data, duita mile hobe total packet-er size. toh ami prottekta je file pathaitesi, sheita data size jemoni hok, oi je for example, ager mane example-ta theke ponero-sho byte ba ek-hajar byte, pach-sho byte je size-er data-ee hok, shobshomoy packet mane header-er packet-e header-er size ta same-ee thake.",
+        "hypothesis": "header plus data. the other thing is total packet size. i read this file and the first data size is the same. for example, if you have 500 bytes, 100 bytes, 500 bytes, these data are the same.",
+        "wer": 0.8571428571428571,
+        "cer": 0.6126984126984127,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_007.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "eta deoya thake onek shomoy. toh eta direct ami jodi ei problem-er jonno korte chai, i would say 20 byte hocche header byte. as amra previous discussion theke jenechi je header byte-ta bish theke 60 byte-er modhhei hote pare. eita hocche ipv4-er ekta rule, toh etar baire jawar kono shujog nai.",
+        "hypothesis": "i would say 20 bytes header bytes as previous discussion that the header bytes are 20 bytes and 60 bytes are more than 60 bytes. so, i will be for a rule. so, i will not be able to resolve the bytes.",
+        "wer": 0.9803921568627451,
+        "cer": 0.6632653061224489,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_008.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "aa ora eibhabei regular design kore, ar tar sathe jeita size jeita dey ar ki, eta toh fixed kichhu na. jokhon jototuku jeta jabe, sheibhabe data size-ta apnader fix rakhte hobe ekhane. toh this is the header size, this is the data size. duita combinedly mile hoy packet size.",
+        "hypothesis": "so this is the header size, this is the data size. and combinedly we have the packet size.",
+        "wer": 0.7551020408163265,
+        "cer": 0.7272727272727273,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_009.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "to amader exam-e onek shomoy ektu wording-er mane aa patch dey sir-ra, sheta hocche jemon packet size-ta. packet size bole, total packet size-ta eto. onek shomoy packet size na bole bole je hocche data size-ta eto. toh tomar tokhon question-ta pore bujhte hobe. je tomar je packet-ta ache sheta ki including the header or just the data. thik ache? eita eita onek shomoy ekta tricks amra dekhte pai porikkhar question-er wording gulate.",
+        "hypothesis": "so, if we are using the same exam on the wording page, then we have packet size, so we have packet size. we have packet size, we have packet size and we have packet size. we have packet size so we have data size. so, your question should be asked to include the header and just the data. so, we are looking at these tricks, so we can be asked for questions.",
+        "wer": 0.9027777777777778,
+        "cer": 0.5977011494252874,
+        "temperature": 0.6
+      },
+      {
+        "audio": "BanglaASR13/seg_010.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "thik ache? toh hocche dui type-er hoite pare, ami bole dilam header ar packet. ekhon onek shomoy emon hoy je hocche aa tomar header-ta deoya ache ar packet size-ta deoya ache. tokhon data size ber korte hobe. tumi just eta theke eta biyog korba.",
+        "hypothesis": "so, we have to say header and packet. we have to use header and packet.",
+        "wer": 0.9545454545454546,
+        "cer": 0.7836734693877551,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_011.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "simple enough. thik ache? toh mtu jokhon amra boltetchi je m, mane maximum transfer unit, eta shobshomoy packet size-ta transfer kore. thik ache?",
+        "hypothesis": "so, mtu is the maximum transfer unit to the packet.",
+        "wer": 0.8695652173913043,
+        "cer": 0.6896551724137931,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_012.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "mtu amra jodi boli je ekta mane packet-er size hocche, ba sorry, ekta connection-er mtu hoitese ponero-sho. tar mane ekhane kintu aa header-ta included. mtu always packet-er size-ta bole.",
+        "hypothesis": "mtu, we will say that the package size is very simple, but we will say that the package size is always included. mtu always is package size.",
+        "wer": 0.8620689655172413,
+        "cer": 0.5989304812834224,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_013.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "ahhm ahhmm. toh mtu always packet size-ta bole. and ekta amar hocche mtu-er moddhe always header-ta included thakbe. bish byte header include thakte pare.",
+        "hypothesis": "so",
+        "wer": 1.0,
+        "cer": 0.987012987012987,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_014.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "toh ami jehetu ponero-sho byte ekhane likhechi, tar mane ekhane amar data size-ta chouddo-sho ashi byte. ar jehetu bole diyechilam aage bish byte data, toh ami plus bish.",
+        "hypothesis": "so",
+        "wer": 1.0,
+        "cer": 0.9882352941176471,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_015.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "tahole amar jodi ekta packet-er size hoy, just packet-er data-r size, sorry , amar jodi ekta data-r size hoy, mone koro char hajar byte. [4:22- 4:45 ] char hajar byte, right? toh ei je packet-tar mtu deoya, tomar hocche ponero-sho. tar mane o kintu eije data size-er ponero-sho protibar pathabe na, jehetu eta bish byte-er aa header included, o prottekbar chouddo-sho ashi highest pathaite parbe.right?",
+        "hypothesis": "just packet data size sorry i want you to get data size how i mean 400 bytes",
+        "wer": 0.9538461538461539,
+        "cer": 0.8333333333333334,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_016.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "toh aa eta chilo just ekta brief, mane dharona je hocche basically wording diye sir-ra kemne hocche question-ta trick korte pare. then eta gelo. tarpor ashi fragment offset. mtu math-e amader fragment offset-ta onek lage. [5:00- 5:21 ] toh fragment offset-ta basically ki? amra for example, jodi eitai dhori je char-hajar byte data pathaite hobe. amader hocche mtu ponero-sho byte. eta ami pashe likhe dei. taile better hobe. mtu hocche ponero-sho byte. connection-ta. tahole hocche kotogula fragment amra pabo?",
+        "hypothesis": "so, this is just a brief thing. basically, we have to take a lot of the wordings to the whole camp and trick them. then, we have to say, third power is the fragment offset. in mta, i have said, fragment offset is already",
+        "wer": 0.9746835443037974,
+        "cer": 0.7416829745596869,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_017.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "amader data kintu thik-ee deoya ache. je eta char-hajar byte, data-r size. toh amader data-ta purata pathano porjonto toh ar toh basically amader header-o lagtese, tai na? jodi data pura send hoye jay, tarpore kintu ar bish byte extra ba you know? header jabe na. right?",
+        "hypothesis": "so, if we read the data, we can see the data size. so, if we read the data, we can see the data. we can see the data data.",
+        "wer": 0.9565217391304348,
+        "cer": 0.7296296296296296,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_018.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "toh amra ekhan theke ekhon ekta mane decision nite pari je thik ache, tahole jehetu amader mtu deoya ponero-sho. amader bolao ache bish byte header. tahole amader shudhu char-hajar ashi byte-e prottek bar jabe. toh ami just etare aa plain and simple divide korte pari.",
+        "hypothesis": "foreign",
+        "wer": 1.0,
+        "cer": 0.9813432835820896,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_019.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "mane jeta kortesi, eta amar number of fragment. thik ache? sheita ber kortesi.number of fragments. [ 5:59- 6:08] eta hobe je ami proti bar pathaite parbo char-hajar aat-sho, total-ta hocche char-hajar. sorry sorry, chouddo-sho ashi.",
+        "hypothesis": "number of fragments.",
+        "wer": 0.9142857142857143,
+        "cer": 0.9137931034482759,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_020.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "total size 1480, data-ta ar ami prottekbar aa pathaite parbo chouddo-sho. sorry. bhul bolsi guys, my bad. amar total data size-ta hocche char-hajar byte, ar ami prottekbar pathaite parbo chouddo-sho ashi.",
+        "hypothesis": "foreign",
+        "wer": 1.0,
+        "cer": 0.9754901960784313,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_021.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "ami char-hajar re chouddo-sho ashi diye bhag korbo just. ektu calculator-e eta kore niyen. kore jetai ashbe setate ceil kora lagbe. c e i l. mane basically amader je upper threshold-er value-ta sheta neoya lagbe. toh ami just eta ektu calculator-e kore dekhi. toh ashen. [6:40- 7:06 ] so 2.7. eitare ceil kore amra three. toh amader basically tinta fragment offset dorkar, ei pura file-tare pathanor jonno, right? [7:06-7:21 ] thik ache? amra tahole ekhon hocche fragment er zero theke chouddo-sho ashi pathabo. mane sorry, ektu bhul bolchi, ekhane chouddo-sho ashi na, eta hobe chouddo-sho uno-ashi. 1479. [7:21-7:41 ] because zero theke calculate kortesi na? to zero theke 1479 mane toh chouddo-sho ashi byte, right? eta kintu ektu mathay rakhte hobe. amra shobshomoy mane amra hocche zero theke hisab kori je fragment shuru hobe jawa zero theke. jodi bole dey fragment shuru hobe jawa five theke, then apnader shebhabe calculation-ta change korte hobe, thik ache?",
+        "hypothesis": "foreign",
+        "wer": 1.0,
+        "cer": 0.9927536231884058,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_022.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "for this case amra chinta kortesi fragment-ta jabe zero theke shuru hobe, eta question-e bola thake explicitly. ar jodi na bola thake, apnara by default dhore niben je fragment-ta zero thekei jay, right? toh thik ache. prothome zero theke gelo chouddo-sho uno-ashi, pore chouddo-sho ashi theke jabe.",
+        "hypothesis": "for this case, we are thinking that fragment has zero to start. this question was asked explicitly. it was not said that by default, it would be 0 to 0. so, that's it. so, you have 0 to 0, and 4 to 8 to 8.",
+        "wer": 0.9148936170212766,
+        "cer": 0.6120401337792643,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_023.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "aa chouddo-sho ashi theke chouddo-sho ashi plus je apnar mtu-er size-ta. toh ami jodi kori sheta chouddo-sho ashi into two. that is 2959.",
+        "hypothesis": "that is 2959",
+        "wer": 0.9130434782608695,
+        "cer": 0.9124087591240876,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_024.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "eta hocche basically next je, eta hocche fragment number one. frag one. eta hocche fragment number two. thik ache? toh porer-ta jabe, ei je chou untrish-sho shait theke total size-ta biyog korle hoye jabe. untrish-sho shait total size. hae, tahole hocche.",
+        "hypothesis": "next fragment number one fragment one fragment number two so polytaside total size",
+        "wer": 0.8536585365853658,
+        "cer": 0.7058823529411765,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_025.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "ahha ahha. mane last byte porjonto chole jabe. toh basically amader jeta size chilo char-hajar byte, ar amra pore math kore ber korlam je number of fragment hocche three. tahole hocche amader ekhan theke chole ashlo, mane amader assumption-er sathe milse. assumption toh nabasically amader ei math-er sathe milse je amader tinta fragment-i lagbe.",
+        "hypothesis": "i will show you the last byte. so basically, we have data size of 400 bytes and we will do the number of fragments of 3. we will show you the number of fragments. we will show you the number of assumptions and assumptions.",
+        "wer": 0.9444444444444444,
+        "cer": 0.6705202312138728,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_026.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "ekhon, ekkhetre apnaraa apnara jodi ektu chinta koren, apnara je df, mf-er valuegulo bolen, prottyekta case-e. video-ta ekhane pause koren, and df mf-er valuegula prot ei tinta packet-er fragment-er khetre ki hobe amare bolen.",
+        "hypothesis": "foreign",
+        "wer": 1.0,
+        "cer": 0.9690265486725663,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_027.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "okay. so aa first-er-ta ami ektu solve kore dei. df-er value ei prottekgular khetre zero. because packetgulo as fragment hoitese, router porte parche je amar df-er value obviously zero deoya chhilo. jodi one deoya thakto, tahole aa packetgulo fragment hoto na. oikhane drop hoye jaito, and je sender chilo, tar kache eta message jaito je tumi fragment kore then amake pathao. right?",
+        "hypothesis": "okay so uh first term i make to solve for a day dfa value it is zero because as fragment with this error about the value obviously zero they also look the one dollar factor now like a fragment from the other hand drop away and just sender to the other message that you fragment corey the",
+        "wer": 0.8225806451612904,
+        "cer": 0.518324607329843,
+        "temperature": 0.2
+      },
+      {
+        "audio": "BanglaASR13/seg_028.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "tar mane df-er value prottekgular khetre zero. mf-er valuegula koto hobe? okay. so amra ki shikhechilam goto video-te je mf-er video tokhoni, sorry, mf-er value tokhoni matro one hobe, jokhon shetar pore aro fragment ache.",
+        "hypothesis": "right so i'm gonna see you",
+        "wer": 0.9714285714285714,
+        "cer": 0.9009009009009009,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_029.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "mf-er value zero hobe kokhon? jokhon amra last fragment paya jabo. tahole ekhetre amader last fragment three number na? tahole ekhane mf-er flag-ta hobe zero. je er mane bujhay er pore ar kono fragment nai.",
+        "hypothesis": "the",
+        "wer": 1.0,
+        "cer": 0.9854368932038835,
+        "temperature": 0.2
+      },
+      {
+        "audio": "BanglaASR13/seg_030.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "er u porer shob case-e shegulo hobe one. mf equals to one, right? to eta hocche amader basically aa pura math-tar summary. tarpore amra jodi fragment value-ta ekhan theke ber korte chai je prottektar jonno fragment value.",
+        "hypothesis": "is",
+        "wer": 1.0,
+        "cer": 0.9909502262443439,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_031.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "fragment value amra basically ki kori? prothome je ei shongkha-ta ache, eitake amra oi je aat diye bhag kori. aatdiye bhag korle jeta ashbe, sheta amader fragment value.for the first fragment.",
+        "hypothesis": "foreign",
+        "wer": 1.0,
+        "cer": 0.9635416666666666,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_032.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "hmm. toh ekhane amra zero divided by 8, hocche zero pabo. toh jokhon jodi amader question-e bola thake je amader aa offset-taar aa, sorry, offset-ta na, mane fragment gula shuru hobe zero theke, tahole amader prothom fragment-er fragment offset shobshomoy zero ashbe. eta hocche fragment offset.",
+        "hypothesis": "so here we have 0 divided by 8, which is 0. so when we ask our question, we have to ask our fragment to start 0. so then we have to ask our fragment offset to 0. so fragment offset is 0.",
+        "wer": 0.8913043478260869,
+        "cer": 0.5898305084745763,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_033.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "fragment offset. right? toh second-tar jonno.",
+        "hypothesis": "right. so second dollar.",
+        "wer": 1.0,
+        "cer": 0.6444444444444445,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_034.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "second-tar jonno amar chouddo-sho ashi divided by 8. amra just ei value gula nibo, thik ache? prothomer je value-ta, oita. [ 11:44-11:58] aa divided by 8 joto ashe, eta ektu just calculator kore dekhi. chouddo-sho ashi divided by 8, that is 185. eta hocche second je value-ta, tar fragment offset. right?",
+        "hypothesis": "foreign",
+        "wer": 1.0,
+        "cer": 0.9802631578947368,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_035.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "and third. eta hobe 2960 divided by 8. [ 12:10- 12:24] 2960 divided by 8. eta hocche 370, right? eta hocche fragment offset for the third fragment.",
+        "hypothesis": "right? and third. it is 20 divided by 8.",
+        "wer": 0.8518518518518519,
+        "cer": 0.8231292517006803,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_036.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "okay.toh eibhabe amra basically ekta mtu-er math solve korte pari. thank you so much.",
+        "hypothesis": "thank you so much",
+        "wer": 0.7857142857142857,
+        "cer": 0.8,
+        "temperature": 0.0
+      }
+    ],
+    "tuned": [
+      {
+        "audio": "BanglaASR10/seg_000.wav",
+        "video": 10,
+        "speaker": "C",
+        "reference": "assalamu alaikum guys, toh goto class e amra dekhechilam amader ip aa ip v4 datagram header ta ache, header er section mane bibhinno choto choto component. toh ajke amra tar modhhe theke kichhu important component er aa ekta brief overview dekhbo. toh cholen shuru kora jak. first of all, amra jeta dekhbo sheta hocche amra je detail tar kotha bolechilam, time to live, shetar ekta importance bola jay.",
+        "hypothesis": "assalam brokhim guys. toh, boto class ta amra dekhhe chilam amader ip, ip forj er diagram header er ta ache, header er disecthi man, bimio achoro chora component. toh ajke amra tar moddhe thai kichu important component er or vektar brief of what a",
+        "wer": 0.7647058823529411,
+        "cer": 0.5248756218905473,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR10/seg_001.wav",
+        "video": 10,
+        "speaker": "C",
+        "reference": "toh amra goto class e khub brief idea diyechilam, but ajke amra full length e jinishta ke shikhbo. to basically ttl as we know, amader time to live. time to live, eita basically ki dey? ekta hop count dey, je hocche o kotogula hop jete parbe. toh onek shomoy hoy ki, je ekta network e aa jokhon onekgula aa connections thake, bolte paren roadmap thake, je ei rasta diye oi rasta te jabe.",
+        "hypothesis": "but ashke amra full length jinish ta ke shikhbo. toh basically aa ttl as we know, amader time to live, time to live, eita basically ki dei? ekta hop count ai, je hocche o korte bula hop jete parbe.",
+        "wer": 0.6301369863013698,
+        "cer": 0.5400516795865633,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR10/seg_002.wav",
+        "video": 10,
+        "speaker": "C",
+        "reference": "ekta certain device e pouchanor jonno, right? toh onek shomoy hoy je connection ta distorted hoye jacche, noshto hoye jacche, onek lagging issue dicche, buffering kortese, emon onek jhamela hote pare. jar jonno hoytoba aa je amader design packet ta destination porjonto pouchaite pare na, ba ekta delay hoy. toh onek shomoy delay ta acceptable na, toh shei khetre amra ki kori? packet ta notun kore pathai. but kono packet notun kore pathanor age amra to previously je packet ta amra send korechi, sheita ke destroy kora lagbe, right?",
+        "hypothesis": "so, onek shomai hoy je connection ta distorted hoy jacche not story jacche, onek leg ish issue dicche, ba faring kortase, i'm onn jhamela hote pare. jar jonne hoy toba, aa je amader delay hoy. je amader delay ta ke ekta destination porjondhe post chaythe pare na ba, ekta delay hoy.",
+        "wer": 0.797752808988764,
+        "cer": 0.5767790262172284,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR10/seg_003.wav",
+        "video": 10,
+        "speaker": "C",
+        "reference": "toh ei je destroy korar je technique ta ba method ta, eitake amra hocche set kori ttl diye. ttl bolte gele je etogula hop, hop bolte ekhane bujhachchi apnar router ba pc. toh etogula router-to-router jump er poreo jodi o destination theke kono acknowledgment na ashe, tahole amra aa packet ta ke destroy kore notun packet pathabo.",
+        "hypothesis": "tokhon je destroy korar je technique ta ba method ta etake amra hocche set kori ttl diye. ttl bolte gele jeta gula hop hop bolte kane bujhacchi, abnay router ba pc. toh eto gula router to router jump er poreo jodi o destination theke kon acknowledgement na ashe. tahole amra aa packet taake destroy kore noth packet pathabo.",
+        "wer": 0.3684210526315789,
+        "cer": 0.07878787878787878,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR10/seg_004.wav",
+        "video": 10,
+        "speaker": "C",
+        "reference": "eta hocche ttl-er khub basic concept. toh eta diye ki prevent kora hoy? main shomossha jeta eta diye amra prevent korte pari, sheita hocche amader jekono packet er endless looping.",
+        "hypothesis": "main shomosh ta jeta ei ta diye amar prevent korte pari sheita hocche, amr jekono packet er endless looping.",
+        "wer": 0.7,
+        "cer": 0.4666666666666667,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR10/seg_005.wav",
+        "video": 10,
+        "speaker": "C",
+        "reference": "looping. okay. so basically eta ki hoy je jokhon ekta network destroy hoye geche ba down hoye ache, kono duita network er moddhe connection, tokhon loop amader je packet, eta khujte thake onno shob network e giye giye je kon network e basically path ta ache ekhono. toh jehetu ektai path chilo ebong sheita destroyed hoye giyeche.",
+        "hypothesis": "so, basically eta ki hoy je jokhn ekta network destroy hoye geche bar down hoye ache, kono dui etar network ke moddhe connection. takhon loop ta amr je packet eto khuste thake onno shob network ki ki hoye je kon network ke basically parta ache ekhono.",
+        "wer": 0.543859649122807,
+        "cer": 0.32727272727272727,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR10/seg_006.wav",
+        "video": 10,
+        "speaker": "C",
+        "reference": "toh or ei je ei mane search korata ar thame na, oita hocche amra boli endless looping. toh endless looping amader bandwidth er jonno onek kharap. eijonno amra ki kori? aa for example chobbish ta hop ba amader ttl level ta diye dilam 24, right? ttl level e jokhon 24, o 24 ba chobbish ta router ba like chobbishta jump-er pore ek router theke arek router-e o nijei aa jodi ttl er value ta zero hoye jay, ekta shomoy aa ore down kore dibe ba ore drop kore dibe amader oi router-ta theke.",
+        "hypothesis": "so endless looping amra band width jonno onek kara. ei jonno amra ki kori? for example, jub ishta hop, amra ki ta value ta diye dilam 24, right? ki ta value jacon 24 or, 24 ma jub ishta round ar ba like, jub ishta jump er pore ekta",
+        "wer": 0.8387096774193549,
+        "cer": 0.6329896907216495,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR10/seg_007.wav",
+        "video": 10,
+        "speaker": "C",
+        "reference": "eibhabe amra basically aa ekta mane noshto je packet ta ba ekta distorted packet tare drop kore dite pari, with the help of ttl. ekhon amra goto class e koekta flag er kotha bolechilam, jeta amader ekta header e dekha jay ipv4 header er moddhe.",
+        "hypothesis": "so, amra jodi ekta notro je packet ta bae ekta distorted packet ta le drop kore jete pari, with the help of ttl. ekhon amra goto class a, korekta flag er kotha bole chilom, jeta amader ekta header er dekheye ja ip4 header er moddhe.",
+        "wer": 0.37777777777777777,
+        "cer": 0.1721311475409836,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR10/seg_008.wav",
+        "video": 10,
+        "speaker": "C",
+        "reference": "toh prothom ta hocche if flag. eitake onek shomoy reset flag-o bola hoy. i think slide e reset flag-e likha ache.toh if ba reset flag. aa eita identification flag o bole or reset flag, you can call whatever you want.",
+        "hypothesis": "so, amra ekta jeta hocche if flag, eita ke ole kshemai reset flag o bola i think slide a reset flag e lekhase.",
+        "wer": 0.85,
+        "cer": 0.6203703703703703,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR10/seg_009.wav",
+        "video": 10,
+        "speaker": "C",
+        "reference": "tarpor hocche df flag, ei. amra oikhane bolechilam je hocche poroborti video te basically ei video te amra df ar mf niye beshi aa kotha bolbo. toh oitai dekhbo ajke amra je ei duita flag-er importance ki. arekta hocche mf flag. toh basically aa eita hocche ki reset flag ta ekhane aa reserve kore rakha hoy arki. ekhane hocche slider e dekha jacche res bole reserve. thik ache? to eita basically mane ekhon kono kaje nai, future e kono kajer jonno use kora jete pare erokom.",
+        "hypothesis": "so amra ekhane bule chilam, jehocche, poroporte video te amra df ar mf niye beshi kotha bonpo. toh oitai dekhbo ajke amra, jei duita flag er importance ki, arektache mf flag.",
+        "wer": 0.8023255813953488,
+        "cer": 0.6666666666666666,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR10/seg_010.wav",
+        "video": 10,
+        "speaker": "C",
+        "reference": "ar df flag ta jeta ache seta hocche don't fragment. don't fragment flag ta thakle ki hoy? amra toh ekta concept, aa mane, common sense diye chinta korleo pari je jokhon duita network amader exist kore, ba duita network bolte ki ar ki, multiple network bujhachchi ami. jokhon multiple network amader exist kore, tokhon amra ki kori je eigular moddhe je, for example, copper wire use kori,",
+        "hypothesis": "so, amra ki hoy e amra ekta concept common sense diye jinish korlo pari. je jokhn duitar net work amader exist kore ba multiple net er bujhacche me. multiple net er kamader exist kore, je ekhane amra ki gori je eigular moddhe, for example, copper wire use gori only one more time,",
+        "wer": 0.7761194029850746,
+        "cer": 0.4625322997416021,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR10/seg_011.wav",
+        "video": 10,
+        "speaker": "C",
+        "reference": "onnyanno onek type er wire amra use korte pari for connections. ekhon shob wire ba shob je connection, bakider to capability same na. for example, amra jodi optical fiber use kori, eita long range er khetre onek beshi capable. but amra short range e toh ar optical fiber use kori na, tokhon copper wire use kora hoy. oneke bole copper straight through je coppergula, cablegula, sorry. toh eigula amader basically ekta device theke onno device e connection er jonno toiri kora. for example, router to router, pc to pc.",
+        "hypothesis": "ekhon shob wire ba shob je connections pate dekhte toh capability same na. for example, amar je optical fiber use kori je long range er khetre, onek basic capable. but amra short range er toh optical fiber use kori na, thokan copper wire use kora hoy.",
+        "wer": 0.6292134831460674,
+        "cer": 0.5725338491295938,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR10/seg_012.wav",
+        "video": 10,
+        "speaker": "C",
+        "reference": "ba hoyto pc to router. toh hocche, erokom. prottyek type er cable er jonno protteker connection speed, bandwidth shobgulo different different thake. ekhon etar jonno hoy ki, eder moddhe je performance ta vary kore. for example, ami jodi ekta char hajar megabyte-er, ba sorry, beshi hoye jacche, char hajar byte.",
+        "hypothesis": "ekhon eitar jorne hoy ki, der moddher je performance ne vary kore. for example, ami jodi ekta charaj er megabyte er ba, sorry, bishi hoy jacche, charaj er byte er jodi ekta byte er jodi ekta input ta rafi, ekhane ki?",
+        "wer": 0.94,
+        "cer": 0.7106109324758842,
+        "temperature": 0.2
+      },
+      {
+        "audio": "BanglaASR10/seg_013.wav",
+        "video": 10,
+        "speaker": "C",
+        "reference": "eta char hajar byte-er data ami ekhane theke pathaite chai, kintu amar je ei cable-ta, ei cable diye char hajar byte ashte pare, thik ache? usually capability ache oita. but eikhane je connection-ta, ba cable-ta, er hoytoba bandwidth kom.",
+        "hypothesis": "but ekhane je connection ta abar kivolt ta, er hoitoba band with com, othba kone? band with com.",
+        "wer": 0.9487179487179487,
+        "cer": 0.7394957983193278,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR10/seg_014.wav",
+        "video": 10,
+        "speaker": "C",
+        "reference": "othoba kono ekta karone e ponerosho byte porjontoi data ekbare transfer korte pare, thik ache? tahole amra ki kori? jokhon ei router, router to obviously jane je etar capability koto. mane, e jokhon ei router tar sathe connection korte chai, e ore bole dey je tumi amare ponerosho byte porjonto pathaite parba. right? o bole dicche router, for example 1 re. toh router 2, router 1 re bole dicche je tumi amare shorboccho ponerosho byte porjonto data pathaite parba, right? to tokhon ki kore.",
+        "hypothesis": "thikache? tahole amra ki kori? jokhn ei router, router toh jana je eitar capability koto. mane ei jokhn ei router ta shate connection korte chai, ei ore bole deye. je tumi amra ponnorsho byte porjontae pathai de parba. right. o bole dicche router for example 1 e, e router 2, e router 1 e bole dicche, je tumi amra shor boche ponnorsho byte porjontae pathai",
+        "wer": 0.6190476190476191,
+        "cer": 0.3564154786150713,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR10/seg_015.wav",
+        "video": 10,
+        "speaker": "C",
+        "reference": "ei router ta, for example router ta, oi mane data ta asche ei computer source theke, toh jokhon hocche aa ekhane amar mane packet ta astese, o jane je amar hocche ponerosho byte er beshi ami ei pothe pathaite parbo na. thik ache? toh tokhon o ki kore, ei je char hajar byte, char hajar byte bhenge prottekta ponerosho, ponerosho ekta ekta kore aa packet create kore ekta fragment create kore.",
+        "hypothesis": "for example, raotar ta amr amr amr amr amr amr amr amr amr amr kata kore amr kata kore. packet create kore er fragment create kore.",
+        "wer": 0.8873239436619719,
+        "cer": 0.7168367346938775,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR10/seg_016.wav",
+        "video": 10,
+        "speaker": "C",
+        "reference": "eder then sequence number diye o porobortite organize kore. to basically ei pothei je shudhu jabe erokom na, ei poth diyeo kichu jaite pare, ei poth to ei poth.",
+        "hypothesis": "toh basically aa pothei ja shudhu jabe erokomna ipod dio kisi jaite par. ipod to ipod.",
+        "wer": 0.7931034482758621,
+        "cer": 0.525,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR10/seg_017.wav",
+        "video": 10,
+        "speaker": "C",
+        "reference": "but router ki kore, always shortest path-tai ney. toh eibhabe amader ekta router hocche fragment kore thake. ekhon jodi don't fragment factor zero deya thake, tokhoni shudhumatro router ei fragmentation ta korte parbe. jodi non-fragment zero na thake, for example jodi 1 thake, tar mane ki je router er kache shei permission nai, etake fragment korar.",
+        "hypothesis": "toh evabe amader ekta route ar hocche fragment kore thake. ekhon jodi don't fragment fragment zero deya thake, takhoni shudhu matro, router ei fragmentation ta korte parbe. jodi don't fragment zero na thake, for example jodi one thake, ar mane ki je router ekase shape animation nai etake fragment kora.",
+        "wer": 0.44642857142857145,
+        "cer": 0.24786324786324787,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR10/seg_018.wav",
+        "video": 10,
+        "speaker": "C",
+        "reference": "ejonno hocche router tokhon ar fragment korte pare na router bole je ei poth diye jaite pare ponerosho, but tumi pathaicho char hajar. toh tumi amare fragmentation ta kore dao. got it? sorryi, ekta call asche.",
+        "hypothesis": "eijonno ache rauta tohna fragment korte pare na. rauta boleji ei poddhe el jay te abr ponorechi but tumi pata ise chara jay. toh tumi ei amr fragment shanta kore debo. gote? sorry, ekta colo ashche.",
+        "wer": 0.8055555555555556,
+        "cer": 0.2966507177033493,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR11/seg_000.wav",
+        "video": 11,
+        "speaker": "C",
+        "reference": "so sorry for the interruption, guys. toh amra hocche jeikhan theke skip korechilam, amra oikhan theke continue korbo. toh basically, amra jeta bolchilam je don't fragment jeta ache. don't fragment er jodi value ta zero set kora thake, tar mane router er kache permission ache packet tare fragment kore onnanno router e pathanor, right? kintu jodi don't fragment er value ta 1 thake, router ar packet re fragment korte parbe na. packet-ta.",
+        "hypothesis": "so, sorry for the introduction guys. toh amra hocche jehhan theke skip kore chilam amra ekhhan theke continue korbo. toh basically amra jeta bolchilam je don't fragment jeta ase, don't fragment er jodi value ta zero set korra thake.",
+        "wer": 0.6111111111111112,
+        "cer": 0.502283105022831,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR11/seg_001.wav",
+        "video": 11,
+        "speaker": "C",
+        "reference": "drop kore diye ekta error message pathabe, sender re je tumi packet ta fragment kore dao ponerosho byte e. ami eta korte parbo na, thik ache? don't fragment tumi zero kore pathaiso. sorry, one kore pathaiso. toh eta hocche basically \"don't fragment\" er main task. eta keno kora hoy? question astei pare. toh mainly onek shomoy privacy concern thake, thik ache? je packet e onek shomoy third party o je attacker ra boisha thake jeshob mane packetgulo ektu beshi private.",
+        "hypothesis": "so, ekhon jodi ekta drop kore dia ekta error er message pathabe send er e je tumi pack a fragment kore the",
+        "wer": 0.9375,
+        "cer": 0.8208955223880597,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR11/seg_002.wav",
+        "video": 11,
+        "speaker": "C",
+        "reference": "ba jetar privacy niye kono risk like neoa jabe na, oigulote \"don't fragment\" one set kore deoa hoy jate shudhumatro je sender, shei hocche packetgulo fragment kore pathaite parbe oibhabe. encrypted kore. okay. tarpor asha jak hocche mf. mf bolte bujhay. mf bolte bujhay more fragment.",
+        "hypothesis": "okay. tarpore asha jay khe hocche, mf. mf bolte bujhai, mf bolte bujhai more fragment.",
+        "wer": 0.8260869565217391,
+        "cer": 0.7323943661971831,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR11/seg_003.wav",
+        "video": 11,
+        "speaker": "C",
+        "reference": "okay. so more fragment bolte tumi bujhtei partechho jokhon ekta fragment bhag korar pore jotokkhon na porjonto last fragment ta ache, oi je for example ami je char hajar byte er ekta data ke bhag korlam, for example ponerosho byte prothome ami dilam, ekta packet one. then amader porer ponerosho byte, eta hoye gelo terosho aa 300 byte, right? packet 2. porer packet-ta amar hocche tin hajar hoy, just ek hajar baki thake,",
+        "hypothesis": "okay. so more fragment bortin bujhtay parte se jokhn aa ekta fragment bhag korar pore jodokhon na por jodho last fragment ache eo, je for example ami je 4 ajar byte er ekta data ke bhag krollam. for example, 4 byte er ekta packet ke bhag korte lam.",
+        "wer": 0.6575342465753424,
+        "cer": 0.495260663507109,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR11/seg_004.wav",
+        "video": 11,
+        "speaker": "C",
+        "reference": "toh porer packet-ta jabe ek hajar byte-e, packet three. toh eita hocche porer eita first er ponerosho byte, eita porer ponerosho byte, eita hocche ek jhajar byte, right? toh amar more fragment ki kore? more fragment bole dey je erpore ar ki kon fragment ashbe? jemon jodi ei case e chinta kori, ei je packet ta ami send korbo, ekhane header er field er moddhe more fragment e deoya thakbe one.",
+        "hypothesis": "so eita hocche porer eta fast er ponor osho byte, eta porer ponor osho byte, eita hocche ekhajar byte. right. toh amar more fragment ki kore? more fragment bole dei je er pore ar ki kono fragment ashbe? jemon jodi ei keese kete chinta kori, ei je packet ta mi sin korba ekhane ei heitar er file er moddhe more fragment er deyao thakbe one.",
+        "wer": 0.49295774647887325,
+        "cer": 0.24173027989821882,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR11/seg_005.wav",
+        "video": 11,
+        "speaker": "C",
+        "reference": "tar mane hae, amar ekhono aro packet ashbe. to packet two er khetre same, more fragment e amra header er moddhe je more fragment thakbe, mf flag ta sekhane dekhte pabo one. tar mane ki? je packet two-er poreo ekhono packet ashbe. kotogula packet ashbe seta bola thake na, but hae, packet ekhono baki ache, eta bole.",
+        "hypothesis": "tar mane ki, packet two er kore o ekhon paket ajbe? sheta bola thake na. but hea, packet ekhonno baki ache eta bole.",
+        "wer": 0.7894736842105263,
+        "cer": 0.6603174603174603,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR11/seg_006.wav",
+        "video": 11,
+        "speaker": "C",
+        "reference": "but jokhon amra packet three te chole jabo, jekhane ek hajar byte matro jabe, because achei ar ek hajar byte, so 100 byte jabe, tokhon amra dekhte pabo mf-er moddhe value-ta zero. tar mane o bujhachche je amar eitai last packet chilo.",
+        "hypothesis": "but jokhn amra packet three te chole jabo jekhane ekhjar byte makro jabe because achei era ekhjar byte. so, ekhane ekhjar byte e jabe jekhn amra jokhn amra value debo, emay fer moddhe valuta zero. tar mane o bujhacche je amar eitai last packet chilo.",
+        "wer": 0.5476190476190477,
+        "cer": 0.23504273504273504,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR11/seg_007.wav",
+        "video": 11,
+        "speaker": "C",
+        "reference": "amar je fragment er packet gula theke last packet, tar mane purata chole giyeche ei porjonto. okay. so eita bujha khub-e important chilo jokhon amra mtu er math gula dekhbo. mtu er math er khetre/ ar next video theke amra inshaallah mtu er math shuru korbo. thik ache. best of luck. assalamu alaikum.",
+        "hypothesis": "okay? so eita bujha khub e important chilo jokhn amra mtu er math gula dekhbe mtu er math er khetre. ar next video theke amra inshallah mtu er math shuru korbo. thikache? best of luck. aa assalamualaikum.",
+        "wer": 0.5094339622641509,
+        "cer": 0.3566666666666667,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_000.wav",
+        "video": 12,
+        "speaker": "C",
+        "reference": "toh guys, ajke amra hocche mtu er math gulo shuru korte jachchi. toh as you can see, mtu-r full form hocche maximum transmission unit. unit. so unit amra keno boltesi, eitake unit bolte ki bujhay.",
+        "hypothesis": "toh guys ajke amra hocche mt er method of form hote chacchi. toh as you can see mt er full form hocche maximum transmission unit.",
+        "wer": 0.6,
+        "cer": 0.41836734693877553,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_001.wav",
+        "video": 12,
+        "speaker": "C",
+        "reference": "actually je jekono kono kichu measure korar ekta standard format ba standard form.",
+        "hypothesis": "so unit amra kiano bolte si. taki unit bolte ki bujhaye actually je jekono kono kish major koror ekta standard form, standard form let's say.",
+        "wer": 1.4615384615384615,
+        "cer": 0.9512195121951219,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_002.wav",
+        "video": 12,
+        "speaker": "C",
+        "reference": "liike jeta amra hocche overall oi system-e use korbo. ekhon, toh maximum transmission unit ki hobe? prottekta system-er khetre different, because aa prottekta system bolte bujhacchii je hocche collection systemgula. tomar hocche duita router-er moddhe je connection ta ache, oi connection system er jonno prottekta system-er o different hobe mtu ta, because prottekta system different bhabe banano hoy. eta different approach follow kore, algorithm follow kore.",
+        "hypothesis": "naik jeita amra hocche overall oi system a use korbo. ekhon maximum transmission unit ki hobe? prottekta system er khetre different. because prottekta system bolte bujhacchi je hocche connection system gula. tomar hocche dira rar moddhe je connection ta ache.",
+        "wer": 0.6666666666666666,
+        "cer": 0.4685466377440347,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_003.wav",
+        "video": 12,
+        "speaker": "C",
+        "reference": "aa oder quality different hoy, oder bandwidth different hoy. ei shobkichui related for fixing this mtu size. maximum transfer unit size. je packet-ta kototuku jabe shorboccho, ei yaa ki bola jay, je ei hocche aa system-ta diye.",
+        "hypothesis": "ei shob kichui related for aa fixing this mtu size. mi exibam transfer unit size je packet a koto toku jabe shor bocche ei aa ki bola jai je ei hocche system ta diye.",
+        "wer": 0.6756756756756757,
+        "cer": 0.3700440528634361,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_004.wav",
+        "video": 12,
+        "speaker": "C",
+        "reference": "tokhon connection system-ta diye. so mtu-er first je jinishta tomader explain korte try korsi, je tomra jokhon kono packet ekta router theke arekta router pathaite chaccho.",
+        "hypothesis": "so, mtv er first je jinish ta tomader explain kora try korsi, je tomr jekhon kono packet, ekta nar ta theya ekta nar tar pothay te chaccho, tomader open a package ta ekta nar tar pothay.",
+        "wer": 1.1538461538461537,
+        "cer": 0.622093023255814,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_005.wav",
+        "video": 12,
+        "speaker": "C",
+        "reference": "tomader oi router ekta hocche acknowledgment dey. jokhon hocche je three way handshaking amra boli, ekta acknowledgment dey je tumi etotuku byte, oi je for example ager moto ponero-sho byte, tumi amare pathaite parba. er beshi dile ami nite parbo na. so aa because ei side hocche router-ta ache, tar hocche tomar ekta aa buffer ache je buffer-e basically message-ta rakhte pare ba je packet aa packet-ta ashe sheta rakhte pare.",
+        "hypothesis": "so, ei side e ache route ta ache, taro hocche tomar ekta buffer ache, je buffer er basically message ta rakhte pare, but ei packet ta ashesh era rakhte pare.",
+        "wer": 0.8732394366197183,
+        "cer": 0.6744730679156908,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_006.wav",
+        "video": 12,
+        "speaker": "C",
+        "reference": "toh oita amra pore, oita arektu in-depth kothabarta. toh tomar apatoto jeta bujhte hobe je e bole dicche ei router-re je tumi amar kache at max eto byte porjonto pathaite parba data ta. toh ekhon ami jehetu ager video te df ar mf ta explain korechi. for example amra maximum case-e dhore nibo je df-ta zero deoya. tahole ami fragment korte parbo ba amar packet ta throughout the transmission fragment hoite parbe if be necessary, okay?",
+        "hypothesis": "toh tomar apato jeta bujhte be je, ei bole dicche ei router er je tumi amar kache at next e toh right porjonde parha rata parbo. toh ekhon ami jhetu aager video der df arem f ta explain korechi, for example amra maximum case e dhorin nibo je df ta zero deya aw, panee ami fragment korte parbo.",
+        "wer": 0.6710526315789473,
+        "cer": 0.4413793103448276,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_007.wav",
+        "video": 12,
+        "speaker": "C",
+        "reference": "so for example, ekhetre amar df ta deoya chhilo zero, jar jonne amar ei router-ta packet-ta onno router-e fragment kore pathaite shokkhom hoyeche, right? ekhon, for example, amar packet-tate, aa, ekta uneven aa size deoya ache. for example, which is not multiple aa mane exponent of two. thik ache? oii khetre amra ki korbo? amra hocche etate padding add korbo.",
+        "hypothesis": "so for example, ei khetre amr df ta deya o chilo zero, dardron me ei router ta packet ta onno router ne fragment kore parhaite shokhon hoy chilo. right. ekhon for example, amar packet ta te aa ekta uneven size deya ache, for example, which is not multiple, amra exponent of two, thikache?",
+        "wer": 0.75,
+        "cer": 0.30193905817174516,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_008.wav",
+        "video": 12,
+        "speaker": "C",
+        "reference": "amra shikhechilam goto video-te je hocche padding kivabe add kora jay. jodi multipla aa, mane multiple of four na hoy, tahole amra kichu padding add kore oitare header ta re multiple of four banai. multiple of four banai, tokhon sheitare hocche shamne pathai. shei kajta ekhane kora lagbe.",
+        "hypothesis": "so amra sikhechilam goto video te je pacche padding ki bebe add koro jai. jodi multiple ah mane multiple of four na hoy tahole amra kichu padding add kore o etare multiple of four banai. multiple of four banes toh shikache shemne patay.",
+        "wer": 0.5625,
+        "cer": 0.25951557093425603,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_009.wav",
+        "video": 12,
+        "speaker": "C",
+        "reference": "porikkhar shomoy erokom kichu question chole ashe je hocche ekta size diyeche, tumi dekhteso eta ekta, aa mane, four diye divisible na, four-er multiple na, ba hocche two to the power three jeta ache, two-er exponent, oitar multiple na. tokhon tumi padding kichu add kore shetake hocche pore fragment kore niba.",
+        "hypothesis": "but eita type er map por ekhane jodi samastu ekta map korte pari. so amr amr gula map ta ekta different equation chole ashe, je hocche ekta size diye tumi dekto soyta ta amane, for the a divisible for er multiple na, two to the por three jay ta ase two er exponent.",
+        "wer": 1.0196078431372548,
+        "cer": 0.707395498392283,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_010.wav",
+        "video": 12,
+        "speaker": "C",
+        "reference": "but ei type-er math porikkhay last dui tin semester-e ashe nai, so i am guessing je eibar-o ashbe na.",
+        "hypothesis": "so, ami kichu change je ei baro ajbera.",
+        "wer": 0.9473684210526315,
+        "cer": 0.7425742574257426,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_000.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "okay guys. so amader ekhon aa mtu math-er kichu fundamental aa jinis aa dekhe hobe. sheta hocche, first of all, total packet size.",
+        "hypothesis": "okay, guys, labonder ekhon m2 er method e ki ki ki fundamental jinish dekhte hobe, she er ache first of all proton packet size.",
+        "wer": 0.8695652173913043,
+        "cer": 0.33076923076923076,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_001.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "ami one by one shobkichu explain korte korte jabo. toh, what is basically total packet size? total packet jeita amra pathai, aa ekta network theke onno network-e. it has two sections. one is header section.",
+        "hypothesis": "total packet, jeta amra pathai, ekta network theke, onno network a, it has two sections. one is a header section, and one is a header section, and one is a header section, and one is a header section.",
+        "wer": 0.9714285714285714,
+        "cer": 0.6844660194174758,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_002.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "one is data section.",
+        "hypothesis": "so ami jinish te ekhon , one is data section.",
+        "wer": 1.5,
+        "cer": 1.25,
+        "temperature": 0.8
+      },
+      {
+        "audio": "BanglaASR13/seg_003.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "okay, toh header section ar data section-ta ki jinish? data section basically jeta thake amader, usually data-ta. oi data-ta pura-ta kei just data section bole. but header section-ta ki jinis? ei je amra etokkhon dekhailam, aa header-ta re fragment kore, header-ta re dissect kore. je header-er moddhe ki ki value thake. tarpor ei je duita flag: df flag, mf flag. ei shobkichu mile jeita toiri hoy, sheta hocche amader header section.",
+        "hypothesis": "okay, toh heitar section na, reitar section ta ki jinish? data section basically, je da thake amader usually da ta ta, poi daita ta purata ray just data section bole. but heitar section ta ki jinish? eije amra adukhn dekha ilam.",
+        "wer": 0.8591549295774648,
+        "cer": 0.5622119815668203,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_004.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "toh basically eita mane identification-er jonno lage. er moddhe ekta identification number thake je amar kon aa fragment-e jaitese, prottekta fragment-e ekta identification number thake jeta porobortite match kore kore ami je fragmented aa packet gulare abar eksathe kore pore reassemble korte pari.",
+        "hypothesis": "so basically eita amra identification a jonno lage, er moddhe ta identify her number thake je amar kon fragment er chaik jeky deche port. er eh fragmented fragmented identification number thake jate eto pormortkive match kore kore, ami je fragmented packet bulare abar ek shite korte r. reassemble korte r.",
+        "wer": 0.6744186046511628,
+        "cer": 0.26421404682274247,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_005.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "mane eta hocche receiver-er device-e hoy. transport layer-e hoy. sorry. network layer-e hoy basically kaj gula. toh thik ache. ekhon tahole amra bujhte partesii je ekta packet-er moddhe header section ar data section mile hobe total packet-er size. right?",
+        "hypothesis": "so, thikache? ekhon amra bujhte pari je ekta package er moddhe heira section ar data section mile hobe total er package er size. right?",
+        "wer": 0.6923076923076923,
+        "cer": 0.5529411764705883,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_006.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "header plus data, duita mile hobe total packet-er size. toh ami prottekta je file pathaitesi, sheita data size jemoni hok, oi je for example, ager mane example-ta theke ponero-sho byte ba ek-hajar byte, pach-sho byte je size-er data-ee hok, shobshomoy packet mane header-er packet-e header-er size ta same-ee thake.",
+        "hypothesis": "duitai mile hobe total packet size. ta ami prottek ta je file pathai tesi sheita data size je moni ho, je for example ager mora example porna theke, ponno shobite ba ekhra jar byte pas shobite jay size er datai ho, sabshobay packet, omne header er packet a header er size ta semi thake.",
+        "wer": 0.8163265306122449,
+        "cer": 0.24761904761904763,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_007.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "eta deoya thake onek shomoy. toh eta direct ami jodi ei problem-er jonno korte chai, i would say 20 byte hocche header byte. as amra previous discussion theke jenechi je header byte-ta bish theke 60 byte-er modhhei hote pare. eita hocche ipv4-er ekta rule, toh etar baire jawar kono shujog nai.",
+        "hypothesis": "eitar dewa theke on next shemate ai direct ami ektu dii problem o jorne korte chai, i outse 20 byte hocche header byte. as amra previous discussion theke jeneci je header byte ta, beish theke 60 byte er moddhei hote pare.",
+        "wer": 0.6470588235294118,
+        "cer": 0.37755102040816324,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_008.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "aa ora eibhabei regular design kore, ar tar sathe jeita size jeita dey ar ki, eta toh fixed kichhu na. jokhon jototuku jeta jabe, sheibhabe data size-ta apnader fix rakhte hobe ekhane. toh this is the header size, this is the data size. duita combinedly mile hoy packet size.",
+        "hypothesis": "so, this is the header size, this is the data size. duita commonly mile hoy packet size.",
+        "wer": 0.6938775510204082,
+        "cer": 0.6872727272727273,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_009.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "to amader exam-e onek shomoy ektu wording-er mane aa patch dey sir-ra, sheta hocche jemon packet size-ta. packet size bole, total packet size-ta eto. onek shomoy packet size na bole bole je hocche data size-ta eto. toh tomar tokhon question-ta pore bujhte hobe. je tomar je packet-ta ache sheta ki including the header or just the data. thik ache? eita eita onek shomoy ekta tricks amra dekhte pai porikkhar question-er wording gulate.",
+        "hypothesis": "so amader exam e onekshomai ekta wording er patch deya sar na, sheita hocche je bon packet size ta, packet size bolle katol packet se stati, onekshom e packet size na bole bole je hocche data size ta eto. tu tomar pekhan question ta pore busth hbe, je tomar je packet ta asashe ta including the header or just the data, thikache?",
+        "wer": 0.6944444444444444,
+        "cer": 0.3471264367816092,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_010.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "thik ache? toh hocche dui type-er hoite pare, ami bole dilam header ar packet. ekhon onek shomoy emon hoy je hocche aa tomar header-ta deoya ache ar packet size-ta deoya ache. tokhon data size ber korte hobe. tumi just eta theke eta biyog korba.",
+        "hypothesis": "ekhon onek shemai ami moly bole dilam header or packet. ekhon onek type er hoite pare ami bole dilam header or packet. ekhon one ek shemai amon hoy jee otche tomr header ta deya ache ar packet se deya ache tohon data save bry korte peye timu jeise eta theke beekhomba.",
+        "wer": 0.8636363636363636,
+        "cer": 0.42448979591836733,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_011.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "simple enough. thik ache? toh mtu jokhon amra boltetchi je m, mane maximum transfer unit, eta shobshomoy packet size-ta transfer kore. thik ache?",
+        "hypothesis": "so, mtu jekhon amra bolhtisi je, mane maxim transfer unit er ta shobshomoy packet says ta answer kore.",
+        "wer": 0.782608695652174,
+        "cer": 0.3931034482758621,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_012.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "mtu amra jodi boli je ekta mane packet-er size hocche, ba sorry, ekta connection-er mtu hoitese ponero-sho. tar mane ekhane kintu aa header-ta included. mtu always packet-er size-ta bole.",
+        "hypothesis": "m2 always packet er size ta bole. so, amra ekta package er size ta bole.",
+        "wer": 0.9310344827586207,
+        "cer": 0.7005347593582888,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_013.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "ahhm ahhmm. toh mtu always packet size-ta bole. and ekta amar hocche mtu-er moddhe always header-ta included thakbe. bish byte header include thakte pare.",
+        "hypothesis": "toh mt always back er size te bole and ekta amr hocche mtu er moddhe always herata include er thakbe. ei mish bair herata include thakte par.",
+        "wer": 0.7916666666666666,
+        "cer": 0.2597402597402597,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_014.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "toh ami jehetu ponero-sho byte ekhane likhechi, tar mane ekhane amar data size-ta chouddo-sho ashi byte. ar jehetu bole diyechilam aage bish byte data, toh ami plus bish.",
+        "hypothesis": "ami jeta porno shobay ekhane likhe chai. amra ekhane amr data size ta choddho sho ashbyte.",
+        "wer": 0.8571428571428571,
+        "cer": 0.5529411764705883,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_015.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "tahole amar jodi ekta packet-er size hoy, just packet-er data-r size, sorry , amar jodi ekta data-r size hoy, mone koro char hajar byte. [4:22- 4:45 ] char hajar byte, right? toh ei je packet-tar mtu deoya, tomar hocche ponero-sho. tar mane o kintu eije data size-er ponero-sho protibar pathabe na, jehetu eta bish byte-er aa header included, o prottekbar chouddo-sho ashi highest pathaite parbe.right?",
+        "hypothesis": "so, amr jodi ekta packet er size hoy, just packet er data size, sorry, amar jodi ekta data size hoy, monne koro 4 hajar byte.",
+        "wer": 0.8153846153846154,
+        "cer": 0.7039800995024875,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_016.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "toh aa eta chilo just ekta brief, mane dharona je hocche basically wording diye sir-ra kemne hocche question-ta trick korte pare. then eta gelo. tarpor ashi fragment offset. mtu math-e amader fragment offset-ta onek lage. [5:00- 5:21 ] toh fragment offset-ta basically ki? amra for example, jodi eitai dhori je char-hajar byte data pathaite hobe. amader hocche mtu ponero-sho byte. eta ami pashe likhe dei. taile better hobe. mtu hocche ponero-sho byte. connection-ta. tahole hocche kotogula fragment amra pabo?",
+        "hypothesis": "so, etar chilo just ekta brief mane dharo na, je hocche basically wording diye sarra keem ne hocche ekta question ta trick korte pare. then eta gelo, tarpore eshi fragment offset.",
+        "wer": 0.8354430379746836,
+        "cer": 0.7025440313111546,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_017.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "amader data kintu thik-ee deoya ache. je eta char-hajar byte, data-r size. toh amader data-ta purata pathano porjonto toh ar toh basically amader header-o lagtese, tai na? jodi data pura send hoye jay, tarpore kintu ar bish byte extra ba you know? header jabe na. right?",
+        "hypothesis": "so amader data kintu thiki deya osse je eta char a jare bai data size. toh amader data ta pura atar pakhono porjo intu ay, toh basically amader hidro lakht se tai na. jui data pura send hoy je tar pora kintu ay, 20 bite x jeboy ono her er cha abena.",
+        "wer": 0.8043478260869565,
+        "cer": 0.3148148148148148,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_018.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "toh amra ekhan theke ekhon ekta mane decision nite pari je thik ache, tahole jehetu amader mtu deoya ponero-sho. amader bolao ache bish byte header. tahole amader shudhu char-hajar ashi byte-e prottek bar jabe. toh ami just etare aa plain and simple divide korte pari.",
+        "hypothesis": "right? toh amra ekhane ki ache ache ache ache, amra decision nite pari, je thikache tahole je amader mtu dewa ponner osho, amader bolla o ache bish bite shetar, thahole amader chara jay ashi bite e prottek bar jabe.",
+        "wer": 0.7777777777777778,
+        "cer": 0.458955223880597,
+        "temperature": 0.2
+      },
+      {
+        "audio": "BanglaASR13/seg_019.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "mane jeta kortesi, eta amar number of fragment. thik ache? sheita ber kortesi.number of fragments. [ 5:59- 6:08] eta hobe je ami proti bar pathaite parbo char-hajar aat-sho, total-ta hocche char-hajar. sorry sorry, chouddo-sho ashi.",
+        "hypothesis": "mane je ta kortesi? etaporto number of fragments. thikache? sheta ber kortesi. number of fragments. etaporto number dekhte pari.",
+        "wer": 0.8571428571428571,
+        "cer": 0.5387931034482759,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_020.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "total size 1480, data-ta ar ami prottekbar aa pathaite parbo chouddo-sho. sorry. bhul bolsi guys, my bad. amar total data size-ta hocche char-hajar byte, ar ami prottekbar pathaite parbo chouddo-sho ashi.",
+        "hypothesis": "amr total letar size ta hocche chara jarbay. arami prottekbar pathai parbo choddosh. so ami ekhane ki shudhu? amr total letar size ta hocche chara jarbay.",
+        "wer": 0.9354838709677419,
+        "cer": 0.6078431372549019,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_021.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "ami char-hajar re chouddo-sho ashi diye bhag korbo just. ektu calculator-e eta kore niyen. kore jetai ashbe setate ceil kora lagbe. c e i l. mane basically amader je upper threshold-er value-ta sheta neoya lagbe. toh ami just eta ektu calculator-e kore dekhi. toh ashen. [6:40- 7:06 ] so 2.7. eitare ceil kore amra three. toh amader basically tinta fragment offset dorkar, ei pura file-tare pathanor jonno, right? [7:06-7:21 ] thik ache? amra tahole ekhon hocche fragment er zero theke chouddo-sho ashi pathabo. mane sorry, ektu bhul bolchi, ekhane chouddo-sho ashi na, eta hobe chouddo-sho uno-ashi. 1479. [7:21-7:41 ] because zero theke calculate kortesi na? to zero theke 1479 mane toh chouddo-sho ashi byte, right? eta kintu ektu mathay rakhte hobe. amra shobshomoy mane amra hocche zero theke hisab kori je fragment shuru hobe jawa zero theke. jodi bole dey fragment shuru hobe jawa five theke, then apnader shebhabe calculation-ta change korte hobe, thik ache?",
+        "hypothesis": "so ami chara jar re joddhosho ashi diye bhag korte jacchi. eto calculo tar eta kore nian, kore jeta yajbe, sheta te seal koren lagbe. c-e i l. mane basically, amar er je apart e shorda veru ta sheta nii holnakbe.",
+        "wer": 0.9354838709677419,
+        "cer": 0.8219461697722568,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_022.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "for this case amra chinta kortesi fragment-ta jabe zero theke shuru hobe, eta question-e bola thake explicitly. ar jodi na bola thake, apnara by default dhore niben je fragment-ta zero thekei jay, right? toh thik ache. prothome zero theke gelo chouddo-sho uno-ashi, pore chouddo-sho ashi theke jabe.",
+        "hypothesis": "so for this case amra chinta kortesi fragment ta jabe zero theke shuru hobe, eta question er bola theke. jina bola theke, abne by default dhore nipen je fragment ta zero theke jai.",
+        "wer": 0.6382978723404256,
+        "cer": 0.451505016722408,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_023.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "aa chouddo-sho ashi theke chouddo-sho ashi plus je apnar mtu-er size-ta. toh ami jodi kori sheta chouddo-sho ashi into two. that is 2959.",
+        "hypothesis": "toh ami jodi korish eta, jodi dhore ta, dhore ashi into two, that is 2959. okay. so, ekhon ami ekta value ta, ekhane ki?",
+        "wer": 1.0434782608695652,
+        "cer": 0.7737226277372263,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_024.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "eta hocche basically next je, eta hocche fragment number one. frag one. eta hocche fragment number two. thik ache? toh porer-ta jabe, ei je chou untrish-sho shait theke total size-ta biyog korle hoye jabe. untrish-sho shait total size. hae, tahole hocche.",
+        "hypothesis": "tokhn amra jeta korte parbe, amra jeta korte parbo. so, amra jeta korte parbo. eta hocche basically amra next je eta hocche fragment number one. frag one, edhe hocche fragment number two, thikache?",
+        "wer": 0.975609756097561,
+        "cer": 0.7176470588235294,
+        "temperature": 0.6
+      },
+      {
+        "audio": "BanglaASR13/seg_025.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "ahha ahha. mane last byte porjonto chole jabe. toh basically amader jeta size chilo char-hajar byte, ar amra pore math kore ber korlam je number of fragment hocche three. tahole hocche amader ekhan theke chole ashlo, mane amader assumption-er sathe milse. assumption toh nabasically amader ei math-er sathe milse je amader tinta fragment-i lagbe.",
+        "hypothesis": "so basically amader data size er 4 byte. ar amra kore me kore ber kolom, je number of fragments hocche three, tarlo acche amader ekhan theke chole ashlo.",
+        "wer": 0.7222222222222222,
+        "cer": 0.6069364161849711,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_026.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "ekhon, ekkhetre apnaraa apnara jodi ektu chinta koren, apnara je df, mf-er valuegulo bolen, prottyekta case-e. video-ta ekhane pause koren, and df mf-er valuegula prot ei tinta packet-er fragment-er khetre ki hobe amare bolen.",
+        "hypothesis": "so, amra jodi amra kintu ekta kintu kintu kintu kintu",
+        "wer": 0.9705882352941176,
+        "cer": 0.827433628318584,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_027.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "okay. so aa first-er-ta ami ektu solve kore dei. df-er value ei prottekgular khetre zero. because packetgulo as fragment hoitese, router porte parche je amar df-er value obviously zero deoya chhilo. jodi one deoya thakto, tahole aa packetgulo fragment hoto na. oikhane drop hoye jaito, and je sender chilo, tar kache eta message jaito je tumi fragment kore then amake pathao. right?",
+        "hypothesis": "okay. so aa frustrate er amake to solve for e dei. df er value etar prorte gula kheta is zero. because begat gula as fragment thoi dise round ar korte parse deyam ar df er value obviously zero dey ausschilo.",
+        "wer": 0.9193548387096774,
+        "cer": 0.6099476439790575,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_028.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "tar mane df-er value prottekgular khetre zero. mf-er valuegula koto hobe? okay. so amra ki shikhechilam goto video-te je mf-er video tokhoni, sorry, mf-er value tokhoni matro one hobe, jokhon shetar pore aro fragment ache.",
+        "hypothesis": "right. te amra dfa value borte koto holo ketbe zero. ms er value bula pote hobe. okay. so amra kishige chilam koto video tajki ms er video tukoni, sorry, ms er value tukoni matro one hobe jokhn sheta pore aro fraction one.",
+        "wer": 0.8571428571428571,
+        "cer": 0.2927927927927928,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_029.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "mf-er value zero hobe kokhon? jokhon amra last fragment paya jabo. tahole ekhetre amader last fragment three number na? tahole ekhane mf-er flag-ta hobe zero. je er mane bujhay er pore ar kono fragment nai.",
+        "hypothesis": "je, er mane bujhe, er pore ar kono fragment nai. so, amra first a fragment ta ache bata chai, amra first a fragment a ache.",
+        "wer": 0.9428571428571428,
+        "cer": 0.6650485436893204,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_030.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "er u porer shob case-e shegulo hobe one. mf equals to one, right? to eta hocche amader basically aa pura math-tar summary. tarpore amra jodi fragment value-ta ekhan theke ber korte chai je prottektar jonno fragment value.",
+        "hypothesis": "mf is equal to 1. eita hocche amader basically aa pura matter summary. tarpore amra jodi fragment value ta ekhante ke ber korte chai.",
+        "wer": 0.6756756756756757,
+        "cer": 0.4434389140271493,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_031.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "fragment value amra basically ki kori? prothome je ei shongkha-ta ache, eitake amra oi je aat diye bhag kori. aatdiye bhag korle jeta ashbe, sheta amader fragment value.for the first fragment.",
+        "hypothesis": "fragment zorlo amra basically ki gori potho nei jei chonkhata ache, eita ke amra, oi je art diye bhag kori. art diye bhag korele jeta ashbe sheta amoder fragment dhalo.",
+        "wer": 0.6129032258064516,
+        "cer": 0.2604166666666667,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_032.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "hmm. toh ekhane amra zero divided by 8, hocche zero pabo. toh jokhon jodi amader question-e bola thake je amader aa offset-taar aa, sorry, offset-ta na, mane fragment gula shuru hobe zero theke, tahole amader prothom fragment-er fragment offset shobshomoy zero ashbe. eta hocche fragment offset.",
+        "hypothesis": "so amra 0 divided by 8, 0 pabo. so jodi amader question er bolatake, je amader aa offset tar aa, sorry, offset tar amra fragment gula shuru hobe 0 theke. thao le amader potom fragment er fragment offset shobshomai 0 ajnei.",
+        "wer": 0.6521739130434783,
+        "cer": 0.33559322033898303,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_033.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "fragment offset. right? toh second-tar jonno.",
+        "hypothesis": "right? toh second time ami dhoro nii shat korte chai, ami kichu value ta korte pari.",
+        "wer": 2.6666666666666665,
+        "cer": 1.4666666666666666,
+        "temperature": 0.4
+      },
+      {
+        "audio": "BanglaASR13/seg_034.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "second-tar jonno amar chouddo-sho ashi divided by 8. amra just ei value gula nibo, thik ache? prothomer je value-ta, oita. [ 11:44-11:58] aa divided by 8 joto ashe, eta ektu just calculator kore dekhi. chouddo-sho ashi divided by 8, that is 185. eta hocche second je value-ta, tar fragment offset. right?",
+        "hypothesis": "so, second er jonno, abar joddhso ashi divided by eight, amra just ei value gula nimo thikache? kotho mer je value dawita.",
+        "wer": 0.8627450980392157,
+        "cer": 0.6973684210526315,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_035.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "and third. eta hobe 2960 divided by 8. [ 12:10- 12:24] 2960 divided by 8. eta hocche 370, right? eta hocche fragment offset for the third fragment.",
+        "hypothesis": "right? and card. eta hobe hocche 2960 divided by 8.",
+        "wer": 0.7777777777777778,
+        "cer": 0.7959183673469388,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR13/seg_036.wav",
+        "video": 13,
+        "speaker": "C",
+        "reference": "okay.toh eibhabe amra basically ekta mtu-er math solve korte pari. thank you so much.",
+        "hypothesis": "okay. toh ebhabe amra basically let ei mq er meddhash korte pari. thank you so much.",
+        "wer": 0.5714285714285714,
+        "cer": 0.21176470588235294,
+        "temperature": 0.0
+      }
+    ]
+  }
+}
