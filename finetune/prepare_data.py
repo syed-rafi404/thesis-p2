@@ -456,8 +456,8 @@ def main():
              else f"random video split, {args.test_fraction:.0%} of each lecturer, seed {args.split_seed}"))
     # The fallback table is in OLD numbers (it would call new BanglaASR10 lecturer C), so it
     # only applies to the frozen ground truth; new files must carry a Speaker ID header.
-    legacy = SPEAKER_MAPS[args.speaker_map] if scheme == "old" else {}
-    labels = {stem: read_speaker(p, stem, legacy) for stem, p in lectures}
+    fallback_speakers = SPEAKER_MAPS[args.speaker_map] if scheme == "old" else {}
+    labels = {stem: read_speaker(p, stem, fallback_speakers) for stem, p in lectures}
     check_against_raw_folders(labels, scheme)
 
     test_lectures = set()
@@ -475,7 +475,7 @@ def main():
     manifest, stats, speaker_minutes = [], {}, {}
 
     for stem, gt_path in lectures:
-        speaker = read_speaker(gt_path, stem, legacy)
+        speaker = read_speaker(gt_path, stem, fallback_speakers)
         if speaker == "UNKNOWN":
             # Never guess: an unlabelled lecture silently joining training is how
             # a test speaker leaks in. Add "# Speaker ID:" to the file instead.
