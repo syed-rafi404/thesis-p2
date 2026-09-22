@@ -308,6 +308,63 @@ this section to answer the spelling question. Per-run numbers: rerun the command
 Reproduce: `python scripts/banglish_wer.py --mean "hold out A s42=<parent>/ft_work_BCtoA/eval_turbo_seed42_greedy.json" ...`
 (the six greedy files listed in 1.5).
 
+### 1.7 Hyperparameter tuning on a validation set, pre-registered (rehearsal, 2026-09-22/23, 3060)
+
+The panel will ask how the settings were chosen. They are now chosen by a procedure written down
+**before any run**: the plan in `data/splits/tuning_plan.md` (`64110e8`, addendum `8ebe3f8`) and the
+validation lectures in `data/splits/lr_validation.json` (`1eaa11c`, seed 2026): **BanglaASR2 (A,
+14.0 min), BanglaASR12 (B, 13.1), BanglaASR14 (C, 7.2)** — one per lecturer, locked out of every
+test set afterwards (`prepare_data.py --never-test`). **The test set is never used for tuning.**
+
+This run is the **rehearsal** on the ground truth available on 2026-09-22 (new numbering, 2.69 h:
+395 training clips / 126.8 min, 102 validation clips / 34.2 min). The plan's addendum requires the
+same procedure to be repeated on the full ground truth, and that repeat supersedes these settings
+(`scripts/whisper_full_pipeline.py` step 3).
+
+Fixed throughout: whisper-large-v3-turbo + LoRA, batch 8, bf16, gradient checkpointing, greedy
+decoding, alpha = 2 x rank. Starting point: lr 1e-3, rank 16, `q_proj,v_proj`, 8 epochs, seed 42.
+Score: median per-clip CER on the validation clips. Off-the-shelf Whisper on the same clips: **CER
+73.2%, WER 96.7%**.
+
+| Stage | Run | Val CER | Val WER | Note |
+|---|---|---|---|---|
+| 1 learning rate | lr 5e-4 | 45.9% | 66.2% | 76/102 clips better, Wilcoxon p = 2.8e-07 |
+| 1 | lr 1e-3 (the starting point) | 45.4% | 64.8% | 78/102, p = 5.6e-09 |
+| 1 | **lr 2e-3** | **42.1%** | 67.6% | 80/102, p = 5.9e-10; runaway clips 8 -> 4 |
+| 2 LoRA rank | lr 2e-3, rank 8 | 42.7% | 63.2% | |
+| 2 | lr 2e-3, rank 32 | 117.3% | 179.9% | **diverged** |
+| 3 adapted layers | lr 2e-3, `q,k,v,out` | 73.6% | 96.8% | **no better than off-the-shelf** |
+| 4 epochs | lr 2e-3, 4 epochs | 45.9% | 65.9% | the validation-loss minimum; worse CER |
+| 5 stability | lr 2e-3, seed 1 | 43.8% | 68.3% | seed spread 1.7 points |
+
+**Chosen: lr 2e-3, rank 16, `q_proj,v_proj`, 8 epochs** — 3.3 CER points better than the starting
+point, more than its seed-to-seed spread (1.7), which is what the pre-registered noise rule
+requires. Applied by `run_p3_experiment.py --tuned`.
+
+Three findings worth stating, none of them favourable:
+
+- **Capacity hurts at the faster rate.** Rank 32 diverged outright and adapting all four attention
+  projections landed on the off-the-shelf model's error. More adapter parameters are not better
+  here; the 2 h of speech does not support them.
+- **Validation loss is a poor proxy for CER.** The loss bottoms out at epoch 4 (1.740, against
+  1.889 at epoch 8), so stage 4 retrained there — and CER got worse, 42.1% -> 45.9%. Select on the
+  metric that is reported, not on the loss.
+- **The margin is small next to seed noise.** 3.3 points against a 1.7-point spread from one seed
+  change, measured on 34 minutes of validation speech. It passes the rule, but it is not a large
+  effect, and the repeat on the full data may choose differently.
+
+Cost on the 3060: 7 trainings, about 36 min each (18 min for the 4-epoch one) plus 4-7 min per
+evaluation, 20:17 to 01:40 unattended, committed and pushed by the script itself (`b4c80fc`,
+`633c404`).
+
+Files: `artifacts/ft_work_lr/tuning_summary.md` (the same table), `tuning_result.json` (the chosen
+settings), `lr_check_summary.md` (stage 1 with the rank tests); logs and adapters in
+`F:\thesisP2\ft_work_lr\`.
+
+Reproduce: `python scripts/tune_whisper.py` with `THESIS_TUNE_DIR` set to a work folder prepared by
+`prepare_data.py --split-by video --test-lectures BanglaASR2,BanglaASR12,BanglaASR14`
+(stage 1 alone: `claude_transfer/lr_check.ps1`).
+
 ### 1.3 Superseded: the leaked split (do not quote)
 
 Kept so the correction is documented. The old run is untouched in
