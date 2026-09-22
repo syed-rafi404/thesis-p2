@@ -353,7 +353,11 @@ analysis behind it** and prints a warning; label a sample of errors or drop it.
   random with a fixed seed, about 8 h train / 2 h test, not by speaker.** Every lecturer must have
   videos on both sides; a video is never cut between train and test. `prepare_data.py` can only
   split by speaker today: add a video-level option (e.g. `--test-fraction 0.2 --split-seed N`, or
-  `--test-videos`) before training; this was discussed on 2026-09-21 but never built. The thesis
+  `--test-videos`) before training; this was discussed on 2026-09-21 but never built.
+  **`# Speaker ID:` lines are no longer required in the files (user, 2026-09-22).** The lecturer of
+  each video comes from `scripts/verify_speakers.py` (voice embeddings) confirmed by the user, kept
+  as a small lecture-to-lecturer table; the video-split option must use that table and must not
+  skip files that lack the header (today `prepare_data.py` skips them). The thesis
   must state that test lecturers were heard in training (easier than unseen speakers); the
   leave-one-speaker-out result (RESULTS.md 1.5) stays as the unseen-lecturer number. Then
   `run_p3_experiment.py --model openai/whisper-large-v3-turbo --curve-hours 2 4 6 8` with the new
@@ -361,7 +365,8 @@ analysis behind it** and prints a warning; label a sample of errors or drop it.
 - **Renumbering found on the 3060 (2026-09-22, ~11:20, uncommitted working-tree changes):**
   `data/ground_truth` and `data/raw/live_classroom` now name old lectures 6-9 as 10-13 and old
   10-13 as 14-17 (transcript text unchanged apart from the header number), and new 6-9 are four new
-  lectures (partial, no Speaker IDs, timestamp format errors; new 9 renamed "[Needs recheck]...").
+  lectures (partial, timestamp format errors; new 9 renamed "[Needs recheck]..."; no Speaker ID
+  lines, which are no longer required).
   All results, answer keys, run folders, adapters' split.json and transcript_loso.txt use the OLD
   numbers. `find_audio` resolves by number (run-folder audio first, then `ft_work/audio_cache`),
   so under the new names it would pair new transcripts with old audio silently. Do not train or
