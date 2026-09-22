@@ -4,6 +4,34 @@ If you are lost, start here. Updated 2026-09-22 (on the 3060).
 
 ---
 
+## TASKS IN ORDER, TO REACH THE GOAL (set 2026-09-22; survey left out on purpose)
+
+On the 3060 (Claude), before the 5090 sessions:
+1. `run_lecture.py --video <file>`: one command, video in, annotated notes out (audio and frames,
+   board with lecturer removed and cleaned, VLM-named boxes, fine-tuned transcript with
+   timestamps, notes in English and Banglish, HTML page). Tested here with the stand-in model.
+2. Boards for the newer lectures 6-9 and 18-43, made here (this PC has the person-detection
+   library) and pushed.
+3. Pick the demo video: one with no ground truth (never trained on). Claude suggests one with a
+   clear board; you confirm.
+
+On the 5090:
+4. 23/24 Sep: notes pipeline for the 13 scored lectures (stage B); install the person-detection
+   library there (torchvision) so the one command works on any video; fix what the first real run
+   shows; measure real run times.
+5. 25 Sep: the 6 h run (draft).
+6. 27 Sep: the 10 h run and scaling curve; then `run_lecture.py` on the demo video with the final
+   model (~30 min): the demo for the slides.
+
+After (no GPU):
+7. RESULTS.md and figures updated for the draft (26 Sep) and the slides (29 Sep).
+
+You: copy the videos to the 5090 and move the old `data\raw\Speaker1-3` folders there out of
+`data\raw`; name ground-truth files `BanglaASR<n>_ground_truth.txt`; lecture 9's timestamps;
+confirm the demo video.
+
+---
+
 ## DATES AND 5090 SESSIONS (set 2026-09-22)
 
 Draft submission **26 Sep**. Slides **29 Sep**.
