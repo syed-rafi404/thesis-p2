@@ -113,6 +113,12 @@ def rebuild_clips(name, work, apply):
     if (work / "clips").is_dir() and any((work / "clips").iterdir()):
         return
     flags = [f.format(**{"3spk": str(PARENT / "ft_work_3spk")}) for f in PREPARE[name]]
+    # Every committed folder was made from the ground truth as it was before the 2026-09-22
+    # renumbering (old 6-9 are now named 10-13, old 10-13 are 14-17). That exact copy is frozen;
+    # reading data/ground_truth instead would pair new names with old audio.
+    frozen = REPO / "data" / "ground_truth_v1_2026-09-21"
+    if frozen.is_dir():
+        flags += ["--gt-dir", str(frozen)]
     say(apply, f"rebuild clips: prepare_data.py {' '.join(flags)}")
     if not apply:
         return

@@ -370,7 +370,9 @@ analysis behind it** and prints a warning; label a sample of errors or drop it.
   the run folders in `output/`, adapters' `split.json`, `transcript_loso.txt`, `ft_work/audio_cache`
   (its BanglaASR10-13.wav are old 10-13 = new 14-17). The exact ground truth behind the results is
   frozen in `data/ground_truth_v1_2026-09-21/` (git HEAD before the renumbering); to reproduce a
-  result, pass `--gt-dir data/ground_truth_v1_2026-09-21` to `prepare_data.py`. **Before any new
+  result, pass `--gt-dir data/ground_truth_v1_2026-09-21` to `prepare_data.py`.
+  `restore_artifacts.py` does this automatically (checked 2026-09-22: rebuilding `ft_work_ABtoC`
+  from the frozen copy matches the committed manifests, 356 train / 75 test clips). **Before any new
   training**, make `find_audio` and the split use the old-to-new table: it resolves by number
   (run-folder audio, then the cache, then `data/raw`), so a new BanglaASR6 would silently get old
   lecture 6's audio, and an old-numbered run folder would get the wrong video from `data/raw`. The
