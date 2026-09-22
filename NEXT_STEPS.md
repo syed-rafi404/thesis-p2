@@ -12,10 +12,20 @@ If you are lost, start here. Updated 2026-09-22 (on the 3060).
   lectures, tunes on the rest (pre-registered, ~11 h), runs the final model with 2 seeds (~3 h),
   commits and pushes: about 14 h, unattended. Tonight's 2.1 h tuning is the rehearsal and the
   fallback (`--skip-tuning` uses it if time runs out).
-- **5090 = all Qwen work** (boards, box names, notes for the 13 scored lectures; the notes use the
-  leak-free transcripts already made, so they do not wait for the new Whisper model), then the
+- **5090 = all Qwen work** (boards, box names, notes for **all 43 lectures**; the notes use the
+  leak-free transcripts made on the 3060, so they do not wait for the new Whisper model), then the
   10 h run on 27 Sep (~3 h there): `run_p3_experiment.py ... --tuned` picks up the full-data
   tuning by itself.
+  - The 13 old lectures (new 1-5, 10-17) are the **scored** ones: they have the hand-checked board
+    answer keys (stage B). The other 30 (6-9, 18-43) get the same notes as **demonstrations**
+    (no answer key, so no score). Their boards are in git; their transcripts are made on the 3060
+    right after tonight's tuning (`scripts/transcribe_new_lectures.py`, started automatically by
+    `F:\thesisP2\claude_transfer\transcripts_after_tuning.ps1`, pushed by itself), each by the
+    leave-one-speaker-out model that never heard that lecturer. Then on the 5090 (estimate 3-4 h
+    with the 7B):
+    ```
+    foreach ($n in 6..9 + 18..43) { python scripts\run_lecture.py --video data\raw\live_classroom\BanglaASR$n.mp4 --steps boxes notes }
+    ```
 - Timing: ground truth complete by the morning of 24 Sep -> final 6 h result by 25 Sep, in time for
   the 26 Sep draft.
 
@@ -96,7 +106,8 @@ On the 3060 (Claude), before the 5090 sessions:
 
 On the 5090:
 4. 23/24 Sep: notes pipeline for the 13 scored lectures (stage B); fix what the first real run
-   shows; measure real run times. (Only for a video recorded after today would the 5090 need the
+   shows; measure real run times. Then notes for the other 30 lectures (the loop in "TWO PCs IN
+   PARALLEL" above; needs the 3060's transcript push first). (Only for a video recorded after today would the 5090 need the
    person-detection library, torchvision; without it the board step falls back to the older
    lecturer mask and says so.)
 5. 25 Sep: the 6 h run (draft).
