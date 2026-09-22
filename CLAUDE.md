@@ -77,13 +77,13 @@ Agreed with the user, who asked to be pushed back on expectations:
   hand-edited ("ma" -> "mane", "barcho lash" -> "bar"). Real parts: the board pixels, the box
   positions, the quotes (from `transcript_finetuned_v2.txt`, lecture 7). Never present it as output.
 - Always the clean board; the raw-frame-with-teacher route is dropped.
-- Quotes only word for word from `transcript_finetuned_v2.txt`; a checker drops the rest. This
-  replaces "fix the broken `mixed` quotes".
+- Quotes only word for word from the transcript the notes use (`transcript_loso.txt`, the
+  leak-free one); a checker drops the rest. This replaces "fix the broken `mixed` quotes".
 - Usefulness needs people: a survey of about 20 once everything is done, old vs new notes of the
   same lecture ("which helps more?", a paired before/after result) plus 1-5 ratings. Until then the
   thesis says "demonstrate". Offer to build the form.
-- New prompt styles go beside the old ones; `legacy` stays the default. The design is agreed; the
-  build waits for the user's "go".
+- New prompt styles go beside the old ones (`src/summarizer/annotated_prompts.py`); `legacy` stays
+  the default. The user said "go" on 2026-09-22 and stage A is built.
 - Notes model: Qwen3-32B at 4-bit on the 5090 is proposed, **not confirmed**; the 7B produced the
   88.0%. Any new model gets board recall re-scored. Practical: Qwen3-32B in bf16 is about 65 GB to
   download, so check free space on the 5090's D: first and how 4-bit loading works there
