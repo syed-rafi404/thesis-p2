@@ -7,28 +7,44 @@ If you are lost, start here. Updated 2026-09-22 (on the 3060).
 ## TASKS IN ORDER, TO REACH THE GOAL (set 2026-09-22; survey left out on purpose)
 
 On the 3060 (Claude), before the 5090 sessions:
-1. `run_lecture.py --video <file>`: one command, video in, annotated notes out (audio and frames,
-   board with lecturer removed and cleaned, VLM-named boxes, fine-tuned transcript with
-   timestamps, notes in English and Banglish, HTML page). Tested here with the stand-in model.
+1. **DONE 2026-09-22.** `run_lecture.py --video <file>`: one command, video in, annotated notes
+   out. Tested on BanglaASR19 (no ground truth, never trained on) with Qwen stand-ins: all steps
+   real except the two Qwen ones; 4.2 min of video in about 2.3 min on the 3060.
 2. Boards for the newer lectures 6-9 and 18-43, made here (this PC has the person-detection
-   library) and pushed.
+   library) and pushed. Then the 5090 needs no extra library: `run_lecture.py` skips steps whose
+   output exists.
 3. Pick the demo video: one with no ground truth (never trained on). Claude suggests one with a
    clear board; you confirm.
 
 On the 5090:
-4. 23/24 Sep: notes pipeline for the 13 scored lectures (stage B); install the person-detection
-   library there (torchvision) so the one command works on any video; fix what the first real run
-   shows; measure real run times.
+4. 23/24 Sep: notes pipeline for the 13 scored lectures (stage B); fix what the first real run
+   shows; measure real run times. (Only for a video recorded after today would the 5090 need the
+   person-detection library, torchvision; without it the board step falls back to the older
+   lecturer mask and says so.)
 5. 25 Sep: the 6 h run (draft).
 6. 27 Sep: the 10 h run and scaling curve; then `run_lecture.py` on the demo video with the final
    model (~30 min): the demo for the slides.
+   ```
+   python scripts/run_lecture.py --video data\raw\live_classroom\BanglaASR<demo>.mp4 --adapter <ft_work>\lora_final --tag final
+   ```
 
 After (no GPU):
 7. RESULTS.md and figures updated for the draft (26 Sep) and the slides (29 Sep).
 
 You: copy the videos to the 5090 and move the old `data\raw\Speaker1-3` folders there out of
 `data\raw`; name ground-truth files `BanglaASR<n>_ground_truth.txt`; lecture 9's timestamps;
-confirm the demo video.
+confirm the demo video (not needed for the 26 Sep draft).
+
+**Carry on the USB to the 5090:** the videos, and
+`F:\thesisP2\claude_transfer\claude_memory_for_5090.zip` (the whole conversation and Claude's
+memory; its README.txt says where each file goes). Everything else comes with `git pull`.
+
+**Optional check by you (~30-40 min, any PC):** open
+`output\lectures\board_completeness_check.html` (on the 5090 after `git pull`:
+`D:\T2520875\thesisP2\thesisP2\output\lectures\board_completeness_check.html`). Each new clean
+board is shown next to two real video frames; mark "all there" or "something missing". Then press
+"Copy my results" and paste it to Claude. It turns "the new boards look clean" into a number you
+checked yourself. Not needed for the results in RESULTS.md.
 
 ---
 
