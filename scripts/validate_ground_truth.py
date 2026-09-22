@@ -303,22 +303,27 @@ def main():
               f"{stats['minutes']:.1f} min | {stats['wpm']:.0f} wpm | "
               f"fillers {stats['filler_rate'] * 100:.1f}%")
 
+        # Messages of one kind are grouped (digits ignored for grouping), and the group is shown
+        # by its first real message, so "segment is 92s, over the 30s Whisper window" keeps its
+        # numbers instead of printing "segment is Ns, over the Ns Whisper window".
         shown = {}
         for line_no, msg in errors:
             key = re.sub(r"\d+", "N", msg)
-            shown.setdefault(key, []).append(line_no)
-        for key, lines in shown.items():
+            shown.setdefault(key, []).append((line_no, msg))
+        for items in shown.values():
+            lines = [n for n, _ in items]
             where = f"line {lines[0]}" if len(lines) == 1 else f"{len(lines)} lines, first {lines[0]}"
-            print(f"  ERROR  {key}  ({where})")
+            print(f"  ERROR  {items[0][1]}  ({where})")
 
         shown = {}
         for line_no, msg in warnings:
             key = re.sub(r"\d+", "N", msg)
-            shown.setdefault(key, []).append(line_no)
-        for key, lines in list(shown.items())[:8]:
+            shown.setdefault(key, []).append((line_no, msg))
+        for items in list(shown.values())[:8]:
+            lines = [n for n, _ in items]
             where = "header" if lines[0] == 0 else (
                 f"line {lines[0]}" if len(lines) == 1 else f"{len(lines)} lines, first {lines[0]}")
-            print(f"  warn   {key}  ({where})")
+            print(f"  warn   {items[0][1]}  ({where})")
         if len(shown) > 8:
             print(f"  warn   ... {len(shown) - 8} more kinds of warning")
 
