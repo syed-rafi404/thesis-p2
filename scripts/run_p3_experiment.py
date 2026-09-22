@@ -119,6 +119,10 @@ def main():
     ap.add_argument("--split-seed", type=int, default=0)
     ap.add_argument("--test-lectures", default=None,
                     help="Passed to prepare_data.py with --split-by video: fixed test lectures")
+    ap.add_argument("--tuned", action="store_true",
+                    help="Use the settings chosen by the pre-registered tuning "
+                         "(artifacts/ft_work_lr/tuning_result.json): learning rate, LoRA rank and "
+                         "alpha, adapted layers, epochs. --extra-train-args are added after them")
     ap.add_argument("--never-test", default=None,
                     help="Passed to prepare_data.py: train-only lectures. Default with --split-by "
                          "video: the learning-rate validation lectures in data/splits/lr_validation.json")
@@ -133,6 +137,17 @@ def main():
     ap.add_argument("--allow-validation-errors", action="store_true",
                     help="Continue even when transcripts fail validation")
     args = ap.parse_args()
+    if args.tuned:
+        import json as _json
+        tuned_path = REPO / "artifacts" / "ft_work_lr" / "tuning_result.json"
+        if not tuned_path.exists():
+            print(f"--tuned: {tuned_path} not found (the tuning has not finished or was not pulled)")
+            return 1
+        tuned = _json.loads(tuned_path.read_text(encoding="utf-8"))
+        args.epochs = float(tuned["epochs"])
+        args.extra_train_args = " ".join(tuned["train_args"] + [args.extra_train_args]).strip()
+        print(f"tuned      : {tuned['reason']}")
+        print(f"             epochs {tuned['epochs']}, train args {' '.join(tuned['train_args'])}")
 
     print(f"repo       : {REPO}")
     print(f"work dir   : {FT_DIR}")
