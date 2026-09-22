@@ -118,12 +118,15 @@ def main():
     except Exception:
         pass
     stage1_log = FT / "lr_check_log.txt"
-    while not (stage1_log.exists() and "finished" in stage1_log.read_text(encoding="utf-8", errors="ignore")):
-        time.sleep(60)
-    say("stage 1 (learning rate) finished; starting stages 2-5")
+    if stage1_log.exists():     # the 2.1 h rehearsal: stage 1 was run by claude_transfer/lr_check.ps1
+        while "finished" not in stage1_log.read_text(encoding="utf-8", errors="ignore"):
+            time.sleep(60)
+        say("stage 1 (learning rate) finished; starting stages 2-5")
+    else:
+        say("stage 1 (learning rate)")
     history = {}
 
-    stage1 = [score(dict(DEFAULT, lr=lr)) for lr in ("5e-4", "1e-3", "2e-3")]
+    stage1 = [run_candidate(dict(DEFAULT, lr=lr)) for lr in ("5e-4", "1e-3", "2e-3")]
     history["1 learning rate"] = stage1
     cur = dict(best(stage1)["config"])
     say(f"stage 1 best: {tag_of(cur)}")
@@ -204,15 +207,15 @@ def main():
     if os.environ.get("THESIS_TUNE_NO_GIT"):
         say("finished (no git: test mode)")
         return 0
-    dst = REPO / "artifacts" / "ft_work_lr"
+    dst = REPO / "artifacts" / FT.name
     dst.mkdir(parents=True, exist_ok=True)
     for f in FT.iterdir():
         if f.is_file() and f.suffix in (".json", ".jsonl", ".md", ".log", ".txt"):
             (dst / f.name).write_bytes(f.read_bytes())
     g = ["git", "-c", "safe.directory=F:/thesisP2/thesisP2"]
-    subprocess.run(g + ["add", "-f", "--", "artifacts/ft_work_lr"], cwd=REPO)
-    msg = ("Hyperparameter tuning (stages 2-5) on the validation lectures\n\n" + reason +
-           ".\nSummary: artifacts/ft_work_lr/tuning_summary.md; chosen settings: tuning_result.json.\n"
+    subprocess.run(g + ["add", "-f", "--", f"artifacts/{FT.name}"], cwd=REPO)
+    msg = (f"Hyperparameter tuning on the validation lectures ({FT.name})\n\n" + reason +
+           f".\nSummary: artifacts/{FT.name}/tuning_summary.md; chosen settings: tuning_result.json.\n"
            "Committed automatically by scripts/tune_whisper.py.\n\n"
            "Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>\n")
     subprocess.run(g + ["commit", "-q", "-m", msg], cwd=REPO)

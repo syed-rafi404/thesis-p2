@@ -440,6 +440,9 @@ def main():
                          "trained on (e.g. the validation lectures used to choose the learning "
                          "rate, data/splits/lr_validation.json), so no choice made on them is "
                          "ever scored on them")
+    ap.add_argument("--exclude-lectures", default=None,
+                    help="Comma-separated lectures left out completely (neither train nor test), "
+                         "e.g. the final test lectures while tuning on the rest")
     args = ap.parse_args()
     scheme = scheme_of(args.gt_dir)
 
@@ -462,6 +465,10 @@ def main():
             print(f"  [skip] {os.path.basename(path)}: marked not ready by its file name; "
                   f"remove the marker to use it")
     lectures = [(stem, path) for stem, path, flagged in lectures if not flagged]
+    excluded = {s.strip() for s in (args.exclude_lectures or "").split(",") if s.strip()}
+    if excluded:
+        print("left out completely: " + ", ".join(sorted(excluded)))
+        lectures = [(stem, path) for stem, path in lectures if stem not in excluded]
 
     print(f"found {len(lectures)} ground-truth files ({scheme} lecture numbering); "
           + (f"test speakers: {sorted(test_speakers)}" if args.split_by == "speaker"

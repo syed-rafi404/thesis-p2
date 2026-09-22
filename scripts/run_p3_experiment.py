@@ -119,10 +119,11 @@ def main():
     ap.add_argument("--split-seed", type=int, default=0)
     ap.add_argument("--test-lectures", default=None,
                     help="Passed to prepare_data.py with --split-by video: fixed test lectures")
-    ap.add_argument("--tuned", action="store_true",
-                    help="Use the settings chosen by the pre-registered tuning "
-                         "(artifacts/ft_work_lr/tuning_result.json): learning rate, LoRA rank and "
-                         "alpha, adapted layers, epochs. --extra-train-args are added after them")
+    ap.add_argument("--tuned", nargs="?", const="auto", default=None,
+                    help="Use the settings chosen by the pre-registered tuning: learning rate, LoRA "
+                         "rank and alpha, adapted layers, epochs. Without a path: the full-data "
+                         "tuning (artifacts/ft_work_tune6h/tuning_result.json) if it exists, else the "
+                         "2.1 h rehearsal (artifacts/ft_work_lr). --extra-train-args are added after")
     ap.add_argument("--never-test", default=None,
                     help="Passed to prepare_data.py: train-only lectures. Default with --split-by "
                          "video: the learning-rate validation lectures in data/splits/lr_validation.json")
@@ -139,7 +140,12 @@ def main():
     args = ap.parse_args()
     if args.tuned:
         import json as _json
-        tuned_path = REPO / "artifacts" / "ft_work_lr" / "tuning_result.json"
+        if args.tuned == "auto":
+            full = REPO / "artifacts" / "ft_work_tune6h" / "tuning_result.json"
+            tuned_path = full if full.exists() else REPO / "artifacts" / "ft_work_lr" / "tuning_result.json"
+        else:
+            tuned_path = Path(args.tuned)
+        print(f"tuned from : {tuned_path}")
         if not tuned_path.exists():
             print(f"--tuned: {tuned_path} not found (the tuning has not finished or was not pulled)")
             return 1
