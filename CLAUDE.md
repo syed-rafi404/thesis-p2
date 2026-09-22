@@ -254,6 +254,12 @@ Environments are not portable; rebuild them.
 Paths resolve through env vars with inferred defaults: `THESIS_REPO`, `THESIS_FT_DIR`
 (default: sibling `ft_work`), `THESIS_PYTHON`, `THESIS_QWEN`, `THESIS_FIGURES`.
 
+**Training the big Whisper on the 3060 works** (measured 2026-09-22): only with
+`--grad-checkpointing` (peak 6.1 GB; without it OOM at ~18 GB), 1.5 clips/s, ~1.5 h per seed for
+the 6 h run. Set `HF_HUB_OFFLINE=1` and `TRANSFORMERS_OFFLINE=1` there: a Hugging Face network
+lookup (socket getaddrinfo) crashed Python with an access violation; all needed models are cached
+in `F:\thesisP2\hf_cache`.
+
 Git on the 3060 warns about dubious ownership. Pass `-c safe.directory=F:/thesisP2/thesisP2` per
 command; only change global config after asking.
 

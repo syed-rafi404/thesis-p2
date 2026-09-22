@@ -23,6 +23,15 @@ If you are lost, start here. Updated 2026-09-22 (on the 3060).
 Dropped or later: Bangla notes (dropped), the classmate survey (not now), Figure 6.5 (drop; the
 report is rewritten anyway).
 
+**Training speed, measured on the 3060 (2026-09-22):** the big Whisper (large-v3-turbo + LoRA, the
+headline recipe: batch 8, 8 epochs) trains here only with `--grad-checkpointing` (same learning,
+less memory: 6.1 of 12 GB; without it, out of memory at ~18 GB), at 1.5 clips/s. For the 6 h run
+(~950 training clips x 8 epochs) that is about **1.5 h per seed on the 3060, ~3 h for two seeds**.
+The 5090 needs no checkpointing and is roughly 4x faster: an estimate of **20-30 min per seed**
+there (the earlier "about 1 h per seed" was conservative). **So the 3060 is a real backup** if the
+5090 is busy: same command with `--extra-train-args "--grad-checkpointing"`, and
+`HF_HUB_OFFLINE=1` (on the 3060 a network lookup crashes Python; the models are cached).
+
 ---
 
 ## FIRST THING ON THE 5090 (the 3060 session ended 2026-09-22 ~15:00)
