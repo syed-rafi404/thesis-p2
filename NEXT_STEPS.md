@@ -164,6 +164,15 @@ people, and writing the report.
 
 ### Decisions still open (one at a time)
 
+0. **The lectures were renumbered on the 3060 on 2026-09-22 (~11:20), not committed.** Ground
+   truth and videos: old 6-9 are now named 10-13, old 10-13 are now 14-17 (text unchanged), and new
+   6-9 are four new lectures. Everything in the thesis uses the OLD numbers (results, answer keys,
+   lecture folders, transcripts). Danger: the scripts find audio by number, so a new file named
+   BanglaASR6 would be paired with the old lecture 6 audio, silently. Claude recommends restoring
+   the old numbers and numbering the new lectures 14-17. Nothing is lost either way: the old files
+   are in git. The new files also need Speaker IDs, timestamp fixes, and are partial (new 6: 6.7
+   min, 7: 7.8 min, 8: 5.0 min); new 9 is marked "[Needs recheck]" with no valid timestamps.
+
 1. "Go" on building A.
 2. Notes model: Qwen3-32B on the 5090 (recommended) or keep the 7B. Optional extra row: a paid API
    model (Claude or GPT) as "best possible", only if you accept sending lecture text out and a few
