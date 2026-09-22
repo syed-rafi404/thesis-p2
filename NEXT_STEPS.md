@@ -4,6 +4,27 @@ If you are lost, start here. Updated 2026-09-22 (on the 3060).
 
 ---
 
+## MASTER PLAN, DAY BY DAY (set 2026-09-22 evening)
+
+| Day | Who | Task |
+|---|---|---|
+| 22 Sep (today) | You + team | Ground truth for ~3 more hours (videos from 18-43); lecture 9's timestamps, then remove "[Needs recheck]" from its name. Tell Claude if any tool drafted a transcript (those are training-only). |
+| 23 Sep | Claude on the 5090 | "FIRST THING ON THE 5090" below; measure real run times; notes pipeline (stage B): VLM on clean boards with old-vs-new board score, box names, notes with the 7B and scoring; start the 32B download. |
+| 23 Sep | You + Claude | Start the report from scratch: Claude gives structure, tables, figures from RESULTS.md; you write. (Optional: the board check page, 30-40 min.) |
+| 24 Sep | Claude on the 5090 | Notes with the 32B; NAND section side by side; fix what the first real runs show. When the ground truth arrives: `check_new_data.py`, `set_speaker_ids.py --apply`, `validate_ground_truth.py --fix`. |
+| 24 Sep | You + Claude | Writing continues. |
+| **25 Sep** | Claude on the 5090 | **6 h run**, 2 seeds (~2-2.5 h); RESULTS.md and figures updated the same day. |
+| **26 Sep** | You | **Draft submission.** Claude first checks every number in it against RESULTS.md. |
+| **27 Sep** | Claude on the 5090 | **10 h run** + scaling curve (~6-7 h; needs the rest of the ground truth by the morning); then the demo: `run_lecture.py` on a video with no transcript (~30 min, you confirm the video). RESULTS.md and figures updated. |
+| 28 Sep | You + Claude | Slides (Claude drafts content: numbers, figures, demo screenshots, honest limits); Q&A prep. 5090 spare only if a run failed. |
+| **29 Sep** | You | **Slides submission.** |
+| Before the defense | You | BRAC's rule on declaring AI help; rehearse. |
+
+Dropped or later: Bangla notes (dropped), the classmate survey (not now), Figure 6.5 (drop; the
+report is rewritten anyway).
+
+---
+
 ## FIRST THING ON THE 5090 (the 3060 session ended 2026-09-22 ~15:00)
 
 Your first message to Claude on the 5090:
