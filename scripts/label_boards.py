@@ -422,6 +422,27 @@ def label_lecture(name, info, vlm, args):
     print(f"{name:<16} -> {out}")
 
 
+def write_board_text(name, info, vlm, max_new_tokens=1500):
+    """board_text_clean.json, as transcribe_boards.py --source clean writes it (empty with --mock)."""
+    from transcribe_boards import PROMPT, read_board
+    boards = []
+    for era in nc.board_eras(info["board_dir"]):
+        src = era["clean"] or era["mosaic"]
+        text = "" if vlm is None else read_board(vlm.model, vlm.processor,
+                                                 Image.open(src).convert("RGB"), max_new_tokens)
+        boards.append({"era": era["era"], "from": era["from"], "to": era["to"],
+                       "clear_fraction": era["clear_fraction"], "image": str(src), "text": text})
+    payload = {"lecture": name, "model": None if vlm is None else vlm.model_id, "source": "clean",
+               "prompt": PROMPT, "boards": boards, "mock": vlm is None}
+    out = Path(info["run_dir"]) / "board_text_clean.json"
+    out.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
+    md = ["# Board transcription (clean)", ""]
+    for b in boards:
+        md += [f"## Board {b['from']}-{b['to']}", "", b["text"], ""]
+    out.with_suffix(".md").write_text("\n".join(md), encoding="utf-8")
+    print(f"{name:<16} -> {out}")
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--lecture", action="append", help="Lecture name, e.g. BanglaASR7_004 (repeatable)")
@@ -431,11 +452,29 @@ def main():
     ap.add_argument("--max-pixels", type=int, default=1920 * 1080)
     ap.add_argument("--mock", action="store_true", help="No model: positional names, for testing")
     ap.add_argument("--show-prompt", action="store_true")
+    ap.add_argument("--run-dir", default=None,
+                    help="One lecture outside the standard folders: where outputs go (run_lecture.py)")
+    ap.add_argument("--board-dir", default=None,
+                    help="With --run-dir: the folder holding that lecture's mosaic.json")
+    ap.add_argument("--board-text", action="store_true",
+                    help="Also write board_text_clean.json (the whole-board transcription of "
+                         "transcribe_boards.py) with the same loaded model")
     args = ap.parse_args()
     nc.utf8_console()
 
     if args.show_prompt:
         print(NAME_PROMPT.format(n=6) if args.boxes == "ink" else GROUND_PROMPT)
+        return 0
+    if args.run_dir:
+        if not args.board_dir:
+            sys.exit("--run-dir needs --board-dir")
+        board_dir = Path(args.board_dir)
+        lectures = {board_dir.name: {"run_dir": Path(args.run_dir), "board_dir": board_dir}}
+        vlm = None if args.mock else Vlm(args.model, args.max_pixels)
+        for name, info in lectures.items():
+            label_lecture(name, info, vlm, args)
+            if args.board_text:
+                write_board_text(name, info, vlm)
         return 0
     lectures = nc.discover_lectures()
     if args.lecture:

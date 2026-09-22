@@ -173,6 +173,9 @@ def main():
                     help="Prefix each chunk with its [M:SS-M:SS] span")
     ap.add_argument("--decode", default="greedy", choices=("greedy", "fallback"),
                     help="fallback re-decodes looping chunks with Whisper's safeguard")
+    ap.add_argument("--audio", default=None,
+                    help="With --run-dir: transcribe this 16 kHz wav instead of looking the lecture "
+                         "up by name (run_lecture.py, for a video outside the dataset)")
     args = ap.parse_args()
 
     try:
@@ -205,7 +208,7 @@ def main():
     for run_dir in runs:
         m = re.match(r"(BanglaASR\d+)", run_dir.name)
         stem = m.group(1) if m else run_dir.name
-        audio_path = find_audio(stem)
+        audio_path = args.audio or find_audio(stem)
         if not audio_path:
             print(f"{run_dir.name:<18} skipped: no audio found for {stem}")
             continue

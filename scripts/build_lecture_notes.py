@@ -418,17 +418,26 @@ def main():
                     help="Added to the output names, e.g. 7b or 32b, so runs do not overwrite each other")
     ap.add_argument("--mock", action="store_true", help="No model; uses board_boxes_MOCK.json")
     ap.add_argument("--dry-run", action="store_true", help="Print the first prompt; load no model")
+    ap.add_argument("--run-dir", default=None,
+                    help="One lecture outside the standard folders (run_lecture.py)")
+    ap.add_argument("--board-dir", default=None, help="With --run-dir: its mosaic.json folder")
     args = ap.parse_args()
     nc.utf8_console()
 
-    lectures = nc.discover_lectures()
-    if args.lecture:
-        missing = [n for n in args.lecture if n not in lectures]
-        if missing:
-            sys.exit(f"no boards for {missing}; known: {', '.join(lectures)}")
-        lectures = {n: lectures[n] for n in args.lecture}
-    elif not args.all:
-        sys.exit("pass --lecture <name> or --all")
+    if args.run_dir:
+        if not args.board_dir:
+            sys.exit("--run-dir needs --board-dir")
+        lectures = {Path(args.board_dir).name: {"run_dir": Path(args.run_dir),
+                                                "board_dir": Path(args.board_dir)}}
+    else:
+        lectures = nc.discover_lectures()
+        if args.lecture:
+            missing = [n for n in args.lecture if n not in lectures]
+            if missing:
+                sys.exit(f"no boards for {missing}; known: {', '.join(lectures)}")
+            lectures = {n: lectures[n] for n in args.lecture}
+        elif not args.all:
+            sys.exit("pass --lecture <name>, --all, or --run-dir with --board-dir")
     languages = ap_.LANGUAGES if args.language == "both" else (args.language,)
 
     llm = MockLlm() if (args.mock or args.dry_run) else Llm(args.model, args.quant)
