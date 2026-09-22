@@ -4,6 +4,23 @@ If you are lost, start here. Updated 2026-09-22 (on the 3060).
 
 ---
 
+## TWO PCs IN PARALLEL (decided 2026-09-22 night)
+
+- **3060 = all Whisper work.** When the ~6 h of ground truth is on the 3060 (put it there, or push
+  it from wherever it is made): `python scripts/whisper_full_pipeline.py` (3060 interpreter
+  `F:\thesisP2\envs\thesis_ft\Scripts\python.exe`). It checks the data, fixes the final test
+  lectures, tunes on the rest (pre-registered, ~11 h), runs the final model with 2 seeds (~3 h),
+  commits and pushes: about 14 h, unattended. Tonight's 2.1 h tuning is the rehearsal and the
+  fallback (`--skip-tuning` uses it if time runs out).
+- **5090 = all Qwen work** (boards, box names, notes for the 13 scored lectures; the notes use the
+  leak-free transcripts already made, so they do not wait for the new Whisper model), then the
+  10 h run on 27 Sep (~3 h there): `run_p3_experiment.py ... --tuned` picks up the full-data
+  tuning by itself.
+- Timing: ground truth complete by the morning of 24 Sep -> final 6 h result by 25 Sep, in time for
+  the 26 Sep draft.
+
+---
+
 ## MASTER PLAN, DAY BY DAY (set 2026-09-22 evening)
 
 | Day | Who | Task |
