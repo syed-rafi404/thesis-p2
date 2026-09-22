@@ -1,0 +1,2111 @@
+{
+  "base_model": "openai/whisper-large-v3-turbo",
+  "adapter": "F:\\thesisP2\\ft_work_lr\\lora_lr2e-3_r8",
+  "split": "test.jsonl",
+  "decode": "greedy",
+  "fallback_seed": null,
+  "base": {
+    "clips": 102,
+    "wer_mean_per_clip": 1.1667486587994558,
+    "cer_mean_per_clip": 0.905143620955679,
+    "wer_median_per_clip": 0.9666666666666667,
+    "cer_median_per_clip": 0.732051282051282,
+    "wer_corpus": 0.936767578125,
+    "cer_corpus": 0.6513587891296869,
+    "runaway_clips": 8,
+    "words_emitted": 3414,
+    "words_reference": 4096,
+    "term_recall": 0.7429467084639498,
+    "term_precision": 0.6,
+    "term_f1": 0.6638655462184875,
+    "clips_fell_back": 0,
+    "clips_still_looping": 14
+  },
+  "tuned": {
+    "clips": 102,
+    "wer_mean_per_clip": 1.5269501217661607,
+    "cer_mean_per_clip": 1.4625601054445732,
+    "wer_median_per_clip": 0.6319444444444444,
+    "cer_median_per_clip": 0.4265802143189936,
+    "wer_corpus": 0.733642578125,
+    "cer_corpus": 0.46306329549363606,
+    "runaway_clips": 13,
+    "words_emitted": 4768,
+    "words_reference": 4096,
+    "term_recall": 0.8401253918495298,
+    "term_precision": 0.6979166666666666,
+    "term_f1": 0.7624466571834994,
+    "clips_fell_back": 0,
+    "clips_still_looping": 13
+  },
+  "paired_test": {
+    "p_value": 0.9214539273036348,
+    "method": "sign-flip Monte Carlo, n=99, 20000 resamples"
+  },
+  "rank_tests": {
+    "wer": {
+      "metric": "wer",
+      "better": 77,
+      "total": 102,
+      "wilcoxon_p": 0.00014931867419809564,
+      "wilcoxon_z": 3.792199843870973,
+      "wilcoxon_n": 99,
+      "sign_p": 2.451911338599065e-07
+    },
+    "cer": {
+      "metric": "cer",
+      "better": 77,
+      "total": 102,
+      "wilcoxon_p": 5.066179166801632e-05,
+      "wilcoxon_z": 4.0525527713484255,
+      "wilcoxon_n": 102,
+      "sign_p": 2.451911338599065e-07
+    }
+  },
+  "per_clip": {
+    "base": [
+      {
+        "audio": "BanglaASR12/seg_000.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "hello everyone ajker topic ta hocche database management system which is dbms in a short form. so, ajker topic tar amra ektu surface level ei thakbo beshi deep e jabo na. so ahh database jinish ta ki?",
+        "hypothesis": "hello everyone, today is the topic of database management system which is dbms in a short form. so, today is the topic of surface level. so, database is what is the database management system?",
+        "wer": 0.6486486486486487,
+        "cer": 0.41,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_001.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "database onekgula data ke hold kore. so, ei data gula ki thakte pare? multiple tables e thakte pare. toh dhorlam ei rokom amar kacheo onekgula tables ache. so ei shob gula table e amar kichu informative aa information ache.",
+        "hypothesis": "database and data hold. so, this data is multiple tables. so, i will show you the tables. so, i will show you the tables. so, this is the tables.",
+        "wer": 0.8717948717948718,
+        "cer": 0.6143497757847534,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_002.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "jeigula ke ami use kore ami jekono dhoroner performance chalate pari. jekono dhoroner software chalate pari. so amader aa internet er ba amader aa amader wi wa aa digital world e database er importance kintu onek.",
+        "hypothesis": "informative information that we use for this information. we need to use performance and software. so, our digital world is the importance of the database.",
+        "wer": 0.9444444444444444,
+        "cer": 0.676056338028169,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_003.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "so suppose ami ekta, jehetu amra khub simple aa example diye start korbo toh table o ami etogula multiple tables na niye ami just ekta table e focus kori.",
+        "hypothesis": "so, suppose we have to start a very simple example. we don't have multiple tables, we just",
+        "wer": 0.896551724137931,
+        "cer": 0.6103896103896104,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_004.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "so first ei amar ekta database er name dite hobe. suppose database er nam hocche 'university'. er moddhe ekta table ache, shetar nam dhorlam 'student_info'.",
+        "hypothesis": "so first, i am a database name. suppose database name is university. in the middle, the table is, what name is student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student, student,",
+        "wer": 4.2,
+        "cer": 5.134615384615385,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_005.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "okay? tar mane ki amar university-r database er moddhe student information er ekta table ache jekhane amar shob students er kichu information store kora thakbe.",
+        "hypothesis": "okay, that means that our university database is student information. so, we have first student id.",
+        "wer": 0.92,
+        "cer": 0.55,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_006.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "so dhorlam amar first ei ache student 'id', erpore 'first name' thakte pare. tarpore 'last name' thakte pare. ar dhoro 'cgpa' thakte pare.",
+        "hypothesis": "first name. first name. last name. and cgp.",
+        "wer": 0.9565217391304348,
+        "cer": 0.717391304347826,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_007.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "and 'department' thakte pare. and last dhorlam 'enrollment date'. okay. so eigula hocche amar table er head. so etar moddhhe amar sequentially kichu information store kora thakbe, right?",
+        "hypothesis": "department and last thurlam enrollment date okay so e kala",
+        "wer": 0.8928571428571429,
+        "cer": 0.7043010752688172,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_008.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "ekhon ami kichu dummy data dhore nei. karon amar kache toh in real life billions of information thakte pare. billions of data thakte pare.",
+        "hypothesis": "so, we have to store this information. we don't have any dummy data, because in real life, billions of information can be stored.",
+        "wer": 0.9166666666666666,
+        "cer": 0.6884057971014492,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_009.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "but amra jehetu choto ekta example niye kaj korsi so amra dui tin ta or tin char ta data niye example dilei hoye",
+        "hypothesis": "but we are doing this in the small example we have 2-3 data examples in the example. so first we have student id and some random numbers.",
+        "wer": 1.0869565217391304,
+        "cer": 0.8482142857142857,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_010.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "jaoar kotha. okay. so 1st e dhorlam amar student id, ami kichu random numbers diye.",
+        "hypothesis": "ok.",
+        "wer": 1.0,
+        "cer": 0.963855421686747,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_011.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "okay. so ekhane ami dhoro pachta data rakhlam pachta different student er different different id ache, egula kintu",
+        "hypothesis": "foreign",
+        "wer": 1.0,
+        "cer": 0.9473684210526315,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_012.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "unique id. accha. erpore first name dhorlam. last name kichu dilam. kichu cgpa dilam.",
+        "hypothesis": "last name kichu deelaam",
+        "wer": 0.7857142857142857,
+        "cer": 0.7647058823529411,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_013.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "okay. department dilam. enrollment date e uum kichu random dates diye dilam.",
+        "hypothesis": "you",
+        "wer": 1.0,
+        "cer": 0.9605263157894737,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_014.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "so ekhane ami kichu dummy data create kore fellam. toh ekhan theke ami bivinno shomoy e amar proyojon moto kichu",
+        "hypothesis": "okay. department of the lam. okay.",
+        "wer": 1.0,
+        "cer": 0.8035714285714286,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_015.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "kichu information fetch kore nite pari. jemon dhoro ami particular suppose 110112, ei student er student id je",
+        "hypothesis": "i'm a man today i'm it's your random date today",
+        "wer": 1.0,
+        "cer": 0.7818181818181819,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_016.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "hold korche tar nam jante chacchi, othoba cgpa jante chacchi, tar department jante chacchi, ar tar enrollment",
+        "hypothesis": "so, this is the dummy data rate question.",
+        "wer": 1.0,
+        "cer": 0.7981651376146789,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_017.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "jante chachhi. so eirokom type er multiplemm multiple bhabe ami kichu information table theke fetch kore ante",
+        "hypothesis": "so, here we are going to give our students a little bit of information to our students. so, we have a particular, suppose, 110, 112. this student id is called, they are known as a name, or a cgp, a department, or a enrollment. so, this is the multiple ways we have to",
+        "wer": 3.0588235294117645,
+        "cer": 1.9357798165137614,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_018.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "pari.",
+        "hypothesis": "which information table",
+        "wer": 3.0,
+        "cer": 4.2,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_019.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "so etar jonno ahm erkom dhoroner table er sathe amra kivabe dekhbo je amar ki ki data ache, ki ki columns ache, ki ki aa kotogulo data ache? eta toh amader pokkhe dekha possible na. karon ekta table toh ar ekta database er moddhe thakbe na.",
+        "hypothesis": "so, in this case, we will see how many tables are available, how many columns are available, how many columns are available, this is the most possible way. because the act database is available, and the act database is available. so, this database is available in the community,",
+        "wer": 1.0217391304347827,
+        "cer": 0.8041666666666667,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_020.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "ekta database e multiple tables thakte pare. so ei database er sathe communicate korar jonno ekta language use kori sheta hocche sql othoba mysql. erokom type er aro onek dhoroner language hoy. ajke amra shudhu mysql dekhbo.",
+        "hypothesis": "communicate koraat jona, aamra ahtta language use koreis. heathah hojshhe, sql, othova mysql. so, eero kumtae bheero ro onnink dharna language hoye, aaj ke amra shodho mysql dhekbho. so, mysql, aamadhe normal programming language",
+        "wer": 1.0,
+        "cer": 0.75,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_021.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "so mysql amader normal je programming language jemon java, python, c, c# egular theke kintu different. mysql egula hocche query language. query language jinishta ki? je user kono aa question korbe database shekhan theke aa result ta amake output hishabe dibe.",
+        "hypothesis": "java, python, c, c sharp, egoola thheke kintu different mysql egoola hoche query language query language jimishta ki jhe user kono question korbe database shekhan thheke maake",
+        "wer": 0.6829268292682927,
+        "cer": 0.42857142857142855,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_022.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "so eitai hocche query language er kaj. so mysql e ami first e eije table ta, ei table tao toh kono bhabe create kora hoyeche, right? so eitao kintu query er maddhomei create kora hoy.",
+        "hypothesis": "result a output is a bit different so it is a query language so mysql is first a is a table that a table that is create a table that is a table that is a table that is create a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a table that is a",
+        "wer": 5.457142857142857,
+        "cer": 3.699453551912568,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_023.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "bibhinno dhoroner amra table ke manupulate o korte pari. table er data manupulate bolte table er data change korte pari. notun kono data insert korte pari othoba kono data aa delete kore felte pari. shudhu data na ami table er pura ekta row kei delete kore felte pari, ekta row add korte pari.",
+        "hypothesis": "create. in the beginning, we have to manipulate the table, manipulate the table, change the data, insert the data, and delete the data. we have to delete the data from the table,",
+        "wer": 0.9245283018867925,
+        "cer": 0.6382252559726962,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_024.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "othoba kono column add korte pari, column ke delete o korte pari. in fact ami kintu pura table ta keo, amar jodi unnecessary kono table theke thake shetakeo kintu amra fully delete kore felte pari. so eishob kichui kintu amar sql command er maddhome hoy. so, ajke first e ami amra dekhbo je sql diye kivabe ekta table ke create kora jay.",
+        "hypothesis": "add or delete. in fact, we have the table and the unnecessary table is not necessary. so, we have the sql command. first, we have the sql command.",
+        "wer": 0.8870967741935484,
+        "cer": 0.7002967359050445,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_025.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "so, first e jodi ashi ami dilam create table. ami table er nam a ki rakhte chacchi? eije, eta hocche amar table er nam which is student underscore info, erpore ami ekta bracket diye dilam.",
+        "hypothesis": "create kora jay. so, first day jodhi aashin, aamih dila create table. aamih table le nama kiki raakte chachchi? e jay. eta hoche aamah table le nama which is student underscore info.",
+        "wer": 0.7714285714285715,
+        "cer": 0.44148936170212766,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_026.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "okay? tahole ei command dekhe amar aa query bujhte parlo je amake ekhane ekta student info namer ekta notun table ke create korte hobe. so, ei table er ki ki data ami rakhte chai?",
+        "hypothesis": "so, we have to check this one. so, we have to check this one. so, we have to check this one. so, we have to check this one. so, we have to check this one.",
+        "wer": 1.0294117647058822,
+        "cer": 0.7206703910614525,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_027.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "aa kon kon table head ami rakhbo. so ekhane ki ki ache? id, first name, last name, cgpa, department and enrollment date. so eigulai kintu amar column ta.",
+        "hypothesis": "first name, last name, cgpa, department and enrollment date. so, this is our column. we will write the sequence in this section. so, first we have our id. here we have the first name.",
+        "wer": 1.2142857142857142,
+        "cer": 0.9411764705882353,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_028.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "ekhane hocche ami serial wise aa sequential jevabe ami sequen je sequence e ami rakhte chai shei bhabe aa likhe felbo. so first ei amar ashlo id, erpore first name, erpor last name.",
+        "hypothesis": "here for last name last underscore name here for a cgpa here for a department",
+        "wer": 1.0,
+        "cer": 0.7292817679558011,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_029.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "last underscore name. erpore cgpa, erpore department, erpore enrollment date. okay. so, ei je ami column gula line by line likhe fellam, so ei porjontoi ki amar done?",
+        "hypothesis": "so, this is the enrollment date. so, we will write the column line by line.",
+        "wer": 0.8214285714285714,
+        "cer": 0.6987951807228916,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_030.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "eita korle kintu amar aa table ta create hoye gelo na.",
+        "hypothesis": "so, this is the opportunity that we are done. but we created this table.",
+        "wer": 1.2727272727272727,
+        "cer": 0.9444444444444444,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_031.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "amake prottekta column er datatype ta ke mention kore dite hobe je ami id er moddhe ki type er data rakhte chacchi, othoba first name e ki de eh ki type er datatype ki type er data rakhte chacchi, sherokom bhabe last name, cgpa, aa department and enrollment date.",
+        "hypothesis": "so, we will have to mention the first column of the data type. we will have to mention the first name of the data type. so, what is the first name of the data type?",
+        "wer": 0.9183673469387755,
+        "cer": 0.6615969581749049,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_032.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "so id, id te ki hobe? ekhane amar mostly thakbe shobshomoy ki digits? so ekhane amra likhte pari integer. i-n-t ekta comma. tarpore first underscore name. first name er je column ta ekhane ki thakbe? students der name thakbe.",
+        "hypothesis": "so, we will write integer. i, n, c, and then first name. first name is the column. what is the students' name? what is the name?",
+        "wer": 0.9230769230769231,
+        "cer": 0.6533333333333333,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_033.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "ekhon name ki diye toiri hoy? different characters. abar name gula ki? different length er hote pare. so, characters er jonno amra use kori varchar. varchar hocche variable characters. so, eikhane first name and second name duitai kintu amar shobshomoy ekta character er variable e thakbe.",
+        "hypothesis": "characters, our name gula ki different length er ho hoi te paare. so characters er joan no, aam ra use kori varchar. varchar hoxhe variable characters. so, eekha ne first name and second name, dote ae kiintu aam aar chakshu moay acta character er variable i thak de.",
+        "wer": 0.7391304347826086,
+        "cer": 0.2837370242214533,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_034.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "so dui jayga tei ami varchar likhe dilam. varchar likhar sathe ekhane amar ekhankar kichu length ta fix kore dite hoy. jemon ami ekhane koto maximan koto length er ekta name rakhte pari? suppose dhorlam 10. karon ekta student er aa nam er modhe up to toh 10 character e thakte pare.",
+        "hypothesis": "so, i will write the word-chart. with the word-chart, we will also use length topics. we need to know how maximum length we need to know. suppose, for 10 students, we have to know 10 characters.",
+        "wer": 0.9230769230769231,
+        "cer": 0.6276595744680851,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_035.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "er beshi usually hoy na. so 10 likhe dilam. tar mane holo ekhane amar up to 10 length er shob name consider kora jabe.",
+        "hypothesis": "so, 10 b. so, we have to write 10.",
+        "wer": 0.9166666666666666,
+        "cer": 0.8050847457627118,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_036.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "okay, then cgpa. cgpa e te amar ki thakbe? amar float numbers. so etar jonno etar datatype hobe float. department. department o kintu first name arlast name er motoi. so etateo ami likhbo varchar, etar character limitation diye dilam maximum 15 porjonto for example.",
+        "hypothesis": "consider okay then cgpa cgpa the key thak baya yamaar float numbers so it are chunno it a data type habay float department departmento kiintu first name or last name er matoy so it a teo amin likbho varchar it a character limit",
+        "wer": 0.8636363636363636,
+        "cer": 0.40977443609022557,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_037.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "ar enrollment date. since eta ekta date, date namer amader sql e alada ekta datatype e ache. so etar datatype ta hobe date. eta likhle automatically evabe date format e numbers gula chole ashbe. so etar je first bracket start hoyechilo etake end kore dibo and last ekta semicolon diye dibo.",
+        "hypothesis": "the maximum 15 for example are enrollment date since it act a date date name is sql a lot of data type a check so it are data type to have a did it only clay automatically a bhaab date formative numbers go to lash so either jifar is back at the start to 0 it's a key and",
+        "wer": 1.0588235294117647,
+        "cer": 0.5517241379310345,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_038.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "so ajker class e amra dekhlam aa dbms ki, dbms kivabe kaj kore, dbms er table kivabe create korte hoy through sql. so next class e amra aro kichu operations gula dekhbo.",
+        "hypothesis": "last act of semicolon so so we will see dbms key dbms key dbms key to create code through sql so next class we will see our operations",
+        "wer": 0.75,
+        "cer": 0.5502958579881657,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR14/seg_000.wav",
+        "video": 14,
+        "speaker": "C",
+        "reference": "assalamu alaikum guys, toh goto class e amra dekhechilam amader ip aa ip v4 datagram header ta ache, header er section mane bibhinno choto choto component. toh ajke amra tar modhhe theke kichhu important component er aa ekta brief overview dekhbo. toh cholen shuru kora jak. first of all, amra jeta dekhbo sheta hocche amra je detail tar kotha bolechilam, time to live, shetar ekta importance bola jay.",
+        "hypothesis": "assalamualaikum guys, so in the class we have seen ip 4g diagram header and dissection. so we have a little bit of a component. so today we have a little bit of a component. first of all, we have seen the detail about time to live, which is important.",
+        "wer": 0.8529411764705882,
+        "cer": 0.5845771144278606,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR14/seg_001.wav",
+        "video": 14,
+        "speaker": "C",
+        "reference": "toh amra goto class e khub brief idea diyechilam, but ajke amra full length e jinishta ke shikhbo. to basically ttl as we know, amader time to live. time to live, eita basically ki dey? ekta hop count dey, je hocche o kotogula hop jete parbe. toh onek shomoy hoy ki, je ekta network e aa jokhon onekgula aa connections thake, bolte paren roadmap thake, je ei rasta diye oi rasta te jabe.",
+        "hypothesis": "i have given a brief idea but i will learn full length of the information. so basically ttl as we know is time to live. time to live. basically what is the hop count. it is a hop count. in the same way, there is a network where there are connections and road map.",
+        "wer": 0.7534246575342466,
+        "cer": 0.5581395348837209,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR14/seg_002.wav",
+        "video": 14,
+        "speaker": "C",
+        "reference": "ekta certain device e pouchanor jonno, right? toh onek shomoy hoy je connection ta distorted hoye jacche, noshto hoye jacche, onek lagging issue dicche, buffering kortese, emon onek jhamela hote pare. jar jonno hoytoba aa je amader design packet ta destination porjonto pouchaite pare na, ba ekta delay hoy. toh onek shomoy delay ta acceptable na, toh shei khetre amra ki kori? packet ta notun kore pathai. but kono packet notun kore pathanor age amra to previously je packet ta amra send korechi, sheita ke destroy kora lagbe, right?",
+        "hypothesis": "so, in the same way, the connection is distorted and not distorted and lagging issues. the buffer is in the same way. the desired packet is not allowed to be destroyed.",
+        "wer": 0.9438202247191011,
+        "cer": 0.7640449438202247,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR14/seg_003.wav",
+        "video": 14,
+        "speaker": "C",
+        "reference": "toh ei je destroy korar je technique ta ba method ta, eitake amra hocche set kori ttl diye. ttl bolte gele je etogula hop, hop bolte ekhane bujhachchi apnar router ba pc. toh etogula router-to-router jump er poreo jodi o destination theke kono acknowledgment na ashe, tahole amra aa packet ta ke destroy kore notun packet pathabo.",
+        "hypothesis": "so, the destroyer method is set for ttl. ttl is called hop, hop is called router and pc. so, if the router is a router, the destination is not available, we can destroy the packet.",
+        "wer": 0.8421052631578947,
+        "cer": 0.6181818181818182,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR14/seg_004.wav",
+        "video": 14,
+        "speaker": "C",
+        "reference": "eta hocche ttl-er khub basic concept. toh eta diye ki prevent kora hoy? main shomossha jeta eta diye amra prevent korte pari, sheita hocche amader jekono packet er endless looping.",
+        "hypothesis": "this is a basic concept of etl. the main solution that we have to prevent is the main solution. the main solution that we have to prevent is the main solution. the main solution that we have to prevent is the main solution. the main solution that we have to prevent is the main solution.",
+        "wer": 1.7333333333333334,
+        "cer": 1.1166666666666667,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR14/seg_005.wav",
+        "video": 14,
+        "speaker": "C",
+        "reference": "looping. okay. so basically eta ki hoy je jokhon ekta network destroy hoye geche ba down hoye ache, kono duita network er moddhe connection, tokhon loop amader je packet, eta khujte thake onno shob network e giye giye je kon network e basically path ta ache ekhono. toh jehetu ektai path chilo ebong sheita destroyed hoye giyeche.",
+        "hypothesis": "looping okay so basically it is key when the network is destroyed and downed and there is a connection between the network and the network is very happy that they are all connected to the network and they are all connected to the network and they are all connected to the network and they are all connected to the network and they are all connected to the network and they are all connected to the network and they are all connected to the network and they are all connected to the network and they are all connected to the network and they are all connected to the network and they are all connected to the network and they are all connected to the network and they are all connected to the network and they are all connected to the network and they are all connected to the network and they are all connected to the network and they are all connected to the network and they are all connected to the network and they are all connected to the network and they are all connected to the network and they are all connected to the network and they",
+        "wer": 3.3684210526315788,
+        "cer": 2.409090909090909,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR14/seg_006.wav",
+        "video": 14,
+        "speaker": "C",
+        "reference": "toh or ei je ei mane search korata ar thame na, oita hocche amra boli endless looping. toh endless looping amader bandwidth er jonno onek kharap. eijonno amra ki kori? aa for example chobbish ta hop ba amader ttl level ta diye dilam 24, right? ttl level e jokhon 24, o 24 ba chobbish ta router ba like chobbishta jump-er pore ek router theke arek router-e o nijei aa jodi ttl er value ta zero hoye jay, ekta shomoy aa ore down kore dibe ba ore drop kore dibe amader oi router-ta theke.",
+        "hypothesis": "endless looping. so endless looping is a bandwidth which is a bandwidth. for example, the 20th hop, we have 24. the 24th hop is 24. the 24th hop is a router like the 24th jumper is a router and the other router is a router. the way the ktla is a 0, the way the ac is a drop.",
+        "wer": 0.9247311827956989,
+        "cer": 0.643298969072165,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR14/seg_007.wav",
+        "video": 14,
+        "speaker": "C",
+        "reference": "eibhabe amra basically aa ekta mane noshto je packet ta ba ekta distorted packet tare drop kore dite pari, with the help of ttl. ekhon amra goto class e koekta flag er kotha bolechilam, jeta amader ekta header e dekha jay ipv4 header er moddhe.",
+        "hypothesis": "i have to drop the packet with the help of ttl. i have got a flag that i have to see the header in the ipv4 header.",
+        "wer": 0.8,
+        "cer": 0.639344262295082,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR14/seg_008.wav",
+        "video": 14,
+        "speaker": "C",
+        "reference": "toh prothom ta hocche if flag. eitake onek shomoy reset flag-o bola hoy. i think slide e reset flag-e likha ache.toh if ba reset flag. aa eita identification flag o bole or reset flag, you can call whatever you want.",
+        "hypothesis": "so, if you want to use the id flag, you can call it whatever you want.",
+        "wer": 0.825,
+        "cer": 0.7407407407407407,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR14/seg_009.wav",
+        "video": 14,
+        "speaker": "C",
+        "reference": "tarpor hocche df flag, ei. amra oikhane bolechilam je hocche poroborti video te basically ei video te amra df ar mf niye beshi aa kotha bolbo. toh oitai dekhbo ajke amra je ei duita flag-er importance ki. arekta hocche mf flag. toh basically aa eita hocche ki reset flag ta ekhane aa reserve kore rakha hoy arki. ekhane hocche slider e dekha jacche res bole reserve. thik ache? to eita basically mane ekhon kono kaje nai, future e kono kajer jonno use kora jete pare erokom.",
+        "hypothesis": "i will tell you about this video about df and mf.",
+        "wer": 0.9767441860465116,
+        "cer": 0.9113924050632911,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR14/seg_010.wav",
+        "video": 14,
+        "speaker": "C",
+        "reference": "ar df flag ta jeta ache seta hocche don't fragment. don't fragment flag ta thakle ki hoy? amra toh ekta concept, aa mane, common sense diye chinta korleo pari je jokhon duita network amader exist kore, ba duita network bolte ki ar ki, multiple network bujhachchi ami. jokhon multiple network amader exist kore, tokhon amra ki kori je eigular moddhe je, for example, copper wire use kori,",
+        "hypothesis": "foreign",
+        "wer": 1.0,
+        "cer": 0.9844961240310077,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR14/seg_011.wav",
+        "video": 14,
+        "speaker": "C",
+        "reference": "onnyanno onek type er wire amra use korte pari for connections. ekhon shob wire ba shob je connection, bakider to capability same na. for example, amra jodi optical fiber use kori, eita long range er khetre onek beshi capable. but amra short range e toh ar optical fiber use kori na, tokhon copper wire use kora hoy. oneke bole copper straight through je coppergula, cablegula, sorry. toh eigula amader basically ekta device theke onno device e connection er jonno toiri kora. for example, router to router, pc to pc.",
+        "hypothesis": "for example, we use the optical fiber for the connection. for example, we use optical fiber for the long range, but we use the copper wire.",
+        "wer": 0.898876404494382,
+        "cer": 0.7911025145067698,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR14/seg_012.wav",
+        "video": 14,
+        "speaker": "C",
+        "reference": "ba hoyto pc to router. toh hocche, erokom. prottyek type er cable er jonno protteker connection speed, bandwidth shobgulo different different thake. ekhon etar jonno hoy ki, eder moddhe je performance ta vary kore. for example, ami jodi ekta char hajar megabyte-er, ba sorry, beshi hoye jacche, char hajar byte.",
+        "hypothesis": "for example, we have 400 megabytes",
+        "wer": 0.96,
+        "cer": 0.909967845659164,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR14/seg_013.wav",
+        "video": 14,
+        "speaker": "C",
+        "reference": "eta char hajar byte-er data ami ekhane theke pathaite chai, kintu amar je ei cable-ta, ei cable diye char hajar byte ashte pare, thik ache? usually capability ache oita. but eikhane je connection-ta, ba cable-ta, er hoytoba bandwidth kom.",
+        "hypothesis": "but if you have a connection, it is a bandwidth comp.",
+        "wer": 0.9743589743589743,
+        "cer": 0.8151260504201681,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR14/seg_014.wav",
+        "video": 14,
+        "speaker": "C",
+        "reference": "othoba kono ekta karone e ponerosho byte porjontoi data ekbare transfer korte pare, thik ache? tahole amra ki kori? jokhon ei router, router to obviously jane je etar capability koto. mane, e jokhon ei router tar sathe connection korte chai, e ore bole dey je tumi amare ponerosho byte porjonto pathaite parba. right? o bole dicche router, for example 1 re. toh router 2, router 1 re bole dicche je tumi amare shorboccho ponerosho byte porjonto data pathaite parba, right? to tokhon ki kore.",
+        "hypothesis": "right",
+        "wer": 1.0,
+        "cer": 0.9898167006109979,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR14/seg_015.wav",
+        "video": 14,
+        "speaker": "C",
+        "reference": "ei router ta, for example router ta, oi mane data ta asche ei computer source theke, toh jokhon hocche aa ekhane amar mane packet ta astese, o jane je amar hocche ponerosho byte er beshi ami ei pothe pathaite parbo na. thik ache? toh tokhon o ki kore, ei je char hajar byte, char hajar byte bhenge prottekta ponerosho, ponerosho ekta ekta kore aa packet create kore ekta fragment create kore.",
+        "hypothesis": "for example, the data source was created by the computer source. so, when we get to the package, we can get to the package. so, what do we do? we can get to the package and create a package.",
+        "wer": 0.9436619718309859,
+        "cer": 0.701530612244898,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR14/seg_016.wav",
+        "video": 14,
+        "speaker": "C",
+        "reference": "eder then sequence number diye o porobortite organize kore. to basically ei pothei je shudhu jabe erokom na, ei poth diyeo kichu jaite pare, ei poth to ei poth.",
+        "hypothesis": "then sequence number of people organize them. basically, they can't get a spot, but they can't get a spot.",
+        "wer": 0.8620689655172413,
+        "cer": 0.55,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR14/seg_017.wav",
+        "video": 14,
+        "speaker": "C",
+        "reference": "but router ki kore, always shortest path-tai ney. toh eibhabe amader ekta router hocche fragment kore thake. ekhon jodi don't fragment factor zero deya thake, tokhoni shudhumatro router ei fragmentation ta korte parbe. jodi non-fragment zero na thake, for example jodi 1 thake, tar mane ki je router er kache shei permission nai, etake fragment korar.",
+        "hypothesis": "but it is always the shortest path time. so, if we have a router, we have to fragment the router. now, the router is not fragmenting the router. for example, the router is not fragmenting the router.",
+        "wer": 0.8928571428571429,
+        "cer": 0.6182336182336182,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR14/seg_018.wav",
+        "video": 14,
+        "speaker": "C",
+        "reference": "ejonno hocche router tokhon ar fragment korte pare na router bole je ei poth diye jaite pare ponerosho, but tumi pathaicho char hajar. toh tumi amare fragmentation ta kore dao. got it? sorryi, ekta call asche.",
+        "hypothesis": "got it? sorry, call us check.",
+        "wer": 0.9444444444444444,
+        "cer": 0.8947368421052632,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_000.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "hello everyone, welcome back to another video. so, last class a amra ki porechilam? amra variable sikhechilam - variable ki bhabe declare kore? tarpore, variable er value ki ki hote pare? kon kon data type er variable ache. so ajke, amra khub e important and khub e interesting ekta topic nia discuss krbo.",
+        "hypothesis": "hello everyone, welcome back to another video. so, last class se, i am r k pore chila, i am r variable chikhe chila, variable k bha bhe declare kore, t pore variable e r bhalo k k hoate paare, kun-kun data type e r variable ache. so, aaj ke, i am r khubi important, e bho, khubi interesting aqt a topic nye discuss kore bo. so, normally variable e hoi ki ache ho le.",
+        "wer": 0.9811320754716981,
+        "cer": 0.35947712418300654,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_001.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "so normally, variable a hy ki ashole? aa variable toh amra nijera dia diachilam. jemon dhoro, variable jemon dhoro \"age\" ei variable er value dhoro 42. but real life a ki emon 42 dewa thake? thake na. amra user er theke input nei. so sei python er e ekta built in function royeche jeta holo \"input\".",
+        "hypothesis": "we have given the variable as a age. this variable is 42. but in real life, we have not input. so, python has built-in function for input.",
+        "wer": 0.8928571428571429,
+        "cer": 0.6454849498327759,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_002.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "so, ami jodi likhi function ta seta holo \"input()\" function. eta holo python er built in ekta function, so ei built in function er maddhome amra user er theke input niye thaki.",
+        "hypothesis": "so, i am going to write this function. this is the input function. this is python built-in function. so, in this built-in function, we have input input.",
+        "wer": 0.875,
+        "cer": 0.5056818181818182,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_003.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "cholo tahole ei built in je function ta etar ekta example dekhe ashi, use case dekhi. ami purota kete dei abar ekhane. dhoro amar ekta variable \"name\". name ki? karo ekjoner naam. eta amra er age dynamically ekhane dia diachilam.",
+        "hypothesis": "so, we will use an example of this example. so, let's see what we have done. now, we have variable name. name?",
+        "wer": 0.95,
+        "cer": 0.7205240174672489,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_004.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "but ebar amra jeta korbo seta holo, user er theke input inbo. toh ami first likhi, ektu age je function dekhalam input function dekhalam seta ekhane dibo. input function ta dilam, tarpore ami ekta bracket dibo, tarpore ekta quotation mark dibo.",
+        "hypothesis": "i will show you how to use the input function.",
+        "wer": 0.975609756097561,
+        "cer": 0.8524590163934426,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_005.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "ekhon ekhane ami je jinish ta ekhane likhbo seta ekta string hobe, ebong user kintu eta dekhbe, jemon, user dekhte pare, \"what is your name?\" dekho ekhn ekhane ki hocche? ami ekhane ekta input function likhechi, tarpore user er jonno ekta message diachi.",
+        "hypothesis": "i will write this name and see the user. what is your name? what is your name? i will show you what is the name of this. i will show you what is the input function.",
+        "wer": 0.9767441860465116,
+        "cer": 0.6889763779527559,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_006.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "message ta ki? je \"what is your name?\". user jokhn ei message ta dekhbe, user korbe ki? or nijer naam ta o likhbe, type korbe. ebong ei je value ta ashbe, seta ki, ei name variable er moddhe store hoye jabe.",
+        "hypothesis": "foreign",
+        "wer": 1.0,
+        "cer": 0.9710144927536232,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_007.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "porobortite ami jokhn print function use korbo, python er built in, sorry.., print er moddhe, dhoro ami likhte chacchi, \"hello\", hello likhar pore ei je name a, name variable er moddhe, je naam ta store kore rekheche, oke ami hello bolte chacchi.",
+        "hypothesis": "python built-in, sorry. printer mode, i will write hello. i will write this name variable that i store.",
+        "wer": 0.9285714285714286,
+        "cer": 0.6747967479674797,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_008.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "toh ami ki korbo, hello koma name eta.",
+        "hypothesis": "hello.",
+        "wer": 1.0,
+        "cer": 0.8421052631578947,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_009.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "ekhon print hobe ki? ami jokhn code ta print korbo, hobe ki? first a ei line a ashbe. ei name variable ta pabe, tarpor check korbe je, ei input function call kora hoyeche. function korbe ki, user ke message ta dibe? what is your name? user ekta name dibe. jemon amar naam rafi, ami ekhane raafi dibo.",
+        "hypothesis": "i am print first and then i will paste the name variable and check the input name and we will use the function function and use the name as a message and then i will give the name and then i will give the name and then i will give the name and then i will give the name and then i will give the name and then i will give the name and then i will give the name and then i will give the name and then i will give the name and then i will give the name and then i will give the name and then i will give the name and then i will give the name and then i will give the name and then i will give the name and then i will give the name and then i will give the name and then i will give the name and then i will give the name and then i will give the name and then i will give the name and then i will give the name and then i will give the name and then i will give the name and",
+        "wer": 3.43859649122807,
+        "cer": 2.3133333333333335,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_010.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "ekhn ei rafi naam ta hobe ki? ei name er moddhe store kore rakhbe. jeta age ki hoyechilo ekhane? name equals to erokom. jinish ta evabei kaaj korbe jodi user ei rafi value ta dei. tarpore, ei print function a ashbe, print holo python er bulit in ekta function, jeta dia amra kono jinish print kori.",
+        "hypothesis": "the name is equal to the name is equal to the name is equal to the name is equal to the name is equal to the name is equal to the name is equal to the name is equal to the name is equal to the name is equal to the name is equal to the name is equal to the name is equal to the name is equal to the name is equal to the name is equal to the name is equal to the name is equal to the name is equal to the name is equal to the name is equal to the name is equal to the name is equal to the name is equal to the name is equal to the name is equal to the name is equal to the name is equal to the name is equal to the name is equal to the name is equal to the name is equal to the name is equal to the name is equal to the name is equal to the name is equal to the name is equal to the name is equal to the name is equal to the name is equal to",
+        "wer": 3.517857142857143,
+        "cer": 2.2013422818791946,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_011.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "ashole eto kaaj korar por, ashole ami jodi kono jinish print kore na dekhai, tahole kintu jinish tar kono value thakena. toh, amra print function ta ekhane call korlam. setar moddhe string a hello likhlam, tarpore ami comma dia variable tar name likhechi. ekhane ekta important jinish jeta khail koro, dekhba je, name naamer variable ta ache, eta ami directly ekhane bolechi, ejonno ami ekhane erokom kono quotation mark dia deinai.",
+        "hypothesis": "so, we have to print function. we have to print the python function. so, we have to print the function. so, we have to print the function. then, we have to print the string. then, we have to print the name. this is an important thing to do. the name is the name. i have directly said that the name is the name.",
+        "wer": 0.9436619718309859,
+        "cer": 0.6712962962962963,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_012.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "ami jodi ekhane ditam, tokhn kintu jinish ta onno jinish hoye jeto. tokhn ami ota ekta string alada hisabe, eta kono variable hisabe call korto naah.",
+        "hypothesis": "i will not give this code. i will give this example to the same number. i will give this example to the same number. i will give this example to the same number.",
+        "wer": 1.2692307692307692,
+        "cer": 0.8389261744966443,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_013.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "okay, so amra basic input function ta kibhabe kaaj kore seta sikhe gelam. ekhn ekta jinish a ashi, jeta khub e mojar jinish, jeta te beginner ra sob somoy bhul kore, ebong amar mone hoy, tomra ekhon jara video ta dekhcho, tomra first watch a ashole error ta khuje pabe naah.",
+        "hypothesis": "okay, so, we will learn basic input function. so, we will learn the basic input function. we will learn the basic input function.",
+        "wer": 0.9803921568627451,
+        "cer": 0.7591240875912408,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_014.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "toh cholo example ta dei, ami ashole jinish ta age ekhan theke erase kore dicchi. dhoro, ami 2 ta number user er theke nibo, tahole ki amar 2 ta variable lagbe? toh first variable tar name dilam num1, khail koro, ager diner pora, seta holo ki, ami first a num variable ta niachi and sesh a number ta diachi,",
+        "hypothesis": "foreign",
+        "wer": 1.0,
+        "cer": 0.9804560260586319,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_015.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "age kintu number ta deinai. tahole kintu amr variable er naming convention ta follow kortam nah. tahole ki hoto amr, error dekhtam. ekhon dekho name one, seta ami ki user er theke nibo.",
+        "hypothesis": "function of the user can assist the book what is the first number",
+        "wer": 1.0,
+        "cer": 0.7891891891891892,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_016.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "toh ami ki korbo, input, input function er moddhe user ke message ta dibo ki je \"what is the first number?\" ami user ke jiggesh krbo what is the first number. second number tao ami nibo, seta holo, num two dilam ekhane jehetu second number.",
+        "hypothesis": "i will tell you what is the first number? i will tell you what is the second number. similarly, i will tell you what is the second number.",
+        "wer": 0.8,
+        "cer": 0.6083333333333333,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_017.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "similarly ekhaneo same message ta likhbo, thikase? ami second message likhlam. toh ekhon ki hobe? user amake 2 ta number dibe. seta ki hote pare? ten, five erokom hote pare. tarpore ami korbo ki?",
+        "hypothesis": "what's this? i have written a second message. so what's this? i'll give you two questions.",
+        "wer": 0.9705882352941176,
+        "cer": 0.7333333333333333,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_018.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "sum korbo. sum ki? sum naame ekta variable nilam, ebong ekhane, ami chacci je, ei dui ta number ke ami add korbo.",
+        "hypothesis": "10, 5, etc. but we will do sum. sum is the sum name variable. then we will do this number at.",
+        "wer": 1.0,
+        "cer": 0.7433628318584071,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_019.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "so pretty simple right? aa ami ekhane ki korbo? sorry.., num one plus num two. nursery level er jinish taina? just two ta number add kortesi eikhane. tarpor, ektu age je print function dekhlam, setar moddhe ami abar sum ta ke sum variable a tahole howar kotha.",
+        "hypothesis": "so, pretty simple right? what do we do? sorry. num1 plus num2. we have to use the number number. so, we will see the print function.",
+        "wer": 0.8723404255319149,
+        "cer": 0.6384615384615384,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_020.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "but khub e important jinish beginner ra khub e bhul kore, software developer ra bhul kore, ebong onek khetre dekhba tomader teacher rao ei jinish ta bhul krtese hotat kore jokhn first time jinish ta dekhate jabe.",
+        "hypothesis": "but very important genius beginner and software developer",
+        "wer": 0.8648648648648649,
+        "cer": 0.7783018867924528,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_021.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "ebong tomra toh obviously first time ei bhul ta korbai, seta holo je, ami jokhn input ta nicchi, eta by default, always string hisabei ashbe. so kew jodi number ta bole je ten. ashole, je pacche seta ekta string hisabe ashtese ekhane.",
+        "hypothesis": "foreign",
+        "wer": 1.0,
+        "cer": 0.9700854700854701,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_022.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "but amra ki string er sathe string add korte pari? well technically pari, but ekhane ashole mathematically ami parbona. ekhane jodi ami string, string add kori, ekta number jodi ten hoy and arekta number twenty.",
+        "hypothesis": "but we can add the string, or technically, but we can do this mathematically. so, we can add the string, and the number is 10, and the number is 20.",
+        "wer": 0.8571428571428571,
+        "cer": 0.5213270142180095,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_023.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "ami tahole ki pabo ekhane? ten twenty and etar type o ekta string hobe. but amra kintu eta chacci naah.",
+        "hypothesis": "10 20. this typo is a string. but i am not going to be able to",
+        "wer": 1.0,
+        "cer": 0.7378640776699029,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_024.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "amra chacci number, actual integer number, ten and twenty, era add korle koto? thirty hoy. so, etar jonno amader ekta chotto kaaj korte hobe, seta holo, egulo ke declare korar somoy, ekhaneo integer likhe dite pari, or next ekta line korte pari.",
+        "hypothesis": "so, we need to add the number of the integer number 10 and 20. so, we need to add the number of the integer number. so, we need to add the number of the integer number. so, we need to add the number of the integer number.",
+        "wer": 1.0714285714285714,
+        "cer": 0.710204081632653,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_025.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "ami jodi ekta kete dei. ami korte pari ki, num1 equals to int of num1. so, ekhane basically ki hocche? ami user theke input niachi num1. seta ki ten , string a chilo.",
+        "hypothesis": "i am going to say num1 is equal to int of num1. so, what is this basically? i am using int.",
+        "wer": 0.8484848484848485,
+        "cer": 0.6325301204819277,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_026.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "ami jokhn int of aa num one kore dicchi, tokhn ei string hoye jacche ki? amr integer. integer value hoye jacche ekhane, so tokhn ar eta amr quotation lagbe na.",
+        "hypothesis": "input nia achi num1 cheta ki 10 string achi lo. aami jakhon int of num1 kore di chhi, ehi string ta huye jakchi",
+        "wer": 0.9666666666666667,
+        "cer": 0.6792452830188679,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_027.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "eta ki hbe? sudhu ten hoye thakbe, thikase? similarly, jodi ekhon num two equal to integer of num two dia dei, hobe ki? amr ei integer er value tao, jeta second je number ta ashbe seta change hoye jabe, so etake bole holo type casting.",
+        "hypothesis": "so similarly",
+        "wer": 0.9777777777777777,
+        "cer": 0.948936170212766,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_028.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "ekhane amra forcefully type ta change kore dicchi. but ekta jinish mone rakhte hbe, ami kintu string value nia seta ke sob somoy ami integer dite parbona. jemon user jodi ekhane first number er jaigai \"eight\" likhe, ebong ami jodi etar int korte chai, seta ki?",
+        "hypothesis": "num2 equal to integer of num2, then we can change the second number of num2. so, this is called typecasting. this is forcefully typecasting. but, i can't remember. i can't remember the string, so i can give the integer to the user.",
+        "wer": 1.0,
+        "cer": 0.7307692307692307,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_029.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "error. tainaah? eta just possible naah. eta ki kokhono integer value hote pare? pare na ashole. toh ei jinish gula mathai rakhte hbe.",
+        "hypothesis": "i am going to use int to do this. this is just possible. this is just possible. this is just possible.",
+        "wer": 1.0,
+        "cer": 0.7293233082706767,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_030.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "and ekhon jodi ami sum nei, and tahole ekhon jodi print kori, tahole amra dekhbo ki, ekhan theke dui ta integer value, dui ta first a string ashbe. ogulake amra integer a convert korsi, ebong sum korchi.",
+        "hypothesis": "and this is what i am going to do and i will print it and i will print it and i will see what i am going to do",
+        "wer": 0.972972972972973,
+        "cer": 0.6995073891625616,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_031.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "ekhn actual jeta amra, choto bela theke je bhabe plus kora sikhechi sei plus ta hobe. so, tarpore amra print er maddhome sum er value ta pabo.",
+        "hypothesis": "so, we have to do the same thing. we have to do the same thing. we have to do the same thing. we have to do the same thing.",
+        "wer": 1.0740740740740742,
+        "cer": 0.6971830985915493,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_032.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "okay, so, class sesh korar age amra chotto arekta tricks dekhi, seta holo dekho ekhane ami eto kosto korlam, but print krtesi sudhu sum ta. print hobe ki? sudhu ekta, ekta value print hbe, ekta integer value print hobe.",
+        "hypothesis": "okay so, we have a little trick that we have to do this. we will print that. we will print that. we will print that. we will print that. we will print that. we will print that. we will print that. we will print that. we will print that. we will print that.",
+        "wer": 1.2307692307692308,
+        "cer": 0.7945205479452054,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_033.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "ami jodi first number ta three dei, arekta jodi five dei, tahole amr sum ki hbe? eight sudhu print hobe. eto kosto korar pore jodi sudhu eight print hoy jinish ta ashole khub e, dukkher o ekta bishoy, ar jinish ta ashole interesting nah.",
+        "hypothesis": "i will show you how to use the same thing as a printer.",
+        "wer": 1.0,
+        "cer": 0.8312236286919831,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_034.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "toh ejonno, amra korte pari ki? output ke shundor bhabe dekhanor jonno, amra string formatting korte pari. jemon dhoro, ami korte pari ki? print er moddhe. ami ekta string print korbo. result is kom dia dilam and tokhn ami sudhu jodi sum ta dia dei, tahole hobe ki?",
+        "hypothesis": "print your mod there make the string print curve result is comma dya dila and toh on shudha ame jodhi sumta dya dhi tahan hoave ki print hoave holo eroghombhaave dha ho",
+        "wer": 0.9583333333333334,
+        "cer": 0.7358490566037735,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_035.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "print hobe holo erokom bhabe, dekho. twenty. toh amr duita sum jodi twenty hoy ekhane, ta hobe ki, result is twenty.",
+        "hypothesis": "20. so, if we can understand that 20 is 20, then we can see that result is 20.",
+        "wer": 0.9047619047619048,
+        "cer": 0.6637931034482759,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_036.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "ebhabe jinish ta print hbe, but eta amra age kortam, ekhn amra python three use kori, version three, ebong version three te f string naame ekta jinish ache, ebong eta khub e powerful ekta jinish. toh cholo, dekhai, f string dia kibhabe korte parba.",
+        "hypothesis": "but we will do this before we use python 3 version 3 and python 3 is very powerful so let's see if we can see how much of this one is printed",
+        "wer": 0.9318181818181818,
+        "cer": 0.717741935483871,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_037.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "ei jinish ta ami rekhe dilam, arekta jeta seta holo, f string er jonno, naam shunei bujha jacche, shurute ekta f likhbo, samll f. tarpor amra ekta double quotation dilam, tarpore ami ekhn ki likhte chai?",
+        "hypothesis": "foreign",
+        "wer": 1.0,
+        "cer": 0.9704433497536946,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_038.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "dhoro lekhlam je \"the sum of\" mone rekho egula kintu ashole string hisabei print hocche, \"the sum of\" tarpor ami ki krbo ekta curly braces dibo ekhane ebong likhbo je num one, ekhane jehetu jaiga nei, ami niche likhtesi.",
+        "hypothesis": "sum of sum of sum of sum of sum of",
+        "wer": 0.9487179487179487,
+        "cer": 0.8772727272727273,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_039.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "and, okay, so dekho, ami jokhn f string nia jokhn jinish ta yaa kortesi, sorry ekhane ekta bracket hobe, ami sesh kore dei, eittoh. so ekhane ami jokhn f string ditesi dekho, ami f string er moddhe shudhu, the sum of , eta ekta string hisabe, tarpore jokhn ami curly braces dicchi ekhane, tokhn etar moddhe ami ashole variable ta",
+        "hypothesis": "and so, i have a string that i have a string that i have a string that i have a string that i have a string that i have a string that i have a string that i have a string that i have a string that i have a string that i have a string that i have a string that i have a string that i have a string that i have a string that i have a string that i have a string that i have a string that i have a string that i have a string that i have a string that i have a string that i have a string that i have a string that i have a string that i have a string that i have a string that i have a string that i have a string that i have a string that i have a string that i have a string that i have a string that i have a string that i have a string that i have a string that i have a string that i have a string that i have a string that i have",
+        "wer": 3.25,
+        "cer": 1.9148936170212767,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_040.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "dite pari. ebong dekho, similarly ami ekhaneo eta ekta string hisabe, but era amr variable er jaigai, karon ki ekhane similarly curly braces ache. ebong ekhaneo, curly braces er moddhe ami arekta variable call korechi, seta holo sum.",
+        "hypothesis": "i will add the sum of the string. when i have calibrations, i can add a variable. similarly, i will add a string, but this variable will go. similarly, i will add a variable. so, i will add a variable.",
+        "wer": 1.0526315789473684,
+        "cer": 0.7253218884120172,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_041.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "so, ei jinish ta dhoro amr, ei jinish take jodi amra trace kore dekhi, jemon dhoro num one jodi amr hoy twenty, num two jodi amr hoy holo thirty, tahole jinish print hobe holo ekhane ebhabe.",
+        "hypothesis": "so, we will trace this to our own, we will trace this to our own. so, we will trace this to our own, we will trace this to our own.",
+        "wer": 0.9444444444444444,
+        "cer": 0.6842105263157895,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_042.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "bujha geche? jinish ta ki? aro meaningful. ekhon amra ki? user er theke input niachi, amra input theke ekta operation korechi, ebong setake shundor moto print kore ekhane dekhiye diachi.",
+        "hypothesis": "what is this? this is meaningful. this is the user-ethical",
+        "wer": 0.9666666666666667,
+        "cer": 0.7903225806451613,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_043.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "next class a amra arithmetic operation jemon plus, minus erokom operators nia dekhbo. tarpore comparison gulo, esob nia janbo. so ajker class ei porjonto, sobay bhalo thakun.",
+        "hypothesis": "so, this class is the first class.",
+        "wer": 0.9629629629629629,
+        "cer": 0.8563218390804598,
+        "temperature": 0.0
+      }
+    ],
+    "tuned": [
+      {
+        "audio": "BanglaASR12/seg_000.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "hello everyone ajker topic ta hocche database management system which is dbms in a short form. so, ajker topic tar amra ektu surface level ei thakbo beshi deep e jabo na. so ahh database jinish ta ki?",
+        "hypothesis": "hello everyone. ajker topic ta hocche database management system which is dbms in a short form. so ajker topic ta amra ektu surface leveling thakbo bikshi lipe jabona.",
+        "wer": 0.43243243243243246,
+        "cer": 0.215,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_001.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "database onekgula data ke hold kore. so, ei data gula ki thakte pare? multiple tables e thakte pare. toh dhorlam ei rokom amar kacheo onekgula tables ache. so ei shob gula table e amar kichu informative aa information ache.",
+        "hypothesis": "so ei data gula ki thakte pare? multiple tables e thakte pare. so dhorlam erokom amar kache ho. onek gula tables ache. so ei shobgula table e amar kichu eiton kore kore kore hobe.",
+        "wer": 0.5384615384615384,
+        "cer": 0.3183856502242152,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_002.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "jeigula ke ami use kore ami jekono dhoroner performance chalate pari. jekono dhoroner software chalate pari. so amader aa internet er ba amader aa amader wi wa aa digital world e database er importance kintu onek.",
+        "hypothesis": "jeikono dhorner performance chalate pari, jeikono dhorner software chalate pari. so amader internet er ba amader aa amader ei war digital word e database er importance kintu onek.",
+        "wer": 0.4444444444444444,
+        "cer": 0.18309859154929578,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_003.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "so suppose ami ekta, jehetu amra khub simple aa example diye start korbo toh table o ami etogula multiple tables na niye ami just ekta table e focus kori.",
+        "hypothesis": "so, suppose amai ekta jehetu amra ekta khub simple aa example diye start korbo, toh amr table o ami eikogula multiple tables na ni, ami just eikogula multiple tables na ni.",
+        "wer": 0.4482758620689655,
+        "cer": 0.24025974025974026,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_004.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "so first ei amar ekta database er name dite hobe. suppose database er nam hocche 'university'. er moddhe ekta table ache, shetar nam dhorlam 'student_info'.",
+        "hypothesis": "so first e amar ekta database er nam dite hobe. suppose database er nam hocche university. er moddhe ekta table ache sheitar nam dhorlam student, student kori.",
+        "wer": 0.32,
+        "cer": 0.12179487179487179,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_005.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "okay? tar mane ki amar university-r database er moddhe student information er ekta table ache jekhane amar shob students er kichu information store kora thakbe.",
+        "hypothesis": "tar mane ki amar university er database e student information er ekta table ache jekhane amar shob student er kechu information store kora thakbe. so durlam amar first e ache student id. erpore mabar student id.",
+        "wer": 0.76,
+        "cer": 0.51875,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_006.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "so dhorlam amar first ei ache student 'id', erpore 'first name' thakte pare. tarpore 'last name' thakte pare. ar dhoro 'cgpa' thakte pare.",
+        "hypothesis": "tarpor last name thakte pare ar dhoro cgpa thakte pare. and ekhane ami ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekhane",
+        "wer": 3.130434782608696,
+        "cer": 2.6884057971014492,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_007.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "and 'department' thakte pare. and last dhorlam 'enrollment date'. okay. so eigula hocche amar table er head. so etar moddhhe amar sequentially kichu information store kora thakbe, right?",
+        "hypothesis": "and last horlam- enrolment date. okay. so eigula hocche amra ekta student er jodi kaj korbo. so eigula department akte pare. so eigula hocche amra student aalas department aalas department akte pare.",
+        "wer": 1.0,
+        "cer": 0.7419354838709677,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_008.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "ekhon ami kichu dummy data dhore nei. karon amar kache toh in real life billions of information thakte pare. billions of data thakte pare.",
+        "hypothesis": "ekhon ami kichu dummy data dhore nei. karon amar kache toh in real life billions of information thakte pare. billions of data kori ekhane ki hobe?",
+        "wer": 0.16666666666666666,
+        "cer": 0.11594202898550725,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_009.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "but amra jehetu choto ekta example niye kaj korsi so amra dui tin ta or tin char ta data niye example dilei hoye",
+        "hypothesis": "but amra jehetu chota ekta example ne kaj korsi je amra dui tinta ba tuncha ta data niye example dili hoye jayar kotha. okay. so first e dhorlam amar student id. ami kichu random numbers diye. ami kichu random number kintu ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekhane kintu ekh",
+        "wer": 3.130434782608696,
+        "cer": 3.5982142857142856,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_010.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "jaoar kotha. okay. so 1st e dhorlam amar student id, ami kichu random numbers diye.",
+        "hypothesis": "okay. so, amake toh cholo amake kinty toh cholo, amake kinty toh cholo.",
+        "wer": 0.9333333333333333,
+        "cer": 0.7590361445783133,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_011.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "okay. so ekhane ami dhoro pachta data rakhlam pachta different student er different different id ache, egula kintu",
+        "hypothesis": "ekhon ami kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kintu kint",
+        "wer": 3.7222222222222223,
+        "cer": 3.1403508771929824,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_012.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "unique id. accha. erpore first name dhorlam. last name kichu dilam. kichu cgpa dilam.",
+        "hypothesis": "last name kichu dilam. ami kaj korbo? ekhon ami kaj korbo? ekhon ami kaj korbo? ekhon ami kaj korbo? ekhon ami kaj korbo?",
+        "wer": 1.6428571428571428,
+        "cer": 1.0588235294117647,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_013.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "okay. department dilam. enrollment date e uum kichu random dates diye dilam.",
+        "hypothesis": "so, ekhon ami kivabe jodi ekta input ta kivabe jodi, ekhon ami ekta input ta kivabe jodi, ekhon ami ekta input ta kivabe jodi, ekhon ami ekta input ta kivabe jodi, ekhon ami ekta input ta kivabe jodi, ekhon ami ekta input ta kivabe jodi, jodi, jodi, jodi, jodi, jodi, jodi, jodi, jodi, jodi, jodi, jodi, jodi, jodi, jodi, jodi, jodi, jodi, jodi, jodi, jodi, jodi, jodi, jodi, jodi, jodi, jodi, jodi, jodi, jodi, jodi, jodi, jodi, jodi, jodi, jodi, jodi, jodi, jodi, j",
+        "wer": 7.0,
+        "cer": 5.4868421052631575,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_014.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "so ekhane ami kichu dummy data create kore fellam. toh ekhan theke ami bivinno shomoy e amar proyojon moto kichu",
+        "hypothesis": "okay. department dilam. okay. so, ekhon ami kintu ekhane kintu, ekhaneo, department dilam. so, ekhon ami kintu, ekhaneo department dilam, department dilam.",
+        "wer": 1.1,
+        "cer": 0.9910714285714286,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_015.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "kichu information fetch kore nite pari. jemon dhoro ami particular suppose 110112, ei student er student id je",
+        "hypothesis": "envolment date e amr eichhor random dates deitilam. okay. so ekhon ami ekhane kaj korbo je, ekhon ami kaj korbo je, ekhon random date er dhoro kaj korbo.",
+        "wer": 1.4444444444444444,
+        "cer": 1.0545454545454545,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_016.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "hold korche tar nam jante chacchi, othoba cgpa jante chacchi, tar department jante chacchi, ar tar enrollment",
+        "hypothesis": "so eikhane ami kichu dummy data create kore fayn. so ami ekhane ami kichu dummy data create kore fayn.",
+        "wer": 1.1176470588235294,
+        "cer": 0.8073394495412844,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_017.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "jante chachhi. so eirokom type er multiplemm multiple bhabe ami kichu information table theke fetch kore ante",
+        "hypothesis": "toh ekhan theke ami vibinno shomoy amar proyejon moto kichu kichu information page kore nite pari. jemon dhoro ami particular suppose 110112, ei student er student id jehe hol korche tar num jante chacchi, othoba cgpa jante chacchi, tar department jante chacchi ar tar enrollment jante chacchi.",
+        "wer": 2.6470588235294117,
+        "cer": 2.110091743119266,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_018.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "pari.",
+        "hypothesis": "ah, kichu information table khekta kichu information kichu, table kichu, information kichu, table kichu, information kichu, table kichu, table kichu, table kichu, table kichu, table kichu, table kichu, table kichu, table kichu, table kichu, table kichu, table kichu, table kichu, table kichu, table kichu, table kichu, table kichu, table kichu, table kichu, table kichu, table kichu, table kichu,",
+        "wer": 58.0,
+        "cer": 78.6,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_019.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "so etar jonno ahm erkom dhoroner table er sathe amra kivabe dekhbo je amar ki ki data ache, ki ki columns ache, ki ki aa kotogulo data ache? eta toh amader pokkhe dekha possible na. karon ekta table toh ar ekta database er moddhe thakbe na.",
+        "hypothesis": "so eitar jonno erokom dhoro nei table er sathe amra ki bhabe dekhbo? je amra table e ki ki data ache, ki ki columns ache, ki ki kotogula data ache? etar to amader pokhe theka possible na. karon ekta table toar ekta database er moddhe thak hoy na, ekta database er multiple tables thakte pare.",
+        "wer": 0.6086956521739131,
+        "cer": 0.3416666666666667,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_020.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "ekta database e multiple tables thakte pare. so ei database er sathe communicate korar jonno ekta language use kori sheta hocche sql othoba mysql. erokom type er aro onek dhoroner language hoy. ajke amra shudhu mysql dekhbo.",
+        "hypothesis": "sheta hocche sql or mysql. so erokomta er aro onek dhorner language hoy ajke amra shudhu mysql dekhbo. so mysql amader normal je programming language.",
+        "wer": 0.8378378378378378,
+        "cer": 0.7053571428571429,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_021.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "so mysql amader normal je programming language jemon java, python, c, c# egular theke kintu different. mysql egula hocche query language. query language jinishta ki? je user kono aa question korbe database shekhan theke aa result ta amake output hishabe dibe.",
+        "hypothesis": "so, java, python, c, c sharp egular theke kintu different. mysql egula hocche query language. query language jinishta ki? je user kono aa question korbe database shekhan theke aa amake kintu kintu kintu dekhbe.",
+        "wer": 0.3902439024390244,
+        "cer": 0.3204633204633205,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_022.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "so eitai hocche query language er kaj. so mysql e ami first e eije table ta, ei table tao toh kono bhabe create kora hoyeche, right? so eitao kintu query er maddhomei create kora hoy.",
+        "hypothesis": "so eitai hocche query language er kaaj. so mysq well er ami first e eijitai table ta, ei table ta auto kono bhabe create kora hocche, right?",
+        "wer": 0.4857142857142857,
+        "cer": 0.366120218579235,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_023.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "bibhinno dhoroner amra table ke manupulate o korte pari. table er data manupulate bolte table er data change korte pari. notun kono data insert korte pari othoba kono data aa delete kore felte pari. shudhu data na ami table er pura ekta row kei delete kore felte pari, ekta row add korte pari.",
+        "hypothesis": "bibinodhorner amra table ke manipulate o korte pari, table er data manipulate bolte, table er data change korte pari, noto kono data aa insert korte pari, otobar kono data delete kore felte pari. shudhu data na, ami table er pura ekta row ke delete kore felte pari, ekta row.",
+        "wer": 0.33962264150943394,
+        "cer": 0.12627986348122866,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_024.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "othoba kono column add korte pari, column ke delete o korte pari. in fact ami kintu pura table ta keo, amar jodi unnecessary kono table theke thake shetakeo kintu amra fully delete kore felte pari. so eishob kichui kintu amar sql command er maddhome hoy. so, ajke first e ami amra dekhbo je sql diye kivabe ekta table ke create kora jay.",
+        "hypothesis": "so eitake kintu amra add korte pari, othopa kono column add korte pare, column ke delete o korte pari. in fact, ami kintu pura table ta ke o amar jodi unnecessary kono table theke thake sheta ke o kintu amra fully delete kore ferte pari. so ei shobkichu e kintu amar sql command er mathe me hoy.",
+        "wer": 0.6129032258064516,
+        "cer": 0.39762611275964393,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_025.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "so, first e jodi ashi ami dilam create table. ami table er nam a ki rakhte chacchi? eije, eta hocche amar table er nam which is student underscore info, erpore ami ekta bracket diye dilam.",
+        "hypothesis": "so, first e jodi ashi, ami dilam create table. ami table er nam ta ki rakhe jacchi? eige. eta hocche amar table er nam which is student underscore info.",
+        "wer": 0.34285714285714286,
+        "cer": 0.22872340425531915,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_026.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "okay? tahole ei command dekhe amar aa query bujhte parlo je amake ekhane ekta student info namer ekta notun table ke create korte hobe. so, ei table er ki ki data ami rakhte chai?",
+        "hypothesis": "okay? tahole eighth command dekhe amar query bujhte parlo je amake ekhane ekta student info nam er ekta notun table ke create korte hobe. so ei table e ekhon ami ki ki aa data rakhte chai? kon kon table head ami rakbo?",
+        "wer": 0.47058823529411764,
+        "cer": 0.3016759776536313,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_027.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "aa kon kon table head ami rakhbo. so ekhane ki ki ache? id, first name, last name, cgpa, department and enrollment date. so eigulai kintu amar column ta.",
+        "hypothesis": "eikhaner holo ami kolum ta. ekhane hocche ami serial wise aa sequential je babe ami jei sequential ami rakhtechei, sequenche bhabe aa likhe felbo. so first e amar ashno id, erpor er first name, ekhane holo id.",
+        "wer": 1.2142857142857142,
+        "cer": 0.9738562091503268,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_028.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "ekhane hocche ami serial wise aa sequential jevabe ami sequen je sequence e ami rakhte chai shei bhabe aa likhe felbo. so first ei amar ashlo id, erpore first name, erpor last name.",
+        "hypothesis": "erpor last name. last underscore name. er por e cgpa. er por e department. ebhane kori. ebhane kori. ebhane kori.",
+        "wer": 0.9696969696969697,
+        "cer": 0.7513812154696132,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_029.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "last underscore name. erpore cgpa, erpore department, erpore enrollment date. okay. so, ei je ami column gula line by line likhe fellam, so ei porjontoi ki amar done?",
+        "hypothesis": "so, eijin ami column gula ekhane line by line likhe fill tam. so ami ekhane ami column kore line by line likhe fill tam.",
+        "wer": 0.8214285714285714,
+        "cer": 0.6204819277108434,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_030.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "eita korle kintu amar aa table ta create hoye gelo na.",
+        "hypothesis": "eita korle kintu aa table ta create hoye ekta ekhane kintu kintu ekta create korte pari.",
+        "wer": 0.8181818181818182,
+        "cer": 0.8703703703703703,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_031.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "amake prottekta column er datatype ta ke mention kore dite hobe je ami id er moddhe ki type er data rakhte chacchi, othoba first name e ki de eh ki type er datatype ki type er data rakhte chacchi, sherokom bhabe last name, cgpa, aa department and enrollment date.",
+        "hypothesis": "amake prottekta column er data type ta ke mention kordite hobe. je ami id er moddhe ki type er data rakte chacchi? othobar first name e ki type er data type ar ki type er data rakte chacchi? shetokom bhabe last name, cgpa, department and enrollment name.",
+        "wer": 0.3673469387755102,
+        "cer": 0.10646387832699619,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_032.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "so id, id te ki hobe? ekhane amar mostly thakbe shobshomoy ki digits? so ekhane amra likhte pari integer. i-n-t ekta comma. tarpore first underscore name. first name er je column ta ekhane ki thakbe? students der name thakbe.",
+        "hypothesis": "so ekhane amra likhte pari integer. i nt. eita comma. tarpore first name. first name er je column ta ekhane ki thakbe? students der name thakbe. ekhon name ki diye tuiti hoy different character kore kori.",
+        "wer": 0.6923076923076923,
+        "cer": 0.6444444444444445,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_033.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "ekhon name ki diye toiri hoy? different characters. abar name gula ki? different length er hote pare. so, characters er jonno amra use kori varchar. varchar hocche variable characters. so, eikhane first name and second name duitai kintu amar shobshomoy ekta character er variable e thakbe.",
+        "hypothesis": "abar name gula ki different length er o hote pare. so characters er jonno amra use kori virtual. virtual hocche variable characters. so eikhane first name and second name doitai kintu amar shob shomoy ekta character er variable e thakbe.",
+        "wer": 0.3695652173913043,
+        "cer": 0.23183391003460208,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_034.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "so dui jayga tei ami varchar likhe dilam. varchar likhar sathe ekhane amar ekhankar kichu length ta fix kore dite hoy. jemon ami ekhane koto maximan koto length er ekta name rakhte pari? suppose dhorlam 10. karon ekta student er aa nam er modhe up to toh 10 character e thakte pare.",
+        "hypothesis": "so dui jate ami varchar likhe dilam. varchar likhar sathe amar ekhan kar kichu length ta fix kore dite hobe. jemon ami ekhane koto maximum koto length er ekta nam rakhte pari.",
+        "wer": 0.5384615384615384,
+        "cer": 0.40425531914893614,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_035.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "er beshi usually hoy na. so 10 likhe dilam. tar mane holo ekhane amar up to 10 length er shob name consider kora jabe.",
+        "hypothesis": "tar mane holo, ekhane amar aa up to 10 length er shob nath kintu ekhane kintu.",
+        "wer": 0.625,
+        "cer": 0.559322033898305,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_036.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "okay, then cgpa. cgpa e te amar ki thakbe? amar float numbers. so etar jonno etar datatype hobe float. department. department o kintu first name arlast name er motoi. so etateo ami likhbo varchar, etar character limitation diye dilam maximum 15 porjonto for example.",
+        "hypothesis": "okay. then cgpa. cgpa te ki thakbe amar float numbers. so eitar jonno eta data type hobe float. department. department o kintu first name ar last name er motoi. so eta teo ami likhbo virtual. etar character limit kintu kintu first name er last name er motoi.",
+        "wer": 0.5227272727272727,
+        "cer": 0.21052631578947367,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_037.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "ar enrollment date. since eta ekta date, date namer amader sql e alada ekta datatype e ache. so etar datatype ta hobe date. eta likhle automatically evabe date format e numbers gula chole ashbe. so etar je first bracket start hoyechilo etake end kore dibo and last ekta semicolon diye dibo.",
+        "hypothesis": "so eitar data type ta hobe date. so eitar likhle automatically evabe date format e numbers kule chole ashbo. so eitar first packet ta start hoyeche toh etake end kore dibo and ekta likhle likhlam maximum 15 porjonto for example.",
+        "wer": 0.7450980392156863,
+        "cer": 0.5206896551724138,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR12/seg_038.wav",
+        "video": 12,
+        "speaker": "B",
+        "reference": "so ajker class e amra dekhlam aa dbms ki, dbms kivabe kaj kore, dbms er table kivabe create korte hoy through sql. so next class e amra aro kichu operations gula dekhbo.",
+        "hypothesis": "so ajke class e amra dekhlam dbms ki, dbms kivabe kaj kore, dbms er triple kivabe create korte hoy through sql. so next class e amra aro kichu operations kula dekhlam.",
+        "wer": 0.15625,
+        "cer": 0.0650887573964497,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR14/seg_000.wav",
+        "video": 14,
+        "speaker": "C",
+        "reference": "assalamu alaikum guys, toh goto class e amra dekhechilam amader ip aa ip v4 datagram header ta ache, header er section mane bibhinno choto choto component. toh ajke amra tar modhhe theke kichhu important component er aa ekta brief overview dekhbo. toh cholen shuru kora jak. first of all, amra jeta dekhbo sheta hocche amra je detail tar kotha bolechilam, time to live, shetar ekta importance bola jay.",
+        "hypothesis": "assalam rakhin, guys. toh boter class-e amra dekhechilam amader ip. aa ip4 je jeta geram header-er ta ache, header-er dice dekhche, manah bimiyonchore shuro component. toh ajke amra tar moddhe theke kichu important component-e oa ekta brief of oore je dekhbo. toh challenge shuru kora je, first of all amra jeta dekhbo, sheta hocche amra je ttl-ta patho bolechilam, time to live. sheta ekta aa importance bole chai.",
+        "wer": 0.5735294117647058,
+        "cer": 0.21890547263681592,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR14/seg_001.wav",
+        "video": 14,
+        "speaker": "C",
+        "reference": "toh amra goto class e khub brief idea diyechilam, but ajke amra full length e jinishta ke shikhbo. to basically ttl as we know, amader time to live. time to live, eita basically ki dey? ekta hop count dey, je hocche o kotogula hop jete parbe. toh onek shomoy hoy ki, je ekta network e aa jokhon onekgula aa connections thake, bolte paren roadmap thake, je ei rasta diye oi rasta te jabe.",
+        "hypothesis": "but ashke amra full length-e jinishta ke shikhbo. toh basically ttl as we know, amader time to live. time to live. eita basically ki dey? ekta hob count dey je hocche o kothegula hob jete parbe. toh onek shomoy hoy ki? je ekta neto ar ke aa jokhon onek onek buda connections thake, bolte paren road map thake, je ei rashta theke oi rashtate jabe.",
+        "wer": 0.4246575342465753,
+        "cer": 0.20930232558139536,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR14/seg_002.wav",
+        "video": 14,
+        "speaker": "C",
+        "reference": "ekta certain device e pouchanor jonno, right? toh onek shomoy hoy je connection ta distorted hoye jacche, noshto hoye jacche, onek lagging issue dicche, buffering kortese, emon onek jhamela hote pare. jar jonno hoytoba aa je amader design packet ta destination porjonto pouchaite pare na, ba ekta delay hoy. toh onek shomoy delay ta acceptable na, toh shei khetre amra ki kori? packet ta notun kore pathai. but kono packet notun kore pathanor age amra to previously je packet ta amra send korechi, sheita ke destroy kora lagbe, right?",
+        "hypothesis": "toh onek shomoy hoy je connection-ta distorted hoye jacche, noshto hoye jacche, onek lag-ish issue dicche buffering kortese, ayn emar onek jhamela hote pare jar jonne hoye toba, aa je amader desert packet ta distribution porjonde porjhite pare na, ba ekta delay hoy. toh onek shomoy delay ta acceptable na. toh shei kathre amra ki kori? packet-ta nokon kore pathai. but kono packet nokon kore patho na rage amader toh previously je packet-ta amader send kore shetake destroy kora lagbe, right?",
+        "wer": 0.42696629213483145,
+        "cer": 0.1947565543071161,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR14/seg_003.wav",
+        "video": 14,
+        "speaker": "C",
+        "reference": "toh ei je destroy korar je technique ta ba method ta, eitake amra hocche set kori ttl diye. ttl bolte gele je etogula hop, hop bolte ekhane bujhachchi apnar router ba pc. toh etogula router-to-router jump er poreo jodi o destination theke kono acknowledgment na ashe, tahole amra aa packet ta ke destroy kore notun packet pathabo.",
+        "hypothesis": "toi je destroy korar, je technique-ta ba method-ta etake amra hocche set kori ttl diye. ttl bolte kele jeho etogula hop. hop bolte ekhane bujhacchi apna router ba pc. toh etogula router to router jumper poreo jodi o destination theke keo acknowledgement nashe, tahole amra aa packet taake destroy kore notu packet pathabo.",
+        "wer": 0.42105263157894735,
+        "cer": 0.07272727272727272,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR14/seg_004.wav",
+        "video": 14,
+        "speaker": "C",
+        "reference": "eta hocche ttl-er khub basic concept. toh eta diye ki prevent kora hoy? main shomossha jeta eta diye amra prevent korte pari, sheita hocche amader jekono packet er endless looping.",
+        "hypothesis": "eta hocche etial e khui basic concept. eita diye ki prevent kora hoy? main shomoy-sha jeta eta diye amar prevent korte pari, sheita hocche amater jekono packet-er endless looping.",
+        "wer": 0.3333333333333333,
+        "cer": 0.09444444444444444,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR14/seg_005.wav",
+        "video": 14,
+        "speaker": "C",
+        "reference": "looping. okay. so basically eta ki hoy je jokhon ekta network destroy hoye geche ba down hoye ache, kono duita network er moddhe connection, tokhon loop amader je packet, eta khujte thake onno shob network e giye giye je kon network e basically path ta ache ekhono. toh jehetu ektai path chilo ebong sheita destroyed hoye giyeche.",
+        "hypothesis": "looping. okay. so basically eta ki hoy je jokhon ekta network destroy hoye geche, bar down hoye ache, kono duita network ke moddhe connection. tokhon aa loop amader je packet eto khushte thake, onno shob network e giye je kon network ke basically patha ache ekhono. toh jhetu ektai parchile ebongchita destroyed hoye giyeche, toh or ei je ei mane search korotate achi,",
+        "wer": 0.49122807017543857,
+        "cer": 0.22121212121212122,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR14/seg_006.wav",
+        "video": 14,
+        "speaker": "C",
+        "reference": "toh or ei je ei mane search korata ar thame na, oita hocche amra boli endless looping. toh endless looping amader bandwidth er jonno onek kharap. eijonno amra ki kori? aa for example chobbish ta hop ba amader ttl level ta diye dilam 24, right? ttl level e jokhon 24, o 24 ba chobbish ta router ba like chobbishta jump-er pore ek router theke arek router-e o nijei aa jodi ttl er value ta zero hoye jay, ekta shomoy aa ore down kore dibe ba ore drop kore dibe amader oi router-ta theke.",
+        "hypothesis": "eta hocche amra boli endless looping. toh endless looping amra band-width jonno onek khara. e jonno amra ki kori? aa for example, chobish-ta hop ba amader kiti ali value-ta diye dilam 24, right? kiti ali value jokhon 24, oh 24. majh chobish-ta router ba like chobish-ta jumper-er por ekta theke arekta",
+        "wer": 0.7096774193548387,
+        "cer": 0.48041237113402063,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR14/seg_007.wav",
+        "video": 14,
+        "speaker": "C",
+        "reference": "eibhabe amra basically aa ekta mane noshto je packet ta ba ekta distorted packet tare drop kore dite pari, with the help of ttl. ekhon amra goto class e koekta flag er kotha bolechilam, jeta amader ekta header e dekha jay ipv4 header er moddhe.",
+        "hypothesis": "tokhon ami ami kintu ekta, noshto je packet-ta ba ekta distorted packet-ta re drop kore chite pari, with the help of ttl. ekhon amra gotoklachche, koy ekta flag-er kotha bolechilam, jeta amader ekta header-er dekhe, je i3,4 header-er moddhe.",
+        "wer": 0.5333333333333333,
+        "cer": 0.19262295081967212,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR14/seg_008.wav",
+        "video": 14,
+        "speaker": "C",
+        "reference": "toh prothom ta hocche if flag. eitake onek shomoy reset flag-o bola hoy. i think slide e reset flag-e likha ache.toh if ba reset flag. aa eita identification flag o bole or reset flag, you can call whatever you want.",
+        "hypothesis": "toh somta hocche if flag. eta take onek shomoy reset flag-o bola. i think slider reset flag-e lekhase. toh if ba reset flag. aa tar. eta identification flag bole. ba reset flag. you can call whatever you want.",
+        "wer": 0.4,
+        "cer": 0.1527777777777778,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR14/seg_009.wav",
+        "video": 14,
+        "speaker": "C",
+        "reference": "tarpor hocche df flag, ei. amra oikhane bolechilam je hocche poroborti video te basically ei video te amra df ar mf niye beshi aa kotha bolbo. toh oitai dekhbo ajke amra je ei duita flag-er importance ki. arekta hocche mf flag. toh basically aa eita hocche ki reset flag ta ekhane aa reserve kore rakha hoy arki. ekhane hocche slider e dekha jacche res bole reserve. thik ache? to eita basically mane ekhon kono kaje nai, future e kono kajer jonno use kora jete pare erokom.",
+        "hypothesis": "ei amra eikhane bule chilam je hocche poroborte video-te basically ei video-te amra df ar mf niye beshi kothabonto. toh oitai dekhbo ajke amra je ei duita flag er importance ki. arektasho mf flag. toh basically aa eta hocche ki? reset flag-ta ekhane aa reserve kore rakha hoyar ki? ekhane ototos slider-e dekhase ar e, s bole reserved. thik ache? toh eita basically mane ekhon kono kaja naai future-e kono kaja jone use kora jete pare erokom.",
+        "wer": 0.46511627906976744,
+        "cer": 0.15611814345991562,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR14/seg_010.wav",
+        "video": 14,
+        "speaker": "C",
+        "reference": "ar df flag ta jeta ache seta hocche don't fragment. don't fragment flag ta thakle ki hoy? amra toh ekta concept, aa mane, common sense diye chinta korleo pari je jokhon duita network amader exist kore, ba duita network bolte ki ar ki, multiple network bujhachchi ami. jokhon multiple network amader exist kore, tokhon amra ki kori je eigular moddhe je, for example, copper wire use kori,",
+        "hypothesis": "diye flag-da jeta ache sheta hocche don't fragment. don't fragment flag-ta thakle ki hoy? amra toh ekta concept aa mane common sense diye chinta korlo pari je jokhon duita network amader exist kore ba duita network bolte ki? ar ki multiple network bujhaccheme. jokhon multiple network amader exist kore, tokhon amra ki kori? je angular moddhe je for example copper wire use kori, ondra jayna",
+        "wer": 0.31343283582089554,
+        "cer": 0.09560723514211886,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR14/seg_011.wav",
+        "video": 14,
+        "speaker": "C",
+        "reference": "onnyanno onek type er wire amra use korte pari for connections. ekhon shob wire ba shob je connection, bakider to capability same na. for example, amra jodi optical fiber use kori, eita long range er khetre onek beshi capable. but amra short range e toh ar optical fiber use kori na, tokhon copper wire use kora hoy. oneke bole copper straight through je coppergula, cablegula, sorry. toh eigula amader basically ekta device theke onno device e connection er jonno toiri kora. for example, router to router, pc to pc.",
+        "hypothesis": "toh capability same na. for example, amar je optical fiber use kori, eige long-range er khetre onek basic capable. but amra short range je toar optical fiber use kori, nah tokhan copper wire use kora hoy. aa onek cable e copper straight through kori je covergula, cablegula, sorry. toh egula amader basically ekta device te gube, connection er jonna tori gora.",
+        "wer": 0.6067415730337079,
+        "cer": 0.39264990328820115,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR14/seg_012.wav",
+        "video": 14,
+        "speaker": "C",
+        "reference": "ba hoyto pc to router. toh hocche, erokom. prottyek type er cable er jonno protteker connection speed, bandwidth shobgulo different different thake. ekhon etar jonno hoy ki, eder moddhe je performance ta vary kore. for example, ami jodi ekta char hajar megabyte-er, ba sorry, beshi hoye jacche, char hajar byte.",
+        "hypothesis": "toh hocche aa eitogon prottek type-er game-er, bole jono prottek-er connection-er speed band-witch shogulo different different thake. ekhon etar jorne hoy ki, edher moddheir je performance-ta vary kore. for example, ami jodi ekta char-hajar megabyte-er ba, sorry, shi hoye jacche, char-hajar byte-er",
+        "wer": 0.62,
+        "cer": 0.21864951768488747,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR14/seg_013.wav",
+        "video": 14,
+        "speaker": "C",
+        "reference": "eta char hajar byte-er data ami ekhane theke pathaite chai, kintu amar je ei cable-ta, ei cable diye char hajar byte ashte pare, thik ache? usually capability ache oita. but eikhane je connection-ta, ba cable-ta, er hoytoba bandwidth kom.",
+        "hypothesis": "eta char-hajar byte-er data ami ekhan theke pathaite chai, jintu amar je ei cable-ta, ei cable dechi char-hajar byte ashte pare. thikache? usually er ke capability ache oita. but eikhane je correction-ta ba cable-ta, er hoitoba bandwidth comp. othoba kone?",
+        "wer": 0.4358974358974359,
+        "cer": 0.14705882352941177,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR14/seg_014.wav",
+        "video": 14,
+        "speaker": "C",
+        "reference": "othoba kono ekta karone e ponerosho byte porjontoi data ekbare transfer korte pare, thik ache? tahole amra ki kori? jokhon ei router, router to obviously jane je etar capability koto. mane, e jokhon ei router tar sathe connection korte chai, e ore bole dey je tumi amare ponerosho byte porjonto pathaite parba. right? o bole dicche router, for example 1 re. toh router 2, router 1 re bole dicche je tumi amare shorboccho ponerosho byte porjonto data pathaite parba, right? to tokhon ki kore.",
+        "hypothesis": "e ponero-sho byte porjonto jeta ekbar e transfer korte pare. thik ache? tahole amra ki kori? jokhon ei router, router ta obviously jaane jeita capability koto. mane ei jokhon ei router ta shathe connection korte jay, eore bole deya je tumi amare ponero-sho byte porjonto pathaite parba, right? o bole dicche router for example 1 re, toh router 2, router 1 e bole dicche je tumi amare shorbo je ponero-sho byte porjonto jeta pathaite parba, right?",
+        "wer": 0.4166666666666667,
+        "cer": 0.15274949083503056,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR14/seg_015.wav",
+        "video": 14,
+        "speaker": "C",
+        "reference": "ei router ta, for example router ta, oi mane data ta asche ei computer source theke, toh jokhon hocche aa ekhane amar mane packet ta astese, o jane je amar hocche ponerosho byte er beshi ami ei pothe pathaite parbo na. thik ache? toh tokhon o ki kore, ei je char hajar byte, char hajar byte bhenge prottekta ponerosho, ponerosho ekta ekta kore aa packet create kore ekta fragment create kore.",
+        "hypothesis": "for example, router-ta, oemane data-ta ashta ei computer source thekeu. toh jokhonocche aa ekhane amar mane packet-ta ashtese, o jane, jeomano je ponosho byte-ta bish-e ami prothete parbo na. thik ache? toh tokhono ki kore? ei je char-hajar byte, char-hajar byte-re bhenge, tekhte pononosho ponosho ekta ekta kore aa packet create kore eita fragment create kore.",
+        "wer": 0.5774647887323944,
+        "cer": 0.19387755102040816,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR14/seg_016.wav",
+        "video": 14,
+        "speaker": "C",
+        "reference": "eder then sequence number diye o porobortite organize kore. to basically ei pothei je shudhu jabe erokom na, ei poth diyeo kichu jaite pare, ei poth to ei poth.",
+        "hypothesis": "toh jeta pari je jeheten sequence number diye o porobortite organize kore. toh basically ei pothei je shudhu jabe erukomne ei pot dio, kise jaite pari ei pot to ei pot.",
+        "wer": 0.4827586206896552,
+        "cer": 0.2125,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR14/seg_017.wav",
+        "video": 14,
+        "speaker": "C",
+        "reference": "but router ki kore, always shortest path-tai ney. toh eibhabe amader ekta router hocche fragment kore thake. ekhon jodi don't fragment factor zero deya thake, tokhoni shudhumatro router ei fragmentation ta korte parbe. jodi non-fragment zero na thake, for example jodi 1 thake, tar mane ki je router er kache shei permission nai, etake fragment korar.",
+        "hypothesis": "tokhon ki kore? always shortest pathai nai. toh eibhabe amader ekta router hocche fragment kore thake. ekhon jodi don't fragment fragment ta zero deoya thake. tokhon ei shudhu matro router ei fragmentation ta korbe. jodi don't fragment zero na thake. for example jodi one thake, ar mane ki je router ekase shei five mission nai, etake fragment korau.",
+        "wer": 0.44642857142857145,
+        "cer": 0.14245014245014245,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR14/seg_018.wav",
+        "video": 14,
+        "speaker": "C",
+        "reference": "ejonno hocche router tokhon ar fragment korte pare na router bole je ei poth diye jaite pare ponerosho, but tumi pathaicho char hajar. toh tumi amare fragmentation ta kore dao. got it? sorryi, ekta call asche.",
+        "hypothesis": "eijonno-ache router tokh na fragment korte parer na. router bole je ei pot diye toh jaite amar ponero-sho, but tumi pathaise char ha jay. toh tumi ei amare fragment-e shanta kore deyao. gote? sorry. eita koler check.",
+        "wer": 0.6388888888888888,
+        "cer": 0.23923444976076555,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_000.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "hello everyone, welcome back to another video. so, last class a amra ki porechilam? amra variable sikhechilam - variable ki bhabe declare kore? tarpore, variable er value ki ki hote pare? kon kon data type er variable ache. so ajke, amra khub e important and khub e interesting ekta topic nia discuss krbo.",
+        "hypothesis": "hello everyone. welcome back to another video. so last class e amra ki porechilam? amra variable chikhechilam. variable ki bhabe declare kore. tarpore variable er value ki ki hote pare? kon kon data type er variable ache. so ajke amra khub e important ebong khub e interesting ekta topic niye discuss korbo. so normally variable e hoy ki ashole.",
+        "wer": 0.33962264150943394,
+        "cer": 0.17973856209150327,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_001.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "so normally, variable a hy ki ashole? aa variable toh amra nijera dia diachilam. jemon dhoro, variable jemon dhoro \"age\" ei variable er value dhoro 42. but real life a ki emon 42 dewa thake? thake na. amra user er theke input nei. so sei python er e ekta built in function royeche jeta holo \"input\".",
+        "hypothesis": "aa variable to amra nijera diye diyechilam. jemon dhoro variable jemon dhoro age, ei variable er value dhoro 42 thikache? but real life e erokhn ki 42 deoya thake? thake na. amra user er theke input nei. so shei python er e ekta built-in function royeche jeta holo input.",
+        "wer": 0.39285714285714285,
+        "cer": 0.2408026755852843,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_002.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "so, ami jodi likhi function ta seta holo \"input()\" function. eta holo python er built in ekta function, so ei built in function er maddhome amra user er theke input niye thaki.",
+        "hypothesis": "so ami jodi likhi function ta, eta holo input function. eta holo python er built in ekta function. so ei built in function er maddhome amra user er theke input nia te hobe.",
+        "wer": 0.25,
+        "cer": 0.08522727272727272,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_003.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "cholo tahole ei built in je function ta etar ekta example dekhe ashi, use case dekhi. ami purota kete dei abar ekhane. dhoro amar ekta variable \"name\". name ki? karo ekjoner naam. eta amra er age dynamically ekhane dia diachilam.",
+        "hypothesis": "sholo tahole amra ei input je built-in function ta setar example dekhi ashi, use case dekhi. so ami purota keta diye abar. hektame. dhoro amar ekta variable name. name ki? karon ekta variable name.",
+        "wer": 0.625,
+        "cer": 0.388646288209607,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_004.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "but ebar amra jeta korbo seta holo, user er theke input inbo. toh ami first likhi, ektu age je function dekhalam input function dekhalam seta ekhane dibo. input function ta dilam, tarpore ami ekta bracket dibo, tarpore ekta quotation mark dibo.",
+        "hypothesis": "toh ami first e ki? ektu age je function ta dekhelam, input function, sheta ekhane dibo. input function ta dilam. tarpore ami ekta bracket dibo, tarpore quotation bar dibo. ekhon ekhane ekhane input function ta dilam.",
+        "wer": 0.7073170731707317,
+        "cer": 0.5450819672131147,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_005.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "ekhon ekhane ami je jinish ta ekhane likhbo seta ekta string hobe, ebong user kintu eta dekhbe, jemon, user dekhte pare, \"what is your name?\" dekho ekhn ekhane ki hocche? ami ekhane ekta input function likhechi, tarpore user er jonno ekta message diachi.",
+        "hypothesis": "so ami je jinish ta likhbo, seta ekta string hobe, ebong user eta kintu dekhbe. jemon, user dekhte parer, what is your name dekho ya kon. ekhane ki hocche? ami ekhane input function ta likhechi.",
+        "wer": 0.4883720930232558,
+        "cer": 0.3346456692913386,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_006.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "message ta ki? je \"what is your name?\". user jokhn ei message ta dekhbe, user korbe ki? or nijer naam ta o likhbe, type korbe. ebong ei je value ta ashbe, seta ki, ei name variable er moddhe store hoye jabe.",
+        "hypothesis": "so ami user er jonno ekta message diyechi. message ta ki je, what is your name? user jokhon ei message ta dekhbe, user korbe ki? or nijan nam ta o likhbe, type korbe. ebong ei je value ta ashbe, setaki amar ei name variable er moddhe store hoye jabe.",
+        "wer": 0.4146341463414634,
+        "cer": 0.28019323671497587,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_007.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "porobortite ami jokhn print function use korbo, python er built in, sorry.., print er moddhe, dhoro ami likhte chacchi, \"hello\", hello likhar pore ei je name a, name variable er moddhe, je naam ta store kore rekheche, oke ami hello bolte chacchi.",
+        "hypothesis": "so, eita, ekhon amra ekta chacchi, python er built in, sorry, print er moddhe dhoro ami likhte chacchi hello. hello likhar pore ami eije name a, name variable er moddhe je num ta store kore dekheche, okay ami hello bolte chacchi.",
+        "wer": 0.40476190476190477,
+        "cer": 0.21138211382113822,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_008.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "toh ami ki korbo, hello koma name eta.",
+        "hypothesis": "along ami ki korbo?",
+        "wer": 0.75,
+        "cer": 0.6842105263157895,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_009.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "ekhon print hobe ki? ami jokhn code ta print korbo, hobe ki? first a ei line a ashbe. ei name variable ta pabe, tarpor check korbe je, ei input function call kora hoyeche. function korbe ki, user ke message ta dibe? what is your name? user ekta name dibe. jemon amar naam rafi, ami ekhane raafi dibo.",
+        "hypothesis": "ekhon print hobe ki? ami jokhon kotta print korbo? hobe ki, first e e line e ashbe, e line e asher por ei name variable ta pabe, tarpor check korbe je input namer amar ekta function call kore koreche. function korbe ki? user ke message ta dibe?",
+        "wer": 0.6666666666666666,
+        "cer": 0.45666666666666667,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_010.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "ekhn ei rafi naam ta hobe ki? ei name er moddhe store kore rakhbe. jeta age ki hoyechilo ekhane? name equals to erokom. jinish ta evabei kaaj korbe jodi user ei rafi value ta dei. tarpore, ei print function a ashbe, print holo python er bulit in ekta function, jeta dia amra kono jinish print kori.",
+        "hypothesis": "jeita aage ki hoye shilo ekhane? name is equal to.. erokom. jenish ta ashola ebhabe kaj hobe, jokhodi user rough e value ta dey. tarpore, ei principal value ta korte hobe, ekhaneo ekta principal value ta korte hobe.",
+        "wer": 0.8571428571428571,
+        "cer": 0.5771812080536913,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_011.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "ashole eto kaaj korar por, ashole ami jodi kono jinish print kore na dekhai, tahole kintu jinish tar kono value thakena. toh, amra print function ta ekhane call korlam. setar moddhe string a hello likhlam, tarpore ami comma dia variable tar name likhechi. ekhane ekta important jinish jeta khail koro, dekhba je, name naamer variable ta ache, eta ami directly ekhane bolechi, ejonno ami ekhane erokom kono quotation mark dia deinai.",
+        "hypothesis": "print hulo python er built in ekta function jeta dibe amra koro jinish print kori. ashole eto kaaj korar por ami jodi ashoro print kore na dekhai tahole kintu jinishtang do value thake na. toh amra print function ta ekhane call korlam. sheta moddhe string e hello likhlam. thikache? tarpor koma diye ami variable ta name likhechi. ekhane ekta important jinish jeti khel koro dekhba je aa name nam er je variable ta ache. sheta ami directly ekhane bolchi.",
+        "wer": 0.7746478873239436,
+        "cer": 0.44907407407407407,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_012.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "ami jodi ekhane ditam, tokhn kintu jinish ta onno jinish hoye jeto. tokhn ami ota ekta string alada hisabe, eta kono variable hisabe call korto naah.",
+        "hypothesis": "ami jodi ekhane ditam, tokhon kintu jinishta onro jinish hoye jeta. tokhon rota ami ekta string alla dar hisabe. etokhon u variable hisabe apkoll, ekhane ami ekta variable hisabe apkoll, ekhane ami ekta variable hisabe apkoll, ekhane ami ekta variable hisabe apkoll, ekhane deita hobe.",
+        "wer": 1.3461538461538463,
+        "cer": 1.0201342281879195,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_013.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "okay, so amra basic input function ta kibhabe kaaj kore seta sikhe gelam. ekhn ekta jinish a ashi, jeta khub e mojar jinish, jeta te beginner ra sob somoy bhul kore, ebong amar mone hoy, tomra ekhon jara video ta dekhcho, tomra first watch a ashole error ta khuje pabe naah.",
+        "hypothesis": "okay, so amra basic input function ta kibhabe kaj kore? sheta sikhe gelam. ekhon ekta jinish ashi shukhu mojar jinish jeta te beginner ta sob shomoy bhul kore. ebong amar mono hoy je tomra jara video ta ekhon dekhso, tomrao first u ache ashole error ta khuje babe na. toh cholo example ta dei. ami ashole jinish taage ekhan theke erase kore dicchi.",
+        "wer": 0.7450980392156863,
+        "cer": 0.4489051094890511,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_014.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "toh cholo example ta dei, ami ashole jinish ta age ekhan theke erase kore dicchi. dhoro, ami 2 ta number user er theke nibo, tahole ki amar 2 ta variable lagbe? toh first variable tar name dilam num1, khail koro, ager diner pora, seta holo ki, ami first a num variable ta niachi and sesh a number ta diachi,",
+        "hypothesis": "thoro ami duita number user er theke nibu. tahole ki amar duita variable lagbe. toh first variable ta nam dilam, num1. khail koro, egeitinar pora sheta holo ki ami first a num variable ta niyechi, ebong sheshe number diyechi, hage kintu number dechi, tahole ki amar variable er naming convention ta follow for num na. tahole ki otoh ama aa error dekhtam. ekhon dekho, name1 sheta ami ki user er theke nibu.",
+        "wer": 1.1355932203389831,
+        "cer": 0.8957654723127035,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_015.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "age kintu number ta deinai. tahole kintu amr variable er naming convention ta follow kortam nah. tahole ki hoto amr, error dekhtam. ekhon dekho name one, seta ami ki user er theke nibo.",
+        "hypothesis": "je, what is the first number? tahole amader jeta hobe, first number er jeta hobe, first number er jeta hobe, first number er jeta hobe, first number er jeta hobe, first number a jabe, first number a jabe, first number a jabe, first number a jabe, first number a jabe, first number a jabe, first number a jabe, first number a jabe, first number a jabe, first number a jabe, first number a jabe, first number a jabe, first number a jabe, first number a jabe, first number a jabe, first number a jabe,",
+        "wer": 2.787878787878788,
+        "cer": 2.0864864864864865,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_016.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "toh ami ki korbo, input, input function er moddhe user ke message ta dibo ki je \"what is the first number?\" ami user ke jiggesh krbo what is the first number. second number tao ami nibo, seta holo, num two dilam ekhane jehetu second number.",
+        "hypothesis": "so, ami user ke jiggeshkobo what is the first number. second number ta ami nibo, seta holo num2 dile ami ekhane jeheto second number. similarly ekhaneo same message tai likhbo. okay. so ekhaneo ekta number er jeta holo jeta holo jeta holo jeta holo jeta holo jeta holo jeta holo jeta holo jeta holo jeta holo jeta holo jeta holo jeta holo jeta holo jeta holo jeta holo jeta holo jeta holo jeta holo jeta holo jeta holo jeta holo jeta holo jeta holo jeta holo jeta holo jeta holo jeta holo jeta holo jeta holo jeta holo jeta holo jeta holo jeta hol",
+        "wer": 2.2444444444444445,
+        "cer": 1.725,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_017.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "similarly ekhaneo same message ta likhbo, thikase? ami second message likhlam. toh ekhon ki hobe? user amake 2 ta number dibe. seta ki hote pare? ten, five erokom hote pare. tarpore ami korbo ki?",
+        "hypothesis": "tikache? kare second message lekla. toh ekhon ki hobe? user ar make duita nam bad dibe, sheta ki hote bore.",
+        "wer": 0.7647058823529411,
+        "cer": 0.5692307692307692,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_018.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "sum korbo. sum ki? sum naame ekta variable nilam, ebong ekhane, ami chacci je, ei dui ta number ke ami add korbo.",
+        "hypothesis": "tarpore ami korbo ki? sum korbo. sum ki? sum name ekta variable dilam. ebong ekhane ami chachese ei duita number ke ami add korbo.",
+        "wer": 0.5,
+        "cer": 0.2831858407079646,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_019.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "so pretty simple right? aa ami ekhane ki korbo? sorry.., num one plus num two. nursery level er jinish taina? just two ta number add kortesi eikhane. tarpor, ektu age je print function dekhlam, setar moddhe ami abar sum ta ke sum variable a tahole howar kotha.",
+        "hypothesis": "so, pretty simple right? aa ami ekhane ki korbo? sorry. num1 plus num2. nar sorry label er jinish ta ai na, ami juita number add korte si ekhane. tarpore ektu aage je print function dekhlam, sheta amod dhoro dhoro dhoro dhoro dhoro dhoro dhoro dhoro dhoro dhoro dhoro dhoro dhoro dhoro dhoro dhoro dhoro dhoro dhoro dhoro dhoro dhoro dhoro dhoro dhoro dhoro dhoro dhoro dhoro dhoro dhoro dhoro dhoro dhoro dhoro dhoro dhoro dhoro dhoro dhoro dhoro dhoro dhoro dhoro dhoro d",
+        "wer": 1.4042553191489362,
+        "cer": 1.0961538461538463,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_020.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "but khub e important jinish beginner ra khub e bhul kore, software developer ra bhul kore, ebong onek khetre dekhba tomader teacher rao ei jinish ta bhul krtese hotat kore jokhn first time jinish ta dekhate jabe.",
+        "hypothesis": "so ami abar jodi diye dei sum ta ke, sum variable at ale porar patha. but khub e important jinish, beginner ra khub e bhul kore, subtar variable rar bhul kore, ebong je onek heita dekhba tomader onek teacher rao yenish ta bhul kortese, horat kore first ar jokhon dekhate jabe.",
+        "wer": 0.8108108108108109,
+        "cer": 0.5707547169811321,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_021.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "ebong tomra toh obviously first time ei bhul ta korbai, seta holo je, ami jokhn input ta nicchi, eta by default, always string hisabei ashbe. so kew jodi number ta bole je ten. ashole, je pacche seta ekta string hisabe ashtese ekhane.",
+        "hypothesis": "so, je, ami jekhon input ta nicchi, eta by default allo e string hisabe ashbe. so, keo jodi number ta bole je 10, ashole je pacche seta ekta string hisabe ashtesi ekhane.",
+        "wer": 0.5238095238095238,
+        "cer": 0.3333333333333333,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_022.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "but amra ki string er sathe string add korte pari? well technically pari, but ekhane ashole mathematically ami parbona. ekhane jodi ami string, string add kori, ekta number jodi ten hoy and arekta number twenty.",
+        "hypothesis": "but amra ki string er sati string add korte pari? well, technically pari, but ekhane ashole mathematically ami hobon na. ekhane jodi ami string string add kori, ekta number 10 hoy, ebong arekta number hoy 20.",
+        "wer": 0.3142857142857143,
+        "cer": 0.13270142180094788,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_023.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "ami tahole ki pabo ekhane? ten twenty and etar type o ekta string hobe. but amra kintu eta chacci naah.",
+        "hypothesis": "but amra kintu eta chacchi naah.",
+        "wer": 0.75,
+        "cer": 0.7087378640776699,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_024.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "amra chacci number, actual integer number, ten and twenty, era add korle koto? thirty hoy. so, etar jonno amader ekta chotto kaaj korte hobe, seta holo, egulo ke declare korar somoy, ekhaneo integer likhe dite pari, or next ekta line korte pari.",
+        "hypothesis": "so, etar jonno amader ekta choto kaaj korte hobe, sheta holo egulo ke declare korar somoy, amra ekhaneo integer likhe dite pari, or amra next ekta line korte pari, sheta holo amra jodi ekhane kete dei, amra next ekta line korte pari, sheta holo amra jodi ekhane kete dei, amra next ekta line korte pari, amra next ekta line korte pari, amra next ekta line korte pari, amra next ekta line korte pari, amra next ekta line korte pari, amra next ekta line korte pari,",
+        "wer": 1.8333333333333333,
+        "cer": 1.2653061224489797,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_025.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "ami jodi ekta kete dei. ami korte pari ki, num1 equals to int of num1. so, ekhane basically ki hocche? ami user theke input niachi num1. seta ki ten , string a chilo.",
+        "hypothesis": "ami korte pari ki? je num1 is equal to int of num1. so ekhane basically ki hocche? ami user theke int, int e korte pari.",
+        "wer": 0.6060606060606061,
+        "cer": 0.39759036144578314,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_026.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "ami jokhn int of aa num one kore dicchi, tokhn ei string hoye jacche ki? amr integer. integer value hoye jacche ekhane, so tokhn ar eta amr quotation lagbe na.",
+        "hypothesis": "toh, first ei input niyechi num1, setaki. ten string a chilo. ami jokhon int of aa num1 kore dicchi, ei string ta hoye jacchi, num1 ekta input ta ekta input ta input ta input ta input ta input ta input ta input ta input ta input ta input ta input ta input ta input ta input ta input ta input ta input ta input ta input ta input ta input ta input ta input ta input ta input ta input ta input ta input ta input ta input ta input ta input ta input ta input ta input ta input ta input ta input ta input ta input ta input ta input ta input ta input ta input ta input ta input ta?",
+        "wer": 3.8666666666666667,
+        "cer": 3.018867924528302,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_027.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "eta ki hbe? sudhu ten hoye thakbe, thikase? similarly, jodi ekhon num two equal to integer of num two dia dei, hobe ki? amr ei integer er value tao, jeta second je number ta ashbe seta change hoye jabe, so etake bole holo type casting.",
+        "hypothesis": "so, tokhon er eta amar quotation lagbe na, tokhon ki hobe? shudhu tern hoye thakbe. thikache? similarly, ami jodi ekhon, tahole ami ekta value korte pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari pari par",
+        "wer": 2.1333333333333333,
+        "cer": 1.7063829787234042,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_028.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "ekhane amra forcefully type ta change kore dicchi. but ekta jinish mone rakhte hbe, ami kintu string value nia seta ke sob somoy ami integer dite parbona. jemon user jodi ekhane first number er jaigai \"eight\" likhe, ebong ami jodi etar int korte chai, seta ki?",
+        "hypothesis": "so num2 equal to integer of num2 dieti, hobe ki amar ei integer er value tao jeta second je number ta ashbe sheta change hoye jabe. so etake bole holo type casting. ekhane amra forcefully type ta change kore dicchi. but ekta jinish mone rakhte hobe. ami kintu chaile string value niye shetake shobshomoy ami integer dite parbo na, jemon user jodi ekhane first number er jake amake eight likhe.",
+        "wer": 1.1521739130434783,
+        "cer": 0.9038461538461539,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_029.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "error. tainaah? eta just possible naah. eta ki kokhono integer value hote pare? pare na ashole. toh ei jinish gula mathai rakhte hbe.",
+        "hypothesis": "tahole ami kintu ekhane paro jodi ami kintu int korte chai, sheta ki? error. tainah eta arekta just possible na. eta ki kokhono integer value hote pare? pare na ashole.",
+        "wer": 1.0,
+        "cer": 0.8872180451127819,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_030.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "and ekhon jodi ami sum nei, and tahole ekhon jodi print kori, tahole amra dekhbo ki, ekhan theke dui ta integer value, dui ta first a string ashbe. ogulake amra integer a convert korsi, ebong sum korchi.",
+        "hypothesis": "and ekhon jodi ami sum nei, and tahole ekhon jodi print kori, tahole amra dekhbo ki, ekhon print kori, tahole amra dekhbo ki, ekhon print kori, print kori, print kori, print kori, print kori, print kori, print kori, print kori, print kori, print kori, print kori, print kori, print kori, print kori, print kori, print kori, print kori, print kori, print kori, print kori, print kori, print kori, print kori, print kori, print kori, print kori, print kori, print kori, print kori, print kori, print kori, print kori, print kori, print kori, print kori, print kori, print kori, print kori, print k",
+        "wer": 2.324324324324324,
+        "cer": 2.1822660098522166,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_031.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "ekhn actual jeta amra, choto bela theke je bhabe plus kora sikhechi sei plus ta hobe. so, tarpore amra print er maddhome sum er value ta pabo.",
+        "hypothesis": "ekhon actual jeta amra shoto vale theke jelbhabe plus kora shikhechi. shei plus ta hobe. so tarpor amra printer manthube seta kori.",
+        "wer": 0.6666666666666666,
+        "cer": 0.22535211267605634,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_032.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "okay, so, class sesh korar age amra chotto arekta tricks dekhi, seta holo dekho ekhane ami eto kosto korlam, but print krtesi sudhu sum ta. print hobe ki? sudhu ekta, ekta value print hbe, ekta integer value print hobe.",
+        "hypothesis": "okay, so, flash shesh korar age amra shottou arekta tricks dekhi, seta holo, jekho, ekhane ami eto koshto korlam, but print korte shudhu sum ta. print hobe ki? shudhu ekta value print hobe, ekta integer value print hobe.",
+        "wer": 0.28205128205128205,
+        "cer": 0.0958904109589041,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_033.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "ami jodi first number ta three dei, arekta jodi five dei, tahole amr sum ki hbe? eight sudhu print hobe. eto kosto korar pore jodi sudhu eight print hoy jinish ta ashole khub e, dukkher o ekta bishoy, ar jinish ta ashole interesting nah.",
+        "hypothesis": "etokoshto koro amar shudhu jodi 8 print hoy jinishta ashole khubi dukher o ekta bishoy. aa jinishta ashole interesting na. toh ejonno amra korte pari ki, output ke shundor bhabe dekhanar jonno amra string formatting korte pari.",
+        "wer": 0.9772727272727273,
+        "cer": 0.7468354430379747,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_034.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "toh ejonno, amra korte pari ki? output ke shundor bhabe dekhanor jonno, amra string formatting korte pari. jemon dhoro, ami korte pari ki? print er moddhe. ami ekta string print korbo. result is kom dia dilam and tokhn ami sudhu jodi sum ta dia dei, tahole hobe ki?",
+        "hypothesis": "tokhon ami jodi sum ta dia dei, taholo hobe ki, print hobe holo erogom bhabe. dekho. ekhon ami ekhane ki hobe? print hobe holo erogom bhabe. dekho. ekhon ami ekhane ki hobe?",
+        "wer": 0.9375,
+        "cer": 0.690566037735849,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_035.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "print hobe holo erokom bhabe, dekho. twenty. toh amr duita sum jodi twenty hoy ekhane, ta hobe ki, result is twenty.",
+        "hypothesis": "tokhon amar duita sum jodi ashole 20 hoye ekhane. tarhobe ki? result is 3.",
+        "wer": 0.7619047619047619,
+        "cer": 0.5258620689655172,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_036.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "ebhabe jinish ta print hbe, but eta amra age kortam, ekhn amra python three use kori, version three, ebong version three te f string naame ekta jinish ache, ebong eta khub e powerful ekta jinish. toh cholo, dekhai, f string dia kibhabe korte parba.",
+        "hypothesis": "but eta aage kortam. ekhon amra python 3 use kori, version 3. ebong python 3 te f string ta ekta jinish ache. ebong eta khub e powerful ekta jinish. toh cholo, dekhai, f string dia ki bhabe protthe parba? ei jinishta amr ekhe tilam. arekta sheta sheta holo print.",
+        "wer": 0.6590909090909091,
+        "cer": 0.5,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_037.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "ei jinish ta ami rekhe dilam, arekta jeta seta holo, f string er jonno, naam shunei bujha jacche, shurute ekta f likhbo, samll f. tarpor amra ekta double quotation dilam, tarpore ami ekhn ki likhte chai?",
+        "hypothesis": "amra f string er jonno, numshone bujha jacche amra shurute ekta f likhbo. small f. tarpor amra ekta double quotation dilam. tarpor ami ekhon ki likhte chai? dhoro leghlam je daa, dhoro likhlam ki likhlam, dhoro likhlam ki likhlam.",
+        "wer": 0.8611111111111112,
+        "cer": 0.6798029556650246,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_038.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "dhoro lekhlam je \"the sum of\" mone rekho egula kintu ashole string hisabei print hocche, \"the sum of\" tarpor ami ki krbo ekta curly braces dibo ekhane ebong likhbo je num one, ekhane jehetu jaiga nei, ami niche likhtesi.",
+        "hypothesis": "tarpore ami ekta ki korbo? curly braces dibo ekhane. ebong likhbo je num1. ekhane jeoto ja ja nei, ami nilam ekta sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum sum",
+        "wer": 4.487179487179487,
+        "cer": 3.0454545454545454,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_039.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "and, okay, so dekho, ami jokhn f string nia jokhn jinish ta yaa kortesi, sorry ekhane ekta bracket hobe, ami sesh kore dei, eittoh. so ekhane ami jokhn f string ditesi dekho, ami f string er moddhe shudhu, the sum of , eta ekta string hisabe, tarpore jokhn ami curly braces dicchi ekhane, tokhn etar moddhe ami ashole variable ta",
+        "hypothesis": "and, so dekho, ami jokhn f string niye jokhn jinish ta ya kortesi, sorry ekhane ekta bracket hobe, ami sesh kore dei, eitoh. so ekhane ami jokhn f string ditesi, dekho, ekhane ami ekta bracket hobe, ekhane ami sesh kore dei, eitoh.",
+        "wer": 0.5166666666666667,
+        "cer": 0.39209726443769,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_040.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "dite pari. ebong dekho, similarly ami ekhaneo eta ekta string hisabe, but era amr variable er jaigai, karon ki ekhane similarly curly braces ache. ebong ekhaneo, curly braces er moddhe ami arekta variable call korechi, seta holo sum.",
+        "hypothesis": "tarpore jokhn ami calibraces dicchi ekhane, tokhn eta moddhe piashule variable ta dite pari. ebong dekho, similarly ami ekhaneo eta ekta string hisabe, but eta amar variable er jaya. karon ki ekhane, similarly calibraces ache, ebong ekeno calibraces er moddhe ami arekta variable korechi, seta holo sum.",
+        "wer": 0.6052631578947368,
+        "cer": 0.4592274678111588,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_041.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "so, ei jinish ta dhoro amr, ei jinish take jodi amra trace kore dekhi, jemon dhoro num one jodi amr hoy twenty, num two jodi amr hoy holo thirty, tahole jinish print hobe holo ekhane ebhabe.",
+        "hypothesis": "so eijinishta dhoro amar, eijinishta ke jodi amra trace kore dekhi, jemon dhoro num1 jodi amar hoy 20, num2 jodi amar hoy holo 30, tahole jinishta print hobe holo ekhane evabe.",
+        "wer": 0.5,
+        "cer": 0.1736842105263158,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_042.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "bujha geche? jinish ta ki? aro meaningful. ekhon amra ki? user er theke input niachi, amra input theke ekta operation korechi, ebong setake shundor moto print kore ekhane dekhiye diachi.",
+        "hypothesis": "so jehis ki? aro meaningful. ekhon amra ki user er theke jodi, jeta ki ki? so jenish ki, aro meaningful. ekhon amra ki user er theke jodi, jeta ki ki?",
+        "wer": 0.8,
+        "cer": 0.5591397849462365,
+        "temperature": 0.0
+      },
+      {
+        "audio": "BanglaASR2/seg_043.wav",
+        "video": 2,
+        "speaker": "A",
+        "reference": "next class a amra arithmetic operation jemon plus, minus erokom operators nia dekhbo. tarpore comparison gulo, esob nia janbo. so ajker class ei porjonto, sobay bhalo thakun.",
+        "hypothesis": "emong ki ki ki ki ki ki ki, input niyechi, amra input theke ekta operation korechi, ebong shetake shundor moto print kore ekhane dekhi diyechi. next class e amra arithmetic operation jemon plus, minus, erokom operator niye jagbo, tarpore comparison gulo e shub niye jangbo.",
+        "wer": 1.5555555555555556,
+        "cer": 1.1379310344827587,
+        "temperature": 0.0
+      }
+    ]
+  }
+}

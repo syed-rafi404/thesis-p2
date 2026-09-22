@@ -1,0 +1,27 @@
+{
+  "chosen": {
+    "lr": "2e-3",
+    "rank": 16,
+    "modules": "q_proj,v_proj",
+    "epochs": 8,
+    "seed": 42
+  },
+  "reason": "lr2e-3 chosen: 3.3 points of CER better than the default, more than its seed-to-seed difference (1.7)",
+  "winner": "lr2e-3",
+  "winner_cer": 42.14052758857852,
+  "default_cer": 45.39880515669217,
+  "seed_spread_cer": 1.699023641483656,
+  "train_args": [
+    "--lr",
+    "2e-3",
+    "--lora-r",
+    "16",
+    "--lora-alpha",
+    "32",
+    "--target-modules",
+    "q_proj,v_proj"
+  ],
+  "epochs": 8,
+  "plan": "data/splits/tuning_plan.md",
+  "validation": "data/splits/lr_validation.json"
+}
