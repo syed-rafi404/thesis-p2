@@ -18,11 +18,10 @@ If you are lost, start here. Updated 2026-09-22 (on the 3060).
   tuning by itself.
   - The 13 old lectures (new 1-5, 10-17) are the **scored** ones: they have the hand-checked board
     answer keys (stage B). The other 30 (6-9, 18-43) get the same notes as **demonstrations**
-    (no answer key, so no score). Their boards are in git; their transcripts are made on the 3060
-    right after tonight's tuning (`scripts/transcribe_new_lectures.py`, started automatically by
-    `F:\thesisP2\claude_transfer\transcripts_after_tuning.ps1`, pushed by itself), each by the
-    leave-one-speaker-out model that never heard that lecturer. Then on the 5090 (estimate 3-4 h
-    with the 7B):
+    (no answer key, so no score). Their boards are in git, and **their transcripts too: done
+    2026-09-23 01:51 on the 3060** (`scripts/transcribe_new_lectures.py`, 30 of 30 in 10 min,
+    pushed in `8d661fe`), each by the leave-one-speaker-out model that never heard that lecturer
+    (`output/lectures/<name>/transcript.txt`). Then on the 5090 (estimate 3-4 h with the 7B):
     ```
     foreach ($n in 6..9 + 18..43) { python scripts\run_lecture.py --video data\raw\live_classroom\BanglaASR$n.mp4 --steps boxes notes }
     ```
@@ -36,7 +35,7 @@ If you are lost, start here. Updated 2026-09-22 (on the 3060).
 | Day | Who | Task |
 |---|---|---|
 | 22 Sep (today) | You + team | Ground truth for ~3 more hours (videos from 18-43); lecture 9's timestamps, then remove "[Needs recheck]" from its name. Tell Claude if any tool drafted a transcript (those are training-only). |
-| 22-23 Sep night | 3060 (runs by itself) | **Hyperparameter tuning, pre-registered** (`data\splits\tuning_plan.md`, committed before any result): learning rate (5e-4, 1e-3, 2e-3), then LoRA rank (8, 16, 32), adapted layers (q,v vs q,k,v,o), epochs from the validation-loss curve, and a second seed for the winner; the default is kept unless the winner beats it by more than its seed-to-seed difference. Scored on 3 validation lectures fixed beforehand (BanglaASR2, 12, 14), never test. About 7-8 trainings, done around 01:00-02:00; committed and pushed by itself. Results: `artifacts\ft_work_lr\tuning_summary.md`, chosen settings `tuning_result.json`; logs in `F:\thesisP2\ft_work_lr\`. The 6 h and 10 h runs use them with `--tuned`. |
+| 22-23 Sep night | 3060 | **DONE 01:40, RESULTS.md 1.7.** Chosen: **lr 2e-3**, rank 16, q+v, 8 epochs (3.3 CER points better than the old setting, seed spread 1.7). Negatives kept: rank 32 diverged, all-four-projections matched off-the-shelf, the validation-loss minimum (epoch 4) scored worse. `artifacts\ft_work_lr\tuning_summary.md`; `--tuned` applies it. To be repeated on the full data. The original plan: **Hyperparameter tuning, pre-registered** (`data\splits\tuning_plan.md`, committed before any result): learning rate (5e-4, 1e-3, 2e-3), then LoRA rank (8, 16, 32), adapted layers (q,v vs q,k,v,o), epochs from the validation-loss curve, and a second seed for the winner; the default is kept unless the winner beats it by more than its seed-to-seed difference. Scored on 3 validation lectures fixed beforehand (BanglaASR2, 12, 14), never test. About 7-8 trainings, done around 01:00-02:00; committed and pushed by itself. Results: `artifacts\ft_work_lr\tuning_summary.md`, chosen settings `tuning_result.json`; logs in `F:\thesisP2\ft_work_lr\`. The 6 h and 10 h runs use them with `--tuned`. |
 | 23 Sep | Claude on the 5090 | "FIRST THING ON THE 5090" below; measure real run times; notes pipeline (stage B): VLM on clean boards with old-vs-new board score, box names, notes with the 7B and scoring; start the 32B download. |
 | 23 Sep | You + Claude | Start the report from scratch: Claude gives structure, tables, figures from RESULTS.md; you write. (Optional: the board check page, 30-40 min.) |
 | 24 Sep | Claude on the 5090 | Notes with the 32B; NAND section side by side; fix what the first real runs show. When the ground truth arrives: `check_new_data.py`, `set_speaker_ids.py --apply`, `validate_ground_truth.py --fix`. |
