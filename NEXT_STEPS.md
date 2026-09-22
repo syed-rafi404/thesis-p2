@@ -109,7 +109,17 @@ evaluation time grows with the test data. The first real run gives the true numb
 | Leave-one-speaker-out with more data, 1 seed | 1-1.5 h per lecturer | good, not required |
 | Scaling curve 2 / 4 / 6 / 8 h | 3-4 h | nice to have |
 
-Required: ~7-11 h (one night). Everything: ~15-20 h. All runs unattended. (A first estimate of
+Required: ~7-11 h (best guess ~9 h). Everything: ~15-20 h (best guess ~17 h). Plus the Qwen3-32B
+download (~65 GB; resumes if interrupted). All runs unattended.
+
+**It can be split into sittings.** The longest unbroken job is one training run on 8 h of audio,
+about 1 h (1.5 h with its evaluation; evaluation can also be a separate sitting), because
+`train_lora.py` saves nothing until the end (`save_strategy="no"`). Transcripts, clean boards, VLM
+and notes all take `--run-dir` and go one lecture at a time, so they stop and continue anywhere.
+Suggested sittings: (1) train seed 1 + evaluate, ~1.5 h; (2) seed 2 + evaluate, ~1.5 h;
+(3) transcripts + clean boards, ~1.5-2 h; (4) VLM, ~1-1.5 h; (5-7) notes in batches, ~1-1.5 h each.
+If even 1 h unbroken is hard: Claude can make training save after each epoch so it can resume
+(small change, same results; ask first, it touches the training code). (A first estimate of
 15-20 / 35-50 h was too high: it scaled evaluation time with the training data.) No new board answer keys for new lectures: the 45 checked boards already carry the VLM
 result.
 
