@@ -5,7 +5,13 @@
   "seconds": {
     "frames": 21.643958568572998,
     "boards": 89.49936437606812,
-    "clean": 1.6147401332855225
+    "clean": 1.6147401332855225,
+    "audio": 3.310084581375122,
+    "transcript": 17.316150188446045
   },
-  "person_model": "deeplab+shadow"
+  "person_model": "deeplab+shadow",
+  "asr": {
+    "base": "openai/whisper-large-v3-turbo",
+    "adapter": "F:\\thesisP2\\ft_work_ABtoC\\lora_turbo_seed42"
+  }
 }
