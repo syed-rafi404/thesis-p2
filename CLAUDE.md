@@ -15,8 +15,14 @@ goes stale, fix it rather than adding a contradictory note.
 3. Every number the thesis may claim is in [RESULTS.md](RESULTS.md) with the command that
    regenerates it. Section 7 lists retired, fabricated claims. Never reuse one.
 
+**Next session is on the 5090: start with NEXT_STEPS.md "FIRST THING ON THE 5090"** (confirm the
+3060's automatic push of the newer lectures' boards arrived, copy the videos from the user's USB,
+move the old `data\raw\SpeakerN` folders away, then the dated sessions: notes 23/24 Sep, 6 h run
+25 Sep, 10 h run 27 Sep; draft due 26 Sep, slides 29 Sep).
+
 **Where things stood at the last checkpoint (2026-09-22, on the 3060):** everything committed and
-pushed. Since the 5090 session: the user hand-checked all 45 board answer keys (RESULTS.md 5.0 now
+pushed, except the boards for the newer lectures, which a job on the 3060
+(`F:\thesisP2\claude_transfer\finish_3060.ps1`) commits and pushes by itself when they finish. Since the 5090 session: the user hand-checked all 45 board answer keys (RESULTS.md 5.0 now
 rests on them); spelling-fair WER computed (1.6); all 45 boards rebuilt with a learned person mask
 plus a display clean-up (4.1.1-4.1.2); and **the user stated the final deliverable** (next section
 but one; plan, status and open decisions in NEXT_STEPS.md "THE GOAL"). **Stage A (the notes

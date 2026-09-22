@@ -4,6 +4,36 @@ If you are lost, start here. Updated 2026-09-22 (on the 3060).
 
 ---
 
+## FIRST THING ON THE 5090 (the 3060 session ended 2026-09-22 ~15:00)
+
+Your first message to Claude on the 5090:
+
+> git pull first. Read CLAUDE.md and NEXT_STEPS.md, then do "FIRST THING ON THE 5090". The
+> previous conversation is in Random\473f0a12-fd36-4593-bbe1-2fd1f6c78790.jsonl; read it only if
+> something is unclear. The videos are copied to data\raw\live_classroom.
+
+Claude, on the 5090, in order:
+1. `git pull`. Then confirm the 3060's automatic push arrived: `git log --oneline -8` shows
+   "Boards for the newer lectures (6-9, 18-43) and the board completeness check page", and
+   `output\lectures\board_completeness_check.html` exists. If not, the 3060 job did not finish:
+   its log is `F:\thesisP2\claude_transfer\finish_log.txt` on the 3060 (push from there later).
+   Nothing for the 25 Sep and 27 Sep runs depends on those boards; only the demo does.
+2. Videos: the user's USB has them in `H:\Thesis Dataset\` (43 files, BanglaASR1-43, checked equal
+   by name and size to the 3060's `data\raw\live_classroom` on 2026-09-22; `BanglaASR39.mp4` was
+   still called `video_20260523_232405.mp4` on the USB and was renamed). Copy them into
+   `D:\T2520875\thesisP2\thesisP2\data\raw\live_classroom\` and move the old
+   `data\raw\Speaker1`, `Speaker2`, `Speaker3` folders out of `data\raw` (e.g. to
+   `D:\T2520875\old_raw_layout\`), asking the user first. Then `python scripts/check_new_data.py`
+   must pass.
+3. Memory: the USB's `H:\claude_checkpoint\claude_memory_for_5090.zip`; its README.txt says where
+   the conversation and the memory notes go.
+4. `python scripts/check_environment.py`, and free space on D:: about 170 GB is needed (videos ~75
+   GB at 10 h, Qwen2.5 models ~31 GB already there, Qwen3-32B ~65 GB).
+5. Measure the real run times from this machine's file timestamps (stage B step 1 below), then go
+   on with "TASKS IN ORDER" step 4 (23/24 Sep).
+
+---
+
 ## TASKS IN ORDER, TO REACH THE GOAL (set 2026-09-22; survey left out on purpose)
 
 On the 3060 (Claude), before the 5090 sessions:
