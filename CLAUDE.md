@@ -160,8 +160,12 @@ Baseline notes on the verified keys: **38.7%** over 194 items on lectures 7–9,
 items on lectures 1–9; numbers 6/67. (The draft-key figure was 40.1% over 167 items.) Recall falls
 with guessability, a validity check. Items of 3 characters or fewer match as whole words only.
 
-- Evaluation set: the 10 boards of BanglaASR7, 8, 9, the held-out speaker, so no fine-tune leakage.
-  **Keep speaker B in `--test-speakers` when new data arrives** so this stays valid.
+- Evaluation set: originally the 10 boards of BanglaASR7, 8, 9 (the held-out speaker); now all 45
+  boards of lectures 1-13 have verified keys. **Leakage rule for notes that use a fine-tuned
+  transcript:** each keyed lecture's transcript must come from an adapter that never heard its
+  lecturer, i.e. the leave-one-speaker-out adapters: `ft_work_BCtoA` for A (videos 1-5),
+  `ft_work_AC` for B (6-9), `ft_work_ABtoC` for C (10-13). `transcript_finetuned_v2.txt` came from
+  the A-only adapter, so it is leak-free for 6-13 only.
 - Ground truth: `data/board_truth/*.json` (lectures 7–9), `draft_lectures1to6/`, `draft_speaker3/`.
   Drafted by Claude, then **every one of the 45 boards checked by hand by the user on 2026-09-22**
   without seeing model output (67 added, 3 corrected). The "draft" folder names are historical.
@@ -334,10 +338,17 @@ analysis behind it** and prints a warning; label a sample of errors or drop it.
 
 ## Open threads
 
-- **New data** (~8 h) arriving from transcribers. They were told on 2026-09-21: 10–25 s segments,
-  never over 30, and `# Speaker ID:` on every file. Validate with `scripts/validate_ground_truth.py`,
-  then `run_p3_experiment.py --test-speakers B,<new ids> --model openai/whisper-large-v3-turbo
-  --curve-hours 2 4 6 8`.
+- **New data** (10 h in total) arriving from transcribers. They were told on 2026-09-21: 10–25 s
+  segments, never over 30, and `# Speaker ID:` on every file. Validate with
+  `scripts/validate_ground_truth.py`. **Split decided by the user (2026-09-22): by whole video,
+  random with a fixed seed, about 8 h train / 2 h test, not by speaker.** Every lecturer must have
+  videos on both sides; a video is never cut between train and test. `prepare_data.py` can only
+  split by speaker today: add a video-level option (e.g. `--test-fraction 0.2 --split-seed N`, or
+  `--test-videos`) before training; this was discussed on 2026-09-21 but never built. The thesis
+  must state that test lecturers were heard in training (easier than unseen speakers); the
+  leave-one-speaker-out result (RESULTS.md 1.5) stays as the unseen-lecturer number. Then
+  `run_p3_experiment.py --model openai/whisper-large-v3-turbo --curve-hours 2 4 6 8` with the new
+  split.
 - **Board ground truth: verified** by the user on 2026-09-22, all 45 boards. Rescore everything with
   `scripts/rescore_verified_keys.py`. Checking sheet: `output/annotation_demo/verify_all_boards.html`.
 - **ft_work layout on the 5090:** `ft_work\` is the corrected split; `ft_work_v1_video6_in_train\` is

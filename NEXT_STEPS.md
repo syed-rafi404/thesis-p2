@@ -85,15 +85,27 @@ Put in a Banglish lecture video; get back a lecture note a student can actually 
    estimated 10-hour table below with measured numbers.
 2. The VLM reads the new clean boards; score old vs new boards on your answer keys. This gives the
    board work a real number instead of "looks better".
-3. Notes for all lectures x 2 languages with the chosen notes model; re-score board recall (the
+3. Fine-tuned transcripts for all 13 lectures from the leave-one-speaker-out models, so every
+   lecture is transcribed by a model that never heard its lecturer (~15 min). The notes use these.
+4. Notes for all lectures x 2 languages with the chosen notes model; re-score board recall (the
    88.0% came from the 7B model).
-4. Side by side: the NAND section from Qwen2.5-7B vs Qwen3-32B vs the mockup.
+5. Side by side: the NAND section from Qwen2.5-7B vs Qwen3-32B vs the mockup.
 
 **C. You (no coding).**
 1. Once the notes exist: the survey of about 20 people (old vs new notes of the same lecture,
    which helps more, plus 1-5 for useful / correct / easy to read). Claude can make the form.
 
-**After the defense: the 10 hours of data (8 h train / 2 h test).** 5090 time, estimated from a
+**After the defense: the 10 hours of data (8 h train / 2 h test).**
+
+**The split (your decision, 2026-09-22): random whole videos, not by speaker.** About 8 h train and
+2 h test, chosen at random with a fixed seed so it can be repeated; every lecturer has videos on
+both sides; a video is never cut in two. Two honesty rules: (1) the thesis says the test lecturers
+were also heard in training, so this number is "new lectures from known lecturers", easier than an
+unseen lecturer; (2) the unseen-lecturer result you already have (72.8% -> 50.3%, RESULTS.md 1.5)
+stays as the second, harder number. The data script only splits by speaker today; Claude adds the
+video option before the first training run (discussed on 2026-09-21, never built until now).
+
+5090 time, estimated from a
 measured 3060 run (file timestamps in `F:\thesisP2\ft_work_v1_video6_in_train\`, 2026-09-20:
 whisper-small trained on 1.17 h of audio in ~3 min, each evaluation ~7 min), scaled for the larger
 model (~7x the work) and the faster card (~4x). Training time grows with the training data;
