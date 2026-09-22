@@ -88,22 +88,24 @@ Put in a Banglish lecture video; get back a lecture note a student can actually 
 1. Once the notes exist: the survey of about 20 people (old vs new notes of the same lecture,
    which helps more, plus 1-5 for useful / correct / easy to read). Claude can make the form.
 
-**After the defense: the 10 hours of data (8 h train / 2 h test).** 5090 time, estimated from the
-2026-09-21 evening runs (about 1 h per large-Whisper training run on about 1.5 h of audio, including
-evaluation) and scaled up; the first real run gives the true number:
+**After the defense: the 10 hours of data (8 h train / 2 h test).** 5090 time, estimated from a
+measured 3060 run (file timestamps in `F:\thesisP2\ft_work_v1_video6_in_train\`, 2026-09-20:
+whisper-small trained on 1.17 h of audio in ~3 min, each evaluation ~7 min), scaled for the larger
+model (~7x the work) and the faster card (~4x). Training time grows with the training data;
+evaluation time grows with the test data. The first real run gives the true number:
 
 | Job | Estimate | Needed? |
 |---|---|---|
-| Final fine-tune, 8 h / 2 h split, 2 seeds | 6-10 h | yes (headline) |
-| Fine-tuned transcripts for all lectures (~50) | ~1 h | yes (notes need them) |
-| Clean boards for new lectures | ~1 h | yes |
-| VLM reads and names all boards (~200) | 2-4 h | yes |
-| Notes for all lectures x 2 languages (Qwen3-32B) | 3-5 h | yes |
-| Leave-one-speaker-out with more data, 1 seed | 3-4 h per lecturer | good, not required |
-| Scaling curve 2 / 4 / 6 / 8 h | 8-12 h | nice to have |
+| Final fine-tune, 8 h / 2 h split, 2 seeds, with evaluation | 1.5-2.5 h | yes (headline) |
+| Fine-tuned transcripts for all lectures (~50) | 0.5-1 h | yes (notes need them) |
+| Clean boards for new lectures (mostly frame extraction) | ~1 h | yes |
+| VLM reads and names all boards (~200) | 1-1.5 h | yes |
+| Notes for all lectures x 2 languages (Qwen3-32B, 4-bit) | 3-5 h (~1 h for the ~10 test lectures only) | yes |
+| Leave-one-speaker-out with more data, 1 seed | 1-1.5 h per lecturer | good, not required |
+| Scaling curve 2 / 4 / 6 / 8 h | 3-4 h | nice to have |
 
-Required: ~15-20 h (a night and a day). Everything: ~35-50 h (about two days nonstop). All runs
-unattended. No new board answer keys for new lectures: the 45 checked boards already carry the VLM
+Required: ~7-11 h (one night). Everything: ~15-20 h. All runs unattended. (A first estimate of
+15-20 / 35-50 h was too high: it scaled evaluation time with the training data.) No new board answer keys for new lectures: the 45 checked boards already carry the VLM
 result.
 
 **Who does what.** Claude: all coding, all runs, RESULTS.md, survey form and analysis, report
