@@ -342,7 +342,7 @@ def gt_minutes(gt_path: str) -> float:
     return sum(e - s for s, e, _ in parse_gt(gt_path)) / 60.0
 
 
-def choose_test_lectures(info, fraction, seed, max_exact=16):
+def choose_test_lectures(info, fraction, seed, max_exact=16, never=frozenset()):
     """Random whole lectures for the test set, about `fraction` of each lecturer's minutes.
 
     info: [(stem, speaker, minutes)]. Per lecturer, among all ways of putting some
@@ -351,6 +351,11 @@ def choose_test_lectures(info, fraction, seed, max_exact=16):
     seed. So every lecturer with two or more lectures is on both sides, no video
     is cut in two, and the test share stays near the fraction even with a few
     long lectures. A lecturer with a single lecture stays in training.
+
+    never: lectures that may only be trained on. They count towards the
+    lecturer's minutes but are never picked; since they stay in training, all
+    of the remaining lectures may then be picked. With `never` empty the choice
+    is exactly what it was before the option existed.
     """
     import itertools
     rng = random.Random(seed)
@@ -359,12 +364,14 @@ def choose_test_lectures(info, fraction, seed, max_exact=16):
         by_speaker.setdefault(speaker, []).append((stem, minutes))
     test = set()
     for speaker in sorted(by_speaker):
-        items = sorted(by_speaker[speaker])
-        if len(items) < 2:
+        everything = sorted(by_speaker[speaker])
+        items = [it for it in everything if it[0] not in never]
+        max_r = len(items) if len(items) < len(everything) else len(items) - 1
+        if max_r < 1:
             continue
-        target = fraction * sum(m for _, m in items)
+        target = fraction * sum(m for _, m in everything)
         if len(items) <= max_exact:
-            subsets = [c for r in range(1, len(items))
+            subsets = [c for r in range(1, max_r + 1)
                        for c in itertools.combinations(items, r)]
             best = min(abs(sum(m for _, m in c) - target) for c in subsets)
             near = [c for c in subsets
@@ -428,6 +435,11 @@ def main():
     ap.add_argument("--test-lectures", default=None,
                     help="With --split-by video: comma-separated lectures for the test set, "
                          "instead of the random choice")
+    ap.add_argument("--never-test", default=None,
+                    help="With --split-by video: comma-separated lectures that may only be "
+                         "trained on (e.g. the validation lectures used to choose the learning "
+                         "rate, data/splits/lr_validation.json), so no choice made on them is "
+                         "ever scored on them")
     args = ap.parse_args()
     scheme = scheme_of(args.gt_dir)
 
@@ -466,10 +478,16 @@ def main():
                   if labels[stem] != "UNKNOWN"
                   and (not only_speakers or labels[stem] in only_speakers)]
         usable = [u for u in usable if u[2] > 0]
+        never = {s.strip() for s in (args.never_test or "").split(",") if s.strip()}
+        if never:
+            print("train-only (never test): " + ", ".join(sorted(never)))
         if args.test_lectures:
             test_lectures = {s.strip() for s in args.test_lectures.split(",") if s.strip()}
+            clash = test_lectures & never
+            if clash:
+                raise SystemExit(f"--test-lectures includes lectures marked --never-test: {sorted(clash)}")
         else:
-            test_lectures = choose_test_lectures(usable, args.test_fraction, args.split_seed)
+            test_lectures = choose_test_lectures(usable, args.test_fraction, args.split_seed, never=never)
         print("test lectures: " + ", ".join(sorted(test_lectures)))
 
     manifest, stats, speaker_minutes = [], {}, {}

@@ -1,0 +1,87 @@
+{
+  "purpose": "validation lectures for the learning-rate check; train-only in every later split (prepare_data.py --never-test)",
+  "chosen_on": "2026-09-22",
+  "seed": 2026,
+  "fraction": 0.2,
+  "lectures": [
+    "BanglaASR12",
+    "BanglaASR14",
+    "BanglaASR2"
+  ],
+  "minutes": {
+    "BanglaASR12": 13.1,
+    "BanglaASR14": 7.2,
+    "BanglaASR2": 14.0
+  },
+  "speakers": {
+    "BanglaASR12": "B",
+    "BanglaASR14": "C",
+    "BanglaASR2": "A"
+  },
+  "pool": {
+    "BanglaASR10": [
+      "B",
+      14.8
+    ],
+    "BanglaASR11": [
+      "B",
+      14.2
+    ],
+    "BanglaASR12": [
+      "B",
+      13.1
+    ],
+    "BanglaASR13": [
+      "B",
+      16.4
+    ],
+    "BanglaASR14": [
+      "C",
+      7.2
+    ],
+    "BanglaASR15": [
+      "C",
+      3.4
+    ],
+    "BanglaASR16": [
+      "C",
+      3.7
+    ],
+    "BanglaASR17": [
+      "C",
+      12.6
+    ],
+    "BanglaASR1": [
+      "A",
+      13.1
+    ],
+    "BanglaASR2": [
+      "A",
+      14.0
+    ],
+    "BanglaASR3": [
+      "A",
+      6.0
+    ],
+    "BanglaASR4": [
+      "A",
+      9.2
+    ],
+    "BanglaASR5": [
+      "A",
+      14.0
+    ],
+    "BanglaASR6": [
+      "A",
+      6.7
+    ],
+    "BanglaASR7": [
+      "A",
+      7.8
+    ],
+    "BanglaASR8": [
+      "A",
+      5.0
+    ]
+  }
+}
