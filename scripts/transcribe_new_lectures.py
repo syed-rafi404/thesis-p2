@@ -52,10 +52,11 @@ def main():
             continue
         r = subprocess.run([sys.executable, str(REPO / "scripts" / "run_lecture.py"), "--video", str(videos[n]),
                             "--steps", "audio", "transcript", "--adapter", str(ADAPTER[spk])],
-                           cwd=REPO, env=env, capture_output=True, text=True)
+                           cwd=REPO, env=env, capture_output=True, text=True, errors="replace")
         ok = r.returncode == 0 and out.exists()
         done += ok
-        print(f"{name:<14} lecturer {spk}, {ADAPTER[spk].parent.name}: {'ok' if ok else 'FAILED ' + r.stderr[-300:]}", flush=True)
+        why = ((r.stderr or "") + (r.stdout or ""))[-300:]
+        print(f"{name:<14} lecturer {spk}, {ADAPTER[spk].parent.name}: {'ok' if ok else 'FAILED ' + why}", flush=True)
     print(f"{done} of {len(todo)} lectures have a transcript")
     return 0 if done == len(todo) else 1
 
