@@ -352,6 +352,12 @@ analysis behind it** and prints a warning; label a sample of errors or drop it.
   when labels disagree with the `data\raw\SpeakerN` folders.
 - **Lecturer quotes** in the `mixed` notes do not work (see above); the planned quote checker in
   the final deliverable replaces this fix.
+- **Run times are estimates until measured on the 5090.** The user asked for actual numbers. First
+  job on the 5090: read file write times in the original `ft_work_ABtoC`, `ft_work_BCtoA`,
+  `ft_work_AC` folders (adapter saved vs eval JSON written) and in the lecture output folders
+  (`board_text_*.md`, `notes_*.md`), then replace the estimate table in NEXT_STEPS.md with measured
+  per-run times. Copies on the 3060 carry git checkout times and are useless for this. Measured on
+  the 3060 only: whisper-small, ~3 min training on 1.17 h of audio, ~7 min per evaluation.
 - **New board pictures in git (2026-09-22):** `output/annotation_demo/all9_deeplab_shadow/` and
   `output/annotation_demo/speaker3_2s_deeplab_shadow/` (boards, `_occluder.png`, `mosaic.json`,
   `clean/`, `compare_*.jpg`). Use these on the 5090 rather than regenerating: that needs the video

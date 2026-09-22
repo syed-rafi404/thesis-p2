@@ -77,7 +77,12 @@ Put in a Banglish lecture video; get back a lecture note a student can actually 
 5. Tested here with a stand-in for Qwen (the 3060 cannot hold it).
 
 **B. Run on the 5090 (a few hours).**
-1. `git pull`
+1. `git pull`. Then, before anything else, measure real run times from the 5090's own file
+   timestamps (the copies on the 3060 all carry the git checkout time). Compare the write times of
+   `lora_turbo_seed*\adapter_model.safetensors` and `eval_turbo_*.json` in
+   `D:\T2520875\thesisP2\ft_work_ABtoC`, `ft_work_BCtoA`, `ft_work_AC`, and of
+   `board_text_*.md` / `notes_*.md` in `output\live_focused\no_gaze\interval_10s\*`. Replace the
+   estimated 10-hour table below with measured numbers.
 2. The VLM reads the new clean boards; score old vs new boards on your answer keys. This gives the
    board work a real number instead of "looks better".
 3. Notes for all lectures x 2 languages with the chosen notes model; re-score board recall (the
