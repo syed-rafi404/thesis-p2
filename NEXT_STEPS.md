@@ -88,7 +88,28 @@ Put in a Banglish lecture video; get back a lecture note a student can actually 
 1. Once the notes exist: the survey of about 20 people (old vs new notes of the same lecture,
    which helps more, plus 1-5 for useful / correct / easy to read). Claude can make the form.
 
-**After the defense:** the 10 hours of new data; re-run leave-one-speaker-out on the 5090.
+**After the defense: the 10 hours of data (8 h train / 2 h test).** 5090 time, estimated from the
+2026-09-21 evening runs (about 1 h per large-Whisper training run on about 1.5 h of audio, including
+evaluation) and scaled up; the first real run gives the true number:
+
+| Job | Estimate | Needed? |
+|---|---|---|
+| Final fine-tune, 8 h / 2 h split, 2 seeds | 6-10 h | yes (headline) |
+| Fine-tuned transcripts for all lectures (~50) | ~1 h | yes (notes need them) |
+| Clean boards for new lectures | ~1 h | yes |
+| VLM reads and names all boards (~200) | 2-4 h | yes |
+| Notes for all lectures x 2 languages (Qwen3-32B) | 3-5 h | yes |
+| Leave-one-speaker-out with more data, 1 seed | 3-4 h per lecturer | good, not required |
+| Scaling curve 2 / 4 / 6 / 8 h | 8-12 h | nice to have |
+
+Required: ~15-20 h (a night and a day). Everything: ~35-50 h (about two days nonstop). All runs
+unattended. No new board answer keys for new lectures: the 45 checked boards already carry the VLM
+result.
+
+**Who does what.** Claude: all coding, all runs, RESULTS.md, survey form and analysis, report
+structure/tables/figures. You: the go-aheads, checking outputs (~30 min per round), the 10 h of
+transcripts in the right format and the videos on the 5090, keeping the 5090 on, the ~20 survey
+people, and writing the report.
 
 ### Decisions still open (one at a time)
 
