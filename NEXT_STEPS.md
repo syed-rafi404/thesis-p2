@@ -6,18 +6,14 @@ If you are lost, start here. Updated 2026-09-22 (on the 3060).
 
 ## BEFORE THE DEFENSE: what matters most (2026-09-22)
 
-Deferral risk comes from the report, not from missing features. In this order:
-
-1. **Fabricated numbers are still in the report.** `P2\chapters\chapter_6.tex`: fusion 68.2% ->
-   73.9%, p = 0.003, Cohen's d = 0.96 (lines 573-590, 749, 813-815) and the ablation table
-   68.2 / 71.5 / 42.3 (lines 345-349). Measured: fusion +0.7 pp, p = 0.32, not significant.
-   `chapter_5.tex` still has the wrong 16,558-character length for lecture 3. Replace all with
-   RESULTS.md numbers. Claude can do it and mark every change for you (waiting for your yes).
-2. **Chapters 3, 7, 9 are stubs**; `chapter_7.tex` is empty.
-3. **Be able to explain everything.** Claude can write a one-page explanation plus the 15 likely
+1. **The report will be rewritten from scratch** (you, with Claude, when the time comes). The old
+   LaTeX in `P2\chapters\` will NOT be submitted. It still contains fabricated numbers (fusion
+   p = 0.003, Cohen's d = 0.96, the 68.2 / 71.5 / 42.3 / 73.9 table, 16,558 characters), so
+   **never copy a number or a sentence from it. Numbers come only from RESULTS.md.**
+2. **Be able to explain everything.** Claude can write a one-page explanation plus the 15 likely
    panel questions with honest answers.
-4. **Check BRAC's rule on declaring AI help**; include a statement if it asks for one.
-5. The notes pipeline (THE GOAL below) and the survey: a strong bonus, not needed to pass.
+3. **Check BRAC's rule on declaring AI help**; include a statement if it asks for one.
+4. The notes pipeline (THE GOAL below) and the survey: a strong bonus, not needed to pass.
 
 If fusion was shown as a success in P2 (report or poster), prepare one sentence: "re-analysis showed
 the earlier fusion claim did not hold; the measured effect is +0.7 points, not significant."
@@ -147,7 +143,8 @@ Quote only these; each has its command in RESULTS.md.
 
 ## Writing (your team)
 
-Chapters 3, 7, 9 are still stubs. `chapter_7.tex` is 0 bytes and is not `\input` in main.tex.
+The report is rewritten from scratch later, with Claude's help. The old `P2\chapters\` LaTeX is a
+record only; never copy numbers from it.
 
 ## Moving between PCs
 

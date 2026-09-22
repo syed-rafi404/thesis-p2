@@ -358,7 +358,11 @@ analysis behind it** and prints a warning; label a sample of errors or drop it.
   frames, torchvision and, for Speaker3, the 2 s frames in `output/speaker3_runs_2s/`, which exist
   only on the 3060. The intermediate `speaker3_2s*` test folders are local to the 3060.
 - **Reference notes** for 2 lectures would close the "summarizer never evaluated" gap as a pilot.
-- **Chapters 3, 7, 9** are stubs; `chapter_7.tex` is 0 bytes and not `\input` in main.tex.
+- **The report will be rewritten from scratch** by the user with Claude's help (said 2026-09-22);
+  the old LaTeX in `P2/chapters/` will not be submitted. It still contains fabricated numbers
+  (chapter_6: fusion p = 0.003, d = 0.96, the 68.2 / 71.5 / 42.3 / 73.9 table; chapter_5: 16,558
+  characters). When helping with the rewrite, take every number from RESULTS.md, never from the
+  old chapters, and check RESULTS.md section 7 (retired claims).
 - **Figure 6.5** needs an error analysis or removal.
 - `config/config.yaml` and `src/model_registry.py` default to Qwen2.5-14B, contradicting the 7B setup.
 - `THESIS_P2_PROGRESS_LOG.md` is 0 bytes in the working tree; the full version is in HEAD.
