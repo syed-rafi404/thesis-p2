@@ -1,0 +1,14 @@
+[
+  {
+    "era": 1,
+    "from": "0:00",
+    "to": "6:40",
+    "frames": 201,
+    "tiles_total": 858,
+    "tiles_fully_clear": 858,
+    "clear_fraction": 1.0,
+    "worst_tile_covered": 0.0195,
+    "distinct_frames_used": 16,
+    "image": "F:\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR6\\boards\\BanglaASR6\\board_era1_000.jpg"
+  }
+]

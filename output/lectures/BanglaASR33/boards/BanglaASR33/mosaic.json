@@ -1,0 +1,74 @@
+[
+  {
+    "era": 1,
+    "from": "0:30",
+    "to": "5:20",
+    "frames": 146,
+    "tiles_total": 858,
+    "tiles_fully_clear": 858,
+    "clear_fraction": 1.0,
+    "worst_tile_covered": 0.0186,
+    "distinct_frames_used": 11,
+    "image": "F:\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR33\\boards\\BanglaASR33\\board_era1_030.jpg"
+  },
+  {
+    "era": 2,
+    "from": "5:30",
+    "to": "6:10",
+    "frames": 21,
+    "tiles_total": 858,
+    "tiles_fully_clear": 764,
+    "clear_fraction": 0.8904,
+    "worst_tile_covered": 1.0,
+    "distinct_frames_used": 9,
+    "image": "F:\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR33\\boards\\BanglaASR33\\board_era2_530.jpg"
+  },
+  {
+    "era": 3,
+    "from": "6:40",
+    "to": "8:12",
+    "frames": 47,
+    "tiles_total": 858,
+    "tiles_fully_clear": 834,
+    "clear_fraction": 0.972,
+    "worst_tile_covered": 0.5098,
+    "distinct_frames_used": 21,
+    "image": "F:\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR33\\boards\\BanglaASR33\\board_era3_640.jpg"
+  },
+  {
+    "era": 4,
+    "from": "8:20",
+    "to": "9:02",
+    "frames": 22,
+    "tiles_total": 858,
+    "tiles_fully_clear": 734,
+    "clear_fraction": 0.8555,
+    "worst_tile_covered": 1.0,
+    "distinct_frames_used": 14,
+    "image": "F:\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR33\\boards\\BanglaASR33\\board_era4_820.jpg"
+  },
+  {
+    "era": 5,
+    "from": "9:10",
+    "to": "9:52",
+    "frames": 22,
+    "tiles_total": 858,
+    "tiles_fully_clear": 742,
+    "clear_fraction": 0.8648,
+    "worst_tile_covered": 1.0,
+    "distinct_frames_used": 11,
+    "image": "F:\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR33\\boards\\BanglaASR33\\board_era5_910.jpg"
+  },
+  {
+    "era": 6,
+    "from": "10:40",
+    "to": "12:02",
+    "frames": 42,
+    "tiles_total": 858,
+    "tiles_fully_clear": 858,
+    "clear_fraction": 1.0,
+    "worst_tile_covered": 0.0195,
+    "distinct_frames_used": 7,
+    "image": "F:\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR33\\boards\\BanglaASR33\\board_era6_1040.jpg"
+  }
+]

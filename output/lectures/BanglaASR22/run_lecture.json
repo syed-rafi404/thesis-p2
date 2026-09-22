@@ -1,0 +1,11 @@
+{
+  "video": "F:\\thesisP2\\thesisP2\\data\\raw\\live_classroom\\BanglaASR22.MOV",
+  "name": "BanglaASR22",
+  "mock": false,
+  "seconds": {
+    "frames": 29.423835039138794,
+    "boards": 77.47502899169922,
+    "clean": 2.7009732723236084
+  },
+  "person_model": "deeplab+shadow"
+}

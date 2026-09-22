@@ -1,0 +1,26 @@
+[
+  {
+    "era": 1,
+    "from": "0:00",
+    "to": "2:20",
+    "frames": 15,
+    "tiles_total": 858,
+    "tiles_fully_clear": 835,
+    "clear_fraction": 0.9732,
+    "worst_tile_covered": 0.6318,
+    "distinct_frames_used": 8,
+    "image": "F:\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR43\\boards\\pass1\\board_era1_000.jpg"
+  },
+  {
+    "era": 2,
+    "from": "2:30",
+    "to": "7:30",
+    "frames": 31,
+    "tiles_total": 858,
+    "tiles_fully_clear": 850,
+    "clear_fraction": 0.9907,
+    "worst_tile_covered": 0.1523,
+    "distinct_frames_used": 8,
+    "image": "F:\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR43\\boards\\pass1\\board_era2_230.jpg"
+  }
+]

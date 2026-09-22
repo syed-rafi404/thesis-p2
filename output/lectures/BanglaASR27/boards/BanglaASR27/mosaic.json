@@ -1,0 +1,62 @@
+[
+  {
+    "era": 1,
+    "from": "0:00",
+    "to": "5:08",
+    "frames": 155,
+    "tiles_total": 858,
+    "tiles_fully_clear": 858,
+    "clear_fraction": 1.0,
+    "worst_tile_covered": 0.0195,
+    "distinct_frames_used": 10,
+    "image": "F:\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR27\\boards\\BanglaASR27\\board_era1_000.jpg"
+  },
+  {
+    "era": 2,
+    "from": "5:10",
+    "to": "6:06",
+    "frames": 29,
+    "tiles_total": 858,
+    "tiles_fully_clear": 858,
+    "clear_fraction": 1.0,
+    "worst_tile_covered": 0.0195,
+    "distinct_frames_used": 11,
+    "image": "F:\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR27\\boards\\BanglaASR27\\board_era2_510.jpg"
+  },
+  {
+    "era": 3,
+    "from": "6:10",
+    "to": "11:20",
+    "frames": 156,
+    "tiles_total": 858,
+    "tiles_fully_clear": 858,
+    "clear_fraction": 1.0,
+    "worst_tile_covered": 0.0186,
+    "distinct_frames_used": 7,
+    "image": "F:\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR27\\boards\\BanglaASR27\\board_era3_610.jpg"
+  },
+  {
+    "era": 4,
+    "from": "11:40",
+    "to": "15:40",
+    "frames": 121,
+    "tiles_total": 858,
+    "tiles_fully_clear": 858,
+    "clear_fraction": 1.0,
+    "worst_tile_covered": 0.0156,
+    "distinct_frames_used": 8,
+    "image": "F:\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR27\\boards\\BanglaASR27\\board_era4_1140.jpg"
+  },
+  {
+    "era": 5,
+    "from": "15:50",
+    "to": "22:40",
+    "frames": 206,
+    "tiles_total": 858,
+    "tiles_fully_clear": 858,
+    "clear_fraction": 1.0,
+    "worst_tile_covered": 0.0195,
+    "distinct_frames_used": 9,
+    "image": "F:\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR27\\boards\\BanglaASR27\\board_era5_1550.jpg"
+  }
+]

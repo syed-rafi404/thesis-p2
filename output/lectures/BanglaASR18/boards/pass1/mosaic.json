@@ -1,0 +1,74 @@
+[
+  {
+    "era": 1,
+    "from": "0:10",
+    "to": "1:00",
+    "frames": 6,
+    "tiles_total": 858,
+    "tiles_fully_clear": 669,
+    "clear_fraction": 0.7797,
+    "worst_tile_covered": 1.0,
+    "distinct_frames_used": 6,
+    "image": "F:\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR18\\boards\\pass1\\board_era1_010.jpg"
+  },
+  {
+    "era": 2,
+    "from": "1:10",
+    "to": "1:50",
+    "frames": 5,
+    "tiles_total": 858,
+    "tiles_fully_clear": 759,
+    "clear_fraction": 0.8846,
+    "worst_tile_covered": 1.0,
+    "distinct_frames_used": 5,
+    "image": "F:\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR18\\boards\\pass1\\board_era2_110.jpg"
+  },
+  {
+    "era": 3,
+    "from": "2:20",
+    "to": "2:50",
+    "frames": 4,
+    "tiles_total": 858,
+    "tiles_fully_clear": 624,
+    "clear_fraction": 0.7273,
+    "worst_tile_covered": 1.0,
+    "distinct_frames_used": 4,
+    "image": "F:\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR18\\boards\\pass1\\board_era3_220.jpg"
+  },
+  {
+    "era": 4,
+    "from": "3:30",
+    "to": "4:20",
+    "frames": 6,
+    "tiles_total": 858,
+    "tiles_fully_clear": 750,
+    "clear_fraction": 0.8741,
+    "worst_tile_covered": 1.0,
+    "distinct_frames_used": 6,
+    "image": "F:\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR18\\boards\\pass1\\board_era4_330.jpg"
+  },
+  {
+    "era": 5,
+    "from": "4:40",
+    "to": "5:30",
+    "frames": 6,
+    "tiles_total": 858,
+    "tiles_fully_clear": 836,
+    "clear_fraction": 0.9744,
+    "worst_tile_covered": 0.7393,
+    "distinct_frames_used": 3,
+    "image": "F:\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR18\\boards\\pass1\\board_era5_440.jpg"
+  },
+  {
+    "era": 6,
+    "from": "5:40",
+    "to": "7:00",
+    "frames": 9,
+    "tiles_total": 858,
+    "tiles_fully_clear": 858,
+    "clear_fraction": 1.0,
+    "worst_tile_covered": 0.0107,
+    "distinct_frames_used": 2,
+    "image": "F:\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR18\\boards\\pass1\\board_era6_540.jpg"
+  }
+]
