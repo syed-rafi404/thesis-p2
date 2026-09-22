@@ -1,0 +1,152 @@
+{
+  "split_by": "video",
+  "numbering": "new",
+  "test_speakers": [
+    "A",
+    "B",
+    "C"
+  ],
+  "train_speakers": [
+    "A",
+    "B",
+    "C"
+  ],
+  "train_hours_used": 2.113783333333333,
+  "train_hours_available": 2.113783333333333,
+  "test_hours": 0.5694055555555555,
+  "train_cap": null,
+  "seed": 0,
+  "speaker_map": "v2",
+  "only_speakers": null,
+  "minutes_per_speaker": {
+    "A": 75.7,
+    "B": 58.4,
+    "C": 26.8
+  },
+  "lectures": {
+    "BanglaASR10": {
+      "split": "train",
+      "speaker": "B",
+      "clips": 47,
+      "minutes_kept": 14.8,
+      "minutes_audio": 14.9
+    },
+    "BanglaASR11": {
+      "split": "train",
+      "speaker": "B",
+      "clips": 46,
+      "minutes_kept": 14.2,
+      "minutes_audio": 14.2
+    },
+    "BanglaASR12": {
+      "split": "test",
+      "speaker": "B",
+      "clips": 39,
+      "minutes_kept": 13.1,
+      "minutes_audio": 13.1
+    },
+    "BanglaASR13": {
+      "split": "train",
+      "speaker": "B",
+      "clips": 52,
+      "minutes_kept": 16.4,
+      "minutes_audio": 16.4
+    },
+    "BanglaASR14": {
+      "split": "test",
+      "speaker": "C",
+      "clips": 19,
+      "minutes_kept": 7.2,
+      "minutes_audio": 7.2
+    },
+    "BanglaASR15": {
+      "split": "train",
+      "speaker": "C",
+      "clips": 8,
+      "minutes_kept": 3.4,
+      "minutes_audio": 3.4
+    },
+    "BanglaASR16": {
+      "split": "train",
+      "speaker": "C",
+      "clips": 11,
+      "minutes_kept": 3.7,
+      "minutes_audio": 3.7
+    },
+    "BanglaASR17": {
+      "split": "train",
+      "speaker": "C",
+      "clips": 45,
+      "minutes_kept": 12.6,
+      "minutes_audio": 12.6
+    },
+    "BanglaASR1": {
+      "split": "train",
+      "speaker": "A",
+      "clips": 44,
+      "minutes_kept": 13.0,
+      "minutes_audio": 13.0
+    },
+    "BanglaASR2": {
+      "split": "test",
+      "speaker": "A",
+      "clips": 44,
+      "minutes_kept": 14.0,
+      "minutes_audio": 14.0
+    },
+    "BanglaASR3": {
+      "split": "train",
+      "speaker": "A",
+      "clips": 17,
+      "minutes_kept": 6.0,
+      "minutes_audio": 6.1
+    },
+    "BanglaASR4": {
+      "split": "train",
+      "speaker": "A",
+      "clips": 27,
+      "minutes_kept": 9.2,
+      "minutes_audio": 9.2
+    },
+    "BanglaASR5": {
+      "split": "train",
+      "speaker": "A",
+      "clips": 42,
+      "minutes_kept": 14.0,
+      "minutes_audio": 14.1
+    },
+    "BanglaASR6": {
+      "split": "train",
+      "speaker": "A",
+      "clips": 19,
+      "minutes_kept": 6.7,
+      "minutes_audio": 6.7
+    },
+    "BanglaASR7": {
+      "split": "train",
+      "speaker": "A",
+      "clips": 23,
+      "minutes_kept": 7.8,
+      "minutes_audio": 7.8
+    },
+    "BanglaASR8": {
+      "split": "train",
+      "speaker": "A",
+      "clips": 14,
+      "minutes_kept": 5.0,
+      "minutes_audio": 5.0
+    }
+  },
+  "test_fraction": 0.2,
+  "split_seed": 0,
+  "test_lectures": [
+    "BanglaASR12",
+    "BanglaASR14",
+    "BanglaASR2"
+  ],
+  "test_minutes_per_speaker": {
+    "A": 14.0,
+    "B": 13.0,
+    "C": 7.2
+  }
+}

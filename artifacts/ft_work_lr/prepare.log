@@ -1,0 +1,28 @@
+  [skip] [Needs recheck]BanglaASR9_ground_truth.txt: marked not ready by its file name; remove the marker to use it
+found 16 ground-truth files (new lecture numbering); random video split, 20% of each lecturer, seed 0
+test lectures: BanglaASR12, BanglaASR14, BanglaASR2
+  BanglaASR10 [train/spk B]: 47 clips, 14.8min kept of 14.9min audio  <- ingested/full_audio.wav
+  BanglaASR11 [train/spk B]: 46 clips, 14.2min kept of 14.2min audio  <- ingested/full_audio.wav
+  BanglaASR12 [test/spk B]: 39 clips, 13.1min kept of 13.1min audio  <- ingested/full_audio.wav
+  BanglaASR13 [train/spk B]: 52 clips, 16.4min kept of 16.4min audio  <- ingested/full_audio.wav
+  BanglaASR14 [test/spk C]: 19 clips, 7.2min kept of 7.2min audio  <- audio_cache/BanglaASR10.wav
+  BanglaASR15 [train/spk C]: 8 clips, 3.4min kept of 3.4min audio  <- audio_cache/BanglaASR11.wav
+  BanglaASR16 [train/spk C]: 11 clips, 3.7min kept of 3.7min audio  <- audio_cache/BanglaASR12.wav
+  BanglaASR17 [train/spk C]: 45 clips, 12.6min kept of 12.6min audio  <- audio_cache/BanglaASR13.wav
+  BanglaASR1 [train/spk A]: 44 clips, 13.0min kept of 13.0min audio  <- ingested/full_audio.wav
+  BanglaASR2 [test/spk A]: 44 clips, 14.0min kept of 14.0min audio  <- ingested/full_audio.wav
+  BanglaASR3 [train/spk A]: 17 clips, 6.0min kept of 6.1min audio  <- ingested/full_audio.wav
+  BanglaASR4 [train/spk A]: 27 clips, 9.2min kept of 9.2min audio  <- ingested/full_audio.wav
+  BanglaASR5 [train/spk A]: 42 clips, 14.0min kept of 14.1min audio  <- ingested/full_audio.wav
+    extracting audio from BanglaASR6.mp4 ...
+  BanglaASR6 [train/spk A]: 19 clips, 6.7min kept of 6.7min audio  <- audio_cache_new/BanglaASR6.wav
+    extracting audio from BanglaASR7.mp4 ...
+  BanglaASR7 [train/spk A]: 23 clips, 7.8min kept of 7.8min audio  <- audio_cache_new/BanglaASR7.wav
+    extracting audio from BanglaASR8.mp4 ...
+  BanglaASR8 [train/spk A]: 14 clips, 5.0min kept of 5.0min audio  <- audio_cache_new/BanglaASR8.wav
+
+=== SUMMARY ===
+Train: 395 clips, 126.8 min (speakers ['A', 'B', 'C'])
+Test : 102 clips, 34.2 min (speakers ['A', 'B', 'C'])
+Minutes per speaker: A=75.7, B=58.4, C=26.8
+Wrote manifests, split.json and 497 clips to F:\thesisP2\ft_work_lr
