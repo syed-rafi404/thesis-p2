@@ -145,3 +145,7 @@ credentials.json
 *.toc
 *.bbl
 *.blg
+
+# A copy of the Claude conversation may be placed here to read on another PC; never commit it.
+Random/
+
