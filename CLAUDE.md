@@ -369,6 +369,18 @@ analysis behind it** and prints a warning; label a sample of errors or drop it.
 
 ## Open threads
 
+- **How the ground truth is made (the user, 2026-09-23):** a speech-to-text tool types a first
+  draft, then a human checks **every word** against the audio; about 1 h of human work per 10 min
+  of video, because the ASR produces almost no usable Banglish. Own check, not in RESULTS.md: on
+  new lectures 6-8 (lecturer A, 56 clips, never in training) the `ft_work_BCtoA` adapter gives CER
+  median 69.1% -> 19.3%, WER 96.9% -> 53.9%, 53/56 clips better - far better than the 1.5 headline,
+  partly because off-the-shelf Whisper loops on 16 of the 56 clips and partly because the new files
+  are cleanly segmented. The references are 69% CER away from off-the-shelf Whisper output, so no
+  draft survived into them. Work dir `F:\thesisP2\ft_work_checkA` (3060, not in git).
+  **The user decided the thesis says only that the transcripts are human-made.** Claude advised one
+  clause ("an ASR system was used only as a first-pass typing aid"); the user declined. Do not
+  add it unless they ask; if a panel question about tools comes up in prep, the honest answer is
+  the one above.
 - **New data** (10 h in total) arriving from transcribers. They were told on 2026-09-21: 10–25 s
   segments, never over 30, and `# Speaker ID:` on every file. Validate with
   `scripts/validate_ground_truth.py`. **Split decided by the user (2026-09-22): by whole video,
