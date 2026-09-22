@@ -119,6 +119,9 @@ def main():
     ap.add_argument("--split-seed", type=int, default=0)
     ap.add_argument("--test-lectures", default=None,
                     help="Passed to prepare_data.py with --split-by video: fixed test lectures")
+    ap.add_argument("--never-test", default=None,
+                    help="Passed to prepare_data.py: train-only lectures. Default with --split-by "
+                         "video: the learning-rate validation lectures in data/splits/lr_validation.json")
     ap.add_argument("--audio-dir", default=None,
                     help="Passed to prepare_data.py: folder of old-numbered 16 kHz wavs, e.g. "
                          "<parent>/ft_work_3spk/audio_cache for lecturer C")
@@ -169,6 +172,13 @@ def main():
                "--split-seed", str(args.split_seed)]
         cmd += ["--only-speakers", args.only_speakers] if args.only_speakers else []
         cmd += ["--test-lectures", args.test_lectures] if args.test_lectures else []
+        never = args.never_test
+        lr_val = REPO / "data" / "splits" / "lr_validation.json"
+        if never is None and args.split_by == "video" and lr_val.exists():
+            import json as _json
+            never = ",".join(_json.loads(lr_val.read_text(encoding="utf-8"))["lectures"])
+            print(f"train-only (learning-rate validation lectures): {never}")
+        cmd += ["--never-test", never] if never else []
         cmd += ["--audio-dir", args.audio_dir] if args.audio_dir else []
         if not run(cmd):
             return 1

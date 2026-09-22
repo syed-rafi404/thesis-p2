@@ -9,6 +9,7 @@ If you are lost, start here. Updated 2026-09-22 (on the 3060).
 | Day | Who | Task |
 |---|---|---|
 | 22 Sep (today) | You + team | Ground truth for ~3 more hours (videos from 18-43); lecture 9's timestamps, then remove "[Needs recheck]" from its name. Tell Claude if any tool drafted a transcript (those are training-only). |
+| 22 Sep night | 3060 (runs by itself) | **Learning-rate check**: 3 trainings (5e-4, 1e-3, 2e-3), scored on 3 validation lectures fixed beforehand (BanglaASR2, 12, 14; `data\splits\lr_validation.json`), then committed and pushed. Result: `artifacts\ft_work_lr\lr_check_summary.md`; log `F:\thesisP2\ft_work_lr\lr_check_log.txt`. The 6 h and 10 h runs then use the best rate; the validation lectures are train-only in every split (`run_p3_experiment.py` locks them automatically). |
 | 23 Sep | Claude on the 5090 | "FIRST THING ON THE 5090" below; measure real run times; notes pipeline (stage B): VLM on clean boards with old-vs-new board score, box names, notes with the 7B and scoring; start the 32B download. |
 | 23 Sep | You + Claude | Start the report from scratch: Claude gives structure, tables, figures from RESULTS.md; you write. (Optional: the board check page, 30-40 min.) |
 | 24 Sep | Claude on the 5090 | Notes with the 32B; NAND section side by side; fix what the first real runs show. When the ground truth arrives: `check_new_data.py`, `set_speaker_ids.py --apply`, `validate_ground_truth.py --fix`. |
@@ -287,9 +288,14 @@ split that is about 4.8 h to train and 1.2 h to test.
    python scripts/speaker_groups.py              (only if videos were added after 2026-09-22)
    python scripts/set_speaker_ids.py --apply
    python scripts/check_new_data.py
-   python scripts/run_p3_experiment.py --split-by video --test-fraction 0.2 --split-seed 0 --model openai/whisper-large-v3-turbo --audio-dir D:\T2520875\thesisP2\ft_work_3spk\audio_cache --curve-hours 1 2 3 4 --tag final
-   python scripts/run_p3_experiment.py --split-by video --split-seed 0 --model openai/whisper-large-v3-turbo --skip validate prepare curve --extra-train-args "--seed 1" --tag final_s1
+   python scripts/run_p3_experiment.py --split-by video --test-fraction 0.2 --split-seed 0 --model openai/whisper-large-v3-turbo --audio-dir D:\T2520875\thesisP2\ft_work_3spk\audio_cache --extra-train-args "--lr <BEST>" --tag final
+   python scripts/run_p3_experiment.py --split-by video --split-seed 0 --model openai/whisper-large-v3-turbo --skip validate prepare curve --extra-train-args "--lr <BEST> --seed 1" --tag final_s1
    ```
+   `<BEST>` = the learning rate with the lowest validation CER in
+   `artifacts\ft_work_lr\lr_check_summary.md` (the learning-rate check, 22 Sep night). The split
+   locks the three validation lectures out of the test set by itself. For the 27 Sep 10 h run add
+   `--curve-hours 2 4 6 8` to the first command. On the 3060 instead of the 5090: add
+   `--grad-checkpointing` inside `--extra-train-args` and set `HF_HUB_OFFLINE=1`.
    `check_new_data.py` stops on anything that would corrupt training silently: a transcript with no
    matching video, a name used by two videos, a missing Speaker ID, unreadable timestamps, a
    transcript longer than its video, a Speaker ID the voice check disagrees with. The runner runs
