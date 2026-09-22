@@ -203,6 +203,26 @@ def read_speaker(gt_path: str, stem: str, legacy_map: dict = LEGACY_SPEAKERS) ->
     return "UNKNOWN"
 
 
+def raw_video(name: str) -> str:
+    """The one video in data/raw called `name`, or None.
+
+    Two different files with the same name stop the run: after the 2026-09-22
+    renumbering a machine with the old data/raw layout (Speaker2/BanglaASR6.mp4,
+    an old-numbered lecture) and the new one (live_classroom/BanglaASR6.mp4, a
+    different lecture) would otherwise give whichever os.walk met first.
+    """
+    found = []
+    for root, _dirs, files in os.walk(os.path.join(REPO, "data", "raw")):
+        for f in files:
+            base, ext = os.path.splitext(f)
+            if base == name and ext in VIDEO_EXTS:
+                found.append(os.path.join(root, f))
+    if len({os.path.getsize(p) for p in found}) > 1:
+        raise SystemExit(f"two different videos are called {name}: {found}. Keep only the "
+                         f"new-numbering copy (data/raw/live_classroom) and move the other away.")
+    return found[0] if found else None
+
+
 def find_audio(stem: str, audio_dir: str = None, scheme: str = "old") -> str:
     """Locate 16 kHz audio for a lecture, extracting it from video if needed.
 
@@ -239,15 +259,7 @@ def find_audio(stem: str, audio_dir: str = None, scheme: str = "old") -> str:
     if os.path.exists(cached):
         return cached
 
-    source = None
-    for root, _dirs, files in os.walk(os.path.join(REPO, "data", "raw")):
-        for name in files:
-            base, ext = os.path.splitext(name)
-            if base == raw_stem and ext in VIDEO_EXTS:
-                source = os.path.join(root, name)
-                break
-        if source:
-            break
+    source = raw_video(raw_stem)
     if not source:
         return None
 
@@ -442,7 +454,10 @@ def main():
     print(f"found {len(lectures)} ground-truth files ({scheme} lecture numbering); "
           + (f"test speakers: {sorted(test_speakers)}" if args.split_by == "speaker"
              else f"random video split, {args.test_fraction:.0%} of each lecturer, seed {args.split_seed}"))
-    labels = {stem: read_speaker(p, stem, SPEAKER_MAPS[args.speaker_map]) for stem, p in lectures}
+    # The fallback table is in OLD numbers (it would call new BanglaASR10 lecturer C), so it
+    # only applies to the frozen ground truth; new files must carry a Speaker ID header.
+    legacy = SPEAKER_MAPS[args.speaker_map] if scheme == "old" else {}
+    labels = {stem: read_speaker(p, stem, legacy) for stem, p in lectures}
     check_against_raw_folders(labels, scheme)
 
     test_lectures = set()
@@ -460,7 +475,7 @@ def main():
     manifest, stats, speaker_minutes = [], {}, {}
 
     for stem, gt_path in lectures:
-        speaker = read_speaker(gt_path, stem, SPEAKER_MAPS[args.speaker_map])
+        speaker = read_speaker(gt_path, stem, legacy)
         if speaker == "UNKNOWN":
             # Never guess: an unlabelled lecture silently joining training is how
             # a test speaker leaks in. Add "# Speaker ID:" to the file instead.

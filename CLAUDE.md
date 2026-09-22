@@ -320,7 +320,10 @@ Don't suggest reviving failed approaches unless the user raises them.
 | `scripts/notes_page.py` | Markdown to one self-contained HTML page (images embedded, coloured box tags, click-to-reveal answers) |
 | `src/summarizer/annotated_prompts.py` | The annotated-notes prompts (english, banglish); prompts.py untouched |
 | `scripts/check_merged_timestamps.py` | Headline without the 10 test clips built from unreadable timestamps (RESULTS.md 1.5 data-quality check): 72.2% -> 49.6% CER |
-| `finetune/lecture_numbering.py` | Old vs new lecture numbers (2026-09-22 renumbering) |
+| `finetune/lecture_numbering.py` | Old vs new lecture numbers (2026-09-22 renumbering); new 6-9 and 18+ have no old number |
+| `scripts/check_new_data.py` | Preflight before training: transcript-video names, duplicate video names, Speaker IDs, unreadable timestamps, transcript longer than video, voice-check agreement; hours per lecturer. Hard gate in `run_p3_experiment.py` |
+| `scripts/speaker_groups.py` | Voiceprint per video straight from the audio (any video, with or without ground truth), matched to references A = 1-5, B = 10-13, C = 14-17 |
+| `scripts/set_speaker_ids.py` | Adds missing `# Speaker ID:` lines from the voice check; leaves unsure ones for a person |
 | `scripts/make_loso_transcripts.py` | Leak-free timestamped transcripts (`transcript_loso.txt`) from the leave-one-speaker-out adapters; run on the 3060 2026-09-22 for all 13 lectures |
 | `transcribe_boards.py --source clean` | VLM full reading of the new clean boards, `board_text_clean.json/.md`, lectures 1-13 |
 
@@ -386,9 +389,22 @@ analysis behind it** and prints a warning; label a sample of errors or drop it.
   from the frozen copy matches the committed manifests, 356 train / 75 test clips). `find_audio`
   now uses the old-to-new table (`finetune/lecture_numbering.py`, done 2026-09-22, checked lecture
   by lecture), so a new BanglaASR6 no longer picks up old lecture 6's audio. The
-  LEGACY_SPEAKERS map in `prepare_data.py` is old numbering; the headers override it. Confirm new
-  6-9 = lecturer A with `verify_speakers.py` when their audio is extracted. New 6-8 are partial;
-  new 9 ("[Needs recheck]" in its file name) has no timestamps yet, the user is adding them.
+  LEGACY_SPEAKERS map in `prepare_data.py` is old numbering and is now used only with the frozen
+  ground truth; new files need a header. New 6-8 are complete (short videos: 6.7, 7.8, 5.0 min);
+  an earlier note calling them partial compared them with the old lecture 6-8 lengths and was
+  wrong. New 9 ("[Needs recheck]" in its file name) has no timestamps yet, the user is adding them.
+- **Voice check, all 43 videos in `data/raw/live_classroom` (2026-09-22,
+  `output/speaker_check/speaker_groups.md`, `scripts/speaker_groups.py`):** 1-9 = A (new 6-9
+  included), 10-13 = B, 14-43 = C, agreeing with the user. Same lecturer 0.979-0.998, other
+  lecturers 0.59-0.90. Videos 18-43 have no ground truth yet. The 3060 loads the WavLM model from
+  SFconvertbot's safetensors copy (refs/pr/8) because torch 2.5.1 may not load its .bin.
+- **The user's plan (2026-09-22):** ~10 h of video on the 5090, ground truth for ~6 h; only
+  lectures with ground truth train and test (20% random video split, ~4.8 h / 1.2 h). Runbook with
+  exact commands in NEXT_STEPS.md "Running it on the 5090". The user copies the videos (new names)
+  and removes the old `data/raw/SpeakerN` folders there; `prepare_data.raw_video` stops if a name
+  is used by two different videos. `run_p3_experiment.py` now runs `check_new_data.py` first as a
+  hard gate; its style-guide check was never blocking (a bug: `run(..., allow_fail=True)` always
+  returns True) and is now labelled report-only.
 - **Board ground truth: verified** by the user on 2026-09-22, all 45 boards. Rescore everything with
   `scripts/rescore_verified_keys.py`. Checking sheet: `output/annotation_demo/verify_all_boards.html`.
 - **ft_work layout on the 5090:** `ft_work\` is the corrected split; `ft_work_v1_video6_in_train\` is

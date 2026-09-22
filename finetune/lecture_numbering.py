@@ -19,8 +19,13 @@ import os
 
 NEW_FROM_OLD = {6: 10, 7: 11, 8: 12, 9: 13, 10: 14, 11: 15, 12: 16, 13: 17}
 OLD_FROM_NEW = {new: old for old, new in NEW_FROM_OLD.items()}
-NEW_ONLY = {6, 7, 8, 9}                 # new numbers with no old counterpart
+NEW_ONLY = {6, 7, 8, 9}                 # new numbers with no old counterpart...
+FIRST_NEW_ONLY = 18                     # ...and every number from 18 up (old numbers ended at 13)
 FROZEN_DIR_NAME = "ground_truth_v1_2026-09-21"
+
+
+def is_new_only(n):
+    return n in NEW_ONLY or n >= FIRST_NEW_ONLY
 
 
 def scheme_of(gt_dir):
@@ -32,7 +37,7 @@ def old_number(n, scheme):
     """The old number of lecture n, or None if it only exists in the new numbering."""
     if scheme == "old":
         return n
-    if n in NEW_ONLY:
+    if is_new_only(n):
         return None
     return OLD_FROM_NEW.get(n, n)
 

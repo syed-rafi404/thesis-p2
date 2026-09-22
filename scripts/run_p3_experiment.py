@@ -141,13 +141,21 @@ def main():
     print(f"stages     : {', '.join(todo)}")
 
     if "validate" in todo:
-        announce("validate", "transcripts against the style guide")
-        ok = run([str(PYTHON), str(REPO / "scripts" / "validate_ground_truth.py"), "--quiet"],
-                 allow_fail=True)
-        if not ok and not args.allow_validation_errors:
-            print("\nTranscripts have errors. Fix them, or rerun with --allow-validation-errors.")
-            print("Segments over 30 seconds are the usual cause and they do hurt training.")
+        # Names, videos, Speaker IDs, readable timestamps, transcript length vs video, voice
+        # check. These silently corrupt training data, so this gate is never skipped by
+        # --allow-validation-errors.
+        announce("validate", "ground truth against the videos (check_new_data.py)")
+        if not run([str(PYTHON), str(REPO / "scripts" / "check_new_data.py"),
+                    "--test-fraction", str(args.test_fraction)]):
+            print("\nThe ground truth does not match the videos. Fix what check_new_data.py lists.")
             return 1
+        # Report only. run(..., allow_fail=True) always returns True, so this check never
+        # stopped a run, including every published one (their files have segments over 30 s,
+        # which prepare_data.py splits at sentence ends). Kept visible, not blocking;
+        # --allow-validation-errors is accepted for old command lines and changes nothing.
+        announce("validate", "transcripts against the style guide (report only)")
+        run([str(PYTHON), str(REPO / "scripts" / "validate_ground_truth.py"), "--quiet"],
+            allow_fail=True)
 
     if "prepare" in todo:
         if args.split_by == "video":

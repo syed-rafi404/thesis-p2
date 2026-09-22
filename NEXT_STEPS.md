@@ -142,11 +142,35 @@ stays as the second, harder number.
   The same defect touched 10 test clips of the published headline; without them it is 72.2% ->
   49.6% CER, so the published number stands (RESULTS.md 1.5).
 
-When the data is in, on the 5090 (after `git pull`):
-```
-python scripts/validate_ground_truth.py --fix
-python scripts/run_p3_experiment.py --split-by video --test-fraction 0.2 --split-seed 0 --model openai/whisper-large-v3-turbo --audio-dir <parent>\ft_work_3spk\audio_cache --curve-hours 2 4 6 8 --tag final
-```
+**The plan as it stands (2026-09-22): ~10 h of video on the 5090, ground truth for ~6 h.** Only
+lectures with ground truth are used to train and test; videos without it are not. With a 20% video
+split that is about 4.8 h to train and 1.2 h to test.
+
+**Running it on the 5090, in order:**
+
+1. **You:** copy `F:\thesisP2\thesisP2\data\raw\live_classroom\` (all videos, new names) to the
+   5090's `D:\T2520875\thesisP2\thesisP2\data\raw\live_classroom\`, and move the old
+   `data\raw\Speaker1`, `Speaker2`, `Speaker3` folders on the 5090 out of `data\raw` (they use the
+   old numbers; if a video name exists twice with different content the run stops).
+2. **You:** every new ground-truth file named exactly `BanglaASR<n>_ground_truth.txt`, the same
+   `<n>` as its video, in `data\ground_truth`. No Speaker ID line needed. Lecture 9: add its
+   timestamps and remove "[Needs recheck]" from the name.
+3. **Claude, on the 5090:**
+   ```
+   git pull
+   python scripts/validate_ground_truth.py --fix
+   python scripts/speaker_groups.py              (only if videos were added after 2026-09-22)
+   python scripts/set_speaker_ids.py --apply
+   python scripts/check_new_data.py
+   python scripts/run_p3_experiment.py --split-by video --test-fraction 0.2 --split-seed 0 --model openai/whisper-large-v3-turbo --audio-dir D:\T2520875\thesisP2\ft_work_3spk\audio_cache --curve-hours 1 2 3 4 --tag final
+   python scripts/run_p3_experiment.py --split-by video --split-seed 0 --model openai/whisper-large-v3-turbo --skip validate prepare curve --extra-train-args "--seed 1" --tag final_s1
+   ```
+   `check_new_data.py` stops on anything that would corrupt training silently: a transcript with no
+   matching video, a name used by two videos, a missing Speaker ID, unreadable timestamps, a
+   transcript longer than its video, a Speaker ID the voice check disagrees with. The runner runs
+   it first and will not train until it passes. The second training seed matches how the headline
+   was run (two seeds). Rough time for ~6 h of ground truth: about 1 h per seed, 2-3 h for the
+   curve.
 
 5090 time, estimated from a
 measured 3060 run (file timestamps in `F:\thesisP2\ft_work_v1_video6_in_train\`, 2026-09-20:
@@ -199,9 +223,14 @@ people, and writing the report.
    numbers; the exact ground truth behind those results is frozen in
    `F:\thesisP2\thesisP2\data\ground_truth_v1_2026-09-21\`. Before any new training, Claude makes
    the scripts use this table: they find audio by number, and without it a new BanglaASR6 would be
-   paired with the old lecture 6 audio. The new files need timestamp fixes (the checker can repair
-   them) and are partial (new 6: 6.7 min, 7: 7.8 min, 8: 5.0 min). New 9 has no timestamps yet;
-   you are adding them.
+   paired with the old lecture 6 audio (fixed: the scripts now use this table). New 6-8 are
+   complete: their videos are short (6.7, 7.8, 5.0 min), not partly transcribed as Claude first
+   said. New 9 has no timestamps yet; you are adding them.
+
+   **Voice check of all 43 videos (2026-09-22, `output\speaker_check\speaker_groups.md`): 1-9 are
+   lecturer A, 10-13 B, 14-43 C**, exactly as you said. Same lecturer scores 0.98-0.998, different
+   lecturers 0.59-0.90. So ground truth for 18-43 gets `# Speaker ID: C`; `set_speaker_ids.py` adds
+   it automatically.
    **Speaker ID lines are NOT needed in the files** (decided 2026-09-22): the split is by random
    video. Claude still needs to know which lecturer each video is (to keep every lecturer on both
    sides, and for the thesis sentence "test lecturers were also heard in training"); it works that

@@ -1,0 +1,456 @@
+{
+  "model": "microsoft/wavlm-base-plus-sv",
+  "references": {
+    "A": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "B": [
+      10,
+      11,
+      12,
+      13
+    ],
+    "C": [
+      14,
+      15,
+      16,
+      17
+    ]
+  },
+  "lectures": {
+    "BanglaASR1": {
+      "best": "A",
+      "similarity": 0.993,
+      "margin": 0.117,
+      "sims": {
+        "A": 0.993,
+        "B": 0.785,
+        "C": 0.876
+      }
+    },
+    "BanglaASR2": {
+      "best": "A",
+      "similarity": 0.996,
+      "margin": 0.136,
+      "sims": {
+        "A": 0.996,
+        "B": 0.789,
+        "C": 0.86
+      }
+    },
+    "BanglaASR3": {
+      "best": "A",
+      "similarity": 0.993,
+      "margin": 0.133,
+      "sims": {
+        "A": 0.993,
+        "B": 0.745,
+        "C": 0.859
+      }
+    },
+    "BanglaASR4": {
+      "best": "A",
+      "similarity": 0.997,
+      "margin": 0.137,
+      "sims": {
+        "A": 0.997,
+        "B": 0.761,
+        "C": 0.859
+      }
+    },
+    "BanglaASR5": {
+      "best": "A",
+      "similarity": 0.995,
+      "margin": 0.149,
+      "sims": {
+        "A": 0.995,
+        "B": 0.775,
+        "C": 0.846
+      }
+    },
+    "BanglaASR6": {
+      "best": "A",
+      "similarity": 0.985,
+      "margin": 0.178,
+      "sims": {
+        "A": 0.985,
+        "B": 0.735,
+        "C": 0.807
+      }
+    },
+    "BanglaASR7": {
+      "best": "A",
+      "similarity": 0.983,
+      "margin": 0.164,
+      "sims": {
+        "A": 0.983,
+        "B": 0.738,
+        "C": 0.819
+      }
+    },
+    "BanglaASR8": {
+      "best": "A",
+      "similarity": 0.984,
+      "margin": 0.171,
+      "sims": {
+        "A": 0.984,
+        "B": 0.773,
+        "C": 0.813
+      }
+    },
+    "BanglaASR9": {
+      "best": "A",
+      "similarity": 0.994,
+      "margin": 0.15,
+      "sims": {
+        "A": 0.994,
+        "B": 0.755,
+        "C": 0.844
+      }
+    },
+    "BanglaASR10": {
+      "best": "B",
+      "similarity": 0.998,
+      "margin": 0.224,
+      "sims": {
+        "A": 0.774,
+        "B": 0.998,
+        "C": 0.641
+      }
+    },
+    "BanglaASR11": {
+      "best": "B",
+      "similarity": 0.997,
+      "margin": 0.204,
+      "sims": {
+        "A": 0.793,
+        "B": 0.997,
+        "C": 0.661
+      }
+    },
+    "BanglaASR12": {
+      "best": "B",
+      "similarity": 0.997,
+      "margin": 0.238,
+      "sims": {
+        "A": 0.759,
+        "B": 0.997,
+        "C": 0.608
+      }
+    },
+    "BanglaASR13": {
+      "best": "B",
+      "similarity": 0.998,
+      "margin": 0.234,
+      "sims": {
+        "A": 0.765,
+        "B": 0.998,
+        "C": 0.633
+      }
+    },
+    "BanglaASR14": {
+      "best": "C",
+      "similarity": 0.996,
+      "margin": 0.135,
+      "sims": {
+        "A": 0.861,
+        "B": 0.633,
+        "C": 0.996
+      }
+    },
+    "BanglaASR15": {
+      "best": "C",
+      "similarity": 0.998,
+      "margin": 0.146,
+      "sims": {
+        "A": 0.852,
+        "B": 0.626,
+        "C": 0.998
+      }
+    },
+    "BanglaASR16": {
+      "best": "C",
+      "similarity": 0.998,
+      "margin": 0.138,
+      "sims": {
+        "A": 0.86,
+        "B": 0.638,
+        "C": 0.998
+      }
+    },
+    "BanglaASR17": {
+      "best": "C",
+      "similarity": 0.997,
+      "margin": 0.123,
+      "sims": {
+        "A": 0.874,
+        "B": 0.646,
+        "C": 0.997
+      }
+    },
+    "BanglaASR18": {
+      "best": "C",
+      "similarity": 0.996,
+      "margin": 0.131,
+      "sims": {
+        "A": 0.865,
+        "B": 0.636,
+        "C": 0.996
+      }
+    },
+    "BanglaASR19": {
+      "best": "C",
+      "similarity": 0.994,
+      "margin": 0.133,
+      "sims": {
+        "A": 0.86,
+        "B": 0.618,
+        "C": 0.994
+      }
+    },
+    "BanglaASR20": {
+      "best": "C",
+      "similarity": 0.995,
+      "margin": 0.147,
+      "sims": {
+        "A": 0.848,
+        "B": 0.615,
+        "C": 0.995
+      }
+    },
+    "BanglaASR21": {
+      "best": "C",
+      "similarity": 0.991,
+      "margin": 0.139,
+      "sims": {
+        "A": 0.852,
+        "B": 0.6,
+        "C": 0.991
+      }
+    },
+    "BanglaASR22": {
+      "best": "C",
+      "similarity": 0.983,
+      "margin": 0.131,
+      "sims": {
+        "A": 0.853,
+        "B": 0.618,
+        "C": 0.983
+      }
+    },
+    "BanglaASR23": {
+      "best": "C",
+      "similarity": 0.987,
+      "margin": 0.106,
+      "sims": {
+        "A": 0.881,
+        "B": 0.633,
+        "C": 0.987
+      }
+    },
+    "BanglaASR24": {
+      "best": "C",
+      "similarity": 0.982,
+      "margin": 0.104,
+      "sims": {
+        "A": 0.878,
+        "B": 0.64,
+        "C": 0.982
+      }
+    },
+    "BanglaASR25": {
+      "best": "C",
+      "similarity": 0.983,
+      "margin": 0.115,
+      "sims": {
+        "A": 0.869,
+        "B": 0.639,
+        "C": 0.983
+      }
+    },
+    "BanglaASR26": {
+      "best": "C",
+      "similarity": 0.988,
+      "margin": 0.114,
+      "sims": {
+        "A": 0.874,
+        "B": 0.626,
+        "C": 0.988
+      }
+    },
+    "BanglaASR27": {
+      "best": "C",
+      "similarity": 0.988,
+      "margin": 0.136,
+      "sims": {
+        "A": 0.852,
+        "B": 0.59,
+        "C": 0.988
+      }
+    },
+    "BanglaASR28": {
+      "best": "C",
+      "similarity": 0.981,
+      "margin": 0.12,
+      "sims": {
+        "A": 0.861,
+        "B": 0.596,
+        "C": 0.981
+      }
+    },
+    "BanglaASR29": {
+      "best": "C",
+      "similarity": 0.984,
+      "margin": 0.12,
+      "sims": {
+        "A": 0.863,
+        "B": 0.601,
+        "C": 0.984
+      }
+    },
+    "BanglaASR30": {
+      "best": "C",
+      "similarity": 0.994,
+      "margin": 0.131,
+      "sims": {
+        "A": 0.863,
+        "B": 0.655,
+        "C": 0.994
+      }
+    },
+    "BanglaASR31": {
+      "best": "C",
+      "similarity": 0.989,
+      "margin": 0.118,
+      "sims": {
+        "A": 0.871,
+        "B": 0.657,
+        "C": 0.989
+      }
+    },
+    "BanglaASR32": {
+      "best": "C",
+      "similarity": 0.994,
+      "margin": 0.127,
+      "sims": {
+        "A": 0.867,
+        "B": 0.645,
+        "C": 0.994
+      }
+    },
+    "BanglaASR33": {
+      "best": "C",
+      "similarity": 0.991,
+      "margin": 0.113,
+      "sims": {
+        "A": 0.877,
+        "B": 0.651,
+        "C": 0.991
+      }
+    },
+    "BanglaASR34": {
+      "best": "C",
+      "similarity": 0.99,
+      "margin": 0.115,
+      "sims": {
+        "A": 0.875,
+        "B": 0.657,
+        "C": 0.99
+      }
+    },
+    "BanglaASR35": {
+      "best": "C",
+      "similarity": 0.985,
+      "margin": 0.101,
+      "sims": {
+        "A": 0.884,
+        "B": 0.681,
+        "C": 0.985
+      }
+    },
+    "BanglaASR36": {
+      "best": "C",
+      "similarity": 0.98,
+      "margin": 0.087,
+      "sims": {
+        "A": 0.893,
+        "B": 0.682,
+        "C": 0.98
+      }
+    },
+    "BanglaASR37": {
+      "best": "C",
+      "similarity": 0.989,
+      "margin": 0.102,
+      "sims": {
+        "A": 0.888,
+        "B": 0.655,
+        "C": 0.989
+      }
+    },
+    "BanglaASR38": {
+      "best": "C",
+      "similarity": 0.992,
+      "margin": 0.109,
+      "sims": {
+        "A": 0.883,
+        "B": 0.659,
+        "C": 0.992
+      }
+    },
+    "BanglaASR39": {
+      "best": "C",
+      "similarity": 0.988,
+      "margin": 0.09,
+      "sims": {
+        "A": 0.899,
+        "B": 0.664,
+        "C": 0.988
+      }
+    },
+    "BanglaASR40": {
+      "best": "C",
+      "similarity": 0.988,
+      "margin": 0.1,
+      "sims": {
+        "A": 0.888,
+        "B": 0.663,
+        "C": 0.988
+      }
+    },
+    "BanglaASR41": {
+      "best": "C",
+      "similarity": 0.979,
+      "margin": 0.091,
+      "sims": {
+        "A": 0.888,
+        "B": 0.678,
+        "C": 0.979
+      }
+    },
+    "BanglaASR42": {
+      "best": "C",
+      "similarity": 0.98,
+      "margin": 0.096,
+      "sims": {
+        "A": 0.884,
+        "B": 0.686,
+        "C": 0.98
+      }
+    },
+    "BanglaASR43": {
+      "best": "C",
+      "similarity": 0.983,
+      "margin": 0.102,
+      "sims": {
+        "A": 0.88,
+        "B": 0.654,
+        "C": 0.983
+      }
+    }
+  }
+}
