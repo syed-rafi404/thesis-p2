@@ -4,6 +4,27 @@ If you are lost, start here. Updated 2026-09-22 (on the 3060).
 
 ---
 
+## DATES AND 5090 SESSIONS (set 2026-09-22)
+
+Draft submission **26 Sep**. Slides **29 Sep**.
+
+| When | 5090 job | About how long | Longest unbroken |
+|---|---|---|---|
+| 23 or 24 Sep | Notes pipeline (stage B below): VLM on clean boards, box names, notes 7B and 32B, scoring | 4-6 h incl. the ~65 GB 32B download (resumes) | ~1 h |
+| **25 Sep** | **6 h run**: ~4.8 h train / 1.2 h test, 2 seeds, no scaling curve (results go in the draft) | ~2-2.5 h | ~1 h |
+| **27 Sep** | **10 h run**: ~8 h train / 2 h test, 2 seeds, scaling curve 2/4/6/8 h (results go in the slides) | ~6-7 h | ~1.5 h |
+| 28 Sep | Spare, only if a run failed | - | - |
+
+After 27 Sep the 5090 is not needed: results, figures and slides need no GPU. Times are estimates
+until the first sitting measures them (stage B step 1). For the 25th, drop `--curve-hours ...` from
+the run command in "Running it on the 5090".
+
+On the 3060: nothing required. Optional: board pictures for new lectures 6-9 and 18-43 (only if
+you want notes for them; ~1 h here). If ground truth arrives on the 3060 first, Claude checks it
+with `check_new_data.py`, fixes it and pushes it.
+
+---
+
 ## BEFORE THE DEFENSE: what matters most (2026-09-22)
 
 1. **The report will be rewritten from scratch** (you, with Claude, when the time comes). The old
