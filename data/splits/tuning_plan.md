@@ -40,6 +40,18 @@ q_proj + v_proj, 8 epochs.
 - The chosen configuration is written to `artifacts/ft_work_lr/tuning_result.json` and used
   unchanged for the 6 h and 10 h runs (`run_p3_experiment.py --tuned`).
 
+## Repeat on the full training data (added 2026-09-22 ~20:50, before any stage-1 result)
+
+When the ~6 h of ground truth is complete, the whole procedure above is repeated, unchanged, on
+it: same stages, same values, same score, same noise rule, same three validation lectures.
+- First the final test lectures are fixed (the `--split-by video --split-seed 0` split with the
+  validation lectures locked out). They are **excluded from tuning entirely**.
+- Tuning trains on everything else except the validation lectures and scores on the validation
+  lectures, as above.
+- **That result supersedes the 2.1 h one**, and the 6 h and 10 h runs use it. The 2.1 h run of
+  2026-09-22 night is a rehearsal of the procedure and the fallback if the full data comes too
+  late to tune on. The 10 h run reuses the 6 h settings without re-tuning.
+
 ## Limits, stated in advance
 
 Tuning uses the ~2.1 h of training lectures available on 2026-09-22, not the full 6 h or 10 h; the
