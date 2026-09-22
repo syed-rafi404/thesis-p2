@@ -112,6 +112,16 @@ def main():
     ap.add_argument("--tag", default="run")
     ap.add_argument("--only-speakers", default=None,
                     help="Passed to prepare_data.py: use only these speakers, e.g. A,B")
+    ap.add_argument("--split-by", choices=("speaker", "video"), default="speaker",
+                    help="Passed to prepare_data.py. video = random whole lectures in the test "
+                         "set, the user's plan for the 10 h data (--test-speakers is then ignored)")
+    ap.add_argument("--test-fraction", type=float, default=0.2)
+    ap.add_argument("--split-seed", type=int, default=0)
+    ap.add_argument("--test-lectures", default=None,
+                    help="Passed to prepare_data.py with --split-by video: fixed test lectures")
+    ap.add_argument("--audio-dir", default=None,
+                    help="Passed to prepare_data.py: folder of old-numbered 16 kHz wavs, e.g. "
+                         "<parent>/ft_work_3spk/audio_cache for lecturer C")
     ap.add_argument("--decode", nargs="+", default=["greedy"], choices=("greedy", "fallback"),
                     help="Decoding(s) to evaluate with. fallback adds Whisper's loop "
                          "safeguard to both models; greedy alone reproduces earlier numbers")
@@ -140,11 +150,19 @@ def main():
             return 1
 
     if "prepare" in todo:
-        announce("prepare", f"clips and split, holding out {args.test_speakers}")
-        if not run([str(PYTHON), str(REPO / "finetune" / "prepare_data.py"),
-                    "--test-speakers", args.test_speakers,
-                    "--out", str(FT_DIR)]
-                   + (["--only-speakers", args.only_speakers] if args.only_speakers else [])):
+        if args.split_by == "video":
+            announce("prepare", f"clips and a random video split, {args.test_fraction:.0%} test, "
+                                f"seed {args.split_seed}")
+        else:
+            announce("prepare", f"clips and split, holding out {args.test_speakers}")
+        cmd = [str(PYTHON), str(REPO / "finetune" / "prepare_data.py"),
+               "--test-speakers", args.test_speakers, "--out", str(FT_DIR),
+               "--split-by", args.split_by, "--test-fraction", str(args.test_fraction),
+               "--split-seed", str(args.split_seed)]
+        cmd += ["--only-speakers", args.only_speakers] if args.only_speakers else []
+        cmd += ["--test-lectures", args.test_lectures] if args.test_lectures else []
+        cmd += ["--audio-dir", args.audio_dir] if args.audio_dir else []
+        if not run(cmd):
             return 1
 
     if "train" in todo:

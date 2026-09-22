@@ -45,6 +45,8 @@ from pathlib import Path
 
 import soundfile as sf
 
+from lecture_numbering import new_number, old_number, scheme_of
+
 # ----------------------------------------------------------------------------- config
 # Paths resolve in this order: environment variable, then the layout on the
 # machine this was written on. Set THESIS_REPO and THESIS_FT_DIR when moving to
@@ -65,7 +67,8 @@ LEGACY_SPEAKERS_V1 = {1: "A", 2: "A", 3: "A", 4: "A", 5: "A", 6: "A",
                       7: "B", 8: "B", 9: "B"}
 SPEAKER_MAPS = {"v2": LEGACY_SPEAKERS, "v1": LEGACY_SPEAKERS_V1}
 DEFAULT_TEST_SPEAKERS = ["B"]
-AUDIO_CACHE = os.path.join(OUT_DIR, "audio_cache")
+AUDIO_CACHE = os.path.join(OUT_DIR, "audio_cache")          # old lecture numbers
+AUDIO_CACHE_NEW = os.path.join(OUT_DIR, "audio_cache_new")  # lectures that only have new numbers
 VIDEO_EXTS = (".mp4", ".MOV", ".mov", ".mkv", ".avi", ".webm", ".MP4")
 
 MAX_CLIP_S = 28.0       # keep clips comfortably under Whisper's 30s window
@@ -74,6 +77,7 @@ SENT_CUT_FRACTION = 0.6 # once a group reaches 60% of MAX_CLIP_S, allow a senten
 COLLAPSE_VOWELS = False # conservative for the PoC; flip on later to test amar/aamar merging
 
 TS_RE = re.compile(r"\[(\d{1,2}):(\d{2})\s*-\s*(\d{1,2}):(\d{2})\]")
+LOOKS_LIKE_TS = re.compile(r"\[\s*\d{1,2}\s*:\s*\d{2}\s*\S{0,3}\s*\d{1,2}\s*:\s*\d{2}\s*\]")
 _PUNCT_MAP = {
     "–": "-", "—": "-", "‒": "-", "−": "-",   # dashes
     "‘": "'", "’": "'", "“": '"', "”": '"',   # smart quotes
@@ -122,6 +126,16 @@ def parse_gt(path: str):
     # Drop comment/instruction lines FIRST so the header's example timestamps
     # (e.g. "# [0:00-0:30] Assalamualaikum...") never leak in as fake segments.
     raw = "\n".join(ln for ln in raw.splitlines() if not ln.lstrip().startswith("#"))
+    # A timestamp TS_RE cannot read ("[  1:34-1:53]", "[0: 17-0:45]") is not a segment
+    # boundary, so its text silently joins the previous segment and that clip's text no
+    # longer matches its audio. Parsing is left as it was (the published manifests depend on
+    # it); the warning makes the problem visible. validate_ground_truth.py --fix repairs it.
+    unread = [ln.strip() for ln in raw.splitlines()
+              if LOOKS_LIKE_TS.search(ln) and not TS_RE.search(ln)]
+    if unread:
+        print(f"  WARNING {os.path.basename(path)}: {len(unread)} timestamp(s) not recognised, "
+              f"their text is merged into the previous segment (first: {unread[0][:28]}). "
+              f"Run scripts/validate_ground_truth.py --fix")
     matches = list(TS_RE.finditer(raw))
     segs = []
     for i, m in enumerate(matches):
@@ -189,25 +203,39 @@ def read_speaker(gt_path: str, stem: str, legacy_map: dict = LEGACY_SPEAKERS) ->
     return "UNKNOWN"
 
 
-def find_audio(stem: str, audio_dir: str = None) -> str:
+def find_audio(stem: str, audio_dir: str = None, scheme: str = "old") -> str:
     """Locate 16 kHz audio for a lecture, extracting it from video if needed.
 
     Order: an explicit --audio-dir, then audio already extracted by the
     pipeline, then the cache, then ffmpeg on the raw video.
+
+    scheme says which numbering `stem` uses (lecture_numbering.py): "old" for the
+    run folders and the frozen ground truth, "new" for data/ground_truth since
+    2026-09-22. --audio-dir, the pipeline's run folders and AUDIO_CACHE hold OLD
+    numbers; data/raw holds NEW names. Each source is looked up by its own
+    number, so a lecture never picks up another lecture's recording; a lecture
+    with no old number skips the old-numbered sources entirely.
     """
-    if audio_dir:
+    m = re.search(r"BanglaASR(\d+)$", stem)
+    n = int(m.group(1)) if m else None
+    old = old_number(n, scheme) if n is not None else None
+    old_stem = f"BanglaASR{old}" if old is not None else None
+    raw_stem = f"BanglaASR{new_number(n, scheme)}" if n is not None else stem
+
+    lookup = old_stem if n is not None else stem
+    if audio_dir and lookup:
         for ext in (".wav", ".WAV"):
-            candidate = os.path.join(audio_dir, stem + ext)
+            candidate = os.path.join(audio_dir, lookup + ext)
             if os.path.exists(candidate):
                 return candidate
 
-    m = re.search(r"BanglaASR(\d+)$", stem)
-    if m:
-        existing = find_wav(int(m.group(1)))
+    if old is not None:
+        existing = find_wav(old)
         if existing:
             return existing
 
-    cached = os.path.join(AUDIO_CACHE, stem + ".wav")
+    cached = (os.path.join(AUDIO_CACHE, old_stem + ".wav") if old_stem
+              else os.path.join(AUDIO_CACHE_NEW, raw_stem + ".wav"))
     if os.path.exists(cached):
         return cached
 
@@ -215,7 +243,7 @@ def find_audio(stem: str, audio_dir: str = None) -> str:
     for root, _dirs, files in os.walk(os.path.join(REPO, "data", "raw")):
         for name in files:
             base, ext = os.path.splitext(name)
-            if base == stem and ext in VIDEO_EXTS:
+            if base == raw_stem and ext in VIDEO_EXTS:
                 source = os.path.join(root, name)
                 break
         if source:
@@ -223,7 +251,7 @@ def find_audio(stem: str, audio_dir: str = None) -> str:
     if not source:
         return None
 
-    os.makedirs(AUDIO_CACHE, exist_ok=True)
+    os.makedirs(os.path.dirname(cached), exist_ok=True)
     print(f"    extracting audio from {os.path.basename(source)} ...")
     result = subprocess.run(
         ["ffmpeg", "-y", "-loglevel", "error", "-i", source,
@@ -236,11 +264,13 @@ def find_audio(stem: str, audio_dir: str = None) -> str:
     return cached
 
 
-def check_against_raw_folders(labels: dict):
+def check_against_raw_folders(labels: dict, scheme: str = "new"):
     """Warn when speaker labels disagree with how data/raw is sorted into folders.
 
     The user files videos by lecturer (data/raw/Speaker1, Speaker2, ...). A split
     that trained on video 6 went unnoticed because nothing compared the two.
+    Only folders named Speaker* count: since 2026-09-22 data/raw is sorted into
+    live_classroom/ and screen_recorded/, which say nothing about the lecturer.
     labels: lecture stem -> speaker label. Returns the number of conflicts.
     """
     raw = os.path.join(REPO, "data", "raw")
@@ -248,13 +278,17 @@ def check_against_raw_folders(labels: dict):
     for root, _dirs, files in os.walk(raw):
         if os.path.normpath(root) == os.path.normpath(raw):
             continue
+        if not os.path.basename(root).lower().startswith("speaker"):
+            continue
         for name in files:
             base, ext = os.path.splitext(name)
             if ext in VIDEO_EXTS:
                 folder_of[base] = os.path.basename(root)
     by_folder, by_label = {}, {}
     for stem, label in labels.items():
-        folder = folder_of.get(stem)
+        m = re.search(r"BanglaASR(\d+)$", stem)
+        raw_name = f"BanglaASR{new_number(int(m.group(1)), scheme)}" if m else stem
+        folder = folder_of.get(raw_name)
         if folder is None:
             continue
         by_folder.setdefault(folder, set()).add(label)
@@ -275,12 +309,66 @@ def check_against_raw_folders(labels: dict):
 
 
 def discover(gt_dir: str):
-    """Every *_ground_truth.txt file, with its lecture stem."""
+    """Every *_ground_truth.txt file: (lecture stem, path, flagged).
+
+    The user marks a file as not ready by putting text in front of its name, for
+    example "[Needs recheck]BanglaASR9_ground_truth.txt". Such a file is flagged,
+    and main() leaves it out until the marker is removed.
+    """
     found = []
     for path in sorted(glob.glob(os.path.join(gt_dir, "*_ground_truth.txt"))):
-        stem = os.path.basename(path).replace("_ground_truth.txt", "")
-        found.append((stem, path))
+        name = os.path.basename(path)
+        m = re.search(r"(BanglaASR\d+)_ground_truth\.txt$", name)
+        stem = m.group(1) if m else name.replace("_ground_truth.txt", "")
+        flagged = bool(m) and not name.startswith(m.group(1))
+        found.append((stem, path, flagged))
     return found
+
+
+def gt_minutes(gt_path: str) -> float:
+    """Minutes of transcribed speech in a ground-truth file, from its timestamps."""
+    return sum(e - s for s, e, _ in parse_gt(gt_path)) / 60.0
+
+
+def choose_test_lectures(info, fraction, seed, max_exact=16):
+    """Random whole lectures for the test set, about `fraction` of each lecturer's minutes.
+
+    info: [(stem, speaker, minutes)]. Per lecturer, among all ways of putting some
+    but not all of their lectures in the test set, keep those whose test minutes
+    are closest to the target (within 10% of it) and pick one at random with the
+    seed. So every lecturer with two or more lectures is on both sides, no video
+    is cut in two, and the test share stays near the fraction even with a few
+    long lectures. A lecturer with a single lecture stays in training.
+    """
+    import itertools
+    rng = random.Random(seed)
+    by_speaker = {}
+    for stem, speaker, minutes in info:
+        by_speaker.setdefault(speaker, []).append((stem, minutes))
+    test = set()
+    for speaker in sorted(by_speaker):
+        items = sorted(by_speaker[speaker])
+        if len(items) < 2:
+            continue
+        target = fraction * sum(m for _, m in items)
+        if len(items) <= max_exact:
+            subsets = [c for r in range(1, len(items))
+                       for c in itertools.combinations(items, r)]
+            best = min(abs(sum(m for _, m in c) - target) for c in subsets)
+            near = [c for c in subsets
+                    if abs(sum(m for _, m in c) - target) <= best + 0.1 * target]
+            chosen = rng.choice(near)
+        else:
+            shuffled = list(items)
+            rng.shuffle(shuffled)
+            chosen, taken = [], 0.0
+            for stem, m in shuffled[:-1]:
+                if taken >= target:
+                    break
+                chosen.append((stem, m))
+                taken += m
+        test.update(stem for stem, _ in chosen)
+    return test
 
 
 def cap_hours(rows, hours, seed=0):
@@ -319,7 +407,17 @@ def main():
     ap.add_argument("--speaker-map", default="v2", choices=sorted(SPEAKER_MAPS),
                     help="Speakers for files without a Speaker ID header. v1 is the "
                          "superseded split that put BanglaASR6 in training")
+    ap.add_argument("--split-by", choices=("speaker", "video"), default="speaker",
+                    help="speaker (default, every published result): --test-speakers are held "
+                         "out. video (the user's plan for the 10 h data): random whole lectures, "
+                         "about --test-fraction of each lecturer's minutes, go to test")
+    ap.add_argument("--test-fraction", type=float, default=0.2)
+    ap.add_argument("--split-seed", type=int, default=0)
+    ap.add_argument("--test-lectures", default=None,
+                    help="With --split-by video: comma-separated lectures for the test set, "
+                         "instead of the random choice")
     args = ap.parse_args()
+    scheme = scheme_of(args.gt_dir)
 
     out_dir = args.out
     clips_dir = os.path.join(out_dir, "clips")
@@ -335,9 +433,29 @@ def main():
         print(f"no ground-truth files in {args.gt_dir}")
         return
 
-    print(f"found {len(lectures)} ground-truth files; test speakers: {sorted(test_speakers)}")
+    for stem, path, flagged in lectures:
+        if flagged:
+            print(f"  [skip] {os.path.basename(path)}: marked not ready by its file name; "
+                  f"remove the marker to use it")
+    lectures = [(stem, path) for stem, path, flagged in lectures if not flagged]
+
+    print(f"found {len(lectures)} ground-truth files ({scheme} lecture numbering); "
+          + (f"test speakers: {sorted(test_speakers)}" if args.split_by == "speaker"
+             else f"random video split, {args.test_fraction:.0%} of each lecturer, seed {args.split_seed}"))
     labels = {stem: read_speaker(p, stem, SPEAKER_MAPS[args.speaker_map]) for stem, p in lectures}
-    check_against_raw_folders(labels)
+    check_against_raw_folders(labels, scheme)
+
+    test_lectures = set()
+    if args.split_by == "video":
+        usable = [(stem, labels[stem], gt_minutes(p)) for stem, p in lectures
+                  if labels[stem] != "UNKNOWN"
+                  and (not only_speakers or labels[stem] in only_speakers)]
+        usable = [u for u in usable if u[2] > 0]
+        if args.test_lectures:
+            test_lectures = {s.strip() for s in args.test_lectures.split(",") if s.strip()}
+        else:
+            test_lectures = choose_test_lectures(usable, args.test_fraction, args.split_seed)
+        print("test lectures: " + ", ".join(sorted(test_lectures)))
 
     manifest, stats, speaker_minutes = [], {}, {}
 
@@ -351,8 +469,11 @@ def main():
         if only_speakers and speaker not in only_speakers:
             print(f"  [skip] {stem}: speaker {speaker} not in --only-speakers")
             continue
-        split = "test" if speaker in test_speakers else "train"
-        wav = find_audio(stem, args.audio_dir)
+        if args.split_by == "video":
+            split = "test" if stem in test_lectures else "train"
+        else:
+            split = "test" if speaker in test_speakers else "train"
+        wav = find_audio(stem, args.audio_dir, scheme)
         if not wav:
             print(f"  [skip] {stem}: no audio found (looked in --audio-dir, pipeline output, data/raw)")
             continue
@@ -391,10 +512,11 @@ def main():
                 clip_idx += 1
                 kept_s += (e - s)
 
-        stats[stem] = (split, speaker, clip_idx, kept_s / 60.0, audio_dur / 60.0)
+        stats[stem] = (split, speaker, clip_idx, kept_s / 60.0, audio_dur / 60.0, wav)
         speaker_minutes[speaker] = speaker_minutes.get(speaker, 0.0) + kept_s / 60.0
         print(f"  {stem} [{split}/spk {speaker}]: {clip_idx} clips, "
-              f"{kept_s/60:.1f}min kept of {audio_dur/60:.1f}min audio")
+              f"{kept_s/60:.1f}min kept of {audio_dur/60:.1f}min audio  <- "
+              f"{os.path.basename(os.path.dirname(wav))}/{os.path.basename(wav)}")
 
     train_rows = [r for r in manifest if r["split"] == "train"]
     test_rows = [r for r in manifest if r["split"] == "test"]
@@ -417,8 +539,16 @@ def main():
     dump(os.path.join(out_dir, "train.jsonl"), train_rows)
     dump(os.path.join(out_dir, "test.jsonl"), test_rows)
 
+    if args.split_by == "video":
+        heard = {r["speaker"] for r in train_rows}
+        for speaker in sorted({r["speaker"] for r in test_rows} - heard):
+            print(f"\n  WARNING: lecturer {speaker} is only in the test set, so the test mixes "
+                  f"heard and unseen lecturers. Add a lecture of theirs to training.")
     split_record = {
-        "test_speakers": sorted(test_speakers),
+        "split_by": args.split_by,
+        "numbering": scheme,
+        "test_speakers": (sorted(test_speakers) if args.split_by == "speaker"
+                          else sorted({r["speaker"] for r in test_rows})),
         "train_speakers": sorted({r["speaker"] for r in train_rows}),
         "train_hours_used": sum(r["dur"] for r in train_rows) / 3600,
         "train_hours_available": full_train_hours,
@@ -432,6 +562,14 @@ def main():
                          "minutes_kept": round(v[3], 1), "minutes_audio": round(v[4], 1)}
                      for k, v in stats.items()},
     }
+    if args.split_by == "video":
+        split_record.update({
+            "test_fraction": args.test_fraction, "split_seed": args.split_seed,
+            "test_lectures": sorted(test_lectures),
+            "test_minutes_per_speaker": {
+                s: round(sum(r["dur"] for r in test_rows if r["speaker"] == s) / 60, 1)
+                for s in sorted({r["speaker"] for r in test_rows})},
+        })
     with open(os.path.join(out_dir, "split.json"), "w", encoding="utf-8") as f:
         json.dump(split_record, f, indent=2)
 

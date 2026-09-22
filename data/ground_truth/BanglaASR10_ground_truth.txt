@@ -1,16 +1,16 @@
 # Speaker ID: B
 # BanglaASR10 Ground Truth Transcription
 # Real Classroom Video
-# 
+#
 # Format: [M:SS-M:SS] Romanized Banglish transcription
-# 
+#
 # INSTRUCTIONS:
 # 1. Watch the video: data/raw/BanglaASR6.MOV
 # 2. Transcribe what the lecturer says in Romanized Banglish
 # 3. Include timestamps for each segment
 # 4. Use Roman script (English letters) even for Bengali words
 # 5. Include technical terms exactly as spoken
-# 
+#
 # Example:
 # [0:00-0:30] Assalamualaikum, aj amra class e dekhbo...
 # [0:30-1:00] Java te amra object oriented programming...
@@ -22,11 +22,11 @@
 # PASTE YOUR TRANSCRIPTION BELOW:
 # ============================================================
 
-[0:00- 1:30]
+[0:00-1:30]
 Hello everyone. Welcome to the first video of Digital Logic Design. So software development shikhar aage amader eitar understanding thaka ta onek joruri je ekta computer kivabe kaj kore. So amra jodi amader ashepasher world er dike takai, prottekta jotogula ami signals dekhbo circuits dekhbo shob e kintu hoy analog e. Analog jinish ta ki? Analog mane hocche continuous value. Analog signal er ki ki example hote pare? Amader temperature, sound wave aa, even ghorir kata o kintu analog e chole. Analog er kintu amader computer ki? Analog e chole? Na. Eita kitu chole digitally. Digital mane hocche discrete value. Ekta digital dignal er ki ki example hote pare? Dhorte paro light er switch. Light er switch ki hoy? Hoy on hobe ar na hoy off hobe. Er majhkhaner kono ki condition e thakte pare? Na kintu. Similarly computer e ki hoy. On ke computer dhore ney 1 ar off ke dhore ney 0. That means computer shobshomoy zeros and ones niye shob shomoy kaj korbe.
 
 [1:30-2:37]
-And eijonno amra ei dhorner aa circuit ke ba logic ke boli Binary Logic. Ekhon ei dhoroner logic ta maintain kore TTL. Jekhane jemon dhoro uum. 5 volt tar mane eita hocche ekta high voltage, eitar mane hocche logic one. And 0 volt tar mane hocche eta ekta ground voltage, eta holo logic zero. So ei computer hocche logic 1 and logic 0 niye shobshomoy kaj korbe. So ekta computer er bhitore ki shobshhomoy 0 and 1 niyer kaj korbe? Na kintu. Eta ki hoy amra jokhon ekta keyboard er ekta key press kori, tokhon shekhane aa high voltage ar low voltage er ekta aa combination create hoy. 
+And eijonno amra ei dhorner aa circuit ke ba logic ke boli Binary Logic. Ekhon ei dhoroner logic ta maintain kore TTL. Jekhane jemon dhoro uum. 5 volt tar mane eita hocche ekta high voltage, eitar mane hocche logic one. And 0 volt tar mane hocche eta ekta ground voltage, eta holo logic zero. So ei computer hocche logic 1 and logic 0 niye shobshomoy kaj korbe. So ekta computer er bhitore ki shobshhomoy 0 and 1 niyer kaj korbe? Na kintu. Eta ki hoy amra jokhon ekta keyboard er ekta key press kori, tokhon shekhane aa high voltage ar low voltage er ekta aa combination create hoy.
 
 [2:37-4:22]
 Jemon dhoro, eije ekhane jemon 5 volt er ekta high voltage ache ar 0 volt er ekta ground voltage ache. So ami dhoro key press one. Tokhon ekta computer ekta combination create korbe zeros and ones er. That means ekhane amar kichu low voltage ache, kichu high voltage ache, kichu low voltage ache erokom bhabe ekta combinations create hoy. So, ei combination gula create korte amar kchu aa ekta physical device er proyojon hoy. And ei physical device gula ke amra bolchi logic gates. So ekhon jodi ami egula remove kore logic gates er topic e ashi, tahole amader total logic gates ache shat ta. First one is AND gate. Second is OR gate. Third Not gate. Forth NOR gate. Five NAND gate. Six X-OR gate and lastly, X-NOR gate.
@@ -35,7 +35,7 @@ Jemon dhoro, eije ekhane jemon 5 volt er ekta high voltage ache ar 0 volt er ekt
 So, amar je first tin ta gate ache eita ke amra boltesi fundamental gates. And forth and fifth one, jeta hocche NOR and NAND, ei duita ke ami bolchi universal gate. And last je duita gate sheita hocche amar Exclusive gate. So eita shat ta logic gate ki korbe? Ei shat ta logic gate hocche amader decision making e kaj korbe. Je ekta connetion ki hoy? Wire er maddhome hoy. Ei wires er moddhe kon kon signal gula pass korbe, kon kon gula par aa pass korbe na, sheitai amar ei logic gate gula decision e make korbe.
 
 [5:26-6:00]
-So jeita ami bollam, ei gates gula ki korbe? Amar decision making e ka pa kaj korbe. So ami ei class er jonno first er ei tin ta gate cover korbo. Thikache? SInce egula hocche amar physical gates. So egula amar ki kore? Millions of gates mile ekta processor toiri kore. So eitar kichu circuits ache, logic circuits. So shegula jana and eitar output gula kirokom hoy, ki input dile ki output hoy, shegula jana kinty very important. So now let’s move on to fundamental gates.
+So jeita ami bollam, ei gates gula ki korbe? Amar decision making e ka pa kaj korbe. So ami ei class er jonno first er ei tin ta gate cover korbo. Thikache? SInce egula hocche amar physical gates. So egula amar ki kore? Millions of gates mile ekta processor toiri kore. So eitar kichu circuits ache, logic circuits. So shegula jana and eitar output gula kirokom hoy, ki input dile ki output hoy, shegula jana kinty very important. So now let's move on to fundamental gates.
 [6:00-7:09]
 Fundamental gates e amar first ei ki chilo? AND gate. So AND gate basically jinishta ki? So AND gate e jeta hoy, suppose eta hocche amar shei physical device ta, which is a gate, jetake ami bolchi AND gate. Eta ki korbe? Etar moddhe duita input jaite pare. Suppose first input is A and second input is B. And ei duitar moddhe some calculations korar pore ekta output ber hobe. Shetake ami dhorlam X. Thikache? So duita input ekta gate er moddhe jacche and ekta output kintu ber hocche. So ei input gula ke ami ekhane ekta chart er moddhe likhlam. And output sheta hocche X sheta ekdom right hand right side e likhlam.
 

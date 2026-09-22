@@ -264,6 +264,20 @@ Folders: `ft_work_BCtoA` (test A), `ft_work_AC` (test B), `ft_work_ABtoC` (test 
 Adapters that trained on B must never produce transcripts for notes scored on
 B's boards.
 
+**Data-quality check (2026-09-22).** `prepare_data.py` reads a segment boundary only
+when a timestamp is written exactly like `[1:34-1:53]`. In the ground truth behind
+these runs, 9 of 156 timestamps had stray spaces (`[4:22- 4:45 ]`, `[ 08:29 - 09:09]`:
+8 in lecture 13, 1 in lecture 4), so their text joined the previous segment and 10
+test clips (4 of A's, 6 of C's) carry more words than their audio. Both models were
+scored on the same clips. Without those 10 clips: **CER 72.2% -> 49.6%, WER 95.3% ->
+75.3%**, every run still p < 1e-07. The defect made the headline slightly
+pessimistic; quote the published 72.8% -> 50.3%. `prepare_data.py` now warns about
+such lines, and the current `data/ground_truth` files were repaired with
+`validate_ground_truth.py --fix` (the frozen copy is left as it was, so the runs
+reproduce).
+Reproduce: `python scripts/check_merged_timestamps.py` (its "all clips" row
+reproduces 72.8% -> 50.3% and 95.3% -> 75.7%).
+
 ### 1.6 Is the high WER only a spelling problem? No (2026-09-21)
 
 Banglish has no standard spelling, so a panel will ask whether the ~75% WER is

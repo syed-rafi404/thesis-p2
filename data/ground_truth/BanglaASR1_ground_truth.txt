@@ -1,16 +1,16 @@
 # Speaker ID: A
 # BanglaASR1 Ground Truth Transcription
 # Real Classroom Video
-# 
+#
 # Format: [M:SS-M:SS] Romanized Banglish transcription
-# 
+#
 # INSTRUCTIONS:
 # 1. Watch the video: data/raw/BanglaASR1.MOV
 # 2. Transcribe what the lecturer says in Romanized Banglish
 # 3. Include timestamps for each segment
 # 4. Use Roman script (English letters) even for Bengali words
 # 5. Include technical terms exactly as spoken
-# 
+#
 # Example:
 # [0:00-0:30] Assalamualaikum, aj amra class e dekhbo...
 # [0:30-1:00] Java te amra object oriented programming...
@@ -31,25 +31,25 @@
 Hello everyone. Welcome back to the class. So ajker ei video te amra python er khub e fundamental ekta jinish niye kotha bolbo. Ashole shotti kotha bolte eta shudhu python na, eta jekono aaa programming language er e khubi important ekta topic. So asha kori last class e amra dekhechilam je kivabe python er environment set korte hoy. Jerokom dhoro VSCode or PyCharm, erokom environment ta kivabe configure korte hoy shegula shikhechilam. So ami asha korchi je tomader shobar already VSCode or Pycharm eta nishchoi download kora ache or python er jekono ekta environment set up kora ache. So cholo shuru kora jak.
 
 [0:34-1:27]
-Honestly bolte gele aaa programming er basic hocche variable. So tumi jodi data store korte jano, every other things will be very easy to you. First question jeta ashe sheta holo variable jinish ta ki. So amra jodi likhi ekhane- ‘What is variable?’ Eta holo amader ekta main question. So, think of like a box. So, tomar kache dhoro ekta box ache. Ebong box er moddhe tumi onek jinish e rakhte paro. Tumi ki rakhte paro? Box er moddhe tumi book rakhte paro tomar. Thikache? Eta jodi onno type er box hoy jemon dhoro tumi ekhane fruits rakhte chachho. Tumi ekhane ki rakhte paro? Apple rakhte paro. Jekono jinish rakhte paro.
+Honestly bolte gele aaa programming er basic hocche variable. So tumi jodi data store korte jano, every other things will be very easy to you. First question jeta ashe sheta holo variable jinish ta ki. So amra jodi likhi ekhane- 'What is variable?' Eta holo amader ekta main question. So, think of like a box. So, tomar kache dhoro ekta box ache. Ebong box er moddhe tumi onek jinish e rakhte paro. Tumi ki rakhte paro? Box er moddhe tumi book rakhte paro tomar. Thikache? Eta jodi onno type er box hoy jemon dhoro tumi ekhane fruits rakhte chachho. Tumi ekhane ki rakhte paro? Apple rakhte paro. Jekono jinish rakhte paro.
 
 [1:27-2:19]
-Toh ekhane ei box jeta, sheta hocche amar variable er name ta. Ar apple tarpore book, egulo holo amar data jeta ami variable er moddhe store kore rakhte chacchi. So eta ami muche feltesi. Let me just remove it. So python e variable jinishta ashole onnanno programming language theke khub e easy. Jemon tumi jodi onno kono programming language e jao jemon C, Java, C#, tumi dekhba je tomar ekta number jodi rakhte chao variable er moddhe first e tomar ekta type diye rakhte hobe je int aaa, eta mane bujhacche holo tumi number nam er je variable ta etar moddhe tumi ei 10 value ta ke rakhte chaccho.  
+Toh ekhane ei box jeta, sheta hocche amar variable er name ta. Ar apple tarpore book, egulo holo amar data jeta ami variable er moddhe store kore rakhte chacchi. So eta ami muche feltesi. Let me just remove it. So python e variable jinishta ashole onnanno programming language theke khub e easy. Jemon tumi jodi onno kono programming language e jao jemon C, Java, C#, tumi dekhba je tomar ekta number jodi rakhte chao variable er moddhe first e tomar ekta type diye rakhte hobe je int aaa, eta mane bujhacche holo tumi number nam er je variable ta etar moddhe tumi ei 10 value ta ke rakhte chaccho.
 
-[2:19- 2:48]
+[2:19-2:48]
 But ekhane mojar bepar ta hocche ki, pyhton e amader eto koshto kore kon type er data er je data type jeta sheta ekhane likhte hobe na. Amra ki korte pari? Amra shudhu ekhane num likhe amra value ta boshiye dite pari. Python nije nijei bujhe jabe je ei value ta ashole ki. Eta ki mm o ki bujhbe? je hae, eta ekta integer value karon ki ekhane kono amar decimal point nai. Decimal point ache ekhane but eta toh amra real life e ashole visible na jinishta.
 
 [2:48-3:27]
 Okay, so dekho ekhane num jeta etake tumi ektu aage je amra ekta box er example dilam, etar sathe compare kore dekhte paro. Ebong ei num jeta sheta jodi box hoy, tahole ei 10 jeta sheta holo amar value. Thikache? Ei value eta ami ekhane rakhtesi. Eta holo dynamicly type. Ekhane python nije nijei bujhe jabe je ei 10 value ta ashole ekta integer sheta o number er moddhe store kore rakhbe. Toh porobortite jokhon tomar dorkar hobe tumi ki korbe? Shudhu ei num likhlei bujhe jabe je hae eta ashole num bolte ashole 10 bujhacche. So etar moddhe tumi mathematical different operation korte parba. Sheta amra porobortite dekhbo ei video tei.
 
 [3:27-4:32]
-Accha ekhon jehetu amra khub e basic level e variable jinishta ki bujhe gechi, so amra ektu datatype ta dekhi. Tahole amra further variable niye amra explore korte parbo. Ami egulo remove kore dicchi. So, datatype. Python e variable er datatype charta ache. Toh, first ei jeta ache sheta holo string. Tarpore arekta ache sheta holo integer. Integer. Tarpore amar aro royeche ekti boolean ebong arekti royeche sheti holo float. 
+Accha ekhon jehetu amra khub e basic level e variable jinishta ki bujhe gechi, so amra ektu datatype ta dekhi. Tahole amra further variable niye amra explore korte parbo. Ami egulo remove kore dicchi. So, datatype. Python e variable er datatype charta ache. Toh, first ei jeta ache sheta holo string. Tarpore arekta ache sheta holo integer. Integer. Tarpore amar aro royeche ekti boolean ebong arekti royeche sheti holo float.
 
 [4:32-5:12]
-Toh cholo amra dekhi ekta ekta kore. String. String holo jekono jinish jemon dhoro boli je, jodi boli je amar nam omuk, amar nam tomuk. Amar nam dhorlam je, amar nam holo Ahsan. Thikache? Toh amra ki likhte pari string er moddhe? Jekono jinish er nam. Ami je kotha gula boltesi egular je ekta subtitle ache, shegula keo tumi string hishabe dekhte paro. String bujhanor jonno jekono jinish, jemon dhoro ‘kono kichu’ likhlam ami ekhane. Kono kichu. Eta ekta word. Ekhane ki ache? Amar english e alphabet diye ami jinish pati likhechi. String er jonno ami shudhu erokom, jodi erokom mark diye dei tahole eta bujha jabe holo, aaa eta ekta string.
+Toh cholo amra dekhi ekta ekta kore. String. String holo jekono jinish jemon dhoro boli je, jodi boli je amar nam omuk, amar nam tomuk. Amar nam dhorlam je, amar nam holo Ahsan. Thikache? Toh amra ki likhte pari string er moddhe? Jekono jinish er nam. Ami je kotha gula boltesi egular je ekta subtitle ache, shegula keo tumi string hishabe dekhte paro. String bujhanor jonno jekono jinish, jemon dhoro 'kono kichu' likhlam ami ekhane. Kono kichu. Eta ekta word. Ekhane ki ache? Amar english e alphabet diye ami jinish pati likhechi. String er jonno ami shudhu erokom, jodi erokom mark diye dei tahole eta bujha jabe holo, aaa eta ekta string.
 
 [5:12-6:21]
-Erokom ami double mark double quotation na diye, ami single quotation eo likhte pari jekono jinish. Jemon dhoro ami jodi boli ‘apple’. Eta  eta holo string. Ekhon etar jodi ami ekta example dei. Tahole bhalo hobe. Sheta hobe jemon dhoro ekhane ami separate bhabe dekhacchi. Jemon Fruit. Fruit. Ekhon apple je value ta sheta Fruit er moddhe store kora ache.Similarly, next je datatype ta sheta holo integer. Integer ta holo aaa arekti shobcheye beshi use kora ekta variable er datatype. Jemon eta holo integer bolte holo jekono number ke bujhay. Jekono amar whole number ar ki. Jemon ami jodi boli Age. Age ki amar? 10 hote pare. Tarpore age amar different hote pare but age toh ekta number e hobe taina? Age toh karo kokhono aaa amar kono string er moto hote pare na. Ami number diye age ke aaaam prokash kortesi.
+Erokom ami double mark double quotation na diye, ami single quotation eo likhte pari jekono jinish. Jemon dhoro ami jodi boli 'apple'. Eta  eta holo string. Ekhon etar jodi ami ekta example dei. Tahole bhalo hobe. Sheta hobe jemon dhoro ekhane ami separate bhabe dekhacchi. Jemon Fruit. Fruit. Ekhon apple je value ta sheta Fruit er moddhe store kora ache.Similarly, next je datatype ta sheta holo integer. Integer ta holo aaa arekti shobcheye beshi use kora ekta variable er datatype. Jemon eta holo integer bolte holo jekono number ke bujhay. Jekono amar whole number ar ki. Jemon ami jodi boli Age. Age ki amar? 10 hote pare. Tarpore age amar different hote pare but age toh ekta number e hobe taina? Age toh karo kokhono aaa amar kono string er moto hote pare na. Ami number diye age ke aaaam prokash kortesi.
 
 [6:21-7:10]
 Tarpore ashi sheta holo float. Float ki? Float holo jeshob gulo amar whole number na. Jemon dhoro three point five, two point five. Erokom different jotogulo number ache. Jemon amra jodi pi er value dekhi sheta ki? Three point one four one six. Tarpore ashi holo boolean. Boolean khub e shohoj. Boolean e shudhu duita value thake.True and false. Eta either true hobe or false hobe. Eta amra kivabe likhte pari? Amra dhoro bolte pari je aaa isValid. Eta ke amra bolte pari true. Er mane ki? Je etaki  valid? Hae eta valid. Karon ki ekhane true ache.

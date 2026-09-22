@@ -1,28 +1,28 @@
 # Speaker ID: A
-[0:00 - 0: 17]
-Hello everyone. Ei video-te amra dekhbo kibhabe compiler ekta code-ke read kore, code-ke read korar pore shetar moddhe semantic value dey, tarpore tarpor shekhan theke finally machine code generate kore. Amra machine code kibhabe generate kore shetate ajke jabo na, but ekta code theke kibhabe etake ekta parse tree banay, tar moddhe semantic value dey, sheta amra dekhbo. 
-[0: 17-0:45]
+[0:00-0:17]
+Hello everyone. Ei video-te amra dekhbo kibhabe compiler ekta code-ke read kore, code-ke read korar pore shetar moddhe semantic value dey, tarpore tarpor shekhan theke finally machine code generate kore. Amra machine code kibhabe generate kore shetate ajke jabo na, but ekta code theke kibhabe etake ekta parse tree banay, tar moddhe semantic value dey, sheta amra dekhbo.
+[0:17-0:45]
 Tar age amra porichoy hoye nei egula theke. Egula ki? Egula holo grammar ruler shathe amar kotogulo action royeche. Jemon, normally amra CFG ba context-free grammar-er moddhe egula action gula last-e dekhi, tokhon holo reduce hoye jokhon jay, rule-ta diye, tokhon shegula increment kora hoy. But ei action-gula  dekho, B theke jokhon C-te jabe, tar majhei action-ta ashe. Tar mane ami jokhon syntax parse tree-te B theke C-te jabo, tokhoni ami ki? Active hoye eta jabe. Tokhoni ei rules-ta already play korbe ekhane.
 [0:45-1:07]
-Toh shurute jeta hoy, ei je amar ekta code-er line ache, sheita ki? ekti 2D array. two and four, ei duita number diye ekta array banate hobe, 2D array. Ebong ei 2D array-ke compiler kibhabe read kore, shetai ajke amra janbo. Shurute amra etar jonno parse tree banabo. Toh parse tree bananor aage amader idea-ta ekhan theke ekbar discuss kori je kibhabe parse tree-ta hote pare. 
+Toh shurute jeta hoy, ei je amar ekta code-er line ache, sheita ki? ekti 2D array. two and four, ei duita number diye ekta array banate hobe, 2D array. Ebong ei 2D array-ke compiler kibhabe read kore, shetai ajke amra janbo. Shurute amra etar jonno parse tree banabo. Toh parse tree bananor aage amader idea-ta ekhan theke ekbar discuss kori je kibhabe parse tree-ta hote pare.
 [1:07-1:34]
 Shurute integer ache. Toh ami integer pabo B theke. Toh ei B kothat theke pacchi? Ami T theke. T jodi aaa T-ta jodi active hoy, tahole dekho, B pacchi ebong C pacchi. Ei C theke ami eventually ki? Ei C theke num pabo. Ekta number peye jabo. Ekhane arekta C ache. Eta. Ekhan theke abar C pabo. C theke abar num pabo. Four peye jabo. Ebong finally ei C1 jeta thakbe, shetake amra epsilon diye shesh kore dibo. Tahole amar finally ki? Parse tree-ta build hoye jabe.
-[  1:34-1:53]
-Toh shuru kori. Shurute jodi T1 nei, T1. T1 theke ki hobe? B and C. C. B theke amra ki pabo? Integer pabo. Ei je dekho, B theke kintu integer pacchi. 
-[1:53- 2:15 ]
-Similarly, ekhon C ke jodi amra dekhi, C theke ki pacchi? First-e num pacchi ebong C1 pacchi. Tahole ekhane dekhi. Arekta jinish kheyal kore dekho, ami kintu ekhane T1 diyechi. Tahole ekhane ki? B1-o dibo, C1-o dibo. 
+[1:34-1:53]
+Toh shuru kori. Shurute jodi T1 nei, T1. T1 theke ki hobe? B and C. C. B theke amra ki pabo? Integer pabo. Ei je dekho, B theke kintu integer pacchi.
+[1:53-2:15]
+Similarly, ekhon C ke jodi amra dekhi, C theke ki pacchi? First-e num pacchi ebong C1 pacchi. Tahole ekhane dekhi. Arekta jinish kheyal kore dekho, ami kintu ekhane T1 diyechi. Tahole ekhane ki? B1-o dibo, C1-o dibo.
 
 
-[2:15-2:31 ]
+[2:15-2:31]
 Eti ami keno korchi? Jate ami kokhon parent ebong child niye value-gula etar upor bosiye dicchi, jate amra bujhte pari. thikmoto jate amader shubidha hoy jinishtate. Ekhon C1 ke jodi abar kori, abar num ebong arekta C pabo. Shetake amra C2 dibo.
-[2:31-2:59 ]
+[2:31-2:59]
 Ekhon C2 theke ami finally ki? Epsilon diye arekta jinish peye jabo, sheta holo. Tokhon amar ekhane ki ar kono, kono leaf node-e ki ar non-terminal thaklo? Thaklo na. Tarmane ki? Amar parse tree-ta complete. Ekhon ami cholo, shuru kori. Ami ekhon bujhar shubidhar jonno, jate dekhiye dei  ekbar je amar ki ei jinishtai generate hoyeche ki na. Dekho, ekhan theke amar int hobe.
-[2:59-3:14 ]
+[2:59-3:14]
 Tarpore ekhan theke num. Num-er ki? Two jeta, sheta ekhan theke hobe. Ekhon finally ki? ei four-ta ashbe ekhan theke. And epsilon theke kichu na. Ami kintu shobgulo peye gelam, ekhane ja ja lage.
-[3:14 -3:30]
-Okay, toh ekhon jodi amra shuru kori annotate kora, dekhbo je shurute T hoye gese, T theke B. T theke jokhon B-te jay, tokhon ki kono rules ache? Ekhane ki kono rules ache? Ekhane kintu kono rules nei. Tahole ki, ekhane kono kichu hobe na. Tarpore B theke int-e giyeche. 
+[3:14-3:30]
+Okay, toh ekhon jodi amra shuru kori annotate kora, dekhbo je shurute T hoye gese, T theke B. T theke jokhon B-te jay, tokhon ki kono rules ache? Ekhane ki kono rules ache? Ekhane kintu kono rules nei. Tahole ki, ekhane kono kichu hobe na. Tarpore B theke int-e giyeche.
 [3:30-3:53]
-B theke int, rules nei. Kintu int theke jokhon B-te reduce hoye giyeche, tokhon B.type= int. Mane eta dot type = int, okay? Hoye gelo. Tarpor ei T-te gelam abar. Ei B-er kaj hoye jawar pore amar ki? C-te jawar aage ki hoye geche? C1, C.1  equal to B.type. 
+B theke int, rules nei. Kintu int theke jokhon B-te reduce hoye giyeche, tokhon B.type= int. Mane eta dot type = int, okay? Hoye gelo. Tarpor ei T-te gelam abar. Ei B-er kaj hoye jawar pore amar ki? C-te jawar aage ki hoye geche? C1, C.1  equal to B.type.
 [3:53-4:16]
 Ekhon ami ekta temporary variable niyechi, je C.1. Tahole ami ekhon jodi likhi, C.1=B.int ki chilo? Sorry, B.type ki chilo? Ekhane integer. Tahole ekhane ami integer likhe rakhlam ekhane, okay? But ekhaneo jodi ami chai, =  int-o likhe dite pari, shudhu ekta int. Ami temporary variable na diye, ekhanei jinishtar value diye dilam, integer diye dilam.
 [4:16-4:35]
@@ -36,11 +36,11 @@ Tarpor ki boleche? Amake C.type equal to array. Amra ki ekhono ki chole giyechi?
 [5:15-5:35]
 Okay. Similarly, jodi ami dekhi je epsilon-o jokhon hoy, tokhon ki? Epsilon reduce hoye jawar pore C.type equal to C.1. Tar mane ki? Etar type integer, okay?
 [5:35-5:56]
- Ekhon integer jokhon holo, tokhon amra dekho, ekhon amar kintu ei num and C2, ei purota reduce hoye gele C.type, mane eitar dot type equal ki boleche? Array of num.val. 
+ Ekhon integer jokhon holo, tokhon amra dekho, ekhon amar kintu ei num and C2, ei purota reduce hoye gele C.type, mane eitar dot type equal ki boleche? Array of num.val.
 [5:56-6:13]
 Ekhane num-er value koto? 4. Tahole ki? Amar ekhane num.value ki? 4 hobe purota. 4. Comma. Comma C1.type. Ekhane C1-er type ki chilo? C1-er type chilo holo amar etar type. Etar type ki? int. Tar mane ekhane int boshbe. Okay? Holo?
 [6:13-6:34]
-Tarpore amar eta shesh. Tarpore ki? Num ebong C1. Num ebong C1 abar reduce hoyeche. Taile ekhane ki hobe? Aaa C.type, mane eta .type = array of, array of num.value. 
+Tarpore amar eta shesh. Tarpore ki? Num ebong C1. Num ebong C1 abar reduce hoyeche. Taile ekhane ki hobe? Aaa C.type, mane eta .type = array of, array of num.value.
 [6:34-6:54]
 Num.val koto? 2 ekhane. Tahole 2. Tarpor comma, tarpor bolche C1.type, mane holo ei type purata amar ekhon ekhane boshbe. Tahole amar ki hobe jinishta? Dekho, array of 4, int. Ei purota kintu ekhane eshche.
 [6:54-7:19]

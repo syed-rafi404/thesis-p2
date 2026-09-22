@@ -63,7 +63,7 @@ Put in a Banglish lecture video; get back a lecture note a student can actually 
   plus a 1-5 rating. That gives a before/after result ("16 of 20 preferred the new notes"), not
   just a score. Without it, say "we demonstrate", not "we show the notes are good".
 
-### The plan (scope frozen; nothing new until the defense)
+### The plan (everything before the defense)
 
 **A. Build on the 3060 (Claude). Built 2026-09-22 and tested with a stand-in model.**
 Scripts: `label_boards.py` (boxes + VLM names), `build_lecture_notes.py` (sections, quote checker,
@@ -117,15 +117,36 @@ prompts, beside the old ones), `make_loso_transcripts.py` (leak-free transcripts
 1. Once the notes exist: the survey of about 20 people (old vs new notes of the same lecture,
    which helps more, plus 1-5 for useful / correct / easy to read). Claude can make the form.
 
-**After the defense: the 10 hours of data (8 h train / 2 h test).**
+**BEFORE the defense (your decision, 2026-09-22): the 10 hours of data (8 h train / 2 h test).**
+**Deadline: the final transcripts must be in at least 2 days before the defense**, so the 5090 has
+time to train, evaluate and the results can be written up. Everything that does not need the data
+is built and tested (below); when the data lands it is one command on the 5090.
 
 **The split (your decision, 2026-09-22): random whole videos, not by speaker.** About 8 h train and
 2 h test, chosen at random with a fixed seed so it can be repeated; every lecturer has videos on
 both sides; a video is never cut in two. Two honesty rules: (1) the thesis says the test lecturers
 were also heard in training, so this number is "new lectures from known lecturers", easier than an
 unseen lecturer; (2) the unseen-lecturer result you already have (72.8% -> 50.3%, RESULTS.md 1.5)
-stays as the second, harder number. The data script only splits by speaker today; Claude adds the
-video option before the first training run (discussed on 2026-09-21, never built until now).
+stays as the second, harder number.
+
+**Ready (built and tested on the 3060, 2026-09-22):**
+- `prepare_data.py --split-by video --test-fraction 0.2 --split-seed 0`: picks whole lectures per
+  lecturer, close to 20% of each lecturer's minutes, keeps everyone on both sides, and warns if a
+  lecturer ends up only in the test set. Tested on the 2.7 h there is now.
+- The new numbering is handled: each lecture gets its own audio (checked lecture by lecture: new
+  10-13 use old 6-9's recordings, new 14-17 Speaker3's, new 6-8 their own new videos).
+- Files you mark by name, like `[Needs recheck]BanglaASR9...`, are skipped until you remove the
+  marker. Remove it when lecture 9's timestamps are in.
+- Timestamps with stray spaces were repaired in all current files (`validate_ground_truth.py --fix`,
+  a `.bak` copy of each original sits beside it), and the script now warns about any it cannot read.
+  The same defect touched 10 test clips of the published headline; without them it is 72.2% ->
+  49.6% CER, so the published number stands (RESULTS.md 1.5).
+
+When the data is in, on the 5090 (after `git pull`):
+```
+python scripts/validate_ground_truth.py --fix
+python scripts/run_p3_experiment.py --split-by video --test-fraction 0.2 --split-seed 0 --model openai/whisper-large-v3-turbo --audio-dir <parent>\ft_work_3spk\audio_cache --curve-hours 2 4 6 8 --tag final
+```
 
 5090 time, estimated from a
 measured 3060 run (file timestamps in `F:\thesisP2\ft_work_v1_video6_in_train\`, 2026-09-20:

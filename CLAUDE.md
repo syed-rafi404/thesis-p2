@@ -89,7 +89,9 @@ Agreed with the user, who asked to be pushed back on expectations:
   download, so check free space on the 5090's D: first and how 4-bit loading works there
   (bitsandbytes on Windows); Qwen3-14B loaded in 8-bit is the fallback. A paid-API row only if the
   user accepts sending lecture text out.
-- **Scope frozen until the defense.** The 10 h of new data comes after it.
+- **Everything before the defense (the user, 2026-09-22), including the 10 h of new data.** An
+  earlier note here said the new data would come after the defense; that was Claude's assumption,
+  and the user overruled it. The final transcripts must arrive at least 2 days before the defense.
 - Stages: A = build on the 3060 with a stand-in model; B = Qwen runs on the 5090 (VLM re-read of the
   new boards with old-vs-new scoring, box naming, notes x 2 languages, 7B vs 32B vs mockup side by
   side); C = the user's survey. Details: NEXT_STEPS.md "THE GOAL".
@@ -317,6 +319,8 @@ Don't suggest reviving failed approaches unless the user raises them.
 | `scripts/build_lecture_notes.py` | Final deliverable step 3: one LLM call per board, transcript cut at board changes, quote checker (word for word, else deleted) and box-reference check, counted in the .json; title/takeaways/check-yourself call; `--tag`, `--quant 4bit`, `--mock`, `--dry-run` |
 | `scripts/notes_page.py` | Markdown to one self-contained HTML page (images embedded, coloured box tags, click-to-reveal answers) |
 | `src/summarizer/annotated_prompts.py` | The annotated-notes prompts (english, banglish); prompts.py untouched |
+| `scripts/check_merged_timestamps.py` | Headline without the 10 test clips built from unreadable timestamps (RESULTS.md 1.5 data-quality check): 72.2% -> 49.6% CER |
+| `finetune/lecture_numbering.py` | Old vs new lecture numbers (2026-09-22 renumbering) |
 | `scripts/make_loso_transcripts.py` | Leak-free timestamped transcripts (`transcript_loso.txt`) from the leave-one-speaker-out adapters; run on the 3060 2026-09-22 for all 13 lectures |
 | `transcribe_boards.py --source clean` | VLM full reading of the new clean boards, `board_text_clean.json/.md`, lectures 1-13 |
 
@@ -351,9 +355,16 @@ analysis behind it** and prints a warning; label a sample of errors or drop it.
   segments, never over 30, and `# Speaker ID:` on every file. Validate with
   `scripts/validate_ground_truth.py`. **Split decided by the user (2026-09-22): by whole video,
   random with a fixed seed, about 8 h train / 2 h test, not by speaker.** Every lecturer must have
-  videos on both sides; a video is never cut between train and test. `prepare_data.py` can only
-  split by speaker today: add a video-level option (e.g. `--test-fraction 0.2 --split-seed N`, or
-  `--test-videos`) before training; this was discussed on 2026-09-21 but never built.
+  videos on both sides; a video is never cut between train and test. **Built 2026-09-22:**
+  `prepare_data.py --split-by video --test-fraction 0.2 --split-seed N [--test-lectures ...]`
+  (per lecturer, the subset of lectures closest to the fraction, chosen at random among near-ties;
+  recorded in split.json), passed through by `run_p3_experiment.py`. Old-to-new numbering is in
+  `finetune/lecture_numbering.py`; `find_audio(stem, audio_dir, scheme)` looks up each source by its
+  own numbering (run folders, `--audio-dir` and `audio_cache` by old numbers, `data/raw` by new
+  names, new-only lectures cached in `audio_cache_new`); the scheme comes from `--gt-dir` (frozen
+  folder = old). Files whose name has text before `BanglaASRn` are skipped (the user's "not ready"
+  marker). Unreadable timestamps now print a warning; the current files were repaired with
+  `validate_ground_truth.py --fix` (the frozen copy was not, so published manifests reproduce).
   **`# Speaker ID:` lines are no longer required in the files (user, 2026-09-22).** The lecturer of
   each video comes from `scripts/verify_speakers.py` (voice embeddings) confirmed by the user, kept
   as a small lecture-to-lecturer table; the video-split option must use that table and must not
@@ -372,10 +383,9 @@ analysis behind it** and prints a warning; label a sample of errors or drop it.
   frozen in `data/ground_truth_v1_2026-09-21/` (git HEAD before the renumbering); to reproduce a
   result, pass `--gt-dir data/ground_truth_v1_2026-09-21` to `prepare_data.py`.
   `restore_artifacts.py` does this automatically (checked 2026-09-22: rebuilding `ft_work_ABtoC`
-  from the frozen copy matches the committed manifests, 356 train / 75 test clips). **Before any new
-  training**, make `find_audio` and the split use the old-to-new table: it resolves by number
-  (run-folder audio, then the cache, then `data/raw`), so a new BanglaASR6 would silently get old
-  lecture 6's audio, and an old-numbered run folder would get the wrong video from `data/raw`. The
+  from the frozen copy matches the committed manifests, 356 train / 75 test clips). `find_audio`
+  now uses the old-to-new table (`finetune/lecture_numbering.py`, done 2026-09-22, checked lecture
+  by lecture), so a new BanglaASR6 no longer picks up old lecture 6's audio. The
   LEGACY_SPEAKERS map in `prepare_data.py` is old numbering; the headers override it. Confirm new
   6-9 = lecturer A with `verify_speakers.py` when their audio is extracted. New 6-8 are partial;
   new 9 ("[Needs recheck]" in its file name) has no timestamps yet, the user is adding them.

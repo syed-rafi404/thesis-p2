@@ -1,16 +1,16 @@
 # Speaker ID: B
 # BanglaASR11 Ground Truth Transcription
 # Real Classroom Video
-# 
+#
 # Format: [M:SS-M:SS] Romanized Banglish transcription
-# 
+#
 # INSTRUCTIONS:
 # 1. Watch the video: data/raw/BanglaASR7-004.mp4
 # 2. Transcribe what the lecturer says in Romanized Banglish
 # 3. Include timestamps for each segment
 # 4. Use Roman script (English letters) even for Bengali words
 # 5. Include technical terms exactly as spoken
-# 
+#
 # Example:
 # [0:00-0:30] Assalamualaikum, aj amra class e dekhbo...
 # [0:30-1:00] Java te amra object oriented programming...
@@ -46,7 +46,7 @@ Ekhon ami last duita gate sheta hocche exclusive gate. Ei duita gate e jodi move
 But ekhon jehetu amra khub deep dive e jacchi na, so amra surface level er idea er jonno ami ekta technique dekhiye dicchi sheita holo. Aaaa A and B er ami hocche possible combination gula nicchi aager motoi 0 0, 0 1, 1 0 and 1 1. Thikache? Ekhon ami ki korbo? Ami dekhbo amar kon duita row te same input ache. That means, first cell e aa first row te jodi ami takai, ami ki pacchi? 0, 0. Same input. So amar output ta hobe 0. Abar last row te jodi takai input ta ki? 1 and 1. Duita same input. So eikhaneo ami pacchi output as a zero. Ki bolechilam? Same input equals to 0 and different input equals to 1. Eitai kintu ekhane follow hocche. Then second row te jodi ami takai, ekhane ki ache? 0 and 1.  Duita kintu ebar different duita value. So, 0 and 1 input er jonno amar output ta ki hobe? 1. So ekhaneo 1 boshe jabe and etar jonno o 1 boshe jabe. So ami ei formula diye lengthy process complete na kore ami kintu shortcut e ei X-OR er output ta dekhe nite pari.
 
 [10:07-12:34]
-Okay. Ekhon ami jodi X-OR er logical circuit dekhi. Eta dekhte kirokom hoy? A ekta input B arekta input. Tahole eita hocche amar X-OR gate ta and eita holo amar output. Done. So X-OR jodi amra bujhe jai tahole last je exclusive gate sheitao kintu amader bujha easier hoye jabe. Ekhon amra dekhbo X-NOR gate. X-NOR gate mane ki? X-NOR gate hocche X-OR gate plus NOT gate. So ami aager motoi X-OR gate ta ber korbo. Tar upore NOT gate ta apply korbo. Taholei amra X-NOR gate ta peye jabo. So ekhaneo X-NOR duita input jacche and ekta output ber hocche. A and B. So ki dekhlam? X-OR gate. So output ta ki hobe? X-OR gate first e ami korbo, korar pore sheta ke ki korbo? NOT apply korbo. That means etar upore ekta whole bar chole ashbe. Okay? So eitai jodi ami abar output generate korar jonno ekta table create kori. So amar ki ki possible combination hobe input e? 0, 0; 0, 1; 1, 0; 1. 1. Okay. So X-OR gate e ki chilo? Amar same input er jonno mane same input value er jonno amar output ashto 1. Different input value er jonno output ashto aaa. Sorry. Diff Same input value er jonno output ashto 0 and different input valuer jonno output ashto 1. So ami eta X-OR jehetu amar eta, so eta ekhane apply kore dicchi. 
+Okay. Ekhon ami jodi X-OR er logical circuit dekhi. Eta dekhte kirokom hoy? A ekta input B arekta input. Tahole eita hocche amar X-OR gate ta and eita holo amar output. Done. So X-OR jodi amra bujhe jai tahole last je exclusive gate sheitao kintu amader bujha easier hoye jabe. Ekhon amra dekhbo X-NOR gate. X-NOR gate mane ki? X-NOR gate hocche X-OR gate plus NOT gate. So ami aager motoi X-OR gate ta ber korbo. Tar upore NOT gate ta apply korbo. Taholei amra X-NOR gate ta peye jabo. So ekhaneo X-NOR duita input jacche and ekta output ber hocche. A and B. So ki dekhlam? X-OR gate. So output ta ki hobe? X-OR gate first e ami korbo, korar pore sheta ke ki korbo? NOT apply korbo. That means etar upore ekta whole bar chole ashbe. Okay? So eitai jodi ami abar output generate korar jonno ekta table create kori. So amar ki ki possible combination hobe input e? 0, 0; 0, 1; 1, 0; 1. 1. Okay. So X-OR gate e ki chilo? Amar same input er jonno mane same input value er jonno amar output ashto 1. Different input value er jonno output ashto aaa. Sorry. Diff Same input value er jonno output ashto 0 and different input valuer jonno output ashto 1. So ami eta X-OR jehetu amar eta, so eta ekhane apply kore dicchi.
 
 [12:34-14:09]
 So 1st cell e ami pabo 0, 0 equals to 0. 0, 1 equals to 1. 1, 0 equals to 1. 1, 1 equals to 0. X-OR banano amar shesh. Ekhon etake ami NOT kore felbo. NOT mane ki? Inverse ta ba opposite ta kore fela. So ekhane amar ache amar ache 0, eta hoye jabe 1. Eta 1, 0. 1, 0. 0 and 1. So last column ami jeta pelam shei ki? Amar X-NOR gate. Now, A and B, X-NOR gate er amra logical circuit ta dekhchi. Toh X-OR gate aage akbo. X-OR gate akar pore ami ekta NOT gate evabe apply kore dibo. Tahole ami peye jabo X-NOR gate. So X-NOR gate o kintu ekta formula maintain kore aage barer motoi which is A bar into B bar plus A into B. So eita convention ta na kore jehetu abar same process eta lengthy ektu hoye jay, so ekhan theke amra X-OR theke easily NOT kore kintu X-NOR ta ber kore felte pari. So ajke amra dekhlam total char ta gates which are Universal gates - NAND and NOR and Exclusive gate- X-OR and X-NOR. Thank you.
