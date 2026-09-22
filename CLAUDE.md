@@ -19,9 +19,10 @@ goes stale, fix it rather than adding a contradictory note.
 pushed. Since the 5090 session: the user hand-checked all 45 board answer keys (RESULTS.md 5.0 now
 rests on them); spelling-fair WER computed (1.6); all 45 boards rebuilt with a learned person mask
 plus a display clean-up (4.1.1-4.1.2); and **the user stated the final deliverable** (next section
-but one; plan, status and open decisions in NEXT_STEPS.md "THE GOAL"). **Next:** build stage A on
-the 3060 once the user says "go", then stage B (all Qwen runs) on the 5090. Qwen never runs on the
-3060, by the user's choice ("let the 5090 do the hard work").
+but one; plan, status and open decisions in NEXT_STEPS.md "THE GOAL"). **Stage A (the notes
+pipeline) was built on the 3060 the same day and tested with a stand-in model; the leak-free
+transcripts were made there too. Next: stage B on the 5090, exact commands in NEXT_STEPS.md.**
+Qwen never runs on the 3060, by the user's choice ("let the 5090 do the hard work").
 
 ---
 
@@ -262,7 +263,8 @@ command; only change global config after asking.
 | Board reconstruction (tiled mosaic) | **Working, measured** | median 97.7% tiles clear, 35 boards |
 | Learned lecturer mask + clean-up | **Working, judged by eye** | All 45 boards; VLM scoring pending (5090) |
 | Region detection | Working, **not evaluated** | No layout ground truth exists |
-| VLM box naming, box-referring notes | **Not built** | The final deliverable; see its section above. Bangla notes dropped |
+| VLM box naming, box-referring notes | **Built 2026-09-22, tested with a stand-in only** | Needs the Qwen runs on the 5090 (NEXT_STEPS stage B, exact commands there). Bangla notes dropped |
+| Box finding on clean boards | Works well on sparse boards (NAND: the mockup's boxes), coarse on dense ones (one big box on BanglaASR8/13) | Not measured |
 | Fusion (dual-ASR, CMV) | Negative | +0.7 pp, p = 0.32 |
 | Visual bias via LogitsProcessor | Failed, disabled | `config/live_config.yaml` still defaults `bias_strength: 2.0` |
 | YOLOv8-Pose gaze tracking | Failed | 0 detections |
@@ -310,6 +312,13 @@ Don't suggest reviving failed approaches unless the user raises them.
 | `scripts/person_segment.py` | DeepLabV3 person masks and exposure-corrected shadow masks; needs torchvision (3060: the pyenv env; weights cached under `C:\Users\Rafi\.cache\torch`) |
 | `scripts/clean_board.py` | Display clean-up ("whiteboard mode") and `--mask` occluder blanking; replaces background pixels. `--auto-crop` is unreliable; crop by hand |
 | `scripts/compare_board_sets.py` | Sheets of old / new / new-cleaned boards |
+| `scripts/notes_common.py` | Shared: lecture discovery (run folders 1-9 and `speaker3_runs` 10-13, new board folders), box colours with names, answer-key guard |
+| `scripts/label_boards.py` | Final deliverable step 2: boxes on each clean board (frame stripped, specks dropped by dark-pixel count, line parts joined), VLM names + transcribes each box (Set-of-Mark), "none" boxes dropped; `--boxes vlm` lets the VLM draw them (untested); `--mock` for tests. Writes `board_boxes.json`, `figures_annotated/` |
+| `scripts/build_lecture_notes.py` | Final deliverable step 3: one LLM call per board, transcript cut at board changes, quote checker (word for word, else deleted) and box-reference check, counted in the .json; title/takeaways/check-yourself call; `--tag`, `--quant 4bit`, `--mock`, `--dry-run` |
+| `scripts/notes_page.py` | Markdown to one self-contained HTML page (images embedded, coloured box tags, click-to-reveal answers) |
+| `src/summarizer/annotated_prompts.py` | The annotated-notes prompts (english, banglish); prompts.py untouched |
+| `scripts/make_loso_transcripts.py` | Leak-free timestamped transcripts (`transcript_loso.txt`) from the leave-one-speaker-out adapters; run on the 3060 2026-09-22 for all 13 lectures |
+| `transcribe_boards.py --source clean` | VLM full reading of the new clean boards, `board_text_clean.json/.md`, lectures 1-13 |
 
 `scripts/generate_thesis_figures.py` now computes rather than asserts: fusion panels, the real bias
 sweep, per-video transcript lengths counted from files. **Figure 6.5 (failure modes) has no

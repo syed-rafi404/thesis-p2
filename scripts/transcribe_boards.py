@@ -20,6 +20,9 @@ THE EXPERIMENT IT ENABLES
 --source mosaic   read the reconstructed board for each era (the lecturer removed)
 --source frame    read one raw video frame from each era, the last one, where the
                   board is fullest but the lecturer is still in front of it
+--source clean    read the 2026-09-22 boards (learned lecturer mask + whiteboard
+                  clean-up, RESULTS.md 4.1.2) for lectures 1-13; writes
+                  board_text_clean.json/.md, which build_lecture_notes.py also uses
 
 Same model, same prompt, same boards; only the input image changes. Each run
 also writes board_text_<source>.md, which score_board_recall.py can score
@@ -99,8 +102,21 @@ def read_board(model, processor, image, max_new_tokens):
                             skip_special_tokens=True).strip()
 
 
+def clean_era_images(run_dir):
+    """(era record, clean board path) from the 2026-09-22 boards (notes_common.py)."""
+    import notes_common as nc
+    info = nc.discover_lectures().get(run_dir.name)
+    if not info:
+        return []
+    return [({"era": e["era"], "from": e["from"], "to": e["to"],
+              "clear_fraction": e["clear_fraction"]}, e["clean"])
+            for e in nc.board_eras(info["board_dir"]) if e["clean"] is not None]
+
+
 def era_images(run_dir, source):
     """(era record, image path) for each era of a lecture."""
+    if source == "clean":
+        return clean_era_images(run_dir)
     mosaic_json = BOARDS / run_dir.name / "mosaic.json"
     if not mosaic_json.exists():
         return []
@@ -128,7 +144,7 @@ def main():
     ap = argparse.ArgumentParser(description="Transcribe each whiteboard with Qwen2.5-VL")
     ap.add_argument("--run-dir", default=None)
     ap.add_argument("--all", action="store_true")
-    ap.add_argument("--source", default="mosaic", choices=("mosaic", "frame"))
+    ap.add_argument("--source", default="mosaic", choices=("mosaic", "frame", "clean"))
     ap.add_argument("--model", default=DEFAULT_MODEL)
     ap.add_argument("--max-pixels", type=int, default=1920 * 1080,
                     help="Cap on image pixels given to the model; handwriting needs resolution")
@@ -144,7 +160,11 @@ def main():
     if args.show_prompt:
         print(PROMPT)
         return 0
-    if args.all:
+    if args.all and args.source == "clean":
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        import notes_common as nc
+        runs = [i["run_dir"] for i in nc.discover_lectures().values() if i["run_dir"] is not None]
+    elif args.all:
         runs = [d for d in sorted(RUNS.iterdir()) if d.is_dir()]
     elif args.run_dir:
         runs = [Path(args.run_dir)]

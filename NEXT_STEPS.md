@@ -65,7 +65,10 @@ Put in a Banglish lecture video; get back a lecture note a student can actually 
 
 ### The plan (scope frozen; nothing new until the defense)
 
-**A. Build on the 3060 (Claude, about a day). Waiting for your "go".**
+**A. Build on the 3060 (Claude). Built 2026-09-22 and tested with a stand-in model.**
+Scripts: `label_boards.py` (boxes + VLM names), `build_lecture_notes.py` (sections, quote checker,
+box-reference check, Markdown + HTML), `notes_page.py` (the page), `annotated_prompts.py` (the
+prompts, beside the old ones), `make_loso_transcripts.py` (leak-free transcripts).
 1. VLM box naming: numbered boxes drawn on the clean board; Qwen2.5-VL names each box and writes
    what is in it.
 2. New notes prompt: one section per board, points at the boxes, two languages (english with
@@ -85,11 +88,30 @@ Put in a Banglish lecture video; get back a lecture note a student can actually 
    estimated 10-hour table below with measured numbers.
 2. The VLM reads the new clean boards; score old vs new boards on your answer keys. This gives the
    board work a real number instead of "looks better".
-3. Fine-tuned transcripts for all 13 lectures from the leave-one-speaker-out models, so every
-   lecture is transcribed by a model that never heard its lecturer (~15 min). The notes use these.
-4. Notes for all lectures x 2 languages with the chosen notes model; re-score board recall (the
-   88.0% came from the 7B model).
-5. Side by side: the NAND section from Qwen2.5-7B vs Qwen3-32B vs the mockup.
+   ```
+   python scripts/transcribe_boards.py --all --source clean
+   python scripts/score_board_recall.py --gt data/board_truth data/board_truth/draft_lectures1to6 --compare-names board_text_mosaic.md board_text_clean.md
+   python scripts/score_board_recall.py --runs output/speaker3_runs --gt data/board_truth/draft_speaker3 --compare-names board_text_mosaic.md board_text_clean.md
+   ```
+3. **Done on the 3060 (2026-09-22):** leak-free, timestamped transcripts for all 13 lectures,
+   `transcript_loso.txt` in each lecture folder, each made by the model that never heard that
+   lecturer (`scripts/make_loso_transcripts.py`). The notes use these.
+4. The VLM names the boxes on every board:
+   ```
+   python scripts/label_boards.py --all
+   python scripts/label_boards.py --all --boxes vlm      (optional: the VLM draws the boxes itself)
+   ```
+5. Notes in both languages: first with the 7B model (the one behind the 88.0%), then the bigger one
+   (`pip install bitsandbytes` first; the 32B download is ~65 GB):
+   ```
+   python scripts/build_lecture_notes.py --all --language both --tag 7b
+   python scripts/build_lecture_notes.py --all --language both --tag 32b --model Qwen/Qwen3-32B --quant 4bit
+   python scripts/score_board_recall.py --gt data/board_truth data/board_truth/draft_lectures1to6 --compare-names notes_C_vlm.md notes_annotated_english_7b.md
+   ```
+   (and the same for `_32b`, and with `--runs output/speaker3_runs --gt data/board_truth/draft_speaker3`)
+6. Side by side: the NAND section (lecture 7, board 3) from the 7B and the 32B, next to the mockup.
+   Each notes page is `notes_annotated_<language>_<tag>.html` in the lecture folder; its `.json`
+   counts quotes kept and removed and references to boxes that do not exist.
 
 **C. You (no coding).**
 1. Once the notes exist: the survey of about 20 people (old vs new notes of the same lecture,
