@@ -1,5 +1,4 @@
-# Speaker ID: B
-# BanglaASR10 Ground Truth Transcription
+# BanglaASR6 Ground Truth Transcription
 # Real Classroom Video
 # 
 # Format: [M:SS-M:SS] Romanized Banglish transcription

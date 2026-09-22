@@ -10,6 +10,13 @@ the bottom under "Retired claims" so nobody reuses them by accident.
 
 Last regenerated: 2026-09-21 (speaker split corrected; VLM and notes measured on the RTX 5090).
 
+**Lecture numbers in this file are the OLD numbering.** On 2026-09-22 the lectures were renamed,
+grouped by lecturer: old 6-9 are now 10-13 (lecturer B), old 10-13 are now 14-17 (lecturer C),
+and new 6-9 are four new lectures. Every number below was computed with the old names and the
+ground truth frozen in `data/ground_truth_v1_2026-09-21/`; to reproduce one, point
+`prepare_data.py --gt-dir` at that folder. "BanglaASR7" in this file means the NAND lecture
+(new name BanglaASR11).
+
 ---
 
 ## 1. Fine-tuning Whisper for Banglish — the headline result

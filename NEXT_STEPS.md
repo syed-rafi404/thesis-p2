@@ -164,14 +164,23 @@ people, and writing the report.
 
 ### Decisions still open (one at a time)
 
-0. **The lectures were renumbered on the 3060 on 2026-09-22 (~11:20), not committed.** Ground
-   truth and videos: old 6-9 are now named 10-13, old 10-13 are now 14-17 (text unchanged), and new
-   6-9 are four new lectures. Everything in the thesis uses the OLD numbers (results, answer keys,
-   lecture folders, transcripts). Danger: the scripts find audio by number, so a new file named
-   BanglaASR6 would be paired with the old lecture 6 audio, silently. Claude recommends restoring
-   the old numbers and numbering the new lectures 14-17. Nothing is lost either way: the old files
-   are in git. The new files need timestamp fixes and are partial (new 6: 6.7 min, 7: 7.8 min,
-   8: 5.0 min); new 9 is marked "[Needs recheck]" with no valid timestamps.
+0. **New lecture numbering (yours, 2026-09-22), grouped by lecturer: 1-9 lecturer A, 10-13
+   lecturer B, 14-17 lecturer C.** `# Speaker ID:` lines added to all 17 ground-truth files.
+
+   | New name | Was | Lecturer |
+   |---|---|---|
+   | 1-5 | 1-5 | A |
+   | 6-9 | (new lectures) | A |
+   | 10-13 | 6-9 | B |
+   | 14-17 | 10-13 | C |
+
+   Everything measured so far (RESULTS.md, answer keys, lecture folders, transcripts) uses the OLD
+   numbers; the exact ground truth behind those results is frozen in
+   `F:\thesisP2\thesisP2\data\ground_truth_v1_2026-09-21\`. Before any new training, Claude makes
+   the scripts use this table: they find audio by number, and without it a new BanglaASR6 would be
+   paired with the old lecture 6 audio. The new files need timestamp fixes (the checker can repair
+   them) and are partial (new 6: 6.7 min, 7: 7.8 min, 8: 5.0 min). New 9 has no timestamps yet;
+   you are adding them.
    **Speaker ID lines are NOT needed in the files** (decided 2026-09-22): the split is by random
    video. Claude still needs to know which lecturer each video is (to keep every lecturer on both
    sides, and for the thesis sentence "test lecturers were also heard in training"); it works that

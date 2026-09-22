@@ -1,4 +1,3 @@
-# Speaker ID: A
 # BanglaASR2 Ground Truth Transcription
 # Real Classroom Video
 # 

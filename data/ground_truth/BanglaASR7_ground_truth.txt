@@ -1,52 +1,51 @@
-# BanglaASR7 Ground Truth Transcription
-# Real Classroom Video
-# 
-# Format: [M:SS-M:SS] Romanized Banglish transcription
-# 
-# INSTRUCTIONS:
-# 1. Watch the video: data/raw/BanglaASR7-004.mp4
-# 2. Transcribe what the lecturer says in Romanized Banglish
-# 3. Include timestamps for each segment
-# 4. Use Roman script (English letters) even for Bengali words
-# 5. Include technical terms exactly as spoken
-# 
-# Example:
-# [0:00-0:30] Assalamualaikum, aj amra class e dekhbo...
-# [0:30-1:00] Java te amra object oriented programming...
-#
-# TECHNICAL TERMS TO WATCH FOR:
-# (List key technical terms that appear in this video)
-#
-# ============================================================
-# PASTE YOUR TRANSCRIPTION BELOW:
-# ============================================================
-
-[0:00-1:32]
-Hello everyone, welcome to the second class of Digital Logic Design. So goto class e amra ki dekhechilam? Kichu fundamental gates er amra introductory lesson dekhechilam. So ajke ashbe amar Universal gate. Universal gate er moddhe ami ki ki bolechilam? There are two types of universal gates which are X-OR gate,aaah sorry NOR gate and NAND gate. So, ajke amra ei duita gate er e aaa inputs and outputs kivabe a create kore sheta dekhbo. And etar logical circuits dekhte kirokom hoy sheta dekhbo. Now first e jodi amra, NOR gate diye start kori. NOR gate. So, NOR gate ei name ta diye amra ki bujhtesi? Ekhane OR nam er ekta gate kintu involve ache. Tarmane NOR gate hocche OR gate er inverse version. Tar mane OR plus NOT ei duita fundamental gates mile NOR gate ta build hocche.
-
-[1:32-3:25]
-So eitar input and output kirokom hobe? So ekhaneo aager motoi similarly duita input jacche ar arekta output ber hocche. First e dhorlam A as a input and B arekta input. Output jeta ber hobe sheta hocche A plus B whole bar. Tar mane ki? OR plus NOT. OR ami kivabe pabo? Addition kore. Tahole A and B duita jodi input hoy amar  ei duita ke addition korle ami pabo A plus B and eitakethen NOT Gate  er under e felte hobe. Then taile ami ei purata aaa term tar upore ekta whole bar peye jacchi. Eta jodi ami ekta table e visualize kori tahole jinishta bujhte arektu easier hobe.  So eikhane ami duita input nilam A and B. A and B er ki ki combination hoy? 0 0, 0 1, 1 0, 1 1. Eitoh. Ekhon ahm first e ami ki kortesi? OR kortesi. Erpor ami otar upore NOT kore ami final NOR gate ta peye jacchi. So 0 plus 0 ki hobe? 0. 0 plus 1, 1. 1 plus 0, 1. 1 plus 1, 1. Eta gelo amar OR gate complete.
-
-[3:25-4:27]
-Ekhon eita ke ami ki korbo? NOT kore felbo. That means eta inverse hoye jabe. Tahole ekhane amar ache 0, output ta hobe 1. Ekhane ache 1, output ta hobe 0. Ekhane abaro 1, abar 0. Abar 1, abar 0. So eije ami ei column ta palam pelam, eitai hocche amar NOR gate er output ta. Ekhon NOR gate ta dekhte kirokom hobe? NOR gate er logical circuit ta jodi ami aki. A and B, duita input aager motoi. First e ki korbo? OR gate akbo. OR gate kirokom? Erokom. Then ki korbo? NOT korbo. NOR dekhte kirokom chilo? Erokom. So eitar shudhumatro ei part tuku ami ei jaygay ami include kore dibo. Tahole kintu ami peye gelam NOR gate. Jeta hocche A plus B whole bar.Okay? So eitai gelo amar NOR gate.
-
-[4:27-5:41]
-So ekhon ami jodi last universal gate dekhi, sheta hocche ki? NAND gate. NAND gate. So eitao similarly, similar to NOR gate, ekhane ki hocche? AND ami ekta term dekhte parchi. Tar mane ekhane amar primary gate ba fundamental gate AND ache tar sathe amar NOT gate ache. Tar mane NAND gate ami pabo AND plus NOT kore. Okay? So ekhaneo eta holo amar dhorlam NAND gate. Ekhane aager motoi duita input jabe and ekta output ber hobe. Input ta jodi hoy A and output ta, input ta, arekta input jodi hoy B, tahole output ki hobe? Amake first e AND korte hobe. AND mane ki chilo? Multiplication.  So A into B. Erpor ami ki korbo? NOT korbo. So AB er upore ekta whole bar chole ashbe.
+# Speaker ID: A
+[0:00 - 0: 17]
+Hello everyone. Ei video-te amra dekhbo kibhabe compiler ekta code-ke read kore, code-ke read korar pore shetar moddhe semantic value dey, tarpore tarpor shekhan theke finally machine code generate kore. Amra machine code kibhabe generate kore shetate ajke jabo na, but ekta code theke kibhabe etake ekta parse tree banay, tar moddhe semantic value dey, sheta amra dekhbo. 
+[0: 17-0:45]
+Tar age amra porichoy hoye nei egula theke. Egula ki? Egula holo grammar ruler shathe amar kotogulo action royeche. Jemon, normally amra CFG ba context-free grammar-er moddhe egula action gula last-e dekhi, tokhon holo reduce hoye jokhon jay, rule-ta diye, tokhon shegula increment kora hoy. But ei action-gula  dekho, B theke jokhon C-te jabe, tar majhei action-ta ashe. Tar mane ami jokhon syntax parse tree-te B theke C-te jabo, tokhoni ami ki? Active hoye eta jabe. Tokhoni ei rules-ta already play korbe ekhane.
+[0:45-1:07]
+Toh shurute jeta hoy, ei je amar ekta code-er line ache, sheita ki? ekti 2D array. two and four, ei duita number diye ekta array banate hobe, 2D array. Ebong ei 2D array-ke compiler kibhabe read kore, shetai ajke amra janbo. Shurute amra etar jonno parse tree banabo. Toh parse tree bananor aage amader idea-ta ekhan theke ekbar discuss kori je kibhabe parse tree-ta hote pare. 
+[1:07-1:34]
+Shurute integer ache. Toh ami integer pabo B theke. Toh ei B kothat theke pacchi? Ami T theke. T jodi aaa T-ta jodi active hoy, tahole dekho, B pacchi ebong C pacchi. Ei C theke ami eventually ki? Ei C theke num pabo. Ekta number peye jabo. Ekhane arekta C ache. Eta. Ekhan theke abar C pabo. C theke abar num pabo. Four peye jabo. Ebong finally ei C1 jeta thakbe, shetake amra epsilon diye shesh kore dibo. Tahole amar finally ki? Parse tree-ta build hoye jabe.
+[  1:34-1:53]
+Toh shuru kori. Shurute jodi T1 nei, T1. T1 theke ki hobe? B and C. C. B theke amra ki pabo? Integer pabo. Ei je dekho, B theke kintu integer pacchi. 
+[1:53- 2:15 ]
+Similarly, ekhon C ke jodi amra dekhi, C theke ki pacchi? First-e num pacchi ebong C1 pacchi. Tahole ekhane dekhi. Arekta jinish kheyal kore dekho, ami kintu ekhane T1 diyechi. Tahole ekhane ki? B1-o dibo, C1-o dibo. 
 
 
+[2:15-2:31 ]
+Eti ami keno korchi? Jate ami kokhon parent ebong child niye value-gula etar upor bosiye dicchi, jate amra bujhte pari. thikmoto jate amader shubidha hoy jinishtate. Ekhon C1 ke jodi abar kori, abar num ebong arekta C pabo. Shetake amra C2 dibo.
+[2:31-2:59 ]
+Ekhon C2 theke ami finally ki? Epsilon diye arekta jinish peye jabo, sheta holo. Tokhon amar ekhane ki ar kono, kono leaf node-e ki ar non-terminal thaklo? Thaklo na. Tarmane ki? Amar parse tree-ta complete. Ekhon ami cholo, shuru kori. Ami ekhon bujhar shubidhar jonno, jate dekhiye dei  ekbar je amar ki ei jinishtai generate hoyeche ki na. Dekho, ekhan theke amar int hobe.
+[2:59-3:14 ]
+Tarpore ekhan theke num. Num-er ki? Two jeta, sheta ekhan theke hobe. Ekhon finally ki? ei four-ta ashbe ekhan theke. And epsilon theke kichu na. Ami kintu shobgulo peye gelam, ekhane ja ja lage.
+[3:14 -3:30]
+Okay, toh ekhon jodi amra shuru kori annotate kora, dekhbo je shurute T hoye gese, T theke B. T theke jokhon B-te jay, tokhon ki kono rules ache? Ekhane ki kono rules ache? Ekhane kintu kono rules nei. Tahole ki, ekhane kono kichu hobe na. Tarpore B theke int-e giyeche. 
+[3:30-3:53]
+B theke int, rules nei. Kintu int theke jokhon B-te reduce hoye giyeche, tokhon B.type= int. Mane eta dot type = int, okay? Hoye gelo. Tarpor ei T-te gelam abar. Ei B-er kaj hoye jawar pore amar ki? C-te jawar aage ki hoye geche? C1, C.1  equal to B.type. 
+[3:53-4:16]
+Ekhon ami ekta temporary variable niyechi, je C.1. Tahole ami ekhon jodi likhi, C.1=B.int ki chilo? Sorry, B.type ki chilo? Ekhane integer. Tahole ekhane ami integer likhe rakhlam ekhane, okay? But ekhaneo jodi ami chai, =  int-o likhe dite pari, shudhu ekta int. Ami temporary variable na diye, ekhanei jinishtar value diye dilam, integer diye dilam.
+[4:16-4:35]
+Tarpore amake ki boleche? Tarpore ami ki? Aaaaa C-te gelam, okay? C-te ashlam. Ekhon C-te ashar pore amar, C-er kaj shesh hoye geche? Na. Kintu C kintu ekhono reduce hoye jayni. Tahole eta amra ekhoni korbo na. Amra eta kokhon korbo? Ektu pore, jokhon egula shobgulor kaj jokhon shesh hoye jabe.
 
-[5:41-7:01]
-Ekhon ami jodi abar etar jonno similar table create kori. Okay. A, B amar duita input. So amar possible combination hocche 0 0, 0 1, 1 0 and 1 1. Ekhon ami ki korchi first e? AND korchi. AND mane holo multiplication. So 0 into 0, 0. 0 into 1, 0. 1 into 0, 0. 1 into 1, 1. So ekhon etake ki korbo? NOT korbo. So  0 ta hoye jabe 1. Ei 0 tao hoye jabe 1. Ei 0 tao hoye jabe 1. And lastly ei 1 ta hoye jabe ki? 0. So eije column ta, eita hocche amar NAND gate er output. And lastly NAND gate dekhte, NAND gate er jodi amra logical circuit ta aki. Tahole A, B input jacche and AND gate kore ami NOT kore dibo. Tahole ami peye jabo NAND gate. Dne. So amra aa amader kintu duita universal gate chilo, sheita kintu amader explore kora hoye gelo.
 
-[7:01-8:38]
-Ekhon ami last duita gate sheta hocche exclusive gate. Ei duita gate e jodi move kori. Tahole amader shobgulo logic gates er shomporke jana kintu hoye jabe. So, ekhon amra dekhbo X-OR gate. Eta kisher under e chilo? Exclusive gate er under e chilo. Toh Exclusive OR, ahmm tar mane ki? Ekhane X-OR gate e duita input jabe and ekta output ber hobe. Suppose A jodi amar input hoy, B jodi arekta input hoy, amar output ta hobe- amra jinishta ke evabe likhi. A XOR B. So ami ei sign ta diye X-OR ke bujhacchi. Mane OR mane ki? Plus. ar ami Exclusive ORami plus er baire circle diye ami exclusive OR ke bujhacchi. So eitar inputs and output kirokom hobe? So eitar input and output ta ber kora ektu lengthy process. Karon X-OR ei formula maintain kore. Ami jodi A and B input nei, tahole ei formula ami jodi step by step inputs theke output ber korar try kori tahole ami ei X-OR gate ta pabo.
-
-[8:38-10:07]
-But ekhon jehetu amra khub deep dive e jacchi na, so amra surface level er idea er jonno ami ekta technique dekhiye dicchi sheita holo. Aaaa A and B er ami hocche possible combination gula nicchi aager motoi 0 0, 0 1, 1 0 and 1 1. Thikache? Ekhon ami ki korbo? Ami dekhbo amar kon duita row te same input ache. That means, first cell e aa first row te jodi ami takai, ami ki pacchi? 0, 0. Same input. So amar output ta hobe 0. Abar last row te jodi takai input ta ki? 1 and 1. Duita same input. So eikhaneo ami pacchi output as a zero. Ki bolechilam? Same input equals to 0 and different input equals to 1. Eitai kintu ekhane follow hocche. Then second row te jodi ami takai, ekhane ki ache? 0 and 1.  Duita kintu ebar different duita value. So, 0 and 1 input er jonno amar output ta ki hobe? 1. So ekhaneo 1 boshe jabe and etar jonno o 1 boshe jabe. So ami ei formula diye lengthy process complete na kore ami kintu shortcut e ei X-OR er output ta dekhe nite pari.
-
-[10:07-12:34]
-Okay. Ekhon ami jodi X-OR er logical circuit dekhi. Eta dekhte kirokom hoy? A ekta input B arekta input. Tahole eita hocche amar X-OR gate ta and eita holo amar output. Done. So X-OR jodi amra bujhe jai tahole last je exclusive gate sheitao kintu amader bujha easier hoye jabe. Ekhon amra dekhbo X-NOR gate. X-NOR gate mane ki? X-NOR gate hocche X-OR gate plus NOT gate. So ami aager motoi X-OR gate ta ber korbo. Tar upore NOT gate ta apply korbo. Taholei amra X-NOR gate ta peye jabo. So ekhaneo X-NOR duita input jacche and ekta output ber hocche. A and B. So ki dekhlam? X-OR gate. So output ta ki hobe? X-OR gate first e ami korbo, korar pore sheta ke ki korbo? NOT apply korbo. That means etar upore ekta whole bar chole ashbe. Okay? So eitai jodi ami abar output generate korar jonno ekta table create kori. So amar ki ki possible combination hobe input e? 0, 0; 0, 1; 1, 0; 1. 1. Okay. So X-OR gate e ki chilo? Amar same input er jonno mane same input value er jonno amar output ashto 1. Different input value er jonno output ashto aaa. Sorry. Diff Same input value er jonno output ashto 0 and different input valuer jonno output ashto 1. So ami eta X-OR jehetu amar eta, so eta ekhane apply kore dicchi. 
-
-[12:34-14:09]
-So 1st cell e ami pabo 0, 0 equals to 0. 0, 1 equals to 1. 1, 0 equals to 1. 1, 1 equals to 0. X-OR banano amar shesh. Ekhon etake ami NOT kore felbo. NOT mane ki? Inverse ta ba opposite ta kore fela. So ekhane amar ache amar ache 0, eta hoye jabe 1. Eta 1, 0. 1, 0. 0 and 1. So last column ami jeta pelam shei ki? Amar X-NOR gate. Now, A and B, X-NOR gate er amra logical circuit ta dekhchi. Toh X-OR gate aage akbo. X-OR gate akar pore ami ekta NOT gate evabe apply kore dibo. Tahole ami peye jabo X-NOR gate. So X-NOR gate o kintu ekta formula maintain kore aage barer motoi which is A bar into B bar plus A into B. So eita convention ta na kore jehetu abar same process eta lengthy ektu hoye jay, so ekhan theke amra X-OR theke easily NOT kore kintu X-NOR ta ber kore felte pari. So ajke amra dekhlam total char ta gates which are Universal gates - NAND and NOR and Exclusive gate- X-OR and X-NOR. Thank you.
-
+[4:35-4:54]
+ Ekhon ami jodi ei C theke ki pacchi? Shurute num pacchi. Num ekhane ashlam, shesh. Tarpor jokhon jabo, C1.i equal to C.i. Tar mane ki? Amar ekhankar jei i hobe, sheta ki hobe? Integer hobe etao. Karon ki? C1.i etai chilo.
+[4:54-5:15]
+Tarpor ki boleche? Amake C.type equal to array. Amra ki ekhono ki chole giyechi? Amra amader ki ei C-er kaj shesh? Nah, ekhono kintu shesh na. Karon ki? Ei C theke amra abar reduce hoyechi. Ekhan theke abar eshchi, num. Ekhane num-e ashlam, four boshlo, shesh holo, reduce holo, kichu holo? Hae. Ekhane C1.i equal to C.i, mane etar type-o amar integer hobe.
+[5:15-5:35]
+Okay. Similarly, jodi ami dekhi je epsilon-o jokhon hoy, tokhon ki? Epsilon reduce hoye jawar pore C.type equal to C.1. Tar mane ki? Etar type integer, okay?
+[5:35-5:56]
+ Ekhon integer jokhon holo, tokhon amra dekho, ekhon amar kintu ei num and C2, ei purota reduce hoye gele C.type, mane eitar dot type equal ki boleche? Array of num.val. 
+[5:56-6:13]
+Ekhane num-er value koto? 4. Tahole ki? Amar ekhane num.value ki? 4 hobe purota. 4. Comma. Comma C1.type. Ekhane C1-er type ki chilo? C1-er type chilo holo amar etar type. Etar type ki? int. Tar mane ekhane int boshbe. Okay? Holo?
+[6:13-6:34]
+Tarpore amar eta shesh. Tarpore ki? Num ebong C1. Num ebong C1 abar reduce hoyeche. Taile ekhane ki hobe? Aaa C.type, mane eta .type = array of, array of num.value. 
+[6:34-6:54]
+Num.val koto? 2 ekhane. Tahole 2. Tarpor comma, tarpor bolche C1.type, mane holo ei type purata amar ekhon ekhane boshbe. Tahole amar ki hobe jinishta? Dekho, array of 4, int. Ei purota kintu ekhane eshche.
+[6:54-7:19]
+Tarpore finally amar jokhon etao reduce hoye geche, tar mane ki? B and C puratar kaj shesh. Tokhon ki boleche? T.type. T.type = boleche C.type. Mane ei C-er type. ei C-er type ki chilo? Ei puro jinishta ekhon amar ekhane amar likhte hobe. Ami jodi ekhon shubidhar jonno jinishta remove kore dei, je amar ektu jayga peye jabo ekhane.
+[7:19-7:34]
+tokhon amra dekhbo je ekhane eta purota hobe holo array of 2, array of 4, int. Okay? Shesh.
+[7:34-7:50]
+Er moddhe amar ei tree take ekti semantic value add kore dilam. Tarpore compiler ekhan theke intermediate code generate korbe. Tarpor shetake optimize korbe. Tarpor machine code-e convert korbe. Egulo amra eventually shikhbo. Thank you.

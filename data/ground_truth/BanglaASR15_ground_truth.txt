@@ -1,0 +1,16 @@
+# Speaker ID: C
+[0:00- 0:30]
+
+So sorry for the interruption, guys. Toh amra hocche jeikhan theke skip korechilam, amra oikhan theke continue korbo. Toh basically, amra jeta bolchilam je don't fragment jeta ache. Don't fragment er jodi value ta zero set kora thake, tar mane router er kache permission ache packet tare fragment kore onnanno router e pathanor, right? Kintu jodi don't fragment er value ta 1 thake, router ar packet re fragment korte parbe na. Packet-ta.
+[00:30- 1:00]
+drop kore diye ekta error message pathabe, sender re je tumi packet ta fragment kore dao ponerosho byte e. Ami eta korte parbo na, thik ache? Don't fragment tumi zero kore pathaiso. Sorry, one kore pathaiso. Toh eta hocche basically "don't fragment" er main task. Eta keno kora hoy? Question astei pare. Toh mainly onek shomoy privacy concern thake, thik ache? Je packet e onek shomoy third party o je attacker ra boisha thake jeshob mane packetgulo ektu beshi private.
+[1:00- 1:30]
+Ba jetar privacy niye kono risk like neoa jabe na, oigulote "don't fragment" one set kore deoa hoy jate shudhumatro je sender, shei hocche packetgulo fragment kore pathaite parbe oibhabe. Encrypted kore. Okay. Tarpor asha jak hocche MF. MF bolte bujhay. MF bolte bujhay More fragment. 
+[1:30- 2:00]
+Okay. So more fragment bolte tumi bujhtei partechho jokhon ekta fragment bhag korar pore jotokkhon na porjonto last fragment ta ache, oi je for example ami je char hajar byte er ekta data ke bhag korlam, for example ponerosho byte prothome ami dilam, ekta packet one. Then amader porer ponerosho byte, eta hoye gelo terosho aa 3000 byte, right? Packet 2. Porer Packet-ta amar hocche tin hajar hoy, just ek hajar baki thake, 
+[2:00- 2:29]
+Toh porer packet-ta jabe ek hajar byte-e, packet three. Toh eita hocche porer eita first er ponerosho byte, eita porer ponerosho byte, eita hocche ek jhajar byte, right? Toh amar more fragment ki kore? More fragment bole dey je erpore ar ki kon fragment ashbe? Jemon jodi ei case e chinta kori, ei je packet ta ami send korbo, ekhane header er field er moddhe more fragment e deoya thakbe one.
+[2:29- 3:02]
+Tar mane hae, amar ekhono aro packet ashbe. To packet two er khetre same, more fragment e amra header er moddhe je more fragment thakbe, MF flag ta sekhane dekhte pabo one. Tar mane ki? Je packet two-er poreo ekhono packet ashbe. Kotogula packet ashbe seta bola thake na, but hae, packet ekhono baki ache, eta bole. But jokhon amra packet three te chole jabo, jekhane ek hajar byte matro jabe, because achei ar ek hajar byte, so 1000 byte jabe, tokhon amra dekhte pabo MF-er moddhe value-ta zero. Tar mane o bujhachche je amar eitai last packet chilo. 
+[3:02-3:23]
+Amar je fragment er packet gula theke last packet, tar mane purata chole giyeche ei porjonto. Okay. So eita bujha khub-e important chilo jokhon amra MTU er math gula dekhbo. MTU er math er khetre/ Ar next video theke amra InshaAllah MTU er math shuru korbo. Thik ache. Best of luck. Assalamu alaikum.

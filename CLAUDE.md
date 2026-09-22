@@ -362,16 +362,21 @@ analysis behind it** and prints a warning; label a sample of errors or drop it.
   leave-one-speaker-out result (RESULTS.md 1.5) stays as the unseen-lecturer number. Then
   `run_p3_experiment.py --model openai/whisper-large-v3-turbo --curve-hours 2 4 6 8` with the new
   split.
-- **Renumbering found on the 3060 (2026-09-22, ~11:20, uncommitted working-tree changes):**
-  `data/ground_truth` and `data/raw/live_classroom` now name old lectures 6-9 as 10-13 and old
-  10-13 as 14-17 (transcript text unchanged apart from the header number), and new 6-9 are four new
-  lectures (partial, timestamp format errors; new 9 renamed "[Needs recheck]..."; no Speaker ID
-  lines, which are no longer required).
-  All results, answer keys, run folders, adapters' split.json and transcript_loso.txt use the OLD
-  numbers. `find_audio` resolves by number (run-folder audio first, then `ft_work/audio_cache`),
-  so under the new names it would pair new transcripts with old audio silently. Do not train or
-  evaluate until the user decides; recommended: restore the old numbers, new lectures become 14-17.
-  Git HEAD still holds the old files.
+- **New lecture numbering (the user's, 2026-09-22), grouped by lecturer:** new 1-5 = old 1-5 (A),
+  new 6-9 = four new lectures (A, per the user), new 10-13 = old 6-9 (B), new 14-17 = old 10-13 (C).
+  `data/ground_truth` and `data/raw/live_classroom` use the new names; every ground-truth file now
+  starts with `# Speaker ID: A|B|C` (added by Claude at the user's request, text otherwise
+  unchanged). **Everything measured so far uses the OLD numbers**: RESULTS.md, `data/board_truth`,
+  the run folders in `output/`, adapters' `split.json`, `transcript_loso.txt`, `ft_work/audio_cache`
+  (its BanglaASR10-13.wav are old 10-13 = new 14-17). The exact ground truth behind the results is
+  frozen in `data/ground_truth_v1_2026-09-21/` (git HEAD before the renumbering); to reproduce a
+  result, pass `--gt-dir data/ground_truth_v1_2026-09-21` to `prepare_data.py`. **Before any new
+  training**, make `find_audio` and the split use the old-to-new table: it resolves by number
+  (run-folder audio, then the cache, then `data/raw`), so a new BanglaASR6 would silently get old
+  lecture 6's audio, and an old-numbered run folder would get the wrong video from `data/raw`. The
+  LEGACY_SPEAKERS map in `prepare_data.py` is old numbering; the headers override it. Confirm new
+  6-9 = lecturer A with `verify_speakers.py` when their audio is extracted. New 6-8 are partial;
+  new 9 ("[Needs recheck]" in its file name) has no timestamps yet, the user is adding them.
 - **Board ground truth: verified** by the user on 2026-09-22, all 45 boards. Rescore everything with
   `scripts/rescore_verified_keys.py`. Checking sheet: `output/annotation_demo/verify_all_boards.html`.
 - **ft_work layout on the 5090:** `ft_work\` is the corrected split; `ft_work_v1_video6_in_train\` is
