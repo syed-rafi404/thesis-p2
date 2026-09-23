@@ -154,6 +154,35 @@ def strip_prompt_placeholders(section):
     return "\n".join(out), removed
 
 
+# Rule 7 of the prompt bans LaTeX, but the 7B model reached for it anyway on the NOR truth table
+# (2026-09-23), giving "\(A\)" and "\(\overline{A + B}\)" in the middle of a sentence. The page is
+# plain HTML with no maths renderer, so the student sees the backslashes. This is the net under the
+# prompt: it rewrites what the model emits into the plain text the rule asked for.
+LATEX_PATTERNS = [
+    (re.compile(r"\\overline\s*\{([^{}]*)\}"), r"(\1)'"),
+    (re.compile(r"\\bar\s*\{([^{}]*)\}"), r"(\1)'"),
+    (re.compile(r"\\(?:text|mathrm|mathit)\s*\{([^{}]*)\}"), r"\1"),
+    (re.compile(r"\\[\(\)\[\]]"), ""),          # \( \) \[ \]
+    (re.compile(r"\\times"), "x"),
+    (re.compile(r"\\cdot"), "."),
+    (re.compile(r"\$+"), ""),
+]
+
+
+def strip_latex(section):
+    """Plain text for anything the model wrote as LaTeX. Returns (text, how many rewrites)."""
+    n = 0
+    for pattern, repl in LATEX_PATTERNS:
+        section, k = pattern.subn(repl, section)
+        n += k
+    return section, n
+
+
+def count_quote_lines(section):
+    """Blockquote lines holding a quoted span: the quotes of the lecturer in this section."""
+    return [m.group(1) for m in (QUOTE_LINE.match(ln) for ln in section.splitlines()) if m]
+
+
 def check_quotes(section, transcript_norm, min_words=3):
     """Delete quotes that are not word for word in the transcript. Returns (text, kept, dropped)."""
     lines, out, kept, dropped = section.splitlines(), [], [], []
@@ -361,7 +390,16 @@ def build(name, info, llm, language, args):
             return None
         raw = llm.chat(msgs, args.max_new_tokens)
         raw, placeholders = strip_prompt_placeholders(raw)
-        text, kept, dropped = check_quotes(raw, tnorm)
+        raw, latex_fixes = strip_latex(raw)
+        # The english version quotes the lecturer in translation (the user, 2026-09-23: an
+        # English-medium reader cannot read Banglish), so there is nothing to match against the
+        # Banglish transcript. Those quotes are counted and labelled, never checked; the
+        # word-for-word check stays on the banglish version, where the quotes are the real words.
+        if language == "english":
+            text, kept, dropped, translated = raw, [], [], count_quote_lines(raw)
+        else:
+            text, kept, dropped = check_quotes(raw, tnorm)
+            translated = []
         ids = {b["id"] for b in board["boxes"]}
         invalid, mentioned = check_box_refs(text, ids)
         text, colour_fixes = fix_colours(text, {b["id"]: b["colour"] for b in board["boxes"]})
@@ -386,7 +424,8 @@ def build(name, info, llm, language, args):
                        "transcript_chars": len(excerpts[k - 1]), "boxes": len(ids),
                        "boxes_mentioned": mentioned, "invalid_box_refs": invalid,
                        "colour_fixes": colour_fixes, "inline_quotes_unverified": inline_bad,
-                       "prompt_placeholders_removed": placeholders,
+                       "prompt_placeholders_removed": placeholders, "latex_rewritten": latex_fixes,
+                       "quotes_translated": translated,
                        "quotes_kept": kept, "quotes_dropped": dropped})
 
     sections_md = "\n\n".join("\n".join(s) for s in sections)
@@ -405,6 +444,8 @@ def build(name, info, llm, language, args):
     colour_n = sum(len(r["colour_fixes"]) for r in report)
     inline_n = sum(len(r["inline_quotes_unverified"]) for r in report)
     placeholder_n = sum(r["prompt_placeholders_removed"] for r in report)
+    translated_n = sum(len(r["quotes_translated"]) for r in report)
+    latex_n = sum(r["latex_rewritten"] for r in report)
     leak = ""
     if tfile == "transcript_finetuned_v2.txt" and nc.lecture_number(name) <= 5:
         leak = ("transcript_finetuned_v2.txt comes from an adapter trained on lectures 1-5, "
@@ -421,9 +462,14 @@ def build(name, info, llm, language, args):
               f"*How these notes were made. Speech: {tfile or 'no transcript'}"
               + (" (times approximate)" if approx and tfile else "") + ". "
               f"Boards: {boxes_doc.get('boxes_from', 'ink')} boxes, named by {vlm_name}. "
-              f"Notes written by {llm.model_id}. Quotes checked word for word against the "
-              f"transcript: {kept_n} kept, {dropped_n} removed. References to boxes that do not "
-              f"exist: {invalid_n}.*"]
+              f"Notes written by {llm.model_id}. "
+              + (f"The lecturer's words are given in English translation ({translated_n} quotes); "
+                 "the Banglish version of these notes has the originals, checked word for word "
+                 "against the transcript. "
+                 if language == "english" else
+                 f"Quotes checked word for word against the transcript: {kept_n} kept, "
+                 f"{dropped_n} removed. ")
+              + f"References to boxes that do not exist: {invalid_n}.*"]
     markdown = "\n".join([head.strip(), "", sections_md, "", "---", "", tail.strip(), ""] + footer) + "\n"
 
     stem = (f"notes_annotated_{language}" + (f"_{args.tag}" if args.tag else "")
@@ -436,6 +482,8 @@ def build(name, info, llm, language, args):
             "transcript_file": tfile, "times_approximate": approx, "leakage_warning": leak,
             "boxes_file": boxes_path.name, "board_text_file": args.board_text_file if board_text else None,
             "quotes_kept": kept_n, "quotes_dropped": dropped_n, "invalid_box_refs": invalid_n,
+            "quotes_translated": translated_n, "quotes_word_for_word_checked": language != "english",
+            "latex_rewritten": latex_n,
             "colour_fixes": colour_n, "inline_quotes_unverified": inline_n, "sections": report}
     (run_dir / f"{stem}.json").write_text(json.dumps(meta, indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"{name:<16} {language:<8} {len(boards)} sections, quotes {kept_n} kept / {dropped_n} removed, "

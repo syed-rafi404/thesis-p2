@@ -73,8 +73,13 @@ Video in, a usable lecture note out:
    Qwen2.5-VL answers per number). Look: `Temp/mockup_nand_board.jpg`.
 3. A notes LLM combines board and transcript into a lecture note that refers to the boxes
    ("look at purple box 5"). Target look: `Temp/MOCKUP_lecture_note.html`.
-4. Two versions per lecture: `english` (English text with the lecturer's Banglish words quoted and
-   translated, as in the mockup) and `banglish`. The student picks. **Bangla (Bengali script) was
+4. Two versions per lecture: `english` and `banglish`, and **each is wholly in its own language
+   (the user, 2026-09-23, after reading the first real notes)**: an English-medium student cannot
+   read Banglish, so the English notes quote the lecturer in English translation and contain no
+   Banglish; the Banglish notes quote the real words, still checked word for word. The mockup's
+   mixed "Banglish quote + translation" style is therefore superseded. The word-for-word claim now
+   covers the Banglish version only; `build_lecture_notes.py` records `quotes_translated` and
+   `quotes_word_for_word_checked` per file. The student picks. **Bangla (Bengali script) was
    dropped by the user on 2026-09-22** on Claude's advice: weakest quality, only LLM translation
    (not a contribution), extra checking before the defense. Future work; do not build it.
 

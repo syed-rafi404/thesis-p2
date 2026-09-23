@@ -26,17 +26,27 @@ _RULES = """RULES
    text. A wrong value is worse than a missing one.
 4. The transcript is machine-made and has errors. Where it is garbled, rely on the board.
    Never invent what the lecturer said.
-5. No greetings, no filler, no "in this section"."""
+5. No greetings, no filler, no "in this section".
+6. A table on the board is written as a Markdown table, never described row by row in a
+   sentence. Header row, then one line per row:
+   | A | B | A+B | (A+B)' |
+   |---|---|-----|--------|
+   | 0 | 0 |   0 |      1 |
+7. Plain text for formulas and symbols: A + B, (A + B)', NOT(A + B), A XOR B. Never LaTeX:
+   no \\(, \\), $, \\overline, \\bar, \\text."""
 
 _QUOTES = {
+    # The reader of this version is an English-medium student who cannot read Banglish (the user,
+    # 2026-09-23): the English notes carry no Banglish at all, so the lecturer is quoted in
+    # translation. A translation cannot be checked word for word against the transcript, so
+    # build_lecture_notes does not run the quote checker on this language and says so in the
+    # footer; the word-for-word verified quotes live in the banglish version.
     "english": """QUOTES
-Include one or two short quotes of the lecturer's own words that explain something, copied
-EXACTLY from the transcript below, character for character, in the original Banglish. Put
-each on its own line, followed by your English translation on the next line:
-> Lecturer: "exact words from the transcript"
-> (In English: your translation)
-A quote that is not word for word in the transcript is deleted automatically. If nothing in
-the transcript is worth quoting, give no quote.""",
+Include one or two short quotes of what the lecturer said, TRANSLATED INTO ENGLISH. Translate
+the meaning of the lecturer's own words in the transcript below; do not invent a quote, and do
+not write any Banglish. Put each on its own line:
+> The lecturer said: "your English translation of what the lecturer said"
+If nothing in the transcript is worth quoting, give no quote.""",
 
     "banglish": """QUOTES
 Include one or two short quotes of the lecturer's own words that explain something, copied
