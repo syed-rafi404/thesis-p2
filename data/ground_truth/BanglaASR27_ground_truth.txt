@@ -1,0 +1,134 @@
+# BanglaASR27 Ground Truth Transcription
+# Topic:
+# Speaker ID: C
+# Video file: BanglaASR27.MOV
+# Video duration: 22:42
+# Transcriber:
+# Date:
+# Style guide version: 1.0
+#
+# Paste the transcript under the line below, then remove ".EMPTY" from the end
+# of this file's name. While it ends in .EMPTY the pipeline does not see it.
+#
+# Format   [M:SS-M:SS] text, on one line, no spaces inside the brackets
+# Limits   every segment under 30 s, aim for 10-25 s; no gaps, no overlaps
+# Keep     fillers (aaa, um, mane, je, tahole); ASCII only, no smart quotes
+# Rules    TRANSCRIPTION_GUIDE.md
+
+# ============================================================================
+
+[0:00-0:18]
+Assalamu Alaikum, everyone. To, hocche, goto video gulote amra shikhchi je basically how can we control the robot, but what if the robot can control and learn by itself. Eta hocche robotics er one of the fundamentals, and current time one of the most demanding subjects, which is machine learning.
+[0:19-0:45]
+Je ekta machine, mane, human dara control na hoye kivabe self learn korte pare, and oitar basis e protekbar kivabe nijer ke se nije enhance korte pare, nijer performance, nijer metrics, everything improve korte pare. So, basically oitai ajke amader topic. Cholen, title tar naam diye dei.Machine learning hocche robot er khetre,
+[0:46-1:09]
+ba for example, amader current time protek ta industry te dekhben je heavy gigantic industry gulo ekta robot nije learn korar importance ta tokhoni ashe, when we try to make it automated. And automated in the sense je se kono human interaction chara, kono human control chara, nijer theke tar je dedicated task, seta perform korte parche,
+[1:09-1:31]
+with also handling the external environments. Je tar charipasher je circumstances ba environment ache, setar sathe se nijei deal kortche, sekhan theke learn kortche, and tarpore se sekhan theke ekta better output diye nijer kaj tare shesh kortche. Eta hocche basically the core idea of machine learning.
+[1:32-1:50]
+Je we are not controlling the robot anymore, it is controlling itself, right? Okay, so let's begin. How does this process work? Mane, ekta robot kivabe se nije learn korte pare, eta amake sobar age bujhte hobe. So, let me draw. Graph. Graph of a very simple. You can say neuron.
+[1:51-2:16]
+This is a replica of human brain. Amader human brain e ki hoy? Onek gulo neuron porosporer sathe connect hoy, and eta apnara hoyto jaben je jokhon i amader human ra notun kichu shikhi, that is, that generates a new branch of neurons. I don't know if you know this, but whenever humans learn new item or skills, the neuron of the branches grow.
+[2:17-2:44]
+The same goes with robotics. These are, you can measure them as features. Okay, so this are, for example, feature one, feature two, feature three. So, this are the features, and that we are, that we will be working on, and with the help of this features, we are trying to create, what can you say, we are trying to create weighted graph.
+[2:45-3:07]
+And weighted graph in the sense that, each of this feature will be multiplied with the weight. For example, weight one, weight two, weight three. And they will give me an output based on something that, something, you can say, activation function that remains here. This is called the hidden layer.
+[3:08-3:38]
+This is the input layer, or you can say features. And with the help of sum, internal calculation, it will give me a output. Okay, this. Very simple, very basic neuron structure. So, what you can say is, basically our feature one, feature two, and feature three. They are multiplied, and then summation.
+[3:39-4:07]
+And then we are getting an output. So, eta hocche basically amader bola jay je ekta mane machine learning er mother language. Machine learning er mother language tahole ki daraitese? Output equals to w1f1 plus w2f2 plus w3f3
+[4:08-4:28]
+Okay, so hocche, eta amader khubi ekta basic neuron er structure. And we can learn very complex neuron structures. Basically jegulo amader real world case e kaj lage. So, ogulo amra we can look that up on Google, or wherever we are comfortable.
+[4:29-4:51]
+So, basically machine learning to amader kivabe help kortche? Ek machine learning jekono ekta algorithm. Amar ekta particular task er jonno algorithm learn kore, and setar statistical ekta model dar koray. To, statistical ekta model kirokom hote pare? Jodi ami dekhai. For example, we can think of a machine learning model that identifies tumors. Right?
+[4:52-5:18]
+To, ami hocche just ekta simple chart toiri korte chai ekhane. For example, amar kichu patient er ei chain ta te weight dewa ache. Sei weight and patient er er upor base kore amra bolte chai je ei tumor ta ki? That real, naki tumor tar mane, like, false positive, or false negative? Okay, so for example, amra likhtechi ekhane je tumor size.
+
+[5:19-5:43]
+ Ar age. Ei duito hocche amader feature. To, jehetu amra khubi  basic example dicchi, amra khubi choto choto feature niye kaj kortechi. And this is the hocche condition. Ar tar sathe hocche age.
+[5:44-6:13]
+To, first of all, amar hocche age 50. Prothom person er khetre tumor size 10, ar condition hocche malignant. Then ashteche amader tumor size 2, H hocche amader 30. Then condition ta hocche.
+[6:14-6:42]
+Sorry, guys, ektu spelling mistake hoyeche. Then tumor size 1. Tumor size 1, age 45. Age is 45. Eta hocche amader ekta slide e given dewa ache. Amra oitai just ekhane likhtechi.
+[6:43-7:09]
+Then age 5, 40.
+[7:10-7:38]
+Okay. So it ekta khubi simple table, ar ei je table ta ache, ei table er feature kintu 2 ta. Basically eta condition, eta amra hocche predict korbo amader model diye, right? Ei je condition ta, eta predict kora hobe amader model diye, and ei ta hocche amader table ta. Okay. So ekhon ekta khubi important jinish chole ashe, amra ekta age je video, mane board e dekhechilam
+[7:39-8:00]
+je amra hocche protyek ta feature ke, jemon amar ekhane ei ta hocche feature one, and ei ta hocche feature two, right? To amra jokhoni kono function banai, machine learning model er function bolte paren, algorithm bolte paren, jekono algorithm amra jokhon banai, amra try kori. So accha, basically this type of problem e ekta classification problem, right? Classification mane ki?
+[8:01-8:26]
+Je amader model ta ekta yes or no answer dibe. Je like, hoyto eta amar tumor, othoba tumor na. To aaa ei je feature gulo, ekhon to hocche khubi basic bole 2 ta feature dekhano hocche, but when the model gets heavier, amder hoyto aro aro feature asbe. And tokhon amader ei je calculation gulo, amra ekta weight diye multiply kori na, weight er ekta khubi important, mane importance ekhane ache. To basically weight diye multiply korar reason ta holo,
+
+[8:27-8:55]
+amder jekono ekta particular feature er importance ta oi machine learning algorithm ta tete kototuku impact fele, setare determine kora. For example, amra jodi for example, ekta number, ami ekta number table niyechi, jei number e for example age. To age er table ta kintu comparatively ektu, Ei je number gulo, boro. Ei je number gulo theke, right? To ei ta ki kore? Onek somoy er upore je number gulo ache,
+[8:56-9:22]
+ei big number howar karone eta difference, boro howar karone, onek somoy amar model ta bias hoye jaite pare age er karone,age er upore. Je er beshi, tar jodi tumor size ta choto hoy, for example etar, je jodi erokom hoy je er beshi, ba tumor size choto, but still tare declare kore dicche je tar tumor ti hoyeche. Right? Abar oneke hoyto pare je kom, but tumor size ti boro, tarporo bolteche je na, eta hocche kono tumor na.
+[9:22-9:47]
+To ei je biasness ta, ei ta egulo reduce korar jonno amra, accha, bias asole bolte ki? Je jokhon ekta kono factor er karone, ekta particular factor er karone, amra machine learning model er decision ta ekta particular dike shift hoye jay, shobshomoy oi dike decision dite thake. Which might be wrong, most of the time, but still. So ei jinish gulo handle korar jonno amra oi je feature gulo diye, je likhchilam,
+[9:48-10:10]
+f one w one, f two w two. f three w three. Eikhane je w one w two w three, egulo ache, egulo amder se weight gulo. Ami joto boro weight diye je feature ke multiply kori, sei feature tar importance amar model er toto, model er algorithm er toto, etai bujhay. Age simple as that, right?
+[10:11-10:35]
+ So basically ekhane ki hocche, je dekhen, amra f one ke w one diye kortechi, f two ke w two diye kor techi. Ekhane f three nai, so amra hocche ekhan theke f three ta muche dicchi. To basically amra ekhane jodi w three, for example, amader age er theke tumor er size ta beshi matter kore, je mane age jemoni hok, tumor er size jodi eta certain threshold, for example 30 par kore, tahole amra bole dibo je han, this is a tumor.
+[10:36-11:01]
+To ami basically ei je w two ta ache, etar weight er man ta er theke ekta boro rakhte hobe, jeta amder basic idea. To eivabe amra hocche khubi simple ekta, machine learning model banai te pari. And ami arekta jinish dekhaite chai, er je graph gulo hoy, jehetu classification problem, classification problem e kintu discrete ekta value dey. Discrete value bolte kemon? Yes or no. Kono continuous kono kichu nei. Amra continuous problem gulo regression problem e dekhbo.
+[11:02-11:25]
+But mane bujhar jonno, jodi egulo porikkhay asbe na, but theoretical alochona ar ki. Oita bujhte hobe amader, obviously. So ami jemon khubi basic ekta neuron er example, structure dekhiechi, neuron er structure to ot easy hoy na, right? Onek gulo factor kaj korte thake neuron er moddhe. To same vabe ami khubi basic ekta mane classification dekhailam. Classification problem er ar ki. Example dekhailam.
+[11:26-11:53]
+To jodi ami ekhon graph dekhait e chai, classification problem gulo er graph ta kemon hoy? Oi je bollam, yes or no. To basically amar je graph ta hobe, dui ta vage vibokto hoyte hobe. Mane dui ta jinish er moddhe comparison er jonno, obviously. Complex ashte pare, er theke ami just oi je khubi basic example gulo dekhano er try kortechi. Khubi complex kono kichu jabo na. For example, amar ei side gulo jeta bolte chai, ei side gulo bol teche je na, egulo tumor na. Jehetu er classification problem yes or no. Ekhane kichu continuous value ashar moto kono chance nei.
+[11:53-12:20]
+Always discrete value asbe. Right? So ar egulo ami bol techi je ha, this are identified as tumors. Ami ekhane dicchi tumor er size, amar dui ta feature chilo. Eijonno eta 2D graph. Jodi feature bar te thake, graph kintu 3D graph, 4D graph, mane amra to oi gulo poroborti te janbo je kemone amder computer egulo computation kore,
+[12:21-12:35]
+but human der khetre to 3D graph er beshi kono kichu analyze korar brain e possible na. 4D, 5D to amra human ra, mane limitation, oita amder, amra korte pari na, right? To amra just apatoto khubi simple dui ta feature er jonno 2D graph dekhte chi. Feature er songkha jokhon bar te thakbe, graph er dimension o kintu bar te thakbe.
+[12:36-12:56]
+So oita amder consider korte hobe. To this is tumor size ekta feature. And sorry guys, amar nak ta ekta bondho, ejonno. Okay, so basically this is a very simple classification problem. Thik ache? Regression problem e, regression type er je problem gulo te difference ta ki hoy,
+[12:57-13:22]
+basically amder tokhon ei je graph ta, etar dui vage, mane vag kore na kono kichur. Regression type problem e ki hobe? Je o apnar digital value, digital value asole bola thik na. O numerical values dey, right? Numerical values bolte kemon? Jemon for example, amare o hocche, jekono ekta model er run koranor jonno ekta percentage er hisab dicche. Je eta hocche, for example,
+
+[13:23-13:41]
+mane ajke bristi howar somvhabona aaa, for example, 80%, 20%, 50%, erokom ekta continuous value dite thake. Thik ache? Kichu diner upore base korbe, kichu diner upore base kore amar ekta line create hobe. Basically je line ta, apnar hocche, for example, eikhane, eikhane bibhinno type percentage ache, egulo show kore. Ar er theke je distance gulo,
+[13:42-14:01]
+egulo hocche calculate kore, amra tokhon judge kori je amder actually kototuku accurate ba kototuku false, erokom type er. So this is a classical, apnar hocche, regression type problem er ekta graph. To regression type er problem e ekta interesting factor ache, je amra kintu regression type er problem e kono activation function use kori na.
+[14:02-14:24]
+Jehetu amra je value gulo paitechi, model learning machine theke, seguloi amder dicche o. Thik ache? Oi gulo niye amra kaj korte pari. Ejonno regression type problem e kono activation function er dorkar nai. Kintu ei je classification type problem gulo, ar etar function amra keno use kori, etao boltechi ami. To ei je classification type problem gulo, egulo er khetre amra always ekta activation function use korbo.
+[14:25-14:48]
+Because amder main, mane je machine learning model, se to amder output dibe, hocche apnar, for example, continuous value. Thik ache? But amra oi continuous value gulo niye kaj korte parbo na. Amader classifier er jonno ki bo lam? Hoy ei theta, na hole oi side e. Er jonno zero to one er moddhe amder value lage. Classification problem. Ekhon amder je continuous number gulo ache, oi gulare zero to one er moddhe convert korar jonno amra ki use kori?
+[14:49-15:19]
+We use an activation function. Ei ta bibhinno vabe design kora jay. Khubi famous kichu activation function er jodi amra name boli, ReLU ache, Sigmoid ache, thik ache? Egulo hocche amder khubi famous activation function. To ei activation function gulo use kore amra je continuous value ta ache, ei continuous value tare amra zero to one er moddhe ekta ba jekono format e amra jete pari. Je dui ta, mane class ta distinctly identify korte pare. Thik ache?
+[15:20-15:44]
+Eta hocche khub-i normal ekta classification ar regression problem-er moddhe difference. Okay, so pore dekhajak ki ache. okay, so amra hocche apa ekhon porjonto dekhlam je amader machine learning model-er ekta khub-i important jinish bolte bhule gesi. That is, deep learning model. Machine learning model-er deep learning model-er moddhe partokkha-ta basically kothay? Ekhane ekta jinish khub-i important jinish, kheyal korben.
+[15:45-16:12]
+okay, amra ei je etokhon dhore bolam je amra duita feature ba tinita feature niye kaj korbo. For example, amra ei je ektu age korchilam, ekta graph-e, sheta chilo feature one chilo age, right? Ar feature two-te chilo hocche-apnar hocche tumor size. Right?
+[16:13-16:44]
+Eta khub-i janata khub-i important. Etai basically define kore kon machine-ta ami deep learning boltesi, konta general machine learning-er moddhe ami rakhte partesi. Ei criteria-ta ashe porikkhay. Eta amader time final-eo aschilo. So, the thing is, ami-sorry, so the thing is, ami tokhon-i matro ekta machine learning model-ke deep learning bolte parbo, jokhon ei je feature-gula amar nijerke mane manually handcrafted vabe ami dicchi na.
+[16:45-17:12]
+Ei feature-gula handcrafted vabe ami kon model-e provide korchi na. Machine nijer theke environment-e ja ja lagbe, oshob feature nijer theke niye nicche, nijer theke banacche, nijer theke weight set korche. Machine learning model-e amra ki kori? Basically amader je feature-gula ache, feature one, feature two, er shathe weight multiply korte hoy. Right? Oi weight-gula value kintu amra nijera tune kori, fine tuning-er jonno. Tokhon mane weight-gula nijera amra je hocche ektu kom kore, beshi kore dekhi je kontar jonno amader model better result dicche.
+[17:13-17:37]
+But deep learning ki korbe? Deep learning-er neuron-gula onek beshi complex, onek beshi features, onek kichu. So, that works in different, whole different perspective. Compare to machine learning, deep learning onek beshi weighted. Thik ache? And the main thing is, ei je feature-gula amader hand-picked hoy machine learning-e. To machine learning-er features ar hand-picked. Thik ache?
+[17:38-18:06]
+Amra nijera egula manually craft kori. Manually craft korle amader model-ke feed kori. But deep learning model-e ki hoy? Deep learning model amader oshob kichu-i nijer theke toiri kore niye ney. Ekhane ami likhe rakhi, deep learning. Eta jana khub-i important. Deep learning model-o ki korche? Everything is done by the machine.
+[18:07-18:33]
+Ei je feature selection, tader weight diye multiply kora, shob kichu deep learning model nije shikhe environment theke ney, nijei trial error kore kore ber korte thake. Je basically kon khetrer jonno ortar beshi perform korte pare, or model-ta khub bhalo performance dey. Done by the machine itself.
+[18:34-18:56]
+To egula chilo hocche amar machine learning-er duita criteria, regression-er classification, and machine learning ar deep learning-er moddhe khub choto choto kichu basic difference ami dekhano try korlam. Egula theoretical, khub-i important. Questions ashe shobshomoy. Ek, dui marker jonno. To egulo ektu shikhte hobe, jante hobe. And egula bolar main karon hocche, amader basically robotics-e,
+[18:57-19:25]
+mane amader machine learning model-ta asche main purpose kintu image processing theke. Thik ache? CNN theke. CNN jinish-ta theke ami eta niye are pore-r video-te beshi discuss korbo. CNN theke-i amader, mane amader ekta image-ke process korar je need-ta, sheta theke kintu basically mane machine learning-er shurupat hoyeche. Apnar robotics-er moddhe eto beshi. Right? To basically CNN amader motivation chilo.
+[19:26-19:49]
+Ei CNN kintu classification uporei kaj kore. Je classification problem-ta amra ektu age dekhlam, oitar upore kaj kore. Oi je activation function-er kotha bollam, je ekta output activation function diye ekta non-linear input dibe. Shomossa-ta ki? Ekta jinish bolte bhule gesi. Amader je etokhon bolam, activation problem-ta. Oi activation function-ta amader lagteche ta keno?
+[19:50-20:16]
+Basically amader-ta bujhchi je zero theke one-r moddhe ekta value pawar jonno amra hocche activation function-ta use korchi. Right? But ekta interesting fact ache. If you guys notice je jokhon hocche amar machine learning model-er mane hocche regression-er kotha-ta bolechilam, oikhane kintu amar graph-ta erokom chilo. Right? And ei graph-ta erokom howar karone ei je onk-gula point, jeta hocche apnar er theke mane kachakachi jay,
+[20:17-20:37]
+segula bhalo kore mane hocche ya kora jay nai, bosano jay nai. Amar ei graph-er upore. As this is very linear graph. Amar hocche normally regression problem linear graph-i dey. But ei je linear graph, eta niye kaj kora shobshomoy mane possible hoy na. Because emon onk complex situation ashe, jokhon khetre eta to onk simple.
+[20:38-21:02]
+To simple mane solution kono complex problem-e kaaj korar kotha na. To ei je apnar regression ache, eitate activation function amra use kori. Activation function use korle ki hoy? Ei je soja graph-ta, ekdom soja je graph geche, eta non-linear ekta rup dharon kore. Non-linear dharon korar karone eta tokhon khub-i ekta bhalo output amader dite pare.
+
+[21:03-21:28]
+Achha, non-linear-eitar ekta advantage hocche etai je, e khub bhalo ekta output amader dite pare. Kintu er ekta disadvantage-o ache, jeta khub-i complex. Thik ache? Eita khub-i complex hoy. So, this is the basic non-linear graph. Amra etake non-linear graph-er jekono bhabei expand korte pari, scale korte pari, jekono model-er output-er design output-er upor base kore. Thik ache?
+[21:29-21:40]
+This is very basic. To eitai just bola chhilo je kibhabe amra ekta linear function-ke non-linear function-e transform kori, with the help of activation function.
+[21:52-22:03]
+Got it? So, basically amader main motto-ta, I guess, amra bujhte perechi je amader activation function use kora, regression-er value-gulo use kora, classification-er jinis-gulo use kora keno dorkar.
+[22:04-22:22]
+To thik ache, ajker video-ta ei porjontoi. Thak, next video-te amra inshallah hocche activation function use kore CNN kibhabe run hoy, kibhabe amra process korte pari, high-resolution image kibhabe amader ekta machine learning robot ba model aaa process kore, segulo niye alochona kora jabe.
+[22:23-22:42]
+And kichu khub famous aaa mane navigation system-er byapare amra janbo je ekta robot kibhabe navigate kore. Because tokhon apnar bujhte parben je amra kibhabe ashole duita jinis relate kortesi-importance-ta koi theke ashtese, right? To thik ache, thank you. Ajker video-ta ei porjontoi. Dekha hobe next video-te. Dhonnobad."
+

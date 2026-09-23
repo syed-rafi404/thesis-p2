@@ -1,0 +1,128 @@
+# BanglaASR28 Ground Truth Transcription
+# Topic:
+# Speaker ID: C
+# Video file: BanglaASR28.MOV
+# Video duration: 19:29
+# Transcriber:
+# Date:
+# Style guide version: 1.0
+#
+# Paste the transcript under the line below, then remove ".EMPTY" from the end
+# of this file's name. While it ends in .EMPTY the pipeline does not see it.
+#
+# Format   [M:SS-M:SS] text, on one line, no spaces inside the brackets
+# Limits   every segment under 30 s, aim for 10-25 s; no gaps, no overlaps
+# Keep     fillers (aaa, um, mane, je, tahole); ASCII only, no smart quotes
+# Rules    TRANSCRIPTION_GUIDE.md
+
+# ============================================================================
+
+[0:00-0:17]
+Okay guys, toh amra goto video-te jeta alochona kortechilam, je amader CNN bujhar jonno, tar aage khubi important ekta topic bujhte. Sorry. Basically CNN bujhar jonno amader tar aage khubi important ekta topic bujhte hobe.
+[0:17-0:42]
+Basically, aaa the thing is navigation. je amar navigation-ta ekta robot kibhabe kore,   process-ta bujhte hobe. Ei process-ta bujha keno dorkar? Because eitar maddhome amra bujhte parbo je robotics-e CNN-er importance-ta, right? Je amader keno dorkar portese ekta machine-er moddhe ekta CNN model chalano, ba ekta machine learning model chalano, main importance-ta ashtese kintu basically aa navigation thekei.
+[0:42-1:04]
+So, amra ektu dekhi je navigation-ta basically amra kibhabe bhaag korte pari. Navigation, right? Eta navigation-re amra, for example, chaarta stage-e bhaag korte pari.
+[1:04-1:29]
+First is path planning, je amar aage toh basically ekta mane amar mone koren je hocche source. Eita source and this is the destination. Amar source theke destination-e jawar jonno je ekta path khuje ber korte hobe. Because normal environment-e onek beshi obstacle thake, ba dynamic environment-e amra agei bolechi dynamic environment-er jonno onek changes ashte pare, thik ache? Onek kichui hote pare.
+[1:29-1:47]
+Sheijonno amader shobar aage jeta korte hobe, jei obstacle-gula avoid kore kemne amar machine porjonto, sorry, target porjonto jawa jay, ei path-ta khuje ber korte hobe. That is the path planning.
+[1:47-2:04]
+Second, second of all, amar dekhte hobe localization. Je basically amar robot-ta ekta environment-e kothay obosthan kore, thik ache? First one is path planning, second is localization. Localization jinishta ki?
+[2:04-2:32]
+Je ekta certain environment-e amar robot-ta exact kothay obosthan kortese, tar nijer location, mane amra toh jani, but robot-ta nije jane kina, eita hocche localization, thik ache? Ar third is mapping. Ei je path planning korlam, je kon poth diye jawa jay, gele obstacle-ta hocche shobkichu avoid kore amra target-e pouchate parbo, and amar nijer state, ba nijer position-ta kothay, ei duita howar pore shudhumatro tokhon mapping kora-ta possible.
+
+[2:32-2:54]
+Basically shudhu mapping na, mapping and exploration. Because amra kintu ei je mapping-ta, ar char number exploration, ei duita kaj simultaneously hoye jay. Jokhon amar ekta robot, for example, boro ekta room-er moddhe ami hocche amar robot-tare room-er ekta scan korte bolchi, je amar pura basha-ta ekta scan koro.
+[2:54-3:19]
+Ekta scan korar jonno o jokhon first of all toh kono map nei, or kache kono idea nei je bashay koi ke ache na ache, toh o aste aste shob jaygay randomly jeye jeye scan kore, thik ache? Ei jinishta randomly hoy na, eta hocche kon technique-ta use kore, eta amra shamne alochona korbo. Just eta ekta dharona dilam. Jai hok, toh basically je path planning, localization-ei duita howar pore just mapping and exploration.
+[3:19-3:44]
+Ei duita hoite pare, right? So basically apnara ekhan theke dekhte pacchen je amader ei charta stage, ekta robot-er. Tar moddhe ei duita simultaneously hoite thake, thik ache? Je, for example, ekta room map korte dilam, tahole room-er oi je, mone koren amar ei room theke oi room-e jaite hobe, amar living room theke kitchen-e jabo ami, er jonno je jawar rasta-ta, ei duitar maddhome toh korbei.
+[3:44-4:03]
+Tarpor ei duita, aa mane, ei duita fulfill hoye gele tokhon o mapping-ta korbe je, hocche konta amar shortest distance, mone koren multiple path ache, dynamic environment-e bibhinno change-er hothat kore hoite pare, shobkichur jonno ei mapping exploration, era khubi important. Ei duita kora. Thik ache, amra one by one prottekta stage dekhbo je konta kibhabe kaj kore.
+[4:03-4:21]
+Kintu tokhoni amra bujhte parbo je actually CNN-ta amader robot-e keno lagtese, thik ache? Ei jonnoi basically ei topic-er moddhe eita kintu outside topic. Amra ekhon jeta CNN korchi, that is chapter five, but chapter four-er ei topic-ta jana dorkar keno? CNN-er concept-ta bhalobhabe bujhar jonno, right? Thik ache, tahole amra ekhon ekta ekta stage dekhbo.
+[4:21-4:46]
+Okay, first of all, path planning. Path planning ki? Je hocche amar target-e pouchano, thik ache? Source theke ami target-e pouchabo kon rasta diye jaitesi, obstacle gula avoid kora, eitai hocche basically amader path planning-er ongsho.
+[4:46-5:14]
+To path planning tinta bhabe hoite pare, thik ache? Path planning-er prothomta hocche, ei je visual homing bollam ami, ei visual homing-ta basically kemne kaj kore? Je amar for example, aa robot-er je,  for example, memory. Memory-r moddhe ekta chobi rakha, je amar target-ta dekhte kemon, thik ache?
+[5:14-5:33]
+Ei je chobi-ta rakha, ei chobi scan korar jonno ki ekta camera-r dorkar, robot-er upor ekta camera to thaka lagbei je o dekhtese je hocche amar basically ei je target jeta, shei target-ta chobitar shathe abar ei je particular picture, eita mile kina, thik ache? So ekhane-o kintu CNN lage.
+[5:33-5:54]
+CNN mane ki? classification. CNN-er moddhe pore. To o jokhon hocche, for example, ekta particular chobi dekhtese, o oitare mane constantly compare kortese, or moddhe je target-er chobi rakha, sheitar shathe. Toh visual homing ki? Je amar robot-ta randomly ghurte thakbe, ekta camera lagano thakbe, camera diye prottekta millisecond-e o scan kortese, prottekta direction-e.
+[5:54-6:17]
+Je basically ami jei desired target-ta chacchi, amar toh memory-r moddhe ekta chobi ache, oi desired target-er chobir shathe ei chobi-ta match kore kina, thik ache? Jodi match khuje pay, tahole amar robot-ta oi dike chola shuru korbe. Eita hocche bola jay kind of khubi basic ekta, mane, path planning-er algorithm. In a commu, sorry,mainly jeita use hoy sheita hocche bug based algorithm.
+[6:17-6:40]
+ Naam dekhe bujhte partesen, onekta je pokara jemne cholachol kore, sheibhabe aaa tar upor nirbhor kore ba base kore amader ei model-ta toiri kora, thik ache? Toh basically bug-based jinishta ki? Bug mane oi je pokara cholachol kore kibhabe, je hocche pokader kintu oi je kono chobi thake na memory-te, kono camera thake na. Ora kibhabe cholachol kore?
+[6:40-6:56]
+Ora hocche apnar, mane, randomly ghore na; ora oi je, for example, pipre kibhabe chole, shariboddhobhabe choltese pipre, first-e ekta pipre  ekta destination-e pouchay, she kichu hormone pora ase chorate chorate ashe, oigulo follow kore kintu baki piprara ashe, thik ache?
+[6:56-7:29]
+Ekhon toh ei khetre ki hocche, je ami jani amar target-ta koi. For example, amar target ki, sheta hocche eikhane, thik ache, ar er moddhe onek obstacle ache. Ar amar ekta source, sheta hocche eikhane. Toh ami jani amar-accha, source-ta eikhane dile easy hoye jaitese, thik ache, source-ta mone koren eikhane. Toh hocche ei je source-ta, ei source o toh jantese je amar target-ta eikhane ache, thik ache? Toh eikhane eituk just information or kache thakbe, je or target-ta kon direction-e ache.
+
+
+[7:29-7:50]
+Jemon, for example, piprera kono je chini porle sense korte pare, je basically chini-ta koi porche, o kintu jawar direction jane na je exactly kon path diye jabo, thik ache? But o ekta hocche apnar jinishta sense korte pare je, hae, erokom jaygay hoytoba amar oi je chini porche, ba modhu porse. To o oitar oi sense-er upore base kore jawar cheshta kore.
+[7:50-8:16]
+Prothome jokhon o jaite chay, dekhe je ekhane obstacle ache. Toh o ki kore? Ei obstacle-ta ghure jay, thik ache? Ghure abar chola shuru kore. Toh jodi kono obstacle abar pay, tahole hocche to abar erokom kore rotation dibe. For example, jodi eikhan theke amar hoyto source-ta toh o first-e erokom jaite giye ekta mone koren obstacle-e porlo. Toh pore abar o obstacle par kore jaite jaite jaite jaite, eikhane jokhon obstacle-ta ekbar avoid hoye jaito, tokhon o abar shoja chola shuru korto, thik ache?
+[8:16-8:44]
+To eta hocche bug-based-er khubi, mane, iya, ekta primitive example, je eikhane kono camera usage nai. Apni jekono camera je sensing-er maddhome apnar hocche iya-ta khuje ber korte hobe. Scenario dite pare, jodi camera bole je camera prothome noshto hoye geche, tahole bug-based chara upay nai. Ar jodi bole je hocche sensing kaj kortese na, kintu or moddhe chobi capture ache, amar target-e, tokhon visual homing chara ar kono upay nai, thik ache? Eita hocche khubi basic duita example.
+[8:44-9:13]
+Ei duita example tokhoni kaj kore, jokhon amar kache kono map nei, thik ache? To with no maps. ei path planning-gulo kokhon amra korbo? Ei path planning-gulo amra tokhoni korbo, shudhumatro jokhon amar kache kono map nai, ba map-er idea nai. Map thakle ki? Je amar ei je environment-e ami currently achi, oitar idea kintu amar ache, thik ache?
+[9:13-9:38]
+Shudhumatro oi khetrogulote amar hocche aaa A-star amra use korte pari. Oi je jeta bolchilam, tin number. Toh tin number-er khetre, accha, ektu muche dei, eta beshi nichu hoye jaitese. To no map-er jonno amra ei duita use korbo, right? Eituk porjonto clear.
+[9:38-10:00]
+Ar jokhon amader kache ekta map dewa thakbe, thik ache, path planning-er shomoy jokhon ekta map amader kache dewa ache, tokhon amra oi tin number jeta bollam, oitake use korbo, with map. Amra use kortesi just A* algorithm. Jehetu amader map dewa ache, amader kintu ekta idea ache je amader kothay obstacle thakte pare na thakte pare. Tokhon amra ki korbo?
+
+
+[10:00-10:18]
+Ekta optimized path ber korbo, je shob shobtheke shortest path jeta, jetate shobtheke kom energy khoroch hobe, right? Oitar jonno tokhon A* algorithm use kore amra je pathfinding-er kajta, ba path planning-er kajta kore feli. Toh eita hocche chilo amader navigation-er path planning-er tinta part.
+[10:18-10:41]
+Toh eita discuss korar main issue hocche ei je, apnader je visual homing. For example, emon kono situation jodi hoy je hocche, amar robot-ta kono sensor kaj kortese na, scenario diye dilo, ba amader real-life kono scenario ashlo, shudhumatro kono kichu identify korei o hocche oi destination-e jaite pare, thik ache? Je chobi dewa ache, for example ekta chobi process korar jonno to amader CNN lagbei, right?
+[10:41-11:07]
+Ami jodi ekta chobi-ta process korte chai, I need CNN. Eita chara to upay nai. Toh ei importance-tuku bujhanor jonno ami discuss korte chacchilam je, basically aro kon kon khetre lage. Hae, ami aro shamne dekhabo je shudhumatro ei path planning na, aro onek khetrei robotics-e dorkar. Jemon localization-er ekta part ache, ami ekhoni ekhane chole jai, jehetu eta porer part-i, localization. Toh path planning-er pore amra ki dekhchilam? Next part-i hocche localization, thik ache?
+[11:07-11:26]
+Just CNN-er importance-ta bujhanor jonno kintu ami navigation discuss kortesi, ejonno puro navigation-ta discuss korbo na, just je path-gulo camera ba image picture-er shathe related, oi part-gulo niye ami kotha bolbo, oi part-gulo niye, right? Toh thik ache, amra likhe feli. Localization, right?
+[11:26-11:51]
+Accha. Localization jinishta ki? Ami koi achi? Where am I? Thik ache, ami koi achi, eita khui je ber kora hocche localization-er kaj. Toh localization dui bhabe hoy, ekta hocche dead reckoning, ekta hocche landmark based sensing. Ekhon dead reckoning-er shathe CNN-er kono shomporko nei, because dead reckoning-e kono camera lagtese na.
+[11:51-12:17]
+O just or nijer je position-gulo, oi position-gulo mone rakhtese, mone rekhe porerbar movement kore. Je basically or nijer location-ta khuje ber korar jonno. Toh amader jeta jante hobe, sheta hocche landmark sensing. Landmark sensing jinishta ki? Because landmark sensing-i related CNN-er shathe, ei jonno eta niye discuss kortesi.
+[12:17-12:38]
+Okay, so eije landmark sensing, etar upore hocche, amra keno base korbo? CNN keno base kore etar upore?
+[12:38-13:02]
+The main reason is je landmark sensing-e aaa main moto-ta ki? Je amar hocche ekta known-environment, sheikhane onekgulo important structures rakha, thik ache? Sheita hoite pare ekta hocche apnar image, ba hote pare hocche apnar ekta boro murti, ba hoite pare hocche apnar ekta, mane, ki bola jay, ekta khub boro building, thik ache? amar robot-ta jokhon choltese, amar robot-er moddhe ei chobi-gulo dewa ache.
+[13:02-13:25]
+Je ekhane ekta building, tumi dekhte pao, "This is your one checkpoint," then tumi building theke samne agay, bam  dike jodi jao, oikhane ekta statue paba. "This is your second checkpoint," amra game-e jebhabe kheli, tai na? Game-e to onek jaygay dewa thake je mone koro ekta stage paar korlen, tarpor hocche checkpoint paar. Then arekta new state-e gele, ba new country-te gele, sheikhane ekta checkpoint save hoye jay, tai na? Amra jara gaming-er shathe porichito, we know this shit.
+[13:25-13:43]
+So, ekhon landmark sensing-er khetre amra same kaj-tai kori. Ki kori amra ekhane? Je hocche, for example, ekta aaa mane, environment amar dewa, shei environment-er charpash-ta khubi important jinish amake dewa, chobi dewa ache. Amar robot-e save kora. Je ei jaygay tumi jao, to tumi bujhba je tumi abar tomar target theke dure acho.
+[13:43-14:08]
+For example, ami jodi ekta sculpture pai, ami imagine kortesi, ba ami set kore dichi amar robot-e je tumi eta dekhte pao, mane, tomar robot ar 50 meter samne. Ba eta mone koro boro building-er poster paile, tomar eta dekhle tumi mone korba je tomar distance, mane destination-ta tomar jekhane acho, sekhane theke bame jaite hobe. Eita ebhabe kintu robotics-er ei je apnar landmark sensing kaj kore, thik ache?
+[14:08-14:33]
+Toh eita prottekta time-e dekhen je chobi tultese, chobi tule ekta particular chobir shathe kintu compare kortese, thik ache? Ei khetre image processing chole ashe. Mane, image processing chara to eitar-o kono way nai, right? Toh basically, ei je ei khetre-o amar khubi important. And landmark sensing is one of the best mechanisms robot-er hocche localization-er jonno, thik ache? Ei jonno ami eta discuss korlam. So, eikhane-o dekhen, CNN importance kintu achei, thik ache?
+[14:33-14:54]
+Toh hocche, basically, ei jinis-guloi apnake mone rakhte hobe. Jokhon apni kono robot-er, mane, iya korben, je model design korben, CNN-er model design korben, bibhinno landmark sense kora, then hocche apnar ekta robot-er for example camera diye target-ta capture kore path planning kora, ei jinis-gulo kintu apnar mathay rakhte hobe obviously jokhon apni CNN-er model-ta design korben.
+
+[14:54-15:16]
+Okay, toh aro kichu jinish ache jader amra boli hocche paradigm. Thik ache? Eita hocche, mane, ei chapter theke na, again navigation chapter theke na, but just aaa the importance of CNN in robotics bujhanor jonno ami jinis-gulo discuss kortesi, right? To arekta important jinish ki? Paradigm.
+[15:16-15:37]
+Paradigm is how we design the behavior of a robot, thik ache? Amra ekta robot-er je-amra ekta robot je banaitechi, ei robot ki behave korbe, kemnabhabe behave korbe, eta dynamic environment-e. Ei jinis-ta amader design kora hocche paradigm-er kaj. Eita chapter 1-er topic, but oi je, CNN-er importance-ta apnader bujhte hobe, right?
+[15:37-16:03]
+Toh thik ache, paradigm amader tin  typer hoye thake, thik ache? To ami shobtheke important jeta type ache, oitar kothai boltesi. Accha, thik ache, shobgulo likhi. Hierarchical ba classic. First paradigm jetar nam, sheta hocche hierarchical ba classic.
+[16:03-16:31]
+Second-tar jodi amra dekhi, second-er nam hocche apnar react. React  on spot, thik ache? Third-tar nam hocche hybrid.
+[16:31-16:58]
+Hybrid paradigm. So, ei tinta hocche apnar paradigm kaj korar bishoy. Shobgulo ami explain korbo. Ekhon konta kon khetre use kora jay, ami sheta details hoytoba jabo na. Ami just eta niye kotha bolbo, because eikhane hocche apnar basically CNN je importance, oita bujha jay. Ar eita use kore shob jaygay. Amader joto real-life cases ache, shob jaygay ei je apnar behavior robot-er, eta implement kora hoy robot-er moddhe.
+[16:58-17:19]
+To basically hierarchical ki kore? Apnar for example, ekta environment ache, oi ekta environment-er prottek move-e pura environment-er charipashe 360 degree ekta chobi tule. Chobi tule shegulo process kore, shegulo process kore, then robot tar mane hocche action-ta mane plan kore je she ki korbe ei step-e pore she ki korbe, target-e pouchanor jonno.
+[17:19-17:40]
+Shobi kintu hocche ei je apnar mane je hocche common source-ta ache, source theke target-e jaite hobe. And er moddhe kichu action perform kora lagbe. Ei hocche kintu robotics-er main kaj, thik ache? Thik ache? khubi short alochona korlam. And react on spot, eitar shathe hocche apnar CNN-er shomporko nei, ejonno ami eta muchiye dilam puro-puri, thik ache?
+
+[17:40-18:05]
+What matters is je hocche apnar hierarchical. Sorry, sorry, bhul bolchi. Hybrid. Hybrid-ta ki? Hybrid kintu basically apnar oi je react on spot ar hierarchical ba classic, ei duita mixture version, thik ache? To basically eita je hierarchical, HR likhe dilam, plus apnar hocche react. R E A C T. Ei duitar mixture version.
+[18:05-18:34]
+To eikhane apni dekhben je hocche hierarchical je kaj-ta hoito, oi kaj-ta kore kintu robot aa mane oi je image processing-er kaj-ta kore. Je charidike takay, nijer chobi tule, shudhumatro ekta shomoy. Jokhon she target-e jabe. Target-e jawar porjonto she je react on spot, eita hocche etar upore base kore kaj kore. Tar mane she jekono dynamic environment-e, jekono typer-i movement jodi kore, tar follow korbe she react paradigm-er aaa fundamentals-ta.
+[18:34-19:03]
+But Jokhon she target-e pouchay jabe, verify korar jonno je eita ki abar actual target? shetar jonno she abar oi je chobi tulbe, charidike. Chobi tule she image-gulo process korbe, image-gulo process kore, tokhon hocche je match pay, tahole target-e pouchhe geche, certain task perform korbe, thik ache? Toh apni dekhtesen je eikhane-o kintu apnar CNN-ta chole ashtese. To basically amra robotics-e CNN skip korte pari na. Kono chance nai. And ei jonnoi ei chapter-ta amader mane pora khub bhalo lagar dorkar. And ekhan theke math-o ashe porikkhay.
+[19:03-19:28]
+Convolution-er math, eta shamne dekhbo. Amra convolution jinis-ta ki kibhabe kaj kore, ekta image kibhabe high resolution theke choto kore, sheta bhag bhag kore amader robot-ta diye process korai. Ei shobgulo amra shamner video-ta dekhbo, thik ache?
+Dhonnobad ei ajker video dekhar jonno. Amra next din InshaAllah CNN-er main je porashona, oita shuru korbo. Ajke just amra importance-ta niye discuss korlam. Thank you everyone.
+

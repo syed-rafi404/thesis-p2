@@ -1,0 +1,93 @@
+# BanglaASR25 Ground Truth Transcription
+# Topic:
+# Speaker ID: C
+# Video file: BanglaASR25.MOV
+# Video duration: 11:42
+# Transcriber:
+# Date:
+# Style guide version: 1.0
+#
+# Paste the transcript under the line below, then remove ".EMPTY" from the end
+# of this file's name. While it ends in .EMPTY the pipeline does not see it.
+#
+# Format   [M:SS-M:SS] text, on one line, no spaces inside the brackets
+# Limits   every segment under 30 s, aim for 10-25 s; no gaps, no overlaps
+# Keep     fillers (aaa, um, mane, je, tahole); ASCII only, no smart quotes
+# Rules    TRANSCRIPTION_GUIDE.md
+
+# ============================================================================
+
+
+
+[0:00-0:20]
+Assalamukum, guys. To ajker video theke amra basically je PID niye amra etokkhon alochona korlam, je basically amader graph ta kemne kaj kortese, amader grapher bibhinn component-jemon rise time, tarpor hocche peak time, overshoot-settling time, egulo shikhlam. Ei shobkichur amra je PID er math gulo ache, PID math gulo ache, bhumikata dekhbo. Thik ache?
+[0:21-0:48]
+To shobar age amader bujhte hobe PID ta ki. Amra ekta graph diye bujhab apnader. So, as the title goes, P I D. P-te proportional. I-te integral, apnader protyek tar
+[0:49-1:14]
+definition i ami ek ek kore diye dibo, then it will make sense. This derivative.
+Okay, now, what is proportional? Proportional is, you know, jemon amra ki   boli, je hocche E. Mane Newton er je famous formula ta, E proportional to mc square.
+[1:15-1:42]
+What that means is, amar je mass and amar je hocche-for example, dhruvok dhorlam, dhruvoker square amar je energy ta, seta proportional. Eta jodi bare, eta kombe. Eta jodi kome, eta kombe. Right? To basically, that is proportional to. Amra boli proportional to. Ar ei ekta mane alternative, mane ei ekta opposite ache, seta hocche. inverse to. Thik ache?
+[1:43-2:12]
+Mane eita ami formula ta dicchi na, just ami bollam ar ki, eibhabe. Tar mane ki, duita characteristics kintu opposite. Eta jodi bare, eta kombe. Abar eita jodi kome, eta barbe. Vice versa. Thik ache?
+To basically, ami just bujhanor jonno eta use korlam. To proportional jinish ta bujhanor jonno ami ektu explain korchi. Ekhon, proportional jinish ta ekhane keno use kora hoyeche? Je eta hocche normal ekta control. Ekta controller theke apni oi je feedback er input dicchen, seta je output dicche, that is khub i simple calculation.
+[2:13-2:27]
+Oitate kono hocche integration o kora hoitesse na, derivative o kora hoitesse na. Error gular-oh, bhalo kotha. Ekhane integration ba integral kisher? Eta to bola hoy nai. That is error jegula pai, seita. Derivative o kisher hoy? Derivative o hoy error er. Thik ache?
+
+[2:28-2:52]
+Egulo amra bolbo aste aste, shobkichu i. Egulo keno ana hoyeche, first of all? Ei je, ei same drone er example e amra asi. Drone er example beshi dicchi karon eita shob theke beshi make sense kore. Right? Onno kono example diye ektu tough hoye jaitte pare.
+To basically, ekhon dekhen, amra joto khon bollam je amader drone er dorkar 100 RPM, kintu ditese asholey 55 RPM. Eijonno drone ta ekhon ei position e ache. Thik ache?
+[2:53-3:22]
+To amra proportional ta diye ki kori? Amra kintu ei error er difference ta ber kortesi. Je ekhane 45 RPM er ekta error ache. To porobortite amra controller jokhon jacche, controller aste aste baire thakche, power dewa barhate barhate ekshomoy kintu ora 100 RPM e niye jabe, thiki.
+Ekhon amader je formula ta, sei formula ta jodi amra dekhi normal P control er jonno, seta hocche just error, error. Into amar je hocche input ba gain, bolte paren apni. Amra gain boli shadharonoto gain.
+[3:23-3:49]
+To error ar gain er je multiplication, thik ache? Ebar eta oi je actual output o bola jay. Eder je multiplication, eitai kintu amader hocche proportional ta, just. Thik ache?
+Kintu shomosha ki? Jokhon mone koren error komtese, ei je 55 theke 60 e aslo, tokhon apnar error 40. Tarpore 70 e aslo, 30. 80 te aslo, 20 error ta. Error ta barhte barhte kintu ekta shomoy, mane apnar oi je zero hoye jabe. Because RPM dorkar chilo 100,
+[3:50-4:14]
+abar amra ekhan theke oi je, mane amader je actual output ta, seta amra 100 e niye gelam. Right?
+To ebhabe amra dekhlam je hocche amader error ta hoye gelo zero. Jokhon i error zero hoye gelo, tokhon to amader gain o zero. Gain zero mane ki? Mane tokhon hocche amader je drone ta, oita kono-mane oita propeller gulo kono power i dicche na. Right? Tokhon to drone ta niche pore jabe, dhop kore. Right? To ei situation handle korar jonno amra ekhane integration ta anchi.
+[4:15-4:39]
+Ei type er situation handle korar jonno. Eta kivabe help kore? Amader ei je zero hoye jacche purapuri, eta komaitesi. Kivabe komaitese? O-r sathe aro add kore, ei je mone koren ekta stage, duita stage, tinta stage-ei tinta stage-r je error-gula, sei error-gula ekta summation, thik ache? Etare amra ashole ektu, mane, fashionable way-te likhi, thik ache? Fashionable way-te jodi likhte chai,
+[4:40-5:09]
+it will be a summation of i theke amader nth je round, seitar error-gular summation. Thik ache? Tar sathe multiply hobe amar je hocche gain-ta ache, sei gain-ta. Gain-ta concept-ta ami dekhabo pore. To basically tar jonno ki hoy, ei je ekta jinis ache, this can never be zero, because amra sobshomoy difference korte korte either positive or negative asbe. Thik ache? Ei jonno ei je prothome je puro jinis-ta zero hoye jacchilo, thik ache?
+[5:10-5:34]
+Etare prevent kore hocche eta. Kintu etare abar somossa ache. Etar jonno thik ache, etar je stage stage error chilo, je plus minus two, onek somoy zero hoye jay. Eta handle kore feltese, but er jonno abar oscillation-ta beshi hoye jay. Disadvantage ki? More oscillation. Thik ache?
+[5:35-6:03]
+More oscillation. Ei je more oscillation, etare handle korar jonno abar amra use kori derivative. To apnar kintu ekta idea khubi-i sure thakte hobe. Proportional chara integral hote pare na. Integral chara derivative hote pare na. Eta kintu porikkhay ashte pare. Thik ache? Eta diye dey porikkhay. Just theoretical knowledge test korar jonno. Je apnar PI controller use na kore ami ki direct PI diye use korte pari? Mane, theoretically not suggested.
+[6:04-6:30]
+Because tomar PI controller-i nai. Tumi bujhteso na je tomar basically kon factor-tar jonno oscillate hocche. Tumi ki derivative kore ki ber korba ekhan theke? Doesn't make any sense, right? Ei jonno jodi erokom question ashe, bolte hobe je na, PI chara PID use kora jabe na. Proti-ta step, eta step one, eta step two, eta step three. Jodi apni step two-re bad den, step three use korte parben na. Jodi apni step one-re bad den, step two use korte parben na. That is as simple as it is. Right?
+[6:31-6:56]
+Thik ache? To amra eta muche dei, khub beshi beshi hoye geche.Okay guys, to hocche amader ekhon main concept-ta ashte hobe. Amader ei je PI ar D, ei tintar kichu value prefix chilo. Because egulo sobshomoy ber ektu tedious.
+[6:57-7:20]
+To amra oi je trial and error diye amader moto, sorry, amader moto bolle vul hobe, onek scientist-ra, onek scientist-ra onek boro boro scientist-ra, tara hocche trial and error kore tintar jonno kichu fixed value ber koresen. Thik ache? Amra jetare bolte pari Ziegler's theorem. Ziegler's theorem. Thik ache?
+
+
+
+[7:21-7:37]
+Ziegler's theorem. Ei je PID-er bibhinno value trial and error kore kichu kichu formula fix kore rekheche je haa, ei type-r tomar hocche PID controller-er jonno PI controller-er jonno othoba shudhu P controller-er jonno tumi ei value-gula, mane, by default use korta parba, set kora.
+[7:38-7:59]
+Porobortite jodi amader lage, amra to amader moto chaile erokom kore customize kore nibo. For example, tar robot-er, amar robot-er sem bhave cholbe na. Sem goal amader accomplish kora na. But maximum je scenario-ta hoy, tini oita diye disen. Thik ache? But tumi jodi tomar robot-er aro optimize korte chao, tomar personal scenario-r jonno, you can do that. By trial and error. Thik ache? Je etar value komailam, oitar value barailam, kemon ache. Calculate kore shobkichu dekhlam ami. Right?
+[8:00-8:11]
+To for P controller, eta ekdom mukhosto. Eta porikkhay ashe sobshomoy. Dosh marker ekta question. For P controller, jeta shudhu tar mane proportional part-tuku ache.
+[8:12-8:34]
+Sob jaigai ekta Dhruvok thake, right? Toh amra ekhane dhruvok use korbo. P controller-er jonno amra dhruvoktar naam dibo K_p. K_p-er value hobe 0.5K. K hocche amader oi gain-ta-ektukhon age je kothata bollam na? Error into gain. This is the gain. Thik ache? Gain. Okay.
+[8:35-9:01]
+Ekhon P controller chole gelo. P controller-er pore ki ashe? PI controller. PI controller-er jonno amra ki use korte pari? K_i, dhruvok. Ekta naam diye dilam. Tumi chaile tomar nijer naam-o dite paro. But thik ache, K_i. Amra convention-ta use korbo.
+Toh K_i-er value-ta ki bole? Basically, K_i-er jonno amra 1.2 divided by ekta oscillation period nei.
+[9:02-9:27]
+Jehetu integral thakar mane ki? Sekhane oscillation mass to achei. Integral proportional-er steady-state-er je error-ta dekhchilam, amra oi je graph-ta-te dekhechilam, oita eliminate kore. That's fine. That's true. Kintu eta abar oi je oscillation-er ekta jhamela niye ashe, jeta basically amra derivative diye handle kori. Derivative-we know je kibhabe kaj kore. Ei je derivative, duita error-er majher difference. Toh duita error-er difference ber kore kore oitake optimize kore niye ashe. Right?
+[9:28-9:54]
+To thik ache, bhalo kotha. But tahole ekhane ki lagbe amader? Ekta time period of oscillation. Thik ache? For example, ei je oscillation time period dhore amra dhorlam P. Thik ache? Short-e Osci likhlam-time period of oscillation. Toh etake amra dhorte pari je 1.2 bollam.
+[9:55-10:09]
+Ei je 1.2, 0.5 ache-eta tumi tomar scenario onujayi customize kore trial generate kore ber korte paro je tomar robot-er jonno konta fix. Eta tomar robot-e use kortei hobe, emon na. But eta by convention. Shobai maximum case-e eta use kore, mane kaj kore ar ki.
+[10:10-10:29]
+Divided by P. Mane 1.2 jodi ami time period of oscillation diye bhag kori, tahole K_i-er value-ta pabo. Eikhane ekta K_p-er value thakbe, obviously-K_p. K_p-er value hobe 0.45 times K. Ei K-ta ekhaneo gain. Thik ache? Ei K-ta ekhaneo gain.
+[10:30-10:52]
+Toh ami ektu muche dei, because oi pashe jehetu jayga nei. Just take a screenshot.
+Toh laste gelo, mane hocche proportional controller gelo. Proportional-integral controller gelo. Ekhon amra proportional-integral-derivative control-er jonno dekhbo. For PID controller.
+[10:53-11:18]
+So, for PID controller, what we can see is amader je K_p-er value-ta, seta hobe 0.6 into K. Ar K_i-er value-ta hobe-because PID. Toh proportional, integral to ache, tai oder dhruvok-o thakbe. Thik ache? As simple as that.
+2 divided by P, abar. P,
+[11:19-10:38]
+jeta hocche time period of oscillation chhilo, divided by eight. Eta hocche amader PID-er jonno. Toh ei tinta convention amra amader mathay rakhbo. Ota mukhosto rakhte hobe. Math korar shomoy, jokhon math korbo, math-er bibhinno scenario dekho-scenario-gulo theke ei tinta value amader ber korte hobe. E porjonto video. Porer class-e amra math diye shuru korbo. Thank you.
+
