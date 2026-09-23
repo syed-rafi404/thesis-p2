@@ -73,7 +73,11 @@ def main():
     ap.add_argument("--vlm", default="Qwen/Qwen2.5-VL-7B-Instruct")
     ap.add_argument("--llm", default="Qwen/Qwen2.5-7B-Instruct")
     ap.add_argument("--quant", choices=("none", "8bit", "4bit"), default="none")
-    ap.add_argument("--language", choices=("english", "banglish", "both"), default="both")
+    # Same set build_lecture_notes.py accepts. english_via_banglish (write the note in Banglish,
+    # then translate it) scores 89.4% against 55.9% for English written directly (RESULTS.md 5.4),
+    # so a lecture outside the scored 13 should be built with banglish + english_via_banglish.
+    ap.add_argument("--language", default="both",
+                    choices=("english", "banglish", "both", "english_via_banglish", "all"))
     ap.add_argument("--tag", default="")
     ap.add_argument("--mock", action="store_true", help="Stand-ins for the VLM and the notes model")
     ap.add_argument("--python-vision", default=sys.executable)
