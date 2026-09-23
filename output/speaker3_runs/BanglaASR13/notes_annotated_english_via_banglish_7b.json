@@ -1,0 +1,71 @@
+{
+  "lecture": "BanglaASR13",
+  "dataset_lecture": "BanglaASR17",
+  "language": "english_via_banglish",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "mock": false,
+  "transcript_file": "transcript_loso.txt",
+  "times_approximate": false,
+  "leakage_warning": "",
+  "boxes_file": "board_boxes.json",
+  "board_text_file": "board_text_clean.json",
+  "quotes_kept": 0,
+  "quotes_dropped": 0,
+  "invalid_box_refs": 0,
+  "quotes_translated": 4,
+  "quotes_word_for_word_checked": false,
+  "written_in": "banglish",
+  "translated_to_english": true,
+  "latex_rewritten": 0,
+  "colour_fixes": 0,
+  "inline_quotes_unverified": 1,
+  "sections": [
+    {
+      "board": 1,
+      "era": 1,
+      "from": "0:00",
+      "to": "3:50",
+      "transcript_chars": 2759,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [
+        "Total packet size consists of two sections: the header section and the data section. The header section contains information like the DF (Don't Fragment) flag, which helps in identifying fragments of a packet. The data section contains the actual data being transmitted."
+      ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
+        "Total packet jeta amra pathai ekta network theke onno network e, it has two sections.",
+        "MTU always refers to the size of a packet. So, I write 1500 bytes here, meaning the header is included. MTU always refers to the size of a packet."
+      ],
+      "quotes_kept": [],
+      "quotes_dropped": []
+    },
+    {
+      "board": 2,
+      "era": 2,
+      "from": "4:00",
+      "to": "12:34",
+      "transcript_chars": 4784,
+      "boxes": 5,
+      "boxes_mentioned": [
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
+        "So, if the size of one packet is, just the data size of the packet, sorry, if the data size is 4000 bytes, that's the total size of the data before including any headers.",
+        "For the second fragment, we add this value again divided by eight. Let's just take this value for now. What value are we waiting for? Okay, let's calculate it. Divided by eight, that is 185. So, what is the value for the second fragment?"
+      ],
+      "quotes_kept": [],
+      "quotes_dropped": []
+    }
+  ]
+}

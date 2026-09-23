@@ -1086,6 +1086,61 @@ python scripts/score_board_recall.py --gt data/board_truth data/board_truth/draf
 python scripts/score_board_recall.py --runs output/speaker3_runs --gt data/board_truth/draft_speaker3   --notes-name notes_annotated_banglish_7b.md
 ```
 
+#### Two routes to the English notes (2026-09-23)
+
+The user's spec described the English notes as a translation of the Banglish ones; what was built
+writes each language straight from the board and the transcript. Both now exist and are scored:
+
+- `--language english` writes English directly from the board and transcript.
+- `--language english_via_banglish` writes the section in Banglish, then translates it with the
+  same model, keeping the Markdown, tables, box numbers and colours.
+
+**Board-content recall, 35 boards of lectures 1-9, 349 items:**
+
+| Route | Recall | Speaker3 (87 items) | All 13 lectures (436 items) |
+|---|---|---|---|
+| English, written directly | 55.9% | 75.9% | 59.9% |
+| **English, translated from the Banglish** | **89.4%** | **79.3%** | **87.4%** |
+| Banglish (the source of the translation) | 89.1% | 79.3% | 87.2% |
+
+**Translating the Banglish notes recovers almost exactly what writing English directly loses**:
+89.4% against the Banglish original's 89.1%, and 87.4% against 87.2% over all 13 lectures. That
+supports the reading in 5.4 above - the direct-English deficit is the model paraphrasing the
+board's strings into English prose, not the notes carrying less of the lecture - and it makes the
+user's original spec (English as a translation of the Banglish) the better of the two routes on
+this metric.
+
+**The caveat, and it is a big one: the +33.5 pp is carried by four boards.**
+
+| | Boards | Net items |
+|---|---|---|
+| Dense boards, 39-42 items each (BanglaASR8 eras 2 and 3, BanglaASR9 eras 1 and 2) | 4 | **+113** |
+| Every other board | 31 | +4 |
+
+Of the 130 items gained, **113 (87%) come from those four boards**, and across the other 31 the two
+routes are level. Counted by board rather than by item the comparison is **10 better, 7 worse,
+18 tied, sign test p = 0.63, Wilcoxon p = 0.084 - not significant.** There are real regressions:
+BanglaASR4 era 4 and BanglaASR5 era 2 each fall from 6 of 7 items to 2 of 7.
+
+**So state it this way:** the translated route is dramatically better on dense, number-heavy boards,
+where writing English directly loses most of the content, and indistinguishable from it on ordinary
+boards. Do not quote "89.4% vs 55.9%" without saying that four of thirty-five boards produce almost
+all of the difference. This is the same board-count-versus-item-count trap as elsewhere in this
+file: the metric is item-weighted, so a handful of dense boards can move it a long way.
+
+**A defect in this route, measured over all 13 files: the translation leaves the section labels in
+Banglish.** Every file keeps between 8 and 13 of `Ek line e:`, `Mone rakho:` and `Extra jana kotha`,
+so a page billed as English still shows Banglish headings; one file also shouted its summary line in
+capitals. This does not affect recall (the labels are structure, not board content), but the claim
+"no Banglish left" does not hold as built. The labels are a fixed, small set, so they can be mapped
+deterministically without re-running the model.
+
+```
+python scripts/build_lecture_notes.py --all --language english_via_banglish --tag 7b
+python scripts/score_board_recall.py --gt data/board_truth data/board_truth/draft_lectures1to6   --compare-names notes_annotated_english_7b.md notes_annotated_english_via_banglish_7b.md
+python scripts/score_board_recall.py --runs output/speaker3_runs --gt data/board_truth/draft_speaker3   --notes-name notes_annotated_english_via_banglish_7b.md
+```
+
 #### The Background box: does the model put false things in it?
 
 The prompt now asks for standard material the lecturer did not say in a separate

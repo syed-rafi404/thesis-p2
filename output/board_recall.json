@@ -1,10 +1,10 @@
 {
   "mode": "compare",
-  "baseline": "board_text_mosaic.md",
-  "full": "board_text_clean.md",
+  "baseline": "notes_annotated_english_7b.md",
+  "full": "notes_annotated_english_via_banglish_7b.md",
   "boards": 35,
-  "sign_p": 0.0625,
-  "wilcoxon_p": null,
+  "sign_p": 0.629058837890625,
+  "wilcoxon_p": 0.08401667935527612,
   "baseline_results": {
     "BanglaASR7": {
       "boards": [
@@ -70,15 +70,15 @@
         {
           "era": 4,
           "items": 6,
-          "found": 6,
-          "recall": 1.0,
+          "found": 4,
+          "recall": 0.6666666666666666,
           "by_kind": {
             "term": {
               "found": 3,
               "total": 3
             },
             "phrase": {
-              "found": 2,
+              "found": 0,
               "total": 2
             },
             "code": {
@@ -86,20 +86,23 @@
               "total": 1
             }
           },
-          "missed": []
+          "missed": [
+            "same input = 0",
+            "different input = 1"
+          ]
         },
         {
           "era": 5,
           "items": 7,
-          "found": 5,
-          "recall": 0.7142857142857143,
+          "found": 4,
+          "recall": 0.5714285714285714,
           "by_kind": {
             "term": {
               "found": 3,
               "total": 3
             },
             "phrase": {
-              "found": 1,
+              "found": 0,
               "total": 1
             },
             "code": {
@@ -108,14 +111,15 @@
             }
           },
           "missed": [
+            "X-OR+NOT",
             "A'B' + AB",
             "(A⊕B)'"
           ]
         }
       ],
       "items": 29,
-      "found": 27,
-      "recall": 0.9310344827586207,
+      "found": 24,
+      "recall": 0.8275862068965517,
       "by_kind": {
         "term": {
           "found": 15,
@@ -123,9 +127,9 @@
           "recall": 1.0
         },
         "phrase": {
-          "found": 7,
+          "found": 4,
           "total": 7,
-          "recall": 1.0
+          "recall": 0.5714285714285714
         },
         "code": {
           "found": 5,
@@ -152,81 +156,146 @@
         {
           "era": 2,
           "items": 42,
-          "found": 41,
-          "recall": 0.9761904761904762,
+          "found": 10,
+          "recall": 0.23809523809523808,
           "by_kind": {
             "term": {
-              "found": 11,
+              "found": 5,
               "total": 11
             },
             "code": {
-              "found": 6,
+              "found": 5,
               "total": 6
             },
             "number": {
-              "found": 15,
+              "found": 0,
               "total": 15
             },
             "name": {
-              "found": 9,
+              "found": 0,
               "total": 10
             }
           },
           "missed": [
-            "Israt"
+            "MySQL",
+            "Query Language",
+            "Create table Student_info",
+            "241412",
+            "151216",
+            "202011",
+            "110112",
+            "401201",
+            "Syed",
+            "Rafi",
+            "Ahsan",
+            "Habib",
+            "Adiba",
+            "Noshin",
+            "Maria",
+            "Islam",
+            "Israt",
+            "Jahan",
+            "3.55",
+            "3.77",
+            "3.28",
+            "3.98",
+            "3.40",
+            "CS",
+            "Math",
+            "Economics",
+            "MicroBiology",
+            "01-01-2024",
+            "20-09-2024",
+            "21-10-2021",
+            "02-02-2020",
+            "11-11-2025"
           ]
         },
         {
           "era": 3,
           "items": 42,
-          "found": 41,
-          "recall": 0.9761904761904762,
+          "found": 7,
+          "recall": 0.16666666666666666,
           "by_kind": {
             "term": {
-              "found": 7,
+              "found": 3,
               "total": 7
             },
             "code": {
-              "found": 10,
+              "found": 4,
               "total": 10
             },
             "number": {
-              "found": 15,
+              "found": 0,
               "total": 15
             },
             "name": {
-              "found": 9,
+              "found": 0,
               "total": 10
             }
           },
           "missed": [
-            "Israt"
+            "MySQL",
+            "Query Language",
+            "Create table Student_info",
+            "ID Int",
+            "Varchar(10)",
+            "Varchar(15)",
+            "CGPA float",
+            "Enrollment_Date Date",
+            "241412",
+            "151216",
+            "202011",
+            "110112",
+            "401201",
+            "Syed",
+            "Rafi",
+            "Ahsan",
+            "Habib",
+            "Adiba",
+            "Noshin",
+            "Maria",
+            "Islam",
+            "Israt",
+            "Jahan",
+            "3.55",
+            "3.28",
+            "3.98",
+            "3.40",
+            "Economics",
+            "MicroBiology",
+            "3.77",
+            "01-01-2024",
+            "20-09-2024",
+            "21-10-2021",
+            "02-02-2020",
+            "11-11-2025"
           ]
         }
       ],
       "items": 86,
-      "found": 84,
-      "recall": 0.9767441860465116,
+      "found": 19,
+      "recall": 0.22093023255813954,
       "by_kind": {
         "term": {
-          "found": 20,
+          "found": 10,
           "total": 20,
-          "recall": 1.0
+          "recall": 0.5
         },
         "code": {
-          "found": 16,
+          "found": 9,
           "total": 16,
-          "recall": 1.0
+          "recall": 0.5625
         },
         "number": {
-          "found": 30,
+          "found": 0,
           "total": 30,
-          "recall": 1.0
+          "recall": 0.0
         },
         "name": {
-          "found": 18,
+          "found": 0,
           "total": 20,
-          "recall": 0.9
+          "recall": 0.0
         }
       }
     },
@@ -235,11 +304,11 @@
         {
           "era": 1,
           "items": 40,
-          "found": 40,
-          "recall": 1.0,
+          "found": 14,
+          "recall": 0.35,
           "by_kind": {
             "term": {
-              "found": 8,
+              "found": 3,
               "total": 8
             },
             "code": {
@@ -247,50 +316,104 @@
               "total": 7
             },
             "number": {
-              "found": 15,
+              "found": 4,
               "total": 15
             },
             "name": {
-              "found": 10,
+              "found": 0,
               "total": 10
             }
           },
-          "missed": []
+          "missed": [
+            "University",
+            "241412",
+            "202011",
+            "Syed",
+            "Rafi",
+            "Ahsan",
+            "Habib",
+            "Adiba",
+            "Noshin",
+            "Maria",
+            "Islam",
+            "Israt",
+            "Jahan",
+            "3.55",
+            "3.77",
+            "3.28",
+            "3.40",
+            "CS",
+            "Math",
+            "Economics",
+            "MicroBiology",
+            "01-01-2024",
+            "20-09-2024",
+            "21-10-2021",
+            "02-02-2020",
+            "11-11-2025"
+          ]
         },
         {
           "era": 2,
           "items": 39,
-          "found": 39,
-          "recall": 1.0,
+          "found": 13,
+          "recall": 0.3333333333333333,
           "by_kind": {
             "code": {
               "found": 6,
               "total": 6
             },
             "number": {
-              "found": 15,
+              "found": 4,
               "total": 15
             },
             "term": {
-              "found": 8,
+              "found": 3,
               "total": 8
             },
             "name": {
-              "found": 10,
+              "found": 0,
               "total": 10
             }
           },
-          "missed": []
+          "missed": [
+            "University",
+            "241412",
+            "202011",
+            "Syed",
+            "Rafi",
+            "Ahsan",
+            "Habib",
+            "Adiba",
+            "Noshin",
+            "Maria",
+            "Islam",
+            "Israt",
+            "Jahan",
+            "3.55",
+            "3.28",
+            "3.40",
+            "Economics",
+            "MicroBiology",
+            "3.77",
+            "01-01-2024",
+            "20-09-2024",
+            "21-10-2021",
+            "02-02-2020",
+            "11-11-2025",
+            "CS",
+            "Math"
+          ]
         }
       ],
       "items": 79,
-      "found": 79,
-      "recall": 1.0,
+      "found": 27,
+      "recall": 0.34177215189873417,
       "by_kind": {
         "term": {
-          "found": 16,
+          "found": 6,
           "total": 16,
-          "recall": 1.0
+          "recall": 0.375
         },
         "code": {
           "found": 13,
@@ -298,14 +421,14 @@
           "recall": 1.0
         },
         "number": {
-          "found": 30,
+          "found": 8,
           "total": 30,
-          "recall": 1.0
+          "recall": 0.26666666666666666
         },
         "name": {
-          "found": 20,
+          "found": 0,
           "total": 20,
-          "recall": 1.0
+          "recall": 0.0
         }
       }
     },
@@ -356,11 +479,11 @@
         {
           "era": 3,
           "items": 10,
-          "found": 10,
-          "recall": 1.0,
+          "found": 9,
+          "recall": 0.9,
           "by_kind": {
             "term": {
-              "found": 6,
+              "found": 5,
               "total": 6
             },
             "code": {
@@ -372,7 +495,9 @@
               "total": 1
             }
           },
-          "missed": []
+          "missed": [
+            "True/False"
+          ]
         },
         {
           "era": 4,
@@ -400,15 +525,15 @@
         {
           "era": 5,
           "items": 7,
-          "found": 5,
-          "recall": 0.7142857142857143,
+          "found": 6,
+          "recall": 0.8571428571428571,
           "by_kind": {
             "term": {
               "found": 2,
               "total": 2
             },
             "code": {
-              "found": 2,
+              "found": 3,
               "total": 4
             },
             "name": {
@@ -417,8 +542,7 @@
             }
           },
           "missed": [
-            "1name = \"Rafi\"",
-            "myName"
+            "1name = \"Rafi\""
           ]
         },
         {
@@ -451,9 +575,9 @@
       "recall": 0.8484848484848485,
       "by_kind": {
         "term": {
-          "found": 13,
+          "found": 12,
           "total": 13,
-          "recall": 1.0
+          "recall": 0.9230769230769231
         },
         "phrase": {
           "found": 2,
@@ -466,9 +590,9 @@
           "recall": 1.0
         },
         "code": {
-          "found": 9,
+          "found": 10,
           "total": 13,
-          "recall": 0.6923076923076923
+          "recall": 0.7692307692307693
         },
         "number": {
           "found": 1,
@@ -539,36 +663,38 @@
         {
           "era": 4,
           "items": 6,
-          "found": 6,
-          "recall": 1.0,
+          "found": 5,
+          "recall": 0.8333333333333334,
           "by_kind": {
             "term": {
               "found": 1,
               "total": 1
             },
             "code": {
-              "found": 5,
+              "found": 4,
               "total": 5
             }
           },
-          "missed": []
+          "missed": [
+            "num1 = int(num1)"
+          ]
         },
         {
           "era": 5,
           "items": 12,
-          "found": 12,
-          "recall": 1.0,
+          "found": 5,
+          "recall": 0.4166666666666667,
           "by_kind": {
             "term": {
               "found": 1,
               "total": 1
             },
             "code": {
-              "found": 9,
+              "found": 3,
               "total": 9
             },
             "phrase": {
-              "found": 1,
+              "found": 0,
               "total": 1
             },
             "number": {
@@ -576,12 +702,20 @@
               "total": 1
             }
           },
-          "missed": []
+          "missed": [
+            "num2 = int(num2)",
+            "num1 = 20",
+            "num2 = 30",
+            "The sum of 20 and 30 is 50",
+            "print(\"Result is\", sum)",
+            "The sum of {num1} and {num2} is {sum}",
+            "num1 = int(num1)"
+          ]
         }
       ],
       "items": 33,
-      "found": 32,
-      "recall": 0.9696969696969697,
+      "found": 24,
+      "recall": 0.7272727272727273,
       "by_kind": {
         "term": {
           "found": 5,
@@ -589,14 +723,14 @@
           "recall": 1.0
         },
         "code": {
-          "found": 23,
+          "found": 16,
           "total": 24,
-          "recall": 0.9583333333333334
+          "recall": 0.6666666666666666
         },
         "phrase": {
-          "found": 3,
+          "found": 2,
           "total": 3,
-          "recall": 1.0
+          "recall": 0.6666666666666666
         },
         "number": {
           "found": 1,
@@ -610,8 +744,8 @@
         {
           "era": 1,
           "items": 12,
-          "found": 9,
-          "recall": 0.75,
+          "found": 10,
+          "recall": 0.8333333333333334,
           "by_kind": {
             "term": {
               "found": 1,
@@ -626,20 +760,19 @@
               "total": 2
             },
             "phrase": {
-              "found": 0,
+              "found": 1,
               "total": 2
             }
           },
           "missed": [
             "print(\"Wear White Color\")",
-            "if Rain user will bring Umbrella",
-            "If not doesn't bring umbrella"
+            "if Rain user will bring Umbrella"
           ]
         }
       ],
       "items": 12,
-      "found": 9,
-      "recall": 0.75,
+      "found": 10,
+      "recall": 0.8333333333333334,
       "by_kind": {
         "term": {
           "found": 1,
@@ -657,996 +790,12 @@
           "recall": 1.0
         },
         "phrase": {
-          "found": 0,
-          "total": 2,
-          "recall": 0.0
-        }
-      }
-    },
-    "BanglaASR4": {
-      "boards": [
-        {
-          "era": 1,
-          "items": 2,
-          "found": 2,
-          "recall": 1.0,
-          "by_kind": {
-            "term": {
-              "found": 1,
-              "total": 1
-            },
-            "code": {
-              "found": 1,
-              "total": 1
-            }
-          },
-          "missed": []
-        },
-        {
-          "era": 2,
-          "items": 5,
-          "found": 5,
-          "recall": 1.0,
-          "by_kind": {
-            "term": {
-              "found": 1,
-              "total": 1
-            },
-            "code": {
-              "found": 4,
-              "total": 4
-            }
-          },
-          "missed": []
-        },
-        {
-          "era": 3,
-          "items": 4,
-          "found": 4,
-          "recall": 1.0,
-          "by_kind": {
-            "term": {
-              "found": 1,
-              "total": 1
-            },
-            "code": {
-              "found": 3,
-              "total": 3
-            }
-          },
-          "missed": []
-        },
-        {
-          "era": 4,
-          "items": 7,
-          "found": 6,
-          "recall": 0.8571428571428571,
-          "by_kind": {
-            "term": {
-              "found": 1,
-              "total": 1
-            },
-            "code": {
-              "found": 5,
-              "total": 6
-            }
-          },
-          "missed": [
-            "print(Sum)"
-          ]
-        }
-      ],
-      "items": 18,
-      "found": 17,
-      "recall": 0.9444444444444444,
-      "by_kind": {
-        "term": {
-          "found": 4,
-          "total": 4,
-          "recall": 1.0
-        },
-        "code": {
-          "found": 13,
-          "total": 14,
-          "recall": 0.9285714285714286
-        }
-      }
-    },
-    "BanglaASR5": {
-      "boards": [
-        {
-          "era": 1,
-          "items": 8,
-          "found": 8,
-          "recall": 1.0,
-          "by_kind": {
-            "term": {
-              "found": 1,
-              "total": 1
-            },
-            "code": {
-              "found": 5,
-              "total": 5
-            },
-            "name": {
-              "found": 2,
-              "total": 2
-            }
-          },
-          "missed": []
-        },
-        {
-          "era": 2,
-          "items": 7,
-          "found": 7,
-          "recall": 1.0,
-          "by_kind": {
-            "term": {
-              "found": 1,
-              "total": 1
-            },
-            "code": {
-              "found": 5,
-              "total": 5
-            },
-            "number": {
-              "found": 1,
-              "total": 1
-            }
-          },
-          "missed": []
-        },
-        {
-          "era": 3,
-          "items": 5,
-          "found": 5,
-          "recall": 1.0,
-          "by_kind": {
-            "term": {
-              "found": 1,
-              "total": 1
-            },
-            "code": {
-              "found": 4,
-              "total": 4
-            }
-          },
-          "missed": []
-        }
-      ],
-      "items": 20,
-      "found": 20,
-      "recall": 1.0,
-      "by_kind": {
-        "term": {
-          "found": 3,
-          "total": 3,
-          "recall": 1.0
-        },
-        "code": {
-          "found": 14,
-          "total": 14,
-          "recall": 1.0
-        },
-        "name": {
-          "found": 2,
-          "total": 2,
-          "recall": 1.0
-        },
-        "number": {
-          "found": 1,
-          "total": 1,
-          "recall": 1.0
-        }
-      }
-    },
-    "BanglaASR6": {
-      "boards": [
-        {
-          "era": 1,
-          "items": 15,
-          "found": 14,
-          "recall": 0.9333333333333333,
-          "by_kind": {
-            "term": {
-              "found": 5,
-              "total": 5
-            },
-            "phrase": {
-              "found": 7,
-              "total": 7
-            },
-            "number": {
-              "found": 2,
-              "total": 3
-            }
-          },
-          "missed": [
-            "01011011"
-          ]
-        },
-        {
-          "era": 2,
-          "items": 10,
-          "found": 10,
-          "recall": 1.0,
-          "by_kind": {
-            "term": {
-              "found": 7,
-              "total": 7
-            },
-            "phrase": {
-              "found": 3,
-              "total": 3
-            }
-          },
-          "missed": []
-        },
-        {
-          "era": 3,
-          "items": 7,
-          "found": 7,
-          "recall": 1.0,
-          "by_kind": {
-            "term": {
-              "found": 1,
-              "total": 1
-            },
-            "code": {
-              "found": 1,
-              "total": 1
-            },
-            "phrase": {
-              "found": 5,
-              "total": 5
-            }
-          },
-          "missed": []
-        },
-        {
-          "era": 4,
-          "items": 2,
-          "found": 2,
-          "recall": 1.0,
-          "by_kind": {
-            "term": {
-              "found": 1,
-              "total": 1
-            },
-            "code": {
-              "found": 1,
-              "total": 1
-            }
-          },
-          "missed": []
-        },
-        {
-          "era": 5,
-          "items": 2,
-          "found": 2,
-          "recall": 1.0,
-          "by_kind": {
-            "term": {
-              "found": 1,
-              "total": 1
-            },
-            "code": {
-              "found": 1,
-              "total": 1
-            }
-          },
-          "missed": []
-        },
-        {
-          "era": 6,
-          "items": 3,
-          "found": 3,
-          "recall": 1.0,
-          "by_kind": {
-            "term": {
-              "found": 2,
-              "total": 2
-            },
-            "phrase": {
-              "found": 1,
-              "total": 1
-            }
-          },
-          "missed": []
-        }
-      ],
-      "items": 39,
-      "found": 38,
-      "recall": 0.9743589743589743,
-      "by_kind": {
-        "term": {
-          "found": 17,
-          "total": 17,
-          "recall": 1.0
-        },
-        "phrase": {
-          "found": 16,
-          "total": 16,
-          "recall": 1.0
-        },
-        "number": {
-          "found": 2,
-          "total": 3,
-          "recall": 0.6666666666666666
-        },
-        "code": {
-          "found": 3,
-          "total": 3,
-          "recall": 1.0
-        }
-      }
-    }
-  },
-  "full_results": {
-    "BanglaASR7": {
-      "boards": [
-        {
-          "era": 1,
-          "items": 4,
-          "found": 4,
-          "recall": 1.0,
-          "by_kind": {
-            "term": {
-              "found": 3,
-              "total": 3
-            },
-            "phrase": {
-              "found": 1,
-              "total": 1
-            }
-          },
-          "missed": []
-        },
-        {
-          "era": 2,
-          "items": 6,
-          "found": 6,
-          "recall": 1.0,
-          "by_kind": {
-            "term": {
-              "found": 3,
-              "total": 3
-            },
-            "phrase": {
-              "found": 2,
-              "total": 2
-            },
-            "code": {
-              "found": 1,
-              "total": 1
-            }
-          },
-          "missed": []
-        },
-        {
-          "era": 3,
-          "items": 6,
-          "found": 6,
-          "recall": 1.0,
-          "by_kind": {
-            "term": {
-              "found": 3,
-              "total": 3
-            },
-            "phrase": {
-              "found": 1,
-              "total": 1
-            },
-            "code": {
-              "found": 2,
-              "total": 2
-            }
-          },
-          "missed": []
-        },
-        {
-          "era": 4,
-          "items": 6,
-          "found": 6,
-          "recall": 1.0,
-          "by_kind": {
-            "term": {
-              "found": 3,
-              "total": 3
-            },
-            "phrase": {
-              "found": 2,
-              "total": 2
-            },
-            "code": {
-              "found": 1,
-              "total": 1
-            }
-          },
-          "missed": []
-        },
-        {
-          "era": 5,
-          "items": 7,
-          "found": 5,
-          "recall": 0.7142857142857143,
-          "by_kind": {
-            "term": {
-              "found": 3,
-              "total": 3
-            },
-            "phrase": {
-              "found": 1,
-              "total": 1
-            },
-            "code": {
-              "found": 1,
-              "total": 3
-            }
-          },
-          "missed": [
-            "A'B' + AB",
-            "(A⊕B)'"
-          ]
-        }
-      ],
-      "items": 29,
-      "found": 27,
-      "recall": 0.9310344827586207,
-      "by_kind": {
-        "term": {
-          "found": 15,
-          "total": 15,
-          "recall": 1.0
-        },
-        "phrase": {
-          "found": 7,
-          "total": 7,
-          "recall": 1.0
-        },
-        "code": {
-          "found": 5,
-          "total": 7,
-          "recall": 0.7142857142857143
-        }
-      }
-    },
-    "BanglaASR8": {
-      "boards": [
-        {
-          "era": 1,
-          "items": 2,
-          "found": 2,
-          "recall": 1.0,
-          "by_kind": {
-            "term": {
-              "found": 2,
-              "total": 2
-            }
-          },
-          "missed": []
-        },
-        {
-          "era": 2,
-          "items": 42,
-          "found": 41,
-          "recall": 0.9761904761904762,
-          "by_kind": {
-            "term": {
-              "found": 11,
-              "total": 11
-            },
-            "code": {
-              "found": 6,
-              "total": 6
-            },
-            "number": {
-              "found": 15,
-              "total": 15
-            },
-            "name": {
-              "found": 9,
-              "total": 10
-            }
-          },
-          "missed": [
-            "Israt"
-          ]
-        },
-        {
-          "era": 3,
-          "items": 42,
-          "found": 41,
-          "recall": 0.9761904761904762,
-          "by_kind": {
-            "term": {
-              "found": 7,
-              "total": 7
-            },
-            "code": {
-              "found": 10,
-              "total": 10
-            },
-            "number": {
-              "found": 15,
-              "total": 15
-            },
-            "name": {
-              "found": 9,
-              "total": 10
-            }
-          },
-          "missed": [
-            "Israt"
-          ]
-        }
-      ],
-      "items": 86,
-      "found": 84,
-      "recall": 0.9767441860465116,
-      "by_kind": {
-        "term": {
-          "found": 20,
-          "total": 20,
-          "recall": 1.0
-        },
-        "code": {
-          "found": 16,
-          "total": 16,
-          "recall": 1.0
-        },
-        "number": {
-          "found": 30,
-          "total": 30,
-          "recall": 1.0
-        },
-        "name": {
-          "found": 18,
-          "total": 20,
-          "recall": 0.9
-        }
-      }
-    },
-    "BanglaASR9": {
-      "boards": [
-        {
-          "era": 1,
-          "items": 40,
-          "found": 39,
-          "recall": 0.975,
-          "by_kind": {
-            "term": {
-              "found": 8,
-              "total": 8
-            },
-            "code": {
-              "found": 7,
-              "total": 7
-            },
-            "number": {
-              "found": 14,
-              "total": 15
-            },
-            "name": {
-              "found": 10,
-              "total": 10
-            }
-          },
-          "missed": [
-            "3.77"
-          ]
-        },
-        {
-          "era": 2,
-          "items": 39,
-          "found": 38,
-          "recall": 0.9743589743589743,
-          "by_kind": {
-            "code": {
-              "found": 6,
-              "total": 6
-            },
-            "number": {
-              "found": 14,
-              "total": 15
-            },
-            "term": {
-              "found": 8,
-              "total": 8
-            },
-            "name": {
-              "found": 10,
-              "total": 10
-            }
-          },
-          "missed": [
-            "3.77"
-          ]
-        }
-      ],
-      "items": 79,
-      "found": 77,
-      "recall": 0.9746835443037974,
-      "by_kind": {
-        "term": {
-          "found": 16,
-          "total": 16,
-          "recall": 1.0
-        },
-        "code": {
-          "found": 13,
-          "total": 13,
-          "recall": 1.0
-        },
-        "number": {
-          "found": 28,
-          "total": 30,
-          "recall": 0.9333333333333333
-        },
-        "name": {
-          "found": 20,
-          "total": 20,
-          "recall": 1.0
-        }
-      }
-    },
-    "BanglaASR1": {
-      "boards": [
-        {
-          "era": 1,
-          "items": 3,
-          "found": 3,
-          "recall": 1.0,
-          "by_kind": {
-            "term": {
-              "found": 1,
-              "total": 1
-            },
-            "phrase": {
-              "found": 1,
-              "total": 1
-            },
-            "name": {
-              "found": 1,
-              "total": 1
-            }
-          },
-          "missed": []
-        },
-        {
-          "era": 2,
-          "items": 4,
-          "found": 4,
-          "recall": 1.0,
-          "by_kind": {
-            "term": {
-              "found": 1,
-              "total": 1
-            },
-            "code": {
-              "found": 2,
-              "total": 2
-            },
-            "phrase": {
-              "found": 1,
-              "total": 1
-            }
-          },
-          "missed": []
-        },
-        {
-          "era": 3,
-          "items": 10,
-          "found": 10,
-          "recall": 1.0,
-          "by_kind": {
-            "term": {
-              "found": 6,
-              "total": 6
-            },
-            "code": {
-              "found": 3,
-              "total": 3
-            },
-            "number": {
-              "found": 1,
-              "total": 1
-            }
-          },
-          "missed": []
-        },
-        {
-          "era": 4,
-          "items": 5,
-          "found": 4,
-          "recall": 0.8,
-          "by_kind": {
-            "term": {
-              "found": 2,
-              "total": 2
-            },
-            "code": {
-              "found": 1,
-              "total": 2
-            },
-            "name": {
-              "found": 1,
-              "total": 1
-            }
-          },
-          "missed": [
-            "1name = \"Rafi\""
-          ]
-        },
-        {
-          "era": 5,
-          "items": 7,
-          "found": 5,
-          "recall": 0.7142857142857143,
-          "by_kind": {
-            "term": {
-              "found": 2,
-              "total": 2
-            },
-            "code": {
-              "found": 2,
-              "total": 4
-            },
-            "name": {
-              "found": 1,
-              "total": 1
-            }
-          },
-          "missed": [
-            "1name = \"Rafi\"",
-            "myName"
-          ]
-        },
-        {
-          "era": 6,
-          "items": 4,
-          "found": 2,
-          "recall": 0.5,
-          "by_kind": {
-            "term": {
-              "found": 1,
-              "total": 1
-            },
-            "code": {
-              "found": 1,
-              "total": 2
-            },
-            "number": {
-              "found": 0,
-              "total": 1
-            }
-          },
-          "missed": [
-            "pi = 3.1416",
-            "3.1416"
-          ]
-        }
-      ],
-      "items": 33,
-      "found": 28,
-      "recall": 0.8484848484848485,
-      "by_kind": {
-        "term": {
-          "found": 13,
-          "total": 13,
-          "recall": 1.0
-        },
-        "phrase": {
-          "found": 2,
-          "total": 2,
-          "recall": 1.0
-        },
-        "name": {
-          "found": 3,
-          "total": 3,
-          "recall": 1.0
-        },
-        "code": {
-          "found": 9,
-          "total": 13,
-          "recall": 0.6923076923076923
-        },
-        "number": {
           "found": 1,
           "total": 2,
           "recall": 0.5
         }
       }
     },
-    "BanglaASR2": {
-      "boards": [
-        {
-          "era": 1,
-          "items": 3,
-          "found": 2,
-          "recall": 0.6666666666666666,
-          "by_kind": {
-            "term": {
-              "found": 1,
-              "total": 1
-            },
-            "code": {
-              "found": 1,
-              "total": 2
-            }
-          },
-          "missed": [
-            "age = 42"
-          ]
-        },
-        {
-          "era": 2,
-          "items": 3,
-          "found": 3,
-          "recall": 1.0,
-          "by_kind": {
-            "term": {
-              "found": 1,
-              "total": 1
-            },
-            "code": {
-              "found": 2,
-              "total": 2
-            }
-          },
-          "missed": []
-        },
-        {
-          "era": 3,
-          "items": 9,
-          "found": 9,
-          "recall": 1.0,
-          "by_kind": {
-            "term": {
-              "found": 1,
-              "total": 1
-            },
-            "phrase": {
-              "found": 2,
-              "total": 2
-            },
-            "code": {
-              "found": 6,
-              "total": 6
-            }
-          },
-          "missed": []
-        },
-        {
-          "era": 4,
-          "items": 6,
-          "found": 6,
-          "recall": 1.0,
-          "by_kind": {
-            "term": {
-              "found": 1,
-              "total": 1
-            },
-            "code": {
-              "found": 5,
-              "total": 5
-            }
-          },
-          "missed": []
-        },
-        {
-          "era": 5,
-          "items": 12,
-          "found": 11,
-          "recall": 0.9166666666666666,
-          "by_kind": {
-            "term": {
-              "found": 1,
-              "total": 1
-            },
-            "code": {
-              "found": 9,
-              "total": 9
-            },
-            "phrase": {
-              "found": 0,
-              "total": 1
-            },
-            "number": {
-              "found": 1,
-              "total": 1
-            }
-          },
-          "missed": [
-            "The sum of 20 and 30 is 50"
-          ]
-        }
-      ],
-      "items": 33,
-      "found": 31,
-      "recall": 0.9393939393939394,
-      "by_kind": {
-        "term": {
-          "found": 5,
-          "total": 5,
-          "recall": 1.0
-        },
-        "code": {
-          "found": 23,
-          "total": 24,
-          "recall": 0.9583333333333334
-        },
-        "phrase": {
-          "found": 2,
-          "total": 3,
-          "recall": 0.6666666666666666
-        },
-        "number": {
-          "found": 1,
-          "total": 1,
-          "recall": 1.0
-        }
-      }
-    },
-    "BanglaASR3": {
-      "boards": [
-        {
-          "era": 1,
-          "items": 12,
-          "found": 8,
-          "recall": 0.6666666666666666,
-          "by_kind": {
-            "term": {
-              "found": 1,
-              "total": 1
-            },
-            "code": {
-              "found": 5,
-              "total": 7
-            },
-            "name": {
-              "found": 2,
-              "total": 2
-            },
-            "phrase": {
-              "found": 0,
-              "total": 2
-            }
-          },
-          "missed": [
-            "weather = input(\"Today's weather: \")",
-            "print(\"Wear White Color\")",
-            "if Rain user will bring Umbrella",
-            "If not doesn't bring umbrella"
-          ]
-        }
-      ],
-      "items": 12,
-      "found": 8,
-      "recall": 0.6666666666666666,
-      "by_kind": {
-        "term": {
-          "found": 1,
-          "total": 1,
-          "recall": 1.0
-        },
-        "code": {
-          "found": 5,
-          "total": 7,
-          "recall": 0.7142857142857143
-        },
-        "name": {
-          "found": 2,
-          "total": 2,
-          "recall": 1.0
-        },
-        "phrase": {
-          "found": 0,
-          "total": 2,
-          "recall": 0.0
-        }
-      }
-    },
     "BanglaASR4": {
       "boards": [
         {
@@ -1716,7 +865,7 @@
             }
           },
           "missed": [
-            "print(Sum)"
+            "list_1 = [70, 80, 50, 60]"
           ]
         }
       ],
@@ -1785,24 +934,27 @@
         {
           "era": 3,
           "items": 5,
-          "found": 5,
-          "recall": 1.0,
+          "found": 3,
+          "recall": 0.6,
           "by_kind": {
             "term": {
               "found": 1,
               "total": 1
             },
             "code": {
-              "found": 4,
+              "found": 2,
               "total": 4
             }
           },
-          "missed": []
+          "missed": [
+            "list_1 = [7, 8, 9, 10]",
+            "list_2 = [\"Apple\", 07, True]"
+          ]
         }
       ],
       "items": 20,
-      "found": 19,
-      "recall": 0.95,
+      "found": 17,
+      "recall": 0.85,
       "by_kind": {
         "term": {
           "found": 3,
@@ -1810,9 +962,9 @@
           "recall": 1.0
         },
         "code": {
-          "found": 13,
+          "found": 11,
           "total": 14,
-          "recall": 0.9285714285714286
+          "recall": 0.7857142857142857
         },
         "name": {
           "found": 2,
@@ -1831,15 +983,15 @@
         {
           "era": 1,
           "items": 15,
-          "found": 14,
-          "recall": 0.9333333333333333,
+          "found": 9,
+          "recall": 0.6,
           "by_kind": {
             "term": {
               "found": 5,
               "total": 5
             },
             "phrase": {
-              "found": 7,
+              "found": 2,
               "total": 7
             },
             "number": {
@@ -1848,17 +1000,22 @@
             }
           },
           "missed": [
-            "01011011"
+            "(High)",
+            "(Ground)",
+            "Key -> A",
+            "01011011",
+            "analog -> continuous value",
+            "Digital -> Discrete value"
           ]
         },
         {
           "era": 2,
           "items": 10,
-          "found": 10,
-          "recall": 1.0,
+          "found": 9,
+          "recall": 0.9,
           "by_kind": {
             "term": {
-              "found": 7,
+              "found": 6,
               "total": 7
             },
             "phrase": {
@@ -1866,28 +1023,34 @@
               "total": 3
             }
           },
-          "missed": []
+          "missed": [
+            "X-OR gate"
+          ]
         },
         {
           "era": 3,
           "items": 7,
-          "found": 7,
-          "recall": 1.0,
+          "found": 4,
+          "recall": 0.5714285714285714,
           "by_kind": {
             "term": {
               "found": 1,
               "total": 1
             },
             "code": {
-              "found": 1,
+              "found": 0,
               "total": 1
             },
             "phrase": {
-              "found": 5,
+              "found": 3,
               "total": 5
             }
           },
-          "missed": []
+          "missed": [
+            "A.B = X",
+            "1 -> Light ON",
+            "0 -> Light OFF"
+          ]
         },
         {
           "era": 4,
@@ -1942,18 +1105,18 @@
         }
       ],
       "items": 39,
-      "found": 38,
-      "recall": 0.9743589743589743,
+      "found": 29,
+      "recall": 0.7435897435897436,
       "by_kind": {
         "term": {
-          "found": 17,
+          "found": 16,
           "total": 17,
-          "recall": 1.0
+          "recall": 0.9411764705882353
         },
         "phrase": {
-          "found": 16,
+          "found": 9,
           "total": 16,
-          "recall": 1.0
+          "recall": 0.5625
         },
         "number": {
           "found": 2,
@@ -1961,9 +1124,1017 @@
           "recall": 0.6666666666666666
         },
         "code": {
+          "found": 2,
+          "total": 3,
+          "recall": 0.6666666666666666
+        }
+      }
+    }
+  },
+  "full_results": {
+    "BanglaASR7": {
+      "boards": [
+        {
+          "era": 1,
+          "items": 4,
+          "found": 4,
+          "recall": 1.0,
+          "by_kind": {
+            "term": {
+              "found": 3,
+              "total": 3
+            },
+            "phrase": {
+              "found": 1,
+              "total": 1
+            }
+          },
+          "missed": []
+        },
+        {
+          "era": 2,
+          "items": 6,
+          "found": 5,
+          "recall": 0.8333333333333334,
+          "by_kind": {
+            "term": {
+              "found": 3,
+              "total": 3
+            },
+            "phrase": {
+              "found": 2,
+              "total": 2
+            },
+            "code": {
+              "found": 0,
+              "total": 1
+            }
+          },
+          "missed": [
+            "A+B"
+          ]
+        },
+        {
+          "era": 3,
+          "items": 6,
+          "found": 6,
+          "recall": 1.0,
+          "by_kind": {
+            "term": {
+              "found": 3,
+              "total": 3
+            },
+            "phrase": {
+              "found": 1,
+              "total": 1
+            },
+            "code": {
+              "found": 2,
+              "total": 2
+            }
+          },
+          "missed": []
+        },
+        {
+          "era": 4,
+          "items": 6,
+          "found": 6,
+          "recall": 1.0,
+          "by_kind": {
+            "term": {
+              "found": 3,
+              "total": 3
+            },
+            "phrase": {
+              "found": 2,
+              "total": 2
+            },
+            "code": {
+              "found": 1,
+              "total": 1
+            }
+          },
+          "missed": []
+        },
+        {
+          "era": 5,
+          "items": 7,
+          "found": 4,
+          "recall": 0.5714285714285714,
+          "by_kind": {
+            "term": {
+              "found": 3,
+              "total": 3
+            },
+            "phrase": {
+              "found": 0,
+              "total": 1
+            },
+            "code": {
+              "found": 1,
+              "total": 3
+            }
+          },
+          "missed": [
+            "X-OR+NOT",
+            "A'B' + AB",
+            "(A⊕B)'"
+          ]
+        }
+      ],
+      "items": 29,
+      "found": 25,
+      "recall": 0.8620689655172413,
+      "by_kind": {
+        "term": {
+          "found": 15,
+          "total": 15,
+          "recall": 1.0
+        },
+        "phrase": {
+          "found": 6,
+          "total": 7,
+          "recall": 0.8571428571428571
+        },
+        "code": {
+          "found": 4,
+          "total": 7,
+          "recall": 0.5714285714285714
+        }
+      }
+    },
+    "BanglaASR8": {
+      "boards": [
+        {
+          "era": 1,
+          "items": 2,
+          "found": 2,
+          "recall": 1.0,
+          "by_kind": {
+            "term": {
+              "found": 2,
+              "total": 2
+            }
+          },
+          "missed": []
+        },
+        {
+          "era": 2,
+          "items": 42,
+          "found": 41,
+          "recall": 0.9761904761904762,
+          "by_kind": {
+            "term": {
+              "found": 11,
+              "total": 11
+            },
+            "code": {
+              "found": 6,
+              "total": 6
+            },
+            "number": {
+              "found": 15,
+              "total": 15
+            },
+            "name": {
+              "found": 9,
+              "total": 10
+            }
+          },
+          "missed": [
+            "Israt"
+          ]
+        },
+        {
+          "era": 3,
+          "items": 42,
+          "found": 41,
+          "recall": 0.9761904761904762,
+          "by_kind": {
+            "term": {
+              "found": 7,
+              "total": 7
+            },
+            "code": {
+              "found": 10,
+              "total": 10
+            },
+            "number": {
+              "found": 15,
+              "total": 15
+            },
+            "name": {
+              "found": 9,
+              "total": 10
+            }
+          },
+          "missed": [
+            "Israt"
+          ]
+        }
+      ],
+      "items": 86,
+      "found": 84,
+      "recall": 0.9767441860465116,
+      "by_kind": {
+        "term": {
+          "found": 20,
+          "total": 20,
+          "recall": 1.0
+        },
+        "code": {
+          "found": 16,
+          "total": 16,
+          "recall": 1.0
+        },
+        "number": {
+          "found": 30,
+          "total": 30,
+          "recall": 1.0
+        },
+        "name": {
+          "found": 18,
+          "total": 20,
+          "recall": 0.9
+        }
+      }
+    },
+    "BanglaASR9": {
+      "boards": [
+        {
+          "era": 1,
+          "items": 40,
+          "found": 38,
+          "recall": 0.95,
+          "by_kind": {
+            "term": {
+              "found": 7,
+              "total": 8
+            },
+            "code": {
+              "found": 7,
+              "total": 7
+            },
+            "number": {
+              "found": 14,
+              "total": 15
+            },
+            "name": {
+              "found": 10,
+              "total": 10
+            }
+          },
+          "missed": [
+            "3.77",
+            "Math"
+          ]
+        },
+        {
+          "era": 2,
+          "items": 39,
+          "found": 37,
+          "recall": 0.9487179487179487,
+          "by_kind": {
+            "code": {
+              "found": 6,
+              "total": 6
+            },
+            "number": {
+              "found": 14,
+              "total": 15
+            },
+            "term": {
+              "found": 7,
+              "total": 8
+            },
+            "name": {
+              "found": 10,
+              "total": 10
+            }
+          },
+          "missed": [
+            "3.77",
+            "Math"
+          ]
+        }
+      ],
+      "items": 79,
+      "found": 75,
+      "recall": 0.9493670886075949,
+      "by_kind": {
+        "term": {
+          "found": 14,
+          "total": 16,
+          "recall": 0.875
+        },
+        "code": {
+          "found": 13,
+          "total": 13,
+          "recall": 1.0
+        },
+        "number": {
+          "found": 28,
+          "total": 30,
+          "recall": 0.9333333333333333
+        },
+        "name": {
+          "found": 20,
+          "total": 20,
+          "recall": 1.0
+        }
+      }
+    },
+    "BanglaASR1": {
+      "boards": [
+        {
+          "era": 1,
+          "items": 3,
+          "found": 3,
+          "recall": 1.0,
+          "by_kind": {
+            "term": {
+              "found": 1,
+              "total": 1
+            },
+            "phrase": {
+              "found": 1,
+              "total": 1
+            },
+            "name": {
+              "found": 1,
+              "total": 1
+            }
+          },
+          "missed": []
+        },
+        {
+          "era": 2,
+          "items": 4,
+          "found": 3,
+          "recall": 0.75,
+          "by_kind": {
+            "term": {
+              "found": 1,
+              "total": 1
+            },
+            "code": {
+              "found": 1,
+              "total": 2
+            },
+            "phrase": {
+              "found": 1,
+              "total": 1
+            }
+          },
+          "missed": [
+            "int num = 10"
+          ]
+        },
+        {
+          "era": 3,
+          "items": 10,
+          "found": 9,
+          "recall": 0.9,
+          "by_kind": {
+            "term": {
+              "found": 5,
+              "total": 6
+            },
+            "code": {
+              "found": 3,
+              "total": 3
+            },
+            "number": {
+              "found": 1,
+              "total": 1
+            }
+          },
+          "missed": [
+            "True/False"
+          ]
+        },
+        {
+          "era": 4,
+          "items": 5,
+          "found": 4,
+          "recall": 0.8,
+          "by_kind": {
+            "term": {
+              "found": 2,
+              "total": 2
+            },
+            "code": {
+              "found": 1,
+              "total": 2
+            },
+            "name": {
+              "found": 1,
+              "total": 1
+            }
+          },
+          "missed": [
+            "1name = \"Rafi\""
+          ]
+        },
+        {
+          "era": 5,
+          "items": 7,
+          "found": 6,
+          "recall": 0.8571428571428571,
+          "by_kind": {
+            "term": {
+              "found": 2,
+              "total": 2
+            },
+            "code": {
+              "found": 3,
+              "total": 4
+            },
+            "name": {
+              "found": 1,
+              "total": 1
+            }
+          },
+          "missed": [
+            "1name = \"Rafi\""
+          ]
+        },
+        {
+          "era": 6,
+          "items": 4,
+          "found": 3,
+          "recall": 0.75,
+          "by_kind": {
+            "term": {
+              "found": 1,
+              "total": 1
+            },
+            "code": {
+              "found": 1,
+              "total": 2
+            },
+            "number": {
+              "found": 1,
+              "total": 1
+            }
+          },
+          "missed": [
+            "pi = 3.1416"
+          ]
+        }
+      ],
+      "items": 33,
+      "found": 28,
+      "recall": 0.8484848484848485,
+      "by_kind": {
+        "term": {
+          "found": 12,
+          "total": 13,
+          "recall": 0.9230769230769231
+        },
+        "phrase": {
+          "found": 2,
+          "total": 2,
+          "recall": 1.0
+        },
+        "name": {
           "found": 3,
           "total": 3,
           "recall": 1.0
+        },
+        "code": {
+          "found": 9,
+          "total": 13,
+          "recall": 0.6923076923076923
+        },
+        "number": {
+          "found": 2,
+          "total": 2,
+          "recall": 1.0
+        }
+      }
+    },
+    "BanglaASR2": {
+      "boards": [
+        {
+          "era": 1,
+          "items": 3,
+          "found": 2,
+          "recall": 0.6666666666666666,
+          "by_kind": {
+            "term": {
+              "found": 1,
+              "total": 1
+            },
+            "code": {
+              "found": 1,
+              "total": 2
+            }
+          },
+          "missed": [
+            "age = 42"
+          ]
+        },
+        {
+          "era": 2,
+          "items": 3,
+          "found": 3,
+          "recall": 1.0,
+          "by_kind": {
+            "term": {
+              "found": 1,
+              "total": 1
+            },
+            "code": {
+              "found": 2,
+              "total": 2
+            }
+          },
+          "missed": []
+        },
+        {
+          "era": 3,
+          "items": 9,
+          "found": 8,
+          "recall": 0.8888888888888888,
+          "by_kind": {
+            "term": {
+              "found": 1,
+              "total": 1
+            },
+            "phrase": {
+              "found": 2,
+              "total": 2
+            },
+            "code": {
+              "found": 5,
+              "total": 6
+            }
+          },
+          "missed": [
+            "print(sum)"
+          ]
+        },
+        {
+          "era": 4,
+          "items": 6,
+          "found": 6,
+          "recall": 1.0,
+          "by_kind": {
+            "term": {
+              "found": 1,
+              "total": 1
+            },
+            "code": {
+              "found": 5,
+              "total": 5
+            }
+          },
+          "missed": []
+        },
+        {
+          "era": 5,
+          "items": 12,
+          "found": 12,
+          "recall": 1.0,
+          "by_kind": {
+            "term": {
+              "found": 1,
+              "total": 1
+            },
+            "code": {
+              "found": 9,
+              "total": 9
+            },
+            "phrase": {
+              "found": 1,
+              "total": 1
+            },
+            "number": {
+              "found": 1,
+              "total": 1
+            }
+          },
+          "missed": []
+        }
+      ],
+      "items": 33,
+      "found": 31,
+      "recall": 0.9393939393939394,
+      "by_kind": {
+        "term": {
+          "found": 5,
+          "total": 5,
+          "recall": 1.0
+        },
+        "code": {
+          "found": 22,
+          "total": 24,
+          "recall": 0.9166666666666666
+        },
+        "phrase": {
+          "found": 3,
+          "total": 3,
+          "recall": 1.0
+        },
+        "number": {
+          "found": 1,
+          "total": 1,
+          "recall": 1.0
+        }
+      }
+    },
+    "BanglaASR3": {
+      "boards": [
+        {
+          "era": 1,
+          "items": 12,
+          "found": 9,
+          "recall": 0.75,
+          "by_kind": {
+            "term": {
+              "found": 1,
+              "total": 1
+            },
+            "code": {
+              "found": 5,
+              "total": 7
+            },
+            "name": {
+              "found": 2,
+              "total": 2
+            },
+            "phrase": {
+              "found": 1,
+              "total": 2
+            }
+          },
+          "missed": [
+            "weather = input(\"Today's weather: \")",
+            "print(\"Wear White Color\")",
+            "if Rain user will bring Umbrella"
+          ]
+        }
+      ],
+      "items": 12,
+      "found": 9,
+      "recall": 0.75,
+      "by_kind": {
+        "term": {
+          "found": 1,
+          "total": 1,
+          "recall": 1.0
+        },
+        "code": {
+          "found": 5,
+          "total": 7,
+          "recall": 0.7142857142857143
+        },
+        "name": {
+          "found": 2,
+          "total": 2,
+          "recall": 1.0
+        },
+        "phrase": {
+          "found": 1,
+          "total": 2,
+          "recall": 0.5
+        }
+      }
+    },
+    "BanglaASR4": {
+      "boards": [
+        {
+          "era": 1,
+          "items": 2,
+          "found": 2,
+          "recall": 1.0,
+          "by_kind": {
+            "term": {
+              "found": 1,
+              "total": 1
+            },
+            "code": {
+              "found": 1,
+              "total": 1
+            }
+          },
+          "missed": []
+        },
+        {
+          "era": 2,
+          "items": 5,
+          "found": 5,
+          "recall": 1.0,
+          "by_kind": {
+            "term": {
+              "found": 1,
+              "total": 1
+            },
+            "code": {
+              "found": 4,
+              "total": 4
+            }
+          },
+          "missed": []
+        },
+        {
+          "era": 3,
+          "items": 4,
+          "found": 4,
+          "recall": 1.0,
+          "by_kind": {
+            "term": {
+              "found": 1,
+              "total": 1
+            },
+            "code": {
+              "found": 3,
+              "total": 3
+            }
+          },
+          "missed": []
+        },
+        {
+          "era": 4,
+          "items": 7,
+          "found": 2,
+          "recall": 0.2857142857142857,
+          "by_kind": {
+            "term": {
+              "found": 1,
+              "total": 1
+            },
+            "code": {
+              "found": 1,
+              "total": 6
+            }
+          },
+          "missed": [
+            "list_1 = [70, 80, 50, 60]",
+            "length = len(list_1)",
+            "for i in range(length):",
+            "Sum = Sum + list_1[i]",
+            "print(Sum)"
+          ]
+        }
+      ],
+      "items": 18,
+      "found": 13,
+      "recall": 0.7222222222222222,
+      "by_kind": {
+        "term": {
+          "found": 4,
+          "total": 4,
+          "recall": 1.0
+        },
+        "code": {
+          "found": 9,
+          "total": 14,
+          "recall": 0.6428571428571429
+        }
+      }
+    },
+    "BanglaASR5": {
+      "boards": [
+        {
+          "era": 1,
+          "items": 8,
+          "found": 8,
+          "recall": 1.0,
+          "by_kind": {
+            "term": {
+              "found": 1,
+              "total": 1
+            },
+            "code": {
+              "found": 5,
+              "total": 5
+            },
+            "name": {
+              "found": 2,
+              "total": 2
+            }
+          },
+          "missed": []
+        },
+        {
+          "era": 2,
+          "items": 7,
+          "found": 2,
+          "recall": 0.2857142857142857,
+          "by_kind": {
+            "term": {
+              "found": 1,
+              "total": 1
+            },
+            "code": {
+              "found": 0,
+              "total": 5
+            },
+            "number": {
+              "found": 1,
+              "total": 1
+            }
+          },
+          "missed": [
+            "elements = (\"Apple\", 7, 3.1416, True)",
+            "element_list = list(elements)",
+            "element_list[2] = 5",
+            "elements = tuple(element_list)",
+            "print(elements)"
+          ]
+        },
+        {
+          "era": 3,
+          "items": 5,
+          "found": 5,
+          "recall": 1.0,
+          "by_kind": {
+            "term": {
+              "found": 1,
+              "total": 1
+            },
+            "code": {
+              "found": 4,
+              "total": 4
+            }
+          },
+          "missed": []
+        }
+      ],
+      "items": 20,
+      "found": 15,
+      "recall": 0.75,
+      "by_kind": {
+        "term": {
+          "found": 3,
+          "total": 3,
+          "recall": 1.0
+        },
+        "code": {
+          "found": 9,
+          "total": 14,
+          "recall": 0.6428571428571429
+        },
+        "name": {
+          "found": 2,
+          "total": 2,
+          "recall": 1.0
+        },
+        "number": {
+          "found": 1,
+          "total": 1,
+          "recall": 1.0
+        }
+      }
+    },
+    "BanglaASR6": {
+      "boards": [
+        {
+          "era": 1,
+          "items": 15,
+          "found": 13,
+          "recall": 0.8666666666666667,
+          "by_kind": {
+            "term": {
+              "found": 5,
+              "total": 5
+            },
+            "phrase": {
+              "found": 6,
+              "total": 7
+            },
+            "number": {
+              "found": 2,
+              "total": 3
+            }
+          },
+          "missed": [
+            "Key -> A",
+            "01011011"
+          ]
+        },
+        {
+          "era": 2,
+          "items": 10,
+          "found": 9,
+          "recall": 0.9,
+          "by_kind": {
+            "term": {
+              "found": 7,
+              "total": 7
+            },
+            "phrase": {
+              "found": 2,
+              "total": 3
+            }
+          },
+          "missed": [
+            "Exclusive gate"
+          ]
+        },
+        {
+          "era": 3,
+          "items": 7,
+          "found": 3,
+          "recall": 0.42857142857142855,
+          "by_kind": {
+            "term": {
+              "found": 1,
+              "total": 1
+            },
+            "code": {
+              "found": 0,
+              "total": 1
+            },
+            "phrase": {
+              "found": 2,
+              "total": 5
+            }
+          },
+          "missed": [
+            "A.B = X",
+            "Light ON",
+            "1 -> Light ON",
+            "0 -> Light OFF"
+          ]
+        },
+        {
+          "era": 4,
+          "items": 2,
+          "found": 2,
+          "recall": 1.0,
+          "by_kind": {
+            "term": {
+              "found": 1,
+              "total": 1
+            },
+            "code": {
+              "found": 1,
+              "total": 1
+            }
+          },
+          "missed": []
+        },
+        {
+          "era": 5,
+          "items": 2,
+          "found": 2,
+          "recall": 1.0,
+          "by_kind": {
+            "term": {
+              "found": 1,
+              "total": 1
+            },
+            "code": {
+              "found": 1,
+              "total": 1
+            }
+          },
+          "missed": []
+        },
+        {
+          "era": 6,
+          "items": 3,
+          "found": 3,
+          "recall": 1.0,
+          "by_kind": {
+            "term": {
+              "found": 2,
+              "total": 2
+            },
+            "phrase": {
+              "found": 1,
+              "total": 1
+            }
+          },
+          "missed": []
+        }
+      ],
+      "items": 39,
+      "found": 32,
+      "recall": 0.8205128205128205,
+      "by_kind": {
+        "term": {
+          "found": 17,
+          "total": 17,
+          "recall": 1.0
+        },
+        "phrase": {
+          "found": 11,
+          "total": 16,
+          "recall": 0.6875
+        },
+        "number": {
+          "found": 2,
+          "total": 3,
+          "recall": 0.6666666666666666
+        },
+        "code": {
+          "found": 2,
+          "total": 3,
+          "recall": 0.6666666666666666
         }
       }
     }

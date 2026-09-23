@@ -1,0 +1,166 @@
+{
+  "lecture": "BanglaASR6",
+  "dataset_lecture": "BanglaASR10",
+  "language": "english_via_banglish",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "mock": false,
+  "transcript_file": "transcript_loso.txt",
+  "times_approximate": false,
+  "leakage_warning": "",
+  "boxes_file": "board_boxes.json",
+  "board_text_file": "board_text_clean.json",
+  "quotes_kept": 0,
+  "quotes_dropped": 0,
+  "invalid_box_refs": 0,
+  "quotes_translated": 7,
+  "quotes_word_for_word_checked": false,
+  "written_in": "banglish",
+  "translated_to_english": true,
+  "latex_rewritten": 6,
+  "colour_fixes": 0,
+  "inline_quotes_unverified": 2,
+  "sections": [
+    {
+      "board": 1,
+      "era": 1,
+      "from": "0:10",
+      "to": "3:10",
+      "transcript_chars": 2059,
+      "boxes": 3,
+      "boxes_mentioned": [
+        1,
+        2,
+        3
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": []
+    },
+    {
+      "board": 2,
+      "era": 2,
+      "from": "3:20",
+      "to": "5:50",
+      "transcript_chars": 1284,
+      "boxes": 2,
+      "boxes_mentioned": [],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
+        "So, which logic gate will we use? These logic gates will perform decision-making tasks, like connecting wires, making a single connection."
+      ],
+      "quotes_kept": [],
+      "quotes_dropped": []
+    },
+    {
+      "board": 3,
+      "era": 3,
+      "from": "6:00",
+      "to": "10:00",
+      "transcript_chars": 2909,
+      "boxes": 4,
+      "boxes_mentioned": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [
+        "An AND gate takes two inputs, A and B, and produces one output, X. When both inputs are 0, the output is 0. When one input is 0 and the other is 1, the output is also 0. Similarly, when one input is 1 and the other is 0, the output is 0. However, when both inputs are 1, the output is 1. This is because the AND gate performs a logical multiplication of the inputs."
+      ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
+        "An AND gate e jeta hoy, suppose eta hocche amar shek physical device ta, which is a gate, jeta ke ami bolchi, and gate.",
+        "So, zero mane ki amar light off. And one hocche, aikat zero ke ami rakhe light off."
+      ],
+      "quotes_kept": [],
+      "quotes_dropped": []
+    },
+    {
+      "board": 4,
+      "era": 4,
+      "from": "10:10",
+      "to": "11:00",
+      "transcript_chars": 587,
+      "boxes": 4,
+      "boxes_mentioned": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 2,
+      "quotes_translated": [
+        "Input and x hocche amr output jeta ki chilo? A and B er multiplication. So etai hocche amr and keidh."
+      ],
+      "quotes_kept": [],
+      "quotes_dropped": []
+    },
+    {
+      "board": 5,
+      "era": 5,
+      "from": "11:10",
+      "to": "13:00",
+      "transcript_chars": 992,
+      "boxes": 4,
+      "boxes_mentioned": [
+        2,
+        3,
+        4
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
+        "Suppose input is a and output is b. So our output which will be there, is x."
+      ],
+      "quotes_kept": [],
+      "quotes_dropped": []
+    },
+    {
+      "board": 6,
+      "era": 6,
+      "from": "13:10",
+      "to": "14:50",
+      "transcript_chars": 773,
+      "boxes": 5,
+      "boxes_mentioned": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [
+        "NOT gate a ki hoy? Amar je physical device ta seikhane just ekta ei input ber dhukbe and ekta ei output ber hobe. Suppose ekhane jodi ei as a input jay, tahole ami ei bar as a output pabo."
+      ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 4,
+      "quotes_translated": [
+        "NOT gate a ki hoy? Amar je physical device ta seikhane just ekta ei input ber dhukbe and ekta ei output ber hobe.",
+        "ekhane ei bar jinish ta ki? ta hobe jabe, a bar hocche alternate of a. tar mane ki? tar mane hocche amar input a and output a bar. input jodi zero hoy, tahole output hobe one. and input jodi one hoy ar output ta hobe zero. ebhabei opposite je signal toh sheita ama ke not get."
+      ],
+      "quotes_kept": [],
+      "quotes_dropped": []
+    }
+  ]
+}

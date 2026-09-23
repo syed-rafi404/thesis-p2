@@ -1,0 +1,115 @@
+{
+  "lecture": "BanglaASR4",
+  "dataset_lecture": "BanglaASR4",
+  "language": "english_via_banglish",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "mock": false,
+  "transcript_file": "transcript_loso.txt",
+  "times_approximate": false,
+  "leakage_warning": "",
+  "boxes_file": "board_boxes.json",
+  "board_text_file": "board_text_clean.json",
+  "quotes_kept": 0,
+  "quotes_dropped": 0,
+  "invalid_box_refs": 0,
+  "quotes_translated": 2,
+  "quotes_word_for_word_checked": false,
+  "written_in": "banglish",
+  "translated_to_english": true,
+  "latex_rewritten": 0,
+  "colour_fixes": 0,
+  "inline_quotes_unverified": 4,
+  "sections": [
+    {
+      "board": 1,
+      "era": 1,
+      "from": "0:00",
+      "to": "1:10",
+      "transcript_chars": 1482,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [
+        " 100 times, we would need to write the `print` function 100 times. If we want to print it a thousand or even a million times, writing it out manually would be impractical. Therefore, we need to use loops to automate this process. He wrote `num = 0` on the board and then introduced the while loop syntax: `while`. He asked, "
+      ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": []
+    },
+    {
+      "board": 2,
+      "era": 2,
+      "from": "1:20",
+      "to": "3:10",
+      "transcript_chars": 1651,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [
+        "When the value of `num` is less than 10, we enter the loop. Once `num` becomes equal to or greater than 10, the loop stops. He asked if everyone understood, confirming that the initial value of `num` is 0, which is indeed less than 10, so the loop runs. The lecturer then pointed out that we print 'yes' each time the loop runs, but this would continue infinitely without a mechanism to change `num`. To fix this, we need to increment `num` inside the loop.",
+        " is printed. After the first iteration, `num` becomes 1, and since 1 is also less than 10, "
+      ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": []
+    },
+    {
+      "board": 3,
+      "era": 3,
+      "from": "3:20",
+      "to": "4:30",
+      "transcript_chars": 1533,
+      "boxes": 3,
+      "boxes_mentioned": [
+        1,
+        2,
+        3
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [
+        "For loops are a convenient way to iterate over a specific number of times."
+      ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
+        "range er value total 9 porontor jabe, 10 porontor jabe na. but ami jodi count khore dekhi, amar total element ekhane 10 e ache."
+      ],
+      "quotes_kept": [],
+      "quotes_dropped": []
+    },
+    {
+      "board": 4,
+      "era": 4,
+      "from": "5:30",
+      "to": "9:00",
+      "transcript_chars": 2333,
+      "boxes": 1,
+      "boxes_mentioned": [
+        1
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
+        "ekhon arekta khubi important jeta, shetaholo ekta syntax error jeta shobai kore thake je print jinishta ekhane dey."
+      ],
+      "quotes_kept": [],
+      "quotes_dropped": []
+    }
+  ]
+}

@@ -1,0 +1,165 @@
+{
+  "lecture": "BanglaASR1",
+  "dataset_lecture": "BanglaASR1",
+  "language": "english_via_banglish",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "mock": false,
+  "transcript_file": "transcript_loso.txt",
+  "times_approximate": false,
+  "leakage_warning": "",
+  "boxes_file": "board_boxes.json",
+  "board_text_file": "board_text_clean.json",
+  "quotes_kept": 0,
+  "quotes_dropped": 0,
+  "invalid_box_refs": 0,
+  "quotes_translated": 4,
+  "quotes_word_for_word_checked": false,
+  "written_in": "banglish",
+  "translated_to_english": true,
+  "latex_rewritten": 0,
+  "colour_fixes": 0,
+  "inline_quotes_unverified": 7,
+  "sections": [
+    {
+      "board": 1,
+      "era": 1,
+      "from": "0:00",
+      "to": "1:40",
+      "transcript_chars": 1755,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
+        "so think of like a box.",
+        "so eita ami mujhhe feltesi."
+      ],
+      "quotes_kept": [],
+      "quotes_dropped": []
+    },
+    {
+      "board": 2,
+      "era": 2,
+      "from": "1:50",
+      "to": "3:20",
+      "transcript_chars": 1520,
+      "boxes": 2,
+      "boxes_mentioned": [
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [
+        "When we define a variable like `num = 10`, we are assigning the value `10` to the variable `num`. However, the question arises, 'What is the module here?' In Python, we need to specify the type of data that the variable will hold. Here, we simply write `num` and assign the value `10`. Python will understand that this value is an integer."
+      ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": []
+    },
+    {
+      "board": 3,
+      "era": 3,
+      "from": "3:40",
+      "to": "7:00",
+      "transcript_chars": 2474,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": []
+    },
+    {
+      "board": 4,
+      "era": 4,
+      "from": "7:10",
+      "to": "9:50",
+      "transcript_chars": 2219,
+      "boxes": 3,
+      "boxes_mentioned": [
+        1,
+        2,
+        3
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [
+        "When we look at a piece of code, it's important to understand the type of a variable. In the given code, `Iname` and `Name1` are defined, but the type is not explicitly mentioned. The lecturer pointed out that the names `Iname` and `Name1` are the names of the variables, which can be confusing. However, the type of these variables can be determined by their values. Here, `Iname` is assigned a string value `",
+        "`, and `Name1` is assigned the string `'1'`. Therefore, both variables are of type `str`, which stands for string.",
+        "Variable naming is crucial because when someone else reads your code, they should be able to understand the purpose of the variable just by looking at its name. For instance, if you see a variable named `Iname`, you would expect it to hold a string value like `"
+      ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
+        "So variable er naming ta khubi important dekhte jinis."
+      ],
+      "quotes_kept": [],
+      "quotes_dropped": []
+    },
+    {
+      "board": 5,
+      "era": 5,
+      "from": "10:00",
+      "to": "10:50",
+      "transcript_chars": 1142,
+      "boxes": 3,
+      "boxes_mentioned": [
+        1,
+        2,
+        3
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [
+        "When you write `my name = ",
+        "`, you need to use an underscore instead of a space. Why? Because there is a space in the name, and we need to indicate how to handle spaces in variable names. The lecturer suggested using an underscore, which is commonly accepted in the Python community."
+      ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": []
+    },
+    {
+      "board": 6,
+      "era": 6,
+      "from": "11:20",
+      "to": "12:50",
+      "transcript_chars": 1417,
+      "boxes": 4,
+      "boxes_mentioned": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [
+        "Python variables are case-sensitive."
+      ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
+        "Python variables are case-sensitive."
+      ],
+      "quotes_kept": [],
+      "quotes_dropped": []
+    }
+  ]
+}

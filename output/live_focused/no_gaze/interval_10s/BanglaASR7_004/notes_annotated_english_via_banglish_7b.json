@@ -1,0 +1,145 @@
+{
+  "lecture": "BanglaASR7_004",
+  "dataset_lecture": "BanglaASR11",
+  "language": "english_via_banglish",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "mock": false,
+  "transcript_file": "transcript_loso.txt",
+  "times_approximate": false,
+  "leakage_warning": "",
+  "boxes_file": "board_boxes.json",
+  "board_text_file": "board_text_clean.json",
+  "quotes_kept": 0,
+  "quotes_dropped": 0,
+  "invalid_box_refs": 0,
+  "quotes_translated": 2,
+  "quotes_word_for_word_checked": false,
+  "written_in": "banglish",
+  "translated_to_english": true,
+  "latex_rewritten": 0,
+  "colour_fixes": 0,
+  "inline_quotes_unverified": 3,
+  "sections": [
+    {
+      "board": 1,
+      "era": 1,
+      "from": "0:00",
+      "to": "0:50",
+      "transcript_chars": 816,
+      "boxes": 1,
+      "boxes_mentioned": [
+        1
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
+        "so ajke ashbe amr universal gate. universal gate er moddhe ami ki ki bolechilam? there are two types of universal gates which are xor gate, xor gate, xor gate."
+      ],
+      "quotes_kept": [],
+      "quotes_dropped": []
+    },
+    {
+      "board": 2,
+      "era": 2,
+      "from": "1:00",
+      "to": "4:20",
+      "transcript_chars": 1883,
+      "boxes": 5,
+      "boxes_mentioned": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 1,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": []
+    },
+    {
+      "board": 3,
+      "era": 3,
+      "from": "4:40",
+      "to": "7:00",
+      "transcript_chars": 1737,
+      "boxes": 6,
+      "boxes_mentioned": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": []
+    },
+    {
+      "board": 4,
+      "era": 4,
+      "from": "7:20",
+      "to": "10:40",
+      "transcript_chars": 2019,
+      "boxes": 6,
+      "boxes_mentioned": [
+        1,
+        2,
+        4,
+        5,
+        6
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [
+        "The X-OR gate takes two inputs, A and B, and produces an output based on these inputs. He used the example where if A is 0 and B is 0, the output is 0. Similarly, if A is 0 and B is 1, the output is 1. This pattern continues for the other combinations: when A is 1 and B is 0, the output is 1; and when A is 1 and B is 1, the output is 0. The lecturer summarized this with the formula: same input = 0, different input = 1.",
+        "While we can derive the output step-by-step using the formula, for practical purposes, we can directly use the X-OR gate to get the output quickly. He mentioned that understanding the X-OR gate will make it easier to understand other similar gates like the X-NOR gate."
+      ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": []
+    },
+    {
+      "board": 5,
+      "era": 5,
+      "from": "10:50",
+      "to": "14:00",
+      "transcript_chars": 1919,
+      "boxes": 5,
+      "boxes_mentioned": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [
+        "X-NOR gate is derived from X-OR gate and NOT gate."
+      ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
+        "X-NOR gate is derived from X-OR gate and NOT gate."
+      ],
+      "quotes_kept": [],
+      "quotes_dropped": []
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "lecture": "BanglaASR10",
+  "dataset_lecture": "BanglaASR14",
+  "language": "english_via_banglish",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "mock": false,
+  "transcript_file": "transcript_loso.txt",
+  "times_approximate": false,
+  "leakage_warning": "",
+  "boxes_file": "board_boxes.json",
+  "board_text_file": "board_text_clean.json",
+  "quotes_kept": 0,
+  "quotes_dropped": 0,
+  "invalid_box_refs": 0,
+  "quotes_translated": 3,
+  "quotes_word_for_word_checked": false,
+  "written_in": "banglish",
+  "translated_to_english": true,
+  "latex_rewritten": 0,
+  "colour_fixes": 0,
+  "inline_quotes_unverified": 2,
+  "sections": [
+    {
+      "board": 1,
+      "era": 1,
+      "from": "0:20",
+      "to": "1:00",
+      "transcript_chars": 1276,
+      "boxes": 1,
+      "boxes_mentioned": [
+        1
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
+        "toh oneksho mai hoy ki je ekta net or ke, jokhn on and gula hop count day, jokhn on and gula hop count day, jokhn on and gula hop count day.",
+        "so one ekshomai delay ta accept te bolna toh shei ke thai amra ki kori? packet ta notun kore patai."
+      ],
+      "quotes_kept": [],
+      "quotes_dropped": []
+    },
+    {
+      "board": 2,
+      "era": 2,
+      "from": "1:40",
+      "to": "2:52",
+      "transcript_chars": 908,
+      "boxes": 1,
+      "boxes_mentioned": [
+        1
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
+        "main shomosh ta jeta diye amr prevent korte pari sheita hocche jekono packet er endless looping."
+      ],
+      "quotes_kept": [],
+      "quotes_dropped": []
+    },
+    {
+      "board": 3,
+      "era": 3,
+      "from": "3:00",
+      "to": "4:34",
+      "transcript_chars": 1838,
+      "boxes": 4,
+      "boxes_mentioned": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": []
+    },
+    {
+      "board": 4,
+      "era": 4,
+      "from": "5:20",
+      "to": "7:04",
+      "transcript_chars": 965,
+      "boxes": 3,
+      "boxes_mentioned": [
+        1,
+        2,
+        3
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [
+        "In an example scenario, Router 1 receives data packets from a computer source. These packets are fragmented into smaller pieces, each containing a sequence number to ensure proper reassembly. The process involves creating individual packets from the original data, organizing them based on their sequence numbers, and ensuring they can be reassembled correctly at the destination.",
+        "If the 'Don't Fragment' flag (DF) is set to 0, fragmentation is allowed. However, if DF is set to 1, the router cannot fragment the packet. In such cases, the router will drop the packet and send an error message back to the sender, informing them that the packet needs to be sent in a smaller size to avoid fragmentation issues."
+      ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": []
+    }
+  ]
+}
