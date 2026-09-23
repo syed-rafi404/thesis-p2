@@ -21,13 +21,36 @@ If you are lost, start here. Updated 2026-09-23 (on the 3060).
      Then `git add -f output/lectures/BanglaASR44` (boards, clean, transcript, run_lecture.json;
      not the frames) and push.
    - **The demo lecture the 5090 picks from 29-43:** regenerate its transcript with the same final
-     adapter and push, so tomorrow's 15-minute session can rebuild its notes on it.
+     adapter and push, so tomorrow's session can rebuild its notes on it.
+   - **`transcript_base.txt` for the 13 scored lectures**, for tomorrow's 2x2: the same
+     `transcribe_finetuned.py` call with **no adapter** (`--adapter ""`, which the loader treats as
+     off-the-shelf Whisper), `--timestamps --out-name transcript_base.txt`, into each scored
+     lecture's run folder. About 5 minutes for all 13; push them.
    - **Record the final run** in RESULTS.md as a new section (base vs fine-tuned, both seeds, the
      test lectures, the chosen settings from the tuning), and add the **loop-safeguard comparison**
      (`evaluate.py --decode fallback` on the final adapters, ~20 min) as an extra row.
-2. **5090, tomorrow, 15 minutes** (the only GPU work left anywhere): `git pull`, then build 44's
-   notes (`--steps boxes notes`, banglish and english_via_banglish) and rebuild the demo lecture's
-   notes on the new transcript. Push.
+2. **5090, tomorrow, about 2.5 hours** (the only GPU work left anywhere). `git pull` first.
+   - **a. Does fine-tuning the ASR improve the notes? (the 2x2 the user asked for, ~1 h 15 m.)**
+     The 13 scored lectures, Banglish only, **batched with `--all` so the model loads once** - per
+     lecture that is ~1.5 min, against ~9 min if `run_lecture.py` reloads it every time.
+     ```
+     python scripts/build_lecture_notes.py --all --language banglish --transcript-file transcript_base.txt --tag base
+     python scripts/build_lecture_notes.py --all --language banglish --board-text-file none.json --tag noboard
+     python scripts/build_lecture_notes.py --all --language banglish --transcript-file transcript_base.txt --board-text-file none.json --tag base_noboard
+     ```
+     `transcript_base.txt` (off-the-shelf Whisper, no adapter) comes from the 3060 tonight;
+     `--board-text-file none.json` names a file that does not exist, which is how the builder is
+     told to use no board text. The fourth cell, fine-tuned + board text, is the existing
+     `notes_annotated_banglish_7b`. Score all four on the answer keys with
+     `score_board_recall.py --compare-names`, and put the 2x2 in RESULTS.md 5.4 with by-board
+     counts as well as item totals. Expect the with-board-text row to show little difference (5.0
+     C vs D already did); the no-board-text row is where the ASR should show.
+   - **b. The 13 English pages, rebuilt with translated quotes** (~25 m): they were built before
+     `acfd550`, so they still carry one Banglish quote each.
+     `--all --language english_via_banglish --tag 7b`.
+   - **c. Video 44 and the demo** (~20 m): 44's boards and transcript arrive from the 3060 tonight,
+     so `run_lecture.py --steps boxes notes` in both languages; then rebuild the demo lecture's
+     notes on its new transcript. Push.
 3. **The user:** the board completeness check,
    `F:\thesisP2\thesisP2\output\lectures\board_completeness_check.html` (98 boards, 30-40 min).
    Paste the "Copy my results" text to Claude; it goes to `data/board_completeness_<date>.json`
