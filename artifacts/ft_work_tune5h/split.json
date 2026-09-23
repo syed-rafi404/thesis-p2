@@ -1,0 +1,194 @@
+{
+  "split_by": "video",
+  "numbering": "new",
+  "test_speakers": [
+    "A",
+    "B",
+    "C"
+  ],
+  "train_speakers": [
+    "A",
+    "B",
+    "C"
+  ],
+  "train_hours_used": 3.528594444444444,
+  "train_hours_available": 3.528594444444444,
+  "test_hours": 0.567461111111111,
+  "train_cap": null,
+  "seed": 0,
+  "speaker_map": "v2",
+  "only_speakers": null,
+  "minutes_per_speaker": {
+    "A": 70.8,
+    "B": 44.3,
+    "C": 130.7
+  },
+  "lectures": {
+    "BanglaASR10": {
+      "split": "train",
+      "speaker": "B",
+      "clips": 47,
+      "minutes_kept": 14.8,
+      "minutes_audio": 14.9
+    },
+    "BanglaASR12": {
+      "split": "test",
+      "speaker": "B",
+      "clips": 39,
+      "minutes_kept": 13.1,
+      "minutes_audio": 13.1
+    },
+    "BanglaASR13": {
+      "split": "train",
+      "speaker": "B",
+      "clips": 52,
+      "minutes_kept": 16.4,
+      "minutes_audio": 16.4
+    },
+    "BanglaASR14": {
+      "split": "test",
+      "speaker": "C",
+      "clips": 18,
+      "minutes_kept": 7.0,
+      "minutes_audio": 7.2
+    },
+    "BanglaASR16": {
+      "split": "train",
+      "speaker": "C",
+      "clips": 9,
+      "minutes_kept": 3.6,
+      "minutes_audio": 3.7
+    },
+    "BanglaASR17": {
+      "split": "train",
+      "speaker": "C",
+      "clips": 45,
+      "minutes_kept": 12.6,
+      "minutes_audio": 12.6
+    },
+    "BanglaASR18": {
+      "split": "train",
+      "speaker": "C",
+      "clips": 19,
+      "minutes_kept": 7.0,
+      "minutes_audio": 7.0
+    },
+    "BanglaASR1": {
+      "split": "train",
+      "speaker": "A",
+      "clips": 44,
+      "minutes_kept": 13.0,
+      "minutes_audio": 13.0
+    },
+    "BanglaASR20": {
+      "split": "train",
+      "speaker": "C",
+      "clips": 40,
+      "minutes_kept": 14.7,
+      "minutes_audio": 14.7
+    },
+    "BanglaASR21": {
+      "split": "train",
+      "speaker": "C",
+      "clips": 18,
+      "minutes_kept": 7.4,
+      "minutes_audio": 7.8
+    },
+    "BanglaASR22": {
+      "split": "train",
+      "speaker": "C",
+      "clips": 25,
+      "minutes_kept": 9.6,
+      "minutes_audio": 9.9
+    },
+    "BanglaASR23": {
+      "split": "train",
+      "speaker": "C",
+      "clips": 49,
+      "minutes_kept": 18.5,
+      "minutes_audio": 19.4
+    },
+    "BanglaASR24": {
+      "split": "train",
+      "speaker": "C",
+      "clips": 18,
+      "minutes_kept": 6.8,
+      "minutes_audio": 7.2
+    },
+    "BanglaASR25": {
+      "split": "train",
+      "speaker": "C",
+      "clips": 28,
+      "minutes_kept": 10.8,
+      "minutes_audio": 11.7
+    },
+    "BanglaASR26": {
+      "split": "train",
+      "speaker": "C",
+      "clips": 35,
+      "minutes_kept": 13.2,
+      "minutes_audio": 13.2
+    },
+    "BanglaASR28": {
+      "split": "train",
+      "speaker": "C",
+      "clips": 51,
+      "minutes_kept": 19.5,
+      "minutes_audio": 19.5
+    },
+    "BanglaASR2": {
+      "split": "test",
+      "speaker": "A",
+      "clips": 44,
+      "minutes_kept": 14.0,
+      "minutes_audio": 14.0
+    },
+    "BanglaASR3": {
+      "split": "train",
+      "speaker": "A",
+      "clips": 17,
+      "minutes_kept": 6.0,
+      "minutes_audio": 6.1
+    },
+    "BanglaASR4": {
+      "split": "train",
+      "speaker": "A",
+      "clips": 27,
+      "minutes_kept": 9.2,
+      "minutes_audio": 9.2
+    },
+    "BanglaASR5": {
+      "split": "train",
+      "speaker": "A",
+      "clips": 42,
+      "minutes_kept": 14.0,
+      "minutes_audio": 14.1
+    },
+    "BanglaASR6": {
+      "split": "train",
+      "speaker": "A",
+      "clips": 19,
+      "minutes_kept": 6.7,
+      "minutes_audio": 6.7
+    },
+    "BanglaASR7": {
+      "split": "train",
+      "speaker": "A",
+      "clips": 23,
+      "minutes_kept": 7.8,
+      "minutes_audio": 7.8
+    }
+  },
+  "test_fraction": 0.2,
+  "split_seed": 0,
+  "test_lectures": [
+    "BanglaASR12",
+    "BanglaASR14",
+    "BanglaASR2"
+  ],
+  "test_minutes_per_speaker": {
+    "A": 14.0,
+    "B": 13.0,
+    "C": 7.0
+  }
+}

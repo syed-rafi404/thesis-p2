@@ -1,0 +1,18 @@
+{
+  "test": [
+    "BanglaASR11",
+    "BanglaASR15",
+    "BanglaASR19",
+    "BanglaASR27",
+    "BanglaASR8",
+    "BanglaASR9"
+  ],
+  "validation": [
+    "BanglaASR12",
+    "BanglaASR14",
+    "BanglaASR2"
+  ],
+  "test_hours": 1.05,
+  "total_hours": 5.15,
+  "rule": "prepare_data choose_test_lectures(fraction 0.2, seed 0, never=validation)"
+}

@@ -1,0 +1,23 @@
+2026-09-23 12:46:31  stage 1 (learning rate)
+2026-09-23 13:32:35  train lr5e-4: exit 0, 46.1 min
+2026-09-23 13:39:15  evaluate lr5e-4: exit 0, 6.7 min
+2026-09-23 14:19:48  train lr1e-3: exit 0, 40.6 min
+2026-09-23 14:25:31  evaluate lr1e-3: exit 0, 5.7 min
+2026-09-23 15:05:44  train lr2e-3: exit 0, 40.2 min
+2026-09-23 15:11:09  evaluate lr2e-3: exit 0, 5.4 min
+2026-09-23 15:11:09  stage 1 best: lr2e-3
+2026-09-23 15:50:33  train lr2e-3_r8: exit 0, 39.4 min
+2026-09-23 15:56:09  evaluate lr2e-3_r8: exit 0, 5.6 min
+2026-09-23 16:35:36  train lr2e-3_r32: exit 0, 39.4 min
+2026-09-23 16:43:07  evaluate lr2e-3_r32: exit 0, 7.5 min
+2026-09-23 16:43:07  stage 2 best: lr2e-3
+2026-09-23 17:26:25  train lr2e-3_qkvo: exit 0, 43.3 min
+2026-09-23 17:33:53  evaluate lr2e-3_qkvo: exit 0, 7.5 min
+2026-09-23 17:33:53  stage 3 best: lr2e-3
+2026-09-23 17:58:47  train lr2e-3_e5: exit 0, 24.9 min
+2026-09-23 18:03:57  evaluate lr2e-3_e5: exit 0, 5.2 min
+2026-09-23 18:03:57  stage 4: loss minimum at epoch 5; trained that too
+2026-09-23 18:43:37  train lr2e-3_s1: exit 0, 39.7 min
+2026-09-23 18:49:04  evaluate lr2e-3_s1: exit 0, 5.5 min
+2026-09-23 18:49:04  decision: lr2e-3 chosen: 8.6 points of CER better than the default, more than its seed-to-seed difference (5.4)
+2026-09-23 18:49:04  summary written
