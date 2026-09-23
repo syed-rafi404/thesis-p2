@@ -6,9 +6,13 @@ If you are lost, start here. Updated 2026-09-23 (on the 3060).
 
 ## OPEN TASKS, IN ORDER (2026-09-23 afternoon)
 
-1. **3060, tonight, the moment the Whisper run frees the GPU** (`whisper_full_pipeline.py`, started
-   12:46, log `F:\thesisP2\claude_transfer\whisper_5h_log.txt`). Do not start these while it runs:
-   the card has ~3 GB spare and an out-of-memory crash would lose the whole run.
+1. **DONE overnight 2026-09-23/24 on the 3060. Nothing here is outstanding.** The final ASR result
+   is RESULTS.md 1.8: **CER 67.7% -> 15.8/16.0%** at lr 1e-3, two stable seeds, on the six held-out
+   lectures; at the tuned 2e-3 one seed collapsed (118.7%, 82 runaway clips) and 1.8 reports both.
+   Also done and pushed: the loop-safeguard evaluations, `transcript_base.txt` (off-the-shelf
+   Whisper) for the 13 scored lectures, `transcript_final.txt` for BanglaASR29, and BanglaASR44's
+   boards and transcript. **This PC has no GPU work left.** The original instructions, kept as a
+   record:
    - **BanglaASR44** (the 30-min lecture added for the demo, no ground truth, never trained on):
      build its boards and transcript here, because this machine has torchvision for the person
      mask and the 5090 falls back to the worse temporal mask without it. Use the **final adapter**

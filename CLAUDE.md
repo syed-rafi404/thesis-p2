@@ -15,13 +15,21 @@ goes stale, fix it rather than adding a contradictory note.
 3. Every number the thesis may claim is in [RESULTS.md](RESULTS.md) with the command that
    regenerates it. Section 7 lists retired, fabricated claims. Never reuse one.
 
-**Where things stand (2026-09-23, on the 5090). Stage B is done.** Run times measured (the old
-estimates were ~6x too slow: the 10 h run is 1.5 h, not 6-7 h); the VLM read all 45 clean boards
-and **the clean-up does not help it read them** (4.1.2); 45 boards labelled with 137 named boxes;
-the annotated notes built and scored for all 13 lectures in both languages (5.4). Two rigour checks
-added at the user's request: the prompt-selection dev/test split and the 3B-vs-7B ablation (both
-5.0). Qwen3-32B is downloading. Next: notes with the 32B, the 6 h run 25 Sep, the 10 h run 27 Sep;
-draft due 26 Sep, slides 29 Sep.
+**Where things stand (2026-09-24 morning). The pipeline is finished end to end; what is left is
+writing.**
+- **ASR, final (RESULTS.md 1.8):** 5.15 h, 28 lectures, whole lectures held out at random (test:
+  BanglaASR8, 9, 11, 15, 19, 27; 177 clips). **CER 67.7% -> 15.8/16.0%, WER 93.9% -> 42.5/41.7%**,
+  two seeds at lr 1e-3 agreeing to 0.2 points. At the pre-registered 2e-3 one seed reached 16.2%
+  and the other **collapsed** (118.7%, 82 runaway clips); 1.8 reports both and discloses that the
+  1e-3 pair was run after seeing that. **The dataset is closed and no further training is planned.**
+- **Notes:** all 43 lectures have Banglish and English pages (the English translated from the
+  Banglish, the route that measured 89.4% against 55.9% written directly). Demo lecture:
+  **BanglaASR29**, unseen by training.
+- **Boards:** the user hand-checked all 98 boards of the newer lectures: 82 complete, 9 real losses
+  (4.1.2). The clean-up does not help the VLM read them (93.6% -> 91.7%).
+- **Left:** one ~2.5 h session on the 5090 (NEXT_STEPS "OPEN TASKS" item 2: the base-vs-fine-tuned
+  notes 2x2, the 13 English pages rebuilt with translated quotes, video 44, the demo rebuild); then
+  figures and the draft, due 26 Sep, slides 29 Sep.
 
 **Where things stood at the last checkpoint (2026-09-22, on the 3060):** everything committed and
 pushed, except the boards for the newer lectures, which a job on the 3060
@@ -114,12 +122,21 @@ Agreed with the user, who asked to be pushed back on expectations:
 
 ## The thesis as it now stands (details and numbers in RESULTS.md)
 
-**THE HEADLINE NOW (RESULTS.md 1.5): leave-one-speaker-out, whisper-large-v3-turbo + LoRA, plain
-greedy decoding, two seeds per fold.** Each of the three lecturers held out once, trained on the
-other two (80–114 min): **CER 72.8% → 50.3%, WER 95.3% → 75.7%** (mean of six per-run medians), all
-six runs significant (max p = 2.7e-06), every fold improves. No loop safeguard needed with the
-large model. Folders `ft_work_BCtoA`, `ft_work_AC`, `ft_work_ABtoC`. The whisper-small results
-below are the supporting history, and the reason the safeguard exists.
+**THE HEADLINE (RESULTS.md 1.8, final, 2026-09-24): 5.15 h of hand-checked Banglish, whole lectures
+held out at random, whisper-large-v3-turbo + LoRA, greedy decoding, two seeds.** Test lectures
+BanglaASR8, 9, 11, 15, 19, 27 (177 clips, 1.05 h), training on the other 22 (4.10 h):
+**CER 67.7% → 15.8% and 16.0%, WER 93.9% → 42.5% and 41.7%**, better on 164 and 167 of 177 clips,
+Wilcoxon p < 1e-30. **Always say with it:** at the learning rate the pre-registered tuning chose
+(2e-3) one seed reached 16.2% and the other collapsed into repetition loops (118.7%, 82 runaway
+clips); the stable pair above is the runner-up rate, run after that divergence was seen, which 1.8
+discloses. Test lecturers are heard in training, so this is "new lectures from known lecturers".
+
+**THE UNSEEN-LECTURER NUMBER (RESULTS.md 1.5, still stands): leave-one-speaker-out**, each of the
+three lecturers held out once, trained on the other two (80–114 min): **CER 72.8% → 50.3%,
+WER 95.3% → 75.7%** (mean of six per-run medians), all six runs significant (max p = 2.7e-06).
+Folders `ft_work_BCtoA`, `ft_work_AC`, `ft_work_ABtoC`. Harder question, less data; both numbers
+belong in the thesis, each labelled. The whisper-small results below are the supporting history,
+and the reason the safeguard exists.
 
 **Earlier whisper-small result (corrected 2026-09-21).** The old split had
 a leak: video 6 is the test speaker (user's `data/raw/Speaker2`; `scripts/verify_speakers.py`
@@ -291,7 +308,8 @@ command; only change global config after asking.
 | Component | State | Notes |
 |---|---|---|
 | Whisper large-v3-turbo ASR | Working | Outputs an English translation, not Banglish |
-| Whisper-small + LoRA fine-tune | **Working, significant** (with loop safeguard) | Headline; corrected split, see above |
+| **Whisper large-v3-turbo + LoRA, the final run** | **Done 2026-09-24, the headline** | CER 67.7% -> 15.8/16.0% on 177 unseen clips, two stable seeds (RESULTS.md 1.8). One seed at the tuned 2e-3 diverged: report it |
+| Whisper-small + LoRA fine-tune | **Working, significant** (with loop safeguard) | Supporting history; corrected split, see above |
 | BanglaASR (Bengali Unicode) | Working | Wav2Vec2 |
 | Qwen2.5-VL whiteboard reading | **Evaluated, strong** | 88.8% board recall on 35 verified boards with `transcribe_boards.py`; keyword prompt 31.2%; 84.7% on a held-out half; 3B gets 83.7% |
 | Qwen2.5-7B-Instruct notes | Board recall 88.0% (C, 35 boards) | Lecturer-quote instruction broken; readability unmeasured |
