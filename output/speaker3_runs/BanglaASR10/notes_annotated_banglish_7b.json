@@ -1,0 +1,82 @@
+{
+  "lecture": "BanglaASR10",
+  "language": "banglish",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "mock": false,
+  "transcript_file": "transcript_loso.txt",
+  "times_approximate": false,
+  "leakage_warning": "",
+  "boxes_file": "board_boxes.json",
+  "board_text_file": "board_text_clean.json",
+  "quotes_kept": 2,
+  "quotes_dropped": 1,
+  "invalid_box_refs": 0,
+  "colour_fixes": 0,
+  "inline_quotes_unverified": 0,
+  "sections": [
+    {
+      "board": 1,
+      "era": 1,
+      "from": "0:20",
+      "to": "1:00",
+      "transcript_chars": 1276,
+      "boxes": 1,
+      "boxes_mentioned": [
+        1
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "quotes_kept": [],
+      "quotes_dropped": []
+    },
+    {
+      "board": 2,
+      "era": 2,
+      "from": "1:40",
+      "to": "2:52",
+      "transcript_chars": 908,
+      "boxes": 1,
+      "boxes_mentioned": [],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "quotes_kept": [
+        "main shomosh ta jeta diye amr prevent korte pari sheita hocche jekono packet er endless looping."
+      ],
+      "quotes_dropped": []
+    },
+    {
+      "board": 3,
+      "era": 3,
+      "from": "3:00",
+      "to": "4:34",
+      "transcript_chars": 1838,
+      "boxes": 4,
+      "boxes_mentioned": [],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "quotes_kept": [],
+      "quotes_dropped": [
+        "if this flag is set, the packet will not be split into smaller pieces even if the path requires it."
+      ]
+    },
+    {
+      "board": 4,
+      "era": 4,
+      "from": "5:20",
+      "to": "7:04",
+      "transcript_chars": 965,
+      "boxes": 3,
+      "boxes_mentioned": [],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "quotes_kept": [
+        "right. o bole dicche router for example 1 er router 2, router 1 er bole dicche je tumi amra shorboche ponosho byte porjondno data pathai parba."
+      ],
+      "quotes_dropped": []
+    }
+  ]
+}

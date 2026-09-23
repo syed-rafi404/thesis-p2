@@ -1,0 +1,122 @@
+{
+  "lecture": "BanglaASR7_004",
+  "language": "banglish",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "mock": false,
+  "transcript_file": "transcript_loso.txt",
+  "times_approximate": false,
+  "leakage_warning": "",
+  "boxes_file": "board_boxes.json",
+  "board_text_file": "board_text_clean.json",
+  "quotes_kept": 5,
+  "quotes_dropped": 0,
+  "invalid_box_refs": 0,
+  "colour_fixes": 0,
+  "inline_quotes_unverified": 0,
+  "sections": [
+    {
+      "board": 1,
+      "era": 1,
+      "from": "0:00",
+      "to": "0:50",
+      "transcript_chars": 816,
+      "boxes": 1,
+      "boxes_mentioned": [
+        1
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "quotes_kept": [
+        "so ajke ashbe amr universal gate. universal gate er moddhe ami ki ki bolechilam? there are two types of universal gates which are xor gate, xor gate, xor gate."
+      ],
+      "quotes_dropped": []
+    },
+    {
+      "board": 2,
+      "era": 2,
+      "from": "1:00",
+      "to": "4:20",
+      "transcript_chars": 1883,
+      "boxes": 5,
+      "boxes_mentioned": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "quotes_kept": [
+        "so, etar input and output.",
+        "that means eta."
+      ],
+      "quotes_dropped": []
+    },
+    {
+      "board": 3,
+      "era": 3,
+      "from": "4:40",
+      "to": "7:00",
+      "transcript_chars": 1737,
+      "boxes": 6,
+      "boxes_mentioned": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "quotes_kept": [],
+      "quotes_dropped": []
+    },
+    {
+      "board": 4,
+      "era": 4,
+      "from": "7:20",
+      "to": "10:40",
+      "transcript_chars": 2019,
+      "boxes": 6,
+      "boxes_mentioned": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "quotes_kept": [],
+      "quotes_dropped": []
+    },
+    {
+      "board": 5,
+      "era": 5,
+      "from": "10:50",
+      "to": "14:00",
+      "transcript_chars": 1919,
+      "boxes": 5,
+      "boxes_mentioned": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "quotes_kept": [
+        "so, ki dekhlam? x or get. so output ta ki hobe? x or get ami first a korbo, korarpore seter ki korbo not apply korbo.",
+        "so, ekhane ami acche amr asche zero, eta hoye jabe one. eta one, zero, one zero, zero and one."
+      ],
+      "quotes_dropped": []
+    }
+  ]
+}

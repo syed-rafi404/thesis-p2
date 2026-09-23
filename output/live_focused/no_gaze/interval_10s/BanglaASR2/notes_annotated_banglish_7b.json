@@ -1,0 +1,128 @@
+{
+  "lecture": "BanglaASR2",
+  "language": "banglish",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "mock": false,
+  "transcript_file": "transcript_loso.txt",
+  "times_approximate": false,
+  "leakage_warning": "",
+  "boxes_file": "board_boxes.json",
+  "board_text_file": "board_text_clean.json",
+  "quotes_kept": 6,
+  "quotes_dropped": 0,
+  "invalid_box_refs": 0,
+  "colour_fixes": 0,
+  "inline_quotes_unverified": 7,
+  "sections": [
+    {
+      "board": 1,
+      "era": 1,
+      "from": "0:00",
+      "to": "1:00",
+      "transcript_chars": 1114,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "quotes_kept": [
+        "so shei python er ekta built-in function er eche jeta holo input. so ami jodi likhi function ta, jeta holo input function. jeta holo python er built-in ekta function."
+      ],
+      "quotes_dropped": []
+    },
+    {
+      "board": 2,
+      "era": 2,
+      "from": "1:10",
+      "to": "3:10",
+      "transcript_chars": 2621,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "quotes_kept": [
+        "jinis ta asholo evabey kaj kore jokodi user e roughy value ta dek. tarpore e print function er ashbe."
+      ],
+      "quotes_dropped": []
+    },
+    {
+      "board": 3,
+      "era": 3,
+      "from": "4:20",
+      "to": "7:30",
+      "transcript_chars": 2290,
+      "boxes": 6,
+      "boxes_mentioned": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [
+        "What is the second number?",
+        "`, showing how they would be concatenated to form `",
+        "What is the second number?"
+      ],
+      "quotes_kept": [
+        "so keo jodi number ta bole je 10, ashole je pacche sheta ekta string hishabe ashtese ekhane.",
+        "but amra kintu eta chacchi na. amra chacchi number, actual integer number, 10 and 20, eta add korle koto? 30 hoy."
+      ],
+      "quotes_dropped": []
+    },
+    {
+      "board": 4,
+      "era": 4,
+      "from": "7:40",
+      "to": "8:30",
+      "transcript_chars": 406,
+      "boxes": 6,
+      "boxes_mentioned": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [
+        "What is the second number?",
+        "What is the second number?"
+      ],
+      "quotes_kept": [
+        "so tokhon ar amar quotation lagbe na, tokhon eta ki hobe? shubur tiyan hoye thakbe. thii jace."
+      ],
+      "quotes_dropped": []
+    },
+    {
+      "board": 5,
+      "era": 5,
+      "from": "8:40",
+      "to": "14:00",
+      "transcript_chars": 3629,
+      "boxes": 1,
+      "boxes_mentioned": [],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [
+        "What is the second number?",
+        "The sum of {num1} and {num2} is {sum}"
+      ],
+      "quotes_kept": [
+        "ekhane amra forcefully type ta change kore dicchi."
+      ],
+      "quotes_dropped": []
+    }
+  ]
+}

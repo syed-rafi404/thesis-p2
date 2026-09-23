@@ -1,0 +1,99 @@
+{
+  "lecture": "BanglaASR4",
+  "language": "banglish",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "mock": false,
+  "transcript_file": "transcript_loso.txt",
+  "times_approximate": false,
+  "leakage_warning": "",
+  "boxes_file": "board_boxes.json",
+  "board_text_file": "board_text_clean.json",
+  "quotes_kept": 5,
+  "quotes_dropped": 0,
+  "invalid_box_refs": 0,
+  "colour_fixes": 0,
+  "inline_quotes_unverified": 2,
+  "sections": [
+    {
+      "board": 1,
+      "era": 1,
+      "from": "0:00",
+      "to": "1:10",
+      "transcript_chars": 1482,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [
+        ") - This simple code snippet demonstrates how to print a message. We will use loops to automate more complex tasks like printing "
+      ],
+      "quotes_kept": [
+        "computer e shobtheke powerful mechanism hocche she reputation e khubi expert."
+      ],
+      "quotes_dropped": []
+    },
+    {
+      "board": 2,
+      "era": 2,
+      "from": "1:20",
+      "to": "3:10",
+      "transcript_chars": 1651,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "quotes_kept": [
+        "jokhon ekhane nam er value ta ten er theke boro hoye jabe or ten er shoman hobe, tokhon ami lupe dhukbo na.",
+        "so amar ekta kajkotto hobe sheta holo iteration ta dite hobe."
+      ],
+      "quotes_dropped": []
+    },
+    {
+      "board": 3,
+      "era": 3,
+      "from": "3:20",
+      "to": "4:30",
+      "transcript_chars": 1533,
+      "boxes": 3,
+      "boxes_mentioned": [
+        1,
+        2,
+        3
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [
+        ")`. This loop will print "
+      ],
+      "quotes_kept": [
+        "so range er value shobshomoy amar ekhane je value deoya thake sheta teke 1 minus hobe."
+      ],
+      "quotes_dropped": []
+    },
+    {
+      "board": 4,
+      "era": 4,
+      "from": "5:30",
+      "to": "9:00",
+      "transcript_chars": 2333,
+      "boxes": 1,
+      "boxes_mentioned": [
+        1
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "quotes_kept": [
+        "ekhon amra ki? e length ta diye dite pari. for in, range-er moddhe length."
+      ],
+      "quotes_dropped": []
+    }
+  ]
+}

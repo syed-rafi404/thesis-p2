@@ -951,6 +951,81 @@ board transcription passing into the notes; D adds no board recall.
 
 Reproduce every number in this section: `python scripts/rescore_verified_keys.py --json output/board_recall_verified.json`
 
+### 5.4 The annotated notes — the deliverable, measured (2026-09-23, RTX 5090)
+
+The notes a student would actually be handed: one section per board, each pointing at the
+numbered coloured boxes the VLM named, with the lecturer quoted word for word and translated.
+Built for all 13 scored lectures in both languages by `build_lecture_notes.py`, from
+`transcript_loso.txt` in every case, so the transcript came from a Whisper adapter that never
+heard that lecture's lecturer. **No leakage warnings on any of the 26 files.**
+
+**Board-content recall, 35 boards of lectures 1-9, 349 items:**
+
+| Notes | Recall | Against the original notes (A) |
+|---|---|---|
+| A. original pipeline | 37.2% | — |
+| **New annotated notes, English** | **70.2%** | **better on 30 boards, worse on 0, sign p = 1.9e-09, Wilcoxon p = 1.7e-06** |
+| New annotated notes, Banglish | 53.6% | better on 29, worse on 4, sign p = 1.1e-05, Wilcoxon p = 3.0e-06 |
+| C. paste the VLM board transcription (5.0) | 88.0% | better on 30, worse on 1 |
+
+**A third lecturer, Speaker3, lectures 10-13, 10 boards, 87 items** (no earlier notes exist for
+these, so this is an absolute score, not a comparison): English **72.4%**, Banglish 67.8%.
+Per lecture, English: BanglaASR10 91.3%, 11 80.0%, 12 83.3%, 13 55.3%.
+
+Across all 13 lectures, 436 items: English **70.6%**, Banglish 56.4%.
+
+```
+python scripts/label_boards.py --all
+python scripts/build_lecture_notes.py --all --language both --tag 7b
+python scripts/score_board_recall.py --gt data/board_truth data/board_truth/draft_lectures1to6 \
+  --compare-names final_lecture_notes.md notes_annotated_english_7b.md
+python scripts/score_board_recall.py --runs output/speaker3_runs --gt data/board_truth/draft_speaker3 \
+  --notes-name notes_annotated_english_7b.md
+```
+
+**Read this honestly, in both directions.**
+
+- **Against the notes the pipeline used to produce, this is a large, unambiguous win:**
+  37.2% -> 70.2%, better on 30 of 35 boards and worse on none, p = 1.9e-09.
+- **Against variant C it is a 17.8 pp loss** (88.0% -> 70.2%, better on 10 boards, worse on 13,
+  sign p = 0.68). **Do not hide this.** C reaches 88.0% by pasting the VLM's raw board
+  transcription into the notes, which is close to copying the answer key's source material into
+  the answer. 5.0 already said so: "C's jump is mostly the board transcription passing into the
+  notes". The new notes write prose about the board instead of reproducing it, and this metric
+  cannot see the difference, because **recall does not measure readability**. The defensible
+  claim is "the annotated notes carry 70% of what was on the board while being readable", not
+  "the annotated notes are the best notes".
+- **Banglish is 16.6 pp behind English** (53.6% vs 70.2%). Expected: the model is writing in a
+  language with no standard spelling, so an item written one way on the board is often spelled
+  another way in the notes and the scorer cannot match it. Some of that gap is the metric, not
+  the notes; how much is unmeasured. The spelling-fair matching of 1.6 has not been applied here.
+- **The weakest lecture is BanglaASR13 at 55.3%**, which has 38 items on 2 boards, the densest
+  of the set.
+
+**The quote checker earns its place.** Over the 26 files it kept 83 lecturer quotes and deleted
+14 that were not word for word in the transcript, a 14% rejection rate, and left **0 references to
+a box that does not exist**. This is the fix for the broken-quote defect recorded against the old
+`mixed` prompt.
+
+**What the checker does and does not cover.** It deletes a *blockquote* whose text is not in the
+transcript. A second counter, `inline_quotes_unverified`, flags quoted spans of four words or more
+inside ordinary paragraphs that match neither the transcript nor the board, and **only flags them;
+it does not delete them**. That count is 47 over the 26 files. Reading them, most are not errors:
+they are the English translation lines, which by design do not match a Banglish transcript, and
+spans of code caught by the quote regex. So do not claim "every quotation in the notes is
+verified". The supportable claim is: **83 block quotes verified word for word against the
+transcript, 14 rejected.**
+
+**One real defect, found and fixed here (2026-09-23).** Three times across the 26 files the model
+copied the prompt's own example text into the notes instead of leaving the quote out, producing
+`The lecturer mentioned, "exact words from the transcript"` in two Banglish files. `check_quotes`
+could not catch it, because it looks for quotes that are absent from the transcript and this is
+not a quote at all, and two of the three were not blockquotes so the blockquote pattern never saw
+them. `strip_prompt_placeholders()` now removes the prompt's placeholder text, taking the whole
+line when nothing else is on it and only the introducing clause otherwise, and records
+`prompt_placeholders_removed` per board. The two lectures were rebuilt; **recall is unchanged**
+(Banglish 53.6% and 67.8% before and after), so the fix is a readability fix, not a scoring one.
+
 ### 5.1 Board-content recall — the baseline, and why this metric
 
 *(Numbers in 5.1 to 5.3 were computed on the draft keys and are superseded by 5.0.)*

@@ -121,6 +121,39 @@ def norm(text):
     return " ".join(re.sub(r"[^\w]+", " ", text.lower()).split())
 
 
+# The literal example text inside the QUOTES block of the prompt. A model that
+# has nothing worth quoting sometimes copies it out instead of leaving the quote
+# out, and it then reads as: The lecturer mentioned, "exact words from the
+# transcript". Three of the 26 notes built on 2026-09-23 did this. It is not a
+# real quote, so check_quotes cannot catch it by looking in the transcript, and
+# two of the three were not blockquotes, so QUOTE_LINE never saw them.
+PROMPT_PLACEHOLDERS = ["exact words from the transcript", "your translation"]
+PLACEHOLDER_QUOTE = re.compile(
+    r'[^.!?\n]*?["“](?:' + "|".join(re.escape(p) for p in PROMPT_PLACEHOLDERS) + r')["”][.,]?',
+    re.I)
+
+
+def strip_prompt_placeholders(section):
+    """Remove text the model copied out of the prompt's own example.
+
+    Whole lines go if nothing but the placeholder is left; otherwise only the
+    clause introducing it is cut, so the sentence around it survives.
+    """
+    out, removed = [], 0
+    for line in section.splitlines():
+        if not PLACEHOLDER_QUOTE.search(line):
+            out.append(line)
+            continue
+        removed += 1
+        cleaned = PLACEHOLDER_QUOTE.sub("", line)
+        # What remains of a line that was only the quote: ">", "Lecturer:",
+        # "**", and the brackets around a translation line.
+        if not re.sub(r'[>*\s:,.()\[\]\-]|Lecturer|In English', "", cleaned, flags=re.I):
+            continue
+        out.append(re.sub(r"\s{2,}", " ", cleaned).rstrip())
+    return "\n".join(out), removed
+
+
 def check_quotes(section, transcript_norm, min_words=3):
     """Delete quotes that are not word for word in the transcript. Returns (text, kept, dropped)."""
     lines, out, kept, dropped = section.splitlines(), [], [], []
@@ -327,6 +360,7 @@ def build(name, info, llm, language, args):
                 print(f"\n----- {m['role'].upper()} -----\n{m['content']}")
             return None
         raw = llm.chat(msgs, args.max_new_tokens)
+        raw, placeholders = strip_prompt_placeholders(raw)
         text, kept, dropped = check_quotes(raw, tnorm)
         ids = {b["id"] for b in board["boxes"]}
         invalid, mentioned = check_box_refs(text, ids)
@@ -352,6 +386,7 @@ def build(name, info, llm, language, args):
                        "transcript_chars": len(excerpts[k - 1]), "boxes": len(ids),
                        "boxes_mentioned": mentioned, "invalid_box_refs": invalid,
                        "colour_fixes": colour_fixes, "inline_quotes_unverified": inline_bad,
+                       "prompt_placeholders_removed": placeholders,
                        "quotes_kept": kept, "quotes_dropped": dropped})
 
     sections_md = "\n\n".join("\n".join(s) for s in sections)
@@ -369,6 +404,7 @@ def build(name, info, llm, language, args):
     invalid_n = sum(len(r["invalid_box_refs"]) for r in report)
     colour_n = sum(len(r["colour_fixes"]) for r in report)
     inline_n = sum(len(r["inline_quotes_unverified"]) for r in report)
+    placeholder_n = sum(r["prompt_placeholders_removed"] for r in report)
     leak = ""
     if tfile == "transcript_finetuned_v2.txt" and nc.lecture_number(name) <= 5:
         leak = ("transcript_finetuned_v2.txt comes from an adapter trained on lectures 1-5, "

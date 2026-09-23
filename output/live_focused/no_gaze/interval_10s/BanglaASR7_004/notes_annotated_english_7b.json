@@ -1,0 +1,111 @@
+{
+  "lecture": "BanglaASR7_004",
+  "language": "english",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "mock": false,
+  "transcript_file": "transcript_loso.txt",
+  "times_approximate": false,
+  "leakage_warning": "",
+  "boxes_file": "board_boxes.json",
+  "board_text_file": "board_text_clean.json",
+  "quotes_kept": 4,
+  "quotes_dropped": 0,
+  "invalid_box_refs": 0,
+  "colour_fixes": 0,
+  "inline_quotes_unverified": 0,
+  "sections": [
+    {
+      "board": 1,
+      "era": 1,
+      "from": "0:00",
+      "to": "0:50",
+      "transcript_chars": 816,
+      "boxes": 1,
+      "boxes_mentioned": [],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "quotes_kept": [],
+      "quotes_dropped": []
+    },
+    {
+      "board": 2,
+      "era": 2,
+      "from": "1:00",
+      "to": "4:20",
+      "transcript_chars": 1883,
+      "boxes": 5,
+      "boxes_mentioned": [
+        4,
+        5
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "quotes_kept": [
+        "or plus not, ei duita fundamental gates mile amar nor gate ta built hocche."
+      ],
+      "quotes_dropped": []
+    },
+    {
+      "board": 3,
+      "era": 3,
+      "from": "4:40",
+      "to": "7:00",
+      "transcript_chars": 1737,
+      "boxes": 6,
+      "boxes_mentioned": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "quotes_kept": [
+        "ekhane ager moto e duita input jabe, aa ekta output er hobe. input ta jodi hoy a, output ta, input ta arekta input jodi hoy b. tahole output ki hobe? amake first a end korte hobe. end wani ke chilo? multiplication. so a into b. erpor ami ki korbo? not korbo. so a, b erupore ekta whole virtual ashbe."
+      ],
+      "quotes_dropped": []
+    },
+    {
+      "board": 4,
+      "era": 4,
+      "from": "7:20",
+      "to": "10:40",
+      "transcript_chars": 2019,
+      "boxes": 6,
+      "boxes_mentioned": [],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "quotes_kept": [
+        "ekhane, x or geite, duita input jabe and ekta output ber hobe. suppose a jodi amar input hoy, b jodi arekta input hoy, amar output ta hobe, amra jinish taike ei bhabe likhi, a x or dhore."
+      ],
+      "quotes_dropped": []
+    },
+    {
+      "board": 5,
+      "era": 5,
+      "from": "10:50",
+      "to": "14:00",
+      "transcript_chars": 1919,
+      "boxes": 5,
+      "boxes_mentioned": [
+        1,
+        3,
+        4,
+        5
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "quotes_kept": [
+        "eks nor gate hocche, x or gate plus not gate."
+      ],
+      "quotes_dropped": []
+    }
+  ]
+}

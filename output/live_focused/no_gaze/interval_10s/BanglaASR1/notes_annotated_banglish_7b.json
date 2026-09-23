@@ -1,0 +1,144 @@
+{
+  "lecture": "BanglaASR1",
+  "language": "banglish",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "mock": false,
+  "transcript_file": "transcript_loso.txt",
+  "times_approximate": false,
+  "leakage_warning": "",
+  "boxes_file": "board_boxes.json",
+  "board_text_file": "board_text_clean.json",
+  "quotes_kept": 6,
+  "quotes_dropped": 3,
+  "invalid_box_refs": 0,
+  "colour_fixes": 0,
+  "inline_quotes_unverified": 2,
+  "sections": [
+    {
+      "board": 1,
+      "era": 1,
+      "from": "0:00",
+      "to": "1:40",
+      "transcript_chars": 1755,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [
+        "So, if you put a book in the box, that book is your data stored in the variable.",
+        "Now, if you want to store a fruit, you might put an apple in the box. In this case, the box itself is the variable, and the apple is the data stored within it."
+      ],
+      "quotes_kept": [
+        "Think of like a box."
+      ],
+      "quotes_dropped": [
+        "So, if you put a book in the box, that book is your data stored in the variable."
+      ]
+    },
+    {
+      "board": 2,
+      "era": 2,
+      "from": "1:50",
+      "to": "3:20",
+      "transcript_chars": 1520,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "quotes_kept": [
+        "etar modhe tumi ei 10 value ta ke takte jacche."
+      ],
+      "quotes_dropped": []
+    },
+    {
+      "board": 3,
+      "era": 3,
+      "from": "3:40",
+      "to": "7:00",
+      "transcript_chars": 2474,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "quotes_kept": [
+        "string holo je konor jinis je mon dhoro boli je jodi boli je amar nam obuk, amar nam tomo."
+      ],
+      "quotes_dropped": []
+    },
+    {
+      "board": 4,
+      "era": 4,
+      "from": "7:10",
+      "to": "9:50",
+      "transcript_chars": 2219,
+      "boxes": 3,
+      "boxes_mentioned": [
+        1,
+        2,
+        3
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "quotes_kept": [
+        "so eta cross, eta holo right away. okay?",
+        "par tumi jeta korte paro sheta ki? name 1."
+      ],
+      "quotes_dropped": []
+    },
+    {
+      "board": 5,
+      "era": 5,
+      "from": "10:00",
+      "to": "10:50",
+      "transcript_chars": 1142,
+      "boxes": 3,
+      "boxes_mentioned": [
+        1,
+        2,
+        3
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "quotes_kept": [
+        "but python community te ei snake casing tai khubi standard."
+      ],
+      "quotes_dropped": [
+        "amra ekhane space ta ke kivabi tick korbo?"
+      ]
+    },
+    {
+      "board": 6,
+      "era": 6,
+      "from": "11:20",
+      "to": "12:50",
+      "transcript_chars": 1417,
+      "boxes": 4,
+      "boxes_mentioned": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "quotes_kept": [],
+      "quotes_dropped": [
+        "exact words from the transcript"
+      ]
+    }
+  ]
+}

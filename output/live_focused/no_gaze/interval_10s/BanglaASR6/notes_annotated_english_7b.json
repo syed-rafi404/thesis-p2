@@ -1,0 +1,142 @@
+{
+  "lecture": "BanglaASR6",
+  "language": "english",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "mock": false,
+  "transcript_file": "transcript_loso.txt",
+  "times_approximate": false,
+  "leakage_warning": "",
+  "boxes_file": "board_boxes.json",
+  "board_text_file": "board_text_clean.json",
+  "quotes_kept": 7,
+  "quotes_dropped": 1,
+  "invalid_box_refs": 0,
+  "colour_fixes": 0,
+  "inline_quotes_unverified": 2,
+  "sections": [
+    {
+      "board": 1,
+      "era": 1,
+      "from": "0:10",
+      "to": "3:10",
+      "transcript_chars": 2059,
+      "boxes": 3,
+      "boxes_mentioned": [
+        2,
+        3
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [
+        " (Logic 1) and 0 volts for ",
+        " and the binary sequence "
+      ],
+      "quotes_kept": [
+        "analog er kintu amader computer ki? analoge chole? naah. eta chole digital e."
+      ],
+      "quotes_dropped": []
+    },
+    {
+      "board": 2,
+      "era": 2,
+      "from": "3:20",
+      "to": "5:50",
+      "transcript_chars": 1284,
+      "boxes": 2,
+      "boxes_mentioned": [],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "quotes_kept": [
+        "so amar je first, tinta gate ache, eta ke amra boltesi, fundamental base."
+      ],
+      "quotes_dropped": []
+    },
+    {
+      "board": 3,
+      "era": 3,
+      "from": "6:00",
+      "to": "10:00",
+      "transcript_chars": 2909,
+      "boxes": 4,
+      "boxes_mentioned": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "quotes_kept": [],
+      "quotes_dropped": [
+        "so, and gate e jeta hoy, suppose eta hocche amar şey physical device ta, which is a gate, jeta ke ami bolchi, and gate."
+      ]
+    },
+    {
+      "board": 4,
+      "era": 4,
+      "from": "10:10",
+      "to": "11:00",
+      "transcript_chars": 587,
+      "boxes": 4,
+      "boxes_mentioned": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "quotes_kept": [
+        "input and x hocche amr output jeta ki chilo? a and b er multiplication. so etai hocche amr and keidh.",
+        "input and x hocche amr output jeta ki chilo? a and b er multiplication. so etai hocche amr and keidh."
+      ],
+      "quotes_dropped": []
+    },
+    {
+      "board": 5,
+      "era": 5,
+      "from": "11:10",
+      "to": "13:00",
+      "transcript_chars": 992,
+      "boxes": 4,
+      "boxes_mentioned": [
+        2,
+        3,
+        4
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "quotes_kept": [
+        "suppose input ta hocche a and output ta hocche b. so amar output jeta there hobe, seta hocche x."
+      ],
+      "quotes_dropped": []
+    },
+    {
+      "board": 6,
+      "era": 6,
+      "from": "13:10",
+      "to": "14:50",
+      "transcript_chars": 773,
+      "boxes": 5,
+      "boxes_mentioned": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "quotes_kept": [
+        "not get er concept ta kintu aro easier.",
+        "tar mane hocche amar input a and output a bar. input jodi zero hoy, tahole output hobe one. and input jodi one hoy ar output ta hobe zero. ebhabei opposite je signal toh sheita ama ke not get."
+      ],
+      "quotes_dropped": []
+    }
+  ]
+}

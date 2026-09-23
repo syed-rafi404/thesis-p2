@@ -1,0 +1,56 @@
+{
+  "lecture": "BanglaASR12",
+  "language": "english",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "mock": false,
+  "transcript_file": "transcript_loso.txt",
+  "times_approximate": false,
+  "leakage_warning": "",
+  "boxes_file": "board_boxes.json",
+  "board_text_file": "board_text_clean.json",
+  "quotes_kept": 0,
+  "quotes_dropped": 2,
+  "invalid_box_refs": 0,
+  "colour_fixes": 0,
+  "inline_quotes_unverified": 1,
+  "sections": [
+    {
+      "board": 1,
+      "era": 1,
+      "from": "0:00",
+      "to": "0:52",
+      "transcript_chars": 1191,
+      "boxes": 1,
+      "boxes_mentioned": [
+        1
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [
+        "What does the unit mean?"
+      ],
+      "quotes_kept": [],
+      "quotes_dropped": [
+        "so, ajke amra hocche m2o meddulo shobote chacchi."
+      ]
+    },
+    {
+      "board": 2,
+      "era": 2,
+      "from": "1:40",
+      "to": "3:40",
+      "transcript_chars": 1559,
+      "boxes": 1,
+      "boxes_mentioned": [
+        1
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "quotes_kept": [],
+      "quotes_dropped": [
+        "so for example amra maximum case e dhore nigo je df ta zero deo deo."
+      ]
+    }
+  ]
+}
