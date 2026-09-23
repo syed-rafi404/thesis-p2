@@ -370,7 +370,15 @@ def build(name, info, llm, language, args):
         p = nc.guard(run_dir / args.board_text_file)
         if p.exists():
             for entry in json.loads(p.read_text(encoding="utf-8")).get("boards", []):
-                board_text[entry["era"]] = entry.get("text", "")
+                text = entry.get("text", "")
+                # Files written on 2026-09-23 between the loop guard and its fix hold
+                # [text, runaway_lines_removed] instead of the text (label_boards.py
+                # stored read_board's pair raw). run_lecture.py skips the boxes step when
+                # board_boxes.json exists, so such a file is never rewritten and the notes
+                # step died on it. Read the text out rather than demanding a re-run.
+                if isinstance(text, list):
+                    text = text[0] if text and isinstance(text[0], str) else ""
+                board_text[entry["era"]] = text
 
     # The lecture's own title, from the first box the VLM called a title, if any.
     titles = [b.get("text", "") for bd in boards for b in bd["boxes"]

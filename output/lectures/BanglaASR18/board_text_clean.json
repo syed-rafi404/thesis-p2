@@ -10,10 +10,8 @@
       "to": "1:02",
       "clear_fraction": 0.9814,
       "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR18\\boards\\clean\\BanglaASR18_board_era1_010_clean.jpg",
-      "text": [
-        "ICMP\ninternet control message protocol",
-        0
-      ]
+      "text": "ICMP\ninternet control message protocol",
+      "runaway_lines_removed": 0
     },
     {
       "era": 2,
@@ -21,10 +19,8 @@
       "to": "1:52",
       "clear_fraction": 0.9452,
       "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR18\\boards\\clean\\BanglaASR18_board_era2_110_clean.jpg",
-      "text": [
-        "|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |",
-        0
-      ]
+      "text": "|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |",
+      "runaway_lines_removed": 0
     },
     {
       "era": 3,
@@ -32,10 +28,8 @@
       "to": "2:50",
       "clear_fraction": 0.7774,
       "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR18\\boards\\clean\\BanglaASR18_board_era3_220_clean.jpg",
-      "text": [
-        "```\nICMP\ninternet control message protocol\n\n1. Error checking\n2. Reachability\n3. Waking up to\n\nTools / Network utility tools\nfor ICMP\n```",
-        0
-      ]
+      "text": "```\nICMP\ninternet control message protocol\n\n1. Error checking\n2. Reachability\n3. Waking up to\n\nTools / Network utility tools\nfor ICMP\n```",
+      "runaway_lines_removed": 0
     },
     {
       "era": 4,
@@ -43,10 +37,8 @@
       "to": "4:22",
       "clear_fraction": 0.9942,
       "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR18\\boards\\clean\\BanglaASR18_board_era4_330_clean.jpg",
-      "text": [
-        "```\nICMP\n1. Ping → Ping\n```",
-        0
-      ]
+      "text": "```\nICMP\n1. Ping → Ping\n```",
+      "runaway_lines_removed": 0
     },
     {
       "era": 5,
@@ -54,10 +46,8 @@
       "to": "5:30",
       "clear_fraction": 0.972,
       "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR18\\boards\\clean\\BanglaASR18_board_era5_440_clean.jpg",
-      "text": [
-        "```\nICMP\n1. Ping → Ping Ip Addrs.\n    ICMP ECO packet\n    ICMP Respond packet\n```",
-        0
-      ]
+      "text": "```\nICMP\n1. Ping → Ping Ip Addrs.\n    ICMP ECO packet\n    ICMP Respond packet\n```",
+      "runaway_lines_removed": 0
     },
     {
       "era": 6,
@@ -65,10 +55,8 @@
       "to": "7:00",
       "clear_fraction": 1.0,
       "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR18\\boards\\clean\\BanglaASR18_board_era6_540_clean.jpg",
-      "text": [
-        "```\nICMP\n1. Ping -> Ping Ip Addrs.\nTime delay=\nICMP ECO packet\nICMP Respond packet\n```",
-        0
-      ]
+      "text": "```\nICMP\n1. Ping -> Ping Ip Addrs.\nTime delay=\nICMP ECO packet\nICMP Respond packet\n```",
+      "runaway_lines_removed": 0
     }
   ],
   "mock": false
