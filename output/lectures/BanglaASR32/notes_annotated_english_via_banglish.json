@@ -1,0 +1,73 @@
+{
+  "lecture": "BanglaASR32",
+  "dataset_lecture": "BanglaASR32",
+  "language": "english_via_banglish",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "mock": false,
+  "transcript_file": "transcript.txt",
+  "times_approximate": false,
+  "leakage_warning": "",
+  "boxes_file": "board_boxes.json",
+  "board_text_file": "board_text_clean.json",
+  "quotes_kept": 0,
+  "quotes_dropped": 0,
+  "invalid_box_refs": 0,
+  "quotes_translated": 0,
+  "quotes_word_for_word_checked": false,
+  "quotes_retranslated": 0,
+  "quotes_untranslated_dropped": 1,
+  "written_in": "banglish",
+  "translated_to_english": true,
+  "latex_rewritten": 28,
+  "colour_fixes": 0,
+  "inline_quotes_unverified": 0,
+  "sections": [
+    {
+      "board": 1,
+      "era": 1,
+      "from": "0:00",
+      "to": "2:10",
+      "transcript_chars": 1763,
+      "boxes": 3,
+      "boxes_mentioned": [
+        1,
+        2,
+        3
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 6,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": [
+        "so, mane amader basic idea ta ta ei je number ta chilo two, jeta amra oje bole chile amade duita unique number ache binary wireless, amra ojone dui use kori eijonno."
+      ]
+    },
+    {
+      "board": 2,
+      "era": 2,
+      "from": "2:20",
+      "to": "4:38",
+      "transcript_chars": 1539,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 22,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    }
+  ]
+}

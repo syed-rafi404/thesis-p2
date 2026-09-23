@@ -1,0 +1,158 @@
+{
+  "lecture": "BanglaASR27",
+  "dataset_lecture": "BanglaASR27",
+  "language": "english_via_banglish",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "mock": false,
+  "transcript_file": "transcript.txt",
+  "times_approximate": false,
+  "leakage_warning": "",
+  "boxes_file": "board_boxes.json",
+  "board_text_file": "board_text_clean.json",
+  "quotes_kept": 0,
+  "quotes_dropped": 0,
+  "invalid_box_refs": 0,
+  "quotes_translated": 1,
+  "quotes_word_for_word_checked": false,
+  "quotes_retranslated": 0,
+  "quotes_untranslated_dropped": 2,
+  "written_in": "banglish",
+  "translated_to_english": true,
+  "latex_rewritten": 10,
+  "colour_fixes": 0,
+  "inline_quotes_unverified": 5,
+  "sections": [
+    {
+      "board": 1,
+      "era": 1,
+      "from": "0:00",
+      "to": "5:08",
+      "transcript_chars": 3428,
+      "boxes": 3,
+      "boxes_mentioned": [
+        1,
+        2,
+        3
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 10,
+      "quotes_translated": [
+        "So eita hocche amader khub e ekta basic neuron structure, and we can learn very complex neuron structures."
+      ],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": [
+        "Machine learning e mother language ta holi ki dara ache?"
+      ]
+    },
+    {
+      "board": 2,
+      "era": 2,
+      "from": "5:10",
+      "to": "6:06",
+      "transcript_chars": 433,
+      "boxes": 8,
+      "boxes_mentioned": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": [
+        "and this is the hocche condition. ar tar sathe hocche age."
+      ]
+    },
+    {
+      "board": 3,
+      "era": 3,
+      "from": "6:10",
+      "to": "11:20",
+      "transcript_chars": 3843,
+      "boxes": 1,
+      "boxes_mentioned": [
+        1
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [
+        "This column 'condition' will be very important for our model, and this is what our table represents."
+      ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    },
+    {
+      "board": 4,
+      "era": 4,
+      "from": "11:40",
+      "to": "15:40",
+      "transcript_chars": 2805,
+      "boxes": 4,
+      "boxes_mentioned": [
+        1,
+        2,
+        4
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [
+        "so, these are identified as tumors. I have shown here the tumor size as two features, for this purpose, we use a 2D graph.",
+        "for example, in a rehydration problem, the values are digital, i.e., they are already in a discrete form. However, in some cases, the values can be continuous, such as percentages (80%, 20%, 50%).",
+        "so, in a regression problem, our goal is to predict a continuous value. However, in a classification problem, we need to convert these continuous values into a binary form (0 or 1) to represent different classes. This is where activation functions come into play.",
+        "there are famous activation functions like ReLU and sigmoid. These functions help convert continuous values into a range between 0 and 1, making it easier to classify data into distinct classes."
+      ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    },
+    {
+      "board": 5,
+      "era": 5,
+      "from": "15:50",
+      "to": "22:40",
+      "transcript_chars": 4831,
+      "boxes": 4,
+      "boxes_mentioned": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    }
+  ]
+}

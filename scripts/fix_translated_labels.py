@@ -64,8 +64,10 @@ def fix_labels(text):
         # heading marker, a list bullet or bold marks, so the same words inside
         # a sentence or a quote are left alone. One label sat inside a list
         # item ("- **Extra jana kotha:**") and the bullet has to be allowed.
+        # Case-insensitive: the model title-cases the label sometimes
+        # ("Mone Rakho:"), which an exact match walks straight past.
         pat = re.compile(r"(?m)^(\s*(?:[-*+]\s+|\d+\.\s+)?(?:#{1,6}\s*)?\**\s*)"
-                         + re.escape(banglish) + r"\b")
+                         + re.escape(banglish) + r"\b", re.I)
         text, n = pat.subn(lambda m: m.group(1) + english, text)
         total += n
     return text, total

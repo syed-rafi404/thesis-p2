@@ -1,0 +1,167 @@
+{
+  "lecture": "BanglaASR33",
+  "dataset_lecture": "BanglaASR33",
+  "language": "english_via_banglish",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "mock": false,
+  "transcript_file": "transcript.txt",
+  "times_approximate": false,
+  "leakage_warning": "",
+  "boxes_file": "board_boxes.json",
+  "board_text_file": "board_text_clean.json",
+  "quotes_kept": 0,
+  "quotes_dropped": 0,
+  "invalid_box_refs": 0,
+  "quotes_translated": 2,
+  "quotes_word_for_word_checked": false,
+  "quotes_retranslated": 0,
+  "quotes_untranslated_dropped": 3,
+  "written_in": "banglish",
+  "translated_to_english": true,
+  "latex_rewritten": 0,
+  "colour_fixes": 0,
+  "inline_quotes_unverified": 1,
+  "sections": [
+    {
+      "board": 1,
+      "era": 1,
+      "from": "0:30",
+      "to": "5:20",
+      "transcript_chars": 3522,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
+        "I love the part of the phone's address obviously."
+      ],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    },
+    {
+      "board": 2,
+      "era": 2,
+      "from": "5:30",
+      "to": "6:10",
+      "transcript_chars": 1106,
+      "boxes": 2,
+      "boxes_mentioned": [
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
+        "Here you can understand clearly that we basically use two to three parts for the network."
+      ],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    },
+    {
+      "board": 3,
+      "era": 3,
+      "from": "6:40",
+      "to": "8:12",
+      "transcript_chars": 940,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [
+        "An interface on a network is assigned an IP address to identify a host. This IP address helps in determining whether data packets are present and can be routed correctly. The lecturer mentions that this IP address can be used to identify the host and understand the network configuration."
+      ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": [
+        "so erokon onek gula gigabyte code dia gula kare thake. elgibaste sathe. toh basically, ei ekhane eta switch e thakte pare, apre ne tarla jende design korar ki, abar jodi great depend kora basically."
+      ]
+    },
+    {
+      "board": 4,
+      "era": 4,
+      "from": "8:20",
+      "to": "9:02",
+      "transcript_chars": 620,
+      "boxes": 2,
+      "boxes_mentioned": [
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    },
+    {
+      "board": 5,
+      "era": 5,
+      "from": "9:10",
+      "to": "9:52",
+      "transcript_chars": 1001,
+      "boxes": 3,
+      "boxes_mentioned": [
+        1
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": [
+        "toh, er source ne pojomoto eita thakbe, aa destination me ek thakbe eita."
+      ]
+    },
+    {
+      "board": 6,
+      "era": 6,
+      "from": "10:40",
+      "to": "12:02",
+      "transcript_chars": 716,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": [
+        "usable bolta apne in devices, apner phone laptop ke ve e eglo ki dekane ki hobe?"
+      ]
+    }
+  ]
+}

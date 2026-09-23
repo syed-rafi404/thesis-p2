@@ -1,0 +1,159 @@
+{
+  "lecture": "BanglaASR18",
+  "dataset_lecture": "BanglaASR18",
+  "language": "english_via_banglish",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "mock": false,
+  "transcript_file": "transcript.txt",
+  "times_approximate": false,
+  "leakage_warning": "",
+  "boxes_file": "board_boxes.json",
+  "board_text_file": "board_text_clean.json",
+  "quotes_kept": 0,
+  "quotes_dropped": 0,
+  "invalid_box_refs": 0,
+  "quotes_translated": 1,
+  "quotes_word_for_word_checked": false,
+  "quotes_retranslated": 0,
+  "quotes_untranslated_dropped": 1,
+  "written_in": "banglish",
+  "translated_to_english": true,
+  "latex_rewritten": 0,
+  "colour_fixes": 0,
+  "inline_quotes_unverified": 1,
+  "sections": [
+    {
+      "board": 1,
+      "era": 1,
+      "from": "0:10",
+      "to": "1:02",
+      "transcript_chars": 533,
+      "boxes": 1,
+      "boxes_mentioned": [
+        1
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
+        "ICMP is basically for purpose. We use ICMP to detect errors in our network and provide status codes to help diagnose issues."
+      ],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    },
+    {
+      "board": 2,
+      "era": 2,
+      "from": "1:10",
+      "to": "1:52",
+      "transcript_chars": 361,
+      "boxes": 0,
+      "boxes_mentioned": [],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    },
+    {
+      "board": 3,
+      "era": 3,
+      "from": "2:20",
+      "to": "2:50",
+      "transcript_chars": 366,
+      "boxes": 2,
+      "boxes_mentioned": [],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    },
+    {
+      "board": 4,
+      "era": 4,
+      "from": "3:30",
+      "to": "4:22",
+      "transcript_chars": 915,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [
+        "The primary purpose of ICMP is to check if a network is reachable and to verify packet transmission. Specifically, he stated, 'toh pin er kaaj shobar age hocche, first and foremost purpose je, yuri cheibe really check korai, je ekta neto ke reach porte parte se gina, sheta te amr packet sain kole replay artes gina, erokche amr check korata shobar aage dorkar.' This means that the main function of ICMP is to ensure that a network can be reached and that packets are being transmitted correctly."
+      ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    },
+    {
+      "board": 5,
+      "era": 5,
+      "from": "4:40",
+      "to": "5:30",
+      "transcript_chars": 427,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    },
+    {
+      "board": 6,
+      "era": 6,
+      "from": "5:40",
+      "to": "7:00",
+      "transcript_chars": 867,
+      "boxes": 4,
+      "boxes_mentioned": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": [
+        "which is the delay time, but time delay."
+      ]
+    }
+  ]
+}

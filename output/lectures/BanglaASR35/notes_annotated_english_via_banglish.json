@@ -1,0 +1,81 @@
+{
+  "lecture": "BanglaASR35",
+  "dataset_lecture": "BanglaASR35",
+  "language": "english_via_banglish",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "mock": false,
+  "transcript_file": "transcript.txt",
+  "times_approximate": false,
+  "leakage_warning": "",
+  "boxes_file": "board_boxes.json",
+  "board_text_file": "board_text_clean.json",
+  "quotes_kept": 0,
+  "quotes_dropped": 0,
+  "invalid_box_refs": 0,
+  "quotes_translated": 2,
+  "quotes_word_for_word_checked": false,
+  "quotes_retranslated": 0,
+  "quotes_untranslated_dropped": 3,
+  "written_in": "banglish",
+  "translated_to_english": true,
+  "latex_rewritten": 16,
+  "colour_fixes": 0,
+  "inline_quotes_unverified": 1,
+  "sections": [
+    {
+      "board": 1,
+      "era": 1,
+      "from": "0:10",
+      "to": "4:50",
+      "transcript_chars": 3512,
+      "boxes": 3,
+      "boxes_mentioned": [
+        1,
+        2,
+        3
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [
+        "Subnetting er bangla hocche, mane sub division korar ki ekta network bonek bor portion thake, so basically oita ter bi window branch er branch er bhag kora thikase, tree-like structure er ekta."
+      ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 16,
+      "quotes_translated": [
+        "so amra ki korsi? amra chinta korsi je nah, etu gula waste hoe de dile amader hobe na. amader ekta net rock er jonno jodotu kordorkar, jodotu minimum waste er je amra aske net rock ta dil korte pari, oita amader net rock er jono provide korte habe, thikache?"
+      ],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": [
+        "but the main thing is, do we need all the host addresses for our network? amader ki shob gula host address dorkar director ker jonno? eoko hoite pare na, je for example amader host e ache macho ak ta, phar amader generate kore lakse tutu di por 11 ta host address amader ki dorkar ache.",
+        "for example, eto network ke onek dulla device ache, ebong dosader er devices ache, right. total ekta network ke jonno, not like mane ekta area er jonno, pura network er area jonno ekta dosader device shob mile ache. ebong prottekta branch ekba dosader er kore lage na, taina.",
+        "so, amra ki bujhlam je for example ekta network deyo ache, je ekhane for example dhoro 16 ta beat deo, ekhn eto dula aa hosted diese beat ta amader laghtese na, ami eitul likhe feli, achae for example, etenar likhi eta khubi common hoye jekhane, like network dekhte chai,"
+      ]
+    },
+    {
+      "board": 2,
+      "era": 2,
+      "from": "5:00",
+      "to": "7:06",
+      "transcript_chars": 1361,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
+        "So now we are motivated to divide our network into several pieces, but or any other way we can achieve this in a certain style."
+      ],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    }
+  ]
+}

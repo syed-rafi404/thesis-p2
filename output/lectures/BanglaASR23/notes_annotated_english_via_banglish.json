@@ -1,0 +1,105 @@
+{
+  "lecture": "BanglaASR23",
+  "dataset_lecture": "BanglaASR23",
+  "language": "english_via_banglish",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "mock": false,
+  "transcript_file": "transcript.txt",
+  "times_approximate": false,
+  "leakage_warning": "",
+  "boxes_file": "board_boxes.json",
+  "board_text_file": "board_text_clean.json",
+  "quotes_kept": 0,
+  "quotes_dropped": 0,
+  "invalid_box_refs": 0,
+  "quotes_translated": 3,
+  "quotes_word_for_word_checked": false,
+  "quotes_retranslated": 0,
+  "quotes_untranslated_dropped": 1,
+  "written_in": "banglish",
+  "translated_to_english": true,
+  "latex_rewritten": 0,
+  "colour_fixes": 0,
+  "inline_quotes_unverified": 5,
+  "sections": [
+    {
+      "board": 1,
+      "era": 1,
+      "from": "0:00",
+      "to": "8:16",
+      "transcript_chars": 5684,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": [
+        "ekhon olexomai amon hoy ki, je hocche amader electronic device ke amader khubi mane, eta ki bae bujha no jeje khubi aa unpredictable, kokhon ki hobe, bola jay na."
+      ]
+    },
+    {
+      "board": 2,
+      "era": 2,
+      "from": "8:20",
+      "to": "15:36",
+      "transcript_chars": 5788,
+      "boxes": 3,
+      "boxes_mentioned": [
+        1,
+        2,
+        3
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [
+        "When we talk about a switch, it represents a momentary change in state, which can be seen as a delay in our human perception. For example, if we consider a switch turning on and off, there is a delay of 0.01 milliseconds.",
+        "In the example where a switch is turned on and off, connecting a light bulb, when the switch is on, the light bulb turns on, and when the switch is off, the light bulb turns off. This is a simple scenario where the expected output is 5 volts.",
+        "In real-world scenarios, there are external factors that can affect the system. For instance, in a real case, the system might have a higher threshold due to various components behaving differently. This can lead to errors in the system, such as overshooting the desired output.",
+        "In practice, achieving a perfect steady state of 5 volts is not always possible due to factors like resistance. The system might oscillate around the steady state, such as between 4.8 volts and 5.2 volts.",
+        "Understanding these concepts helps in designing better control systems. The graph on the board visually represents the transient and steady states, showing how the system behaves over time."
+      ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    },
+    {
+      "board": 3,
+      "era": 3,
+      "from": "15:40",
+      "to": "19:22",
+      "transcript_chars": 2318,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
+        "Now let's see what happens when we divide our regular voltage state.",
+        "This is just 1 volt, I will explain this, first of all, rise time is the time when it goes from 1 volt to 4.8 volts.",
+        "So, rise time is the time when it rises."
+      ],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    }
+  ]
+}

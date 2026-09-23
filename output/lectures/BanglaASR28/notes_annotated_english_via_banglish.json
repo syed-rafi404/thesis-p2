@@ -1,0 +1,220 @@
+{
+  "lecture": "BanglaASR28",
+  "dataset_lecture": "BanglaASR28",
+  "language": "english_via_banglish",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "mock": false,
+  "transcript_file": "transcript.txt",
+  "times_approximate": false,
+  "leakage_warning": "",
+  "boxes_file": "board_boxes.json",
+  "board_text_file": "board_text_clean.json",
+  "quotes_kept": 0,
+  "quotes_dropped": 0,
+  "invalid_box_refs": 0,
+  "quotes_translated": 8,
+  "quotes_word_for_word_checked": false,
+  "quotes_retranslated": 0,
+  "quotes_untranslated_dropped": 2,
+  "written_in": "banglish",
+  "translated_to_english": true,
+  "latex_rewritten": 0,
+  "colour_fixes": 0,
+  "inline_quotes_unverified": 3,
+  "sections": [
+    {
+      "board": 1,
+      "era": 1,
+      "from": "0:10",
+      "to": "3:10",
+      "transcript_chars": 2467,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
+        "We need to understand how a robot can navigate and make sense of its environment."
+      ],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    },
+    {
+      "board": 2,
+      "era": 2,
+      "from": "3:20",
+      "to": "4:20",
+      "transcript_chars": 828,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
+        "For example, if I want to make a map of a room, I need to name each area and determine the paths between them. For instance, if we are moving from a living room to another room, we need to find the shortest path while considering any obstacles. We need to ensure that the path is feasible and can be followed dynamically, meaning it can adapt to changes in the environment."
+      ],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    },
+    {
+      "board": 3,
+      "era": 3,
+      "from": "4:30",
+      "to": "6:28",
+      "transcript_chars": 1209,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [
+        "This visual homing works by having the robot move randomly, with the camera capturing images, and scanning the environment at regular intervals (milliseconds). The robot determines the direction towards the target based on the comparison and repeats this process until the target is found.",
+        "So, visual homing is like bug-based navigation, but without any specific memory or camera. Bug-based navigation involves the robot moving towards a target based on simple rules and feedback."
+      ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    },
+    {
+      "board": 4,
+      "era": 4,
+      "from": "6:30",
+      "to": "9:30",
+      "transcript_chars": 1791,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [
+        "How does the system explore randomly? It follows a pattern to ensure it covers all areas. For example, the system might move to a new spot, perform some analysis, and then return to the previous spot to continue the process."
+      ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
+        "How does the system explore randomly? It follows a pattern to ensure it covers all areas. For example, the system might move to a new spot, perform some analysis, and then return to the previous spot to continue the process.",
+        "But one thing is that the system starts by identifying obstacles and then continues to explore the environment. Once the system has a good understanding of the current environment, it can use this information to navigate effectively. For instance, if the system is in a team number area, it will use this specific map to guide its movements. The goal is to use both the current environment and the map to make informed decisions about where to go next."
+      ],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    },
+    {
+      "board": 5,
+      "era": 5,
+      "from": "9:40",
+      "to": "11:00",
+      "transcript_chars": 968,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
+        "I have an example, my robot uses sensors to navigate through a scenario, in a real-life situation, it identifies districts and finds the shortest path to reach its destination, optimizing the route based on the map and avoiding obstacles. Is that clear?",
+        "So, to understand the importance of this, I will discuss how it applies in different fields."
+      ],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    },
+    {
+      "board": 6,
+      "era": 6,
+      "from": "11:10",
+      "to": "14:50",
+      "transcript_chars": 2342,
+      "boxes": 1,
+      "boxes_mentioned": [
+        1
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
+        "where am i?"
+      ],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": [
+        "so, ekhn robot ta choltese amra robot ta moddhe choi gula deya ache."
+      ]
+    },
+    {
+      "board": 7,
+      "era": 7,
+      "from": "15:00",
+      "to": "18:20",
+      "transcript_chars": 2028,
+      "boxes": 0,
+      "boxes_mentioned": [],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
+        "Paradigm is how we design a behavior of a robot."
+      ],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    },
+    {
+      "board": 8,
+      "era": 8,
+      "from": "18:30",
+      "to": "19:26",
+      "transcript_chars": 702,
+      "boxes": 1,
+      "boxes_mentioned": [
+        1
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": [
+        "thikase dhonno mad ebong asker video er dekhar jonno, amra next din in inshallah, cnn er main je pora sholo eita shuru korbo."
+      ]
+    }
+  ]
+}

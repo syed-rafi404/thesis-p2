@@ -1,0 +1,128 @@
+{
+  "lecture": "BanglaASR25",
+  "dataset_lecture": "BanglaASR25",
+  "language": "english_via_banglish",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "mock": false,
+  "transcript_file": "transcript.txt",
+  "times_approximate": false,
+  "leakage_warning": "",
+  "boxes_file": "board_boxes.json",
+  "board_text_file": "board_text_clean.json",
+  "quotes_kept": 0,
+  "quotes_dropped": 0,
+  "invalid_box_refs": 0,
+  "quotes_translated": 0,
+  "quotes_word_for_word_checked": false,
+  "quotes_retranslated": 0,
+  "quotes_untranslated_dropped": 3,
+  "written_in": "banglish",
+  "translated_to_english": true,
+  "latex_rewritten": 61,
+  "colour_fixes": 0,
+  "inline_quotes_unverified": 5,
+  "sections": [
+    {
+      "board": 1,
+      "era": 1,
+      "from": "0:30",
+      "to": "4:50",
+      "transcript_chars": 3782,
+      "boxes": 3,
+      "boxes_mentioned": [
+        1,
+        2,
+        3
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [
+        "CSE 461 Control theory,"
+      ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 20,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": [
+        "so, ekhaneo amra jodi ekta variable er jeta korte hobe, chacchi, amra jodi ekhane ki? amra jodi ekhane ki? amra jodi ekhane ki? variable er korte hobe? variable er korte hobe? derivative er korte hobe derivative er korte hobe, derivative er"
+      ]
+    },
+    {
+      "board": 2,
+      "era": 2,
+      "from": "5:00",
+      "to": "6:30",
+      "transcript_chars": 1355,
+      "boxes": 2,
+      "boxes_mentioned": [
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": [
+        "ei je more obscalation eita handle kora jorlo obar, amra use kore derivative."
+      ]
+    },
+    {
+      "board": 3,
+      "era": 3,
+      "from": "6:40",
+      "to": "9:40",
+      "transcript_chars": 1904,
+      "boxes": 1,
+      "boxes_mentioned": [
+        1
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [
+        "Ziegler's theorem provides a method to find the gain for a P controller by testing different values until a stable system is achieved. For an I controller, the process is similar but involves additional steps."
+      ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    },
+    {
+      "board": 4,
+      "era": 4,
+      "from": "9:50",
+      "to": "11:40",
+      "transcript_chars": 1069,
+      "boxes": 3,
+      "boxes_mentioned": [
+        1,
+        2,
+        3
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [
+        "CSE 461 Control theory,",
+        "The proportional gain  k_p  should be 0.6 times the gain  k  of the proportional controller. This value is derived from empirical data and is a common practice in control systems engineering.",
+        "The derivative gain  k_d  is calculated as  \\frac{P}{8} . Again,  P  is the period of oscillation. These values are conventions used in control system design and will be further elaborated in future classes."
+      ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 41,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": [
+        "Because PID toh proportional integral to ache, toh dhoro boko thakbe. Thikase?"
+      ]
+    }
+  ]
+}

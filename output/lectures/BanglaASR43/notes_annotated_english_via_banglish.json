@@ -1,0 +1,71 @@
+{
+  "lecture": "BanglaASR43",
+  "dataset_lecture": "BanglaASR43",
+  "language": "english_via_banglish",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "mock": false,
+  "transcript_file": "transcript.txt",
+  "times_approximate": false,
+  "leakage_warning": "",
+  "boxes_file": "board_boxes.json",
+  "board_text_file": "board_text_clean.json",
+  "quotes_kept": 0,
+  "quotes_dropped": 0,
+  "invalid_box_refs": 0,
+  "quotes_translated": 2,
+  "quotes_word_for_word_checked": false,
+  "quotes_retranslated": 0,
+  "quotes_untranslated_dropped": 1,
+  "written_in": "banglish",
+  "translated_to_english": true,
+  "latex_rewritten": 0,
+  "colour_fixes": 0,
+  "inline_quotes_unverified": 0,
+  "sections": [
+    {
+      "board": 1,
+      "era": 1,
+      "from": "0:00",
+      "to": "2:24",
+      "transcript_chars": 1611,
+      "boxes": 1,
+      "boxes_mentioned": [],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": [
+        "so oitar khetre ei je tos hoy tese jodi jodi type of service. oitar of service ta like data ta pao jodi beshi dorkari hoy."
+      ]
+    },
+    {
+      "board": 2,
+      "era": 2,
+      "from": "2:30",
+      "to": "7:36",
+      "transcript_chars": 4429,
+      "boxes": 1,
+      "boxes_mentioned": [
+        1
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
+        "So, if the network segment gets disconnected, the router won't know. So, if a packet reaches a disconnected segment, the TTL helps prevent it from getting stuck in an infinite loop.",
+        "So basically, if for example I see that a packet needs to travel more than 20 hops, and if after 20 hops it still hasn't reached its destination, the router will drop the packet. This is how routers handle packets that exceed their TTL limit."
+      ],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    }
+  ]
+}

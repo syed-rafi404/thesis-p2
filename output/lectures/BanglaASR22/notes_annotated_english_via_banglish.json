@@ -1,0 +1,143 @@
+{
+  "lecture": "BanglaASR22",
+  "dataset_lecture": "BanglaASR22",
+  "language": "english_via_banglish",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "mock": false,
+  "transcript_file": "transcript.txt",
+  "times_approximate": false,
+  "leakage_warning": "",
+  "boxes_file": "board_boxes.json",
+  "board_text_file": "board_text_clean.json",
+  "quotes_kept": 0,
+  "quotes_dropped": 0,
+  "invalid_box_refs": 0,
+  "quotes_translated": 3,
+  "quotes_word_for_word_checked": false,
+  "quotes_retranslated": 0,
+  "quotes_untranslated_dropped": 1,
+  "written_in": "banglish",
+  "translated_to_english": true,
+  "latex_rewritten": 0,
+  "colour_fixes": 0,
+  "inline_quotes_unverified": 5,
+  "sections": [
+    {
+      "board": 1,
+      "era": 1,
+      "from": "0:10",
+      "to": "1:10",
+      "transcript_chars": 995,
+      "boxes": 1,
+      "boxes_mentioned": [],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
+        "for example, we have a DC motor, so we can make a DC motor spin.",
+        "for example, what can we do now? I'm applying 5 volts, so we need to connect the common ground here to make the motor spin properly.",
+        "now let's talk about the internal structure of a DC motor, specifically the armature. The armature is a cylindrical component made of copper wires that rotate inside the motor. When the armature rotates, it cuts through the magnetic field created by the stator, which generates an electromotive force (EMF)."
+      ],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    },
+    {
+      "board": 2,
+      "era": 2,
+      "from": "1:20",
+      "to": "4:50",
+      "transcript_chars": 2825,
+      "boxes": 2,
+      "boxes_mentioned": [
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": [
+        "so eita general anti clockwise hore jodi amra polar er shik thake."
+      ]
+    },
+    {
+      "board": 3,
+      "era": 3,
+      "from": "5:00",
+      "to": "5:40",
+      "transcript_chars": 498,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [
+        "So, how exactly do we achieve this?",
+        "from here, we take one feedback.",
+        "this is the output of the motor, but not directly from here.",
+        "this output is taken, and from this output, we take a feedback, which we use to control our system.",
+        "basically, what are we doing? Now, our computer's input is this, right?"
+      ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    },
+    {
+      "board": 4,
+      "era": 4,
+      "from": "5:50",
+      "to": "7:38",
+      "transcript_chars": 936,
+      "boxes": 1,
+      "boxes_mentioned": [
+        1
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 1,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    },
+    {
+      "board": 5,
+      "era": 5,
+      "from": "7:50",
+      "to": "9:50",
+      "transcript_chars": 1102,
+      "boxes": 3,
+      "boxes_mentioned": [
+        1,
+        2,
+        3
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    }
+  ]
+}

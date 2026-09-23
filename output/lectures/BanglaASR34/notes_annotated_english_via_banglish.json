@@ -1,0 +1,160 @@
+{
+  "lecture": "BanglaASR34",
+  "dataset_lecture": "BanglaASR34",
+  "language": "english_via_banglish",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "mock": false,
+  "transcript_file": "transcript.txt",
+  "times_approximate": false,
+  "leakage_warning": "",
+  "boxes_file": "board_boxes.json",
+  "board_text_file": "board_text_clean.json",
+  "quotes_kept": 0,
+  "quotes_dropped": 0,
+  "invalid_box_refs": 1,
+  "quotes_translated": 3,
+  "quotes_word_for_word_checked": false,
+  "quotes_retranslated": 0,
+  "quotes_untranslated_dropped": 1,
+  "written_in": "banglish",
+  "translated_to_english": true,
+  "latex_rewritten": 0,
+  "colour_fixes": 0,
+  "inline_quotes_unverified": 8,
+  "sections": [
+    {
+      "board": 1,
+      "era": 1,
+      "from": "0:00",
+      "to": "1:26",
+      "transcript_chars": 980,
+      "boxes": 4,
+      "boxes_mentioned": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    },
+    {
+      "board": 2,
+      "era": 2,
+      "from": "1:30",
+      "to": "3:04",
+      "transcript_chars": 1123,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [
+        "Unicast hocche just duita moddhe, duijon er moddhe jekono amra kono information ba packet ba frame adampudon korbo."
+      ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
+        "Unicast hocche just duita moddhe, duijon er moddhe jekono amra kono information ba packet ba frame adampudon korbo."
+      ],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    },
+    {
+      "board": 3,
+      "era": 3,
+      "from": "3:10",
+      "to": "3:58",
+      "transcript_chars": 555,
+      "boxes": 3,
+      "boxes_mentioned": [
+        1,
+        2,
+        3
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [
+        " This router is connected to multiple devices (PC1 and PC2) via lines labeled "
+      ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
+        "Limited broadcast is when I want to reach all devices on the same network segment.",
+        "It can only exist within that specific network segment. If the router R1 does not forward the limited broadcast to other networks, then no other router will forward it either."
+      ],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    },
+    {
+      "board": 4,
+      "era": 4,
+      "from": "4:20",
+      "to": "5:36",
+      "transcript_chars": 953,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [
+        "A limited broadcast is essentially a directed broadcast. If you want to send a message to all devices within the same network, you would use a limited broadcast. However, if you want to send a message to multiple networks, you would use a directed broadcast. The key point here is that a limited broadcast is confined to a single network, whereas a directed broadcast can span multiple networks."
+      ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": [
+        "directed broadcast ki? ami jodi ei same network er ei je message ta ami dicchi, ei message ta ami ami message ta jodi ami ar two er ei je network ta ache, egulo kase dite chai, tokhan ami iskom directed broadcast."
+      ]
+    },
+    {
+      "board": 5,
+      "era": 5,
+      "from": "5:50",
+      "to": "7:46",
+      "transcript_chars": 1033,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [
+        5
+      ],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [
+        "If we have a list of addresses from 224 to 239, we can use these addresses for multicast communication.",
+        "What should we do? We need a network, a network that includes a single device, obviously more than two devices, and unique.",
+        "If a host needs to communicate with itself, it uses a loopback address. This helps in testing and troubleshooting, allowing us to check the layers of a device directly.",
+        "After a switch, many switches can be connected, but obviously, a switch breaks the loop and connects the device to the host.",
+        "Usually, we understand that making a loop is for testing purposes. So, we do this to test the loop."
+      ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    }
+  ]
+}
