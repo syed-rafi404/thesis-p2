@@ -1,0 +1,617 @@
+{
+  "checked_on": "2026-09-23",
+  "checked_by": "the user, by hand, in output/lectures/board_completeness_check.html",
+  "question": "does the reconstructed clean board contain everything that was written, judged against two real video frames from the same time",
+  "boards_shown": 98,
+  "boards_answered": 97,
+  "complete": 77,
+  "missing_something": 20,
+  "not_checked": 1,
+  "complete_percent": 79.4,
+  "lectures_with_a_loss": [
+    "BanglaASR6",
+    "BanglaASR8",
+    "BanglaASR18",
+    "BanglaASR22",
+    "BanglaASR23",
+    "BanglaASR25",
+    "BanglaASR27",
+    "BanglaASR28",
+    "BanglaASR32",
+    "BanglaASR33",
+    "BanglaASR35",
+    "BanglaASR40",
+    "BanglaASR41",
+    "BanglaASR42"
+  ],
+  "boards": [
+    {
+      "lecture": "BanglaASR6",
+      "board": "board_era1_000",
+      "verdict": "missing",
+      "note": "t4"
+    },
+    {
+      "lecture": "BanglaASR7",
+      "board": "board_era1_000",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR8",
+      "board": "board_era1_030",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR8",
+      "board": "board_era2_420",
+      "verdict": "missing",
+      "note": "b"
+    },
+    {
+      "lecture": "BanglaASR9",
+      "board": "board_era1_020",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR9",
+      "board": "board_era2_1110",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR18",
+      "board": "board_era1_010",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR18",
+      "board": "board_era2_110",
+      "verdict": "missing",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR18",
+      "board": "board_era3_220",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR18",
+      "board": "board_era4_330",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR18",
+      "board": "board_era5_440",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR18",
+      "board": "board_era6_540",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR19",
+      "board": "board_era1_010",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR20",
+      "board": "board_era1_000",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR21",
+      "board": "board_era1_000",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR21",
+      "board": "board_era2_640",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR22",
+      "board": "board_era1_010",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR22",
+      "board": "board_era2_120",
+      "verdict": "missing",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR22",
+      "board": "board_era3_500",
+      "verdict": "not_checked",
+      "note": "not checked"
+    },
+    {
+      "lecture": "BanglaASR22",
+      "board": "board_era4_550",
+      "verdict": "missing",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR22",
+      "board": "board_era5_750",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR23",
+      "board": "board_era1_000",
+      "verdict": "missing",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR23",
+      "board": "board_era2_820",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR23",
+      "board": "board_era3_1540",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR24",
+      "board": "board_era1_010",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR24",
+      "board": "board_era2_400",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR24",
+      "board": "board_era3_450",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR25",
+      "board": "board_era1_030",
+      "verdict": "missing",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR25",
+      "board": "board_era2_500",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR25",
+      "board": "board_era3_640",
+      "verdict": "missing",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR25",
+      "board": "board_era4_950",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR26",
+      "board": "board_era1_010",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR26",
+      "board": "board_era2_200",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR26",
+      "board": "board_era3_500",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR26",
+      "board": "board_era4_630",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR26",
+      "board": "board_era5_810",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR27",
+      "board": "board_era1_000",
+      "verdict": "missing",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR27",
+      "board": "board_era2_510",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR27",
+      "board": "board_era3_610",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR27",
+      "board": "board_era4_1140",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR27",
+      "board": "board_era5_1550",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR28",
+      "board": "board_era1_010",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR28",
+      "board": "board_era2_320",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR28",
+      "board": "board_era3_430",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR28",
+      "board": "board_era4_630",
+      "verdict": "missing",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR28",
+      "board": "board_era5_940",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR28",
+      "board": "board_era6_1110",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR28",
+      "board": "board_era7_1500",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR28",
+      "board": "board_era8_1830",
+      "verdict": "missing",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR29",
+      "board": "board_era1_000",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR29",
+      "board": "board_era2_410",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR29",
+      "board": "board_era3_520",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR29",
+      "board": "board_era4_820",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR29",
+      "board": "board_era5_1140",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR29",
+      "board": "board_era6_1610",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR29",
+      "board": "board_era7_2330",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR30",
+      "board": "board_era1_000",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR30",
+      "board": "board_era2_610",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR31",
+      "board": "board_era1_000",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR31",
+      "board": "board_era2_440",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR32",
+      "board": "board_era1_000",
+      "verdict": "missing",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR32",
+      "board": "board_era2_220",
+      "verdict": "missing",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR33",
+      "board": "board_era1_030",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR33",
+      "board": "board_era2_530",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR33",
+      "board": "board_era3_640",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR33",
+      "board": "board_era4_820",
+      "verdict": "missing",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR33",
+      "board": "board_era5_910",
+      "verdict": "missing",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR33",
+      "board": "board_era6_1040",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR34",
+      "board": "board_era1_000",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR34",
+      "board": "board_era2_130",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR34",
+      "board": "board_era3_310",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR34",
+      "board": "board_era4_420",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR34",
+      "board": "board_era5_550",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR35",
+      "board": "board_era1_010",
+      "verdict": "missing",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR35",
+      "board": "board_era2_500",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR36",
+      "board": "board_era1_010",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR36",
+      "board": "board_era2_320",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR36",
+      "board": "board_era3_900",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR37",
+      "board": "board_era1_000",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR38",
+      "board": "board_era1_000",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR38",
+      "board": "board_era2_350",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR39",
+      "board": "board_era1_000",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR39",
+      "board": "board_era2_050",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR39",
+      "board": "board_era3_340",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR39",
+      "board": "board_era4_450",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR39",
+      "board": "board_era5_700",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR40",
+      "board": "board_era1_020",
+      "verdict": "missing",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR40",
+      "board": "board_era2_100",
+      "verdict": "missing",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR40",
+      "board": "board_era3_330",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR41",
+      "board": "board_era1_000",
+      "verdict": "missing",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR41",
+      "board": "board_era2_230",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR42",
+      "board": "board_era1_000",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR42",
+      "board": "board_era2_450",
+      "verdict": "missing",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR42",
+      "board": "board_era3_530",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR42",
+      "board": "board_era4_910",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR42",
+      "board": "board_era5_1240",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR43",
+      "board": "board_era1_000",
+      "verdict": "complete",
+      "note": ""
+    },
+    {
+      "lecture": "BanglaASR43",
+      "board": "board_era2_230",
+      "verdict": "complete",
+      "note": ""
+    }
+  ]
+}
