@@ -377,9 +377,14 @@ def build(name, info, llm, language, args):
               if "title" in str(b.get("name", "")).lower() and b.get("text")]
     lecture_label = " ".join(titles[0].split()) if titles else name
     mock_output = args.mock or boxes_doc.get("mock", False)
-    sections, report, prev = [], [], ""
+    # english_via_banglish: write the section in Banglish, then translate it, so the two routes to
+    # an English note (straight from the board, or translated) can be scored against each other.
+    via_banglish = language == ap_.ENGLISH_VIA_BANGLISH
+    write_lang = "banglish" if via_banglish else language
+    english_like = language != "banglish"
+    sections, report, prev, frame_source = [], [], "", []
     for k, board in enumerate(boards, 1):
-        msgs = ap_.section_messages(language, lecture=lecture_label, board_no=k, board_count=len(boards),
+        msgs = ap_.section_messages(write_lang, lecture=lecture_label, board_no=k, board_count=len(boards),
                                     time_range=f"{board['from']}-{board['to']}", boxes=board["boxes"],
                                     transcript_excerpt=excerpts[k - 1], previous_heading=prev,
                                     board_text=board_text.get(board["era"], ""))
@@ -389,13 +394,16 @@ def build(name, info, llm, language, args):
                 print(f"\n----- {m['role'].upper()} -----\n{m['content']}")
             return None
         raw = llm.chat(msgs, args.max_new_tokens)
+        if via_banglish:            # the section was written in Banglish; translate it
+            frame_source.append(raw)
+            raw = llm.chat(ap_.translate_messages(raw), args.max_new_tokens)
         raw, placeholders = strip_prompt_placeholders(raw)
         raw, latex_fixes = strip_latex(raw)
         # The english version quotes the lecturer in translation (the user, 2026-09-23: an
         # English-medium reader cannot read Banglish), so there is nothing to match against the
         # Banglish transcript. Those quotes are counted and labelled, never checked; the
         # word-for-word check stays on the banglish version, where the quotes are the real words.
-        if language == "english":
+        if english_like:
             text, kept, dropped, translated = raw, [], [], count_quote_lines(raw)
         else:
             text, kept, dropped = check_quotes(raw, tnorm)
@@ -429,9 +437,14 @@ def build(name, info, llm, language, args):
                        "quotes_kept": kept, "quotes_dropped": dropped})
 
     sections_md = "\n\n".join("\n".join(s) for s in sections)
-    frame = llm.chat(ap_.frame_messages(language, lecture=lecture_label,
-                                        sections_markdown=re.sub(r"<!--.*?-->", "", sections_md)),
-                     args.max_new_tokens)
+    # The frame is written in the language the sections were written in - for english_via_banglish
+    # that is Banglish, from the Banglish sections kept above, not from their translations - and is
+    # then translated like everything else.
+    frame_md = "\n\n".join(frame_source) if via_banglish else re.sub(r"<!--.*?-->", "", sections_md)
+    frame = llm.chat(ap_.frame_messages(write_lang, lecture=lecture_label,
+                                        sections_markdown=frame_md), args.max_new_tokens)
+    if via_banglish:
+        frame = llm.chat(ap_.translate_messages(frame), args.max_new_tokens)
     if ap_.SPLIT_MARK in frame:
         head, tail = frame.split(ap_.SPLIT_MARK, 1)
     else:
@@ -463,10 +476,12 @@ def build(name, info, llm, language, args):
               + (" (times approximate)" if approx and tfile else "") + ". "
               f"Boards: {boxes_doc.get('boxes_from', 'ink')} boxes, named by {vlm_name}. "
               f"Notes written by {llm.model_id}. "
-              + (f"The lecturer's words are given in English translation ({translated_n} quotes); "
-                 "the Banglish version of these notes has the originals, checked word for word "
-                 "against the transcript. "
-                 if language == "english" else
+              + ((("These notes were written in Banglish from the board and the transcript, then "
+                   "translated into English by the same model. " if via_banglish else "")
+                  + f"The lecturer's words are given in English translation ({translated_n} quotes); "
+                  "the Banglish version of these notes has the originals, checked word for word "
+                  "against the transcript. ")
+                 if english_like else
                  f"Quotes checked word for word against the transcript: {kept_n} kept, "
                  f"{dropped_n} removed. ")
               + f"References to boxes that do not exist: {invalid_n}.*"]
@@ -482,7 +497,8 @@ def build(name, info, llm, language, args):
             "transcript_file": tfile, "times_approximate": approx, "leakage_warning": leak,
             "boxes_file": boxes_path.name, "board_text_file": args.board_text_file if board_text else None,
             "quotes_kept": kept_n, "quotes_dropped": dropped_n, "invalid_box_refs": invalid_n,
-            "quotes_translated": translated_n, "quotes_word_for_word_checked": language != "english",
+            "quotes_translated": translated_n, "quotes_word_for_word_checked": not english_like,
+            "written_in": write_lang, "translated_to_english": via_banglish,
             "latex_rewritten": latex_n,
             "colour_fixes": colour_n, "inline_quotes_unverified": inline_n, "sections": report}
     (run_dir / f"{stem}.json").write_text(json.dumps(meta, indent=2, ensure_ascii=False), encoding="utf-8")
@@ -497,7 +513,12 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--lecture", action="append")
     ap.add_argument("--all", action="store_true")
-    ap.add_argument("--language", choices=ap_.LANGUAGES + ("both",), default="english")
+    ap.add_argument("--language", choices=ap_.LANGUAGES + ("both", ap_.ENGLISH_VIA_BANGLISH, "all"),
+                    default="english",
+                    help="english and banglish are each written straight from the board and the "
+                         "transcript; english_via_banglish writes the Banglish note and translates "
+                         "it, for the comparison in RESULTS 5.4. both = the two direct ones, "
+                         "all = those plus the translated one")
     ap.add_argument("--transcript-file", default="auto",
                     help="auto = transcript_loso.txt if present, else transcript_finetuned_v2.txt")
     ap.add_argument("--boxes-file", default=None,
@@ -531,7 +552,9 @@ def main():
             lectures = {n: lectures[n] for n in args.lecture}
         elif not args.all:
             sys.exit("pass --lecture <name>, --all, or --run-dir with --board-dir")
-    languages = ap_.LANGUAGES if args.language == "both" else (args.language,)
+    languages = {"both": ap_.LANGUAGES,
+                 "all": ap_.LANGUAGES + (ap_.ENGLISH_VIA_BANGLISH,)}.get(args.language,
+                                                                         (args.language,))
 
     llm = MockLlm() if (args.mock or args.dry_run) else Llm(args.model, args.quant)
     for name, info in lectures.items():

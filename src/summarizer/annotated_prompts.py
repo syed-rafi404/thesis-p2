@@ -178,6 +178,36 @@ _FRAME_FORMAT = {
 }
 
 
+ENGLISH_VIA_BANGLISH = "english_via_banglish"
+
+
+def translate_messages(banglish_markdown):
+    """Translate a finished Banglish section (or frame) into English, keeping its Markdown.
+
+    The user's spec says the English notes could be a translation of the Banglish ones; the
+    alternative, writing each language straight from the board and transcript, is what
+    `section_messages` does. Both are built so the two can be scored against the answer keys and
+    compared (RESULTS.md 5.4). Nothing here sees the board or the transcript: it is a translation
+    and nothing else, which is the point of the comparison.
+    """
+    system = ("You translate university lecture notes from Banglish (Bengali and English mixed, "
+              "written in the Roman alphabet) into clear, simple English.\n\n"
+              "RULES\n"
+              "1. Translate everything. No Banglish words may remain, not even in quotes.\n"
+              "2. Keep the Markdown exactly as it is: the same headings, the same lists, the same "
+              "tables with the same values, the same bold, the same blockquotes, and the line "
+              "[[BOARD]] on its own if it is there.\n"
+              "3. Keep every box reference exactly (\"box 3\" stays \"box 3\", and its colour word "
+              "stays the same colour).\n"
+              "4. Keep all numbers, formulas, code and technical terms unchanged.\n"
+              "5. Add nothing, explain nothing extra, leave nothing out.\n"
+              "6. A blockquote of the lecturer's words becomes the English translation of those "
+              "words, introduced as: The lecturer said: \"...\".\n"
+              "7. Output only the translated Markdown.")
+    return [{"role": "system", "content": system},
+            {"role": "user", "content": banglish_markdown.strip()}]
+
+
 def frame_messages(language, *, lecture, sections_markdown):
     """The opening (title, one-liner, takeaways) and the closing (check yourself)."""
     system = ("You finish a set of lecture notes. The sections are written; you write the title "
