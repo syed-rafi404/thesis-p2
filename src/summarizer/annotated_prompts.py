@@ -16,9 +16,12 @@ there are untouched.
 LANGUAGES = ("english", "banglish")
 
 _RULES = """RULES
-1. Teach what THIS lecturer taught, with the lecturer's own examples and values. Do not
-   add textbook material. If one sentence of background really helps, start it with
-   "Background:" so the student knows the lecturer did not say it.
+1. Teach what THIS lecturer taught, with the lecturer's own examples and values. Explain it
+   properly, for a student who missed the class: walk through each step on the board, say what
+   it means and why the lecturer does it in that order, and spell out anything the board only
+   shows as a symbol. Being thorough about the lecturer's own material is wanted. What is not
+   wanted is material from elsewhere: every fact in the explanation must come from the board or
+   the transcript. Anything else belongs in the BACKGROUND section below, never mixed in.
 2. The board has numbered coloured boxes, listed below. Point the student at them, for
    example "Look at the orange box 3" or "the truth table in box 5". Use only the box
    numbers that are listed, and mention every listed box at least once.
@@ -75,9 +78,16 @@ _SECTION_FORMAT = {
 
 [[BOARD]]
 
-<the explanation: two to five short paragraphs or a numbered list, pointing at the boxes>
+<the explanation: three to six short paragraphs or a numbered list, pointing at the boxes, working
+through the board step by step>
 
 <the quotes, if any>
+
+### Background (not said in the lecture)
+<two to four sentences of standard, well established material about this same topic that helps a
+student follow the board: what a term means in general, why the idea matters, a common use. Only
+what you are certain of. Nothing here may contradict the board. Leave this section out entirely
+if you have nothing solid to add.>
 
 **Remember:** <the single most important point of this board>""",
 
@@ -87,9 +97,15 @@ _SECTION_FORMAT = {
 
 [[BOARD]]
 
-<explanation: dui theke panch ta choto paragraph ba numbered list, box gulor dike point kore>
+<explanation: tin theke choy ta choto paragraph ba numbered list, box gulor dike point kore, board
+er proti ta step dhore dhore bujhiye>
 
 <quotes, jodi thake>
+
+### Extra jana kotha (lecture e bola hoy ni)
+<dui theke char line standard, well established kotha ei topic niye, ja student ke board bujhte
+help korbe. Shudhu ja tumi shure jano. Board er sathe contradict kora jabe na. Solid kichu na
+thakle ei section puro bad dao.>
 
 **Mone rakho:** <ei board er shobcheye important point>""",
 }

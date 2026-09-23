@@ -39,6 +39,11 @@ pre { background:var(--card); border:1px solid var(--line); border-radius:8px; p
   overflow-x:auto; font-size:14px } code { font-family:Consolas, "Cascadia Mono", monospace; font-size:0.92em }
 details { margin:8px 0 } summary { cursor:pointer; color:var(--accent) }
 .muted { color:var(--muted); font-size:14px }
+aside.background { margin:16px 0; padding:12px 14px; border:1px dashed var(--line);
+  border-radius:10px; background:var(--card) }
+aside.background p.tag { display:inline-block; background:var(--muted); font-size:13px;
+  margin:0 0 6px; padding:2px 9px }
+aside.background p { margin:8px 0 0 }
 """
 
 COLOUR_WORDS = r"(?:red|blue|orange|green|purple|pink|brown|teal|olive|navy)"
@@ -77,6 +82,7 @@ def render(markdown, base_dir, title="Lecture notes"):
     out, para, boxes = [], [], {}
     i = 0
     in_answers = False
+    in_background = False
 
     def flush():
         if para:
@@ -88,6 +94,15 @@ def render(markdown, base_dir, title="Lecture notes"):
         if in_answers:
             out.append("</details>")
             in_answers = False
+
+    # The notes may add a few sentences the lecturer never said, under a heading that says so
+    # (annotated_prompts.py, RULES 1). It is boxed and labelled here so a reader can see at a
+    # glance which part of the page is the lecture and which part is not.
+    def close_background():
+        nonlocal in_background
+        if in_background:
+            out.append("</aside>")
+            in_background = False
 
     while i < len(lines):
         line = lines[i]
@@ -116,14 +131,20 @@ def render(markdown, base_dir, title="Lecture notes"):
         if hm:
             flush()
             level = len(hm.group(1))
+            heading = hm.group(2).strip()
+            if level <= 3:
+                close_background()
             if level <= 2:
                 close_answers()
-            if level == 3 and hm.group(2).strip().lower().rstrip(":") in ("answers", "uttor"):
+            if level == 3 and heading.lower().rstrip(":") in ("answers", "uttor"):
                 close_answers()
                 out.append("<details><summary>Show answers</summary>")
                 in_answers = True
+            elif level == 3 and re.match(r"(background|extra jana kotha)\b", heading, re.I):
+                out.append(f'<aside class="background"><p class="tag">{inline(heading, boxes)}</p>')
+                in_background = True
             else:
-                out.append(f"<h{level}>{inline(hm.group(2), boxes)}</h{level}>")
+                out.append(f"<h{level}>{inline(heading, boxes)}</h{level}>")
             i += 1
             continue
         if re.match(r"^(-{3,}|\*{3,})$", s):
@@ -192,6 +213,7 @@ def render(markdown, base_dir, title="Lecture notes"):
         i += 1
     flush()
     close_answers()
+    close_background()
     return ("<!DOCTYPE html>\n<html lang=\"en\"><head><meta charset=\"utf-8\">\n"
             "<meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n"
             f"<title>{html.escape(title)}</title>\n<style>{CSS}</style></head>\n"
