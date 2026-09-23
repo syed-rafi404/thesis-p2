@@ -183,6 +183,33 @@ def count_quote_lines(section):
     return [m.group(1) for m in (QUOTE_LINE.match(ln) for ln in section.splitlines()) if m]
 
 
+def fix_untranslated_quotes(section, transcript_norm, llm, max_new_tokens, min_words=4):
+    """In an English section, translate any quote the model left in Banglish; drop it if that fails.
+
+    annotated_prompts.translate_messages already says "no Banglish words may remain, not even in
+    quotes", and the 7B still copied the lecturer's Banglish through - the user found one on
+    BanglaASR7_004 (2026-09-23). A quote is untranslated when its words appear word for word in the
+    Banglish transcript, which is the same test check_quotes uses on the banglish version, read the
+    other way round. Returns (text, retranslated, dropped).
+    """
+    out, retranslated, dropped = [], [], []
+    for line in section.splitlines():
+        m = QUOTE_LINE.match(line)
+        span = m.group(1) if m else ""
+        if len(span.split()) < min_words or norm(span) not in transcript_norm:
+            out.append(line)
+            continue
+        again = llm.chat(ap_.translate_messages(line), max_new_tokens).strip().splitlines()
+        again = next((ln for ln in again if ln.strip()), "")
+        m2 = QUOTE_LINE.match(again)
+        if m2 and norm(m2.group(1)) not in transcript_norm:
+            out.append(again)
+            retranslated.append(span)
+        else:
+            dropped.append(span)          # still Banglish: better no quote than one nobody can read
+    return "\n".join(out), retranslated, dropped
+
+
 def check_quotes(section, transcript_norm, min_words=3):
     """Delete quotes that are not word for word in the transcript. Returns (text, kept, dropped)."""
     lines, out, kept, dropped = section.splitlines(), [], [], []
@@ -412,10 +439,14 @@ def build(name, info, llm, language, args):
         # Banglish transcript. Those quotes are counted and labelled, never checked; the
         # word-for-word check stays on the banglish version, where the quotes are the real words.
         if english_like:
+            untranslated_fixed, untranslated_dropped = [], []
+            if via_banglish:
+                raw, untranslated_fixed, untranslated_dropped = fix_untranslated_quotes(
+                    raw, tnorm, llm, args.max_new_tokens)
             text, kept, dropped, translated = raw, [], [], count_quote_lines(raw)
         else:
             text, kept, dropped = check_quotes(raw, tnorm)
-            translated = []
+            translated, untranslated_fixed, untranslated_dropped = [], [], []
         ids = {b["id"] for b in board["boxes"]}
         invalid, mentioned = check_box_refs(text, ids)
         text, colour_fixes = fix_colours(text, {b["id"]: b["colour"] for b in board["boxes"]})
@@ -442,7 +473,9 @@ def build(name, info, llm, language, args):
                        "colour_fixes": colour_fixes, "inline_quotes_unverified": inline_bad,
                        "prompt_placeholders_removed": placeholders, "latex_rewritten": latex_fixes,
                        "quotes_translated": translated,
-                       "quotes_kept": kept, "quotes_dropped": dropped})
+                       "quotes_kept": kept, "quotes_dropped": dropped,
+                       "quotes_retranslated": untranslated_fixed,
+                       "quotes_untranslated_dropped": untranslated_dropped})
 
     sections_md = "\n\n".join("\n".join(s) for s in sections)
     # The frame is written in the language the sections were written in - for english_via_banglish
@@ -466,6 +499,8 @@ def build(name, info, llm, language, args):
     inline_n = sum(len(r["inline_quotes_unverified"]) for r in report)
     placeholder_n = sum(r["prompt_placeholders_removed"] for r in report)
     translated_n = sum(len(r["quotes_translated"]) for r in report)
+    retranslated_n = sum(len(r.get("quotes_retranslated", [])) for r in report)
+    untranslated_n = sum(len(r.get("quotes_untranslated_dropped", [])) for r in report)
     latex_n = sum(r["latex_rewritten"] for r in report)
     leak = ""
     if tfile == "transcript_finetuned_v2.txt" and nc.lecture_number(name) <= 5:
@@ -506,6 +541,7 @@ def build(name, info, llm, language, args):
             "boxes_file": boxes_path.name, "board_text_file": args.board_text_file if board_text else None,
             "quotes_kept": kept_n, "quotes_dropped": dropped_n, "invalid_box_refs": invalid_n,
             "quotes_translated": translated_n, "quotes_word_for_word_checked": not english_like,
+            "quotes_retranslated": retranslated_n, "quotes_untranslated_dropped": untranslated_n,
             "written_in": write_lang, "translated_to_english": via_banglish,
             "latex_rewritten": latex_n,
             "colour_fixes": colour_n, "inline_quotes_unverified": inline_n, "sections": report}
