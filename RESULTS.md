@@ -1128,12 +1128,26 @@ boards. Do not quote "89.4% vs 55.9%" without saying that four of thirty-five bo
 all of the difference. This is the same board-count-versus-item-count trap as elsewhere in this
 file: the metric is item-weighted, so a handful of dense boards can move it a long way.
 
-**A defect in this route, measured over all 13 files: the translation leaves the section labels in
-Banglish.** Every file keeps between 8 and 13 of `Ek line e:`, `Mone rakho:` and `Extra jana kotha`,
-so a page billed as English still shows Banglish headings; one file also shouted its summary line in
-capitals. This does not affect recall (the labels are structure, not board content), but the claim
-"no Banglish left" does not hold as built. The labels are a fixed, small set, so they can be mapped
-deterministically without re-running the model.
+**A defect in this route, found and fixed (2026-09-23).** The translation left the section labels in
+Banglish: across the 13 files, **97 instances** of `Ek line e:`, `Mone rakho:` and
+`Extra jana kotha`, so a page billed as English still showed Banglish headings, and **3 files
+returned the one-line summary in capitals**. Recall is unaffected, the labels being structure rather
+than board content, but the claim "no Banglish left" did not hold as built.
+
+`scripts/fix_translated_labels.py --apply` maps them without running the model, since the labels are
+a fixed set written by our own prompt rather than free text. All 97 labels and all 3 shouted lines
+are gone, and the 28 Background boxes now read "Background (not said in the lecture)".
+
+The shouted lines needed care: lower-casing them wholesale would have destroyed "Python", "TTL" and
+"DBMS". Each word's casing is instead taken from how the same file writes that word elsewhere,
+counting only mid-sentence capitals as evidence, because headings title-case ordinary words and
+every sentence capitalises its first. So "THE SECTIONS COVER TTL AND FRAGMENTATION IN NETWORK
+PARAMETERS." becomes "The sections cover TTL and fragmentation in network parameters."
+
+```
+python scripts/fix_translated_labels.py --dry-run     # what it would change
+python scripts/fix_translated_labels.py --apply
+```
 
 ```
 python scripts/build_lecture_notes.py --all --language english_via_banglish --tag 7b

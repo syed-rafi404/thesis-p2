@@ -1,5 +1,5 @@
 # Input and Type Casting
-Ek line e: Input and Type Casting
+In one line: Input and Type Casting
 
 ## Key takeaways
 - The `input()` function is used to take input from the user.
@@ -9,7 +9,7 @@ Ek line e: Input and Type Casting
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 -->
 ## Input and Type Casting
-**Ek line e:** Input and Type Casting
+**In one line:** Input and Type Casting
 
 ![Board 1: 0:00-1:00](figures_annotated/board_era1_000.jpg)
 
@@ -28,12 +28,12 @@ The lecturer started by revisiting the previous class where they discussed varia
 
 > Lecturer: "so shei python er ekta built-in function er eche jeta holo input. so ami jodi likhi function ta, jeta holo input function. jeta holo python er built-in ekta function. so ei built-in function er maddome amra user e theke input naya thakeu."
 
-### Extra jana kotha
+### Background (not said in the lecture)
 When you use the `input()` function, the value entered by the user is always treated as a string. If you need to perform operations that require numerical values, you will need to convert the string to an integer or float using type casting functions like `int()` or `float()`. This ensures that the operations are performed correctly.
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 -->
 ## Input and Type Casting
-**Ek line e:** Input function er moddhe user e jonna message dite hobe.
+**In one line:** Input function er moddhe user e jonna message dite hobe.
 
 ![Board 2: 1:10-3:10](figures_annotated/board_era2_110.jpg)
 
@@ -55,12 +55,12 @@ The lecturer emphasized that when you use the `input` function, whatever the use
 **Quotes:**
 > Lecturer: "ami ekhane input function ta likhechi. tarpore ami user e jonna ekta message diyechi. message ta ki je what is your name? user jokhon ei message ta dekhbe user korbe ki? or nijan nam ta o likhbe."
 
-### Extra jana kotha
+### Background (not said in the lecture)
 When you use the `input` function, the value entered by the user is always a string. Even if the user enters a number, it will still be treated as a string. For example, if the user types "123", the value of `name` will be "123". To convert this string to an integer, you would need to use the `int()` function. This is a common mistake beginners make, so always remember to check the data type of the input before performing operations on it.
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 3=#f77f00 4=#2a9d4f 5=#7b2cbf 6=#d63384 -->
 ## Input and Type Casting
-**Ek line e:** Input and type casting are essential for handling data correctly in programming.
+**In one line:** Input and type casting are essential for handling data correctly in programming.
 
 ![Board 3: 4:20-7:30](figures_annotated/board_era3_420.jpg)
 
@@ -93,12 +93,12 @@ The lecturer emphasized that beginners often forget to convert string inputs to 
 > Lecturer: "so keo jodi number ta bole je 10, ashole je pacche sheta ekta string hishabe ashtese ekhane."
 > Lecturer: "but amra kintu eta chacchi na. amra chacchi number, actual integer number, 10 and 20, eta add korle koto? 30 hoy."
 
-### Extra jana kotha
+### Background (not said in the lecture)
 When dealing with user inputs, always remember to convert string inputs to integers before performing any arithmetic operations. This ensures that your program works correctly and gives the expected results.
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 3=#f77f00 4=#2a9d4f 5=#7b2cbf 6=#d63384 -->
 ## Input and Type Casting
-**Ek line e:** In this section, we learn how to take user inputs and convert them into integers.
+**In one line:** In this section, we learn how to take user inputs and convert them into integers.
 
 ![Board 4: 7:40-8:30](figures_annotated/board_era4_740.jpg)
 
@@ -121,12 +121,12 @@ When dealing with user inputs, always remember to convert string inputs to integ
 
 > Lecturer: "so ekhane basically ki hocche? ami user theke input niaychi num1. sheta ki? 10. string e chilo. ami jokhon int of aa num1 kore dicchi, ei string ta hoye jacche ki? amar integer."
 
-### Extra jana kotha
+### Background (not said in the lecture)
 When you take input from the user, it is always a string. To use it as an integer, you need to convert it using the `int()` function. For example, if the user inputs `"10"`, you can convert it to the integer `10` using `int("10")`. Similarly, if you want to convert `num1` to an integer, you would use `int(num1)`.
 
 <!-- boxes: 1=#d62828 -->
 ## Input and Type Casting
-**Ek line e:** Input and Type Casting
+**In one line:** Input and Type Casting
 
 ![Board 5: 8:40-14:00](figures_annotated/board_era5_840.jpg)
 
@@ -178,7 +178,7 @@ The red box 1 on the board introduces the topic of Input and Type Casting. The l
     The lecturer explains that this method allows us to embed variables directly into the string, making the output more meaningful and easier to read.
 
 
-### Extra jana kotha (lecture e bola hoy ni)
+### Background (not said in the lecture) (lecture e bola hoy ni)
 String formatting is a powerful feature in Python that helps in creating more readable and formatted output. It is particularly useful when you want to include variable values within a string. For example, if you have `num1 = 20` and `num2 = 30`, the output will be "The sum of 20 and 30 is 50". This makes the output more user-friendly and easier to understand.
 
 ---

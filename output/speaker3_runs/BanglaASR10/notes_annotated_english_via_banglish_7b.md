@@ -9,7 +9,7 @@
 
 <!-- boxes: 1=#d62828 -->
 ## TTL -> Time to Live
-**Ek line e:** TTL stands for Time to Live.
+**In one line:** TTL stands for Time to Live.
 
 ![Board 1: 0:20-1:00](figures_annotated/board_era1_020.jpg)
 
@@ -26,12 +26,12 @@
 > "toh oneksho mai hoy ki je ekta net or ke, jokhn on and gula hop count day, jokhn on and gula hop count day, jokhn on and gula hop count day."
 > "so one ekshomai delay ta accept te bolna toh shei ke thai amra ki kori? packet ta notun kore patai."
 
-### Extra jana kotha
+### Background (not said in the lecture)
 TTL is crucial for managing packet lifetimes in networks. When a packet reaches its TTL value, it is discarded to avoid infinite looping and potential network congestion. This mechanism helps in maintaining network efficiency and preventing delays caused by packet loss or buffer overflow.
 
 <!-- boxes: 1=#d62828 -->
 ## TTL -> Time to Live
-**Ek line e:** TTL stands for Time to Live and it prevents endless looping in a network.
+**In one line:** TTL stands for Time to Live and it prevents endless looping in a network.
 
 ![Board 2: 1:40-2:52](figures_annotated/board_era2_140.jpg)
 
@@ -48,12 +48,12 @@ The TTL value, which is set to 29 in this case, helps prevent this issue. When a
 
 > Lecturer: "main shomosh ta jeta diye amr prevent korte pari sheita hocche jekono packet er endless looping."
 
-### Extra jana kotha
+### Background (not said in the lecture)
 Therefore, when the TTL value reaches zero, the packet will be dropped. However, if a network is down and another network is up, the packet can still be sent to the next available network. In other words, when the TTL value reaches zero, the packet will be dropped, but if a network is down and another network is up, the packet can still be sent to the next available network.
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 3=#f77f00 4=#2a9d4f -->
 ## TTL, IF, DF, MF Flags: Understanding Network Packet Headers
-**Ek line e:** TTL, IF, DF, and MF flags are crucial for understanding network packet headers.
+**In one line:** TTL, IF, DF, and MF flags are crucial for understanding network packet headers.
 
 ![Board 3: 3:00-4:34](figures_annotated/board_era3_300.jpg)
 
@@ -82,12 +82,12 @@ Therefore, when the TTL value reaches zero, the packet will be dropped. However,
 
 The lecturer said: "ekhon amra goto class a koa flag er kotha bole chilon, jeta amader ekta header er dekha je id er for header er moddhe."
 
-**Extra jana kotha:**
+**Background (not said in the lecture):**
 Understanding these flags helps in diagnosing network issues. For instance, if a packet is stuck in a loop, checking the TTL value can help identify the problem. Similarly, the DF and MF flags ensure that packets are transmitted correctly without fragmentation issues.
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 3=#f77f00 -->
 ## TTL, IF, DF, MF Flags: Understanding Network Packet Headers
-**Ek line e:** TTL stands for Time to Live, which is set to 29 and resets to 0, indicating endless looping if not decremented.
+**In one line:** TTL stands for Time to Live, which is set to 29 and resets to 0, indicating endless looping if not decremented.
 
 ![Board 4: 5:20-7:04](figures_annotated/board_era4_520.jpg)
 
@@ -106,7 +106,7 @@ The lecturer said: "In an example scenario, Router 1 receives data packets from 
 
 The lecturer also said: "If the 'Don't Fragment' flag (DF) is set to 0, fragmentation is allowed. However, if DF is set to 1, the router cannot fragment the packet. In such cases, the router will drop the packet and send an error message back to the sender, informing them that the packet needs to be sent in a smaller size to avoid fragmentation issues."
 
-**Mone rakho:** TTL, IF, DF, and MF are crucial flags in network packet headers. TTL ensures packets do not loop indefinitely, while DF and MF control how packets are fragmented and reassembled.
+**Remember:** TTL, IF, DF, and MF are crucial flags in network packet headers. TTL ensures packets do not loop indefinitely, while DF and MF control how packets are fragmented and reassembled.
 
 ---
 

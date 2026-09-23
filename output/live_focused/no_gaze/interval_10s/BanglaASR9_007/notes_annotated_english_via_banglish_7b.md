@@ -15,7 +15,7 @@ The lecture covers the basics of SQL queries and how to use them to retrieve and
 <!-- boxes: 1=#d62828 2=#1d4ed8 -->
 ## Board 1 of 2, on the whiteboard during 0:10-9:10
 
-**Ek line e:** Database Management System (DBMS) University
+**In one line:** Database Management System (DBMS) University
 
 ![Board 1: 0:10-9:10](figures_annotated/board_era1_010.jpg)
 
@@ -82,7 +82,7 @@ The lecturer introduces the concept of a Select query, which is a fundamental an
 
 >The lecturer said: "To select a particular column, you have to specify the column name. If you want to get the CGPA of a particular student, you have to write `SELECT CGPA FROM Student_Info WHERE ID equals to that particular ID`."
 
-**Mone rakho:**
+**Remember:**
 - `SELECT * FROM Student_Info;` retrieves all columns.
 - `SELECT CGPA FROM Student_Info WHERE ID = 401201;` retrieves the CGPA of a specific student.
 - `SELECT First_Name, Last_Name FROM Student_Info WHERE ID = 110112;` retrieves the first and last names of a specific student.
@@ -94,7 +94,7 @@ The lecturer introduces the concept of a Select query, which is a fundamental an
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 -->
 ## SQL Query and Worked Example
-**Ek line e:** This board explains an SQL query to find the maximum CGPA and the corresponding student ID.
+**In one line:** This board explains an SQL query to find the maximum CGPA and the corresponding student ID.
 
 ![Board 2: 9:20-16:20](figures_annotated/board_era2_920.jpg)
 
@@ -129,7 +129,7 @@ The lecturer introduces the concept of a Select query, which is a fundamental an
 5. **Nested Queries:**
    - The lecturer explained that nested queries are used when we need to perform multiple operations on the data, such as finding the student with the highest CGPA and then retrieving their details.
 
-**Mone rakho:** The query selects the student with the highest CGPA and returns their ID and CGPA. The blue box shows the result of the query, which is the student ID 110112 with a CGPA of 3.98.
+**Remember:** The query selects the student with the highest CGPA and returns their ID and CGPA. The blue box shows the result of the query, which is the student ID 110112 with a CGPA of 3.98.
 
 ---
 

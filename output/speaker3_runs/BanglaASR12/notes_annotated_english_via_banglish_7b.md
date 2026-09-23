@@ -9,7 +9,7 @@ This lecture covers the definition, explanation, and practical applications of M
 
 <!-- boxes: 1=#d62828 -->
 ## MTU Maximum Transmission Unit
-**Ek line e:** MTU stands for Maximum Transmission Unit.
+**In one line:** MTU stands for Maximum Transmission Unit.
 
 ![Board 1: 0:00-0:52](figures_annotated/board_era1_000.jpg)
 
@@ -30,12 +30,12 @@ The lecturer explains that MTU is a crucial concept in understanding how data is
 
 The lecturer emphasizes that the discussion is focused on the M2O module, where the concept of MTU is explained in detail. This helps students understand the practical application of MTU in real-world scenarios.
 
-### Extra jana kotha
+### Background (not said in the lecture)
 Understanding MTU is essential for managing network traffic efficiently. It helps in determining the optimal size of data packets to ensure smooth data transmission and avoid issues like fragmentation or loss of data. Knowing the MTU size for your network can prevent bottlenecks and improve overall network performance.
 
 <!-- boxes: 1=#d62828 -->
 ## MTU: Maximum Transmission Unit
-**Ek line e:** MTU stands for Maximum Transmission Unit.
+**In one line:** MTU stands for Maximum Transmission Unit.
 
 ![Board 2: 1:40-3:40](figures_annotated/board_era2_140.jpg)
 
@@ -55,7 +55,7 @@ The formula to check if a number is divisible by a power of two is: if the numbe
 
 > Lecturer: "So for example, amra maximum case e dhore nigo je df ta zero deo deo. Pane ami fragment korte pabo. Dohe amr packet ta throughout the transmission aa packet hoyte parbe if be necessary."
 
-### Extra jana kotha
+### Background (not said in the lecture)
 Understanding the concept of padding is crucial when dealing with packet fragmentation. It ensures that packets are transmitted correctly without being split into smaller fragments unnecessarily. This helps in maintaining the integrity of the data during transmission.
 
 ---

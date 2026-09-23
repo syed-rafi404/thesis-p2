@@ -9,7 +9,7 @@ Today we will learn about while and for loops in Python.
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 -->
 ## (while and For Loops)
-**Ek line e:** Today we will learn about while and for loops in Python.
+**In one line:** Today we will learn about while and for loops in Python.
 
 ![Board 1: 0:00-1:10](figures_annotated/board_era1_000.jpg)
 
@@ -27,11 +27,11 @@ Next, the lecturer introduced two types of loops in Python: while loops and for 
 
 The lecturer explained that if we want to print "Yes" 100 times, we would need to write the `print` function 100 times. If we want to print it a thousand or even a million times, writing it out manually would be impractical. Therefore, we need to use loops to automate this process. He wrote `num = 0` on the board and then introduced the while loop syntax: `while`. He asked, "ami ekhane duita value diyeyshi. ekhon amar ka jolo je num zero theke amar ki choto naki, ekhon tenet theke choto naki."
 
-**Mone rakho:** While loops allow us to repeat a block of code until a certain condition is met. In this case, we initialize a variable `num` to 0 and use a while loop to check if `num` is less than a certain value.
+**Remember:** While loops allow us to repeat a block of code until a certain condition is met. In this case, we initialize a variable `num` to 0 and use a while loop to check if `num` is less than a certain value.
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 -->
 ## While and For Loops
-**Ek line e:** While and for loops are fundamental concepts in programming.
+**In one line:** While and for loops are fundamental concepts in programming.
 
 ![Board 2: 1:20-3:10](figures_annotated/board_era2_120.jpg)
 
@@ -49,12 +49,12 @@ The lecturer further clarified that in this example, `num` starts at 0 and is pr
 
 The lecturer then mentioned that we can use a conditional statement within the loop, and that we will learn more about while loops. He transitioned to for loops, stating that for loops are commonly used and very user-friendly in Python. Unlike while loops, for loops do not require an initial value assignment and a condition check; instead, they iterate over a sequence of items.
 
-### Extra jana kotha (lecture e bola hoy ni)
+### Background (not said in the lecture) (lecture e bola hoy ni)
 For loops are simpler and more readable compared to while loops. They are particularly useful when you know the number of iterations in advance. For example, if you want to print "yes" 10 times, a for loop would be more straightforward.
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 3=#f77f00 -->
 ## While and For Loops
-**Ek line e:** For loops are a convenient way to iterate over a specific number of times.
+**In one line:** For loops are a convenient way to iterate over a specific number of times.
 
 ![Board 3: 3:20-4:30](figures_annotated/board_era3_320.jpg)
 
@@ -80,11 +80,11 @@ This means that although the highest number in the range is 9, the total number 
 
 The lecturer also mentioned that in the previous class, they learned about lists. Lists allow us to store multiple elements. For example, we can create a list like `list1 = [70, 80, 50, 60]`. This list contains four elements, and we can use a for loop to iterate over these elements.
 
-**Mone rakho:** for loop, range function, and list elements.
+**Remember:** for loop, range function, and list elements.
 
 <!-- boxes: 1=#d62828 -->
 ## While and For Loops
-**Ek line e:** This section explains how to calculate the sum of elements in a list using a for loop.
+**In one line:** This section explains how to calculate the sum of elements in a list using a for loop.
 
 ![Board 4: 5:30-9:00](figures_annotated/board_era4_530.jpg)
 
@@ -107,7 +107,7 @@ The lecturer also mentioned that in the previous class, they learned about lists
 
 > Lecturer: "ekhon arekta khubi important jeta, shetaholo ekta syntax error jeta shobai kore thake je print jinishta ekhane dey."
 
-### Extra jana kotha (lecture e bola hoy ni)
+### Background (not said in the lecture) (lecture e bola hoy ni)
 Understanding for loops is crucial for performing operations on collections of data. By iterating over each element, you can perform calculations or manipulations that would be tedious to do manually. For example, you can use for loops to find the average of a list of numbers, count the occurrences of a specific value, or even modify each element in a list.
 
 ---

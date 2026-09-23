@@ -1,5 +1,5 @@
 # Python Variables
-THE SECTIONS COVER THE CONCEPT OF PYTHON VARIABLES, INCLUDING WHAT THEY ARE, HOW TO USE THEM, AND THE IMPORTANCE OF NAMING CONVENTIONS.
+The sections cover the concept of Python variables, including what they are, how to use them, and the importance of naming conventions.
 
 ## Key takeaways
 - Variable, container, data storage, box analogy, variable name, data.
@@ -10,7 +10,7 @@ THE SECTIONS COVER THE CONCEPT OF PYTHON VARIABLES, INCLUDING WHAT THEY ARE, HOW
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 -->
 ## Python Variables
-**Ek line e:** A variable is a container for storing data values.
+**In one line:** A variable is a container for storing data values.
 
 ![Board 1: 0:00-1:40](figures_annotated/board_era1_000.jpg)
 
@@ -38,11 +38,11 @@ The lecturer then removes the `Apple` from the board to emphasize that the varia
 
 In summary, a variable in Python is a container where we can store data. The name of the variable is like the label on the box, and the data stored in it is like the item inside the box.
 
-**Mone rakho:** Variable, container, data storage, box analogy, variable name, data.
+**Remember:** Variable, container, data storage, box analogy, variable name, data.
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 -->
 ## Python Variables
-**Ek line e:** Python variables are used to store data values.
+**In one line:** Python variables are used to store data values.
 
 ![Board 2: 1:50-3:20](figures_annotated/board_era2_150.jpg)
 
@@ -59,12 +59,12 @@ The lecturer further clarified that the `num` variable here is an example of how
 
 The lecturer mentioned that in the next video, we will explore more about different data types and how to use them with variables. For now, we have covered the basics of variables in Python.
 
-### Extra jana kotha (lecture e bola hoy ni)
+### Background (not said in the lecture) (lecture e bola hoy ni)
 Understanding variables in Python is crucial. Variables allow us to store and manipulate data. By specifying the type of data (like integer, string, etc.), we ensure that the operations performed on the variable are meaningful and correct.
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 -->
 ## Python Variables
-**Ek line e:** Python variables are used to store data values.
+**In one line:** Python variables are used to store data values.
 
 ![Board 3: 3:40-7:00](figures_annotated/board_era3_340.jpg)
 
@@ -102,12 +102,12 @@ The lecturer further explained:
 
 The lecturer concluded by mentioning that Python has a built-in function called `type()` which can be used to determine the data type of a variable. For example, if you have a variable `name`, you can check its type using `type(name)`.
 
-### Extra jana kotha
+### Background (not said in the lecture)
 Understanding Python variables and their data types is crucial for writing effective programs. Variables allow you to store and manipulate data, and knowing the correct data type helps in performing operations accurately. For instance, using the wrong data type can lead to errors in your program.
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 3=#f77f00 -->
 ## Python Variables
-**Ek line e:** Python variables er naming convention er somanikto hocche.
+**In one line:** Python variables er naming convention er somanikto hocche.
 
 ![Board 4: 7:10-9:50](figures_annotated/board_era4_710.jpg)
 
@@ -126,14 +126,14 @@ The lecturer said: "When we look at a piece of code, it's important to understan
 
 The lecturer said: "Variable naming is crucial because when someone else reads your code, they should be able to understand the purpose of the variable just by looking at its name. For instance, if you see a variable named `Iname`, you would expect it to hold a string value like `"Rafi"`."
 
-### Extra jana kotha (lecture e bola hoy ni)
+### Background (not said in the lecture) (lecture e bola hoy ni)
 The first rule for naming variables is to use lowercase letters. This makes the code more readable and consistent. For example, instead of using `Iname`, you should use `iname`. Additionally, avoid using spaces in variable names; instead, use underscores if needed. For instance, `name_1` is better than `name 1`.
 
-**Mone rakho:** Variable er naming convention, type er detection, and consistency in naming.
+**Remember:** Variable er naming convention, type er detection, and consistency in naming.
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 3=#f77f00 -->
 ## Python Variables
-**Ek line e:** Python variables are used to store data.
+**In one line:** Python variables are used to store data.
 
 ![Board 5: 10:00-10:50](figures_annotated/board_era5_1000.jpg)
 
@@ -156,14 +156,14 @@ The lecturer also introduced camel case, where the first word is lowercase and s
 
 Finally, the lecturer emphasized that Python is case-sensitive, meaning `my_name` and `My_Name` would be considered different variables. This is crucial for developers to remember, as it can lead to bugs if not handled correctly.
 
-**Mone rakho:** 
+**Remember:** 
 - Use underscores in variable names.
 - Follow snake case convention in Python.
 - Python is case-sensitive.
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 3=#f77f00 4=#2a9d4f -->
 ## Python Variables
-**Ek line e:** Python variables are case-sensitive.
+**In one line:** Python variables are case-sensitive.
 
 ![Board 6: 11:20-12:50](figures_annotated/board_era6_1120.jpg)
 
@@ -187,7 +187,7 @@ He further explained that `pi` is a floating-point number, which is not a whole 
 
 > Lecturer: "Python variables are case-sensitive."
 
-### Extra jana kotha (lecture e bola hoy ni)
+### Background (not said in the lecture) (lecture e bola hoy ni)
 Understanding that variables are case-sensitive is crucial because it prevents common mistakes. For instance, writing `age` and `Age` separately ensures that you are working with distinct variables, which can lead to bugs if not handled carefully.
 
 ---

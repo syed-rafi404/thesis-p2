@@ -10,7 +10,7 @@ The lecture covers the concepts of Maximum Transmission Unit (MTU) and packet si
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 -->
 ## Red Box 1: Definition of MTU and Packet Size
-**Ek line e:** MTU stands for Maximum Transmission Unit, which defines the total packet size.
+**In one line:** MTU stands for Maximum Transmission Unit, which defines the total packet size.
 
 ![Board 1: 0:00-3:50](figures_annotated/board_era1_000.jpg)
 
@@ -34,11 +34,11 @@ The header size is fixed at 20 bytes, while the data size can vary. The maximum 
 
 In summary, the total packet size is the sum of the header and data sections, with the header size fixed at 20 bytes and the data size varying based on the actual data being transmitted. The MTU is the maximum size of a packet that can be sent without fragmentation, which in this case is 1500 bytes.
 
-**Mone rakho:** MTU, header size, data size, DF flag, reassembly, network layer, 1500 bytes.
+**Remember:** MTU, header size, data size, DF flag, reassembly, network layer, 1500 bytes.
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 3=#f77f00 4=#2a9d4f 5=#7b2cbf -->
 ## Blue Box 2: Fragment Offset Calculation
-**Ek line e:** Fragment offset is used to determine the position of each fragment within the original packet.
+**In one line:** Fragment offset is used to determine the position of each fragment within the original packet.
 
 ![Board 2: 4:00-12:34](figures_annotated/board_era2_400.jpg)
 
@@ -73,7 +73,7 @@ In summary, the total packet size is the sum of the header and data sections, wi
 > "So, if the size of one packet is, just the data size of the packet, sorry, if the data size is 4000 bytes, that's the total size of the data before including any headers."
 > "For the second fragment, we add this value again divided by eight. Let's just take this value for now. What value are we waiting for? Okay, let's calculate it. Divided by eight, that is 185. So, what is the value for the second fragment?"
 
-### Extra jana kotha
+### Background (not said in the lecture)
 Fragment offset helps in reassembling the original packet at the destination. By knowing the fragment offset, the receiver can correctly place each fragment in the correct position. This ensures that the entire packet is reconstructed accurately without any loss or corruption.
 
 ---

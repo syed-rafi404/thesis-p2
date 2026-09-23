@@ -11,7 +11,7 @@ THE SECTIONS
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 3=#f77f00 -->
 ## Digital Logic Design
-**Ek line e:** Digital Logic Design is the foundation of how computers process information.
+**In one line:** Digital Logic Design is the foundation of how computers process information.
 
 ![Board 1: 0:10-3:10](figures_annotated/board_era1_010.jpg)
 
@@ -37,12 +37,12 @@ In summary, the key points are:
 - High voltage in TTL systems represents logic 1, and low voltage represents logic 0.
 - Pressing a key on a keyboard creates a combination of high and low voltages, which is processed by logic gates.
 
-**Mone rakho:** Analog signals are continuous, while digital signals are discrete. In TTL systems, 5 volts represent logic 1, and 0 volts represent logic 0. Logic gates are used to process these combinations of high and low voltages.
+**Remember:** Analog signals are continuous, while digital signals are discrete. In TTL systems, 5 volts represent logic 1, and 0 volts represent logic 0. Logic gates are used to process these combinations of high and low voltages.
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 -->
 ## Digital Logic Design
 
-**Ek line e:** Today we will discuss digital logic design and the basic building blocks of digital circuits.
+**In one line:** Today we will discuss digital logic design and the basic building blocks of digital circuits.
 
 ![Board 2: 3:20-5:50](figures_annotated/board_era2_320.jpg)
 
@@ -69,7 +69,7 @@ The lecturer emphasizes that these logic gates are crucial for decision-making p
 
 In this class, we will start with the fundamental gates. Since these gates represent the physical components in real processors, we have billions of these gates working together to perform complex tasks.
 
-### Extra jana kotha
+### Background (not said in the lecture)
 Understanding the basic logic gates is essential for designing digital circuits. These gates form the foundation for more complex digital systems, such as microprocessors and memory units. By mastering these gates, students can better understand how digital devices operate at a fundamental level.
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 3=#f77f00 4=#2a9d4f -->
@@ -105,11 +105,11 @@ The lecturer further explained that in digital systems, the inputs and outputs a
 
 In a real-world scenario, if both bulbs are on, the room will be bright. Conversely, if one bulb is off and the other is on, the room will be dim. Only when both bulbs are on will the room be fully bright. This example helps us understand the functionality of the AND gate in a more tangible way.
 
-**Mone rakho:** An AND gate outputs 1 only when both inputs are 1. Otherwise, the output is 0. This can be visualized using a simple bulb analogy where both bulbs need to be on for the room to be fully bright.
+**Remember:** An AND gate outputs 1 only when both inputs are 1. Otherwise, the output is 0. This can be visualized using a simple bulb analogy where both bulbs need to be on for the room to be fully bright.
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 3=#f77f00 4=#2a9d4f -->
 ## Box 1 (red): Digital Logic Design
-**Ek line e:** This section covers the basics of digital logic design.
+**In one line:** This section covers the basics of digital logic design.
 
 ![Board 4: 10:10-11:00](figures_annotated/board_era4_1010.jpg)
 
@@ -133,12 +133,12 @@ In a real-world scenario, if both bulbs are on, the room will be bright. Convers
 **Quotes:**
 > The lecturer said: "Input and x hocche amr output jeta ki chilo? A and B er multiplication. So etai hocche amr and keidh."
 
-**Extra jana kotha:**
+**Background (not said in the lecture):**
 The AND gate is a fundamental component in digital logic design. It takes two inputs and produces an output based on the logical AND operation. If either of the inputs is zero, the output will also be zero. This gate is used in various electronic circuits to perform logical operations. Understanding the AND gate is crucial for designing more complex digital systems.
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 3=#f77f00 4=#2a9d4f -->
 ## Box 2 (blue) and Box 3 (orange) ki shekhano hocche, choto heading
-**Ek line e:** This board explains the OR gate and its representation.
+**In one line:** This board explains the OR gate and its representation.
 
 ![Board 5: 11:10-13:00](figures_annotated/board_era5_1110.jpg)
 
@@ -155,12 +155,12 @@ The AND gate is a fundamental component in digital logic design. It takes two in
 
 > Lecturer: "Suppose input is a and output is b. So our output which will be there, is x."
 
-### Extra jana kotha (lecture e bola hoy ni)
+### Background (not said in the lecture) (lecture e bola hoy ni)
 The OR gate is a fundamental component in digital logic design. It takes two binary inputs and produces an output that is 1 if at least one of the inputs is 1. Understanding the OR gate is crucial for designing more complex digital circuits.
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 3=#f77f00 4=#2a9d4f 5=#7b2cbf -->
 ## Box 1 (red): Digital Logic Design
-**Ek line e:** Digital Logic Design
+**In one line:** Digital Logic Design
 
 ![Board 6: 13:10-14:50](figures_annotated/board_era6_1310.jpg)
 
@@ -185,7 +185,7 @@ The OR gate is a fundamental component in digital logic design. It takes two bin
 > Lecturer: "NOT gate a ki hoy? Amar je physical device ta seikhane just ekta ei input ber dhukbe and ekta ei output ber hobe."
 > Lecturer: "ekhane ei bar jinish ta ki? ta hobe jabe, a bar hocche alternate of a. tar mane ki? tar mane hocche amar input a and output a bar. input jodi zero hoy, tahole output hobe one. and input jodi one hoy ar output ta hobe zero. ebhabei opposite je signal toh sheita ama ke not get."
 
-### Extra jana kotha (lecture e bola hoy ni)
+### Background (not said in the lecture) (lecture e bola hoy ni)
 The NOT gate is a fundamental component in digital logic design. It takes a single input and produces an output that is the logical opposite of the input. This gate is crucial for creating more complex circuits and is used extensively in digital systems. Understanding the NOT gate is essential for grasping more advanced concepts in digital logic.
 
 ---

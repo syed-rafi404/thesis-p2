@@ -1,5 +1,5 @@
 # BanglaASR11
-THE SECTIONS COVER TTL AND FRAGMENTATION IN NETWORK PARAMETERS.
+The sections cover TTL and fragmentation in network parameters.
 
 ## Key takeaways
 - TTL stands for Time to Live.
@@ -8,7 +8,7 @@ THE SECTIONS COVER TTL AND FRAGMENTATION IN NETWORK PARAMETERS.
 
 <!-- boxes: 1=#d62828 -->
 ## Network Parameters: TTL and Fragmentation
-**Ek line e:** TTL stands for Time to Live.
+**In one line:** TTL stands for Time to Live.
 
 ![Board 1: 0:40-1:30](figures_annotated/board_era1_040.jpg)
 
@@ -35,7 +35,7 @@ In summary, the TTL parameter controls the lifespan of a packet, the DF paramete
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 3=#f77f00 4=#2a9d4f -->
 ## Network Parameters: TTL and Fragmentation
-**Ek line e:** Packet fragmentation is a crucial concept in network protocols.
+**In one line:** Packet fragmentation is a crucial concept in network protocols.
 
 ![Board 2: 1:40-2:48](figures_annotated/board_era2_140.jpg)
 
@@ -65,7 +65,7 @@ In summary, the TTL parameter controls the lifespan of a packet, the DF paramete
 - The lecturer noted that when we send the last packet, the value of the More Fragment (MF) flag is set to 0, indicating that this is the final fragment of the original packet.
 - The lecturer concluded, "okay, so eita bujha khub e important chilo jokhn amra mtu er math kula dekhbe mtu er matter khetre. ar next video theke amra enchalla mtu er math chore korbo." This means, "so understanding this is very important when we look at MTU (Maximum Transmission Unit) and related matters. In the next video, we will delve deeper into MTU math."
 
-**Mone rakho:** TTL, packet size, and fragmentation are key concepts in network protocols. Understanding these helps in managing data transmission efficiently.
+**Remember:** TTL, packet size, and fragmentation are key concepts in network protocols. Understanding these helps in managing data transmission efficiently.
 
 ---
 

@@ -10,7 +10,7 @@ We use conditional statements in computers to make logical decisions.
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 3=#f77f00 4=#2a9d4f 5=#7b2cbf 6=#d63384 7=#8d5524 -->
 ## Conditional Statements
-**Ek line e:** Amra computer kivabe logical decision gulo nay.
+**In one line:** Amra computer kivabe logical decision gulo nay.
 
 ![Board 1: 0:00-5:50](figures_annotated/board_era1_000.jpg)
 
@@ -29,12 +29,12 @@ We use conditional statements in computers to make logical decisions.
 
 The lecturer said: "So, we will see how a computer makes logical decisions based on user input. We will start with a simple conditional statement using `if`, `elif`, and `else`."
 
-### Extra jana kotha
+### Background (not said in the lecture)
 Amra user e theke input niye shetek kivabe variable hishbe store korte hoy. Amra aste aste aro deep topic e jabo. Toh first e, dore nei jodi rain hoy, amra `if` block e duke jabe.
 
-**Mone rakho:** `if`, `elif`, `else` diye conditional statement, user e theke input niye shetek kivabe variable hishbe store korte hoy.
+**Remember:** `if`, `elif`, `else` diye conditional statement, user e theke input niye shetek kivabe variable hishbe store korte hoy.
 
-**Ek line e:** Amra user e theke input niye shetek kivabe variable hishbe store korte hoy.
+**In one line:** Amra user e theke input niye shetek kivabe variable hishbe store korte hoy.
 
 ![Board 1: 0:00-5:50](figures_annotated/board_era1_000.jpg)
 
@@ -53,7 +53,7 @@ Amra user e theke input niye shetek kivabe variable hishbe store korte hoy. Amra
 
 The lecturer said, "so, if-rain, aa user will bring umbrella." This means that if the weather is rain, the user will bring an umbrella.
 
-**Mone rakho:** `if` block e, jodi weather rain hoy, print korbe "Bring Umbrella".
+**Remember:** `if` block e, jodi weather rain hoy, print korbe "Bring Umbrella".
 
 ![Board 1: 0:00-5:50](figures_annotated/board_era1_000.jpg)
 
@@ -72,7 +72,7 @@ The lecturer said, "so, if-rain, aa user will bring umbrella." This means that i
 
 The lecturer further explained, "so jodi jein hoy, user amre lan be, bong jodi jein na hoy, she amre la anbena khobby simple ekta jinis, toh eta pore kivabe bujhobo sholo setai shuru kori." This means that if the user does not bring an umbrella, we will handle that case separately.
 
-**Mone rakho:** `if` block e, jodi weather rain hoy, print korbe "Bring Umbrella". Jodi na hoy, `else` block e print korbe "Just Come".
+**Remember:** `if` block e, jodi weather rain hoy, print korbe "Bring Umbrella". Jodi na hoy, `else` block e print korbe "Just Come".
 
 ![Board 1: 0:00-5:50](figures_annotated/board_era1_000.jpg)
 
@@ -91,7 +91,7 @@ The lecturer further explained, "so jodi jein hoy, user amre lan be, bong jodi j
 
 The lecturer also mentioned, "so eibhabe jinishta hocche. user theke input asche input ekta string hishabe. amra string ta keibhabe match kore dekhtesu." This means that the user will provide a string input, and we will check if it matches "rain" or "sunny".
 
-**Mone rakho:** User e theke input asche input ekta string hishabe. Amra string ta keibhabe match kore dekhtesu. Whether er modde input tai string hishabe ache. Check kottese je is it rain? does it equal rain?
+**Remember:** User e theke input asche input ekta string hishabe. Amra string ta keibhabe match kore dekhtesu. Whether er modde input tai string hishabe ache. Check kottese je is it rain? does it equal rain?
 
 ![Board 1: 0:00-5:50](figures_annotated/board_era1_000.jpg)
 
@@ -110,7 +110,7 @@ The lecturer also mentioned, "so eibhabe jinishta hocche. user theke input asche
 
 The lecturer continued, "jodi eta rey na hoy, tahole amar else block e ashbe. else block e ashar por hobe ki print just come." This means that if the weather is neither rain nor sunny, we will print "Just Come".
 
-**Mone rakho:** Jodi weather na rain na hoy, else block e print korbe "Just Come".
+**Remember:** Jodi weather na rain na hoy, else block e print korbe "Just Come".
 
 ![Board 1: 0:00-5:50](figures_annotated/board_era1_000.jpg)
 

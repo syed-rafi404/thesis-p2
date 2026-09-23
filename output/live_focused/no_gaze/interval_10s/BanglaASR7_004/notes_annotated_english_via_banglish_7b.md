@@ -13,7 +13,7 @@ Today we will start with the concept of universal gates.
 <!-- boxes: 1=#d62828 -->
 ## Digital Logic Design
 
-**Ek line e:** Today we will start with the concept of universal gates.
+**In one line:** Today we will start with the concept of universal gates.
 
 ![Board 1: 0:00-0:50](figures_annotated/board_era1_000.jpg)
 
@@ -34,11 +34,11 @@ Today we will start with the concept of universal gates.
 
 > Lecturer: "so ajke ashbe amr universal gate. universal gate er moddhe ami ki ki bolechilam? there are two types of universal gates which are xor gate, xor gate, xor gate."
 
-**Extra jana kotha**: A universal gate is a gate that can be used to implement any other type of logic gate. The NOR gate is one such universal gate. By understanding the NOR gate, we can build more complex circuits using just this single type of gate.
+**Background (not said in the lecture)**: A universal gate is a gate that can be used to implement any other type of logic gate. The NOR gate is one such universal gate. By understanding the NOR gate, we can build more complex circuits using just this single type of gate.
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 3=#f77f00 4=#2a9d4f 5=#7b2cbf -->
 ## NOR Gate: Digital Logic Design
-**Ek line e:** This board explains how to build a NOR gate using basic logic operations.
+**In one line:** This board explains how to build a NOR gate using basic logic operations.
 
 ![Board 2: 1:00-4:20](figures_annotated/board_era2_100.jpg)
 
@@ -61,12 +61,12 @@ The lecturer explains that the NOR gate is essentially an OR gate followed by a 
 - **Step 4:** The output of the NOR gate is 1 only when both A and B are 0. In all other cases, the output is 0.
 
 
-### Extra jana kotha (lecture e bola hoy ni)
+### Background (not said in the lecture) (lecture e bola hoy ni)
 The NOR gate is a universal gate because any Boolean function can be implemented using only NOR gates. This makes it very versatile in digital circuit design. Understanding the NOR gate helps in building more complex circuits and simplifying logic designs.
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 3=#f77f00 4=#2a9d4f 5=#7b2cbf 6=#d63384 -->
 ## Definition of NAND Gate: Digital Logic Design
-**Ek line e:** NAND gate = AND + NOT
+**In one line:** NAND gate = AND + NOT
 
 ![Board 3: 4:40-7:00](figures_annotated/board_era3_440.jpg)
 
@@ -90,12 +90,12 @@ The NOR gate is a universal gate because any Boolean function can be implemented
 
 The lecturer said: "NAND gate = AND + NOT"
 
-### Extra jana kotha (lecture e bola hoy ni)
+### Background (not said in the lecture) (lecture e bola hoy ni)
 The NAND gate is a universal gate because it can be used to implement any other logic gate. By combining NAND gates, we can create complex circuits that perform various logical operations. This makes the NAND gate very versatile in digital logic design.
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 3=#f77f00 4=#2a9d4f 5=#7b2cbf 6=#d63384 -->
 ## X-OR Gate: Digital Logic Design
-**Ek line e:** X-OR gate takes two inputs and produces one output.
+**In one line:** X-OR gate takes two inputs and produces one output.
 
 ![Board 4: 7:20-10:40](figures_annotated/board_era4_720.jpg)
 
@@ -132,12 +132,12 @@ different input = 1
 
 The lecturer further said: "While we can derive the output step-by-step using the formula, for practical purposes, we can directly use the X-OR gate to get the output quickly. He mentioned that understanding the X-OR gate will make it easier to understand other similar gates like the X-NOR gate."
 
-### Extra jana kotha (lecture e bola hoy ni)
+### Background (not said in the lecture) (lecture e bola hoy ni)
 The X-OR gate is a fundamental component in digital logic design, and understanding its behavior helps in designing more complex circuits. Knowing how to derive the output from the inputs and vice versa is crucial for working with digital systems.
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 3=#f77f00 4=#2a9d4f 5=#7b2cbf -->
 ## X-NOR Gate: Digital Logic Design
-**Ek line e:** X-NOR gate is derived from X-OR gate and NOT gate.
+**In one line:** X-NOR gate is derived from X-OR gate and NOT gate.
 
 ![Board 5: 10:50-14:00](figures_annotated/board_era5_1050.jpg)
 
@@ -174,7 +174,7 @@ The lecturer explained that the X-NOR gate can be derived by first performing an
 
 > Lecturer: "X-NOR gate is derived from X-OR gate and NOT gate."
 
-### Extra jana kotha (lecture e bola hoy ni)
+### Background (not said in the lecture) (lecture e bola hoy ni)
 The X-NOR gate is a universal gate along with AND, OR, and NOR gates. It is useful in digital logic design because it can be used to implement other logical functions. Understanding the X-NOR gate helps in designing more complex digital circuits.
 
 ---

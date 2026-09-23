@@ -21,7 +21,7 @@ A Database Management System (DBMS) is a system used to store and manage data.
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 3=#f77f00 -->
 ## Database Management System (DBMS)
-**Ek line e:** Database Management System (DBMS) is a system used to store and manage data.
+**In one line:** Database Management System (DBMS) is a system used to store and manage data.
 
 ![Board 1: 0:00-0:50](figures_annotated/board_era1_000.jpg)
 
@@ -36,13 +36,13 @@ A Database Management System (DBMS) is a system used to store and manage data.
 
 - **Quote:** "so, ei data gula ki thakte pare? multiple tables a thakte pare." - The lecturer emphasizes that a database can contain multiple tables, each holding different types of data.
 
-- **Extra jana kotha:** A database is essential in our digital world. For instance, imagine we have a simple example of a person's information. We can represent this information using a single table, focusing on one table for simplicity.
+- **Background (not said in the lecture):** A database is essential in our digital world. For instance, imagine we have a simple example of a person's information. We can represent this information using a single table, focusing on one table for simplicity.
 
-**Mone rakho:** Database, DBMS, multiple tables, information, performance, software, digital world, example, single table.
+**Remember:** Database, DBMS, multiple tables, information, performance, software, digital world, example, single table.
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 3=#f77f00 4=#2a9d4f -->
 ## SQL Query for Creating a Table: Database Management System
-**Ek line e:** Create table Student_info( ID First_Name Last_Name)
+**In one line:** Create table Student_info( ID First_Name Last_Name)
 
 ![Board 2: 1:10-10:50](figures_annotated/board_era2_110.jpg)
 
@@ -95,7 +95,7 @@ CREATE TABLE Student_info (
 
 This command creates a table with the specified columns and data types. The lecturer highlighted that we can manipulate the table by adding, updating, or deleting rows and columns as needed.
 
-**Mone rakho:** 
+**Remember:** 
 - `CREATE TABLE` is used to define a new table.
 - `INT`, `VARCHAR`, `FLOAT`, and `DATE` are data types used to specify the type of data each column can hold.
 - Each column in the table represents a piece of information about a student.
@@ -103,7 +103,7 @@ This command creates a table with the specified columns and data types. The lect
 <!-- boxes: 1=#d62828 2=#1d4ed8 -->
 ## SQL Query for Creating a Table: Database Management System (DBMS)
 
-**Ek line e:** In this section, we will learn how to create a table using SQL in a database management system.
+**In one line:** In this section, we will learn how to create a table using SQL in a database management system.
 
 ![Board 3: 11:00-13:00](figures_annotated/board_era3_1100.jpg)
 
@@ -140,10 +140,10 @@ This command creates a table with the specified columns and data types. The lect
 > 
 > Lecturer: "Suppose I wrote 10 because a student's full name usually does not exceed 10 characters. So, I wrote 10."
 
-### Extra jana kotha (lecture e bola hoy ni)
+### Background (not said in the lecture) (lecture e bola hoy ni)
 In the `First_Name` and `Last_Name` columns, we use `VARCHAR(10)` to store up to 10 characters. This is because typically, a person's first and last names do not exceed 10 characters. For `CGPA`, we use `float` to store decimal values. The `Department` column uses `VARCHAR(15)` to allow up to 15 characters, which is sufficient for most department names. `Enrollment_Date` is stored as a `Date` type, which is appropriate for storing dates.
 
-**Mone rakho:** The `VARCHAR` data type is used to store variable-length strings, and the `float` data type is used to store floating-point numbers. The `Date` data type is used to store dates. The semicolon at the end of the SQL statement signifies the end of the command.
+**Remember:** The `VARCHAR` data type is used to store variable-length strings, and the `float` data type is used to store floating-point numbers. The `Date` data type is used to store dates. The semicolon at the end of the SQL statement signifies the end of the command.
 
 ---
 

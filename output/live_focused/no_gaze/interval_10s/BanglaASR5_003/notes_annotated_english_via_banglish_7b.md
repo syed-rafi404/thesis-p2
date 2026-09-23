@@ -1,5 +1,5 @@
 # Lists, Tuple and Arrays
-THE SECTIONS COVER LISTS, TUPLES, AND ARRAYS IN PYTHON, INCLUDING HOW TO CREATE, ACCESS, MODIFY, AND CONVERT THEM.
+The sections cover lists, tuples, and arrays in Python, including how to create, access, modify, and convert them.
 
 ## Key takeaways
 - Lists are flexible data types that can store different types of data.
@@ -8,7 +8,7 @@ THE SECTIONS COVER LISTS, TUPLES, AND ARRAYS IN PYTHON, INCLUDING HOW TO CREATE,
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 3=#f77f00 4=#2a9d4f 5=#7b2cbf 6=#d63384 -->
 ## Lists, Tuple and Arrays
-**Ek line e:** Lists, tuples, and arrays are fundamental data structures in Python.
+**In one line:** Lists, tuples, and arrays are fundamental data structures in Python.
 
 ![Board 1: 0:00-6:00](figures_annotated/board_era1_000.jpg)
 
@@ -37,12 +37,12 @@ THE SECTIONS COVER LISTS, TUPLES, AND ARRAYS IN PYTHON, INCLUDING HOW TO CREATE,
 
 > Lecturer: "so dhoro amra first class e ekta variable ney shilam fruit. fruit er moddhe amra ki diye shilam? apple diye shilam. but fruit ki shudu appali? aro onek jinis toh hote pari. ami o fruit hisate aro onek jinis rakhte pari. orange rakhte pari, mango rakhte pari."
 
-### Extra jana kotha
+### Background (not said in the lecture)
 Lists in Python are very versatile. You can store different types of data like strings, integers, floats, and booleans in a single list. This flexibility makes lists a powerful tool for handling various types of data. Additionally, you can easily modify lists by changing individual elements, making them dynamic and adaptable.
 
 <!-- boxes: 1=#d62828 -->
 ## Lists, Tuple and Arrays
-**Ek line e:** Lists, Tuple and Arrays
+**In one line:** Lists, Tuple and Arrays
 
 ![Board 2: 7:10-10:40](figures_annotated/board_era2_710.jpg)
 
@@ -57,12 +57,12 @@ Lists in Python are very versatile. You can store different types of data like s
 
 > Lecturer: "ekhon ami element list er second index er jeta, index dhalo jekhane 2. shekhan ami jodi 5 e replace kore di."
 
-### Extra jana kotha
+### Background (not said in the lecture)
 When you need to modify a tuple, you can't directly change its elements because tuples are immutable. Instead, you should convert the tuple to a list, make the necessary changes, and then convert it back to a tuple. This approach allows you to modify the elements while maintaining the immutability property of tuples. Understanding these concepts will help you work effectively with both lists and tuples in Python.
 
 <!-- boxes: 1=#d62828 -->
 ## Lists, Tuple and Arrays
-**Ek line e:** In this section, we will learn about converting lists to arrays using NumPy.
+**In one line:** In this section, we will learn about converting lists to arrays using NumPy.
 
 ![Board 3: 11:00-14:00](figures_annotated/board_era3_1100.jpg)
 
@@ -84,7 +84,7 @@ The lecturer started by importing the NumPy library, which is essential for work
 5. **Error Handling**: He pointed out that if the list contains different data types, such as `list_2`, attempting to convert it directly to an array would result in an error. This is because NumPy requires all elements in an array to be of the same data type.
 
 
-### Extra jana kotha (lecture e bola hoy ni)
+### Background (not said in the lecture) (lecture e bola hoy ni)
 When converting a list to an array, ensure all elements are of the same data type. Otherwise, you will encounter errors. For example, if your list contains both strings and integers, you cannot directly convert it to an array without first ensuring all elements are of the same type.
 
 ---
