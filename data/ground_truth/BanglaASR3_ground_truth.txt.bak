@@ -1,0 +1,41 @@
+# Speaker ID: A
+# BanglaASR3 Ground Truth Transcription
+# Real Classroom Video
+# 
+# Format: [M:SS-M:SS] Romanized Banglish transcription
+# 
+# INSTRUCTIONS:
+# 1. Watch the video: data/raw/BanglaASR3.mp4
+# 2. Transcribe what the lecturer says in Romanized Banglish
+# 3. Include timestamps for each segment
+# 4. Use Roman script (English letters) even for Bengali words
+# 5. Include technical terms exactly as spoken
+# 
+# Example:
+# [0:00-0:30] Assalamualaikum, aj amra class e dekhbo...
+# [0:30-1:00] Java te amra object oriented programming...
+#
+# TECHNICAL TERMS TO WATCH FOR:
+# (List key technical terms that appear in this video)
+#
+# ============================================================
+# PASTE YOUR TRANSCRIPTION BELOW:
+# ============================================================
+
+
+[00:00-01:38]
+
+Hello everyone, welcome back to another video, ei video te amra dekhbo, computer kibhabe logical decision gula nei. Se ki bhabe user er input er upor base kore ki bhabe se decision nei je eitar kaaj ki korte hobe naki korte hobe naah. Jemon last class gula te amra sikhechi variable hisabe, variable koi bhabe hoy, datatype ki ki ache, tarpor variable ki bhabe declare korte hoy. Ebong recent class a amra sikhechi je aaa user er theke input niye seta ki bhabe variable a store korte hoy. Ajke amra dekhbo shei variable tar upore base kore computer ki bhabe decision nei. Toh cholo, shuru kori, amra shuru korbo first a if, else and elif diye ekta conditional statement, khub e simple jinish, amra aste aste aro deep topic a jabo. Toh first ei cholo dhore nei, jodi rain hoy, if rain aaa user will bring umbrella, okay. So, arekta jinish je, if not so jodi rain hoy user umbrella anbe, jodi rain na hoy se umbrella anbena, khub e simple ekta jinish. So, eta code a ki bhabe bujhabo cholo setai shuru kori. 
+
+[01:38-03:39]
+First a, weather naamer jodi ekta variable amra declare kori, “weather”. Se ki korbe? user theke ekta input nibe. Se user ki bolte pare today’s mas , today’s weather. So, user er theke input nilo today’s weather hisabe, ebong user ekta weather kemon dibe? Je ajke rain or sunny or something. So tarpor amar porer line ashbe if, weather equal equal dekho ekhane kintu ami dui ta equal diachi, thikache? Equal equal dia ami boltesi weather jodi amr rain hoy, print korbe. So, user ekta input dibe, input pawar por weather rain naki eita check korbe, first a if block a dhuke jabe, tarpore jodi dekhe je rain, if block a dhuklo, print korbe se bring umbrella. Ebong jodi weather jodi onno kichu dei,  rain baade jekono jinish, jemon ki rain er jodi aaa spelling ta se small letter dia o likhe, tobuo jinish ta ebhabe jabe, else boltese je just come, just tomar, you dont have to bring umbrella if it doesnt rain. 
+
+
+[03:39-04:23]
+You can just come, okay? Ebhabe jinish ta hocche, user theke input asche input ta ekta string hisabe. String ta ke bhabe match kore dektesi, weather er moddhe input ta string hisabe ache. Check kortese je is it rain? Does it equals rain? If yes, If block a dhukbe, print korbe bring umbrella. Jodi eta rain na hoy, tahole amr else block a ashbe, else block a ashar por hobe ki, print just come. O tomake boltese, tumi just asho ar kichu korte hbena, so ebhabe ami if else dite pari. Ekhon kotha holo jodi weather sunny hoy tokhn ki korbe? Tahole ami ekta kaaj korte pari, Ami eles take, else ta ekhane kete dia, ami elif naamer arekta conditional statement dite pari.
+
+[04:23-05:38]
+Ekhane amra arekta condition dibo, ki dibo? Je aaa Boltese je weather jodi sunny hoy, tokhn ki, acha for example we can print, aaa, amra bolte pari weather jodi sunny hoy, wear white color. Tarpor jodi else a jai, else, jodi eigular kichue na hoy, rain jodi na hoy, sunny o jodi na hoy, jodi ekta moderate weather thake. Tokhn ki korbe? Print korbe, ekhn amra abr dite pari ager moto just come. Achaa thikache. Toh Ekhn ami ekta jinish trace kore dekhai, Ekta first a variable declare korlam, bollo user theke ekta input jiggesh korbe. 
+
+[05:38-06:03]
+Ebong Input ta ekta string hisabe first a if er kache check korbe, je hae weather ki rain? Jodi hoy rain, tahole ki korbe? Bring umbrella. Weather Jodi rain na hoy, jodi sunny check korbe, weather ki sunny? Sudhu sunny e hote hobe. Karon rain ami check kore aschi, eibar sunny check korbo, sunny jodi hoy, wear white color. Tarpore jodi rain o na hoy sunny o nah hoy, duniyar onno jekono word er jonno. Ami print korbo, print just come, okay?

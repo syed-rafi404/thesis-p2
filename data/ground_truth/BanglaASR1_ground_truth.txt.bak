@@ -1,0 +1,76 @@
+# Speaker ID: A
+# BanglaASR1 Ground Truth Transcription
+# Real Classroom Video
+# 
+# Format: [M:SS-M:SS] Romanized Banglish transcription
+# 
+# INSTRUCTIONS:
+# 1. Watch the video: data/raw/BanglaASR1.MOV
+# 2. Transcribe what the lecturer says in Romanized Banglish
+# 3. Include timestamps for each segment
+# 4. Use Roman script (English letters) even for Bengali words
+# 5. Include technical terms exactly as spoken
+# 
+# Example:
+# [0:00-0:30] Assalamualaikum, aj amra class e dekhbo...
+# [0:30-1:00] Java te amra object oriented programming...
+#
+# TECHNICAL TERMS TO WATCH FOR:
+# (List key technical terms that appear in this video)
+# - class
+# - object
+# - method
+# - variable
+# - (add more as you transcribe)
+#
+# ============================================================
+# PASTE YOUR TRANSCRIPTION BELOW:
+# ============================================================
+
+[0:00-0:34]
+Hello everyone. Welcome back to the class. So ajker ei video te amra python er khub e fundamental ekta jinish niye kotha bolbo. Ashole shotti kotha bolte eta shudhu python na, eta jekono aaa programming language er e khubi important ekta topic. So asha kori last class e amra dekhechilam je kivabe python er environment set korte hoy. Jerokom dhoro VSCode or PyCharm, erokom environment ta kivabe configure korte hoy shegula shikhechilam. So ami asha korchi je tomader shobar already VSCode or Pycharm eta nishchoi download kora ache or python er jekono ekta environment set up kora ache. So cholo shuru kora jak.
+
+[0:34-1:27]
+Honestly bolte gele aaa programming er basic hocche variable. So tumi jodi data store korte jano, every other things will be very easy to you. First question jeta ashe sheta holo variable jinish ta ki. So amra jodi likhi ekhane- ‘What is variable?’ Eta holo amader ekta main question. So, think of like a box. So, tomar kache dhoro ekta box ache. Ebong box er moddhe tumi onek jinish e rakhte paro. Tumi ki rakhte paro? Box er moddhe tumi book rakhte paro tomar. Thikache? Eta jodi onno type er box hoy jemon dhoro tumi ekhane fruits rakhte chachho. Tumi ekhane ki rakhte paro? Apple rakhte paro. Jekono jinish rakhte paro.
+
+[1:27-2:19]
+Toh ekhane ei box jeta, sheta hocche amar variable er name ta. Ar apple tarpore book, egulo holo amar data jeta ami variable er moddhe store kore rakhte chacchi. So eta ami muche feltesi. Let me just remove it. So python e variable jinishta ashole onnanno programming language theke khub e easy. Jemon tumi jodi onno kono programming language e jao jemon C, Java, C#, tumi dekhba je tomar ekta number jodi rakhte chao variable er moddhe first e tomar ekta type diye rakhte hobe je int aaa, eta mane bujhacche holo tumi number nam er je variable ta etar moddhe tumi ei 10 value ta ke rakhte chaccho.  
+
+[2:19- 2:48]
+But ekhane mojar bepar ta hocche ki, pyhton e amader eto koshto kore kon type er data er je data type jeta sheta ekhane likhte hobe na. Amra ki korte pari? Amra shudhu ekhane num likhe amra value ta boshiye dite pari. Python nije nijei bujhe jabe je ei value ta ashole ki. Eta ki mm o ki bujhbe? je hae, eta ekta integer value karon ki ekhane kono amar decimal point nai. Decimal point ache ekhane but eta toh amra real life e ashole visible na jinishta.
+
+[2:48-3:27]
+Okay, so dekho ekhane num jeta etake tumi ektu aage je amra ekta box er example dilam, etar sathe compare kore dekhte paro. Ebong ei num jeta sheta jodi box hoy, tahole ei 10 jeta sheta holo amar value. Thikache? Ei value eta ami ekhane rakhtesi. Eta holo dynamicly type. Ekhane python nije nijei bujhe jabe je ei 10 value ta ashole ekta integer sheta o number er moddhe store kore rakhbe. Toh porobortite jokhon tomar dorkar hobe tumi ki korbe? Shudhu ei num likhlei bujhe jabe je hae eta ashole num bolte ashole 10 bujhacche. So etar moddhe tumi mathematical different operation korte parba. Sheta amra porobortite dekhbo ei video tei.
+
+[3:27-4:32]
+Accha ekhon jehetu amra khub e basic level e variable jinishta ki bujhe gechi, so amra ektu datatype ta dekhi. Tahole amra further variable niye amra explore korte parbo. Ami egulo remove kore dicchi. So, datatype. Python e variable er datatype charta ache. Toh, first ei jeta ache sheta holo string. Tarpore arekta ache sheta holo integer. Integer. Tarpore amar aro royeche ekti boolean ebong arekti royeche sheti holo float. 
+
+[4:32-5:12]
+Toh cholo amra dekhi ekta ekta kore. String. String holo jekono jinish jemon dhoro boli je, jodi boli je amar nam omuk, amar nam tomuk. Amar nam dhorlam je, amar nam holo Ahsan. Thikache? Toh amra ki likhte pari string er moddhe? Jekono jinish er nam. Ami je kotha gula boltesi egular je ekta subtitle ache, shegula keo tumi string hishabe dekhte paro. String bujhanor jonno jekono jinish, jemon dhoro ‘kono kichu’ likhlam ami ekhane. Kono kichu. Eta ekta word. Ekhane ki ache? Amar english e alphabet diye ami jinish pati likhechi. String er jonno ami shudhu erokom, jodi erokom mark diye dei tahole eta bujha jabe holo, aaa eta ekta string.
+
+[5:12-6:21]
+Erokom ami double mark double quotation na diye, ami single quotation eo likhte pari jekono jinish. Jemon dhoro ami jodi boli ‘apple’. Eta  eta holo string. Ekhon etar jodi ami ekta example dei. Tahole bhalo hobe. Sheta hobe jemon dhoro ekhane ami separate bhabe dekhacchi. Jemon Fruit. Fruit. Ekhon apple je value ta sheta Fruit er moddhe store kora ache.Similarly, next je datatype ta sheta holo integer. Integer ta holo aaa arekti shobcheye beshi use kora ekta variable er datatype. Jemon eta holo integer bolte holo jekono number ke bujhay. Jekono amar whole number ar ki. Jemon ami jodi boli Age. Age ki amar? 10 hote pare. Tarpore age amar different hote pare but age toh ekta number e hobe taina? Age toh karo kokhono aaa amar kono string er moto hote pare na. Ami number diye age ke aaaam prokash kortesi.
+
+[6:21-7:10]
+Tarpore ashi sheta holo float. Float ki? Float holo jeshob gulo amar whole number na. Jemon dhoro three point five, two point five. Erokom different jotogulo number ache. Jemon amra jodi pi er value dekhi sheta ki? Three point one four one six. Tarpore ashi holo boolean. Boolean khub e shohoj. Boolean e shudhu duita value thake.True and false. Eta either true hobe or false hobe. Eta amra kivabe likhte pari? Amra dhoro bolte pari je aaa isValid. Eta ke amra bolte pari true. Er mane ki? Je etaki  valid? Hae eta valid. Karon ki ekhane true ache.
+
+[7:10-8:08]
+Accha, python er built-in ekta method ba function ache jegula niye amra pore aro shikhbo. But ekta choto jinish ekhon ami dekhiye dei. Sheta holo type(). Toh dhoro tomar kache ekta variable ache jemon dhorlam name equal to ami likhlam Sakib. Thikache. Toh porobortite  code e tomar kono jaygay check korte hobe je ei variable er type ta ashole ki. Tumi simply jeta likhte paro sheta holo type of aaa variable er nam ta. Ekhane ki? Variable er name ta holo amar name e deya ache. Sorry jinishta ashole bujhte problem hocche. But ekhane variable er name tao amar name deya abar variable er original name tao name. So, jinishta confusing. But oito ami jodi ekhane type dei, ami dekhte pabo je hae dekhabe sheta holo str. Str mane holo String.
+
+[8:08-9:11]
+So variable er naming ta khubi important ekta jinish. Karon tumi ekta code korbe porobortite tomar code ta jokhon onno keo dekhbe je ashole jate bujhte pare tomar naming ta dekhe je hae eta diye ki bujhacche, oita diye ki bujhacche. Jate aaaa variable er nam kintu jekono jinish deya jay but amra chai emon ekta meaningful dite jate  porobortite jinishta diye reuse kora jay variable gula. Toh cholo amra shuru kori. First rule jeta hocche je variable er. variable er nam amra maximum shomoy small letter diye shuru kori. Jemon dhoro ami jodi erokom Name likhtam hae etao hobe, variable hishabe eta use kora jabe but amra naming convention follow kori. Sheta holo standard rule jerokom dhoro Name ta ke likhe amra shobai name likhi. name likhle hoy ki, dekho ekhane ami small letter diye shuru korechi. Ebong evabei amar variable er name ta hoyeche. So eta cross eta holo right. Okay?
+
+
+[9:11-10:02]
+Variable er naming er shobcheye first je rule sheta hocche amra kokhonoi kono integer value diye kono variable er name shuru korte parbo na. Tahole error ashbe. Jemon amra jodi example dei. Jemon dhoro 1 lkhlam. Eta ki ekta integer value ekta whole  number. One er por jodi ami likhi je name equal to dhoro Rafi likhlam. Thikache. String jehetu ami string baniye dilam. So eta jodi ami dei eta error dibe. Direct error dibe. Ete emon kichu na je just follow kore na, eta just error dibe tomake. But tumi jeta korte paro sheta ki? name1. Eta amar ekta correct procedure. Dekho, ekhane amra name variable ta niyechi ebong etar sheshe ki? 1 diye diyechi.
+
+[10:02-11:14]
+Second arekta rule hocche je amra variable er nam er moddhe kono space use korte parbo na. Jemon, tumi jodi chao tumi my name equal Rafi, eta tumi likhte parba na. Eta likhte parba na karon ki amar ekhane space ache. Toh amra space ta ke kivabe thik korbo? Amra korbo ki amra ekhane ekta underscore diye dibo. Underscore jodi diye dei, etake python community te bole holo snake casing. Arekta  ache sheta holo camel casing. Sheta ki? Sheta holo dhoro ami ekhane first er ta small letter deya pore , sorry, first er ta small letter deyar pore ami poroborti jotogula word ashbe shobgula capital letter diye shuru korbo. Dekho, camel er jerokom ki kono ekta jaygay or pith ta khub uchu hoy. Similarly ekhane amar variable er name tao orokom hobe. Dekho evabe giyeche hotat ektu uchu hoyeche abar nichu hoyeche. Etake amra boli holo aaa variable er camel casing. But python community te ei snake casing tai khubi standard, etai follow kore shobai.
+
+[11:14-12:13]
+Arekta important jinish holo python kintu case sensitive. Sheta khub e important ekta jinish. Ebong maximum khetre jara developer ache tara ekta bhul e kore, dekha jay je variable er nam hotat kore tader match kortese na. Python holo case sensitive. Kirokom? Jinishta ki? Sheta holo age ten. Ten integer value sheta age er moddhe store kora ache. Ekhon dekho. Ekta jinish kheyal kore dekho.age er a g e egulo shobguloi kintu amar small letter er. Toh ami jodi by chance evabe likhi, a g and then E likhi. Dekho eta kintu amar ekta capital letter. So ami jodi ekhon 10 likhi, ekta jinish dekhbo je  ei age and ei agE duita kintu ashole same jinish na. Thikache duitar value same. But duita ashole ami same jinishe use korte parbona.
+
+
+
+[12:13-13:04]
+So ajker class e ki shikhlam amra arekbar ektu wrap up kore nei. Sheta holo amra shikhechi variable kivabe kaj kore. Variable ki? Variable holo emon ekta dhorte gele variable ki shudhu nam jeta diye amra ekta data ke store kore rakhi. Ekhane jerokom age eta ekta integer value ke iya kortese. Amra datatype ki ki shikhlam- string, integer, boolean and float. So floating er jodi ekta example dei.  Sheta holo aaaa jemon dhoro pi. Pi er value ki? Thikache? Eta ekta pi er value. Eta dekho amar whole number na. Boolean er example amra dekhechi je isValid niye ki. Is aaaaa above age limit. Erokom ami true false erokom boolean diye check kori je ami  hae ami check korte chai je eta ki amar thik? Yes, true. Jodi na hoy tahole false. So, egulai use kore next class e amra arithmetic operation kora shuru korbo.

@@ -1,0 +1,56 @@
+# BanglaASR19 Ground Truth Transcription
+# Topic:
+# Speaker ID: C
+# Video file: BanglaASR19.mp4
+# Video duration: 4:10
+# Transcriber:
+# Date:
+# Style guide version: 1.0
+#
+# Paste the transcript under the line below, then remove ".EMPTY" from the end
+# of this file's name. While it ends in .EMPTY the pipeline does not see it.
+#
+# Format   [M:SS-M:SS] text, on one line, no spaces inside the brackets
+# Limits   every segment under 30 s, aim for 10-25 s; no gaps, no overlaps
+# Keep     fillers (aaa, um, mane, je, tahole); ASCII only, no smart quotes
+# Rules    TRANSCRIPTION_GUIDE.md
+
+# ============================================================================
+
+[0:00- 0:24]
+Okay, guys. So ajke amra hocche amader ICMA protocol-e aro ekti important tool, jeta hocche trace route, sheta niye janbo. Toh cholen, basically ki kore eita amra dekhe ashi. Toh trace route specially use hoy sheishob khetre jokhon amader point out korte hoy, je basically kon exact network portion-e amader error-ta ache.
+
+[0:24-0:47]
+Thik ache? Ping jemon reachability check kore, trace route prottekta hop-to-hop jump kore ebong kon hop theke kon hop-e giyeche, shetar information-o trace route-e store thake. Eta aaa mane oi MAC addresses-gula, and IP addresses-gula, oi device-gula ba oi hop-gular  jekhane o jump kortese, jump kore kore destination-e jacche, sheta check kore.
+
+[0:47-1:04]
+And sheta o store kore. Store kore jodi information-ta aaa mane ami request-er response pai, shetao dekhay, display kore. Jodi kono karone response-ta na back kore, kon specific portion-er pore amar shomossha-ta hoyeche, o sheta point out kore dite pare.
+ 
+[1:04- 1:24]
+Toh basically amra jehetu aage alochona korechilam, je amra jodi CLI-te jai, CLI-te giye amra just trace route ebhabe likhe dilei amader trace route-ta  aaa activate hoye jabe. Then amader oi je IP nam-ta likhte hobe, je IP-te amra trace route korte chai. 
+
+[1:24-1:41]
+Eta ei je nam thekei bujhte parchen je hocche Aaa eta je route-ta thake amader, oi specific  aaa  IP address-e dewa, shei route-ta ke  o trace kore. Eta hocche trace route-er khub basic kothabarta. Ekhon trace route-ta kaj kibhabe kore, cholen dekha jak. 
+
+[1:41-2:00]
+Toh first of all, jodi amar PC-r theke shuru hoy, PC-r theke kono device-e. For example, eta hocche amar destination-er server, jeta amar destination shetar server. First-e aa PC-r theke trace route, trace route er value 1 kortese. 1 kore first-e prothome router-e value mane ekta request pathabe. 
+
+[2:00-2:22]
+Toh prothom router e jokhon jabe, trace route-er value 1 chilo. 1 minus hoye 0 hoye jabe. Tokhon 0 hoye jabe, o abar back-e ashbe. O hocche ei je traceroute-tar , ei router-e gelo, eitar shob information, jemon etar hocche MTU koto, then etar baadbaki information-ta jete kotokhon lage, and etc., etc. Egulo store kore niye, that as acknowledgement, o back-e ashtese. 
+
+
+[2:22-2:42]
+Tarpor same bhabe abar gelo, jawar pore next je router-ta chilo, shei router-er khetre same kaj korbe. Tokhon traceroute-er value prothome jekhane ek chilo, ek theke bere dui hoye jabe. Dui  howar pore abar first step-tate jabe, second-tate jabe, pore abar second-ta theke back-e ashbe. Same bhabe second-tar value-tao capture kore niye ashbe. 
+
+[2:42-3:02]
+All the informations. Toh eibhabe basically last porjonto traceroute-ta amader kaj kore thake. Toh traceroute-er ekta main specific identification hocche, ba feature hocche je o specific, aa mane je router-ta, ba network zone-ta, jekhane giye disrupt hote pare, amader packet-ta, sheta find out korte pare. 
+
+[3:02-3:29]
+Jemon, for example, ami ekhane jodi amar ei router theke server-e kono connection na thake, for example, ei router theke server-e kono connection na thake, o ekhane giye traceroute 3 hoye jabe, TTL-er value-ta. TTL-er value jemon ekhane theke 3 hoye jabe, o dekhbe je hocche tin number hop-er pore ar jawa jaitese na, but eta to destination na, because amar IP and all deya chilo, jetar sathe match kore na. Toh bujhte partese, this is not the destination we desired. 
+
+[3:29-3:48]
+Toh ei jonno ki hocche, basically o bole dicche je tomar TTL tin  number, mane tomar third hop-e amar hocche main problem-ta shuru hoyeche. Okay. Toh hocche, basically amra erokom prottekbar ICMP packet pathay pathay, last porjonto amra hocche traceroute use kore shobgulor value ber korte pari.
+
+[3:48-4:08] 
+Kon network-er koto MTU, and required shegulo amra ber kore pore hocche fragment kore kore amra packet pathate pari. Toh eta hocche tracerouter khub short ekta description. And exam-er jonno, I guess eituk jana enough. Thank you.
+

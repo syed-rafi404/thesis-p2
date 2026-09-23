@@ -1,0 +1,57 @@
+# BanglaASR24 Ground Truth Transcription
+# Topic:
+# Speaker ID: C
+# Video file: BanglaASR24.MOV
+# Video duration: 7:14
+# Transcriber:
+# Date:
+# Style guide version: 1.0
+#
+# Paste the transcript under the line below, then remove ".EMPTY" from the end
+# of this file's name. While it ends in .EMPTY the pipeline does not see it.
+#
+# Format   [M:SS-M:SS] text, on one line, no spaces inside the brackets
+# Limits   every segment under 30 s, aim for 10-25 s; no gaps, no overlaps
+# Keep     fillers (aaa, um, mane, je, tahole); ASCII only, no smart quotes
+# Rules    TRANSCRIPTION_GUIDE.md
+
+# ============================================================================
+
+[0:00-0:26]
+Sorry for the interruption, guys. Ektu lok chole aschilo room er moddhe. Okay, so hocche peak time. Peak time bolte—accha, amra eta ektu clear kore dei. Right, ami just eikhane likhe rakhlam, choto kore, eikhane likhe rakhlam: TR, Transient Time. Jara bujhchen, apnar konotuk period transient bujhay. Amra oita pore niche likhe debo, boro kore abar. Apatoto shobgulo dhoranor jonno just amra erokom kortechi. 
+[0:27-0:55]
+Ar eikhan theke eituk ashtese TP. To TP jinish ta ki? Je amader peak time e, mane peak porjaye uthite koto khon lage. Thik ache, ekhon eita dui bhabe explain kora jay. TP er definition amra dui bhabe amader—for example, apnar porikkhar question e ashtese je, for example, ekta drone, ekta drone apnar mone koren je hocche 0.1 milli second. Accha, 0.5 milli second e maximum eshe uthe, maximum distance e uthe, right?
+[0:56-1:20]
+Ekhon ami jodi eikhane boli je arekta drone 0.1 milli second e tar maximum height e uthe, tar mane eikhan theke faster ta konta? Eita. Ar eita diye tar mane amra ki bujhte pari? Je amar, mane, zero theke total ei porjonto, mane total peak e pouche jodi pouchate pari ami fast, tahole ki hobe? Koto taratari correction ta hobe? Correction kivabe? Je amar actual output ar desired output, ei duitar je subtraction, eita ami to fast ber korte parbo. 
+[1:20-1:41]
+Jehetu jodi amar eita faster hoy, tar mane ki? Je TP diye bujhay je quick correction, joto kom TP, toto taratari amar device ta ba drone ta nijer error gulo collect korte pare. Thik ache? Jodi shomoy lage, tar mane peak time e uthite shomoy lage, kintu measure korte to beshi shomoy lagbe. Ejonno tokhon amader, mane, correction er process ta amra bolbo slow. Robot er correction process slow bolbo. Thik ache? 
+[1:42-2:03]
+Tarpor hocche ekta ache Maximum overshoot. Maximum overshoot jinish ta ki? Je Maximum overshoot hocche ei je apnar the amount of time by which the response exceeds the final value. Thik ache? The amount of time mane ki? Jei shomoye amader basically mane je oscillation ta hoitese, etar maximum value tare cross korbe. 
+[2:04-2:30]
+Eita ashe na. Eita maximum time e ashe na. To ei jonno eitar beshi time diye ami bujhaitechi na. To eita just mone rakhen je hocche amar eita jodi hoy TP, ar eita jodi hoy hocche apnar, mane, tar next je hocche lower grade ta, ei duitar majhkhane je time, that will be called overshoot. Eder moddhe je difference ta ki? Jeta ekdom time er shathe kichu na. Eita just eder moddhe difference. Duita peak er moddhe, mane, difference ta. 
+[2:31-2:50]
+Eita diye amra bujhte pari je ei shomoyer moddhe etotuk upor theke abar niche giye upor hoise. Tar mane ki? Eita oxidation ber korte pari eikhan theke. To ei overshoot theke bujha jay je amader robot ta basically kemon Oscillate korche. Beshi Oscillate korle kintu problem. Because shababik. Amar drone erokom erokom cholte thakle to eita ami accept korbo na. Right? To overshoot joto kom, toto beshi stable. Eita amra bolte pari. Je ekta machine e overshoot ta joto kom hobe, toto machine ta beshi stable. Amra bolte pari. 
+[2:51-3:10]
+Je ekta machine er overshoot ta joto kom hobe toto beshi stable amra bolte pari. Time er sathe kono kichu na, duita peak er maddhome  moddhe just hocche apnader je subtraction, ar ki. Okay, fine. Tarpor ashi amra Settling Time e. Settling Time ki? Amra jodi ei porjonto dhori. For example, amra mone korchi je ei part theke amader machine ta motamuti settle. Thik ache? 
+[3:11-3:34]
+Je hocche ekta machine a stability chole asche. Ekta machine ta stable point e chole ashtese. Tar mane ei je shomoy tuk, eita diye amra transient time boltesilam na?. Ei transient time er arek nam hocche settling time. Je eituk settle hote ba stable hote joto tuk shomoy lage, eita hocche settling time. Onek baje excel lekha ta. Sorry, guys. 
+[3:35-4:04]
+Settling time. Right? To basically ei hocche amader ei graph tar main, mane hocche overview. Apnader eikhan theke kichu kichu question ashte pare theoretically. Eikhan theke mathematical ashar kichu nai. To theoretical question eikhan theke ashte pare. Tarpor hocche eituk ta ami bolchilami je hocche erpor theke joto tuk time, oita hocche Steady Steady SS diye dekha dichchi apatoto. Thik ache?
+[4:05-4:24]
+Ekhon Steady Steady abar kichu kichu, mane, error ache. Steady Steady gele tarpor apnara dekhchen je oscillation kintu thakei. Thik ache? To egulo kintu ekta error. Unless amra puropuri line barabar jaitesi, olpo ektu upor niche hoileo oita ekta error achei. Ar ekta, mane, real world jinish e error thakbei. Eita joto tuk komano jay. Eita hocche amader ei, mane, Control Theory shekhar purpose. Right?
+[4:25-4:43]
+To amra ekhon hocche ekta jinish ektu dekhte chai, je steady state gulo ache, apnara to normal error ta bujhchen. Normal error kintu, like, onek beshi. Eta hocche je transient time er je error, oita hocche normal error. State state e jaoar pore je error gulo thake, oita hocche state state error. Thik ache? To state state error er abar teen rokom er hoy, seta ami dekhacchi ekhoni. 
+[4:52-5:09]
+Okay.
+To apnara ektu mone rakhen jinish ta,
+[5:10-5:29]
+je hocche amader normal error ar steady state error er moddhe difference ki. Ekta jinish ba ekta machine jokhon stepas kete jay, tar porei je error gulo ashe, which is very minimum, jeta amader ektu jodi amra compromise ba minimize kore felte pari, amader machine ta khub excellent output dey, robot ta khub excellent output dey. That is steady state error. Eta teen ta dhoroner ache.
+[5:30-5:53]
+Amra first e likhi zero error. Zero error mane ki? Eta jehetu possible na real life e, mane ar ki, kono error i nei, bujhchen? For example, apni jacchhen ei rokom line, ar apnar output ashtese ekdom ei rokom line borabor, mane kono oscillation i nai. Thik ache? Eta to asole possible na. Ei je ei rokom, eta to possible na. To eita niye amra erokom kono kaj kori na. But eta mere difference, mane definition eitai. Thik ache?
+[5:54-6:22]
+Pore jodi amra boli finite error, finite error mane ki? Oi je halka baja, 0.2 plus minus er moto error ashtese apnar. Finite error. Thik ache? Finite error bolte amra ki bujhacchi? Je hocche 0. plus minus 2, eita kono dhora porar niyom na, just ami eivabe mone rakhi — plus minus 2 er moddhe je amar error ta halka patla hoitese, jeta minimize korte cacci amra, that is the finite error.
+[6:22-6:50]
+Ar infinite error mane apnar steady state ta abar, mane kono karone program e shomossha ache. Thik ache? Apnar je control program ta, apni je theory ta generate korchen machine tar jonno, that is wrong. Oitar nam amra bolchi infinite error. Mane eta niye kaj i kora jay na. Eta mane pura system tai bhul. So basically eita mane eta labh nai kono, oi theory control diagram niye kono labh nai. Eta possible na real life e.
+[6:51-7:13]
+On the only thing we are concerned about is this. Eitare hocche apnader minimize koratai thakbe amader next je samne math gulo korbo, robotics er upore, segulo target. Thik ache? Finite errors. To basically ei chilo amader motamuti theoretical kothabarta. Next class theke hoytoba amra math gulo dekhbo, InshaAllah. To thank you guys.
+

@@ -1,0 +1,43 @@
+# Speaker ID: A
+[0:00- 0:19]
+Okay, hello everyone. Amra arekti video niye ashchi. Ajker ei video-te amra dekhbo kibhabe jekono ekti coder line, line theke kibhabe amra age ekti syntax tree banate pari ebong syntax tree theke Three address code banate pari. Toh er majhe amra abar shikhbo kibhabe aaaa etike optimize kore aaa Directed Acyclic Graph ba DAG banano jay. 
+[0:19-0:33]
+Toh shuru kori. Amar shurute eta theke jodi ami ekti tree banate chai, syntax tree, tahole ami ki korte pari? Shurute b-c diye shuru kori. Tahole b ar c, majhe ki? minus ache, okay? 
+[0:33-0:50]
+Similarly, etar shathe ki ache? a multiplication ache. Tahole ami jodi multiplication-ta likhi ebhabe, ebong. Taile ar ki, amar etotuku kaj hoye gelo. 
+[0:50- 1:19]
+Tarpor ami ki korbo? Ekhane jabo. Ekhane jeye ami etotuku kaj korbo, b-c. Tahole ki? Arekta b ar c. Tahole ki? b-c. Etotuku kaj hoye gelo. Ekhon b minus c-er shathe d ache, multiplication hishebe. Tahole multiplication jodi ekta node hoy, etar shathe connected, and tahole ekhane abar d node-er shathe connected.
+[1:19-1:37]
+Tahole ki amar etotuku value hoye gelo. Ekhon ekta jinish dekho, amar etotuku hoye geche, etotuku hoye geche. Etar shathe ekhon etake add kore dibo. Tahole jodi add kori, ki hobe? Plus, a, ar etar shathe eta. Tahole amar etotuku ekhon hoye gelo. 
+[1:37-1:58]
+Similarly, etotuku ar etotuku milei ki amar puro statement-ta. Tahole ami ekhane jodi ekta + diye dei, ei plus-ta ekhane, tahole ki? + er shathe jodi eta ar eita add kore dei, tahole ki amar purota hoye gelo na? But ekta etotuku liner jonno jodi amar eto boro tree lage, jinishta kintu optimize hocche na. 
+[1:58-2:19]
+Dekho, b-c. Ekhane b-c er jonno ami duibar korechi. Toh ekhane ashe holo DAG-er concept-ta. To DAG-er concept-ta kibhabe ashe? DAG-er concept-e jaoar age, cholo eta theke kibhabe three address code kori sheta jana jak. Toh ami jodi shuru kori, shurute eta. Etake jodi ami t1 hishab kori, tahole ami likhte pari ki? t1 equal to b minus c, right?
+
+
+
+[2:19-2:43]
+Etar sathe, t1-er shathe ki multiplication hoyeche? a. Tahole t2=to a* t1, eta likhte pari. Tahole ki? Ei purota amar ekhon holo t2. Similarly, amar ekhane b-c ache, etake ki amra t3 likhte pari, right? 
+[2:43- 3:07]
+Ekhon ei eta jodi t3 hoy, etar shathe ki? d multiplication ache. Tahole amar arekta ki hobe? t4 = t3 * d. Tahole ki amar ei purota ekhon ki holo ekta? aaa t4. Ekhon jodi ami arekta variable nei, sheta holo t5.
+[3:07-3:34]
+T5 ami ki bolte pari? Ei a ar t2, duita add hoye amar t5-ta hoyeche, right? Tahole t5 holo a + t2. Karon ei t2-er moddhe amar egulo shob chilo. And finally, amar eta jodi t5 hoye thake, ar etotuku jodi amar t4 hoye thake, tahole purota mile ami bolte parbo na je t6?
+[3:34- 3:53]
+Ekhon t6 jodi hoy, tahole ki hobe holo aaa t4+t5, right, hoye gelo. And etai holo amar purota three-address code-ta peye gelam, syntax tree theke.But ei syntax tree prottekbar draw kora khubi unoptimized ekta way. 
+[3:53- 4:03]
+Ejonno amra try korbo DAG use korar. DAG mane holo directed acyclic graph. Etar maddhome amra optimize korte pari jinishtake onekkhani. Toh cholo, dekhi kibhabe kora jay. 
+[4:03- 4:29]
+Toh cholo, etar theke DAG shuru kori. DAG-er jonno ki korbo? Ekhane je b-c ache, etake ami ekbari nibo. Tahole amar jodi minus thake kono node-e , ek side-e jodi b thake, ek side-e arekta node jodi c hoy, tahole dekho, etar moddhe ekhane ki? b-c ache. Etar shathe ki? First-e a multiplication hoyeche. Tahole a node-ta jodi rakhi, ar multiplication jodi ekhane dei, tahole a ar b-c ekhan theke ami nilam.
+[4:29-4:46]
+Similarly ki? Ekhane b-c er shathe to d-o multiplication hoyeche. Tahole b-c jodi ekhane multiplication hoy, d er shathe, tahole ki? Amar etotuku peye gelam, right? Ekhon ei purota amar kisher shathe add ache? Ekta plus-er shathe, right? Eta ekta plus hoyeche. 
+[4:46-5:13]
+Tahole eta ar eta plus hoye gelo. Ekhon eitar shathe ki? a add ache. Tahole plus-ta jodi hoy, ekhane ei plus-ta holo ekhane. Tahole ki? Etotuku purota plus eita. Ebhabe amra ki? Ei same jinishtari  DAG banate pari. Etar DAG holo ekhane.
+
+[5:13-5:35]
+Ekhon ami jodi etar corresponding, eta theke jodi syntax tree aki. Sorry, aaa three-address code, ekhan theke likhi, tahole ki? Ami khubi optimized way-te pabo. Dekho, purota amar jodi t1 hoy, b-c , right? Three  address code-er rules follow kortese. Amar ekhane ekta argument, ekhane ekta argument, ekta operation. 
+[5:35-6:04]
+So, ekhon etar shathe ki korechi ami first-e? Multiplication korechi a ke. Tahole ami t2 = aaa a multiplied t1. Tahole amar ki? Etotuku ekhon ache holo aaa t2, right? Ekhon ami ei b-c er shathe d-o toh multiplication korte pari. Tar mane ki? T1, t3 niye ekta variable niye t1 * d, right? 
+[6:04-6:29]
+Tahole ki? Amar ekhon eituku t3 hoye gelo. Etake ekta Venn diagram-er shathe compare korte paro. Tarpor ami ki korechi? t4 niyechi, and ei duitake ami add kore diyechi. Tahole ki hobe? t2 + t3, ar t5 niye ami just t4, mane purota ekhon amar holo t4, 
+[6:29-6:44]
+And t4-er shathe khali a add kore diyechi. Dekho, aro koto optimized way-te ami ekhane three  address code kelikhte parlam. Ebhabe amra DAG use kore efficiently kajta korte parbo. Thank you.

@@ -1,0 +1,126 @@
+# BanglaASR23 Ground Truth Transcription
+# Topic:
+# Speaker ID: C
+# Video file: BanglaASR23.MOV
+# Video duration: 19:23
+# Transcriber:
+# Date:
+# Style guide version: 1.0
+#
+# Paste the transcript under the line below, then remove ".EMPTY" from the end
+# of this file's name. While it ends in .EMPTY the pipeline does not see it.
+#
+# Format   [M:SS-M:SS] text, on one line, no spaces inside the brackets
+# Limits   every segment under 30 s, aim for 10-25 s; no gaps, no overlaps
+# Keep     fillers (aaa, um, mane, je, tahole); ASCII only, no smart quotes
+# Rules    TRANSCRIPTION_GUIDE.md
+
+# ============================================================================
+
+[0:00-0:28]
+Okay, guys, so, goto video-te amra hoche just ei je close loop-tar, mane basic fundamental shikhchilam character. Basically amra keno use kortechi, ki hoy, to eita aschhilo detail elaboration dekhbo. Shurutei, first of all, amader dekhte hobe je amader closed loop-er kothay ki input kaj kore, right? Basically amader motor-ta ki close loop-ta use kore. Jodi amra input-gulo ektu observe korar try kori, I guess amra bujhte parbo je hoche mechanism-ta kemne hoitechhe. First of all, ami ekta user,
+[0:29-0:46]
+So ami eikhan theke first-e ki dibo? Command. I think dekha jaitese, command input. Eta i dhorlam, ar ei t ta mane hoche at T times, thik ache? J e ekok shomoye amra je command input-ta dichhi, seta.
+[0:47-1:00]
+Tarpor eikhan theke hoche sensor theke amader ashtechhe ki? Sensor-er measurements. Right?
+[1:01-1:26]
+Sensor measurements. Erpor ashtechhe X error factors. Ei je amra sensor-er command input-tar shathe amra calculate kortechi, basically seitai je error dibe. Ami ektu pore error-er calculation-ta dekhachhi. Apatoto jene rakhen, just. Error inputs. Etake amra ebhabe bolte pari, big E of i times T. Mane ekok shomoye je error-ta amra pacchhi, seta.
+[1:27-1:53]
+Ekhon to basically input command gelo kora. Ar eikhan theke sensor theke measure kore amra bolchhi je kototuku error jacchhe, seta amra kothay feed korte hobe? controller-e. Because controller basically computing-ta kore thake, right? To thik ache, controller-e jacchhe. Jaowar pore controller theke ki asbe? Ekta command, right? Ei command-ta koi jabe? Actuator-e. To amra nam dib Actuators command.
+[1:54-2:17]
+Sorry guys, spelling mistake. Actuator command. Thik ache? To ei je actuators command, eita theke amra basically ei je power amplifier use kore actuator pathaitesi. Ekhon actuator pathanor pore ekhane basically ei pashe ki ashtechhe? Actuator-er je apnar output-ta, and ekhane ekta interesting jinish ache.
+[2:18-2:34]
+Apnar, ami jodi ektu clear kore jinish-ta ekbar draw kori, basically ei je symbol dekhte pacchhen, eta porobortite amra aro discuss korbo. This is an adder, thik ache? Amra control diagram circuit-gulote emon type-er adder use kore thaki. Eta adder-o hoite pare, subtractor-o use korte hoite pare.
+
+
+[2:35-2:52]
+Depending on kon sign dewa hoy side-e. For example, jodi eikhan theke amra arekta device ani, which is external factor, je amra disturbance kore kotha boltachilam. For example, likhlam EXT external disturbance. Thik ache?
+[2:52-3:14]
+To amader je external disturbance-ta ashtechhe, ar ei je output, ei duita milei to jabe. Because amra jokhon-i ekta ki bola jay, je outside of our static domain, real world, dynamic jinish changes niye kaj korbo, tokhon obviously eta amader must consider kortei hobe, right? Because external disturbance shobshomoy same thakbe na. Ek ekta shomoy ekrokom, ekta mane disturbance chole asbe baire theke.
+[3:15-3:39]
+So oitar ei duita, ei duitar dui pashe amra jokhon plus dichhi, this is becoming an adder, thik ache? And amra ei je ektu age bollam je amra sensor-e je measurement-er command input, ei duitake minus kore error-ta pabo, amra ki dichhi? Etaw kintu ekta adder, right? Amra eikhane dichhi plus, ekhane dichhi minus. Tar mane basically ei je command input, CMD likhi, right?
+[3:40-4:08]
+Jehetu we are CSE public, we know what is CMD. CMD goes for command, short form. Command minus sensor-er je S measurement. To amra basically CMD, mane command input theke sensor-er je measurement, eta ekhane ekpashe dekhen plus, ekpashe minus. Where S oikhane chilo, dui pashe plus. That's why it was adder. Etaw ekta adder, but eta just subtract kortechhe.
+[4:09-4:34]
+Eitar theke ami jodi ebhabe likhi, for example, command input CMD, plus minus kore dei ekhane, apnar sensor SM likhe, apatoto for short form, sensor measurements. To jodi minus kore dei plus ar minuse, basically minus. Eta to amra jani, chotobelar calculation jinishpati. To basically ei jinish-ta amader error calculation hoitechhe. Eta amra likhte pari error equals to. Thik ache?
+[4:35-4:52]
+To ei jinish-take short form-e ebhabe bola jay je error-er mane ki? Amader desired output minus amader je actual output. Sei duita biyogphol jeta hobe, setai error. Ei details amra pore jabo. Just apatoto amader error calculation idea-ta kemne aschhe, oita bujhilam, right? To amra ektu jinish-ta likhe rakhi. Eta poroborti kaj-e lagbe amader.
+[4:53-5:18]
+To error shoman shoman amra ki bujhlam? Equals to actual, Sorry, sorry, sorry, sorry. Desired minus actual. Desired minus actual, Output.  So basically amra ektu agei je math ta discuss kortechilam
+[5:19-5:37]
+je amader jodi ekta drone amader 100 RPM paowar kotha, ekta drone theke 10 feet uthar jonno, right? But amra porobortite dekhlam je amra matro 5 feet porjontoi uthte partechi. Tahole obviously ekhane 100 RPM nai, right? Amra hoche 50 ba 55-ta dhore nichhilam, jar RPM paitechhi.
+[5:38-6:02]
+To ei je amar desired output, ar ei je amader actual 55 RPM output, ei duitar je minus hobe, mane subtraction hobe, seta hoche basically amader error. Eta ami bujhte chachchhilam je basically error-er definition-ta koi theke, mane kon logic-e aschhe. To eituku mone rakhle hobe khub-i basic, er baire kichhu mone rakhar dorkaro nei. Oi pashe just oi je output system, output duita mile, to eita hoche amader basic kothabarta.
+[6:03-6:33]
+Ekhon amader bujhte hobe je hoche amader ekhane ekta duita jinish new, jeta hoche feedback, ekta hoche stability. Stability ki korar jonno? Basically amader jokhon, for example, drone-ta nicher theke upor porjonto uthhtechhe, shudhu ekbar uthlei hobe na. Eta nijer position-ta hold korte hobe, right? Ekhon onek shomoy emon hoy ki je hoche, amader ei je electronic device kemon, khub-i mane eta kivabe bujhano jay je khub-i unpredictable, kokhon ki hobe bola jay na.
+[6:34-7:04]
+For example, drone-er ekta motor ektu shomossha, ota kom rotation dichhe, kom RPM dichhe. Tokhon kintu motor-ke oibhabe drone-tare carry korte partechhe na, right? To eta shobshomoy jegulo real world scenario-te, mane mathay niye cholte hobe je ha, amader kichhu ekta unexpected hoite pare, right? To seikhan theke amader feedback-er jinish-ta ashtechhe je hae, ei je kototuku unexpected hoitechhe jinish-ta, amader desired theke. Eta amra eta diye measure korbo, shoja Banglay. Eta hoche apnader feedback-er, mane ki bolbo, shongga.
+[7:05-7:30]
+Ar hoche ei je apnader, amra eitata paitechhi, stability. Stability ki ensure kortechhe? Je amra je mone koren, controller-ta use kortechi, controller use kore feedback use kore je output-ta paitechhi, eta kototuku stable. Mane khub spike hoile to shomossha. For example, drone-ta uporer dike barbar kaptechhe. Eta kintu hoy, khub-i mane jara robotics niye kaj kam kore, for example, ekta motor ghuraiye gele dekhten onek shomoy jerokom ektu bedhe bedhe ghure, thik ache?
+[7:31-7:53]
+To ei jemon amader servo motor. Servo motor-e kintu ei shomossha-ta ache. Je servo motor, for example, amra ki chai? For example, 90 degree ghuraite chai, ekta mane certain condition-e. To erokom howar kotha je, right? But onek shomoy ki hoy, 90 degree ekbare na uthei erokom ekdom majhkhane dhakka khay, thik ache? Dhakka kheye abar apnar upore uthe erokom. To this is called the hoche stability-er, mane concept-ta.
+[7:54-8:17]
+Je hoche ekta device, ami control diye shobkichu thikthak kortechi, but eta kototuku stable. Amar ekta certain position-e, jekhane ami chachchhi, oita basically shoja Banglay stability bole. Eituk porikkhar jonno mone rekhe likhlei hobe.
+To ekhon amra asbo, amra etokkhon je porashonagulo korlam, amra to ektu age mention korechhilam je hoche amader ekta mane electronic device kivabe kaj kore.
+[8:18-8:46]
+To ekta interesting fact is, amader jokhon for example ekta mane room-er switch chalu korlam, switch-ta kintu hoche mane amader mane humans-der kache lage je ha, chap dewar shonge shonge switch-ta chalu hoye jacchhe. Mane bulb-ta jole uthtechhe. But era jodi amra human perspective na niye ektu time-er kotha chinta kore kori, amader 0.01 milli second delay-o kintu eta delay. Delay jinish-ta ki? Je apni ekta switch on korle, shonge shonge on hoy na.
+[8:47-9:10]
+Eta oi power off hoite ektu time lage. Thik ache? To for example, amra hoche eikhan theke switch-ta chalu korlam. Ei switch-ta chalu korar pore eikhan theke mone koren, ekhane ache light blub. Right? Ei switch-er ei je board diye gelo, eikhan theke ebhabe connection-ta dewa. Switch-ta jokhon on hoilo, switch-ta jokhon on hoilo, shonge shonge hoytoba amader mane human brain to oto fast time measure korte pare na.
+[9:11-9:28]
+But electronic device-e kintu eta khub-i important. And amra jokhon ekta jinish computation kori, mane for example, amader PC ba laptop jokhon ekta jinish compute kore, or kache kintu 0.01 milli second time difference onek huge ekta bepar. Jeta amader humans-der kache mone hoy, chap dile chalu hoye gelo. But na, obviously ekta delay hoy.
+[9:29-9:48]
+Oi delay-tai basically amader ei mane hoche, mane ei course-er study korte hobe. Je basically delay-ta kototuk. And eta amra kivabe kamaiye parbo. Right? To basically seta bujhar jonno amader ekta graph bujhte hobe. Thik ache? To for example, amra jodi ektu graph-er dike lokkho kori,
+[9:49-10:02]
+dekha jabe je hoche amader expected ki. For example, ekhane hoche era mone koren V. Ar eta mone koren time. Thik ache? To amra jokhon hoche 0 voltage, eta 5 volt. 5 volt mane amra chinta korchhi purapuri chalu. 0 volt mane off obosthay ache. Thik ache?
+[10:03-10:30]
+Amra ekhon, mane, asha kori ki je amra hoche chap dibo, chap dewar shonge shonge- for example, ei porjonto purapuri switch-ta off. Chap dewar shonge shonge on hoye jabe, tarpor ebhabe cholte thakbe, jotokkhon porjonto abar off kora hoy. Right. To dekhen, amader kintu first-e 0 volt chilo. 0 volt jokhon-i switch-ta on korchhi, ekdom shoja 5 volt hoye geche. Right. Eta normal behavior amader expected. Kintu, mane, actually ki erokom hoy? Possible-i na. Because protttekta electronic device-e delay thakbe, resistance thake,
+[10:31-11:00]
+then amader je wire use kortechi, kemon quality-er wire, oita factor thake. Bashar current-er, mane, je ki bole, threshold-ta, oita kototuku handle korte pare, shobkichur upore kintu depend kore. Je apnar koto fast jay. Amra age as human, amader chokhe lage je, ha, shonge shonge chalu hochhe, but hoy na. Eta machine-er khetre onek beshi impact phele. To hoy kivabe jinish-ta? For example, ami jodi ekhon actual cases kotha boli. Actual case-e ki hoy? Ei je shoja spike-ta uthtechilo,
+[11:01-11:29]
+emne. Shoja je spike-ta, oita na hoye, eta emne uthe. Thik ache? Ei je ekta time niye ekta delay ney, ei delay-tar pore o giye maximum state-e pounchhay. Ektu just jinish-ta shundor kore a kai dei. Right. Ei je. To ekta time pore o kintu or higher threshold-e pounchhaitechhe. Thik ache? To eita amader ektu mathay rakhte hobe.
+Ekhon, er khetre aro onek external factors kaj kore. Jemon, amra shudhu ekta light-er kotha chinta korlam, but amader in real life scene jokhon robotics niye kaj korbo,
+[11:30-11:59]
+oikhane shudhu ekta light thake na. Oikhane onekgulo component thake. Ora onekbhabe behave kore, differently. To basically, amra jodi for example ekta, mane, ki bolbo, je proper ekta robotics-er scenario dekhte chai, amader jinish-ta onek shomoy erokom hoy. Thik ache? Because ami je ektu age bollam, je ei je error measure kortechhe, tarpor hoche setar upor ekta feedback calculate kore, then hoche apnar abar controller-e feed kore, then controller ebhabe adjust korar power-ta. Thik ache? Ei shob kaj amader, mane, ektu lengthy process-e hoy.
+[12:00-12:26]
+Cholen dekha jak. To jeta hoy, eta arektu amader eita kore rakhte hobe. Jeta hoy, basically amra jokhon ektu ekta dag diye nei, jate ultapalta na hoy. Thik ache? Ekhon jeta hoy, je hoche first of all, amra jokhon 0 volt-e achhi, amra switch-ta turn on korlam. Switch-ta turn on kore, amader for example, ei position-e eshe, ota steady state, mane, porjaye ashe. Oita amra steady state ki discuss korbo? Achha, in short, ami ektu bole dei.
+[12:26-12:46]
+Steady state hoche emon ekta state, jeikhane giye switch-ta stable position-e pounchhay. Je, na, o ekhon theke mone koren, eta hoche 5 volt, tahole ei threshold-ta amra bollam, eitare amra bollam 4.5 volt. Ar onek shomoy 5 volt-er beshi-o ashte pare. To amra eitare bollam je hoche, for example, 5.2 volt. Thik ache?
+[12:47-13:04]
+Ektu eta upore uthai dei. ha. Nice. To amader basically scenario hoche eita. Je amader expected output 5 volt, kintu shobshomoy to ar direct 5 volt pay na. Oi je bibhinno external factor-er karone onek shomoy kom-o dite pare, onek shomoy beshi-o dite pare.
+[13:05-13:30]
+Right. To ekhon, amader basically hoy ki, je jokhon amader ekta device amra power dilam, first of all je power-ta, onek shomoy or, mane, je expected output, tar theke beshi hoye jay.  Thik ache? To expected output theke beshi howar fol-e ki hoy? O je dekhe, amader error calculation-e onek shomoy, mane, minus ashte thake. Minus etar pore apnara discuss korle bujhte parben. Minus ashte thakar pore ki hoichhe? Oi je or je vibration-ta, je apnar spike moto je sine wave-ta,
+[13:31-13:55]
+ oita hoche beshi kore generate hoy. Oita mane ki? Je oscillate hoitechhe. Thik ache? Jinish-ta vibrate. Dourer kotha je bollam, dour kapte thake, oirokom. To oitai je kapuni theke state, mane ekdom still obosthay jaite, it needs a time. Thik ache? Oi je time-tuku, oi time-tukure amra bolchhi transient time. For example, amra jehetu  eikhane dilam steady state-ta, tahole steady state theke er age porjonto je shomoy-ta, etake amra bolchhi transient time.
+[13:56-14:24]
+Transient time. Right. And erporer-tuku amra bolchhi steady state. Amra shob, mane, byakhyate asbo. Right. To dekhen, amader transient period-e ki hoy?  Amader jokhon, apnar hoche, spike-ta uporer dike gelo, mone koren 5.2 volt threshold  cross korchhe, kore abar nicher dike namchhe, abar ektu upore uthchhe, abar niche namchhe. Thik ache?
+[14:25-14:45]
+Oi je vibration-ta hoche, kapuni-ta. Mane, steady state-e ashar age, ei je period-tuku, ei kapuni hoy, ba hoche oscillate hoy, ei time-tuku transient time bole. Ei je. For example, ei je transient time-e chole aschhe, erpor theke jokhon transient time-e chole aslo, tokhon hoche, amader ekta threshold ache, je amader decide je output, for example 5 volt.
+[14:46-15:00]
+To steady state-e amra tokhoni dhorbo, jokhon amader output-ta kokhono-i kono electric device, mane, ekdom 5 volt ditei parbe na. Eita, mane, physically impossible. Thik ache? Resistance, onek kichhu factor-er jonno, eta kokhono-i 5 volt accurate dite pare na.
+[15:00:56-15:11]
+Amra ki kori? Plus minus 0.2, mane hoche, dhori je, ha, eitukur moddhe thakle, steady state. Mane, tahole 0.2 mane kirokom bujhachhe? 
+
+[15:12-15:35]
+Je 5 er upore 5.2 theke 4.8 porjonto amra dhorbo je, ha, eitukur moddhe jodi thake, it is in steady state. Thik ache? To mone koren 4.8 er hoche apnar line-ta erokom. To basically amra tahole ki korchhi? Eituku jaygar moddhe jokhon oscillate kortechi, that is our steady state. Mane, eitukure amra boltachhi je, ha, eituk jodi o, mane, control kore rakhe, o hoche ekta stable position-er moddhe ache. Thik ache?
+[15:36-15:56]
+Okay, so amra basic definition ta dekhlam, amra graph ta much dei- apatoto amader eituku lagtechhe na. ekhon? Thik ache, apatoto amader eituku lagtechhe na. To amra ebhabe, hoche, just ekta- mere, my idea nei.
+[15:57-16:21]
+Ekhan theke kom jacche, for example, ekhan theke kome jacche. Vibration ta. Right, ekhon apnara dekhen je hoche, amader egulor bibhinno state-e bhag kora hoy. Jemon, prothome jodi amra boli je eituku jodi amader, for example, 0.2 dhori, 4.8-re mone korlam hoche, aaa mane, aaa, hoche apnar 90%.
+[16:21-16:39]
+Thik ache, eitukure hoche 90% dhorlam. Eitukure dhorlam 10%. Achha, 10%-e okhane 1 volt dhori. Ashole to make sense kore na, 0.2 ekhane 1 volt dhori, which is 10%. Ar ekhane 5 volt 90%, 4.8-e ektu kachakachi, 4.9 dhora hoy, but thik ache, dhorlam ar ki.
+[16:40-17:03]
+Ekhon shobar age kichhu basic phenomenon ache, egulo apnader jante hobe. Which is a must. To shobar age amader ashtechhe je hoche rise time. Rise type jinish-ta ki? Ei je apnar 1 volt ache, egulo shobi hoche, ami explain korbo. To first of all, rise time-ta hoche ei je 1 volt ache, ei 1 volt theke ei je 4.8 porjonto, ei je ei point theke ei point porjonto uthaite jototuk shomoy lagechhe, seta hoche amar rise time.
+[17:04-17:23]
+Thik ache, egulo kintu porikkhar jonno khub-i important, mane finale eikhan theke conceptual question ashe. And even amader final-eo aschhilo. So, eta jana must. Rise time diye ki bujhai? Eikhan theke tricky question kora onek chance ache, because oneke bujhe na je rise time diye ekta robot-er ki jante partechi amra.
+
+[17:24-17:53]
+Eita apnader bujhte hobe. Eta mane slide-eo lekha nai. Eta just apnara research kore kore ber korte hobe. So, rise time holo TR boli amra. To ei je, mane 10% theke 90% uthaite joto shomoy lagechhe, etake amra bolchhi rise type. To robotics, etate diye amra ki bujhchhi? Robotics-er khetre. So, basically eita mane amader boltachhe je eta koto fast machine-ta response korte pare. For example, jekono ekta certain change-e jod i rise time kom hoy, tar mane ki? O onek quick response kore.
+[17:54-18:11]
+Mane rise time-ta ki? Time joto kom, response-ta toto faster. Eitai to bujhai, taina? To rise time basically ki? Je ekta machine jokhon ekta certain movement ba ekta certain change pailo environment-e. Amra kintu dynamic environment-er jonno eto kichhu portechi, right? Tahole basically shob je calculation-gulo hobe, dynamic jinishpati niye hobe.
+[18:11-18:37]
+Achha, ami graph-ta ektu yeaa kori. Ami ektu shundor korar try kori graph-ta. Khub-i messy lagtechhe. Ami green colour-er paint-ta ektu use korbo ekhane. Khub-i baje lagtechhe graph-ta. Eto kharap o toh ankai na. Yes. Yes. Perfect. Perfect. Okay.
+[18:38-19:01]
+So, hoche, ekhane takai dei. 4.5-er ekta. Okay, guys. To jeta boltachilam, je amader rise time hoche ei je 10% theke 90% uthar je time, eta hoche amader TR. Thik ache?
+[19:02-19:23]
+TR. Eta hoche rise time. TR. Okay. To amader ekhon rise time-ta bujhte parlam. Erpore bujhte hobe peak time. Peak time mane hoche konta? Ei je highest point-e jeta gechhe, amar graph. Highest point-e jeta gechhe, eta hoche TP. Eta hoche peak time.
+

@@ -1,0 +1,66 @@
+# Speaker ID: B
+# BanglaASR13 Ground Truth Transcription
+# Real Classroom Video
+# 
+# Format: [M:SS-M:SS] Romanized Banglish transcription
+# 
+# INSTRUCTIONS:
+# 1. Watch the video: data/raw/BanglaASR9-007.mp4
+# 2. Transcribe what the lecturer says in Romanized Banglish
+# 3. Include timestamps for each segment
+# 4. Use Roman script (English letters) even for Bengali words
+# 5. Include technical terms exactly as spoken
+# 
+# Example:
+# [0:00-0:30] Assalamualaikum, aj amra class e dekhbo...
+# [0:30-1:00] Java te amra object oriented programming...
+#
+# TECHNICAL TERMS TO WATCH FOR:
+# (List key technical terms that appear in this video)
+#
+# ============================================================
+# PASTE YOUR TRANSCRIPTION BELOW:
+# ============================================================
+[0:00-1:19]
+Hello everyone, welcome back. So last class e amra dekhechilam ekta database table kivabe SQL command er madhhome create korte hoy. So ajke ami amra notun ekta command dekhbe sheta hocche ‘Select’. So ei select query hocche data aa SQL er shobtheke most used and most important ekta command. So select ki kore? Select hocche shudhumatro data amar database er je table shekhan theke data retrieve kore. Retrieve kore bolte? jemon dhoro ami student ID 401201, ei student ID-r full name ba first name, last name dekhte chacci. Othoba CGPA dekhte chacchi othoba or department dekhte chacchi. So eikhane amra kivabe database table tar sathe communicate korbo? Through SQL, ami kivabe oke bujhabo je ami kar information dekhte chacchi, othoba kon particular data ke retrieve korte chacchi? So amar select query ei jinish tai kore. So ami jodi first e chai je ami ekta table er full data kei dekhbo, mane ekta table er jotogula rows ache, jotogula columns ache, jotogula data ache shob gula ke ami retrieve korte chai.
+
+[1:19-3:12]
+So shei khetre ami likhbo first e ‘select’. Select likhar pore ekta star mark dibo. Ei star mark bolte whole data table ta ke bujhacche. Star from kar theke ami dekhte chacchi? Amar table er nam ta jeta hocche Student Info. Last e ekta semicolon . So ei data ta ei query ta jodi ami run kori tahole ami ekhon je board e je table ta dekhte pacchi same table tai ami view aa view korte parbo. So eita gelo amar whole table dekhar SQL command. Ekhon ami chaachi je nah ami whole table ta dekhbo na. Ami ki korbo? Ami shudhu ei ID er CGPA dekhbo. Eta ami kivabe korbo? First ei likhe felbo abar ‘select’. Kake select korchi? Kake dekhte chacchi? CGPA ke. So CGPA ke amake select korte hobe. CGPA. kotha theke dekhte chacchi? From table er name ta jeta hocche Student Info. Okay. Tahole Select CGPA from Student Info. CGPA ta toh amake show korlo, kintu ami ka ki chacchi? Ei particular last ID jar tar CGPA dekhte chacchi. So ekhon ami likhbo ‘where’. Where ID equals to 401201. Done. 
+
+[3:12-4:54]
+So ei SQL command ta jodi ami run kori tahole amake output hishebe ki dibe? First ei o search dekhbe je amake ki dekhate hobe? Amake dekhate hobe CGPA? Kotha theke dekhate hobe? Student Info nam er je table ta shekhan theke. Jekhane ID hobe eta. So or particular ei row er je CGPA ta which is 3.40. Amake ei jinish tai shudhumatro show korbe. Okay? Accha. Similarly ami dhoro ebar dekhte chai, je ei student er FIrst Name and Last Name dekhbo. Tokhon ki korte pari? Tokhon select ki ki dekhte chacchi First Name comma karon ami duita column er data ke dekhte chacchi, last name. Tahole  First name ar last name ke ami select korlam. Kotha theke? From Student Info jeta hocche amar table er nam ta chilo Student Info. Okay. So ei duita ke amar select kora hoye gelo. Ekhon ami kar First name ar last name dekhte chacchi. Suppose ei student tar 202011 ID je hold korche she. So ekhane likhbo where ID equals to 202011. Done
+
+[4:54-6:34]
+Tahole o ki korbe? From Student Info theke o ei ID ta ke search korbe, search korar por or first name ar last name ta ke return korbe. So first name ta ekhane hocche Adiba and last name hocche Noshin. So eita ashbe amar output ta. Okay. ekhon ami chacchi je ami ei ID tar department ta show korte.Tokhon ami ki korbo? Select, kake select korchi? Department ke so ekhane likhe felbo department. Ekhane kintu amar table er header er je nam gula sheita kintu exact match hote hobe. Tachara kintu eita thik result dibe na. Karon ami jodi ekhane captial D er jaygay small d likhi, tahole small d er department er kono cell ba column kintu ekhane nai, so o sheta khujei pabe na. So amake eta khub carefully exact same name ta likhte hobe. Okay, so select department from aager moto Student Info aa kar dekhte chacchi? Kar department dekhbo? Suppose ei student tar. Tahole where Id equals to 151216. Done.
+
+[6:34-8:51]
+ Tahole eita run korle ki hobe? O from Student Info search korbe, ID equal to eita. So ID equals to eitar department ta ki? Math. Toh ekhane amake output dekhabe only math. Thikache? So eita gelo amar ek type er select er command. Ekhon ami chacchi je ami aah CGPA e gula shob eksathe dekhte chai or Student ID ta shobgula jotogula amar row ache, totogula amar Student ID gula dekhte chai. Tokhon ki korbo? Simply select ID from Student Info. Eita dile kintu amar output ta kivabe ashbe? 241412 aaa tarpor 15121, 202011, 110112, 401201. Eivabe amake ekta whole column show korbe. So eitai hocche tar output ta. Ekhon jodi ami chai ie ID ta ke ami bivinno order eo shajate pari. Order bolte, ei ID gula ascending order or descending order e shajate pari. Tokhon ami just last e diye dibo order by. Kon type er korte chai? Ascending hole asc ar jodi descending korte chai tahole des. Okay? Tahole ami jodi descending order e dei tahole ki amake boro theke choto return korbe. That means, 401201, 241412, 202011, 151216, 110112. Eivabe kichu ID gula amake order kore return korbe. Okay.
+
+[08:51-10:00]
+
+Ekhon amra hocche kichu aggregation function dekhbo. Jemon aggregation functions kongula? Amader SQL command SQL query te kichu built in function ache. Jerokom Max, Min, Sum, Average. Eishob aggregation functions use kore ami bivinno operations chalate pari. Jemon ami jodi first e dekhte chai je ei table tar moddhe amar max cgpa kar? Konta? Tahole sheitar jonno amar query kirokom hobe? Select max CGPA from student info. So eita amake ki korbe? Select kortese cg max of cgpa. Mane cgpa er eikhane amar 5 ta row ache so ei 5 tar moddhe compare kore dekhbe eikhane max kar. Eikhane amar max konta? 3.98 so eikhane amar return korbe 3.98 simple.
+
+[10:00-11:31]
+
+
+Sheirokom bhabe ami jodi cgpa er e suppose minimum ta dekhte chai minimum cgpa tahole ami eikhane min of cgpa diye dilam. Tahole ki hobe? Ei 5 ta cgpa er moddhe shob theke lowest jeita which is 3.28 eita amake show kore dibe. Ekhon ami chacchi je cgpa gular sum ber korte. Tahole ami simply jodi ei function ta use kore feli, tahole amake ei 5 ta CGPA ke
+plus kore je value ta hobe sheita amake return korbe, jemon 3.55 plus 3.77 plus 3.28 plus 3.98 plus 3.40. Eita ke ami jodi shob gular summartion kori tahole jei result pabo oitai kintu amake ei query ta output hishbe dibe. Ar last average. Average o same. Eita tei ami jodi sum er jaygay average ta boshay dei. Thikache? Tahole ki korbe? Ei CGPA gular average ber korbe. Tahole first e ki? Shobgula ke sum korte hoy average er ber korar jonno. Sum korar pore ekhane amar total value koyta? Pachta. Toh divided by 5 kore je result ta ashbe sheitai kintu ami ei query theke peye jabo.
+
+
+
+
+[11:31-12:58]
+So ekhane amar alada kore complication ba alada kore CGPA ber kore kore average ba sum egula kintu korte hocche na. Ami easily eshob functions use kore ami aaa value ta jene felte parchi. Ekhon ami emon kichu jante chai, jerokom dhoro max CGPA er ekta example amra dekhlam je max CGPA kivabe ber korte hoy. Ekhon ami jacchi je ami max CGPA tai ber korbo kintu directly na. Ami chacchi je max CGPA jar tar ID ta ber korte.Tokhon ekhane kintu ekta maximum manusher e ekta bhul hoye thake. Sheta holo tara maximum je bhul ta hoy sheta likhe je select ID comma max CGPA.Sorry. From Student Info. Eita ki korbe? Eita amake ID ar max of CGPA ta return korbe. Ekhon ei pach tar moddhe she dhoro prothom ID ta return korlo. Karon ami prothome likhechi shudhu ID. O kintu ekhono jane na je ami max CGPA er ID ta jante chacchi. 
+
+[12:58-13:53]
+So ami prothome ID dekhsi, so ami ekta ID return kore fellam. Tarpore o dekhlo max CGPA. So ekhan theke max CGPA hocche 3.98. Toh eta hocche amar ID ar eta hocche CGPA. Ekhon ami ekta ID pailam thikache. Ekta CGPA pelam sheitao thikache which is a max CGPA etao thikache. Kintu ei Student ID er CGPA ki eita? Na kintu. Ei student er CGPA hocche eta. 3.98 je hold kore ache sheta hocche 110112. Tahole eta kintu amake ekta wrong output dilo. So eitar jonno amake ektu onno bhabe approach nite hobe. Sheta hocche sub-query. Sub query jinishta ki? Ami aa amra jerokom  programming language e nested branching koru ba nested loop kori, similarly ekhaneo kintu ami nested query chalate pari. Kivabe?
+
+[13:53-15:32]
+First e ami ID, ami kintu mainly ID tai dekhte chacchi, ID tai amake bhul dicchilo. So ami likhlam select Id from aaa ID shudhu jodi ami ID dekhte chai, tahole shudhu ID likhbo. Ar jodi ID ar CGPA eksathe dekhte chai tahole dhoro ami ID comma CGPA likhlam. Tahole ami duitai show korte parlam. So ID CGPA from Student Info. Gelo. Ekhon ami kivabe pabo je max CGPA kon ID hold kore ache. Toh etar jonno ami likhbo where CGPA equals to, eikhane ami arekta query chalabo. Ekhane ki hobe? Select max of CGPA from Student Info. Bracket ta close kore dilam, semicolon dilam. Ekhane ki hocche? Prothome o dekhlo amake ID ar CGPA return korte hobe. Fine. From Student Info. Ekhon jekhane CGPA ta hobe amar max of CGPA. Tahole ei particular query, bhitorer je query select max of CGPA from Student Info, eikhan theke ami ki output pabo? 3.98.
+
+[15:32-16:25]
+So amar CGPA ki peye gelam ami? 3.98. Ekhon outer je subquery ta shetay ami ki dekhchi? Je CGPA 3.98 er ID ar CGPA dekhte chacchi. Tahole amar output ta hobe, erokom. Ami toh 3.98 already peye gechi. Ekhon 3.98 er ID ta kothay? Eta o search korbe. Pabe 11011.Shesh. Evabe amra hocche kon student max CGPA hold kore ache tar ID ta dekhe felte parchi. Similar bhabe ami ekhane min CGPA o use korte partam. Evabe amra hocche different type of operation chaliye data ke retrieve korte pari from at table from a of a database. So ajke ei porjontoi. Thank you.
+
+ 
+
+

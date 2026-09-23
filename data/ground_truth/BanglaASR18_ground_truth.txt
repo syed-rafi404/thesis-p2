@@ -1,0 +1,58 @@
+# BanglaASR18 Ground Truth Transcription
+# Topic:
+# Speaker ID: C
+# Video file: BanglaASR18.mp4
+# Video duration: 7:02
+# Transcriber:
+# Date:
+# Style guide version: 1.0
+#
+# Paste the transcript under the line below, then remove ".EMPTY" from the end
+# of this file's name. While it ends in .EMPTY the pipeline does not see it.
+#
+# Format   [M:SS-M:SS] text, on one line, no spaces inside the brackets
+# Limits   every segment under 30 s, aim for 10-25 s; no gaps, no overlaps
+# Keep     fillers (aaa, um, mane, je, tahole); ASCII only, no smart quotes
+# Rules    TRANSCRIPTION_GUIDE.md
+
+# ============================================================================
+
+[0:00-0:15]
+Okay guys, so amra hocche IP four, IPv4 functions-er ekdom last prante chole eshechi. Ajke amra dekhbo hocche ICMP protocol ta. ICMP protocol ta, ki jinish?
+[0:15-0:44]
+So, ICMP-er full form jodi amra dekhte chai, Internet Control Message Protocol. Internet Control Message Protocol, ICMP-er full form, right?
+[0:44-1:11]
+Toh ICMP-er basically purpose ta ki? ICMP amra hocche amader network-er bibhinno error detection, and hocche etar status code send kora, amader user ba sender-re. Eta hocche ICMP-er main fundamentals. Ekhon ICMP-er functions gulor moddhe ki ki ache? First function-er kotha jodi amra boli, sheta hocche, jeta bollam je hocche aa error checking.
+[1:11-1:34]
+Second-ta hocche reachability checking. Je packet-ta send kortese kina, purapuri jaitese kina reachability.
+[1:34-1:58]
+Reachability checking. And third-ta hocche aa waking up the network. Je onek shomoy error message diye generate kore, je kind of ekta interrupt-er moto generate kore, jetar theke message, mane, network-ta bujhte pare je "hae, amar tahole ei problem-ta fix korte hobe." Sheta hocche tahole wakin, waking up the network.
+[1:58-2:25]
+The network. Okay. Toh ei kaj ta, ei kajgulo arki korar jonno amra duita tool use kori, jaderke amra boli hocche network utility tool. Toh duita tool ki ki? First-ta hocche. Accha ami likhe nei ektu. Tools ba network utility tools.
+[2:25-2:52]
+Utility tools for ICMP. Prothomta hocche ping. Ami ei duita niye ektu pore brief alochona korbo. Apatoto likhe nicchi. Second ta hocche tracert. Trace rt ba traceroute-o bole.
+[2:52-3:14]
+You can call it either one .  Amra linux e jokhon command dei tokhon tracert dei, ar windows device gula ta command dei tokhon amra trace route likhi. Ebhabe hocche ba amra hocche jokhon router er configuration er CLI te jeye jokhon command dei tokhon trace route likhte hobe. Thik ache? Toh ekhon ei duita kemne kaj kore amra sheita dekhbo. Just ami ektu clean kore nei.
+
+[3:14-3:36]
+Accha toh ping kibhabe kaj kore.
+[3:36-3:58]
+Okay. Toh Ping er kaj shobar aage hocche first and foremost purpose je reachability check kora. Je ekta network-e reach korte partese kina, sheita te amar packet sned korle reply ashtese kina. Eita hocche amar check korata shobar aage dorkar.  Toh ami hocche first of all, umm ekta  ping ta pathanor shomoy just ping ta likhbo.
+[3:58-4:23]
+Ar ping er sathe tar IP-ta likhbo. Mane ami jei network-e ping korte chai. For example, google er, ami jodi google ke ping korte chai, ami hocche google er ping ta toh likhbo. Ba hocche ami hocche just google.com likhleo hobe. Because amader je, je INS resolver ache. Je hocche. sorry . DNS resolver. DNS resolver ki korbe? Google-er nam ta likhle, or mane hocche or IP ta niye amader dibe. Public IP-i thake obviously most of the time.
+[4:23-4:45]
+So, amra hocche ping ar mane   best jeita hoito amra jodi IP address tai ditam. Toh amra hocche ebhabe CLI-te giye command dite pari. Je hocche ping,  "ei address-ke ping koro" erokom. Toh eita hocche kichu aaa mane reason ache eita korar. Sheita hocche, aaa first of all, amader bujhte hobe network-ta reachable kina.
+[4:45-5:08]
+Because amra jokhon ping kori, amra hocche ICMP eco packet send kori. Thik ache? ICMP eco packet. Eco packet. Ar amra jokhon hocche eita user-re ba oije jei server-tare ami korte chacchi,  IP address call out kore je ami send korlam, tokhon o ki kore? Ekta ICMP eco request packet pathay.
+[5:08-5:30]
+Sorry, respond packet. Toh ami pathacchi ICMP eco, mane request packet pathacchi, pathaile jei server ta active thake, toh o amare ICMP respond packet pathacche.
+[5:30-5:52]
+Toh eije  respond packet ta amra pacchi, amra basically amra chaar bar request kori ar amra chaar bar expect kori je chaar bar amader ekta ICMP respond packet ashbe. Jokhon amader respond packet-ta ashe, toh chaar barer moddhe jodi at least ekta bar-o amader kache response packet ta, respond ashe, tahole amra bujhte parbo je amader network ta thik ache.
+[5:53-6:12]
+But jodi ektao na ashe tar mane network-ta unreachable. And eita diye amader network ta reach korte koto time laglo, eita bujha jay. Which is the delay time. Ba time delay. Time delay ta diye amra dekhte pari je amader network ta reach korte kemon shomoy lagtese.
+[6:12-6:31]
+Ar basically eije ping kora hoitese, ei ping ta aaa amader hocche chaar ta, mane hocche aaa je chaar ta response packet ashar kotha bollam, eita mane emon onek shomoy hote pare je bandwidth er karone ba onno kono shomossha-r karone chaar tar moddhe tin-ta packet waste hoye giyeche.
+[6:31-6:48]
+ But at least ekta packet o jodi amader kache ashe, we can make sure je hocche network ta bhalo ache. Toh eije nanan rokom network er jhamela hoy, onek shomoy network er connection thik na. Onek shomoy lack ditese, delay hoitese. Eshob karone amader hocche confirm hoyar jonno chaar-ta packet pathano lage.
+[6:48-7:01]
+Toh basically eitar moddheo jodi na hoy, tar mane actually network ei kono shomossha ache. Toh basically ping diye amra ei jinishta make sure korte pari. Next class-e amra hocche trace route ta dekhbo. Thank you.

@@ -1,0 +1,83 @@
+# BanglaASR22 Ground Truth Transcription
+# Topic:
+# Speaker ID: C
+# Video file: BanglaASR22.MOV
+# Video duration: 9:52
+# Transcriber:
+# Date:
+# Style guide version: 1.0
+#
+# Paste the transcript under the line below, then remove ".EMPTY" from the end
+# of this file's name. While it ends in .EMPTY the pipeline does not see it.
+#
+# Format   [M:SS-M:SS] text, on one line, no spaces inside the brackets
+# Limits   every segment under 30 s, aim for 10-25 s; no gaps, no overlaps
+# Keep     fillers (aaa, um, mane, je, tahole); ASCII only, no smart quotes
+# Rules    TRANSCRIPTION_GUIDE.md
+
+# ============================================================================
+
+[0:00-0:25]
+Okay, tahole cholen dekha jaak je ekta robot kivabe kaj kore. For example, we have a DC motor. Toh ekta DC motor-e amra kivabe spin korte pari? Eta DC motor-er, for example, duita polarity thake. Ei polarity-r sahajje DC motor-tar je spin-er direction-ta change kore thake, right? Eta amra basic robotics-e basic jani. For example, ekhane ekta ache plus polarity, ekhane ekta ache minus polarity.
+[0:26-0:55]
+To ekhon, for example, dhore nilam eita kono fixed na. Apni just jodi ultay felen polarity-ta, tahole hocche apnar motor-er je jeta spin-ta sheita opposite side-e hobe. Ei arki just the basic difference.
+For example, ekhane amra ki korte pari, 5 volt-er power source ekhane dilam, ekhane ekta common ground-er sathe connect kore nilam. DC motor kintu eivabe choltese.
+For example, ekhon amra chai je ei DC motor-ta randomly, mane DC motor ki kore? DC motor-ta continuously ghurte thake, right? Ar continuously kivabe ghore?
+[0:55-1:20]
+Amra jodi DC motor-er structure a jai, DC motor basically ekta armature thake, je armature ring-ta erokom ekta shape-er. Ei armature ring-er upor diye apnar hocche wires, erokom copper wires spin korar moddhe thake, right?
+Ekhon basically ki hoitese, jokhon amra er moddhe electricity dicchi, ekta mane magnetic field-er creation hocche bujhsen. Magnetic field-er creation diye ei armature-ta eita spin kore.
+[1:20-1:43]
+To spin kora shuru hole tokhon eta continuous rotation DC motor theke pay. To eta in general anti-clockwise ghure jodi apnar polarity thik thake. Jodi kokhono polarity-ta apnar hocche ulta-palta hoye jay ba opposite hoye jay, tokhon clockwise ghora shuru kore.
+Ei hocche DC motor-er basic characteristics.
+so eita ke amra ekhon randomly na ghuriye, amra chai je ekta certain time-e, ekta certain shomoye ekta certain signal-er jonno ei dc motor ta kaj korbe.
+[1:44-2:08]
+Tar jonno amra ki kortechi? Tar jonno ekhon amra kortechi je ekta for example controller. Ei controller ta amra connect controller ekta digital pin connect kore dichhi DC motor-er shathe, ar mane, controller je 5 volt input seta positive-e, controller common ground-ta DC motor common ground. This is the common circuit, right? To basically ki kortechi, ei controller-ta or theke feedback dichhe, majhe majhe ekhane ekta power amplifier use kora hoy, thik ache? Power amplifier shobshomoy lage na,
+[2:09-2:32]
+but jehetu amra jani ekta Arduino microcontrol microcontroller theke 3.3 volt output paowa jay in general. To basically oita onek shomoy enough hoy na, ekta DC motor ghoranor jonno, because onek shomoy 2 ta 3 ta chaka spin kore, ekta DC motor diye ektai chaka spin kora jay. But ei requires higher voltage, it might require higher voltage, right? So tokhon amra ekta mane hocche power a mplifier use kori majh diye.
+[2:33-2:54]
+Eta ki kore? Oi just 5 volt-ta higher voltage-e niye jay. For example 3.3 niye gelo 5 niye gelo 7.2 te. Ebhabe higher voltage-e niye DC motor-ta spin korte shahajjo kore. Okay, so amra ekhane je diagram-ta baniyechi, eta jodi amra ektu simplified ekta mane shundor, ektu marjito way-te banai, to eta erokom hobe basically. Amra ki kortechi?
+[2:55-3:12]
+Ekhane ekta microcontroller rakhtechi, amra ekta nirdisto voltage-er jonno microcontroller-ta code kore dichhi je ei voltage-er jonno amra jokhon DC motor-ta spin howa shuru hobe, then eta amra hoche ekta power amplifier lagachhi ekhane, je jodi amader voltage-ta kom thake, voltage-ta bariye dilo,
+[3:13-3:36]
+and then ekhane arekta part ache jeta hoche basically unnecessary, taw boli ar ki. Je normal robotics-e ki hoy, DC motor to emni ghore na, motor ghoranor jonno motor driver lage. So this is the DC motor driver. Sorry, driver, and erpor ashtechi je hoche amader main motor-ta.
+[3:37-4:03]
+To basically eita main motor, eita hoche power amplifier, eta hoche amader je  cont microcontroller ba controller. For example, thik ache? To basically amplifier theke DC driver-e jay, DC driver diner mane hoche rotation-ta handle kore. Amra eta keno kori? Eta user-er karon hoche certain time-e kototuk speed-e jabe, beshi jabe naki kom jabe, spin korbe naki korbe na, eigula handle korar jonno amra hoche motor driver-ta use kori.
+[4:04-4:27]
+ E hoche oi motor-ke chalay. Ar DC motor to just continuous ghurte thake, shamner dike ba pichher dike, ei duitai o pare. But eitar through te o direction ba speed egulo control korte pare. This is the basics. To basically amra ekhane dekhte pacchhi je amra jokhon ebhabe ekta mane circuit theory design korbo, basically amra kintu eta kokhono surity dite pari na je amader ei motor-ta exactly koto RPM dichhe, mane amader required RPM amra pacchhi kina, right?
+[4:28-4:50]
+ For example, for example, ekta drone-er je propellorgulo thake, mini drone-er propeller, to seta 10 feet ucchotay uthar jonno, for example, ei je 10 feet ucchotay uthar jonno amader 100 RPM minimum dorkar. Amra shobi input diye dilam je ekhane 5 volt ba ja ja lage, shobkichu diye dilam. but propeller-ta actually 100 RPM paitechhe kina, thik ache?
+
+
+[4:51-5:16]
+Eita bujhar to ekta way ache je for example amra dekhlam 10 height-e na uthe 5 height-e uthe atkay ache.5, thik ache? 5, 5 feet-e uthe 10 feet-e na uthe 5 feet-e uthe mane drone-tar upore uthhtechhe na. So oita dekhe amra bujhte partechi je hoche ekhane 100 RPM to atleast nai, because 100 RPM uthle hoyto 10 feet-e uthe jaito. To amra for example, amra eta onuman korlam je ha, ekhane hoyto 50 RPM-e ache. Right?
+[5:16-5:33]
+Kintu eta ki exactly 50? Amader eta jante hobe, because amra dichhi voltage, shobkichui thik moto 100 RPM uthar jonno, but amader seta uthhtechhe na. Amader uthhtechhe 50. To obviously environment-e kichhu mane factors ekhane kaj korbe, jar jonno hoche eta 50 RPM-ta paitechhe recently.
+[5:34-6:03]
+To eita exact measure korar jonno amra ki kori? Eikhan theke amra ekta feedback lagai dei. Thik ache? Just eta clear kore feli. Ei feedback ar kichhui na, just ekta apnar sensor. Ei sensor-ta boltechhe je actually ei je motor-er output-ta, motor-er DC motor-er output-ta eikhan theke, taina? Ei je output gelo, ei output-er eikhan theke ekta amra mane feedback niye amra ei je amader controller-e abar feed korlam.
+[6:04-6:28]
+To basically amra ki kortechi? Prothome amader computer ekta input dichhe, thik ache? Computer input dewar pore seta hoche driver theke motor-e jacchhe. Ekhon motor je output-ta basically dichhe, oita amra feedback niye amra hoche amader controller-e abar feed korchhi dekhar jonno je chaitechilam 100, but for example paitechhi amra 45 RPM. To ei je gap-ta, ei gap-ta ber kora hoche amader feedback diye kaj. Keno dorkar? Ekhon ashtechi.
+[6:28-6:45]
+Prothome feedback chara jeta chilo, first of all, ei part-tuku, let me just highlight this. Ei je ei part-tuku jeta chilo, feedback charatuku, etake amra boltachilam open circuit. Open circuit controller.
+[6:46-7:01]
+Beshi likhlam na, open circuit. Ar porobortite jokhon amra ei je feedback niye nicchhi, amader je loop-er feedback ache, eikhan theke feedback mane ki? Loop kore asha, thik ache? Loop. To ei loop howar karone amra tokhon etar nam dichhi. Tokhon ei puratar nam hobe close circuit.
+
+
+[7:02-7:32]
+Thik ache? Ekhane likhi. Okay. So ekhon amra ekta basic idea peye gechi je keno amader open circuit-er cheye close circuit better. Because open circuit mane we cannot ensure je amader je required output-ta seta exact pacchhi kina. And kototuku pacchhi, ei difference-ta ber korar jonno we use the feedback, and that is called the close circuit loop. Okay? So ekhon amader basic idea motamuti shesh.
+[7:32-7:58]
+Amra hoche shamner dike agabo.
+Okay, so abar ektu age je feedback diagram-ta ankalam,
+[7:58-8:26]
+ oita amra ektu efficiency-r jonno ebhabe purapuri properly jodi ankate chai, tahole jinista emon daray. So, ei hocche amader controller-ta. Ei hocche amader power amplifier. Tar sathe obviously thakbe actuators, jeta hocche amader machine-take move korbe.
+[8:27-8:47]
+And oikhan theke asche amader hocche ekta feedback  er loop. Ekhan theke ekta input asbe, for example kono input - eta output. Ekhan theke ghure ekhane ase feedback loop. Feedback.
+[8:48-9:15]
+Sorry lekha ta ektu messy hoye geche, sorry for that.
+Okay, so basically eita amader ekta control system-er closed circuit. Ekhon eita, ei je jeta bollam, je feedback-ta kintu basically sensors, right? Sensors.
+So basically ei sensor-er dara amra measure korchi je amra je output-ta paitechi, se output-ta amader exact kina.
+[9:16-9:28]
+And ei je circuit-ta, ei circuit-ta eikhane ese amar ei prothom je control, mane PC-r theke, ba amar user je input-ta dicchilo, tar sathe ei je sensor-er value-ta, mane plus minus kore error-ta ber kore.
+[9:29-9:51]
+Oi error-ta diye amader amra porobortite dekhbo je main ekta khub famous control system ache, which is PID. Toh PID is Proportional, Integration and Differentiation. To oita mane use korar jonno we need this error. To ei error-ta use kore amader pura control system-er feedback loop-ta kaj kore.
+Thank you.
+

@@ -1,0 +1,93 @@
+# BanglaASR26 Ground Truth Transcription
+# Topic:
+# Speaker ID: C
+# Video file: BanglaASR26.MOV
+# Video duration: 13:13
+# Transcriber:
+# Date:
+# Style guide version: 1.0
+#
+# Paste the transcript under the line below, then remove ".EMPTY" from the end
+# of this file's name. While it ends in .EMPTY the pipeline does not see it.
+#
+# Format   [M:SS-M:SS] text, on one line, no spaces inside the brackets
+# Limits   every segment under 30 s, aim for 10-25 s; no gaps, no overlaps
+# Keep     fillers (aaa, um, mane, je, tahole); ASCII only, no smart quotes
+# Rules    TRANSCRIPTION_GUIDE.md
+
+# ============================================================================
+
+[0:00-0:17]
+Okay guys, toh last video-te amra hocche Kp, Ki, Kd egulo niye ekta basic idea pelam, and amra janlam je formula-ta basically ki represent kore Ziegler's formula. Toh basically, ekhon hocche amra aaa mane main je hocche amader error calculation-er jonno output-er formula, sheita dekhbo.
+[0:17-0:40]
+Toh basically amra kalke dekhlam je hocche Kp, Ki, Kd, ei tinta constant amra paite pari. Toh konta kon case-e, eta amra recap dibo, diye amra main formula-te chole jabo, right? Huh. Okay, so Kp hocche for, you know, proportional P diye likhlam, apatoto P ar proportional math-gulor jonno. Eta kokhono ashe na, thik ache?
+[0:40-1:02]
+Just proportional diye dile to math ekdomi simple. Eita holo into gain, dile amader math kintu shesh. But na, eta hocche deya jabe na. Shudhu eta dibe na kokhono, because make sense kore na. PI dite pare, maximum chances PID deyar, thik ache? Toh ekhon ekta jinish mathay rakhte hobe, PI kintu shudhumatro I-er jonno na, eta bhul hoyeche ashole.
+[1:02-1:27]
+Toh eta lekha bhul hoyeche. PI kokhon? Jokhon amader Kp ar Ki duitai thakbe, that is PI, right? Abar jokhon Kp-o thakbe, Ki-o thakbe, Kd-o thakbe, sheita hocche amader PID. Toh amra shudhumatro just jodi PR controller ba hocche apnar basically proportional controller bole, tokhon amra hocche aaa Kp use korbo.
+[1:27-1:53]
+Jodi amader bole proportional integral, orthath PI, tokhon amra Kp ar Ki-er value ba oi formula-ta use korbo. Jokhon amader formula-ta bolbe je hocche aaa mane proportional integral derivative, tokhon amra ei je Kp, Ki, Kd tintai use korbo. Right? So keeping it mind. Amra hocche ekhon main formula-te chole jabo. And that is, amader hocche output-er formula.
+[1:53-2:23]
+Amader output-er formula-ta ebar amra likhe feli. So, output equals to, for example, amader ekhane exam-e ebhabe bole je tin-ta ba chaar-ta step, ekta initial value deya thakbe. Shei value-r pore chaar-ta step kore dekhao, thik ache? Toh amra imagine kore nicchi je amra chaar-ta step korbo. Toh hocche, imagine question-e bolse, "Imagine... do four steps for this problem."
+[2:23-2:40]
+Right?   do four steps for this problem. Toh prothome amader initially ekta oi je iya diye dey, scenerio. Oikhane shob value-gulo deya thake. Tar porobortite amra hocche badhbaki kajgulo kore thaki.
+[2:40-3:04]
+Thik ache? Toh amader output-er formula-ta amra likhe feli. Output-er formula-ta hocche, amra first of all jeita bollam, je amader je Kp-r value-ta ber korbo, mane eta amra dhore nicchi, hae, eta-o mention korte hobe, obviously, this is a PID controller. Jodi amra PID controller mention kora dekhi, shudhumatro tokhoni amra Kp, Ki, Kd tintari value use korbo.
+[3:04-3:25]
+PI controller thakle just Kp ar Ki, mathay rakhte hobe. Eta onek shomoy kintu question-e trick kore dite pare, je hocche apnar dise shudhu PI controller, kintu just mane divert korar jonno Kd-er value-ta diye diche ekta. But tokhon kintu jodi apnara eta use koren, apnar kintu math-ta pura bhul hoye gelo. Ei jonno kheyal korben je PI controller bolse, na PID. Shudhu P controller deyari kotha na, because it becomes very easy.
+[3:25-3:50]
+Ar onek tricky question korte pare exam-e, sheta-o amra dekhbo ekhon. First of all, amra jokhon Kp-r calculation kortechi, toh Kp*error. Er shathe +  amra chaar-tta stage bollam na? Toh ei je chaar-ta stage-er prottekta error-er summation. i theke 4 porjonto dilam, mane to bujheni, summation of je shuru theke, ba ekhane one-o deya jay actually. Stage 1 theke stage 4.
+[3:50-4:18]
+Ei porjontor moddhe jotogula error ache, eshobgula error into apnar hocche Ki-er value, right? Plus ei je egula kintu shei gain-ta. Amra shurutei bollam na? je ekta error amra kibhabe ber kori. Error-er je value-ta into gain. Toh amra ei math-ta ektu pore dekhabo. Amra aage hocche just PID math-gulo important bole eta kortechi. Ei typer kichu math ache, bujchen? Block diagram math. Egulare bole block diagram math.
+[4:18-4:39]
+Eta hocche shei gain-ta. Ekhane toh amader input-ta dhuktese, oikhan theke output.
+Toh output shoman shoman, amra just brief idea dicchi. Output shoman shoman amra ki likhi? Ei je apnar gain divided by apnar ekhane i  input, thik ache? Tahole gain shoman shoman ki lekha jay? I kintu ei je error, eije ekhan theke, ei je error-ta ashar kotha amader. Prottekbar ashtechilo ei error-ta, right?
+[4:39-4:57]
+Toh basically amra jokhon ebar output, mane error =  likhbo, ba ekhane hocche arekta bhabe lekha jay, dekhen. Ekhane amra ki basically Kp. Kp hocche je gain-ta *error. Toh output shoman shoman, oh sorry, ami ektu bhul likhchi, ei jonnoi to boli, mile na ken.
+[4:57-5:20]
+Ekhane hobe output shoman shoman aaa eije gain, into ei jeta ekhane error jehetu  feedback diye ashtese, ei error-ta. Toh k* error. Eta hocche block diagram-er, aaa mane basic formula. Jodi apnar ekhan theke ekta input ashe, ar ekta gain deya thake, shei duita multiply hoye jeita hobe, oita hobe output.
+[5:20-5:40]
+Eta hocche, mane, control theory-r khub fundamental ekta concept, thik ache? Toh ei jinishta mathay rekhe amader kintu eta design kora. Ei je prottekta error ashtese, tar shathe gain-ta multiply korle amra output-ta pabo. Eta ekdom straightforward. Toh gain shoman shoman amra ki likhte pari? Ei je gain, eita shoman shoman ki likhte pari? Error-ta niche divide kore dilei amra peye gelam gain-er value, thik ache?
+[5:40-6:04]
+Eibhabe dite pare porikkhay. Trick korar jonno eta-o dite pare je apnar gain-ta direct bole nai, apnar output-ta diche, ar apnar hocche ei error-er maan-ta diche. Tokhon apnar bolse je apni gain-ta ber kore calculate koren. Tokhon kintu oibhabe egulo ber korte hobe, thik ache? Abar jodi direct diye dey question-e je Ziegler-er formula use kore koro, taile toh aro easier hoye gelo. Tokhon ar hocche alada kore eta ber kora lage na. Trick question-e eta ektu easier jodi direct dewa thake, oita ber kora lagbe, tokhon ektu jhamela arise hoy.
+[6:04-6:25]
+Because prottekta step-e tokhon apnar chinta korte hobe je gain-ta ki hobe. Mane prottekta stage-e kp, k-er value different different ashbe tokhon, right? Toh oijonno error, thik ache? Eta hocche basic formula. Ami apatoto muche dilam. Ahha.
+[6:25-6:50]
+Okay, so ebar hocche Kp-er value ber, mane Kp diye error multiply korlam. Ki, gain diye error-er summation multiply korlam, ar derivative. Derivative is for two stages. For example, amar charta stage. Toh ami last stage-er jonno ber kori. Toh error4 - error3 jeita hobe, sheita multiplied by Kd, right?
+[6:50-7:10]
+Toh basically amar jei error4-ta, jodi 4th stage-e ami jai, chaar number stage-er error minus tin number stage, tar ager stage-er error equals to apnar hocche Kd mane aaa iyata gain-ta just multiply kore dile hoye gelo. Ebar ei purata jeta ashbe, eta hocche apnar new je output, sheita.
+[7:10-7:25]
+Toh  amra hocche tokhon amader actual output-ta kemne ber korbo? Previous output plus new output, eta hocche actual output ashbe. Eta onek shomoy komte pare, barte pare, depending on the situation or scenario.
+[7:25-7:45]
+New output plus hocche amader old je output-ta chilo. Ei duita mm mane hocche multiply, addition kore amader je new actual output sheta paitesi amra, right?
+Toh eita hocche amader basically math-er formula. Eita hocche amader je new actual output ashbe, sheita hocche ber korar formula.
+[7:45-8:10]
+Toh cholen ekhon ekta math dekhi amra. Amader practice problem-e ekta math deya ache, shei math-ta dekhle amra arektu clear hobo. Amra ekhane math-er scenario-ta ami boltesi. Ami just main main value-gula likhe rakhbo, right? Okay. So basically, uh, ami just eituk ektu muche dibo. Formula-ta ektu memorize kore rakhen, tahole easier hobe. Ami apnar hocche just exemplary, mane condition dhore dhore kaj korbo.
+[8:10-8:34]
+Shobar aage question-ta eirokom bolse: "A Car is equipped with a PID controller to maintain a constant speed of 100 kilometers." So bolse, amar maintain korte hobe, mane desired speed jeita. Desired speed is 100 km per hour, right.
+[8:34-8:50]
+Tarpor bolse, "Due to an external disturbance such as wind resistance ba slope, the car's speed fluctuates. Initial speed of the car is 60 km". Toh amar initial je speed-ta, ekhon amar gari-ta, mane jekhan theke PID calculate kora lagbe, oitai kintu initial speed, thik ache?
+[8:50-9:15]
+Ar jodi ekhane bolto je gari matroi shuru hoise, tahole kintu initial speed zero thakto, right? But jehetu bolche je initial speed 60 km, mane gari-ta running state-e ase, tarpor initial speed jeta ekta moment-e amar PID ber korte hobe, oita dise 60 km. As simple as this.  60 km per hour, thik ache?
+[9:15-9:33]
+Toh ekhon amar bolche je hocche, "The system has the following parameters." Tahole obviously Kp, Ki, ar Kd-r value dewa ache. Tahole this is a PID controller. Toh amra ekhane ki PID controller-ta use kortesi, thik ache? Je desired speed hocche 100 km, initial speed hocche 60 km.
+[9:33-9:58]
+Tahole ekhon amader Kp-r value deya hocche 0.5k. Oh! K na, 0.5 direct. Mane, mane kono hocche alada kore gain multiply korte hobe na. O error ar gain multiply kore amader eta diye dise, right? Ki-er value diye dise. Eta direct dewa, mane onek simple ekta math, 0.1. Ar Kd-r value direct diye diche, toh apnar hocche 0.05, right.
+[9:58-10:26]
+Ekhon bolse je hocche, "The car accelerates based on the controller output." Toh controller je output-ta dey, basically oi je ektu aage ber korlam, actual new output-ta, oita basis-e hocche apnar gari-ta accelerate kore, she ta bolche. Toh hocche, ei je formula likhe dei, newspeed equals previous speed plus amar je output-ta pabo notun, oitar speed multiply, mane summation. Toh hocche, eibar bolse je, "Simulate five times steps of the car speed control calculating the error, output, and new speed at each step."
+[10:26-10:48]
+Toh  amare bolche je, ei je dewa initial speed, eikhan theke five-ta dhap korte. Five-ta dhap kore prottekbar error dekhaite hobe, ar new outcome dekhaite hobe, ar tarpore hocche new je, mane new speed-ta dekhaite hobe, thik ache? Toh new actual output ar ki.
+Toh thik ache. prothome amader dewa hocche initial speed-ta, Kp, Ki , Kd  er value deya ache. Toh amra formula theke ki jani? shobar aage error ber korte hobe.
+[10:48-11:12]
+Error = apnar 100, je desired, - actual. Eta apatoto actual speed, right? 60. Which is 40. Right? 40 km/h. Ekhon amader tahole hocche ei error-ta ber hoye gelo. Ebar tarpor amra formula likhi actual output-er. Toh eita hocche step one, first step.
+[11:12-11:34]
+First step-er jonno amader formula-ta ashtese, aa Out = first step-er Kp * ei je error. Kp 0.5 into tomar hocche 40 + 0.5, Sorry, bhul korchi, Ki ar 0.1, ei mistake-gula koira na please.
+[11:34-11:58]
+0.1 * amar bolche summation of stages, jotogulo stage hoyeche. Eta toh prothom stage, tai na? Toh shudhu ekhane 40 ache error, ekta error 40. Sheita likhe felbo + eta hocche 0.05, oi je previous minus new error, duita error-er mane subtraction korle jeta hoy. Prothomta to zero dhorlam, ar eta hocche 40. Tahole into eta 40, thik ache?
+[11:58-12:20]
+Jeta kore ashbe sheta hocche first, for example, output1. Amar kache calculator nai, ejonno ami calculation dekhailam na. Ekhon ei je output one, ei output one-er shathe ebar ami ei je initial speed chilo 60, eta add korbo. Add kore jeta ashbe, ota amader new initial speed. Toh  hocche new actual boli arki, new actual speed.
+[12:20-12:49]
+New actual speed tahole amader ashtese mane hocche amader aager je 60, 60 +ei je out1, right? Toh  ei same bhabe second stage-ta korte hobe. Second stage-er difference ki hobe? Apni jokhon ekta output ber korben, tokhon oikhan theke error berobe, ekta notun error. Toh amader ei stage-e thik ache je notun error-ta ber hoise, oita diye kaj korlam. Kintu eikhane notun je error ashbe, tar shathe plus chollish, mane previous error-tao neya lagbe, thik ache?
+[12:49-13:12]
+Ar eikhane tokhon hobe notun je error-ta, ei new actual speed-er stage-e je error-ta, minus ekhane 40, thik ache? Ebhabe purata calculation kora lagbe first stage-er. Toh ei math-gulo khubi easy hoy and ebhabe agaite hoy. Amar kache calculator nai dekhe puro calculation-ta dekhaite parlam na thik kore. Eta apnara bashay ekbar dekhle pere jaben hoytoba. Toh thik ache, thank you, ar next din amra block diagram shuru korbo.
+
