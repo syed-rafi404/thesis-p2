@@ -411,7 +411,17 @@ analysis behind it** and prints a warning; label a sample of errors or drop it.
   clause ("an ASR system was used only as a first-pass typing aid"); the user declined. Do not
   add it unless they ask; if a panel question about tools comes up in prep, the honest answer is
   the one above.
-- **New data** (10 h in total) arriving from transcribers. They were told on 2026-09-21: 10–25 s
+- **THE DATASET IS CLOSED (the user, 2026-09-23).** 28 ground-truth transcripts, **5.15 h**,
+  lectures 1-28; videos 29-44 are vision-only (44 is a 30-min lecture added for the demo). No more
+  transcripts are coming, the "10 h" plan is cancelled, and **the final ASR run started on the 3060
+  on 2026-09-23 12:46**: `whisper_full_pipeline.py --tune-dir F:\thesisP2\ft_work_tune5h
+  --final-dir F:\thesisP2\ft_work_final5h`, the five pre-registered tuning stages then the final
+  model with 2 seeds, test lectures 8, 9, 11, 15, 19, 27 (1.05 h), training on the other 22
+  (4.1 h). Whatever it produces is the thesis's ASR result; do not plan a larger run. The only GPU
+  work left is ~15 min on the 5090 to rebuild the demo lecture's notes on the final transcript.
+  The demo must come from 29-44, which no training ever saw.
+- **The paragraph below is history**, kept because it explains the split machinery:
+  **New data** (10 h in total) arriving from transcribers. They were told on 2026-09-21: 10–25 s
   segments, never over 30, and `# Speaker ID:` on every file. Validate with
   `scripts/validate_ground_truth.py`. **Split decided by the user (2026-09-22): by whole video,
   random with a fixed seed, about 8 h train / 2 h test, not by speaker.** Every lecturer must have

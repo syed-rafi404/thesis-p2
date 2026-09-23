@@ -40,10 +40,9 @@ If you are lost, start here. Updated 2026-09-22 (on the 3060).
 | 23 Sep | You + Claude | Start the report from scratch: Claude gives structure, tables, figures from RESULTS.md; you write. (Optional: the board check page, 30-40 min.) |
 | 24 Sep | Claude on the 5090 | Notes with the 32B; NAND section side by side; fix what the first real runs show. When the ground truth arrives: `check_new_data.py`, `set_speaker_ids.py --apply`, `validate_ground_truth.py --fix`. |
 | 24 Sep | You + Claude | Writing continues. |
-| **25 Sep** | Claude on the 5090 | **6 h run**, 2 seeds (~2-2.5 h); RESULTS.md and figures updated the same day. |
+| **25 Sep** | Claude on the 5090, **15 minutes only** | Rebuild the demo lecture's notes with the final adapter's transcript (the 3060 pushes both). Nothing else. |
 | **26 Sep** | You | **Draft submission.** Claude first checks every number in it against RESULTS.md. |
-| **27 Sep** | Claude on the 5090 | **10 h run** + scaling curve (~6-7 h; needs the rest of the ground truth by the morning); then the demo: `run_lecture.py` on a video with no transcript (~30 min, you confirm the video). RESULTS.md and figures updated. |
-| 28 Sep | You + Claude | Slides (Claude drafts content: numbers, figures, demo screenshots, honest limits); Q&A prep. 5090 spare only if a run failed. |
+| 27-28 Sep | You + Claude | Slides (Claude drafts content: numbers, figures, demo screenshots, honest limits); Q&A prep. **No GPU work left.** |
 | **29 Sep** | You | **Slides submission.** |
 | Before the defense | You | BRAC's rule on declaring AI help; rehearse. |
 
@@ -143,9 +142,14 @@ Draft submission **26 Sep**. Slides **29 Sep**.
 | When | 5090 job | About how long | Longest unbroken |
 |---|---|---|---|
 | 23 or 24 Sep | Notes pipeline (stage B below): VLM on clean boards, box names, notes 7B and 32B, scoring | ~1.5 h with the 7B, plus the 32B (~4.2 h, unmeasured) and its ~65 GB download (resumes) | ~15 min |
-| **25 Sep** | **6 h run**: 4.8 h train / 1.2 h test, 2 seeds, no scaling curve (results go in the draft) | **0.9 h** | 17 min |
-| **27 Sep** | **10 h run**: 8 h train / 2 h test, 2 seeds, scaling curve 2/4/6/8 h (results go in the slides) | **4.1 h** (1.5 h run + 2.6 h curve) | 28 min |
-| 28 Sep | Spare, only if a run failed | - | - |
+| **25 Sep** | **The demo lecture's notes only**, rebuilt on the final adapter's transcript | ~15 min | 15 min |
+
+**CANCELLED by the user, 2026-09-23: the 6 h and 10 h Whisper runs on the 5090, and the scaling
+curve.** The dataset is closed at **28 transcripts, 5.15 h (lectures 1-28)**, plus videos 29-44 for
+vision only. **All Whisper training happens on the 3060 and the final run started there 2026-09-23
+12:46** (`whisper_full_pipeline.py`, tuning + 2 seeds, test lectures 8, 9, 11, 15, 19, 27; log
+`F:\thesisP2\claude_transfer\whisper_5h_log.txt`). There is no later run to wait for: whatever that
+produces is the thesis's ASR result. The only GPU work left anywhere is the 15 minutes above.
 
 After 27 Sep the 5090 is not needed: results, figures and slides need no GPU. **These times are
 measured on this machine** (`python scripts/measure_run_times.py`, 2026-09-23), not estimated; only
