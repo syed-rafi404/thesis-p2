@@ -1,0 +1,62 @@
+# BanglaASR21 Ground Truth Transcription
+# Topic:
+# Speaker ID: C
+# Video file: BanglaASR21.mp4
+# Video duration: 7:49
+# Transcriber:
+# Date:
+# Style guide version: 1.0
+#
+# Paste the transcript under the line below, then remove ".EMPTY" from the end
+# of this file's name. While it ends in .EMPTY the pipeline does not see it.
+#
+# Format   [M:SS-M:SS] text, on one line, no spaces inside the brackets
+# Limits   every segment under 30 s, aim for 10-25 s; no gaps, no overlaps
+# Keep     fillers (aaa, um, mane, je, tahole); ASCII only, no smart quotes
+# Rules    TRANSCRIPTION_GUIDE.md
+
+# ============================================================================
+
+[0:00-0:23]
+Okay, guys so ajke hocche amra LSR-er description janbo. Je LSR basically kivabe kaj kore, ki ki. To amra goto video-te eta bolchilam je LSR is a global routing method global routing.
+
+[0:23-0:44]
+Global routing method keno, because LSR-er prottekta router oder entire je, mane, network ta large network ta oitar ekta idea rakhe. Map-er moto ekta. And they know je what is the, mane, optimal path, jeta diye use kore amra hocche oi destination e jaite pari.
+[0:45-1:11]
+So ei jonne LSR e bola hoy global routing method. Aa LSR use kore none other than the dijkastra's algorithm, which is guaranteed to return the shortest and actual optimal shortest path. Oi jemon agerbar amra Bellman-Ford ta dekhechilam, Bellman-Ford kintu onek time-e sub-optimal path return kore.
+[1:12-1:38]
+But dijkastra, eita mane, guaranteed je o optimal path-i return korbe. And jehetu eta optimal path return kore, it works best on a heuristic. Works. Mane, normally amra jemon 422 course-e dekhechi na, to okhane jemon heuristic use kortam, but this also works best on a heuristic. To ami abar eitar details-e jacchi na je heuristic kemne optimal, eta amra bujhbo.
+[1:39-1:58]
+To ami abar eitar details-e jacchi na je heuristic kemne optimal, eta amra bujhbo. Eta shob 422 course-e cover kore ashar kotha. So ei course-e just amra link state routing ba LSR-ta niye bolbo. Okay, so basically hocche, eta amader e vabe shuru kore. Ekhon eta kaj kore kivabe?
+[1:59-2:25]
+So basically, for example, amar ekta router ache R1, to ei router-ta for example onek dike connected, eta onekgula interface, onekgula interface-er sathe connected, right? To e ki kore? Er prottekta je branch ache, prottekta branch-e or nijer information-ta flood kore dey. Thik ache? Same vabe, for example, ekhane R2 ache, ekhane R3 ache, ekhane R4 ache, erao ki kore?
+[2:25-2:53]
+Erao oder information eder theke je branches-gulo thake, ei branch shobgulote forward kore dey. Eder kintu ekhono kaj shuru-i hoy ni, mane kajta algorithm ekhono cholbe na, ekhono shuru-i hoy ni. Ora age information gather korbe, pura network-tai information ora gather korbe, thik ache? To pura network-ta information gather korlo, eta ekta map moto banalo. Je kon dike kon dike jabo, na jabo, egulo. Eta map create korlo, so creates a map.
+[2:54-3:22]
+Creates a map of the entire network. And pura map-ta create kora hoye gele, je amar hate pura ekta map ache, ami tokhoni shudhu ei the extra algorithm-ta chalabo. And tomar hocche shortest path, je path-ta, seta khuje ber korbo, destination-e jawar jonno.
+[3:23-3:48]
+ Ei bhabe basically tomra link state routing kaj kore. Ekhon, link state routing-er best advantage hocche, ei. This is a event-driven. Event-driven method. Event-driven method mane ki? Eta shudhu tokhoni. Oi. flooding system-ta kore.
+
+[3:49-4:10]
+mane purapuri ekbar converge hoye geche,  map create kora hoye geche, shortest path-o khuje peche, thik ache? Lifestyle use kore. But tarpor-o eta event-driven keno bola hoy? Je eta shudhu tokhoni eto kichu korar poreo, tokhoni shudhu o hocche. or je routing table-ta change anbe, shudhu ekta particular part-e, shudhu router-er jonno. Not the entire table, just shudhu ekta part-er.
+[4:11-4:40]
+To jokhon o'r majhkhan-e connection noshto hoye jay, jemon ekta example amra dekhi, for example R1 ar R3, ei. Ekhon. R1 theke R2-er connection, ar R2 theke R3-er connection. Amra mone kori R5 ache, R1 theke R5-er connection, ar R5 theke R3-er connection. Ekhon ami jete chai, basically R3-te. Ekhon ekhane heuristic, mone koro 20 deya, ekhane mone koro 1. Abar ekhane mone koro 30 deya, ekhane 50 deya, ekhane hocche hoyto. 1.
+[4:41-5:06]
+To basically initially ki? Initially ei path-ta sobcheye optimal na? Tai na? Ei path-ta kintu sub-optimal. To eta amader dynamic, dijkstra algorithm, eta bad pore jabe. Thik ache, this is the sub-optimal path. Usually eta use korei R3-te jete hole R1 use kore, ha. Ekhon kono karone by chance ei path-ta noshto hoye gelo, tokhon ki hobe? Ete ekta path-i nai. To doesn't matter, seta cost koto?
+
+[5:07-5:31]
+ Eitai tokhon tokhon hocche optimal path. Basically tokhon infinity dekhacche, right? Kono karone R1 theke R2-er ta noshto hoye gele, tokhon hocche R1-te R5-te, ar R5 theke R3-te jabe. Ei bhabe jabe. To ei je event-ta occur holo, ei je connection noshto holo, event-ta occur holo, shudhu ei khetrei R1 or hocche je previous generated map ba routing table chhilo, sekhane hath dey.
+
+[5:32-6:00]
+Whereas, amra ektu age dekhechilam, distance vector routing-e, DVR-e, je o kintu ektu por por, ekta time set kora thake, je 2 minute por por. Oi 2 minute por por or hocche je neighbors, tader kache information pathai te thake. This is a huge waste of bandwidth, actually. To jehetu eikhane ekta onek boro network jodi hoy, onek beshi bandwidth khoroch hobe, because prottekta router theke neighbor-er sathe communicate korar jonno 2 minute por por hudai, just ekta ICMP file pathaitese je tumi ki alive aacho, tumi ki alive aacho.
+[6:01-6:26]
+Eta ektu kind of tedious. Je khetre e shudhu tokhoni perform kore jokhon erokom kono scenario ashe je ekta router ba ekta connection noshto hoye geche. Ejonno etake bola hoy event-driven.  Ejonno eta onek beshi efficient. Basically bar bar, mane khuche na, jetake Bangla bhashay bole, bar bar khuchakhuchi kore na, or moto jemon ektu por por khuchay. To eta. sobcheye boro. Quality ba function bola jey.
+[6:26-6:50]
+And arekta function hoitese, eta hocche tomar. Khub boro network-er jonno khub-i efficiently kaj kore. So works efficiently. For larger networks.
+[6:51-7:14]
+Toh er convergence time ta onek kom. Ami just  "conf" liklam.  convergence time ta is very less. Jodi bolte chao tahole er ekta disadvantage bolte paro. "This is very complex to implement." Disadvantage.
+[7:15-7:37]
+Eigula ami likhe rakhi advantage.Toh eitar ektai disadvantage e very complex. But this is highly efficient for large area networks as well, so basically eitai chilo Link State Routing er  kotha barta.
+[7:37-7:37]
+Exam hall e jodi difference chay tahole ei eka ek ektar difference eksathe likhlei I think you should be good to go. So thank you so much class.
+
