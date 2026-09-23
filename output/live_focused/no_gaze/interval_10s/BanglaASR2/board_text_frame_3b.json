@@ -1,0 +1,53 @@
+{
+  "lecture": "BanglaASR2",
+  "model": "Qwen/Qwen2.5-VL-3B-Instruct",
+  "source": "frame",
+  "prompt": "This is a photograph of a classroom whiteboard during a university lecture.\n\nTranscribe everything written on the whiteboard, exactly as written.\n\n- Copy every number, name, identifier, date and symbol exactly. Do not round,\n  correct or reformat values.\n- Write tables as Markdown tables with the same rows and columns as the board.\n- Write code, SQL and program text inside ``` fences, keeping line breaks.\n- Write formulas as they appear. For a bar over a term write it as NOT(...),\n  for example NOT(A+B).\n- Keep diagrams short: name what they are and copy any labels on them, for\n  example \"Gate diagram: inputs A, B into a box labelled NAND, output NOT(AB)\".\n- If part of the board cannot be read, write [illegible]. Never guess, and never\n  add anything that is not written on the board.\n- Ignore any person in the picture. Describe only what is written.\n\nOutput only the transcription.",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:00",
+      "to": "1:00",
+      "clear_fraction": 0.9779,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR2\\ingested\\frames\\frame_000006_000060s.jpg",
+      "text": "Input and Type Casting\nage = 92\ninput()",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 2,
+      "from": "1:10",
+      "to": "3:10",
+      "clear_fraction": 0.979,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR2\\ingested\\frames\\frame_000019_000190s.jpg",
+      "text": "Input and Type Casting\n\nname = input(\"What is your name?\")\nprint(\"Hello\", name)",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 3,
+      "from": "4:20",
+      "to": "7:30",
+      "clear_fraction": 0.9848,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR2\\ingested\\frames\\frame_000045_000450s.jpg",
+      "text": "Input and Type Casting\n\nnum1 = \nnum2 = \nsum = \n\nstring\nstring\nstring",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 4,
+      "from": "7:40",
+      "to": "8:30",
+      "clear_fraction": 0.9394,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR2\\ingested\\frames\\frame_000051_000510s.jpg",
+      "text": "Input and Type Casting\n\n\"What is the first number?\"\n\"What is the second number?\"\n\n(int num1) = 10 String int num1 integer",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 5,
+      "from": "8:40",
+      "to": "14:00",
+      "clear_fraction": 0.986,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\live_focused\\no_gaze\\interval_10s\\BanglaASR2\\ingested\\frames\\frame_000084_000840s.jpg",
+      "text": "Input and Type Casting\n\nnum1 = 20\nnum2 = 30\nThe sum of 20 and 30 is 50\n\ninput(\"What is the first number?\")\ninput(\"What is the second number?\")\nint(num1)\nint(num2)\nnum1 + num2\nIt is Sum\nof num1\nis Sum",
+      "runaway_lines_removed": 0
+    }
+  ]
+}

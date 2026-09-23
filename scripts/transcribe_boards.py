@@ -182,6 +182,9 @@ def main():
                     help="Cap on image pixels given to the model; handwriting needs resolution")
     ap.add_argument("--max-new-tokens", type=int, default=1500)
     ap.add_argument("--show-prompt", action="store_true", help="Print the prompt and exit")
+    ap.add_argument("--tag", default="",
+                    help="suffix for the output files, so a second model does not overwrite the "
+                         "first: --tag 3b writes board_text_<source>_3b.json/.md")
     args = ap.parse_args()
 
     try:
@@ -228,10 +231,11 @@ def main():
 
         payload = {"lecture": run_dir.name, "model": args.model, "source": args.source,
                    "prompt": PROMPT, "boards": boards}
-        (run_dir / f"board_text_{args.source}.json").write_text(
+        stem = f"board_text_{args.source}" + (f"_{args.tag}" if args.tag else "")
+        (run_dir / f"{stem}.json").write_text(
             json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
-        (run_dir / f"board_text_{args.source}.md").write_text("\n".join(md), encoding="utf-8")
-        if args.source == "mosaic":
+        (run_dir / f"{stem}.md").write_text("\n".join(md), encoding="utf-8")
+        if args.source == "mosaic" and not args.tag:
             # regenerate_notes.py --board-source boards reads this name
             (run_dir / "board_text.json").write_text(
                 json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")

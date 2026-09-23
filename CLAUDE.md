@@ -15,10 +15,13 @@ goes stale, fix it rather than adding a contradictory note.
 3. Every number the thesis may claim is in [RESULTS.md](RESULTS.md) with the command that
    regenerates it. Section 7 lists retired, fabricated claims. Never reuse one.
 
-**Next session is on the 5090: start with NEXT_STEPS.md "FIRST THING ON THE 5090"** (confirm the
-3060's automatic push of the newer lectures' boards arrived, copy the videos from the user's USB,
-move the old `data\raw\SpeakerN` folders away, then the dated sessions: notes 23/24 Sep, 6 h run
-25 Sep, 10 h run 27 Sep; draft due 26 Sep, slides 29 Sep).
+**Where things stand (2026-09-23, on the 5090). Stage B is done.** Run times measured (the old
+estimates were ~6x too slow: the 10 h run is 1.5 h, not 6-7 h); the VLM read all 45 clean boards
+and **the clean-up does not help it read them** (4.1.2); 45 boards labelled with 137 named boxes;
+the annotated notes built and scored for all 13 lectures in both languages (5.4). Two rigour checks
+added at the user's request: the prompt-selection dev/test split and the 3B-vs-7B ablation (both
+5.0). Qwen3-32B is downloading. Next: notes with the 32B, the 6 h run 25 Sep, the 10 h run 27 Sep;
+draft due 26 Sep, slides 29 Sep.
 
 **Where things stood at the last checkpoint (2026-09-22, on the 3060):** everything committed and
 pushed, except the boards for the newer lectures, which a job on the 3060
@@ -164,6 +167,19 @@ vs raw frame 88.8%: a trend (Wilcoxon p = 0.056, sign p = 0.23), absent for Spea
 the prompt, not the reconstruction.** Say that plainly. Reconstruction limits found in the hand
 check: it cannot remove glare, and loses content visible in only one frame (RESULTS.md 5.0).
 
+**Two rigour checks the user asked for, both done 2026-09-23 (RESULTS.md 5.0).**
+- **The prompt was chosen on the boards it is reported on. Say so.** A dev/test split by lecture
+  (dev = odd, test = even, rule fixed before looking) gives a selection-free number: on the test
+  half **28.4% → 84.7%, better on 17 of 18 boards, worse on 0**. The split was applied after the
+  original comparison, so it does not undo the selection; it shows the conclusion does not depend
+  on it. `scripts/prompt_selection_split.py`.
+- **Model size matters far less than the prompt.** Qwen2.5-VL-3B on the same 45 boards with the
+  same prompt: **83.7% vs the 7B's 89.0%** (7B better on 16 boards, worse on 6, sign p = 0.053).
+  The prompt is worth **+57.6 pp**, model size **+5.3 pp**. Do not present scale as the thing that
+  made board reading work. 32B/72B VL were not run: 68 GB and 147 GB of weights, no disk room, and
+  quantising them would confound size with quantisation loss. Say "3B-vs-7B ablation", not "scale
+  study".
+
 ---
 
 ## Board-content recall (the note-quality metric)
@@ -277,8 +293,10 @@ command; only change global config after asking.
 | Whisper large-v3-turbo ASR | Working | Outputs an English translation, not Banglish |
 | Whisper-small + LoRA fine-tune | **Working, significant** (with loop safeguard) | Headline; corrected split, see above |
 | BanglaASR (Bengali Unicode) | Working | Wav2Vec2 |
-| Qwen2.5-VL whiteboard reading | **Evaluated, strong** | 88.8% board recall on 35 verified boards with `transcribe_boards.py`; keyword prompt 31.2% |
+| Qwen2.5-VL whiteboard reading | **Evaluated, strong** | 88.8% board recall on 35 verified boards with `transcribe_boards.py`; keyword prompt 31.2%; 84.7% on a held-out half; 3B gets 83.7% |
 | Qwen2.5-7B-Instruct notes | Board recall 88.0% (C, 35 boards) | Lecturer-quote instruction broken; readability unmeasured |
+| **The annotated notes (the deliverable)** | **Built and scored 2026-09-23** | 37.2% -> **70.2%** English over 35 boards (30 better, 0 worse), 53.6% Banglish, 72.4% on a third lecturer. RESULTS.md 5.4. **17.8 pp below variant C**, which reaches 88.0% by pasting the board text in; say so |
+| Learned mask + clean-up, read by the VLM | **Measured, no gain** | 93.6% -> 91.7% over 45 boards, p = 0.07. Keep the clean boards for looks, not for reading. RESULTS.md 4.1.2 |
 | Board reconstruction (tiled mosaic) | **Working, measured** | median 97.7% tiles clear, 35 boards |
 | Learned lecturer mask + clean-up | **Working, judged by eye** | All 45 boards; VLM scoring pending (5090) |
 | Region detection | Working, **not evaluated** | No layout ground truth exists |
@@ -346,6 +364,13 @@ Don't suggest reviving failed approaches unless the user raises them.
 | `scripts/set_speaker_ids.py` | Adds missing `# Speaker ID:` lines from the voice check; leaves unsure ones for a person |
 | `scripts/make_loso_transcripts.py` | Leak-free timestamped transcripts (`transcript_loso.txt`) from the leave-one-speaker-out adapters; run on the 3060 2026-09-22 for all 13 lectures |
 | `transcribe_boards.py --source clean` | VLM full reading of the new clean boards, `board_text_clean.json/.md`, lectures 1-13 |
+| `scripts/measure_run_times.py` | Real run times from this machine's own evidence: the trainer's `train_runtime` out of the logs, and gaps between output file write times. Replaced the scaled-from-3060 estimates in NEXT_STEPS.md, which were ~6x too slow. Only meaningful on the machine that did the work |
+| `scripts/download_model.py` | Resumable `snapshot_download` into `HF_HOME`, refusing to start without disk room |
+| `scripts/prompt_selection_split.py` | The keyword-vs-transcription prompt was chosen on the boards it is reported on; this re-checks it on a held-out half (dev = odd lectures, test = even) |
+| `transcribe_boards.py --tag` | Suffix for the output files so a second model does not overwrite the first (`board_text_frame_3b.md`); used for the 3B-vs-7B ablation |
+| `label_boards.py` salvage parser | `salvage_objects()` reads id/name/text field by field when the VLM's JSON is broken. Boards carrying code make the model emit unescaped quotes; without this such a board loses **all** its boxes |
+| `transcribe_boards.py` loop guard | `trim_runaway()` collapses a decode loop (lecture 10's TTL board produced 42,037 characters of one backslash line). Records `runaway_lines_removed` |
+| `build_lecture_notes.py` placeholder strip | `strip_prompt_placeholders()` removes the prompt's own example text when the model copies it into the notes as a fake quote. Records `prompt_placeholders_removed` |
 
 `scripts/generate_thesis_figures.py` now computes rather than asserts: fusion panels, the real bias
 sweep, per-video transcript lengths counted from files. **Figure 6.5 (failure modes) has no
@@ -474,5 +499,5 @@ analysis behind it** and prints a warning; label a sample of errors or drop it.
 
 ---
 
-*Maintained by Claude. Last refreshed 2026-09-22 on the 3060: the final deliverable spec, the new
-board pictures, and the handoff for stage B on the 5090.*
+*Maintained by Claude. Last refreshed 2026-09-23 on the 5090: stage B measured end to end, the
+clean-board negative, the annotated-notes result, and the two VLM rigour checks.*

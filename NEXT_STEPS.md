@@ -185,6 +185,8 @@ appears; we go through the whole list together at Q&A prep.**
 | Did anything fail in the tuning? | Yes, and it is reported: LoRA rank 32 diverged at the chosen learning rate, adapting all four attention projections was no better than off-the-shelf, and the validation-loss minimum (epoch 4) scored worse than 8 epochs. |
 | Does the notes model get things wrong? | Yes, and we have an example rather than a denial. In the 2026-09-23 notes for BanglaASR7_004 (dataset BanglaASR11) the model writes "there are two types of universal gates, which are XOR gates"; the lecturer and the board say NAND and NOR. Board recall cannot catch this: it measures whether board items appear in the notes, not whether the surrounding prose is true. Nothing we have measures factual correctness of the prose - the planned reader survey is what would. Say this before someone finds it. |
 | Why is the final result better than the leave-one-speaker-out number? | Different, easier design: the final split holds out whole lectures from lecturers who are also in training. The unseen-lecturer number (RESULTS.md 1.5) is the harder one and stays in the thesis. |
+| You chose the prompt on the same boards you report it on. | Yes, and we say so. We also split the boards by lecture (dev = odd, test = even) and re-checked: on the test half, which played no part in the choice, keyword -> transcription is still 28.4% -> 84.7%, better on 17 of 18 boards. The split was applied afterwards, so it does not undo the selection; it shows the conclusion does not depend on it. RESULTS.md 5.0. |
+| Does the board reading just need a big model? | No. Qwen2.5-VL-3B gets 83.7% against the 7B's 89.0% over 45 boards (p = 0.05). The prompt change is worth +57.6 pp, the model-size change +5.3 pp. We did not run 32B/72B VL: 68 GB and 147 GB of weights, no room, and they would need quantising, which confounds size with quantisation loss. RESULTS.md 5.0. |
 
 ---
 
@@ -448,7 +450,9 @@ Quote only these; each has its command in RESULTS.md.
 | Speech: fine-tuned Whisper, each lecturer held out once | CER 72.8% -> **50.3%**, WER 95.3% -> **75.7%**; 6 of 6 runs p < 1e-05, plain decoding | 1.5 |
 | Is the WER only spelling? | No: spelling-fair WER 74.8%, fuzzy WER 68.2% | 1.6 |
 | VLM reading the board, 35 hand-verified boards | keyword prompt 31.2% -> full transcription **88.8%**; better on 34 boards, worse on 0 | 5.0 |
+| Same, on a held-out half that did not choose the prompt | 28.4% -> **84.7%**, better on 17 of 18 boards, worse on 0 | 5.0 |
 | VLM on a third lecturer's boards | **89.7%** | 5.0 |
+| Does board reading need a 7B? | Mostly no: **3B 83.7% vs 7B 89.0%** over 45 boards, p = 0.05. The prompt is worth +57.6 pp, model size +5.3 pp | 5.0 |
 | Notes, 35 boards | board content in the notes: 37.2% -> **88.0%** | 5.0 |
 | **The annotated notes** (the deliverable: boxes, quotes, two languages) | 37.2% -> **70.2%** English, better on 30 of 35 boards, worse on 0; 53.6% Banglish; **72.4%** on a third lecturer | 5.4 |
 | The new clean boards read by the VLM | **no gain**: 93.6% -> 91.7%, p = 0.07 (keep them for looks, not for reading) | 4.1.2 |

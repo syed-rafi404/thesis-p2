@@ -1,0 +1,41 @@
+{
+  "rule": "dev = odd-numbered lectures, test = even-numbered lectures",
+  "keyword_file": "visual_keywords.json",
+  "transcription_file": "board_text_frame.md",
+  "dev": {
+    "boards": 17,
+    "items": 173,
+    "keyword": 59,
+    "keyword_recall": 0.34104046242774566,
+    "transcription": 161,
+    "transcription_recall": 0.930635838150289,
+    "better": 17,
+    "worse": 0,
+    "ties": 0,
+    "sign_p": 1.52587890625e-05
+  },
+  "test": {
+    "boards": 18,
+    "items": 176,
+    "keyword": 50,
+    "keyword_recall": 0.2840909090909091,
+    "transcription": 149,
+    "transcription_recall": 0.8465909090909091,
+    "better": 17,
+    "worse": 0,
+    "ties": 1,
+    "sign_p": 1.52587890625e-05
+  },
+  "all": {
+    "boards": 35,
+    "items": 349,
+    "keyword": 109,
+    "keyword_recall": 0.3123209169054441,
+    "transcription": 310,
+    "transcription_recall": 0.8882521489971347,
+    "better": 34,
+    "worse": 0,
+    "ties": 1,
+    "sign_p": 1.1641532182693481e-10
+  }
+}

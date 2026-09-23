@@ -1,0 +1,26 @@
+{
+  "lecture": "BanglaASR13",
+  "model": "Qwen/Qwen2.5-VL-3B-Instruct",
+  "source": "frame",
+  "prompt": "This is a photograph of a classroom whiteboard during a university lecture.\n\nTranscribe everything written on the whiteboard, exactly as written.\n\n- Copy every number, name, identifier, date and symbol exactly. Do not round,\n  correct or reformat values.\n- Write tables as Markdown tables with the same rows and columns as the board.\n- Write code, SQL and program text inside ``` fences, keeping line breaks.\n- Write formulas as they appear. For a bar over a term write it as NOT(...),\n  for example NOT(A+B).\n- Keep diagrams short: name what they are and copy any labels on them, for\n  example \"Gate diagram: inputs A, B into a box labelled NAND, output NOT(AB)\".\n- If part of the board cannot be read, write [illegible]. Never guess, and never\n  add anything that is not written on the board.\n- Ignore any person in the picture. Describe only what is written.\n\nOutput only the transcription.",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:00",
+      "to": "3:50",
+      "clear_fraction": 0.9033,
+      "image": "output\\speaker3_runs\\BanglaASR13\\ingested\\frames\\frame_000023_000230s.jpg",
+      "text": "\\[\n\\frac{M+U}{\\text{Maximum transmission unit}} \\rightarrow \\text{Packet size}\n\\]\n\\[\nDF \\rightarrow 0\n\\]\n\\[\n\\star \\text{Total packet size} \\rightarrow 1. \\text{ Header sec.} \\\\\n2. \\text{ Data sec.}\n\\]\n\\[\n\\rightarrow \\text{Header} + \\frac{\\text{Data}}{20B - 60B}\n\\]",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 2,
+      "from": "4:00",
+      "to": "12:30",
+      "clear_fraction": 0.9942,
+      "image": "output\\speaker3_runs\\BanglaASR13\\ingested\\frames\\frame_000075_000750s.jpg",
+      "text": "\\[\n\\frac{M+V}{\\text{Maximum transmission unit}} \\rightarrow \\text{Packet Size}\n\\]\n\nData size \\(\\Rightarrow\\) \\(\\frac{1000B}{1480}\\)\n\nDF \\(\\rightarrow\\) 0\n\nTotal packet size \\(\\rightarrow\\) 1. Header sec.\n\n\\(1500 \\rightarrow MTU\\)\n\nHeader + Data sec.\n\nF = 0; MF = 1 \\(\\rightarrow\\) 1479 \\(\\rightarrow\\) Frag 1\n\nF = 0; MF = 1 \\(\\leftarrow\\) 1480 \\(\\leftarrow\\) 2959 \\(\\rightarrow\\) Frag -2\n\nF = 0; MF = 0 \\(\\leftarrow\\) 2960 \\(\\leftarrow\\) 4000 \\(\\rightarrow\\) Frag \\(\\rightarrow\\) 3\n\nFor the Fins + Frag \\(\\rightarrow\\) 0/8 \\(\\rightarrow\\) 0 \\(\\rightarrow\\) Fragment offset \\(\\Rightarrow\\) \\(\\sqrt{cell}\\) \\(\\rightarrow\\) \\(\\sqrt{2.7}\\) \\(\\rightarrow\\) 3\n\n2nd \\(\\rightarrow\\) \\(\\frac{1480}{8}\\) \\(\\rightarrow\\) 185 \\(\\rightarrow\\) \"\"\n\n3rd \\(\\rightarrow\\) \\(\\frac{2960}{8}\\) \\(\\rightarrow\\) 370 \\(\\rightarrow\\) \"\"\n\nFrag.",
+      "runaway_lines_removed": 0
+    }
+  ]
+}

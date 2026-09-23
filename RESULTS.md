@@ -923,6 +923,74 @@ By kind, 35 boards, keyword -> full transcription: numbers **0/67 -> 65/67**,
 names 43/47 -> 45/47, code 14/111 -> 90/111, terms 47/94 -> 89/94, phrases
 5/30 -> 21/30.
 
+#### The prompt was chosen on the same boards this reports (2026-09-23)
+
+**State this plainly in the thesis.** The keyword-versus-transcription comparison above was scored
+on all 35 boards of lectures 1-9, which are the same boards the 88.8% headline is reported on.
+There was no held-out set when the prompt was chosen.
+
+To give a number that selection cannot explain, the boards are split by lecture and the choice is
+re-made on one half only. **The rule, fixed before any per-half number was looked at: dev = odd
+lectures (1, 3, 5, 7, 9), test = even lectures (2, 4, 6, 8).** Split by lecture rather than by
+board, because boards within a lecture share a lecturer, topic, camera and whiteboard. Odd/even is
+the simplest deterministic rule; no other split was tried.
+
+| Half | Boards | Items | Keyword | Full transcription | Better / worse | Sign test |
+|---|---|---|---|---|---|---|
+| dev (choose here) | 17 | 173 | 34.1% | 93.1% | 17 / 0 | p = 1.5e-05 |
+| **test (report here)** | **18** | **176** | **28.4%** | **84.7%** | **17 / 0** | **p = 1.5e-05** |
+| all (the 5.0 headline) | 35 | 349 | 31.2% | 88.8% | 34 / 0 | p = 1.2e-10 |
+
+Full transcription wins on dev, and on the test half, which played no part in that choice, it still
+gives **28.4% -> 84.7%, better on 17 of 18 boards and worse on none**. The conclusion does not
+depend on the selection.
+
+**The honest limit of this check:** it is a split applied after the original comparison was run,
+not a protocol registered before it, so it cannot undo the original selection. It answers the
+narrower question - does the prompt still win on boards that played no part in choosing it - and
+that is all it should be claimed as. Quote either the 88.8% with the sentence above about
+selection, or the 84.7% test-half figure; do not quote 88.8% as if it were held out.
+
+```
+python scripts/prompt_selection_split.py
+```
+
+#### Model size: Qwen2.5-VL-3B against the 7B (2026-09-23)
+
+Same prompt, same raw-frame boards, same answer keys, only the model changes. This asks whether
+the board-reading result needs a 7B model at all.
+
+| Boards | Qwen2.5-VL-3B | Qwen2.5-VL-7B | 7B better / worse | Sign test |
+|---|---|---|---|---|
+| 35 boards, lectures 1-9, 349 items | 85.4% | 88.8% | 11 / 5 | p = 0.21 (Wilcoxon p = 0.021) |
+| Speaker3, 10 boards, 87 items | 77.0% | 89.7% | 5 / 1 | p = 0.22 (Wilcoxon p = 0.075) |
+| **Combined, 45 boards, 436 items** | **83.7%** | **89.0%** | **16 / 6** | **p = 0.053** |
+
+**The point worth making: the prompt matters far more than the model size.** Changing the prompt is
+worth **+57.6 pp** (31.2% -> 88.8%); going from 3B to 7B is worth **+5.3 pp**, and that gap is not
+significant by the sign test on either set separately. A 3B model at 85.4% already carries most of
+the board. The 7B is the better model and stays the one reported, but the thesis should not present
+model scale as the thing that made board reading work.
+
+The 7B figures here (310/349 = 88.8%, 78/87 = 89.7%) are recomputed from the stored outputs and
+match 5.0 exactly, which also checks that the scorer and the keys have not drifted.
+
+**Not run: the larger VL models, and why.** Checked against the Hugging Face API on 2026-09-23:
+Qwen2.5-VL-32B-Instruct is **68.3 GB** of weights and Qwen2.5-VL-72B-Instruct is **146.8 GB**. The
+5090's D: drive had 62 GB free at the time, with the Qwen3-32B notes model still downloading into
+it, so neither fits. Both would also have to be quantised to run in 32 GB of VRAM, which would
+confound model size with quantisation loss and make the comparison less clean than the 3B-vs-7B one
+above, where both models run in bf16. **So this is a 3B-against-7B ablation, not a scale study, and
+the thesis should say exactly that.**
+
+```
+python scripts/transcribe_boards.py --all --source frame --model Qwen/Qwen2.5-VL-3B-Instruct --tag 3b
+python scripts/score_board_recall.py --gt data/board_truth data/board_truth/draft_lectures1to6 \
+  --compare-names board_text_frame_3b.md board_text_frame.md
+python scripts/score_board_recall.py --runs output/speaker3_runs --gt data/board_truth/draft_speaker3 \
+  --compare-names board_text_frame_3b.md board_text_frame.md
+```
+
 **Reconstructed board against raw frame:** 35 boards 88.8% -> 95.7%, better on 8,
 worse on 3, sign p = 0.23, Wilcoxon p = 0.056; Speaker3 89.7% -> 85.1%, worse on
 one board. **A trend on lectures 1-9, not significant, and absent for Speaker3.**
