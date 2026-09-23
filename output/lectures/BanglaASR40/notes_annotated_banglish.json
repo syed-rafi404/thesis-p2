@@ -1,0 +1,100 @@
+{
+  "lecture": "BanglaASR40",
+  "dataset_lecture": "BanglaASR40",
+  "language": "banglish",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "mock": false,
+  "transcript_file": "transcript.txt",
+  "times_approximate": false,
+  "leakage_warning": "",
+  "boxes_file": "board_boxes.json",
+  "board_text_file": "board_text_clean.json",
+  "quotes_kept": 0,
+  "quotes_dropped": 2,
+  "invalid_box_refs": 0,
+  "quotes_translated": 0,
+  "quotes_word_for_word_checked": true,
+  "quotes_retranslated": 0,
+  "quotes_untranslated_dropped": 0,
+  "written_in": "banglish",
+  "translated_to_english": false,
+  "latex_rewritten": 0,
+  "colour_fixes": 0,
+  "inline_quotes_unverified": 4,
+  "sections": [
+    {
+      "board": 1,
+      "era": 1,
+      "from": "0:20",
+      "to": "0:50",
+      "transcript_chars": 782,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [
+        "In the last video, we learned about time slicing and obtaining network addresses, which help us divide the IP space. Now, in this video, we will calculate the range of usable IP addresses for different networks, right?",
+        "For each subsequent network, we will assign a unique user name.",
+        "For the second network, we will consider two subnets. For the third network, we will also consider two subnets. As you can see, for A we get this, for B we get this, and so on.",
+        "Guys, there might be a calculation mistake here, but please don't worry about it for now."
+      ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    },
+    {
+      "board": 2,
+      "era": 2,
+      "from": "1:00",
+      "to": "3:04",
+      "transcript_chars": 1255,
+      "boxes": 5,
+      "boxes_mentioned": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [
+        "so, etar je range ta hbe mannay last address er seta prothome usable ip, last usable ip jeita hobe sheta hoche eta theke ekcom.",
+        "usable ip nikhe dibe bore. usable ip. usable ip. thikache?"
+      ],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    },
+    {
+      "board": 3,
+      "era": 3,
+      "from": "3:30",
+      "to": "5:50",
+      "transcript_chars": 1846,
+      "boxes": 10,
+      "boxes_mentioned": [],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    }
+  ]
+}

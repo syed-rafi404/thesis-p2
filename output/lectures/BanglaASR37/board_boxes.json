@@ -1,0 +1,79 @@
+{
+  "lecture": "BanglaASR37",
+  "boxes_from": "ink",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "mock": false,
+  "prompt": "This is a classroom whiteboard from a university lecture. Numbered coloured boxes\nhave been drawn on it; each box surrounds one part of the writing. There are {n} boxes,\nnumbered 1 to {n}.\n\nFor every box, reply with:\n- \"id\": the box number.\n- \"name\": 1 to 4 words saying what kind of content the box holds, for example \"Title\",\n  \"Definition\", \"Truth table\", \"Gate symbol\", \"Block diagram\", \"SQL query\", \"Code\",\n  \"List\", \"Worked example\", \"Formula\". If the box holds no lecture writing (a smudge,\n  a shadow, a logo or sticker, the edge of the board), use \"none\".\n- \"text\": everything written inside that box, copied exactly: every number, name and\n  symbol. For a bar over a term write NOT(...). Write a table as Markdown table rows.\n  Write [illegible] for what cannot be read. Never guess.\n\nReply with JSON only: a list with one object per box, in box order, like\n[{{\"id\": 1, \"name\": \"Title\", \"text\": \"Digital Logic Design\"}}]",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:00",
+      "to": "13:32",
+      "clean": true,
+      "source_image": "output\\lectures\\BanglaASR37\\boards\\clean\\BanglaASR37_board_era1_000_clean.jpg",
+      "figure": "figures_annotated/board_era1_000.jpg",
+      "boxes_found": 9,
+      "boxes_kept": 4,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            696,
+            84,
+            1006,
+            190
+          ],
+          "ink_pixels": 625,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Title",
+          "text": "VLSM"
+        },
+        {
+          "bbox": [
+            244,
+            182,
+            572,
+            284
+          ],
+          "ink_pixels": 1095,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Formula",
+          "text": "[102.168.0.17]"
+        },
+        {
+          "bbox": [
+            474,
+            432,
+            696,
+            494
+          ],
+          "ink_pixels": 306,
+          "id": 3,
+          "colour": "orange",
+          "hex": "#f77f00",
+          "name": "Formula",
+          "text": "512 8"
+        },
+        {
+          "bbox": [
+            478,
+            496,
+            726,
+            570
+          ],
+          "ink_pixels": 323,
+          "id": 4,
+          "colour": "green",
+          "hex": "#2a9d4f",
+          "name": "Formula",
+          "text": "128 27"
+        }
+      ],
+      "vlm_reply": "[\n    {\"id\": 1, \"name\": \"Title\", \"text\": \"VLSM\"},\n    {\"id\": 2, \"name\": \"None\", \"text\": \"\"},\n    {\"id\": 3, \"name\": \"Formula\", \"text\": \"[102.168.0.17]\"},\n    {\"id\": 4, \"name\": \"Formula\", \"text\": \"512 8\"},\n    {\"id\": 5, \"name\": \"Formula\", \"text\": \"128 27\"},\n    {\"id\": 6, \"name\": \"None\", \"text\": \"\"},\n    {\"id\": 7, \"name\": \"None\", \"text\": \"\"},\n    {\"id\": 8, \"name\": \"None\", \"text\": \"\"},\n    {\"id\": 9, \"name\": \"None\", \"text\": \"\"}\n]"
+    }
+  ]
+}

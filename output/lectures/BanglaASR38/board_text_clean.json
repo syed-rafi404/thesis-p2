@@ -1,0 +1,27 @@
+{
+  "lecture": "BanglaASR38",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "source": "clean",
+  "prompt": "This is a photograph of a classroom whiteboard during a university lecture.\n\nTranscribe everything written on the whiteboard, exactly as written.\n\n- Copy every number, name, identifier, date and symbol exactly. Do not round,\n  correct or reformat values.\n- Write tables as Markdown tables with the same rows and columns as the board.\n- Write code, SQL and program text inside ``` fences, keeping line breaks.\n- Write formulas as they appear. For a bar over a term write it as NOT(...),\n  for example NOT(A+B).\n- Keep diagrams short: name what they are and copy any labels on them, for\n  example \"Gate diagram: inputs A, B into a box labelled NAND, output NOT(AB)\".\n- If part of the board cannot be read, write [illegible]. Never guess, and never\n  add anything that is not written on the board.\n- Ignore any person in the picture. Describe only what is written.\n\nOutput only the transcription.",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:00",
+      "to": "3:36",
+      "clear_fraction": 1.0,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR38\\boards\\clean\\BanglaASR38_board_era1_000_clean.jpg",
+      "text": "```markdown\n| VL5M |\n| MATH |\n| 102.168.0.1 |\n| Networks | Req.Addrs. | 2^n | Host | Prefix | Subnet | 3rd octate, 2 val |\n| A         | 503        | 512 | 9    | /23   | /24    | 0000 0000 |\n| B         | 253        | 256 | 8    | /24   | /24    | 0000 0000 |\n| C         | 102        | 128 | 27   | /25   | /25    | 0000 0000 |\n| D         | 9          | 9   | 2    | /30   | /30    | 0000 0000 |\n| E         | 9          | 9   | 2    | /30   | /30    | 0000 0000 |\n| F         | 9          | 9   | 2    | /30   | /30    | 0000 0000 |\n```\n\n```",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 2,
+      "from": "3:50",
+      "to": "6:12",
+      "clear_fraction": 1.0,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR38\\boards\\clean\\BanglaASR38_board_era2_350_clean.jpg",
+      "text": "```markdown\n| VL5M |\n| MATH |\n\n| Networks | Req.Addrs. | 2^n | Host | Pre-fix | Sub |\n| --- | --- | --- | --- | --- | --- |\n| A | 503 | 512 | 9 | /23 | 3rd octate, 2 val |\n| B | 253 | 256 | 8 | /24 | 11, 12, 1 val |\n| C | 102 | 128 | 7 | /25 | 4th octaste, 128 val |\n| D | 9 | 4 | 2 | /30 | 11, 12, 4, 4 |\n| E | 4 | 4 | 2 | /30 | 11, 4, 4, 4 |\n| F | 4 | 4 | 2 | /30 | 11, 4, 4, 4 |\n```",
+      "runaway_lines_removed": 0
+    }
+  ],
+  "mock": false
+}

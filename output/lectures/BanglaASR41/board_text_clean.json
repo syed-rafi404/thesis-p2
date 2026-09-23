@@ -1,0 +1,27 @@
+{
+  "lecture": "BanglaASR41",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "source": "clean",
+  "prompt": "This is a photograph of a classroom whiteboard during a university lecture.\n\nTranscribe everything written on the whiteboard, exactly as written.\n\n- Copy every number, name, identifier, date and symbol exactly. Do not round,\n  correct or reformat values.\n- Write tables as Markdown tables with the same rows and columns as the board.\n- Write code, SQL and program text inside ``` fences, keeping line breaks.\n- Write formulas as they appear. For a bar over a term write it as NOT(...),\n  for example NOT(A+B).\n- Keep diagrams short: name what they are and copy any labels on them, for\n  example \"Gate diagram: inputs A, B into a box labelled NAND, output NOT(AB)\".\n- If part of the board cannot be read, write [illegible]. Never guess, and never\n  add anything that is not written on the board.\n- Ignore any person in the picture. Describe only what is written.\n\nOutput only the transcription.",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:00",
+      "to": "2:20",
+      "clear_fraction": 1.0,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR41\\boards\\clean\\BanglaASR41_board_era1_000_clean.jpg",
+      "text": "| D2-22 | 10 |\n| S.R | N.A | 192.168.0.0/22 |\n| E.R | B.A | 192.168.3.255 |\n| V.A | 192.168.0.1 | /23 |\n| V.B | 192.168.2.1 | /24 |\n| V.C | 192.168.3.1 | /25 |\n| V.D | 192.168.3.129 | /30 |\n| V.E | 192.168.3.132 | /30 |\n| V.F | 192.168.3.137 | /30 |\n| V.G | 192.168.3.131 |",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 2,
+      "from": "2:30",
+      "to": "5:08",
+      "clear_fraction": 1.0,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR41\\boards\\clean\\BanglaASR41_board_era2_230_clean.jpg",
+      "text": "```\nA -> 192.168.0.1\nB -> 192.168.2.0\nC -> 192.168.3.0\n\n192.168.2.0 - 1\n192.168.2.255 + 1\n\n192.168.2.255 - 1\n192.168.2.255 + 1\n\n192.168.0.0/22\n192.168.3.255\n\nS.R -> N.A -> 192.168.0.0/22\nE.R -> B.A -> 192.168.3.255\n\nV.A -> 192.168.0.1 /23\nV.B -> 192.168.2.1 /23\nV.C -> 192.168.3.1 /25\nV.D -> 192.168.3.129 /30\nV.E -> 192.168.3.132 /30\nV.F -> 192.168.3.137 /30\n```",
+      "runaway_lines_removed": 0
+    }
+  ],
+  "mock": false
+}

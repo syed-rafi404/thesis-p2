@@ -1,0 +1,36 @@
+{
+  "lecture": "BanglaASR36",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "source": "clean",
+  "prompt": "This is a photograph of a classroom whiteboard during a university lecture.\n\nTranscribe everything written on the whiteboard, exactly as written.\n\n- Copy every number, name, identifier, date and symbol exactly. Do not round,\n  correct or reformat values.\n- Write tables as Markdown tables with the same rows and columns as the board.\n- Write code, SQL and program text inside ``` fences, keeping line breaks.\n- Write formulas as they appear. For a bar over a term write it as NOT(...),\n  for example NOT(A+B).\n- Keep diagrams short: name what they are and copy any labels on them, for\n  example \"Gate diagram: inputs A, B into a box labelled NAND, output NOT(AB)\".\n- If part of the board cannot be read, write [illegible]. Never guess, and never\n  add anything that is not written on the board.\n- Ignore any person in the picture. Describe only what is written.\n\nOutput only the transcription.",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:10",
+      "to": "3:12",
+      "clear_fraction": 1.0,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR36\\boards\\clean\\BanglaASR36_board_era1_010_clean.jpg",
+      "text": "VLSM\nVariable Length Subnet Masking\nShort term\n\nLong term\nIPv6\n128 bits\n2^128",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 2,
+      "from": "3:20",
+      "to": "8:50",
+      "clear_fraction": 0.9965,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR36\\boards\\clean\\BanglaASR36_board_era2_320_clean.jpg",
+      "text": "```\nVLSM\n2^8 -> 256\n2^9 -> 256 x 2 -> 100 End\nNet Addr. 192.168.0.0/2\nR1 R2\nX\n250 | END\ndevices)\n850 device\n500 (End devices)\n```",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 3,
+      "from": "9:00",
+      "to": "11:24",
+      "clear_fraction": 0.9918,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR36\\boards\\clean\\BanglaASR36_board_era3_900_clean.jpg",
+      "text": "```\nVLSM\nIP Addr. 192.168.0.2/22\n192.168.240.0\n128+64+32+16\n250 (END devices)\n850 device\n500 (End devices)\n100 End devices\n```",
+      "runaway_lines_removed": 0
+    }
+  ],
+  "mock": false
+}

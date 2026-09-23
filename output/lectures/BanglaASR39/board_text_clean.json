@@ -1,0 +1,54 @@
+{
+  "lecture": "BanglaASR39",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "source": "clean",
+  "prompt": "This is a photograph of a classroom whiteboard during a university lecture.\n\nTranscribe everything written on the whiteboard, exactly as written.\n\n- Copy every number, name, identifier, date and symbol exactly. Do not round,\n  correct or reformat values.\n- Write tables as Markdown tables with the same rows and columns as the board.\n- Write code, SQL and program text inside ``` fences, keeping line breaks.\n- Write formulas as they appear. For a bar over a term write it as NOT(...),\n  for example NOT(A+B).\n- Keep diagrams short: name what they are and copy any labels on them, for\n  example \"Gate diagram: inputs A, B into a box labelled NAND, output NOT(AB)\".\n- If part of the board cannot be read, write [illegible]. Never guess, and never\n  add anything that is not written on the board.\n- Ignore any person in the picture. Describe only what is written.\n\nOutput only the transcription.",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:00",
+      "to": "0:40",
+      "clear_fraction": 1.0,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR39\\boards\\clean\\BanglaASR39_board_era1_000_clean.jpg",
+      "text": "```markdown\n| VL5M | MATH |\n|------|------|\n| 102.168.0.1 | 102.168.9.0/22 |\n| Networks | Req Addns. | 2^h | Host | Prefix | Subnet | 3rd octate, 2 val |\n| A       | 503        | 512  | 9    | /23   | 11     | 4       | 1 val |\n| B       | 253        | 256  | 8    | /24   | 11     | 4       | 1 val |\n| C       | 102        | 128  | 7    | /25   | 4th octate | 128 val |\n| D       | 9          | 4    | 2    | /30   | 11     | 4       | 4 val |\n| E       | 3          | 4    | 2    | /30   | 11     | 4       | 4 val |\n| F       | 9          | 4    | 2    | /30   | 11     | 4       | 4 val |\n```",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 2,
+      "from": "0:50",
+      "to": "3:30",
+      "clear_fraction": 1.0,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR39\\boards\\clean\\BanglaASR39_board_era2_050_clean.jpg",
+      "text": "| VL5M | MATH |\n|------|------|\n| 192.168.0.1 | 192.168.0.0/22 |\n| 192.168.0.1 | 192.168.0.0/22 |\n| 192.168.0.1 | 192.168.0.0/22 |\n| Networks | Req Addns. | 2^h | Host | Prefix | Subnet | 3rd octate, 2 val | 4th octate, 128 val |\n| A       | 503        | 512  | 9    | /23   | 11     | 1 val         | 128 val         |\n| B       | 253        | 256  | 8    | /24   | 11     | 1 val         | 128 val         |\n| C       | 102        | 128  | 7    | /25   | 11     | 128 val       | 128 val         |\n| D       | 9          | 7    | 2    | /30   | 11     | 4 val         | 4 val           |\n| E       | 5          | 4    | 2    | /30   | 11     | 4 val         | 4 val           |\n| F       | 9          | 4    | 2    | /30   | 11     | 4 val         | 4 val           |\n| 32-2=30 |            |      |      |       |        |              |                |",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 3,
+      "from": "3:40",
+      "to": "4:40",
+      "clear_fraction": 1.0,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR39\\boards\\clean\\BanglaASR39_board_era3_340_clean.jpg",
+      "text": "| VL5M MATH | 192.168.0.0/22 |\n| --- | --- |\n| 192.168.0.1 | 32-22 = 10 |\n| S.R -> N.A -> 192.168.0.0/22 | E.R -> B.A -> 192.168.3.255 |\n| Networks Req.Addns. 2^h Host Prefix /23 3rd octate, 2 val | 192.168.0.1 |\n| A -> 503 512 9 /24 11 11 1 val | When we work x |\n| B -> 253 256 8 /24 11 11 1 val | <, we have to |\n| C -> 102 128 7 /25 4th octate / 128 val | the 1 of |\n| D -> 9 9 2 /30 11 11 4 11 | |\n| E -> 9 9 2 /30 11 4 4 3 | |\n| F -> 9 9 2 /30 11 4 4 value | 32-2 = 30) |",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 4,
+      "from": "4:50",
+      "to": "6:50",
+      "clear_fraction": 1.0,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR39\\boards\\clean\\BanglaASR39_board_era4_450_clean.jpg",
+      "text": "| 192 | 0.0 | /22 |\n| --- | --- | --- |\n| 192.168.0.1 |  |  |\n| Networks | Req Addns. | 2^h | Host | Prefix | /23 | /24 | /25 | 3rd octate, 2 val | 4th octate, 1 val | 192.168.0.1 |\n| A | 503 | 12 | 9 |  |  |  |  |  |  |  |\n| B | 253 | 256 | 8 |  |  |  |  |  |  |  |\n| C | 102 | 128 | 7 |  |  |  |  |  |  |  |\n| D | 9 | 4 | 2 | 130 |  |  |  |  |  |  |\n| E | 5 | 4 | 2 | 130 |  |  |  |  |  |  |\n| F | 9 | 4 | 2 | 130 |  |  |  |  |  |  |\n| 32-7=30 |  |  |  |  |  |  |  |  |  |  |\n| VLSM | MATH | 192-22 | 10 | SR->NA | 192.168.0.0/22 | ER->B A->192.168.3.255 |  |  |  |  |",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 5,
+      "from": "7:00",
+      "to": "8:48",
+      "clear_fraction": 1.0,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR39\\boards\\clean\\BanglaASR39_board_era5_700_clean.jpg",
+      "text": "| VL5M | MATH |\n|------|------|\n| 192.168.0.0/22 | 192.168.0.1 |\n| Networks | Req Adns. | 2^h | Host | Prefix | /23 | 3rd octate, 2 val | 192.168.0.1 |\n| A      | 503     | 512  | 9    | /24  | 11^h, 1 val | 192.168.2.1 |\n| B      | 253     | 256  | 8    | /24  | 4th octate, 128 val | 192.168.3.1 |\n| C      | 102     | 128  | 7    | /25  | 11^h, 4 val | 192.168.3.129 |\n| D      | 9       | 4    | 2    | /30  | 11^h, 4 val | 192.168.3.133 |\n| E      | 5       | 4    | 2    | /30  | 11^h, 4 val | 192.168.3.137 |\n| F      | 9       | 4    | 2    | /30  | 32-2=30 | 192.168.3.137 |",
+      "runaway_lines_removed": 0
+    }
+  ],
+  "mock": false
+}

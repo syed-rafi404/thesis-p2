@@ -1,0 +1,18 @@
+{
+  "lecture": "BanglaASR37",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "source": "clean",
+  "prompt": "This is a photograph of a classroom whiteboard during a university lecture.\n\nTranscribe everything written on the whiteboard, exactly as written.\n\n- Copy every number, name, identifier, date and symbol exactly. Do not round,\n  correct or reformat values.\n- Write tables as Markdown tables with the same rows and columns as the board.\n- Write code, SQL and program text inside ``` fences, keeping line breaks.\n- Write formulas as they appear. For a bar over a term write it as NOT(...),\n  for example NOT(A+B).\n- Keep diagrams short: name what they are and copy any labels on them, for\n  example \"Gate diagram: inputs A, B into a box labelled NAND, output NOT(AB)\".\n- If part of the board cannot be read, write [illegible]. Never guess, and never\n  add anything that is not written on the board.\n- Ignore any person in the picture. Describe only what is written.\n\nOutput only the transcription.",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:00",
+      "to": "13:32",
+      "clear_fraction": 1.0,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR37\\boards\\clean\\BanglaASR37_board_era1_000_clean.jpg",
+      "text": "```\nVL5M\nMATH\n\n| Networks | Req Addns. | 2^h | host | Prefix |\n|-----------|------------|------|------|--------|\n| A         | 503        | 512  | 9    | /23    |\n| B         | 253        | 256  | 8    |        |\n| C         | 102        | 128  | 27   |        |\n| D         | 9          | 4    | 2    |        |\n| E         | 5          | 4    | 2    |        |\n| F         | 9          | 4    | 2    |        |\n\nHost portion\n2^10 -> 1024 host\naddrs.\n1 + 1 + 1 -> R2\n2 = 4\n100 host\n+2 = 102\nC\n2+2\nR1\n250 host\n[End]\nB\n1 + 1 + 1 = 250 + 3\n= 253\nR3\n500 host\n[End]\nA\n9 + 2 + 1 = 500 + 3\n= 503\n```",
+      "runaway_lines_removed": 0
+    }
+  ],
+  "mock": false
+}

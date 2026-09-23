@@ -1,0 +1,36 @@
+{
+  "lecture": "BanglaASR40",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "source": "clean",
+  "prompt": "This is a photograph of a classroom whiteboard during a university lecture.\n\nTranscribe everything written on the whiteboard, exactly as written.\n\n- Copy every number, name, identifier, date and symbol exactly. Do not round,\n  correct or reformat values.\n- Write tables as Markdown tables with the same rows and columns as the board.\n- Write code, SQL and program text inside ``` fences, keeping line breaks.\n- Write formulas as they appear. For a bar over a term write it as NOT(...),\n  for example NOT(A+B).\n- Keep diagrams short: name what they are and copy any labels on them, for\n  example \"Gate diagram: inputs A, B into a box labelled NAND, output NOT(AB)\".\n- If part of the board cannot be read, write [illegible]. Never guess, and never\n  add anything that is not written on the board.\n- Ignore any person in the picture. Describe only what is written.\n\nOutput only the transcription.",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:20",
+      "to": "0:50",
+      "clear_fraction": 0.972,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR40\\boards\\clean\\BanglaASR40_board_era1_020_clean.jpg",
+      "text": "| 8.0.0/22 |\n| 3.132 |\n| Gate diagram: inputs A, B into a box labelled AND, output A*B |",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 2,
+      "from": "1:00",
+      "to": "3:04",
+      "clear_fraction": 1.0,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR40\\boards\\clean\\BanglaASR40_board_era2_100_clean.jpg",
+      "text": "| Usable IP | A → 192.168.0.1 — 192.168.2.0 |\n| --- | --- |\n| B2-22 → 10 | S.R → N.A → 192.168.0.0/22 |\n| E.R → B.A → 192.168.3.255 | A → 192.168.0.1 |\n| B → 192.168.2.1 | C → 192.168.3.1 |\n| D → 192.168.3.120 | E → 192.168.3.133 |\n| F → 192.168.3.132 | G → 192.168.3.131 |",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 3,
+      "from": "3:30",
+      "to": "5:50",
+      "clear_fraction": 1.0,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR40\\boards\\clean\\BanglaASR40_board_era3_330_clean.jpg",
+      "text": "| Usable IP |  |\n| --- | --- |\n| A → 192.168.0.1 — 192.168.2.0 | B2-22 → 10 |\n| B → 192.168.2.1 — 192.168.3.0 | S.R → N.A → 192.168.0.0/22 |\n| C → 192.168.3.1 — 192.168.3.128 | E.R → B.A → 192.168.3.255 |\n| D → 192.168.3.129 — 192.168.3.132 | √A → 192.168.0.1 |\n| E → 192.168.3.133 — 192.168.3.132 | √B → 192.168.2.1 |\n| F → 192.168.3.137 — 192.168.3.140 | √C → 192.168.3.1 |\n|  | √D → 192.168.3.129 |\n|  | E → 192.168.3.132 |\n|  | F → 192.168.3.132 |\n|  | 192.168.3.131 |",
+      "runaway_lines_removed": 0
+    }
+  ],
+  "mock": false
+}

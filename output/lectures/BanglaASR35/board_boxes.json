@@ -1,0 +1,107 @@
+{
+  "lecture": "BanglaASR35",
+  "boxes_from": "ink",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "mock": false,
+  "prompt": "This is a classroom whiteboard from a university lecture. Numbered coloured boxes\nhave been drawn on it; each box surrounds one part of the writing. There are {n} boxes,\nnumbered 1 to {n}.\n\nFor every box, reply with:\n- \"id\": the box number.\n- \"name\": 1 to 4 words saying what kind of content the box holds, for example \"Title\",\n  \"Definition\", \"Truth table\", \"Gate symbol\", \"Block diagram\", \"SQL query\", \"Code\",\n  \"List\", \"Worked example\", \"Formula\". If the box holds no lecture writing (a smudge,\n  a shadow, a logo or sticker, the edge of the board), use \"none\".\n- \"text\": everything written inside that box, copied exactly: every number, name and\n  symbol. For a bar over a term write NOT(...). Write a table as Markdown table rows.\n  Write [illegible] for what cannot be read. Never guess.\n\nReply with JSON only: a list with one object per box, in box order, like\n[{{\"id\": 1, \"name\": \"Title\", \"text\": \"Digital Logic Design\"}}]",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:10",
+      "to": "4:50",
+      "clean": true,
+      "source_image": "output\\lectures\\BanglaASR35\\boards\\clean\\BanglaASR35_board_era1_010_clean.jpg",
+      "figure": "figures_annotated/board_era1_010.jpg",
+      "boxes_found": 3,
+      "boxes_kept": 3,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            422,
+            20,
+            1750,
+            796
+          ],
+          "ink_pixels": 14558,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Subnetting",
+          "text": "Subnetting"
+        },
+        {
+          "bbox": [
+            1408,
+            158,
+            1594,
+            284
+          ],
+          "ink_pixels": 423,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Prefix",
+          "text": "/16"
+        },
+        {
+          "bbox": [
+            1496,
+            298,
+            1562,
+            354
+          ],
+          "ink_pixels": 145,
+          "id": 3,
+          "colour": "orange",
+          "hex": "#f77f00",
+          "name": "Calculation",
+          "text": "2^16 -> 1024\n2^11 -> 2048\n2^16 -> 500"
+        }
+      ],
+      "vlm_reply": "[\n    {\"id\": 1, \"name\": \"Subnetting\", \"text\": \"Subnetting\"},\n    {\"id\": 2, \"name\": \"Prefix\", \"text\": \"/16\"},\n    {\"id\": 3, \"name\": \"Calculation\", \"text\": \"2^16 -> 1024\\n2^11 -> 2048\\n2^16 -> 500\"}\n]"
+    },
+    {
+      "era": 2,
+      "from": "5:00",
+      "to": "7:06",
+      "clean": true,
+      "source_image": "output\\lectures\\BanglaASR35\\boards\\clean\\BanglaASR35_board_era2_500_clean.jpg",
+      "figure": "figures_annotated/board_era2_500.jpg",
+      "boxes_found": 2,
+      "boxes_kept": 2,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            826,
+            20,
+            1650,
+            486
+          ],
+          "ink_pixels": 8281,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Subnetting",
+          "text": "[Subnetting]\nFixed length X\n~ = LSm X\nVariable length Subnet\n~ Y LSm X"
+        },
+        {
+          "bbox": [
+            1654,
+            274,
+            1862,
+            350
+          ],
+          "ink_pixels": 498,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "masking",
+          "text": "masking"
+        }
+      ],
+      "vlm_reply": "[\n    {\n        \"id\": 1,\n        \"name\": \"Subnetting\",\n        \"text\": \"[Subnetting]\\nFixed length X\\n~ = LSm X\\nVariable length Subnet\\n~ Y LSm X\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"masking\",\n        \"text\": \"masking\"\n    }\n]"
+    }
+  ]
+}

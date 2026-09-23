@@ -1,0 +1,289 @@
+{
+  "lecture": "BanglaASR40",
+  "boxes_from": "ink",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "mock": false,
+  "prompt": "This is a classroom whiteboard from a university lecture. Numbered coloured boxes\nhave been drawn on it; each box surrounds one part of the writing. There are {n} boxes,\nnumbered 1 to {n}.\n\nFor every box, reply with:\n- \"id\": the box number.\n- \"name\": 1 to 4 words saying what kind of content the box holds, for example \"Title\",\n  \"Definition\", \"Truth table\", \"Gate symbol\", \"Block diagram\", \"SQL query\", \"Code\",\n  \"List\", \"Worked example\", \"Formula\". If the box holds no lecture writing (a smudge,\n  a shadow, a logo or sticker, the edge of the board), use \"none\".\n- \"text\": everything written inside that box, copied exactly: every number, name and\n  symbol. For a bar over a term write NOT(...). Write a table as Markdown table rows.\n  Write [illegible] for what cannot be read. Never guess.\n\nReply with JSON only: a list with one object per box, in box order, like\n[{{\"id\": 1, \"name\": \"Title\", \"text\": \"Digital Logic Design\"}}]",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:20",
+      "to": "0:50",
+      "clean": true,
+      "source_image": "output\\lectures\\BanglaASR40\\boards\\clean\\BanglaASR40_board_era1_020_clean.jpg",
+      "figure": "figures_annotated/board_era1_020.jpg",
+      "boxes_found": 3,
+      "boxes_kept": 2,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            1146,
+            0,
+            1898,
+            382
+          ],
+          "ink_pixels": 4808,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Date",
+          "text": "8.0.0/22"
+        },
+        {
+          "bbox": [
+            1442,
+            796,
+            1888,
+            898
+          ],
+          "ink_pixels": 625,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Time",
+          "text": "3.13>"
+        }
+      ],
+      "vlm_reply": "[\n    {\"id\": 1, \"name\": \"Date\", \"text\": \"8.0.0/22\"},\n    {\"id\": 2, \"name\": \"Time\", \"text\": \"3.13>\"},\n    {\"id\": 3, \"name\": \"None\", \"text\": \"\"}\n]"
+    },
+    {
+      "era": 2,
+      "from": "1:00",
+      "to": "3:04",
+      "clean": true,
+      "source_image": "output\\lectures\\BanglaASR40\\boards\\clean\\BanglaASR40_board_era2_100_clean.jpg",
+      "figure": "figures_annotated/board_era2_100.jpg",
+      "boxes_found": 6,
+      "boxes_kept": 5,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            1150,
+            84,
+            1736,
+            656
+          ],
+          "ink_pixels": 7805,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Network Addressing",
+          "text": "192.168.0.0/22"
+        },
+        {
+          "bbox": [
+            284,
+            194,
+            1122,
+            376
+          ],
+          "ink_pixels": 2011,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Usable IP Range",
+          "text": "A -> 192.168.0.1 - 192.168.2.0"
+        },
+        {
+          "bbox": [
+            1244,
+            678,
+            1728,
+            766
+          ],
+          "ink_pixels": 698,
+          "id": 3,
+          "colour": "orange",
+          "hex": "#f77f00",
+          "name": "IP Address",
+          "text": "E -> 192.168.3.133"
+        },
+        {
+          "bbox": [
+            1268,
+            800,
+            1736,
+            888
+          ],
+          "ink_pixels": 667,
+          "id": 4,
+          "colour": "green",
+          "hex": "#2a9d4f",
+          "name": "IP Address",
+          "text": "F -> 192.168.3.132"
+        },
+        {
+          "bbox": [
+            1430,
+            898,
+            1736,
+            1048
+          ],
+          "ink_pixels": 707,
+          "id": 5,
+          "colour": "purple",
+          "hex": "#7b2cbf",
+          "name": "IP Address",
+          "text": "-> 192.168.3.131"
+        }
+      ],
+      "vlm_reply": "[\n    {\"id\": 1, \"name\": \"Network Addressing\", \"text\": \"192.168.0.0/22\"},\n    {\"id\": 2, \"name\": \"Usable IP Range\", \"text\": \"A -> 192.168.0.1 - 192.168.2.0\"},\n    {\"id\": 3, \"name\": \"None\", \"text\": \"none\"},\n    {\"id\": 4, \"name\": \"IP Address\", \"text\": \"E -> 192.168.3.133\"},\n    {\"id\": 5, \"name\": \"IP Address\", \"text\": \"F -> 192.168.3.132\"},\n    {\"id\": 6, \"name\": \"IP Address\", \"text\": \"-> 192.168.3.131\"}\n]"
+    },
+    {
+      "era": 3,
+      "from": "3:30",
+      "to": "5:50",
+      "clean": true,
+      "source_image": "output\\lectures\\BanglaASR40\\boards\\clean\\BanglaASR40_board_era3_330_clean.jpg",
+      "figure": "figures_annotated/board_era3_330.jpg",
+      "boxes_found": 10,
+      "boxes_kept": 10,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            1028,
+            94,
+            1694,
+            640
+          ],
+          "ink_pixels": 9789,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Usable IP",
+          "text": "192.168.0.1"
+        },
+        {
+          "bbox": [
+            504,
+            202,
+            760,
+            278
+          ],
+          "ink_pixels": 621,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Usable IP",
+          "text": "192.168.0.1"
+        },
+        {
+          "bbox": [
+            320,
+            288,
+            578,
+            366
+          ],
+          "ink_pixels": 516,
+          "id": 3,
+          "colour": "orange",
+          "hex": "#f77f00",
+          "name": "Usable IP",
+          "text": "192.168.0.1"
+        },
+        {
+          "bbox": [
+            354,
+            392,
+            598,
+            468
+          ],
+          "ink_pixels": 536,
+          "id": 4,
+          "colour": "green",
+          "hex": "#2a9d4f",
+          "name": "Usable IP",
+          "text": "192.168.2.1"
+        },
+        {
+          "bbox": [
+            368,
+            486,
+            696,
+            554
+          ],
+          "ink_pixels": 554,
+          "id": 5,
+          "colour": "purple",
+          "hex": "#7b2cbf",
+          "name": "Usable IP",
+          "text": "192.168.3.1"
+        },
+        {
+          "bbox": [
+            388,
+            642,
+            1202,
+            728
+          ],
+          "ink_pixels": 1356,
+          "id": 6,
+          "colour": "pink",
+          "hex": "#d63384",
+          "name": "Usable IP",
+          "text": "192.168.3.129"
+        },
+        {
+          "bbox": [
+            1270,
+            688,
+            1704,
+            758
+          ],
+          "ink_pixels": 687,
+          "id": 7,
+          "colour": "brown",
+          "hex": "#8d5524",
+          "name": "Usable IP",
+          "text": "192.168.3.132"
+        },
+        {
+          "bbox": [
+            392,
+            736,
+            1208,
+            818
+          ],
+          "ink_pixels": 1424,
+          "id": 8,
+          "colour": "teal",
+          "hex": "#0e7c86",
+          "name": "Usable IP",
+          "text": "192.168.3.133"
+        },
+        {
+          "bbox": [
+            1294,
+            808,
+            1708,
+            882
+          ],
+          "ink_pixels": 633,
+          "id": 9,
+          "colour": "olive",
+          "hex": "#6b7f1a",
+          "name": "Usable IP",
+          "text": "192.168.3.137"
+        },
+        {
+          "bbox": [
+            1418,
+            884,
+            1708,
+            1072
+          ],
+          "ink_pixels": 1252,
+          "id": 10,
+          "colour": "navy",
+          "hex": "#1b2a6b",
+          "name": "Usable IP",
+          "text": "192.168.3.131"
+        }
+      ],
+      "vlm_reply": "[\n    {\"id\": 1, \"name\": \"Usable IP\", \"text\": \"192.168.0.1\"},\n    {\"id\": 2, \"name\": \"Usable IP\", \"text\": \"192.168.0.1\"},\n    {\"id\": 3, \"name\": \"Usable IP\", \"text\": \"192.168.0.1\"},\n    {\"id\": 4, \"name\": \"Usable IP\", \"text\": \"192.168.2.1\"},\n    {\"id\": 5, \"name\": \"Usable IP\", \"text\": \"192.168.3.1\"},\n    {\"id\": 6, \"name\": \"Usable IP\", \"text\": \"192.168.3.129\"},\n    {\"id\": 7, \"name\": \"Usable IP\", \"text\": \"192.168.3.132\"},\n    {\"id\": 8, \"name\": \"Usable IP\", \"text\": \"192.168.3.133\"},\n    {\"id\": 9, \"name\": \"Usable IP\", \"text\": \"192.168.3.137\"},\n    {\"id\": 10, \"name\": \"Usable IP\", \"text\": \"192.168.3.131\"}\n]"
+    }
+  ]
+}

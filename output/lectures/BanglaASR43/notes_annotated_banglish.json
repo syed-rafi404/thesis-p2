@@ -1,0 +1,72 @@
+{
+  "lecture": "BanglaASR43",
+  "dataset_lecture": "BanglaASR43",
+  "language": "banglish",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "mock": false,
+  "transcript_file": "transcript.txt",
+  "times_approximate": false,
+  "leakage_warning": "",
+  "boxes_file": "board_boxes.json",
+  "board_text_file": "board_text_clean.json",
+  "quotes_kept": 2,
+  "quotes_dropped": 1,
+  "invalid_box_refs": 0,
+  "quotes_translated": 0,
+  "quotes_word_for_word_checked": true,
+  "quotes_retranslated": 0,
+  "quotes_untranslated_dropped": 0,
+  "written_in": "banglish",
+  "translated_to_english": false,
+  "latex_rewritten": 0,
+  "colour_fixes": 0,
+  "inline_quotes_unverified": 0,
+  "sections": [
+    {
+      "board": 1,
+      "era": 1,
+      "from": "0:00",
+      "to": "2:24",
+      "transcript_chars": 1611,
+      "boxes": 1,
+      "boxes_mentioned": [],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "so oitar khetre ei je tos hoy tese jodi jodi type of service. oitar of service ta like data ta pao jodi beshi dorkari hoy."
+      ],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    },
+    {
+      "board": 2,
+      "era": 2,
+      "from": "2:30",
+      "to": "7:36",
+      "transcript_chars": 4429,
+      "boxes": 1,
+      "boxes_mentioned": [
+        1
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "so jodi netro ta kono dar disk connected hoye jay, router er toh pabe na. tokhon er je packet ta patailo, for example ei duita router er moddhe ekta disk connection chilo."
+      ],
+      "quotes_dropped": [
+        "so basically jodi for example ami jeta dekhailam je bishta hop lakase gula jayte, for example ami bishta hop site kore disi jay je bishta hop er moddhei pochai, taole hocche toh chulai e yallo successful ping, arjodi duita hop er bishe na hoy, taj leir je router er thekbe she router peyte."
+      ],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    }
+  ]
+}

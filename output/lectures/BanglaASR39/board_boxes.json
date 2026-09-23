@@ -1,0 +1,373 @@
+{
+  "lecture": "BanglaASR39",
+  "boxes_from": "ink",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "mock": false,
+  "prompt": "This is a classroom whiteboard from a university lecture. Numbered coloured boxes\nhave been drawn on it; each box surrounds one part of the writing. There are {n} boxes,\nnumbered 1 to {n}.\n\nFor every box, reply with:\n- \"id\": the box number.\n- \"name\": 1 to 4 words saying what kind of content the box holds, for example \"Title\",\n  \"Definition\", \"Truth table\", \"Gate symbol\", \"Block diagram\", \"SQL query\", \"Code\",\n  \"List\", \"Worked example\", \"Formula\". If the box holds no lecture writing (a smudge,\n  a shadow, a logo or sticker, the edge of the board), use \"none\".\n- \"text\": everything written inside that box, copied exactly: every number, name and\n  symbol. For a bar over a term write NOT(...). Write a table as Markdown table rows.\n  Write [illegible] for what cannot be read. Never guess.\n\nReply with JSON only: a list with one object per box, in box order, like\n[{{\"id\": 1, \"name\": \"Title\", \"text\": \"Digital Logic Design\"}}]",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:00",
+      "to": "0:40",
+      "clean": true,
+      "source_image": "output\\lectures\\BanglaASR39\\boards\\clean\\BanglaASR39_board_era1_000_clean.jpg",
+      "figure": "figures_annotated/board_era1_000.jpg",
+      "boxes_found": 10,
+      "boxes_kept": 10,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            104,
+            0,
+            1392,
+            608
+          ],
+          "ink_pixels": 9381,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "IP Address",
+          "text": "192. 0.0/22"
+        },
+        {
+          "bbox": [
+            1688,
+            0,
+            1898,
+            102
+          ],
+          "ink_pixels": 2386,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Board Brand",
+          "text": "AMICA SUPER BOARD"
+        },
+        {
+          "bbox": [
+            1492,
+            112,
+            1898,
+            234
+          ],
+          "ink_pixels": 995,
+          "id": 3,
+          "colour": "orange",
+          "hex": "#f77f00",
+          "name": "IP Address",
+          "text": "192. 168. 0.0/22"
+        },
+        {
+          "bbox": [
+            168,
+            622,
+            486,
+            688
+          ],
+          "ink_pixels": 449,
+          "id": 4,
+          "colour": "green",
+          "hex": "#2a9d4f",
+          "name": "Number",
+          "text": "0"
+        },
+        {
+          "bbox": [
+            866,
+            620,
+            960,
+            688
+          ],
+          "ink_pixels": 164,
+          "id": 5,
+          "colour": "purple",
+          "hex": "#7b2cbf",
+          "name": "Number",
+          "text": "30"
+        },
+        {
+          "bbox": [
+            178,
+            712,
+            508,
+            788
+          ],
+          "ink_pixels": 428,
+          "id": 6,
+          "colour": "pink",
+          "hex": "#d63384",
+          "name": "Letter",
+          "text": "E"
+        },
+        {
+          "bbox": [
+            864,
+            724,
+            962,
+            804
+          ],
+          "ink_pixels": 187,
+          "id": 7,
+          "colour": "brown",
+          "hex": "#8d5524",
+          "name": "Slash",
+          "text": "/30"
+        },
+        {
+          "bbox": [
+            190,
+            790,
+            514,
+            858
+          ],
+          "ink_pixels": 418,
+          "id": 8,
+          "colour": "teal",
+          "hex": "#0e7c86",
+          "name": "Number",
+          "text": "8"
+        },
+        {
+          "bbox": [
+            712,
+            828,
+            1000,
+            978
+          ],
+          "ink_pixels": 939,
+          "id": 9,
+          "colour": "olive",
+          "hex": "#6b7f1a",
+          "name": "Formula",
+          "text": "2 -> /30\n32 - 2 = 30"
+        },
+        {
+          "bbox": [
+            1300,
+            816,
+            1464,
+            880
+          ],
+          "ink_pixels": 250,
+          "id": 10,
+          "colour": "navy",
+          "hex": "#1b2a6b",
+          "name": "Text",
+          "text": "3 value"
+        }
+      ],
+      "vlm_reply": "[\n    {\"id\": 1, \"name\": \"IP Address\", \"text\": \"192. 0.0/22\"},\n    {\"id\": 2, \"name\": \"Board Brand\", \"text\": \"AMICA SUPER BOARD\"},\n    {\"id\": 3, \"name\": \"IP Address\", \"text\": \"192. 168. 0.0/22\"},\n    {\"id\": 4, \"name\": \"Number\", \"text\": \"0\"},\n    {\"id\": 5, \"name\": \"Number\", \"text\": \"30\"},\n    {\"id\": 6, \"name\": \"Letter\", \"text\": \"E\"},\n    {\"id\": 7, \"name\": \"Slash\", \"text\": \"/30\"},\n    {\"id\": 8, \"name\": \"Number\", \"text\": \"8\"},\n    {\"id\": 9, \"name\": \"Formula\", \"text\": \"2 -> /30\\n32 - 2 = 30\"},\n    {\"id\": 10, \"name\": \"Text\", \"text\": \"3 value\"}\n]"
+    },
+    {
+      "era": 2,
+      "from": "0:50",
+      "to": "3:30",
+      "clean": true,
+      "source_image": "output\\lectures\\BanglaASR39\\boards\\clean\\BanglaASR39_board_era2_050_clean.jpg",
+      "figure": "figures_annotated/board_era2_050.jpg",
+      "boxes_found": 10,
+      "boxes_kept": 5,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            164,
+            28,
+            516,
+            148
+          ],
+          "ink_pixels": 1125,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "IP Address",
+          "text": "192. 0.0/22"
+        },
+        {
+          "bbox": [
+            336,
+            164,
+            622,
+            308
+          ],
+          "ink_pixels": 1213,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "IP Address",
+          "text": "192.168.0.1"
+        },
+        {
+          "bbox": [
+            848,
+            112,
+            1034,
+            212
+          ],
+          "ink_pixels": 397,
+          "id": 3,
+          "colour": "orange",
+          "hex": "#f77f00",
+          "name": "VLSM",
+          "text": "VLSM"
+        },
+        {
+          "bbox": [
+            920,
+            212,
+            1124,
+            294
+          ],
+          "ink_pixels": 443,
+          "id": 4,
+          "colour": "green",
+          "hex": "#2a9d4f",
+          "name": "Math",
+          "text": "MATH"
+        },
+        {
+          "bbox": [
+            114,
+            356,
+            504,
+            530
+          ],
+          "ink_pixels": 1689,
+          "id": 5,
+          "colour": "purple",
+          "hex": "#7b2cbf",
+          "name": "Networks",
+          "text": "Networks Req.Addrs."
+        }
+      ],
+      "vlm_reply": "[\n    {\"id\": 1, \"name\": \"IP Address\", \"text\": \"192. 0.0/22\"},\n    {\"id\": 2, \"name\": \"None\", \"text\": \"\"},\n    {\"id\": 3, \"name\": \"IP Address\", \"text\": \"192.168.0.1\"},\n    {\"id\": 4, \"name\": \"None\", \"text\": \"\"},\n    {\"id\": 5, \"name\": \"VLSM\", \"text\": \"VLSM\"},\n    {\"id\": 6, \"name\": \"Math\", \"text\": \"MATH\"},\n    {\"id\": 7, \"name\": \"Networks\", \"text\": \"Networks Req.Addrs.\"},\n    {\"id\": 8, \"name\": \"None\", \"text\": \"\"},\n    {\"id\": 9, \"name\": \"None\", \"text\": \"\"},\n    {\"id\": 10, \"name\": \"None\", \"text\": \"\"}\n]"
+    },
+    {
+      "era": 3,
+      "from": "3:40",
+      "to": "4:40",
+      "clean": true,
+      "source_image": "output\\lectures\\BanglaASR39\\boards\\clean\\BanglaASR39_board_era3_340_clean.jpg",
+      "figure": "figures_annotated/board_era3_340.jpg",
+      "boxes_found": 10,
+      "boxes_kept": 1,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            668,
+            0,
+            1766,
+            500
+          ],
+          "ink_pixels": 9042,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "VLSM Math",
+          "text": "VL5M"
+        }
+      ],
+      "vlm_reply": "[\n    {\"id\": 1, \"name\": \"None\", \"text\": \"\"},\n    {\"id\": 2, \"name\": \"VLSM Math\", \"text\": \"VL5M\"},\n    {\"id\": 3, \"name\": \"None\", \"text\": \"\"},\n    {\"id\": 4, \"name\": \"None\", \"text\": \"\"},\n    {\"id\": 5, \"name\": \"None\", \"text\": \"\"},\n    {\"id\": 6, \"name\": \"None\", \"text\": \"\"},\n    {\"id\": 7, \"name\": \"None\", \"text\": \"\"},\n    {\"id\": 8, \"name\": \"None\", \"text\": \"\"},\n    {\"id\": 9, \"name\": \"None\", \"text\": \"\"},\n    {\"id\": 10, \"name\": \"None\", \"text\": \"\"}\n]"
+    },
+    {
+      "era": 4,
+      "from": "4:50",
+      "to": "6:50",
+      "clean": true,
+      "source_image": "output\\lectures\\BanglaASR39\\boards\\clean\\BanglaASR39_board_era4_450_clean.jpg",
+      "figure": "figures_annotated/board_era4_450.jpg",
+      "boxes_found": 8,
+      "boxes_kept": 4,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            198,
+            26,
+            576,
+            116
+          ],
+          "ink_pixels": 608,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Title",
+          "text": "VLSM"
+        },
+        {
+          "bbox": [
+            324,
+            162,
+            678,
+            312
+          ],
+          "ink_pixels": 1103,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Formula",
+          "text": "\\sqrt{192.168.0.1}"
+        },
+        {
+          "bbox": [
+            212,
+            622,
+            484,
+            686
+          ],
+          "ink_pixels": 370,
+          "id": 3,
+          "colour": "orange",
+          "hex": "#f77f00",
+          "name": "Formula",
+          "text": "F -> 9"
+        },
+        {
+          "bbox": [
+            172,
+            708,
+            1026,
+            990
+          ],
+          "ink_pixels": 1977,
+          "id": 4,
+          "colour": "green",
+          "hex": "#2a9d4f",
+          "name": "Formula",
+          "text": "F -> 9"
+        }
+      ],
+      "vlm_reply": "[\n    {\"id\": 1, \"name\": \"Title\", \"text\": \"VLSM\"},\n    {\"id\": 2, \"name\": \"None\", \"text\": \"\"},\n    {\"id\": 3, \"name\": \"None\", \"text\": \"\"},\n    {\"id\": 4, \"name\": \"Formula\", \"text\": \"\\\\sqrt{192.168.0.1}\"},\n    {\"id\": 5, \"name\": \"None\", \"text\": \"\"},\n    {\"id\": 6, \"name\": \"Formula\", \"text\": \"F -> 9\"},\n    {\"id\": 7, \"name\": \"None\", \"text\": \"\"},\n    {\"id\": 8, \"name\": \"Formula\", \"text\": \"F -> 9\"}\n]"
+    },
+    {
+      "era": 5,
+      "from": "7:00",
+      "to": "8:48",
+      "clean": true,
+      "source_image": "output\\lectures\\BanglaASR39\\boards\\clean\\BanglaASR39_board_era5_700_clean.jpg",
+      "figure": "figures_annotated/board_era5_700.jpg",
+      "boxes_found": 1,
+      "boxes_kept": 1,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            210,
+            0,
+            1762,
+            1044
+          ],
+          "ink_pixels": 24321,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "VLSM Math",
+          "text": "VL5M MATH"
+        }
+      ],
+      "vlm_reply": "[\n    {\"id\": 1, \"name\": \"VLSM Math\", \"text\": \"VL5M MATH\"},\n    {\"id\": 2, \"name\": \"Networks\", \"text\": \"Networks\"},\n    {\"id\": 3, \"name\": \"Prefix\", \"text\": \"Prefix\"},\n    {\"id\": 4, \"name\": \"Host\", \"text\": \"Host\"},\n    {\"id\": 5, \"name\": \"2nd Octate\", \"text\": \"2nd octate\"},\n    {\"id\": 6, \"name\": \"3rd Octate\", \"text\": \"3rd octate\"},\n    {\"id\": 7, \"name\": \"4th Octate\", \"text\": \"4th octate\"},\n    {\"id\": 8, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 9, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 10, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 11, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 12, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 13, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 14, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 15, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 16, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 17, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 18, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 19, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 20, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 21, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 22, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 23, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 24, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 25, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 26, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 27, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 28, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 29, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 30, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 31, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 32, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 33, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 34, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 35, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 36, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 37, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 38, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 39, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 40, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 41, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 42, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 43, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 44, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 45, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 46, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 47, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 48, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 49, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 50, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 51, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 52, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 53, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 54, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 55, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 56, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 57, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 58, \"name\": \"128 val\", \"text\": \"128 val\"},\n    {\"id\": 59, \"name\": \"128 val\n---retry---\n[\n    {\n        \"id\": 1,\n        \"name\": \"VLSM Math\",\n        \"text\": \"VL5M MATH\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Networks\",\n        \"text\": \"Networks Req Adns.\"\n    },\n    {\n        \"id\": 3,\n        \"name\": \"Prefix\",\n        \"text\": \"Prefix /23\"\n    },\n    {\n        \"id\": 4,\n        \"name\": \"Host\",\n        \"text\": \"Host 9\"\n    },\n    {\n        \"id\": 5,\n        \"name\": \"2nd Octate, 2 val\",\n        \"text\": \"2nd octate, 2 val\"\n    },\n    {\n        \"id\": 6,\n        \"name\": \"3rd Octate, 2 val\",\n        \"text\": \"3rd octate, 2 val\"\n    },\n    {\n        \"id\": 7,\n        \"name\": \"4th Octate, 128 val\",\n        \"text\": \"4th octate, 128 val\"\n    },\n    {\n        \"id\": 8,\n        \"name\": \"192.168.0.1\",\n        \"text\": \"192.168.0.1\"\n    },\n    {\n        \"id\": 9,\n        \"name\": \"192.168.2.1\",\n        \"text\": \"192.168.2.1\"\n    },\n    {\n        \"id\": 10,\n        \"name\": \"192.168.3.1\",\n        \"text\": \"192.168.3.1\"\n    },\n    {\n        \"id\": 11,\n        \"name\": \"192.168.3.129\",\n        \"text\": \"192.168.3.129\"\n    },\n    {\n        \"id\": 12,\n        \"name\": \"192.168.3.133\",\n        \"text\": \"192.168.3.133\"\n    },\n    {\n        \"id\": 13,\n        \"name\": \"192.168.3.132\",\n        \"text\": \"192.168.3.132\"\n    }\n]"
+    }
+  ]
+}
