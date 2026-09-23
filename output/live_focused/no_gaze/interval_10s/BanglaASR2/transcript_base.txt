@@ -1,0 +1,32 @@
+[0:00-0:27] Hello everyone, welcome back to another video. So, in the last class, we were learning variables. We were able to declare variables, and we were able to declare variables, and we were able to discuss some data type of variables. So, today, we are going to discuss an interesting topic very important. So, normally, what is the variable? We were given the variable, and the age.
+[0:27-0:54] This variable is 42. But in real life, this is 42. No, we don't have the input. So, this is Python built-in function that is input. So, I have the link function that is input function. So, this is Python built-in function. So, in this built-in function, we don't have the input.
+[0:54-1:20] So, we will show the input built-in function for example, use case. So, I will show the product. All of our variable name. Name? I don't know. We have dynamically given this, but we will do this.
+[1:20-1:47] user is the input. First, I will show you the input function. Input function, I will show you the bracket and the rotation bar. This is the string. The user will show you the user. What is
+[1:47-2:13] your name. Let's see what happens here. I have written the input function. But I have given the user a message. The message is what is your name. When the user sees the message, the user does that and the name is written. Type. The value is the way that our name is stored.
+[2:13-2:41] I will use print function in Python. In the printer, I will write hello. I will write this name. I will store the name. I will say hello.
+[2:41-3:06] hello name, here we are print, first we are print, we are print, then we are print, then we are
+[3:06-3:34] Name is equal to... This is the way we do this. When the user is using this. But... This is the print function. The print is a Python built-in actor function which we did print. If we do not see the print function, we will call the print function. Then we will write the string hello.
+[3:34-4:02] So, I will write the name of the name. The important thing that I will do is to make the name of the variable directly. I will not give the name of the condition mark. I will give the name of the name I will give the name of the name.
+[4:02-4:29] 1, 1 1, 1,
+[4:29-4:55] name1. Now, I have not first name variable and I have no number. I have no number but I don't follow the name variable. So, I will see this. Now, see name1, so I will not use user. So, what do I do? Input. Input function. I will give the message to the user.
+[4:55-5:23] What is the first number? I will tell you what is the first number. I don't have the second number. You can give the number number 2. Similarly, you can write the number 2.
+[5:23-5:48] So what happened? The user has given us the name of the name of the user. What happened? 10, 5, etc.
+[5:48-6:14] I will do sum of sum of sum name variable. I will do this at number. So pretty simple right? I will do what I will do. Num1 plus num2. Nursery level engine is just at number.
+[6:14-6:41] Here we can see the print function. We have some variables, some variables, but it is very important. Beginner, you can't forget the software developer, you can't forget the teacher, you can't forget the first time. You can't forget the first time, but you can't forget the input.
+[6:41-7:09] So, by default always string will be used. So, if you say that 10, you will be used to be used to
+[7:09-7:34] I am going to keep the number 10 and 20. This typo is a string. But I am going to keep the number 10 and 20. So, this time I am going to keep the number 10 and 20.
+[7:34-8:00] so that we have to declare the same thing we have to declare the integer and we have to declare the next line as we have to declare the next line as we have to declare the integer and we have to declare the integer and
+[8:00-8:25] num1 so basically what happens i am user input num1 so that string is now int of num1 is now the string is now integer
+[8:25-8:50] integer value is equal to integer of num 2
+[8:50-9:17] If you have this integer, you can change the second thing. So, this is typecasting. I have forcefully typecast change, but I have to say that I don't have string value, so I can give the integer the first thing. If I write the user in first member of the jagram, I should write this int.
+[9:17-9:44] So, this is a error. It is just possible. It is just possible. It is just possible. So, this is a error. So, this is a error. And, this is a error. And, this is a error. And, this is a error.
+[9:44-10:10] So, we can see that we have two integers, two first string, so we have to convert the integer. This is the sum. Now, the actual thing we have done is plus. So, we can put the sum in printer. So, we have to look at the small tricks.
+[10:10-10:36] So, I will do this, but I will do this, but I will do this, and I will do this, and
+[10:36-11:04] string formatting gottabari. I will print the printer in the bottom. I will print the string. Result is, and I will print the same. So, I will print the same.
+[11:04-11:31] 20. So, if we understand that 20 is not 20, then the result is 20. This is print. But, we will do this. Now we use Python 3. In Python 3, we have found F string and this is very powerful. So, let's see F string is what is the value of F string.
+[11:31-11:58] foreign
+[11:58-12:25] of the sum of the sum of
+[12:25-12:50] So, I was using f string. Sorry, I have a bracket here. I have a string. So, I have f string. The sum of the string. I have a calibracy. I have a variable that I have to give.
+[12:50-13:17] So similarly, I will have this string, but this variable will go to my variable. Because similarly, it will have a curly braces. So, I have called a variable that is sum. So, this list is the trace of my number. This is the number of 1 to 20, and 2 to 30,
+[13:17-13:44] So, we will print this we will print this.
+[13:44-14:00] we have to do the input and operation, we have to look at the next class. We have to do the arithmetic operation, plus minus, and the other thing we have to do is do the comparison. So, this class is very good.

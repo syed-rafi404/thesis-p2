@@ -1,0 +1,30 @@
+[0:00-0:25] Hello everyone, today is the topic of Database Management System which is DBMS in a short form. So, today is the topic of our surface level. So, database is the one that holds data.
+[0:25-0:50] So, what do you need to do with these data? Multiple tables. So, I'll give you a comment. And these tables are all available. So, all these tables are all available to us. These tables are all available to us. I use these. I use these to use the performance, to use the software.
+[0:50-1:15] Our internet and our digital world are important to be able to use the database. So, suppose, if we start a very simple example, we will focus on the table, we will focus on the table.
+[1:15-1:41] So firstly, I am aar aqt database ar nama dita habay. Suppose database ar nama hoche university. Ehr mothe aqt tebila ache, shetar nama dhulam, student info. Ok? That mean kye aam aar university ar database he.
+[1:41-2:08] Student information are active. Table is available in which we can store student information. So, I will give my first name student ID. This is the first name.
+[2:08-2:34] R-Dhoorong CGPA department last for long enrollment
+[2:34-3:02] Okay. So, we have our particular head. So, at the top, we have our sequentially stored information. Right? Now, I don't have any dummy data, because in real life, billions of information can be stored. But, our data,
+[3:02-3:27] So, first time we have student ID, we have random numbers.
+[3:27-3:53] Okay. So, I will show you how to do this data. That's the different student, different, different ID. You will look into unique ID.
+[3:53-4:21] It's a very fascinating column.
+[4:21-4:46] Last name, I'm a little bit.
+[4:46-5:11] it's a CGP the lung okay the bad thing the lamb you
+[5:11-5:37] you
+[5:37-6:02] enrollment date is random dates
+[6:02-6:28] So, here I will create the dummy data. So, here I will create some information on our website. I will use particular, suppose, 110, 112.
+[6:28-6:55] This student ID is called, they know their name, they know their CGP, their department and their enrollment. So, this table is multiple ways to fetch the information table. So, in this table, we will see what we see in this table. We will see the table as well, which columns are, which are the data.
+[6:55-7:21] This is the most possible way. Because the active tables are in the active database and multiple tables. So, this database is the communication that we use to communicate. So, we will see the language that we use. So, we will see MySQL. So, MySQL.
+[7:21-7:48] our normal programming language Java, Python, C, C-Sharp, this is different. MySQL is a query language. Query language is the same as the user who has asked the database to get the result.
+[7:48-8:14] So, this is the query language. So, in mySQL, I first use this table. Which table is created? So, this is the query in mySQL. If you have to manipulate the table, manipulate the table, change the table, insert the table, or what data?
+[8:14-8:40] delete correctly. This data should be able to delete the table, add the row, or add the column. In fact, I have the same table, the unnecessary table, which is not necessary, we can delete the table. So, this is the same table. So, we have the same table as SQL command. So, first, let's see SQL
+[8:40-9:07] So, first day I am going to create table I am going to create table.
+[9:07-9:34] This is the bracket. Okay? So, let's see, this comment, we have to ask our query. We have to create student info in the table. So, what should we keep the data? Which table we need to keep? So, what are the ID, First Name, Last Name, CGPA, Department and Enrollment Date? So, this is our column. We have to
+[9:34-10:01] serial wise sequential, which we have seen, sequential, we have written. So firstly, our ID. First name, last name, last underscore name, CGPA,
+[10:01-10:27] here for a department here for a enrollment so a me column will I come here
+[10:27-10:52] line by line. So, this is the case that our data is done, but we are going to create a table. But, we will mention the data type in the first column. We will know what data type should be used in the ID or the first name, which data type should be used in the first name, CGP, Department and Enrollment.
+[10:52-11:19] So, id. What is id? What is the name of the name? The name of the students. So, what is the name of the name? Different characters. Our name is different length. So, characters are the same.
+[11:19-11:47] use kori varchar varchar hukkxhe variable characters so eekhaan e first name and second name ndoji taj kiintu aamar shabhshumoy aakta character e variable e thakte so dhuji jagaat e aamini varchar likhe dila varchar likhar sath e aamar eekhaan kar kichu length topics kore dita hoja jamon aam eekhaan e aaktsimam koto length e raka tata nama raka
+[11:47-12:15] Suppose, for example, 10 students have to have up to 10 characters. So, 10 b. If you have to have to have up to 10, then you can consider them. Then, CGPA. CGPA, what are our float numbers? So, it is a data type. Float.
+[12:15-12:40] Department, Department only is the first name and last name. So, here we will write the word. Here is the character limitation of maximum 15 for example. And the enrollment date. Since it is date, date is the name of our SQL. We have data type. So, here is the data type of date.
+[12:40-13:03] So, in this class, we will see the date form automatically. So, 8RJ5 is start to 0, it will end and last step is semicolon. So, in this class, we will see DBMS key DBMS key, SQL. So, in the next class, we will see the operations of the ROW.

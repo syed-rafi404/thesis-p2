@@ -1,0 +1,8 @@
+[0:00-0:27] So sorry for the interruption guys. So basically, we just said that the don't fragment is 0 set. That means the router says permission to get the packet fragment and the router is the same. Right. But the don't fragment is 1. Router is the same.
+[0:27-0:55] So, you can send a packet to the error message. You can send a packet to the packet You can send a packet to the packet. So, you can send a packet to the packet. So, you can send a packet to the packet.
+[0:55-1:22] So, the package is not a private privacy, but the package is not a private privacy. So the package is not a private privacy. So, the package is not a private privacy. Okay. Next, the message is MF. MF is not a private privacy.
+[1:22-1:48] MF is more fragment. So more fragment is more fragment. For example, I will be able to move the data to the data. For example, I will be able to move the data to the data. For example, I will be able to move the data to the data.
+[1:48-2:14] Then our power 35 bytes, it is 3 bytes, packet 2. Power packet, it is 3 bytes, so it is 1,000 bytes. Packet 3. So it is faster, 5 bytes, it is 1,000 bytes.
+[2:14-2:39] So we have more fragments and we have more fragments we have more fragments and we have more fragments.
+[2:39-3:06] So, if you have 2 packets, you can use the packet today. What packet today is the same as the packet is the same. But if you have 3 packets, you can use 1000 bytes. Because it is 1000 bytes. So, if you have 1000 bytes, you can use the value of 0. So, I have to ask that the last packet is the last packet. So, we have to use the packet.
+[3:06-3:22] Okay, so this is important to keep the MTUR Maths and the next video we will start MTUR Maths.

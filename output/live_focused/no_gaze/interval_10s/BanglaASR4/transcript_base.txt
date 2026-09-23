@@ -1,0 +1,21 @@
+[0:00-0:26] Hello everyone, welcome back to our last class of this series Python fundamentals. In this class, we have a very interesting and powerful information about this loop. The first thing that we have a powerful mechanism is a very expert. The main reason for this is that the manual level is to use the repetitive work of the computer.
+[0:26-0:52] so
+[0:52-1:17] yes a genius time print could be small actor yes yes yes to the total hundred times print cut the chai the like a mirror from hundred by the print function of the legal I'm to the thousand or million times try telecom it like a feasible for a human so I'm not a key corvo I'm gonna Python and loop use corvo so first day
+[1:17-1:44] I will call the initial value in the variable, the number number is 0. So, I will start with the first while loop. Okay, this is the number number. I will give you the number number. This is the number number number.
+[1:44-2:12] When the name is small, I will go to the loop. When the name is small, I will be in the loop. When the name is small, I will be in the loop. So, currently, the name is true, the name is 0. And 0 is small, yes. Obviously, 0 is small than 10. So, I will print this.
+[2:12-2:39] I want to print this as a print. So, the value is 0. This is infinite times our print is available. So, we have to do this as a iteration. I will give you the value of 1. So, what is the value? First, we will give you the value of 1.
+[2:39-3:07] So, if 0 is 10, then we will say yes then we will say yes, then
+[3:07-3:34] conditional statement is used. So, we learned that while loop, we will use for loop. Okay, so let's get into now for loops. For loops, we used a loop in Python that was very popular, very easy, very user-friendly. This is the problem. We used to use a variable initialized, and we used to use conditions,
+[3:34-3:59] so but i am i am
+[3:59-4:26] I easily 10 times print for looping. I can see how much it is. Automatically, the increment is done, the higher value is changed. I can see the range of 10 times.
+[4:26-4:53] it's our money hollow Ranger value Amiki highest 9% rao kareun ki Ranger value ekhanaki amar 0 1 2 3 4 5 6 7 8 9 total 9% rao be 10% rao na but ame jodhi count kore dekhi amar total element ekhanai 10 years so Ranger value total
+[4:53-5:19] So range total zero zero zero zero zero
+[5:19-5:44] so one time I am very interesting thing to see last class I am going to learn a list in the list. So I am going to list list one. I am going to list list one. I am going to list list one. So I am going to list list one. So I am going to list list one. So I am going to list list one.
+[5:44-6:12] This value is not a good thing. So, we can use a million and million. So, we can use length. So, we can use length. So, we can use length. We can use length.
+[6:12-6:37] total listed length, I have to write the list of total sum equal to 0 initially sum equal to 0 value in the form loop for i in
+[6:37-7:04] sorry range of range of previous value of the integer value of the system and the length of the body for i in range of length length of the system
+[7:04-7:31] the integer value is the total length total length total total length total total total total
+[7:31-7:57] So list1 is the item value. I will give you the value of the item. The item value is the value of the item. The item value is the value of the item. The item value is the value of the item.
+[7:57-8:24] the least-rated number index is 70. So, the sum of 0 and 70 is 80. So, the sum of 0 is 70 So, the sum of 0 is 70 plus 80. So, the sum of 0 is 70 plus 80. So, the sum of 0 is 50 So, the sum of 0 is 50. So, the sum of
+[8:24-8:50] that is what is the total sum? that is the total sum that is very important that is the syntax error that is the print that is the sum that is the sum that is
+[8:50-9:09] full sum value is available, so you can print the full sum of values in the for loop. So, you can print the list of the sum of the sum of the

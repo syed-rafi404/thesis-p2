@@ -1,0 +1,29 @@
+[0:00-0:27] Okay guys, I am on there. MTA method is fundamental genesis. First of all, total packet size. I am one by one, I will do all the checks-pents. What is basically total packet size? Total packet, the camera is on the actor network, it has two sections.
+[0:27-0:52] One is header section. One is data section. Okay. So header section and data section are different. Data section basically is different. Usually data. With data, we can use data section.
+[0:52-1:20] But header section, we can see that header fragment and header header header header header
+[1:20-1:48] So, we have a fragmented package builder, we have a reassembled package. We have a data 3C and we have a network and we have a basic data. So, we have a question about the package mode. We have a header section and data section. We have total package size. Right? Header plus data. Data is the total package size. So, we have a particular package.
+[1:48-2:15] I read this file and I have to use the data size for example, for example, 500 bytes, 1000 bytes, 500 bytes, the same size of the data is the same. I would say that the header size is the same as the header size. I would say that the header size is the same as the header size.
+[2:15-2:41] fix the whole thing. So, this is the IPB4R rule. So, this is the header size and this is the data size. And, it is combined with the packet size. So, if we are using the
+[2:41-3:09] I have to say that I have to say that
+[3:09-3:34] So, we have to use the header and the packet size. We have to use the header and the packet size. We have to use the header and the packet size. So, MTU is saying that the maximum transfer unit is the packet size. We have to use the packet size.
+[3:34-4:00] connectioner MTO is 5th, so that is the same. MTO always packet size MTO always packet size. MTO always included MTO always included. So I am going to get 5th, so I am going to get 5th, so I am going to get 5th.
+[4:00-4:25] I am going to add data size is 480 bytes. And if you were to say that I have 20 bytes of data, then we have 20 bytes. So, I am going to add a packet size of data size. I am going to add a packet size of data. So,
+[4:25-4:52] This packet M2-2 is very important. The data size is very important. The header is included in the 20 byte, the header is included in the first place. So, just a brief example. This is basically the wording of the entire camp,
+[4:52-5:17] Then, this is the third part of the Fragment Offset. MQ is like a Fragment Offset. So, Fragment Offset is basically written. For example, when it is like 4000 bytes, we have MQ 500 bytes. MQ 500 bytes are written. MQ 500 bytes are connected.
+[5:17-5:45] we have a fragment of our data. We have data size, so we have data to get to the data, so basically we have header. We have to get to the data, so we have to get to the header. So we have to get to the decision. So we have to get to the Mtu-12, so we have to get to the header, so we have to get to the 480p.
+[5:45-6:12] I just need plain and simple divide. I need to write about number of fragments. Number of fragments. I have to write about total of 4,000. Sorry, sorry, 4,000. Total size 4,000, 8,000. And I have to write about
+[6:12-6:39] Sorry, I forgot guys, my bad. Total size step is 4000 and I can't get it. So, I can't get it. I can't get it.
+[6:39-7:06] so 2.7 we will seal it 3. We will put 3 fragments of set and put it in the file
+[7:06-7:32] right okay sir I'm not a like on a segment 0 take a to the show as she buttable I mean sorry active bull bulls are told she asked in a double show this on or she 1479 because 0 to calculate cortesina 0 take a 147 in my head to the Sasha wait right it again to make a lot of money money I'm not just zero taking a shot
+[7:32-7:58] So, if the fragment starts with 0, then the fragment starts with 0. Then the fragment starts with 5. Then the fragment starts with 0. For this case, we are thinking that fragment starts with 0. So, we have to ask that fragment starts with 0. So, we have to ask that fragment starts with 0.
+[7:58-8:24] 428x2 That is 2959 Next fragment number 1 Frag 1
+[8:24-8:51] here is the fragment number 2 so the palette is the size of the total size is the size of the total size I will put the last bite on the portion
+[8:51-9:17] So basically, we have data size 4000 bytes and we have to make a map, which is 3 fragment, which is 3. So we have to look at the assumption and the assumption is the assumption. Basically, we have to look at the 3 fragment. Now, what we have to do is define our DFA value to the product. We have to post this video and
+[9:17-9:45] mfr value is 0 because the packet is fragment is 0. If the packet is fragment, the packet is fragment is 0. If the packet is fragment is fragment, the packet is fragment is fragment.
+[9:45-10:11] which time we read? right? so the DFA value is 0? the MFA value is 0? okay so the video is 1 when the MFA value is 0 when the last fragment comes from the last fragment comes from the last fragment
+[10:11-10:38] So, the value of MF is 0. This is the value of R This is the value of R.
+[10:38-11:04] So, for the first fragment, So, here we have 0 divided by 8
+[11:04-11:30] So, the second option is 0. So, when we ask our question, we have to ask our fragment of the first 0. So, the fragment of the first 0 is 0. So, the fragment of the second option is 0. So, the fragment of the second option is 0. So, the second option is 0.
+[11:30-11:58] Secondary zone is 1480 divided by 8. I am just a value of the value. I am just a value of the value. Divide by 8 is the value of the value. 1480 divided by 8. That is 185. Secondary value is the fragment offset.
+[11:58-12:24] right and third it is 2960 divided by 8 2960 divided by 8. Now 370 right it is a fragment offset for third fragment
+[12:24-12:36] Thank you so much.

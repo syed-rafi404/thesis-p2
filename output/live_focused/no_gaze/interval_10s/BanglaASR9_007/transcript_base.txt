@@ -1,0 +1,38 @@
+[0:00-0:26] Hello everyone, welcome back. So last class we saw that we created a data bills table that we created a SQL command. So today we will create a command that is called select. So this is a select query. SQL is the most used and most important command. So select is select.
+[0:26-0:54] The same way, we will retrieve the database database. Retrieve is called student ID 401201. This student ID is called full name, first name, last name, CGPA, and department. So, in this case, we can communicate with the database database database. So, SQL, I can understand
+[0:54-1:21] car information can be seen as well as which particular data can be used to be used to. So, we will do this as a select query. So, I will first check the Acta table to see full data. Acta table is the day the day, the
+[1:21-1:46] Select the account, star mark. This star mark is called data table. Start from. Carted to see our table name. Student underscore info.
+[1:46-2:13] so, this is the same table. So, this is the same table. So, this is the same table. So, this is the whole table. I will show you the whole table. I will show you the whole table.
+[2:13-2:38] AID CGPA. So, this time we can do it. First, we can select the link. What do we select? We can see CGPA. So, CGPA can we select. CGPA. What do we see? From the name of the student.
+[2:38-3:05] info okay select CGPA from student info CGPA to talk a show call looking to amika kichachi a particular last ID jar that CGP so I call I'm in the book where where ID equals to 401201
+[3:05-3:33] Done! So, this SQL comment which I ran, is that I will show you what I will do. First thing, I will see what I will see I will see what I will see. What I will see is the student info. The student info is the table. This is the ID of eta.
+[3:33-3:59] or particular a rho n, which is 3.40, we show this. Similarly, I will show this a student's first name and last name. What do we do?
+[3:59-4:25] select, first name, , , last name last name,
+[4:25-4:50] So, the data is called the table. Student info. Okay. So, the data is called the first name and last name. Suppose, the student is called 202011. So, I will write where id equals to
+[4:50-5:18] 202011 Done. That is what we do. From student info, we will search for the first name and last name. So, first name is Adiba and last name is Naksim. So, this is the output.
+[5:18-5:43] Okay. Now, I am going to show you the department. I will show you the department. I will show you the department.
+[5:43-6:11] our table header is the exact match. That is the exact match. If I have written a D, I will write a D, then I will write a D department in a cell or column. So, that is the exact match. So, I will write a D department very carefully. So, select department from
+[6:11-6:38] Aangir mo to student info. Info car department. Suppose a student are. Where id equals to 151216. Done. Ta hole eta run kore le ki habye? O.
+[6:38-7:06] From student info search korebe id equals to eta. So id equals to eta are our department map. So here we can output map. So eta gailo, our F type select, comma. Now I want to show CGP a gula
+[7:06-7:32] I will see the student ID I will see the student ID.
+[7:32-7:58] 15, 12, 16, 20, 2011, 110, 112, 401, 201. This is the form of full column. This is the form of output. Now, I need to order the ID to the order.
+[7:58-8:23] Order, the ID is ascending order or descending order. Now, I just give the order by the title. Asc and descending order, the DES.
+[8:23-8:48] Okay, the length of descending order is the same. That means 4012012412, 202011, 151216, 11012. This is the order.
+[8:48-9:15] Okay, now we have aggregation function. If we have aggregation function, we will use build function. j.com max min sum average. These aggregation functions use kohya. I am going to use the operation.
+[9:15-9:41] I should check this table to see our max CGPA. If we go to the query, select max CGPA from student info.
+[9:41-10:08] So, this is the CGA max of CGPA. CGA PA is the CGA max of CGPA. So, this is the CGA PA compare. So, this is the CGA max of CGPA So, this is the CGA max of CGPA.
+[10:08-10:36] So, I will give you the main of CGPA. So, what happens is the lowest theta which is 3.28. I will show you the CGPA. I will show you the CGPA. I will show you the same way. So, I will show you the CGPA. I will use this function. So, I will show you the CGPA plus the same way.
+[10:36-11:03] So, we return to this So, we return to this. So, we return
+[11:03-11:29] average to say. That's how we do. We do average bear. That's how we do. First, we do sum. Sum. Sum. But here we do total. So, divided by 5, we do result. So, we do
+[11:29-11:57] equate to the same. So, this is how we can do this complication, and we can do this, the CGPR, the average, the sum the sum,
+[11:57-12:24] cgpa is not a cgpa. If you want to use cgpa, you can use cgpa directly. If you want to use cgpa, you can use cgpa. So, the cgpa is not a cgpa. So, the cgpa is not a cgpa.
+[12:24-12:51] from student info. This is what we can do. This is what we can do.
+[12:51-13:17] Return korello. But I am the first link to the ID. The first link to the ID is the ID. I am the first ID. So, I return the ID. I will see the ID. So, the ID is the ID. So, the ID is the ID.
+[13:17-13:43] CGPA is the same thing. The CGPA is the same thing. The CGPA is the same thing. The student is CGPA. No, the student is CGPA. The CGPA is the same thing The CGPA is the same thing.
+[13:43-14:09] I will try to make the next programming language nested branching, nested loop similarly, nested query. How do I do? First, I will say, I will say, mainly, id. I will say, id, so I will say, select id. From, I will say, id,
+[14:09-14:36] and the ID and CGPA will be able to show the ID and CGPA. So, ID and CGPA from student info. So, I will show the ID and CGPA from student info. So, I will show the ID and CGPA from student info. So, I will show the ID and CGPA.
+[14:36-15:03] CGPA equals to. Ehi khane, aami R-Ecta query chalabho. E khane kye hobhe? Select max of CGPA from student info.
+[15:03-15:30] We have closed the screen. What is this? In the background, we can see our ID and CGPA return from student info. Now, we have the max of CGPA. This particular query, the max of CGPA from student info, is the same.
+[15:30-15:56] 3.98, so a'ma CGPA pye gala am i 3.98. Aakhoan outer jay subqe rita, shet a'mi qi dhekxhe, jay CGPA 3.98 er id ar CGPA dhekhthe jaj chhe. Tahol e, a'ma output tta hao bhe, e noko. A'mi toh 3.98 already pye ghe chhi, aakhoan 3.98
+[15:56-16:22] And, where the IDTA is, search for the IDTA. This is the IDTA. This is the IDTA. In this case, we will have different types of operations. We will retrieve the data from a table from a database.
+[16:22-16:24] So, thank you for today. Thank you.

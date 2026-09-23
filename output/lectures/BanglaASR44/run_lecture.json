@@ -1,0 +1,17 @@
+{
+  "video": "F:\\thesisP2\\thesisP2\\data\\raw\\live_classroom\\BanglaASR44.mp4",
+  "name": "BanglaASR44",
+  "mock": false,
+  "seconds": {
+    "audio": 33.68681240081787,
+    "frames": 72.52473378181458,
+    "boards": 228.88979291915894,
+    "clean": 1.4534437656402588,
+    "transcript": 89.41929197311401
+  },
+  "person_model": "deeplab+shadow",
+  "asr": {
+    "base": "openai/whisper-large-v3-turbo",
+    "adapter": "F:\\thesisP2\\ft_work_final5h\\lora_final"
+  }
+}

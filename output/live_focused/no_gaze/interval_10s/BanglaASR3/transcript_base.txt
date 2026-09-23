@@ -1,0 +1,14 @@
+[0:00-0:25] Hello everyone, welcome back to another video. In this video, we will see how the computer has a logical decision. How does user input and based on how the decision is? How does this decision happen? How does this decision happen? In the last class, we learned that the variable is a variable. What is the variable? What is the data type? What is the variable? What is the variable? What is the declare? In the recent class, we learned that
+[0:25-0:50] If you don't have any input, you can store the variables. Now, let's see, this variable is based on the computer's decision. So, let's start. Let's start. If, else, and elif, the conditional statement is very simple. Let's start our deep topic. First, let's start. The rain is in the rain.
+[0:50-1:16] if rain user will bring umbrella okay so arectogenes j if not
+[1:16-1:44] so so so
+[1:44-2:09] weather. So, what is the user? The user has input. So, the user has input. Today's weather. So, the user has input. Today's weather is about
+[2:09-2:36] user at weather which is like rain or sunny or something so therefore if weather equal equal equal equal weather weather weather rain
+[2:36-3:04] Print So, user-elect input input power whether it is not rain, it will check first if block
+[3:04-3:30] foreign
+[3:30-3:56] also just come just you don't have to bring umbrella if it doesn't rain you can just come okay so this is the reason that is the user has input and the string has been matched with the string we can see whether input has been a string has been checked is it rain does it equal rain if yes if block is stuck print bring umbrella
+[3:56-4:23] If we don't have this array, we can also see else block. We can also see print just come. So, we can give this if else. When we do this, we can give this if else. When we do this, we can give this if else. What do we do? If we do this, we can give this if else.
+[4:23-4:51] We can print
+[4:51-5:17] If you say that weather is sunny, you can say that you say that you say white color. But you say that else is the same. Else, so that rain is sunny, so that moderate weather is the same.
+[5:17-5:45] What is going to do? Printing. This is the result of the just-come. Okay, okay. Now I will press the first variable declare. The variable is user. The input is the string. The first if-are check whether or rain. When the rain is the rain, the rain is the umbrella.
+[5:45-6:03] whether rain doesn't happen, whether sunny is a new one, whether sunny is a new one, rain doesn't happen, whether sunny is a new one whether sunny is a new one,
