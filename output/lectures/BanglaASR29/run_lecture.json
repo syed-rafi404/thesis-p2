@@ -9,7 +9,7 @@
     "audio": 8.967576503753662,
     "transcript": 26.732236862182617,
     "boxes": 410.3516502380371,
-    "notes": 97.2773175239563
+    "notes": 217.7533929347992
   },
   "person_model": "deeplab+shadow",
   "asr": {

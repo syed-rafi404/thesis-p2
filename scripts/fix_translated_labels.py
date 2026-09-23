@@ -38,7 +38,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import notes_common as nc                                          # noqa: E402
 import notes_page                                                  # noqa: E402
 
-PATTERN = "notes_annotated_english_via_banglish_*.md"
+# Both spellings: the 13 scored lectures carry a tag ("..._7b.md"), the 30
+# demonstration lectures are written by run_lecture.py with no tag at all.
+PATTERN = "notes_annotated_english_via_banglish*.md"
 
 # Longest first, so "Extra jana kotha (lecture e bola hoy ni)" is matched before
 # the bare "Extra jana kotha".
@@ -156,9 +158,16 @@ def main():
     args = ap.parse_args()
     apply = args.apply and not args.dry_run
 
+    # The 13 scored lectures sit in their own run folders; the 30 demonstration
+    # lectures are all under output/lectures. Both need the same treatment, and
+    # scanning only the first left the demonstration pages in Banglish.
+    dirs = [info["run_dir"] for info in nc.discover_lectures().values()]
+    lectures = nc.REPO / "output" / "lectures"
+    if lectures.is_dir():
+        dirs += [d for d in sorted(lectures.iterdir()) if d.is_dir()]
     files = []
-    for info in nc.discover_lectures().values():
-        files += sorted(info["run_dir"].glob(PATTERN))
+    for d in dirs:
+        files += sorted(d.glob(PATTERN))
     if not files:
         sys.exit("no english_via_banglish notes found")
 
