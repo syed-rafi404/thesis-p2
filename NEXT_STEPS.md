@@ -183,6 +183,7 @@ appears; we go through the whole list together at Q&A prep.**
 | Is the box finding evaluated? | No. No layout ground truth exists. It works well on sparse boards, coarse on dense ones. Say so. |
 | How were the hyperparameters chosen? | A plan committed before any run (`data/splits/tuning_plan.md`), scored on three validation lectures fixed beforehand, test set never touched; RESULTS.md 1.7. |
 | Did anything fail in the tuning? | Yes, and it is reported: LoRA rank 32 diverged at the chosen learning rate, adapting all four attention projections was no better than off-the-shelf, and the validation-loss minimum (epoch 4) scored worse than 8 epochs. |
+| Does the notes model get things wrong? | Yes, and we have an example rather than a denial. In the 2026-09-23 notes for BanglaASR7_004 (dataset BanglaASR11) the model writes "there are two types of universal gates, which are XOR gates"; the lecturer and the board say NAND and NOR. Board recall cannot catch this: it measures whether board items appear in the notes, not whether the surrounding prose is true. Nothing we have measures factual correctness of the prose - the planned reader survey is what would. Say this before someone finds it. |
 | Why is the final result better than the leave-one-speaker-out number? | Different, easier design: the final split holds out whole lectures from lecturers who are also in training. The unseen-lecturer number (RESULTS.md 1.5) is the harder one and stays in the thesis. |
 
 ---
