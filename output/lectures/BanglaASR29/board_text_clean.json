@@ -1,0 +1,72 @@
+{
+  "lecture": "BanglaASR29",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "source": "clean",
+  "prompt": "This is a photograph of a classroom whiteboard during a university lecture.\n\nTranscribe everything written on the whiteboard, exactly as written.\n\n- Copy every number, name, identifier, date and symbol exactly. Do not round,\n  correct or reformat values.\n- Write tables as Markdown tables with the same rows and columns as the board.\n- Write code, SQL and program text inside ``` fences, keeping line breaks.\n- Write formulas as they appear. For a bar over a term write it as NOT(...),\n  for example NOT(A+B).\n- Keep diagrams short: name what they are and copy any labels on them, for\n  example \"Gate diagram: inputs A, B into a box labelled NAND, output NOT(AB)\".\n- If part of the board cannot be read, write [illegible]. Never guess, and never\n  add anything that is not written on the board.\n- Ignore any person in the picture. Describe only what is written.\n\nOutput only the transcription.",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:00",
+      "to": "4:02",
+      "clear_fraction": 0.9965,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR29\\boards\\clean\\BanglaASR29_board_era1_000_clean.jpg",
+      "text": "```\nSUPER FORMICA\nSUPER BOARD S\n\nCNN\nImage\nGray Scale\n\n| 0.8 |\n| 0   | 0.1 |\n| 1   |\n```",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 2,
+      "from": "4:10",
+      "to": "5:10",
+      "clear_fraction": 0.9883,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR29\\boards\\clean\\BanglaASR29_board_era2_410_clean.jpg",
+      "text": "```markdown\nSUPER FORMICA\nSUPER BOARD S\n\nCNN\n\nImage\n->Gray Scale\n\n|  | 0.8 | 0.9 |\n|---|-----|-----|\n| 0 | 0.1 |     |\n| 0.9 |    | 1/2 |\n```",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 3,
+      "from": "5:20",
+      "to": "8:10",
+      "clear_fraction": 1.0,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR29\\boards\\clean\\BanglaASR29_board_era3_520_clean.jpg",
+      "text": "```\nSUPER FORMICA\nSUPER BOARD S\n\nCNN\nImage\n->Gray Scale\nR G B\n(128,70,20)\n```",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 4,
+      "from": "8:20",
+      "to": "11:30",
+      "clear_fraction": 1.0,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR29\\boards\\clean\\BanglaASR29_board_era4_820_clean.jpg",
+      "text": "```\nSUPER FORMICA\nSUPER BOARD S\n\nCNN\nImage\n\nHigher Res\n↓\nCompress (but\nKeeping the\nsignificance)\n```",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 5,
+      "from": "11:40",
+      "to": "15:40",
+      "clear_fraction": 1.0,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR29\\boards\\clean\\BanglaASR29_board_era5_1140_clean.jpg",
+      "text": "```\nSUPER FORMICA\nSUPER\nBOARD S\n\nCNN\nImage\n\nNormal method -> Flatten\nVS.\nConvolution -> Kernel/Filter\n\n238x400\n50x50\n```",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 6,
+      "from": "16:10",
+      "to": "23:20",
+      "clear_fraction": 1.0,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR29\\boards\\clean\\BanglaASR29_board_era6_1610_clean.jpg",
+      "text": "```\nSUPER FORMICA\nSUPER BOARD S\n\nCNN\nImage\nPooling\nMax -> (2 x 2)\nAvg.\n\n| 10 | 5 | 1 |\n| 75 | 20 | 2 |\n| 5 | 7 | 8 |\n\n| 20 | 20 |\n| 20 | 20 |\n```",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 7,
+      "from": "23:30",
+      "to": "25:10",
+      "clear_fraction": 0.9988,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR29\\boards\\clean\\BanglaASR29_board_era7_2330_clean.jpg",
+      "text": "```\nSUPER FORMIGA\nSUPER\nBOARD S\n\nCNN\nImage\n↓\nCon.\n↓\nPooling\n↓\nCon.\n↓\nflat.\n```",
+      "runaway_lines_removed": 0
+    }
+  ],
+  "mock": false
+}

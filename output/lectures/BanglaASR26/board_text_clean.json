@@ -1,0 +1,54 @@
+{
+  "lecture": "BanglaASR26",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "source": "clean",
+  "prompt": "This is a photograph of a classroom whiteboard during a university lecture.\n\nTranscribe everything written on the whiteboard, exactly as written.\n\n- Copy every number, name, identifier, date and symbol exactly. Do not round,\n  correct or reformat values.\n- Write tables as Markdown tables with the same rows and columns as the board.\n- Write code, SQL and program text inside ``` fences, keeping line breaks.\n- Write formulas as they appear. For a bar over a term write it as NOT(...),\n  for example NOT(A+B).\n- Keep diagrams short: name what they are and copy any labels on them, for\n  example \"Gate diagram: inputs A, B into a box labelled NAND, output NOT(AB)\".\n- If part of the board cannot be read, write [illegible]. Never guess, and never\n  add anything that is not written on the board.\n- Ignore any person in the picture. Describe only what is written.\n\nOutput only the transcription.",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:10",
+      "to": "1:50",
+      "clear_fraction": 1.0,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR26\\boards\\clean\\BanglaASR26_board_era1_010_clean.jpg",
+      "text": "```\n| kP | kI | kD |\n|----|----|----|\n| xPn | p | pI |\n|     |    | pIO |\n```",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 2,
+      "from": "2:00",
+      "to": "4:54",
+      "clear_fraction": 1.0,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR26\\boards\\clean\\BanglaASR26_board_era2_200_clean.jpg",
+      "text": "Imagine:\n(PID) → kp, ki, ko\nDo 4 steps for this problem:\n\noutput = kp * error\n+ (Σn Error) * ki\n+\n\n[illegible]\n\noutput = k / ic",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 3,
+      "from": "5:00",
+      "to": "6:20",
+      "clear_fraction": 1.0,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR26\\boards\\clean\\BanglaASR26_board_era3_500_clean.jpg",
+      "text": "Imagine:\n(PID) → kP, ki, ko\n\nDo 4 steps for this problem →\n\noutput = kP * error\n+ (Σn Error) * ki\n+ k\n\n[illegible]\n\noutput = k\nerror",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 4,
+      "from": "6:30",
+      "to": "7:46",
+      "clear_fraction": 0.9977,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR26\\boards\\clean\\BanglaASR26_board_era4_630_clean.jpg",
+      "text": "Imagine:\n(PID) → KP, Ki, KO\n\nDo 4 steps for this problem:\n\noutput = KP * error\n        + (Σn Err) * Ki\n        + (En - E3) * KD = new output\n\nnew Actual = [New + old] / 2",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 5,
+      "from": "8:10",
+      "to": "13:12",
+      "clear_fraction": 1.0,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR26\\boards\\clean\\BanglaASR26_board_era5_810_clean.jpg",
+      "text": "Imagine:\n(PID) → KP, Ki, KO\nDo 4 steps for this problem:\n\nPID\nDesired speed → 100 km/h\ninitial speed → 60 km/h\n\nKP = 0.5 ; Ki = 0.1 , KD = 0.05\n\nError = (100 - 60) = 40 km/h\n\n1st Step:\nout = [0.5 × 40] + 0.1 × 10 + 0.05 × 40\n    = out_1\n\nNew actual speed = 60 + out_1",
+      "runaway_lines_removed": 0
+    }
+  ],
+  "mock": false
+}

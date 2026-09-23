@@ -1,0 +1,54 @@
+{
+  "lecture": "BanglaASR27",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "source": "clean",
+  "prompt": "This is a photograph of a classroom whiteboard during a university lecture.\n\nTranscribe everything written on the whiteboard, exactly as written.\n\n- Copy every number, name, identifier, date and symbol exactly. Do not round,\n  correct or reformat values.\n- Write tables as Markdown tables with the same rows and columns as the board.\n- Write code, SQL and program text inside ``` fences, keeping line breaks.\n- Write formulas as they appear. For a bar over a term write it as NOT(...),\n  for example NOT(A+B).\n- Keep diagrams short: name what they are and copy any labels on them, for\n  example \"Gate diagram: inputs A, B into a box labelled NAND, output NOT(AB)\".\n- If part of the board cannot be read, write [illegible]. Never guess, and never\n  add anything that is not written on the board.\n- Ignore any person in the picture. Describe only what is written.\n\nOutput only the transcription.",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:00",
+      "to": "5:08",
+      "clear_fraction": 1.0,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR27\\boards\\clean\\BanglaASR27_board_era1_000_clean.jpg",
+      "text": "ML\nf1\nf2\nf3\nf4\nf5\nf6\nf7\nf8\nf9\nf10\nf11\nf12\nf13\nf14\nf15\nf16\nf17\nf18\nf19\nf20\nf21\nf22\nf23\nf24\nf25\nf26\nf27\nf28\nf29\nf30\nf31\nf32\nf33\nf34\nf35\nf36\nf37\nf38\nf39\nf40\nf41\nf42\nf43\nf44\nf45\nf46\nf47\nf48\nf49\nf50\nf51\nf52\nf53\nf54\nf55\nf56\nf57\nf58\nf59\nf60\nf61\nf62\nf63\nf64\nf65\nf66\nf67\nf68\nf69\nf70\nf71\nf72\nf73\nf74\nf75\nf76\nf77\nf78\nf79\nf80\nf81\nf82\nf83\nf84\nf85\nf86\nf87\nf88\nf89\nf90\nf91\nf92\nf93\nf94\nf95\nf96\nf97\nf98\nf99\nf100\nf101\nf102\nf103\nf104\nf105\nf106\nf107\nf108\nf109\nf110\nf111\nf112\nf113\nf114\nf115\nf116\nf117\nf118\nf119\nf120\nf121\nf122\nf123\nf124\nf125\nf126\nf127\nf128\nf129\nf130\nf131\nf132\nf133\nf134\nf135\nf136\nf137\nf138\nf139\nf140\nf141\nf142\nf143\nf144\nf145\nf146\nf147\nf148\nf149\nf150\nf151\nf152\nf153\nf154\nf155\nf156\nf157\nf158\nf159\nf160\nf161\nf162\nf163\nf164\nf165\nf166\nf167\nf168\nf169\nf170\nf171\nf172\nf173\nf174\nf175\nf176\nf177\nf178\nf179\nf180\nf181\nf182\nf183\nf184\nf185\nf186\nf187\nf188\nf189\nf190\nf191\nf192\nf193\nf194\nf195\nf196\nf197\nf198\nf199\nf200\nf201\nf202\nf203\nf204\nf205\nf206\nf207\nf208\nf209\nf210\nf211\nf212\nf213\nf214\nf215\nf216\nf217\nf218\nf219\nf220\nf221\nf222\nf223\nf224\nf225\nf226\nf227\nf228\nf229\nf230\nf231\nf232\nf233\nf234\nf235\nf236\nf237\nf238\nf239\nf240\nf241\nf242\nf243\nf244\nf245\nf246\nf247\nf248\nf249\nf250\nf251\nf252\nf253\nf254\nf255\nf256\nf257\nf258\nf259\nf260\nf261\nf262\nf263\nf264\nf265\nf266\nf267\nf268\nf269\nf270\nf271\nf272\nf273\nf274\nf275\nf276\nf277\nf278\nf279\nf280\nf281\nf282\nf283\nf284\nf285\nf286\nf287\nf288\nf289\nf290\nf291\nf292\nf293\nf294\nf295\nf296\nf297\nf298\nf299\nf300\nf301\nf302\nf303\nf304\nf305\nf306\nf307\nf308\nf309\nf310\nf311\nf312\nf313\nf314\nf315\nf316\nf317\nf318\nf319\nf320\nf321\nf",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 2,
+      "from": "5:10",
+      "to": "6:06",
+      "clear_fraction": 1.0,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR27\\boards\\clean\\BanglaASR27_board_era2_510_clean.jpg",
+      "text": "| Age | Tumor Size | Condition |\n|-----|------------|-----------|\n| 50  | 10         | malignant |\n| 2   | 30         |           |",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 3,
+      "from": "6:10",
+      "to": "11:20",
+      "clear_fraction": 1.0,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR27\\boards\\clean\\BanglaASR27_board_era3_610_clean.jpg",
+      "text": "| Age | Tumor Size | Condition |\n|-----|------------|-----------|\n| 50  | 10         | malignant |\n| 2   | 30         | benign    |\n| 45  | 1          | benign    |\n| 40  | 5          | malignant |",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 4,
+      "from": "11:40",
+      "to": "15:40",
+      "clear_fraction": 1.0,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR27\\boards\\clean\\BanglaASR27_board_era4_1140_clean.jpg",
+      "text": "```\nSUPER BOARD S\nML\nAge\n```",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 5,
+      "from": "15:50",
+      "to": "22:40",
+      "clear_fraction": 1.0,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR27\\boards\\clean\\BanglaASR27_board_era5_1550_clean.jpg",
+      "text": "```\nSUPER BOARD S\nML\nCNN\nFeature1 -> Age\nFeature2 -> Tumor Size\nActivation function\n```",
+      "runaway_lines_removed": 0
+    }
+  ],
+  "mock": false
+}

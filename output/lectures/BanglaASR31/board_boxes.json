@@ -1,0 +1,107 @@
+{
+  "lecture": "BanglaASR31",
+  "boxes_from": "ink",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "mock": false,
+  "prompt": "This is a classroom whiteboard from a university lecture. Numbered coloured boxes\nhave been drawn on it; each box surrounds one part of the writing. There are {n} boxes,\nnumbered 1 to {n}.\n\nFor every box, reply with:\n- \"id\": the box number.\n- \"name\": 1 to 4 words saying what kind of content the box holds, for example \"Title\",\n  \"Definition\", \"Truth table\", \"Gate symbol\", \"Block diagram\", \"SQL query\", \"Code\",\n  \"List\", \"Worked example\", \"Formula\". If the box holds no lecture writing (a smudge,\n  a shadow, a logo or sticker, the edge of the board), use \"none\".\n- \"text\": everything written inside that box, copied exactly: every number, name and\n  symbol. For a bar over a term write NOT(...). Write a table as Markdown table rows.\n  Write [illegible] for what cannot be read. Never guess.\n\nReply with JSON only: a list with one object per box, in box order, like\n[{{\"id\": 1, \"name\": \"Title\", \"text\": \"Digital Logic Design\"}}]",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:00",
+      "to": "4:38",
+      "clean": true,
+      "source_image": "output\\lectures\\BanglaASR31\\boards\\clean\\BanglaASR31_board_era1_000_clean.jpg",
+      "figure": "figures_annotated/board_era1_000.jpg",
+      "boxes_found": 3,
+      "boxes_kept": 3,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            718,
+            76,
+            1224,
+            174
+          ],
+          "ink_pixels": 824,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Title",
+          "text": ".B(D) → Bin to Dec"
+        },
+        {
+          "bbox": [
+            1332,
+            50,
+            1730,
+            1010
+          ],
+          "ink_pixels": 8131,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "List",
+          "text": "| 2^0 → 1 | 2^1 → 2 | 2^2 → 4 | 2^3 → 8 | 2^4 → 16 | 2^5 → 32 | 2^6 → 64 | 2^7 → 128 |"
+        },
+        {
+          "bbox": [
+            416,
+            244,
+            1226,
+            412
+          ],
+          "ink_pixels": 1203,
+          "id": 3,
+          "colour": "orange",
+          "hex": "#f77f00",
+          "name": "Worked example",
+          "text": "| 128 | 64 | 32 | 16 | 8 | 4 | 2 | 2 | | 1 | 0 | 1 | 0 | 1 | 0 | 0 | 0 |"
+        }
+      ],
+      "vlm_reply": "[\n    {\"id\": 1, \"name\": \"Title\", \"text\": \".B(D) → Bin to Dec\"},\n    {\"id\": 2, \"name\": \"List\", \"text\": \"| 2^0 → 1 | 2^1 → 2 | 2^2 → 4 | 2^3 → 8 | 2^4 → 16 | 2^5 → 32 | 2^6 → 64 | 2^7 → 128 |\"},\n    {\"id\": 3, \"name\": \"Worked example\", \"text\": \"| 128 | 64 | 32 | 16 | 8 | 4 | 2 | 2 | | 1 | 0 | 1 | 0 | 1 | 0 | 0 | 0 |\"}\n]"
+    },
+    {
+      "era": 2,
+      "from": "4:40",
+      "to": "6:30",
+      "clean": true,
+      "source_image": "output\\lectures\\BanglaASR31\\boards\\clean\\BanglaASR31_board_era2_440_clean.jpg",
+      "figure": "figures_annotated/board_era2_440.jpg",
+      "boxes_found": 2,
+      "boxes_kept": 2,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            416,
+            58,
+            1704,
+            1004
+          ],
+          "ink_pixels": 13448,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Title",
+          "text": "B CD"
+        },
+        {
+          "bbox": [
+            742,
+            84,
+            1198,
+            164
+          ],
+          "ink_pixels": 827,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Worked example",
+          "text": ". B CD Bin to Dec\n128 64 32 16 8 2 2\n1 0 1 0 0 0 0\n168 -> 128 + 32 + 8\n-> 168"
+        }
+      ],
+      "vlm_reply": "[\n    {\n        \"id\": 1,\n        \"name\": \"Title\",\n        \"text\": \"B CD\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Worked example\",\n        \"text\": \". B CD Bin to Dec\\n128 64 32 16 8 2 2\\n1 0 1 0 0 0 0\\n168 -> 128 + 32 + 8\\n-> 168\"\n    }\n]"
+    }
+  ]
+}

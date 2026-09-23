@@ -1,0 +1,275 @@
+{
+  "lecture": "BanglaASR33",
+  "boxes_from": "ink",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "mock": false,
+  "prompt": "This is a classroom whiteboard from a university lecture. Numbered coloured boxes\nhave been drawn on it; each box surrounds one part of the writing. There are {n} boxes,\nnumbered 1 to {n}.\n\nFor every box, reply with:\n- \"id\": the box number.\n- \"name\": 1 to 4 words saying what kind of content the box holds, for example \"Title\",\n  \"Definition\", \"Truth table\", \"Gate symbol\", \"Block diagram\", \"SQL query\", \"Code\",\n  \"List\", \"Worked example\", \"Formula\". If the box holds no lecture writing (a smudge,\n  a shadow, a logo or sticker, the edge of the board), use \"none\".\n- \"text\": everything written inside that box, copied exactly: every number, name and\n  symbol. For a bar over a term write NOT(...). Write a table as Markdown table rows.\n  Write [illegible] for what cannot be read. Never guess.\n\nReply with JSON only: a list with one object per box, in box order, like\n[{{\"id\": 1, \"name\": \"Title\", \"text\": \"Digital Logic Design\"}}]",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:30",
+      "to": "5:20",
+      "clean": true,
+      "source_image": "output\\lectures\\BanglaASR33\\boards\\clean\\BanglaASR33_board_era1_030_clean.jpg",
+      "figure": "figures_annotated/board_era1_030.jpg",
+      "boxes_found": 3,
+      "boxes_kept": 2,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            424,
+            126,
+            1728,
+            862
+          ],
+          "ink_pixels": 12406,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Network Addressing",
+          "text": "IP Adrs -> Addrs\n-> Network Adr\n-> Broad cast Adress\n-> Host Adr\nHost portion\n192.168.0.1/24\n192.168.0.0 -> net\n192.168.0.255 -> host portion"
+        },
+        {
+          "bbox": [
+            680,
+            860,
+            914,
+            912
+          ],
+          "ink_pixels": 269,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Broadcast",
+          "text": "broadcast"
+        }
+      ],
+      "vlm_reply": "[\n    {\n        \"id\": 1,\n        \"name\": \"None\",\n        \"text\": \"\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Network Addressing\",\n        \"text\": \"IP Adrs -> Addrs\\n-> Network Adr\\n-> Broad cast Adress\\n-> Host Adr\\nHost portion\\n192.168.0.1/24\\n192.168.0.0 -> net\\n192.168.0.255 -> host portion\"\n    },\n    {\n        \"id\": 3,\n        \"name\": \"Broadcast\",\n        \"text\": \"broadcast\"\n    }\n]"
+    },
+    {
+      "era": 2,
+      "from": "5:30",
+      "to": "6:10",
+      "clean": true,
+      "source_image": "output\\lectures\\BanglaASR33\\boards\\clean\\BanglaASR33_board_era2_530_clean.jpg",
+      "figure": "figures_annotated/board_era2_530.jpg",
+      "boxes_found": 2,
+      "boxes_kept": 2,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            1700,
+            0,
+            1916,
+            98
+          ],
+          "ink_pixels": 2238,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Logo",
+          "text": "AMICA SUPER BOARD S"
+        },
+        {
+          "bbox": [
+            450,
+            128,
+            1712,
+            802
+          ],
+          "ink_pixels": 12370,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Network Addressing",
+          "text": "IP IPn Addrs\nNetwork Addrs\nBroadcast Address\nHost Addrs.\nHost portion\n32 - 24 = 8 bit\n192.168.0.0"
+        }
+      ],
+      "vlm_reply": "[\n    {\n        \"id\": 1,\n        \"name\": \"Logo\",\n        \"text\": \"AMICA SUPER BOARD S\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Network Addressing\",\n        \"text\": \"IP IPn Addrs\\nNetwork Addrs\\nBroadcast Address\\nHost Addrs.\\nHost portion\\n32 - 24 = 8 bit\\n192.168.0.0\"\n    }\n]"
+    },
+    {
+      "era": 3,
+      "from": "6:40",
+      "to": "8:12",
+      "clean": true,
+      "source_image": "output\\lectures\\BanglaASR33\\boards\\clean\\BanglaASR33_board_era3_640_clean.jpg",
+      "figure": "figures_annotated/board_era3_640.jpg",
+      "boxes_found": 2,
+      "boxes_kept": 2,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            1700,
+            0,
+            1914,
+            98
+          ],
+          "ink_pixels": 2231,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Logo",
+          "text": "AMICA SUPER BOARD S"
+        },
+        {
+          "bbox": [
+            450,
+            128,
+            1884,
+            890
+          ],
+          "ink_pixels": 15645,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Network Addressing",
+          "text": "IP V4 -> Addrs\n-> Network Addrs\n-> Broad cast Address\n-> Host Addrs.\nHost portion\n32 - 24 = 8 bit\n190.168.0.0"
+        }
+      ],
+      "vlm_reply": "[\n    {\n        \"id\": 1,\n        \"name\": \"Logo\",\n        \"text\": \"AMICA SUPER BOARD S\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Network Addressing\",\n        \"text\": \"IP V4 -> Addrs\\n-> Network Addrs\\n-> Broad cast Address\\n-> Host Addrs.\\nHost portion\\n32 - 24 = 8 bit\\n190.168.0.0\"\n    }\n]"
+    },
+    {
+      "era": 4,
+      "from": "8:20",
+      "to": "9:02",
+      "clean": true,
+      "source_image": "output\\lectures\\BanglaASR33\\boards\\clean\\BanglaASR33_board_era4_820_clean.jpg",
+      "figure": "figures_annotated/board_era4_820.jpg",
+      "boxes_found": 2,
+      "boxes_kept": 2,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            1704,
+            0,
+            1916,
+            96
+          ],
+          "ink_pixels": 1898,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Logo",
+          "text": "SUPER BOARD S"
+        },
+        {
+          "bbox": [
+            516,
+            126,
+            1886,
+            920
+          ],
+          "ink_pixels": 18135,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Network Addressing",
+          "text": "IP V4 -> Addrs\n-> Network Addrs\n-> Broad cast Address\n-> Host Addrs.\nHost portion\n32\n=8 bit\n1102.1(8.0.C\n2500 host\nPC1\nGigolo\nGig0/1"
+        }
+      ],
+      "vlm_reply": "[\n    {\n        \"id\": 1,\n        \"name\": \"Logo\",\n        \"text\": \"SUPER BOARD S\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Network Addressing\",\n        \"text\": \"IP V4 -> Addrs\\n-> Network Addrs\\n-> Broad cast Address\\n-> Host Addrs.\\nHost portion\\n32\\n=8 bit\\n1102.1(8.0.C\\n2500 host\\nPC1\\nGigolo\\nGig0/1\"\n    }\n]"
+    },
+    {
+      "era": 5,
+      "from": "9:10",
+      "to": "9:52",
+      "clean": true,
+      "source_image": "output\\lectures\\BanglaASR33\\boards\\clean\\BanglaASR33_board_era5_910_clean.jpg",
+      "figure": "figures_annotated/board_era5_910.jpg",
+      "boxes_found": 5,
+      "boxes_kept": 3,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            728,
+            136,
+            798,
+            206
+          ],
+          "ink_pixels": 174,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Network Address",
+          "text": "IP"
+        },
+        {
+          "bbox": [
+            794,
+            126,
+            1856,
+            942
+          ],
+          "ink_pixels": 15720,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Network Address",
+          "text": "Network Addrs"
+        },
+        {
+          "bbox": [
+            516,
+            432,
+            780,
+            550
+          ],
+          "ink_pixels": 779,
+          "id": 3,
+          "colour": "orange",
+          "hex": "#f77f00",
+          "name": "Host portion",
+          "text": "Host portion"
+        }
+      ],
+      "vlm_reply": "[\n    {\"id\": 1, \"name\": \"None\", \"text\": \"\"},\n    {\"id\": 2, \"name\": \"Network Address\", \"text\": \"IP\"},\n    {\"id\": 3, \"name\": \"Network Address\", \"text\": \"Network Addrs\"},\n    {\"id\": 4, \"name\": \"Host portion\", \"text\": \"Host portion\"},\n    {\"id\": 5, \"name\": \"None\", \"text\": \"\"}\n]"
+    },
+    {
+      "era": 6,
+      "from": "10:40",
+      "to": "12:02",
+      "clean": true,
+      "source_image": "output\\lectures\\BanglaASR33\\boards\\clean\\BanglaASR33_board_era6_1040_clean.jpg",
+      "figure": "figures_annotated/board_era6_1040.jpg",
+      "boxes_found": 3,
+      "boxes_kept": 2,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            714,
+            126,
+            1454,
+            352
+          ],
+          "ink_pixels": 3337,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Network Address",
+          "text": "IP Adrs -> Addrs\n-> Network Addr\n-> Broad cast Addr\n-> Host Addr."
+        },
+        {
+          "bbox": [
+            436,
+            348,
+            1810,
+            804
+          ],
+          "ink_pixels": 10773,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Host portion",
+          "text": "Host portion\n32 - 24\n=8 bit\n192.168.0.0\n256\n-1 -1 -1\n253\n9ig o/o"
+        }
+      ],
+      "vlm_reply": "[\n    {\n        \"id\": 1,\n        \"name\": \"None\",\n        \"text\": \"\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Network Address\",\n        \"text\": \"IP Adrs -> Addrs\\n-> Network Addr\\n-> Broad cast Addr\\n-> Host Addr.\"\n    },\n    {\n        \"id\": 3,\n        \"name\": \"Host portion\",\n        \"text\": \"Host portion\\n32 - 24\\n=8 bit\\n192.168.0.0\\n256\\n-1 -1 -1\\n253\\n9ig o/o\"\n    }\n]"
+    }
+  ]
+}

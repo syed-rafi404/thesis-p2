@@ -1,0 +1,54 @@
+{
+  "lecture": "BanglaASR22",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "source": "clean",
+  "prompt": "This is a photograph of a classroom whiteboard during a university lecture.\n\nTranscribe everything written on the whiteboard, exactly as written.\n\n- Copy every number, name, identifier, date and symbol exactly. Do not round,\n  correct or reformat values.\n- Write tables as Markdown tables with the same rows and columns as the board.\n- Write code, SQL and program text inside ``` fences, keeping line breaks.\n- Write formulas as they appear. For a bar over a term write it as NOT(...),\n  for example NOT(A+B).\n- Keep diagrams short: name what they are and copy any labels on them, for\n  example \"Gate diagram: inputs A, B into a box labelled NAND, output NOT(AB)\".\n- If part of the board cannot be read, write [illegible]. Never guess, and never\n  add anything that is not written on the board.\n- Ignore any person in the picture. Describe only what is written.\n\nOutput only the transcription.",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:10",
+      "to": "1:10",
+      "clear_fraction": 0.9324,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR22\\boards\\clean\\BanglaASR22_board_era1_010_clean.jpg",
+      "text": "CSE461\nControl theory\n\nDC motor",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 2,
+      "from": "1:20",
+      "to": "4:50",
+      "clear_fraction": 0.9907,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR22\\boards\\clean\\BanglaASR22_board_era2_120_clean.jpg",
+      "text": "CSE461\nControl theory\n\n- c\n- p. Q\n- D.C driverz\n- m\n\n10ft\n10ft",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 3,
+      "from": "5:00",
+      "to": "5:40",
+      "clear_fraction": 0.9266,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR22\\boards\\clean\\BanglaASR22_board_era3_500_clean.jpg",
+      "text": "CSE461\nControl theory\n\n```\nc\np.02\nD.C driver\ny\n10ft\n100rpm\n5ft -> 50 rpm\n```",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 4,
+      "from": "5:50",
+      "to": "7:38",
+      "clear_fraction": 0.9872,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR22\\boards\\clean\\BanglaASR22_board_era4_550_clean.jpg",
+      "text": "CSE461\nControl theory\nopen circuit\n\n| Z | c |\n|---|---|\n| P. Q | D.C driverz |\n| M | |\n\n(100 - 5)\nclosed circuit",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 5,
+      "from": "7:50",
+      "to": "9:50",
+      "clear_fraction": 0.9883,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR22\\boards\\clean\\BanglaASR22_board_era5_750_clean.jpg",
+      "text": "CSE461\nControl theory\n\n[illegible]\n\nController\nP.A.\nActuators\n\nFeedback\nSensors",
+      "runaway_lines_removed": 0
+    }
+  ],
+  "mock": false
+}

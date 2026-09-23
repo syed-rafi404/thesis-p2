@@ -1,0 +1,149 @@
+{
+  "lecture": "BanglaASR23",
+  "boxes_from": "ink",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "mock": false,
+  "prompt": "This is a classroom whiteboard from a university lecture. Numbered coloured boxes\nhave been drawn on it; each box surrounds one part of the writing. There are {n} boxes,\nnumbered 1 to {n}.\n\nFor every box, reply with:\n- \"id\": the box number.\n- \"name\": 1 to 4 words saying what kind of content the box holds, for example \"Title\",\n  \"Definition\", \"Truth table\", \"Gate symbol\", \"Block diagram\", \"SQL query\", \"Code\",\n  \"List\", \"Worked example\", \"Formula\". If the box holds no lecture writing (a smudge,\n  a shadow, a logo or sticker, the edge of the board), use \"none\".\n- \"text\": everything written inside that box, copied exactly: every number, name and\n  symbol. For a bar over a term write NOT(...). Write a table as Markdown table rows.\n  Write [illegible] for what cannot be read. Never guess.\n\nReply with JSON only: a list with one object per box, in box order, like\n[{{\"id\": 1, \"name\": \"Title\", \"text\": \"Digital Logic Design\"}}]",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:00",
+      "to": "8:16",
+      "clean": true,
+      "source_image": "output\\lectures\\BanglaASR23\\boards\\clean\\BanglaASR23_board_era1_000_clean.jpg",
+      "figure": "figures_annotated/board_era1_000.jpg",
+      "boxes_found": 2,
+      "boxes_kept": 2,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            0,
+            110,
+            326,
+            222
+          ],
+          "ink_pixels": 2305,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Sticker",
+          "text": "SUPERFORNICA SUPER BOARD S"
+        },
+        {
+          "bbox": [
+            870,
+            118,
+            1164,
+            176
+          ],
+          "ink_pixels": 531,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Block diagram",
+          "text": "CSE 2 G1 Control theory"
+        }
+      ],
+      "vlm_reply": "[\n    {\n        \"id\": 1,\n        \"name\": \"Sticker\",\n        \"text\": \"SUPERFORNICA SUPER BOARD S\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Block diagram\",\n        \"text\": \"CSE 2 G1 Control theory\"\n    }\n]"
+    },
+    {
+      "era": 2,
+      "from": "8:20",
+      "to": "15:36",
+      "clean": true,
+      "source_image": "output\\lectures\\BanglaASR23\\boards\\clean\\BanglaASR23_board_era2_820_clean.jpg",
+      "figure": "figures_annotated/board_era2_820.jpg",
+      "boxes_found": 3,
+      "boxes_kept": 3,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            0,
+            110,
+            326,
+            224
+          ],
+          "ink_pixels": 1894,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Sticker",
+          "text": "SUPER BOARD S"
+        },
+        {
+          "bbox": [
+            526,
+            120,
+            1370,
+            784
+          ],
+          "ink_pixels": 9372,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Graph",
+          "text": "CSE 461 Control theory 5.2V 5V 4.8 4.5 Transient time Steady State"
+        },
+        {
+          "bbox": [
+            1380,
+            390,
+            1472,
+            444
+          ],
+          "ink_pixels": 171,
+          "id": 3,
+          "colour": "orange",
+          "hex": "#f77f00",
+          "name": "Formula",
+          "text": "5 -> 0.9"
+        }
+      ],
+      "vlm_reply": "[\n    {\"id\": 1, \"name\": \"Sticker\", \"text\": \"SUPER BOARD S\"},\n    {\"id\": 2, \"name\": \"Graph\", \"text\": \"CSE 461 Control theory 5.2V 5V 4.8 4.5 Transient time Steady State\"},\n    {\"id\": 3, \"name\": \"Formula\", \"text\": \"5 -> 0.9\"}\n]"
+    },
+    {
+      "era": 3,
+      "from": "15:40",
+      "to": "19:22",
+      "clean": true,
+      "source_image": "output\\lectures\\BanglaASR23\\boards\\clean\\BanglaASR23_board_era3_1540_clean.jpg",
+      "figure": "figures_annotated/board_era3_1540.jpg",
+      "boxes_found": 2,
+      "boxes_kept": 2,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            0,
+            114,
+            326,
+            224
+          ],
+          "ink_pixels": 2500,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Sticker",
+          "text": "SUPER FORMICA SUPER BOARD S"
+        },
+        {
+          "bbox": [
+            368,
+            112,
+            1606,
+            794
+          ],
+          "ink_pixels": 11196,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Diagram",
+          "text": "Control theory\n5.2V\n5V\n4.8\n4.5\n90%\n10%\nRise time(t_r)\nTransient\ntime"
+        }
+      ],
+      "vlm_reply": "[\n    {\n        \"id\": 1,\n        \"name\": \"Sticker\",\n        \"text\": \"SUPER FORMICA SUPER BOARD S\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Diagram\",\n        \"text\": \"Control theory\\n5.2V\\n5V\\n4.8\\n4.5\\n90%\\n10%\\nRise time(t_r)\\nTransient\\ntime\"\n    }\n]"
+    }
+  ]
+}

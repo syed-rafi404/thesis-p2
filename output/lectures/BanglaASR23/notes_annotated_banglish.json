@@ -1,0 +1,91 @@
+{
+  "lecture": "BanglaASR23",
+  "dataset_lecture": "BanglaASR23",
+  "language": "banglish",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "mock": false,
+  "transcript_file": "transcript.txt",
+  "times_approximate": false,
+  "leakage_warning": "",
+  "boxes_file": "board_boxes.json",
+  "board_text_file": "board_text_clean.json",
+  "quotes_kept": 4,
+  "quotes_dropped": 0,
+  "invalid_box_refs": 0,
+  "quotes_translated": 0,
+  "quotes_word_for_word_checked": true,
+  "written_in": "banglish",
+  "translated_to_english": false,
+  "latex_rewritten": 0,
+  "colour_fixes": 0,
+  "inline_quotes_unverified": 0,
+  "sections": [
+    {
+      "board": 1,
+      "era": 1,
+      "from": "0:00",
+      "to": "8:16",
+      "transcript_chars": 5684,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "ekhon olexomai amon hoy ki, je hocche amader electronic device ke amader khubi mane, eta ki bae bujha no jeje khubi aa unpredictable, kokhon ki hobe, bola jay na."
+      ],
+      "quotes_dropped": []
+    },
+    {
+      "board": 2,
+      "era": 2,
+      "from": "8:20",
+      "to": "15:36",
+      "transcript_chars": 5788,
+      "boxes": 3,
+      "boxes_mentioned": [
+        1,
+        2,
+        3
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": []
+    },
+    {
+      "board": 3,
+      "era": 3,
+      "from": "15:40",
+      "to": "19:22",
+      "transcript_chars": 2318,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "ekhon apna dekhean je hocche amader egulor vivinno state e bhag kora hoy.",
+        "ei je amna 1 volt ache, ei gula shob e hocche ami explain korbo, toh first of all, rice time hocche ei je 1 volt ache, ei 1 volt theke je 4.8 porjontoi, ei je 8 point theke ei point porjontu, portre joto chuk shomelate sheta hocche ami rice time.",
+        "so rice time holo t-ar boli abra."
+      ],
+      "quotes_dropped": []
+    }
+  ]
+}

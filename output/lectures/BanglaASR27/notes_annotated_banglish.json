@@ -1,0 +1,141 @@
+{
+  "lecture": "BanglaASR27",
+  "dataset_lecture": "BanglaASR27",
+  "language": "banglish",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "mock": false,
+  "transcript_file": "transcript.txt",
+  "times_approximate": false,
+  "leakage_warning": "",
+  "boxes_file": "board_boxes.json",
+  "board_text_file": "board_text_clean.json",
+  "quotes_kept": 2,
+  "quotes_dropped": 1,
+  "invalid_box_refs": 0,
+  "quotes_translated": 0,
+  "quotes_word_for_word_checked": true,
+  "written_in": "banglish",
+  "translated_to_english": false,
+  "latex_rewritten": 10,
+  "colour_fixes": 0,
+  "inline_quotes_unverified": 1,
+  "sections": [
+    {
+      "board": 1,
+      "era": 1,
+      "from": "0:00",
+      "to": "5:08",
+      "transcript_chars": 3428,
+      "boxes": 3,
+      "boxes_mentioned": [
+        1,
+        2,
+        3
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 10,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "Machine learning e mother language ta holi ki dara ache?"
+      ],
+      "quotes_dropped": [
+        "so eita hocche amader khub e ekta basic neuron structure, and we can learn very complex neuron structures."
+      ]
+    },
+    {
+      "board": 2,
+      "era": 2,
+      "from": "5:10",
+      "to": "6:06",
+      "transcript_chars": 433,
+      "boxes": 8,
+      "boxes_mentioned": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "and this is the hocche condition. ar tar sathe hocche age."
+      ],
+      "quotes_dropped": []
+    },
+    {
+      "board": 3,
+      "era": 3,
+      "from": "6:10",
+      "to": "11:20",
+      "transcript_chars": 3843,
+      "boxes": 1,
+      "boxes_mentioned": [
+        1
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": []
+    },
+    {
+      "board": 4,
+      "era": 4,
+      "from": "11:40",
+      "to": "15:40",
+      "transcript_chars": 2805,
+      "boxes": 4,
+      "boxes_mentioned": [
+        1,
+        2,
+        4
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [
+        "so, these are identified as tumors. ami ekhane dechi tumor size amr duita aa feature chilo, ei jonno era 2d graph."
+      ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": []
+    },
+    {
+      "board": 5,
+      "era": 5,
+      "from": "15:50",
+      "to": "22:40",
+      "transcript_chars": 4831,
+      "boxes": 4,
+      "boxes_mentioned": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": []
+    }
+  ]
+}

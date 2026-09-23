@@ -1,0 +1,27 @@
+{
+  "lecture": "BanglaASR32",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "source": "clean",
+  "prompt": "This is a photograph of a classroom whiteboard during a university lecture.\n\nTranscribe everything written on the whiteboard, exactly as written.\n\n- Copy every number, name, identifier, date and symbol exactly. Do not round,\n  correct or reformat values.\n- Write tables as Markdown tables with the same rows and columns as the board.\n- Write code, SQL and program text inside ``` fences, keeping line breaks.\n- Write formulas as they appear. For a bar over a term write it as NOT(...),\n  for example NOT(A+B).\n- Keep diagrams short: name what they are and copy any labels on them, for\n  example \"Gate diagram: inputs A, B into a box labelled NAND, output NOT(AB)\".\n- If part of the board cannot be read, write [illegible]. Never guess, and never\n  add anything that is not written on the board.\n- Ignore any person in the picture. Describe only what is written.\n\nOutput only the transcription.",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:00",
+      "to": "2:10",
+      "clear_fraction": 1.0,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR32\\boards\\clean\\BanglaASR32_board_era1_000_clean.jpg",
+      "text": "```\nDec to Binary\n\n| 2 | 168 | 0 |\n| 2 | 84  | 0 |\n| 2 | 42  | 0 |\n| 2 | 21  | 0 |\n\n| 2^9 | 1 |\n| 2^4 | 2 |\n| 2^2 | 4 |\n| 2^3 | 8 |\n| 2^6 | 16 |\n| 2^5 | 32 |\n| 2^4 | 4 |\n| 2^7 | 128 |\n```",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 2,
+      "from": "2:20",
+      "to": "4:38",
+      "clear_fraction": 0.9242,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR32\\boards\\clean\\BanglaASR32_board_era2_220_clean.jpg",
+      "text": "Dec to Binary\n\n| 2^0 | → 1 |\n| 2^1 | → 2 |\n| 2^2 | → 4 |\n| 2^3 | → 8 |\n| 2^4 | → 16 |\n| 2^5 | → 32 |\n| 2^6 | → 64 |\n| 2^7 | → 128 |\n\n[011]",
+      "runaway_lines_removed": 0
+    }
+  ],
+  "mock": false
+}

@@ -1,0 +1,201 @@
+{
+  "lecture": "BanglaASR28",
+  "dataset_lecture": "BanglaASR28",
+  "language": "banglish",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "mock": false,
+  "transcript_file": "transcript.txt",
+  "times_approximate": false,
+  "leakage_warning": "",
+  "boxes_file": "board_boxes.json",
+  "board_text_file": "board_text_clean.json",
+  "quotes_kept": 10,
+  "quotes_dropped": 2,
+  "invalid_box_refs": 0,
+  "quotes_translated": 0,
+  "quotes_word_for_word_checked": true,
+  "written_in": "banglish",
+  "translated_to_english": false,
+  "latex_rewritten": 0,
+  "colour_fixes": 0,
+  "inline_quotes_unverified": 0,
+  "sections": [
+    {
+      "board": 1,
+      "era": 1,
+      "from": "0:10",
+      "to": "3:10",
+      "transcript_chars": 2467,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "je amra navigation ta ekta robot ki hobe kore koresh esta bujhte hobe."
+      ],
+      "quotes_dropped": []
+    },
+    {
+      "board": 2,
+      "era": 2,
+      "from": "3:20",
+      "to": "4:20",
+      "transcript_chars": 828,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "je for example ekta room map korte dilam, tere room er oje mone kore naama, ei room theke oi room er jaythebe, living room theke kiche no jabo ami, er jonno jay rasta ta, ei duita ta maddhome ta korbe, tarpore ei duita aa mane ei duita fulfill hoygele tokhon o mapping ta korbe je hoche konta amr shortest distance man, multiple path ache dynamic and varom end a be bino change er"
+      ],
+      "quotes_dropped": []
+    },
+    {
+      "board": 3,
+      "era": 3,
+      "from": "4:30",
+      "to": "6:28",
+      "transcript_chars": 1209,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "so, visual homing ki je amar robot ta randomly bhorte thakbe, eta ke camera lakono thakbe, ki amra diye prottekta millisecond e os scan kortese, prottekte direction a. je basically ami jai desire ta ke dechacchi, amr toh amr moddhera chobi ache, oi desire ta ke dechabe chobeshe ta chobeshe ta may ei shobes match correctly na thikache."
+      ],
+      "quotes_dropped": [
+        "ei je visual homing ta besil ke amne kaj kore, je amar for example, robot er je, for example memory, memory mothe da chobi rakha je amar target ta dikhte ke obo, thikache?"
+      ]
+    },
+    {
+      "board": 4,
+      "era": 4,
+      "from": "6:30",
+      "to": "9:30",
+      "transcript_chars": 1791,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "but o ekta hocche apner aa, or jodi jinish korta pari jehane jehane jabe, ei jodi jinish ta korte pari jai, thikase?"
+      ],
+      "quotes_dropped": [
+        "ornabhabe chola cholo kore? gora hocche apner aa randomly ghore na borra, uije for example pipri kivabe chole."
+      ]
+    },
+    {
+      "board": 5,
+      "era": 5,
+      "from": "9:40",
+      "to": "11:00",
+      "transcript_chars": 968,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "je amar ekta example ekta example, amar robot ta kora sensor kaj kortese na, scenario diye dilube, amader real life for scenario e ashbono, shudhu omat kono kishha identify korei o hotei district ta jaite pare, thikase?",
+        "toh ei importance chogh bujhano jonno ami discuss korte chacchilam je basically aro kon kon kshetri lage?"
+      ],
+      "quotes_dropped": []
+    },
+    {
+      "board": 6,
+      "era": 6,
+      "from": "11:10",
+      "to": "14:50",
+      "transcript_chars": 2342,
+      "boxes": 1,
+      "boxes_mentioned": [
+        1
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "where am i?",
+        "so, ekhn robot ta choltese amra robot ta moddhe choi gula deya ache."
+      ],
+      "quotes_dropped": []
+    },
+    {
+      "board": 7,
+      "era": 7,
+      "from": "15:00",
+      "to": "18:20",
+      "transcript_chars": 2028,
+      "boxes": 0,
+      "boxes_mentioned": [],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "paradigram is how we design a behavior of a robot."
+      ],
+      "quotes_dropped": []
+    },
+    {
+      "board": 8,
+      "era": 8,
+      "from": "18:30",
+      "to": "19:26",
+      "transcript_chars": 702,
+      "boxes": 1,
+      "boxes_mentioned": [
+        1
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "thikase dhonno mad ebong asker video er dekhar jonno, amra next din in inshallah, cnn er main je pora sholo eita shuru korbo."
+      ],
+      "quotes_dropped": []
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "lecture": "BanglaASR32",
+  "boxes_from": "ink",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "mock": false,
+  "prompt": "This is a classroom whiteboard from a university lecture. Numbered coloured boxes\nhave been drawn on it; each box surrounds one part of the writing. There are {n} boxes,\nnumbered 1 to {n}.\n\nFor every box, reply with:\n- \"id\": the box number.\n- \"name\": 1 to 4 words saying what kind of content the box holds, for example \"Title\",\n  \"Definition\", \"Truth table\", \"Gate symbol\", \"Block diagram\", \"SQL query\", \"Code\",\n  \"List\", \"Worked example\", \"Formula\". If the box holds no lecture writing (a smudge,\n  a shadow, a logo or sticker, the edge of the board), use \"none\".\n- \"text\": everything written inside that box, copied exactly: every number, name and\n  symbol. For a bar over a term write NOT(...). Write a table as Markdown table rows.\n  Write [illegible] for what cannot be read. Never guess.\n\nReply with JSON only: a list with one object per box, in box order, like\n[{{\"id\": 1, \"name\": \"Title\", \"text\": \"Digital Logic Design\"}}]",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:00",
+      "to": "2:10",
+      "clean": true,
+      "source_image": "output\\lectures\\BanglaASR32\\boards\\clean\\BanglaASR32_board_era1_000_clean.jpg",
+      "figure": "figures_annotated/board_era1_000.jpg",
+      "boxes_found": 3,
+      "boxes_kept": 3,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            754,
+            78,
+            1086,
+            158
+          ],
+          "ink_pixels": 892,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Title",
+          "text": "Dec to Binary"
+        },
+        {
+          "bbox": [
+            1188,
+            60,
+            1682,
+            1000
+          ],
+          "ink_pixels": 7316,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Formula",
+          "text": "| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 |"
+        },
+        {
+          "bbox": [
+            772,
+            190,
+            1178,
+            416
+          ],
+          "ink_pixels": 2054,
+          "id": 3,
+          "colour": "orange",
+          "hex": "#f77f00",
+          "name": "Worked example",
+          "text": "168 / 2 = 84 remainder 0\n84 / 2 = 42 remainder 0\n42 / 2 = 21 remainder 0"
+        }
+      ],
+      "vlm_reply": "[\n    {\"id\": 1, \"name\": \"Title\", \"text\": \"Dec to Binary\"},\n    {\"id\": 2, \"name\": \"Formula\", \"text\": \"| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 |\"},\n    {\"id\": 3, \"name\": \"Worked example\", \"text\": \"168 / 2 = 84 remainder 0\\n84 / 2 = 42 remainder 0\\n42 / 2 = 21 remainder 0\"}\n]"
+    },
+    {
+      "era": 2,
+      "from": "2:20",
+      "to": "4:38",
+      "clean": true,
+      "source_image": "output\\lectures\\BanglaASR32\\boards\\clean\\BanglaASR32_board_era2_220_clean.jpg",
+      "figure": "figures_annotated/board_era2_220.jpg",
+      "boxes_found": 2,
+      "boxes_kept": 2,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            728,
+            68,
+            1112,
+            164
+          ],
+          "ink_pixels": 842,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Title",
+          "text": "Dec to Binary"
+        },
+        {
+          "bbox": [
+            1186,
+            60,
+            1690,
+            1002
+          ],
+          "ink_pixels": 7018,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "List",
+          "text": "| 2^0 -> 1 | 2^1 -> 2 | 2^2 -> 4 | 2^3 -> 8 | 2^4 -> 16 | 2^5 -> 32 | 2^6 -> 64 | 2^7 -> 128 |\n| 1011 |"
+        }
+      ],
+      "vlm_reply": "[\n    {\n        \"id\": 1,\n        \"name\": \"Title\",\n        \"text\": \"Dec to Binary\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"List\",\n        \"text\": \"| 2^0 -> 1 | 2^1 -> 2 | 2^2 -> 4 | 2^3 -> 8 | 2^4 -> 16 | 2^5 -> 32 | 2^6 -> 64 | 2^7 -> 128 |\\n| 1011 |\"\n    }\n]"
+    }
+  ]
+}

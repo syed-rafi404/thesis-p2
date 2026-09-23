@@ -1,0 +1,317 @@
+{
+  "lecture": "BanglaASR26",
+  "boxes_from": "ink",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "mock": false,
+  "prompt": "This is a classroom whiteboard from a university lecture. Numbered coloured boxes\nhave been drawn on it; each box surrounds one part of the writing. There are {n} boxes,\nnumbered 1 to {n}.\n\nFor every box, reply with:\n- \"id\": the box number.\n- \"name\": 1 to 4 words saying what kind of content the box holds, for example \"Title\",\n  \"Definition\", \"Truth table\", \"Gate symbol\", \"Block diagram\", \"SQL query\", \"Code\",\n  \"List\", \"Worked example\", \"Formula\". If the box holds no lecture writing (a smudge,\n  a shadow, a logo or sticker, the edge of the board), use \"none\".\n- \"text\": everything written inside that box, copied exactly: every number, name and\n  symbol. For a bar over a term write NOT(...). Write a table as Markdown table rows.\n  Write [illegible] for what cannot be read. Never guess.\n\nReply with JSON only: a list with one object per box, in box order, like\n[{{\"id\": 1, \"name\": \"Title\", \"text\": \"Digital Logic Design\"}}]",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:10",
+      "to": "1:50",
+      "clean": true,
+      "source_image": "output\\lectures\\BanglaASR26\\boards\\clean\\BanglaASR26_board_era1_010_clean.jpg",
+      "figure": "figures_annotated/board_era1_010.jpg",
+      "boxes_found": 4,
+      "boxes_kept": 3,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            174,
+            0,
+            1032,
+            62
+          ],
+          "ink_pixels": 3550,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Sticker",
+          "text": "SUPER BOARD"
+        },
+        {
+          "bbox": [
+            642,
+            116,
+            1134,
+            506
+          ],
+          "ink_pixels": 3093,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Formula",
+          "text": "[kP, kI, kD]"
+        },
+        {
+          "bbox": [
+            968,
+            502,
+            1092,
+            580
+          ],
+          "ink_pixels": 252,
+          "id": 3,
+          "colour": "orange",
+          "hex": "#f77f00",
+          "name": "Formula",
+          "text": "PIO"
+        }
+      ],
+      "vlm_reply": "[\n    {\"id\": 1, \"name\": \"Sticker\", \"text\": \"SUPER BOARD\"},\n    {\"id\": 2, \"name\": \"None\", \"text\": \"\"},\n    {\"id\": 3, \"name\": \"Formula\", \"text\": \"[kP, kI, kD]\"},\n    {\"id\": 4, \"name\": \"Formula\", \"text\": \"PIO\"}\n]"
+    },
+    {
+      "era": 2,
+      "from": "2:00",
+      "to": "4:54",
+      "clean": true,
+      "source_image": "output\\lectures\\BanglaASR26\\boards\\clean\\BanglaASR26_board_era2_200_clean.jpg",
+      "figure": "figures_annotated/board_era2_200.jpg",
+      "boxes_found": 2,
+      "boxes_kept": 2,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            536,
+            110,
+            1372,
+            230
+          ],
+          "ink_pixels": 2253,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Instruction",
+          "text": "Imagine: (PID) -> kp, ki, ko\nDo 4 steps for this problem:"
+        },
+        {
+          "bbox": [
+            486,
+            250,
+            1734,
+            550
+          ],
+          "ink_pixels": 4828,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Formula",
+          "text": "output = kp * error\n+ (∑nErr) * ki\n+\noutput = k / ic"
+        }
+      ],
+      "vlm_reply": "[\n    {\n        \"id\": 1,\n        \"name\": \"Instruction\",\n        \"text\": \"Imagine: (PID) -> kp, ki, ko\\nDo 4 steps for this problem:\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Formula\",\n        \"text\": \"output = kp * error\\n+ (∑nErr) * ki\\n+\\noutput = k / ic\"\n    }\n]"
+    },
+    {
+      "era": 3,
+      "from": "5:00",
+      "to": "6:20",
+      "clean": true,
+      "source_image": "output\\lectures\\BanglaASR26\\boards\\clean\\BanglaASR26_board_era3_500_clean.jpg",
+      "figure": "figures_annotated/board_era3_500.jpg",
+      "boxes_found": 3,
+      "boxes_kept": 3,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            0,
+            98,
+            318,
+            212
+          ],
+          "ink_pixels": 2063,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Sticker",
+          "text": "SUPER BOARD"
+        },
+        {
+          "bbox": [
+            510,
+            96,
+            1400,
+            232
+          ],
+          "ink_pixels": 1953,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Instruction",
+          "text": "Imagine: (PID) -> kP, kI, kO Do 4 steps for this problem ->"
+        },
+        {
+          "bbox": [
+            460,
+            244,
+            1732,
+            556
+          ],
+          "ink_pixels": 4621,
+          "id": 3,
+          "colour": "orange",
+          "hex": "#f77f00",
+          "name": "Formula",
+          "text": "output = kP * error + (kI * Eerr) * kI + output = k error"
+        }
+      ],
+      "vlm_reply": "[\n    {\"id\": 1, \"name\": \"Sticker\", \"text\": \"SUPER BOARD\"},\n    {\"id\": 2, \"name\": \"Instruction\", \"text\": \"Imagine: (PID) -> kP, kI, kO Do 4 steps for this problem ->\"},\n    {\"id\": 3, \"name\": \"Formula\", \"text\": \"output = kP * error + (kI * Eerr) * kI + output = k error\"}\n]"
+    },
+    {
+      "era": 4,
+      "from": "6:30",
+      "to": "7:46",
+      "clean": true,
+      "source_image": "output\\lectures\\BanglaASR26\\boards\\clean\\BanglaASR26_board_era4_630_clean.jpg",
+      "figure": "figures_annotated/board_era4_630.jpg",
+      "boxes_found": 3,
+      "boxes_kept": 3,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            0,
+            108,
+            320,
+            212
+          ],
+          "ink_pixels": 2405,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Sticker",
+          "text": "SUPER FORMICA SUPER BOARD S"
+        },
+        {
+          "bbox": [
+            510,
+            106,
+            1398,
+            236
+          ],
+          "ink_pixels": 1996,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Instruction",
+          "text": "Imagine: (PID) > KP, KI, KO Do 4 Steps for this problem:->"
+        },
+        {
+          "bbox": [
+            462,
+            254,
+            1532,
+            704
+          ],
+          "ink_pixels": 5826,
+          "id": 3,
+          "colour": "orange",
+          "hex": "#f77f00",
+          "name": "Formula",
+          "text": "output = kP * error + (∑nErr) * kI + (En - E3) * KD = new output\nnew Actual = [New + old]"
+        }
+      ],
+      "vlm_reply": "[\n    {\"id\": 1, \"name\": \"Sticker\", \"text\": \"SUPER FORMICA SUPER BOARD S\"},\n    {\"id\": 2, \"name\": \"Instruction\", \"text\": \"Imagine: (PID) > KP, KI, KO Do 4 Steps for this problem:->\"},\n    {\"id\": 3, \"name\": \"Formula\", \"text\": \"output = kP * error + (∑nErr) * kI + (En - E3) * KD = new output\\nnew Actual = [New + old]\"}\n]"
+    },
+    {
+      "era": 5,
+      "from": "8:10",
+      "to": "13:12",
+      "clean": true,
+      "source_image": "output\\lectures\\BanglaASR26\\boards\\clean\\BanglaASR26_board_era5_810_clean.jpg",
+      "figure": "figures_annotated/board_era5_810.jpg",
+      "boxes_found": 6,
+      "boxes_kept": 6,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            0,
+            116,
+            294,
+            204
+          ],
+          "ink_pixels": 2292,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Sticker",
+          "text": "SUPER BOARD"
+        },
+        {
+          "bbox": [
+            620,
+            116,
+            1372,
+            230
+          ],
+          "ink_pixels": 1997,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Title",
+          "text": "(PID)"
+        },
+        {
+          "bbox": [
+            338,
+            246,
+            1358,
+            572
+          ],
+          "ink_pixels": 6284,
+          "id": 3,
+          "colour": "orange",
+          "hex": "#f77f00",
+          "name": "Formula",
+          "text": "Desired speed → 100 km/h\ninitial speed → 60 km/h\nkp=0.5 ; ki=0.1 , ko=0.05"
+        },
+        {
+          "bbox": [
+            602,
+            574,
+            1220,
+            684
+          ],
+          "ink_pixels": 1622,
+          "id": 4,
+          "colour": "green",
+          "hex": "#2a9d4f",
+          "name": "Formula",
+          "text": "Error=(100 - 60) = 40 km/h"
+        },
+        {
+          "bbox": [
+            574,
+            682,
+            1402,
+            896
+          ],
+          "ink_pixels": 2472,
+          "id": 5,
+          "colour": "purple",
+          "hex": "#7b2cbf",
+          "name": "Formula",
+          "text": "out = [0.5×40] + 0.1×40 + 0.05×40"
+        },
+        {
+          "bbox": [
+            610,
+            900,
+            1244,
+            980
+          ],
+          "ink_pixels": 1388,
+          "id": 6,
+          "colour": "pink",
+          "hex": "#d63384",
+          "name": "Formula",
+          "text": "New actual speed = 60 + out"
+        }
+      ],
+      "vlm_reply": "[\n    {\"id\": 1, \"name\": \"Sticker\", \"text\": \"SUPER BOARD\"},\n    {\"id\": 2, \"name\": \"Title\", \"text\": \"(PID)\"},\n    {\"id\": 3, \"name\": \"Formula\", \"text\": \"Desired speed → 100 km/h\\ninitial speed → 60 km/h\\nkp=0.5 ; ki=0.1 , ko=0.05\"},\n    {\"id\": 4, \"name\": \"Formula\", \"text\": \"Error=(100 - 60) = 40 km/h\"},\n    {\"id\": 5, \"name\": \"Formula\", \"text\": \"out = [0.5×40] + 0.1×40 + 0.05×40\"},\n    {\"id\": 6, \"name\": \"Formula\", \"text\": \"New actual speed = 60 + out\"}\n]"
+    }
+  ]
+}

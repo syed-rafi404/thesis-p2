@@ -1,0 +1,81 @@
+{
+  "lecture": "BanglaASR28",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "source": "clean",
+  "prompt": "This is a photograph of a classroom whiteboard during a university lecture.\n\nTranscribe everything written on the whiteboard, exactly as written.\n\n- Copy every number, name, identifier, date and symbol exactly. Do not round,\n  correct or reformat values.\n- Write tables as Markdown tables with the same rows and columns as the board.\n- Write code, SQL and program text inside ``` fences, keeping line breaks.\n- Write formulas as they appear. For a bar over a term write it as NOT(...),\n  for example NOT(A+B).\n- Keep diagrams short: name what they are and copy any labels on them, for\n  example \"Gate diagram: inputs A, B into a box labelled NAND, output NOT(AB)\".\n- If part of the board cannot be read, write [illegible]. Never guess, and never\n  add anything that is not written on the board.\n- Ignore any person in the picture. Describe only what is written.\n\nOutput only the transcription.",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:10",
+      "to": "3:10",
+      "clear_fraction": 0.9779,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR28\\boards\\clean\\BanglaASR28_board_era1_010_clean.jpg",
+      "text": "```\nCNN\nNavigation:\n    -> Path planning\n    -> Localization\n    -> Mapping\n    -> E\n```",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 2,
+      "from": "3:20",
+      "to": "4:20",
+      "clear_fraction": 0.9755,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR28\\boards\\clean\\BanglaASR28_board_era2_320_clean.jpg",
+      "text": "```\nCNN\nNavigation:\n    -> Path planning\n    -> Localization\n    -> Mapping\n    -> Exploration\n```",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 3,
+      "from": "4:30",
+      "to": "6:28",
+      "clear_fraction": 0.9895,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR28\\boards\\clean\\BanglaASR28_board_era3_430_clean.jpg",
+      "text": "```\nCNN\nNavigation:\n    Path planning\n    Visual Homing\n    Bug Based\n```",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 4,
+      "from": "6:30",
+      "to": "9:30",
+      "clear_fraction": 0.9802,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR28\\boards\\clean\\BanglaASR28_board_era4_630_clean.jpg",
+      "text": "```markdown\n| CNN |\n| Navigation: |\n| Path planning |\n| Visual Homing |\n| D used |\n```",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 5,
+      "from": "9:40",
+      "to": "11:00",
+      "clear_fraction": 0.9336,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR28\\boards\\clean\\BanglaASR28_board_era5_940_clean.jpg",
+      "text": "```\nCNN\nNavigation:\n    Path planning\n        with map\n            A*\n```",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 6,
+      "from": "11:10",
+      "to": "14:50",
+      "clear_fraction": 0.9814,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR28\\boards\\clean\\BanglaASR28_board_era6_1110_clean.jpg",
+      "text": "```\nCNN\nNavigation:→\nLocalization→\nLand mark\nSensing\n```",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 7,
+      "from": "15:00",
+      "to": "18:20",
+      "clear_fraction": 0.9697,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR28\\boards\\clean\\BanglaASR28_board_era7_1500_clean.jpg",
+      "text": "```\nParadigm\nCNN\n-> Hz + React\n-> Hybrid paradigm\n```",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 8,
+      "from": "18:30",
+      "to": "19:26",
+      "clear_fraction": 0.9406,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR28\\boards\\clean\\BanglaASR28_board_era8_1830_clean.jpg",
+      "text": "```\nCNN\nParadigm\n-> H12 + React\nParadigm\n```",
+      "runaway_lines_removed": 0
+    }
+  ],
+  "mock": false
+}

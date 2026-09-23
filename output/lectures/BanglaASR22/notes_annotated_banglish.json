@@ -1,0 +1,137 @@
+{
+  "lecture": "BanglaASR22",
+  "dataset_lecture": "BanglaASR22",
+  "language": "banglish",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "mock": false,
+  "transcript_file": "transcript.txt",
+  "times_approximate": false,
+  "leakage_warning": "",
+  "boxes_file": "board_boxes.json",
+  "board_text_file": "board_text_clean.json",
+  "quotes_kept": 6,
+  "quotes_dropped": 1,
+  "invalid_box_refs": 0,
+  "quotes_translated": 0,
+  "quotes_word_for_word_checked": true,
+  "written_in": "banglish",
+  "translated_to_english": false,
+  "latex_rewritten": 0,
+  "colour_fixes": 0,
+  "inline_quotes_unverified": 5,
+  "sections": [
+    {
+      "board": 1,
+      "era": 1,
+      "from": "0:10",
+      "to": "1:10",
+      "transcript_chars": 995,
+      "boxes": 1,
+      "boxes_mentioned": [],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "for example, we have ar dc motor, toh ekta dc motor er amra kive be spin korte pari.",
+        "for example, ekhn amra ki ki korte pari? 5 volt er porsu sikhane dilam e ekhane ta common ground asha ta kane kore gham. moddhe dc motor kino yabhe chulese.",
+        "ar kon kon kon jodi decimator er structure er jai, decimator basically heita armature thake. je armature ring ta ei rokon nate shape er, ei armature ring er uport deye abna hocche wires erokom copper wires spin korn o thake right. ekhon basically ki hoy teche? jokhn amader ei amader ei lithe city dicchi, ekta mann a magnet er field er creation hocche, bucche no."
+      ],
+      "quotes_dropped": []
+    },
+    {
+      "board": 2,
+      "era": 2,
+      "from": "1:20",
+      "to": "4:50",
+      "transcript_chars": 2825,
+      "boxes": 2,
+      "boxes_mentioned": [
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "so eita general anti clockwise hore jodi amra polar er shik thake."
+      ],
+      "quotes_dropped": []
+    },
+    {
+      "board": 3,
+      "era": 3,
+      "from": "5:00",
+      "to": "5:40",
+      "transcript_chars": 498,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [
+        "So, how exactly do we achieve this?",
+        "from here, we take one feedback.",
+        "this is the output of the motor, but not directly from here.",
+        "this output is taken, and from this output, we take a feedback, which we use to control our system.",
+        "basically, what are we doing? Now, our computer's input is this, right?"
+      ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": []
+    },
+    {
+      "board": 4,
+      "era": 4,
+      "from": "5:50",
+      "to": "7:38",
+      "transcript_chars": 936,
+      "boxes": 1,
+      "boxes_mentioned": [
+        1
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "je chai tesilam exho, but for example pai tesi amra poitoli char pir. eie je gap ta, ei gap ta berkor hocche amade ei feedback diye kache."
+      ],
+      "quotes_dropped": []
+    },
+    {
+      "board": 5,
+      "era": 5,
+      "from": "7:50",
+      "to": "9:50",
+      "transcript_chars": 1102,
+      "boxes": 3,
+      "boxes_mentioned": [
+        1,
+        2,
+        3
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "so ei hocche amader controller ta."
+      ],
+      "quotes_dropped": [
+        "sensors."
+      ]
+    }
+  ]
+}

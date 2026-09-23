@@ -1,0 +1,65 @@
+{
+  "lecture": "BanglaASR9",
+  "boxes_from": "ink",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "mock": false,
+  "prompt": "This is a classroom whiteboard from a university lecture. Numbered coloured boxes\nhave been drawn on it; each box surrounds one part of the writing. There are {n} boxes,\nnumbered 1 to {n}.\n\nFor every box, reply with:\n- \"id\": the box number.\n- \"name\": 1 to 4 words saying what kind of content the box holds, for example \"Title\",\n  \"Definition\", \"Truth table\", \"Gate symbol\", \"Block diagram\", \"SQL query\", \"Code\",\n  \"List\", \"Worked example\", \"Formula\". If the box holds no lecture writing (a smudge,\n  a shadow, a logo or sticker, the edge of the board), use \"none\".\n- \"text\": everything written inside that box, copied exactly: every number, name and\n  symbol. For a bar over a term write NOT(...). Write a table as Markdown table rows.\n  Write [illegible] for what cannot be read. Never guess.\n\nReply with JSON only: a list with one object per box, in box order, like\n[{{\"id\": 1, \"name\": \"Title\", \"text\": \"Digital Logic Design\"}}]",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:20",
+      "to": "11:00",
+      "clean": true,
+      "source_image": "output\\lectures\\BanglaASR9\\boards\\clean\\BanglaASR9_board_era1_020_clean.jpg",
+      "figure": "figures_annotated/board_era1_020.jpg",
+      "boxes_found": 1,
+      "boxes_kept": 1,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            282,
+            126,
+            1818,
+            1046
+          ],
+          "ink_pixels": 20892,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Struct P",
+          "text": "Struct P ?\n1 char grade;\n4 int marks;\nChar section[c];"
+        }
+      ],
+      "vlm_reply": "[\n    {\n        \"id\": 1,\n        \"name\": \"Struct P\",\n        \"text\": \"Struct P ?\\n1 char grade;\\n4 int marks;\\nChar section[c];\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Struct Q\",\n        \"text\": \"Struct Q ?\\nint courseid;\\nP result;\\nChar room[5];\\n9;\"\n    },\n    {\n        \"id\": 3,\n        \"name\": \"Struct R\",\n        \"text\": \"Struct R ?\\nchar title[8];\\nQ course;\\nint semester;\\n9;\"\n    },\n    {\n        \"id\": 4,\n        \"name\": \"Struct S\",\n        \"text\": \"Struct S ?\\nint StudentID; ->0\\nR info; ->0+9=9\\nChar University [12];\\n9;\"\n    }\n]"
+    },
+    {
+      "era": 2,
+      "from": "11:10",
+      "to": "14:58",
+      "clean": true,
+      "source_image": "output\\lectures\\BanglaASR9\\boards\\clean\\BanglaASR9_board_era2_1110_clean.jpg",
+      "figure": "figures_annotated/board_era2_1110.jpg",
+      "boxes_found": 1,
+      "boxes_kept": 1,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            348,
+            126,
+            1824,
+            1080
+          ],
+          "ink_pixels": 23408,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Structs",
+          "text": "Struct P? int marks; char section[c]; Struct Q? int courseid; char room[5]; Struct R? char title[8]; int semesters; Struct S? int studentID; ->0 R info; ->0+9=9 Char University [12];"
+        }
+      ],
+      "vlm_reply": "[\n    {\n        \"id\": 1,\n        \"name\": \"Structs\",\n        \"text\": \"Struct P? int marks; char section[c]; Struct Q? int courseid; char room[5]; Struct R? char title[8]; int semesters; Struct S? int studentID; ->0 R info; ->0+9=9 Char University [12];\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Arithmetic\",\n        \"text\": \"t1 = @stdree t2 = t1+y t3 = t2+8 ty = t3+y t4 = t3+y t5 = t4+1 t6 = t5+y t7 = t6+y\"\n    },\n    {\n        \"id\": 3,\n        \"name\": \"Variable Assignment\",\n        \"text\": \"y = studentrecord.info.course.result.section[4]\"\n    },\n    {\n        \"id\": 4,\n        \"name\": \"Indexing\",\n        \"text\": \"y = stdree[t7] [27]\"\n    }\n]"
+    }
+  ]
+}

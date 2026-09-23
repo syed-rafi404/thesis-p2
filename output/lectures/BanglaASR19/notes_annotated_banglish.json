@@ -1,0 +1,46 @@
+{
+  "lecture": "BanglaASR19",
+  "dataset_lecture": "BanglaASR19",
+  "language": "banglish",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "mock": false,
+  "transcript_file": "transcript.txt",
+  "times_approximate": false,
+  "leakage_warning": "",
+  "boxes_file": "board_boxes.json",
+  "board_text_file": "board_text_clean.json",
+  "quotes_kept": 2,
+  "quotes_dropped": 0,
+  "invalid_box_refs": 0,
+  "quotes_translated": 0,
+  "quotes_word_for_word_checked": true,
+  "written_in": "banglish",
+  "translated_to_english": false,
+  "latex_rewritten": 0,
+  "colour_fixes": 0,
+  "inline_quotes_unverified": 0,
+  "sections": [
+    {
+      "board": 1,
+      "era": 1,
+      "from": "0:10",
+      "to": "4:06",
+      "transcript_chars": 2975,
+      "boxes": 1,
+      "boxes_mentioned": [
+        1
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "amra je ic me prote vallam, aro ekta important tool jeta hocche trace route sheta niye jambo toh tollan basically ki kore ta amra dekhe ashe.",
+        "amr ei route er theke server kono connection na thake. for example ei route er theke server kono connection na thake. o ekhane ge trace route three hoye jabe ki ki error value ta?"
+      ],
+      "quotes_dropped": []
+    }
+  ]
+}

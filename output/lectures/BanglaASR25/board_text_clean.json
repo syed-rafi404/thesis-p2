@@ -1,0 +1,45 @@
+{
+  "lecture": "BanglaASR25",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "source": "clean",
+  "prompt": "This is a photograph of a classroom whiteboard during a university lecture.\n\nTranscribe everything written on the whiteboard, exactly as written.\n\n- Copy every number, name, identifier, date and symbol exactly. Do not round,\n  correct or reformat values.\n- Write tables as Markdown tables with the same rows and columns as the board.\n- Write code, SQL and program text inside ``` fences, keeping line breaks.\n- Write formulas as they appear. For a bar over a term write it as NOT(...),\n  for example NOT(A+B).\n- Keep diagrams short: name what they are and copy any labels on them, for\n  example \"Gate diagram: inputs A, B into a box labelled NAND, output NOT(AB)\".\n- If part of the board cannot be read, write [illegible]. Never guess, and never\n  add anything that is not written on the board.\n- Ignore any person in the picture. Describe only what is written.\n\nOutput only the transcription.",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:30",
+      "to": "4:50",
+      "clear_fraction": 0.9988,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR25\\boards\\clean\\BanglaASR25_board_era1_030_clean.jpg",
+      "text": "CSE 461\nControl theory\n\nPID\nProportional\nIntegral\nDerivative\n\nError\nError\n\nloop\na\nb\nc\nd\ne\nf\ng\nh\ni\nj\n\nNOT(Error x gain) + Σ Error",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 2,
+      "from": "5:00",
+      "to": "6:30",
+      "clear_fraction": 1.0,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR25\\boards\\clean\\BanglaASR25_board_era2_500_clean.jpg",
+      "text": "```\nSUPERBOARD S\nCSE 461\nControl theory\n\nPI -> PID\nPID\n\nProportional\nIntegral\nDerivative\n\nError\nError\nError x gain\n+ Σ^n Error x gain\nMore\nOscillation\n```",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 3,
+      "from": "6:40",
+      "to": "9:40",
+      "clear_fraction": 1.0,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR25\\boards\\clean\\BanglaASR25_board_era3_640_clean.jpg",
+      "text": "CSE461\nControl theory\n\nPID\nProportional\nIntegral\nDerivative\n\nZiegler's theorem\nfor P controller\nKP = 0.5k\ngain\n\nfor I controller -> P",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 4,
+      "from": "9:50",
+      "to": "11:40",
+      "clear_fraction": 1.0,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR25\\boards\\clean\\BanglaASR25_board_era4_950_clean.jpg",
+      "text": "```\nCSE 461\nControl theory\n\nPID\nProportional\nIntegral\nDerivative\n\nZiegler's theorem:\nFor PID controller\nkP = 0.6 x k\nki = 2 / P\nkd = P / 8\n\nFor PI controller -> P\nki = 1.2 / P\nT = 0.95 x k\n```",
+      "runaway_lines_removed": 0
+    }
+  ],
+  "mock": false
+}

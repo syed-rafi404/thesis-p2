@@ -1,0 +1,261 @@
+{
+  "lecture": "BanglaASR34",
+  "boxes_from": "ink",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "mock": false,
+  "prompt": "This is a classroom whiteboard from a university lecture. Numbered coloured boxes\nhave been drawn on it; each box surrounds one part of the writing. There are {n} boxes,\nnumbered 1 to {n}.\n\nFor every box, reply with:\n- \"id\": the box number.\n- \"name\": 1 to 4 words saying what kind of content the box holds, for example \"Title\",\n  \"Definition\", \"Truth table\", \"Gate symbol\", \"Block diagram\", \"SQL query\", \"Code\",\n  \"List\", \"Worked example\", \"Formula\". If the box holds no lecture writing (a smudge,\n  a shadow, a logo or sticker, the edge of the board), use \"none\".\n- \"text\": everything written inside that box, copied exactly: every number, name and\n  symbol. For a bar over a term write NOT(...). Write a table as Markdown table rows.\n  Write [illegible] for what cannot be read. Never guess.\n\nReply with JSON only: a list with one object per box, in box order, like\n[{{\"id\": 1, \"name\": \"Title\", \"text\": \"Digital Logic Design\"}}]",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:00",
+      "to": "1:26",
+      "clean": true,
+      "source_image": "output\\lectures\\BanglaASR34\\boards\\clean\\BanglaASR34_board_era1_000_clean.jpg",
+      "figure": "figures_annotated/board_era1_000.jpg",
+      "boxes_found": 4,
+      "boxes_kept": 4,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            644,
+            0,
+            1628,
+            528
+          ],
+          "ink_pixels": 4058,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Type of IPV4",
+          "text": "IPv4 \\rightarrow unicast"
+        },
+        {
+          "bbox": [
+            390,
+            220,
+            560,
+            362
+          ],
+          "ink_pixels": 785,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Special kind",
+          "text": "special kind"
+        },
+        {
+          "bbox": [
+            900,
+            250,
+            1228,
+            342
+          ],
+          "ink_pixels": 655,
+          "id": 3,
+          "colour": "orange",
+          "hex": "#f77f00",
+          "name": "Multicast",
+          "text": "\\rightarrow Multicast"
+        },
+        {
+          "bbox": [
+            920,
+            350,
+            1250,
+            424
+          ],
+          "ink_pixels": 533,
+          "id": 4,
+          "colour": "green",
+          "hex": "#2a9d4f",
+          "name": "Loopback",
+          "text": "\\rightarrow Loopback"
+        }
+      ],
+      "vlm_reply": "[\n    {\"id\": 1, \"name\": \"Type of IPV4\", \"text\": \"IPv4 \\\\rightarrow unicast\"},\n    {\"id\": 2, \"name\": \"Special kind\", \"text\": \"special kind\"},\n    {\"id\": 3, \"name\": \"Multicast\", \"text\": \"\\\\rightarrow Multicast\"},\n    {\"id\": 4, \"name\": \"Loopback\", \"text\": \"\\\\rightarrow Loopback\"}\n]"
+    },
+    {
+      "era": 2,
+      "from": "1:30",
+      "to": "3:04",
+      "clean": true,
+      "source_image": "output\\lectures\\BanglaASR34\\boards\\clean\\BanglaASR34_board_era2_130_clean.jpg",
+      "figure": "figures_annotated/board_era2_130.jpg",
+      "boxes_found": 2,
+      "boxes_kept": 2,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            644,
+            0,
+            1754,
+            710
+          ],
+          "ink_pixels": 9916,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Network Types",
+          "text": "Unicast\nBroadcast\nMulticast\nLoopback"
+        },
+        {
+          "bbox": [
+            374,
+            188,
+            574,
+            362
+          ],
+          "ink_pixels": 859,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Special Kind",
+          "text": "Special\nKind"
+        }
+      ],
+      "vlm_reply": "[\n    {\n        \"id\": 1,\n        \"name\": \"Network Types\",\n        \"text\": \"Unicast\\nBroadcast\\nMulticast\\nLoopback\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Special Kind\",\n        \"text\": \"Special\\nKind\"\n    }\n]"
+    },
+    {
+      "era": 3,
+      "from": "3:10",
+      "to": "3:58",
+      "clean": true,
+      "source_image": "output\\lectures\\BanglaASR34\\boards\\clean\\BanglaASR34_board_era3_310_clean.jpg",
+      "figure": "figures_annotated/board_era3_310.jpg",
+      "boxes_found": 3,
+      "boxes_kept": 3,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            644,
+            0,
+            1920,
+            770
+          ],
+          "ink_pixels": 15803,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Network Types",
+          "text": "Unicast Broadcast Multicast Loopback Limited Broadcast Directed Broadcast"
+        },
+        {
+          "bbox": [
+            374,
+            188,
+            574,
+            364
+          ],
+          "ink_pixels": 868,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Special Kind",
+          "text": "Special kind"
+        },
+        {
+          "bbox": [
+            1158,
+            770,
+            1740,
+            852
+          ],
+          "ink_pixels": 1274,
+          "id": 3,
+          "colour": "orange",
+          "hex": "#f77f00",
+          "name": "Directed Broadcast",
+          "text": "Directed Broad cast"
+        }
+      ],
+      "vlm_reply": "[\n    {\n        \"id\": 1,\n        \"name\": \"Network Types\",\n        \"text\": \"Unicast Broadcast Multicast Loopback Limited Broadcast Directed Broadcast\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Special Kind\",\n        \"text\": \"Special kind\"\n    },\n    {\n        \"id\": 3,\n        \"name\": \"Directed Broadcast\",\n        \"text\": \"Directed Broad cast\"\n    }\n]"
+    },
+    {
+      "era": 4,
+      "from": "4:20",
+      "to": "5:36",
+      "clean": true,
+      "source_image": "output\\lectures\\BanglaASR34\\boards\\clean\\BanglaASR34_board_era4_420_clean.jpg",
+      "figure": "figures_annotated/board_era4_420.jpg",
+      "boxes_found": 2,
+      "boxes_kept": 2,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            630,
+            0,
+            1770,
+            972
+          ],
+          "ink_pixels": 21026,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Network Types",
+          "text": "Unicast Broad cast Multicast Loop back Limited Broc 255.255.255.255 /32 Inected Broad cast"
+        },
+        {
+          "bbox": [
+            374,
+            190,
+            574,
+            364
+          ],
+          "ink_pixels": 857,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Special Kind",
+          "text": "Special kind"
+        }
+      ],
+      "vlm_reply": "[\n    {\n        \"id\": 1,\n        \"name\": \"Network Types\",\n        \"text\": \"Unicast Broad cast Multicast Loop back Limited Broc 255.255.255.255 /32 Inected Broad cast\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Special Kind\",\n        \"text\": \"Special kind\"\n    }\n]"
+    },
+    {
+      "era": 5,
+      "from": "5:50",
+      "to": "7:46",
+      "clean": true,
+      "source_image": "output\\lectures\\BanglaASR34\\boards\\clean\\BanglaASR34_board_era5_550_clean.jpg",
+      "figure": "figures_annotated/board_era5_550.jpg",
+      "boxes_found": 2,
+      "boxes_kept": 2,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            646,
+            0,
+            1734,
+            738
+          ],
+          "ink_pixels": 14310,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Network Types",
+          "text": "Unicast Broad cast Multicast Loop back 127.0.0.0/8 224 - 239"
+        },
+        {
+          "bbox": [
+            374,
+            192,
+            576,
+            364
+          ],
+          "ink_pixels": 839,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Special Kind",
+          "text": "Special kind"
+        }
+      ],
+      "vlm_reply": "[\n    {\n        \"id\": 1,\n        \"name\": \"Network Types\",\n        \"text\": \"Unicast Broad cast Multicast Loop back 127.0.0.0/8 224 - 239\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Special Kind\",\n        \"text\": \"Special kind\"\n    }\n]"
+    }
+  ]
+}

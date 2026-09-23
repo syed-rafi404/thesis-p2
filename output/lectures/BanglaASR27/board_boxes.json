@@ -1,0 +1,359 @@
+{
+  "lecture": "BanglaASR27",
+  "boxes_from": "ink",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "mock": false,
+  "prompt": "This is a classroom whiteboard from a university lecture. Numbered coloured boxes\nhave been drawn on it; each box surrounds one part of the writing. There are {n} boxes,\nnumbered 1 to {n}.\n\nFor every box, reply with:\n- \"id\": the box number.\n- \"name\": 1 to 4 words saying what kind of content the box holds, for example \"Title\",\n  \"Definition\", \"Truth table\", \"Gate symbol\", \"Block diagram\", \"SQL query\", \"Code\",\n  \"List\", \"Worked example\", \"Formula\". If the box holds no lecture writing (a smudge,\n  a shadow, a logo or sticker, the edge of the board), use \"none\".\n- \"text\": everything written inside that box, copied exactly: every number, name and\n  symbol. For a bar over a term write NOT(...). Write a table as Markdown table rows.\n  Write [illegible] for what cannot be read. Never guess.\n\nReply with JSON only: a list with one object per box, in box order, like\n[{{\"id\": 1, \"name\": \"Title\", \"text\": \"Digital Logic Design\"}}]",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:00",
+      "to": "5:08",
+      "clean": true,
+      "source_image": "output\\lectures\\BanglaASR27\\boards\\clean\\BanglaASR27_board_era1_000_clean.jpg",
+      "figure": "figures_annotated/board_era1_000.jpg",
+      "boxes_found": 3,
+      "boxes_kept": 3,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            0,
+            18,
+            354,
+            180
+          ],
+          "ink_pixels": 3794,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Sticker",
+          "text": "SQL"
+        },
+        {
+          "bbox": [
+            768,
+            52,
+            1006,
+            166
+          ],
+          "ink_pixels": 644,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Formula",
+          "text": "ML"
+        },
+        {
+          "bbox": [
+            552,
+            220,
+            1612,
+            638
+          ],
+          "ink_pixels": 2822,
+          "id": 3,
+          "colour": "orange",
+          "hex": "#f77f00",
+          "name": "Formula",
+          "text": "f_1 \\rightarrow \\sum f_i w_i = output"
+        }
+      ],
+      "vlm_reply": "[\n    {\"id\": 1, \"name\": \"Sticker\", \"text\": \"SQL\"},\n    {\"id\": 2, \"name\": \"Formula\", \"text\": \"ML\"},\n    {\"id\": 3, \"name\": \"Formula\", \"text\": \"f_1 \\\\rightarrow \\\\sum f_i w_i = output\"}\n]"
+    },
+    {
+      "era": 2,
+      "from": "5:10",
+      "to": "6:06",
+      "clean": true,
+      "source_image": "output\\lectures\\BanglaASR27\\boards\\clean\\BanglaASR27_board_era2_510_clean.jpg",
+      "figure": "figures_annotated/board_era2_510.jpg",
+      "boxes_found": 8,
+      "boxes_kept": 8,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            0,
+            6,
+            360,
+            180
+          ],
+          "ink_pixels": 4115,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Sticker",
+          "text": "SUPER BOARD S"
+        },
+        {
+          "bbox": [
+            768,
+            50,
+            1006,
+            164
+          ],
+          "ink_pixels": 628,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Abbreviation",
+          "text": "ML"
+        },
+        {
+          "bbox": [
+            294,
+            220,
+            466,
+            302
+          ],
+          "ink_pixels": 259,
+          "id": 3,
+          "colour": "orange",
+          "hex": "#f77f00",
+          "name": "Label",
+          "text": "Age"
+        },
+        {
+          "bbox": [
+            560,
+            204,
+            904,
+            372
+          ],
+          "ink_pixels": 813,
+          "id": 4,
+          "colour": "green",
+          "hex": "#2a9d4f",
+          "name": "Label",
+          "text": "Tumor size"
+        },
+        {
+          "bbox": [
+            1086,
+            186,
+            1416,
+            396
+          ],
+          "ink_pixels": 1208,
+          "id": 5,
+          "colour": "purple",
+          "hex": "#7b2cbf",
+          "name": "Condition",
+          "text": "Condition malignant"
+        },
+        {
+          "bbox": [
+            322,
+            312,
+            478,
+            390
+          ],
+          "ink_pixels": 199,
+          "id": 6,
+          "colour": "pink",
+          "hex": "#d63384",
+          "name": "Number",
+          "text": "50"
+        },
+        {
+          "bbox": [
+            350,
+            442,
+            482,
+            522
+          ],
+          "ink_pixels": 125,
+          "id": 7,
+          "colour": "brown",
+          "hex": "#8d5524",
+          "name": "Number",
+          "text": "2"
+        },
+        {
+          "bbox": [
+            718,
+            418,
+            870,
+            504
+          ],
+          "ink_pixels": 234,
+          "id": 8,
+          "colour": "teal",
+          "hex": "#0e7c86",
+          "name": "Number",
+          "text": "30"
+        }
+      ],
+      "vlm_reply": "[\n    {\"id\": 1, \"name\": \"Sticker\", \"text\": \"SUPER BOARD S\"},\n    {\"id\": 2, \"name\": \"Abbreviation\", \"text\": \"ML\"},\n    {\"id\": 3, \"name\": \"Label\", \"text\": \"Age\"},\n    {\"id\": 4, \"name\": \"Label\", \"text\": \"Tumor size\"},\n    {\"id\": 5, \"name\": \"Condition\", \"text\": \"Condition malignant\"},\n    {\"id\": 6, \"name\": \"Number\", \"text\": \"50\"},\n    {\"id\": 7, \"name\": \"Number\", \"text\": \"2\"},\n    {\"id\": 8, \"name\": \"Number\", \"text\": \"30\"}\n]"
+    },
+    {
+      "era": 3,
+      "from": "6:10",
+      "to": "11:20",
+      "clean": true,
+      "source_image": "output\\lectures\\BanglaASR27\\boards\\clean\\BanglaASR27_board_era3_610_clean.jpg",
+      "figure": "figures_annotated/board_era3_610.jpg",
+      "boxes_found": 1,
+      "boxes_kept": 1,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            0,
+            18,
+            1628,
+            868
+          ],
+          "ink_pixels": 21458,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Table",
+          "text": "| Age | Tumor size | Condition |\n| --- | --- | --- |\n| 50 | 10 | malignant |\n| 2 | 30 | benign |\n| 95 | 1 | benign |\n| 40 | 5 | malignant |"
+        }
+      ],
+      "vlm_reply": "[\n    {\n        \"id\": 1,\n        \"name\": \"Table\",\n        \"text\": \"| Age | Tumor size | Condition |\\n| --- | --- | --- |\\n| 50 | 10 | malignant |\\n| 2 | 30 | benign |\\n| 95 | 1 | benign |\\n| 40 | 5 | malignant |\"\n    }\n]"
+    },
+    {
+      "era": 4,
+      "from": "11:40",
+      "to": "15:40",
+      "clean": true,
+      "source_image": "output\\lectures\\BanglaASR27\\boards\\clean\\BanglaASR27_board_era4_1140_clean.jpg",
+      "figure": "figures_annotated/board_era4_1140.jpg",
+      "boxes_found": 4,
+      "boxes_kept": 4,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            0,
+            18,
+            358,
+            182
+          ],
+          "ink_pixels": 4376,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Sticker",
+          "text": "SUPER BOARD"
+        },
+        {
+          "bbox": [
+            792,
+            60,
+            978,
+            158
+          ],
+          "ink_pixels": 642,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Abbreviation",
+          "text": "ML"
+        },
+        {
+          "bbox": [
+            540,
+            180,
+            1374,
+            778
+          ],
+          "ink_pixels": 5608,
+          "id": 3,
+          "colour": "orange",
+          "hex": "#f77f00",
+          "name": "Diagram",
+          "text": "none"
+        },
+        {
+          "bbox": [
+            452,
+            400,
+            532,
+            466
+          ],
+          "ink_pixels": 267,
+          "id": 4,
+          "colour": "green",
+          "hex": "#2a9d4f",
+          "name": "Variable",
+          "text": "Age"
+        }
+      ],
+      "vlm_reply": "[\n    {\"id\": 1, \"name\": \"Sticker\", \"text\": \"SUPER BOARD\"},\n    {\"id\": 2, \"name\": \"Abbreviation\", \"text\": \"ML\"},\n    {\"id\": 3, \"name\": \"Diagram\", \"text\": \"none\"},\n    {\"id\": 4, \"name\": \"Variable\", \"text\": \"Age\"}\n]"
+    },
+    {
+      "era": 5,
+      "from": "15:50",
+      "to": "22:40",
+      "clean": true,
+      "source_image": "output\\lectures\\BanglaASR27\\boards\\clean\\BanglaASR27_board_era5_1550_clean.jpg",
+      "figure": "figures_annotated/board_era5_1550.jpg",
+      "boxes_found": 4,
+      "boxes_kept": 4,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            0,
+            18,
+            358,
+            182
+          ],
+          "ink_pixels": 4203,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Sticker",
+          "text": "SUPER BOARD"
+        },
+        {
+          "bbox": [
+            792,
+            60,
+            978,
+            160
+          ],
+          "ink_pixels": 637,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Abbreviation",
+          "text": "ML"
+        },
+        {
+          "bbox": [
+            458,
+            184,
+            1384,
+            434
+          ],
+          "ink_pixels": 5315,
+          "id": 3,
+          "colour": "orange",
+          "hex": "#f77f00",
+          "name": "Diagram",
+          "text": "CNN\nFeature 1 -> Age\nFeature 2 -> Tumor Size"
+        },
+        {
+          "bbox": [
+            776,
+            456,
+            1526,
+            892
+          ],
+          "ink_pixels": 5538,
+          "id": 4,
+          "colour": "green",
+          "hex": "#2a9d4f",
+          "name": "Graph",
+          "text": "Activation function"
+        }
+      ],
+      "vlm_reply": "[\n    {\"id\": 1, \"name\": \"Sticker\", \"text\": \"SUPER BOARD\"},\n    {\"id\": 2, \"name\": \"Abbreviation\", \"text\": \"ML\"},\n    {\"id\": 3, \"name\": \"Diagram\", \"text\": \"CNN\\nFeature 1 -> Age\\nFeature 2 -> Tumor Size\"},\n    {\"id\": 4, \"name\": \"Graph\", \"text\": \"Activation function\"}\n]"
+    }
+  ]
+}

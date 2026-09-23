@@ -1,0 +1,186 @@
+{
+  "lecture": "BanglaASR29",
+  "dataset_lecture": "BanglaASR29",
+  "language": "banglish",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "mock": false,
+  "transcript_file": "transcript.txt",
+  "times_approximate": false,
+  "leakage_warning": "",
+  "boxes_file": "board_boxes.json",
+  "board_text_file": "board_text_clean.json",
+  "quotes_kept": 6,
+  "quotes_dropped": 4,
+  "invalid_box_refs": 0,
+  "quotes_translated": 0,
+  "quotes_word_for_word_checked": true,
+  "written_in": "banglish",
+  "translated_to_english": false,
+  "latex_rewritten": 0,
+  "colour_fixes": 0,
+  "inline_quotes_unverified": 0,
+  "sections": [
+    {
+      "board": 1,
+      "era": 1,
+      "from": "0:00",
+      "to": "4:02",
+      "transcript_chars": 2576,
+      "boxes": 3,
+      "boxes_mentioned": [
+        1,
+        2,
+        3
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [
+        "Convolutional Neural Network (CNN) is a type of neural network used in image processing and robotics.",
+        "Essentially, we need CNNs for tasks like image classification and object detection."
+      ]
+    },
+    {
+      "board": 2,
+      "era": 2,
+      "from": "4:10",
+      "to": "5:10",
+      "transcript_chars": 906,
+      "boxes": 0,
+      "boxes_mentioned": [],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": []
+    },
+    {
+      "board": 3,
+      "era": 3,
+      "from": "5:20",
+      "to": "8:10",
+      "transcript_chars": 1902,
+      "boxes": 3,
+      "boxes_mentioned": [
+        1,
+        2,
+        3
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "because amr ekta ekta amane r ba g bar di prottek tar ne ar b e ta number dei ripetar kora ho."
+      ],
+      "quotes_dropped": [
+        "ei prothe ekta grid er je box, ei box a kintu ar ar ekta value thakalakbe, g-er ekta value thakalbe, b-er value thakalbe."
+      ]
+    },
+    {
+      "board": 4,
+      "era": 4,
+      "from": "8:20",
+      "to": "11:30",
+      "transcript_chars": 2262,
+      "boxes": 5,
+      "boxes_mentioned": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "so that is like taro mb, todhe mb, ponoro mb er ekta chobi, like khubi normal.",
+        "so amra ekta image ta ekhane amra ekta image korte. thikas? amra ta image jodi high resolution image jeta compress kore felbo, but keeping the significance of the image."
+      ],
+      "quotes_dropped": []
+    },
+    {
+      "board": 5,
+      "era": 5,
+      "from": "11:40",
+      "to": "15:40",
+      "transcript_chars": 3061,
+      "boxes": 5,
+      "boxes_mentioned": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": []
+    },
+    {
+      "board": 6,
+      "era": 6,
+      "from": "16:10",
+      "to": "23:20",
+      "transcript_chars": 4794,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "toh pulle nir shake omne kaj kar e, for example, apna eta three by three grid ache. thikache? ami choto eta grid a kachhi.",
+        "toh etatai just khub simple eta example bole chai jegei bishchule ashto di ami porobr example use prontokono dekhbe variety of number ashbe."
+      ],
+      "quotes_dropped": [
+        "je karnalba field er boli, etatolai, amra normal jara manosh, amra botse field a, but je filter nar ta, ei je creator ta kem, dise ta ne, ei kernel thekei."
+      ]
+    },
+    {
+      "board": 7,
+      "era": 7,
+      "from": "23:30",
+      "to": "25:10",
+      "transcript_chars": 1035,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "ekhane ekta fix stage, thikase ebhabe ami first take confession karon kortesi amr image importance dorkhane."
+      ],
+      "quotes_dropped": []
+    }
+  ]
+}

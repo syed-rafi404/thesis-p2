@@ -1,0 +1,140 @@
+{
+  "lecture": "BanglaASR26",
+  "dataset_lecture": "BanglaASR26",
+  "language": "banglish",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "mock": false,
+  "transcript_file": "transcript.txt",
+  "times_approximate": false,
+  "leakage_warning": "",
+  "boxes_file": "board_boxes.json",
+  "board_text_file": "board_text_clean.json",
+  "quotes_kept": 6,
+  "quotes_dropped": 1,
+  "invalid_box_refs": 0,
+  "quotes_translated": 0,
+  "quotes_word_for_word_checked": true,
+  "written_in": "banglish",
+  "translated_to_english": false,
+  "latex_rewritten": 0,
+  "colour_fixes": 0,
+  "inline_quotes_unverified": 0,
+  "sections": [
+    {
+      "board": 1,
+      "era": 1,
+      "from": "0:10",
+      "to": "1:50",
+      "transcript_chars": 1315,
+      "boxes": 3,
+      "boxes_mentioned": [
+        1,
+        2,
+        3
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [
+        "pi diye likhlam bodo, pi are proportional medhogula jonno, eta korno ashe na thikase?"
+      ]
+    },
+    {
+      "board": 2,
+      "era": 2,
+      "from": "2:00",
+      "to": "4:54",
+      "transcript_chars": 1721,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "output er formula ta hocche, amra first of all je bolla je amader je kp er value ta ber korbo, mane eita amra dhore nicchi, eta o mention korte ba obviously.",
+        "ei jinish ta ki hbe? ei jinish ta ki?"
+      ],
+      "quotes_dropped": []
+    },
+    {
+      "board": 3,
+      "era": 3,
+      "from": "5:00",
+      "to": "6:20",
+      "transcript_chars": 884,
+      "boxes": 3,
+      "boxes_mentioned": [
+        1,
+        2,
+        3
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "eita ekhane ekta jinish ta macha kore dilei amra kintu era design kora. eije protte ekta error arche tar sheta gain ta multiply kolay le amra output ta pabo. eita ekhane straight forward.",
+        "tokhon nito i bhabe ebhlo ber korthebe. but jodi direct diye de equation e ziggler formula use kore kore kore, thikase ora easier hoye gelo. tokhon er occhi aladebore eta ber kore lakene. trick question e etar ekta ekta ekta ekta ekta diya ache ke rojda ber kore lake."
+      ],
+      "quotes_dropped": []
+    },
+    {
+      "board": 4,
+      "era": 4,
+      "from": "6:30",
+      "to": "7:46",
+      "transcript_chars": 978,
+      "boxes": 3,
+      "boxes_mentioned": [
+        2,
+        3
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "so, error four minus error three je ta hobe, sheita multiplied by kd. right.",
+        "so amra hocche tokho amader actual output ta ke amader ber korbo, previous output plus new output."
+      ],
+      "quotes_dropped": []
+    },
+    {
+      "board": 5,
+      "era": 5,
+      "from": "8:10",
+      "to": "13:12",
+      "transcript_chars": 3177,
+      "boxes": 6,
+      "boxes_mentioned": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": []
+    }
+  ]
+}
