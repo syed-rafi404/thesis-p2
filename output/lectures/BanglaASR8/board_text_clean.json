@@ -1,0 +1,27 @@
+{
+  "lecture": "BanglaASR8",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "source": "clean",
+  "prompt": "This is a photograph of a classroom whiteboard during a university lecture.\n\nTranscribe everything written on the whiteboard, exactly as written.\n\n- Copy every number, name, identifier, date and symbol exactly. Do not round,\n  correct or reformat values.\n- Write tables as Markdown tables with the same rows and columns as the board.\n- Write code, SQL and program text inside ``` fences, keeping line breaks.\n- Write formulas as they appear. For a bar over a term write it as NOT(...),\n  for example NOT(A+B).\n- Keep diagrams short: name what they are and copy any labels on them, for\n  example \"Gate diagram: inputs A, B into a box labelled NAND, output NOT(AB)\".\n- If part of the board cannot be read, write [illegible]. Never guess, and never\n  add anything that is not written on the board.\n- Ignore any person in the picture. Describe only what is written.\n\nOutput only the transcription.",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:30",
+      "to": "4:10",
+      "clear_fraction": 0.9755,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR8\\boards\\clean\\BanglaASR8_board_era1_030_clean.jpg",
+      "text": "```\na = (b*c + d) / t1\nt2\n\nx = a + a*(b-c) + (b-c)d / t2 + t3\nt4\n\nt1 = b - c\nt2 = t1 * a\nt3 = (b - c)\nt4 = t3 * d\n```",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 2,
+      "from": "4:20",
+      "to": "4:56",
+      "clear_fraction": 0.7657,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR8\\boards\\clean\\BanglaASR8_board_era2_420_clean.jpg",
+      "text": "```\na = (b * c + d) / t1\nt2 = a * (b - c) + (b - c) * d / t4\n\nt1 = b * c\nt2 = t1 + d\na = t2\n\nx = a + a * (b - c) + (b - c) * d / t4\n\n| t1 = b * c |\n| t2 = t1 + d |\n| a = t2      |\n\n| t3 = b - c |\n| t4 = t3 * d |\n| t5 = a + t2 |\n| t6 = t5 + t4 |\n| x = t6      |\n```",
+      "runaway_lines_removed": 0
+    }
+  ],
+  "mock": false
+}

@@ -1,0 +1,18 @@
+{
+  "lecture": "BanglaASR7",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "source": "clean",
+  "prompt": "This is a photograph of a classroom whiteboard during a university lecture.\n\nTranscribe everything written on the whiteboard, exactly as written.\n\n- Copy every number, name, identifier, date and symbol exactly. Do not round,\n  correct or reformat values.\n- Write tables as Markdown tables with the same rows and columns as the board.\n- Write code, SQL and program text inside ``` fences, keeping line breaks.\n- Write formulas as they appear. For a bar over a term write it as NOT(...),\n  for example NOT(A+B).\n- Keep diagrams short: name what they are and copy any labels on them, for\n  example \"Gate diagram: inputs A, B into a box labelled NAND, output NOT(AB)\".\n- If part of the board cannot be read, write [illegible]. Never guess, and never\n  add anything that is not written on the board.\n- Ignore any person in the picture. Describe only what is written.\n\nOutput only the transcription.",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:00",
+      "to": "7:12",
+      "clear_fraction": 0.9545,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR7\\boards\\clean\\BanglaASR7_board_era1_000_clean.jpg",
+      "text": "| T → B { C.i = B.type & C } T.type = C.type |\n| --- | --- |\n| x B → int { B.type = int } |\n| C → [Num] { C.i = c.i } |\n| C → ε { C.type = c.i } |\n\nT.type =\nC1.type = array (num.val, C1.type)\nint [2][4]\nC1.type = array (2, array (4, int))\n\nB1.type = int\n[num]\n[2]\n\nC1.type = array (2, array (4, int))\nC2.type = int\n\nnum\n[4]",
+      "runaway_lines_removed": 0
+    }
+  ],
+  "mock": false
+}

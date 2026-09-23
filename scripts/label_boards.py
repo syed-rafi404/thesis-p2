@@ -467,10 +467,19 @@ def write_board_text(name, info, vlm, max_new_tokens=1500):
     boards = []
     for era in nc.board_eras(info["board_dir"]):
         src = era["clean"] or era["mosaic"]
-        text = "" if vlm is None else read_board(vlm.model, vlm.processor,
-                                                 Image.open(src).convert("RGB"), max_new_tokens)
+        # read_board returns (text, runaway lines removed) since the loop guard
+        # was added on 2026-09-23. Storing the pair raw put a list where every
+        # reader expects a string, and the notes step died on it with
+        # "'list' object has no attribute 'strip'".
+        looped = 0
+        if vlm is None:
+            text = ""
+        else:
+            text, looped = read_board(vlm.model, vlm.processor,
+                                      Image.open(src).convert("RGB"), max_new_tokens)
         boards.append({"era": era["era"], "from": era["from"], "to": era["to"],
-                       "clear_fraction": era["clear_fraction"], "image": str(src), "text": text})
+                       "clear_fraction": era["clear_fraction"], "image": str(src),
+                       "text": text, "runaway_lines_removed": looped})
     payload = {"lecture": name, "model": None if vlm is None else vlm.model_id, "source": "clean",
                "prompt": PROMPT, "boards": boards, "mock": vlm is None}
     out = Path(info["run_dir"]) / "board_text_clean.json"
