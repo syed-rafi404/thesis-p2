@@ -308,6 +308,58 @@ this section to answer the spelling question. Per-run numbers: rerun the command
 Reproduce: `python scripts/banglish_wer.py --mean "hold out A s42=<parent>/ft_work_BCtoA/eval_turbo_seed42_greedy.json" ...`
 (the six greedy files listed in 1.5).
 
+### 1.8 THE FINAL ASR RESULT — 5.15 h, tuned, random video split (2026-09-23/24, 3060)
+
+**This is the thesis's speech result.** The dataset is closed: 28 lectures, 5.15 h of hand-checked
+Banglish. Whole lectures were held out at random (20% per lecturer, seed 0, rule fixed beforehand),
+the three validation lectures of 1.7 were locked out of the test set, and the tuning never saw the
+test lectures.
+
+| | |
+|---|---|
+| Train | 22 lectures, **4.10 h** (A 90.7 min, B 58.4, C 159.8, minus the test lectures) |
+| Test | **BanglaASR8, 9, 11, 15, 19, 27** - 6 lectures, **1.05 h**, 177 clips (A 19.9 min, B 14.2, C 29.1) |
+| Model | whisper-large-v3-turbo + LoRA r16 (alpha 32, q_proj + v_proj), 8 epochs, batch 8, bf16, gradient checkpointing |
+| Decoding | plain greedy; the loop safeguard is reported beside it |
+
+**Median per-clip error on the 177 test clips, off-the-shelf against fine-tuned:**
+
+| Learning rate | Seed | CER | WER | Runaway clips | Better / 177 | Wilcoxon |
+|---|---|---|---|---|---|---|
+| off-the-shelf | - | 67.7% | 93.9% | 13 | - | - |
+| **1e-3** | **42** | **15.8%** | **42.5%** | 1 | 164 | p < 1e-30 |
+| **1e-3** | **1** | **16.0%** | **41.7%** | 1 | 167 | p < 1e-30 |
+| 2e-3 (the tuned choice) | 1 | 16.2% | 41.7% | 2 | 168 | p < 1e-30 |
+| 2e-3 (the tuned choice) | 42 | **118.7%** | 189.8% | **82** | 35 | **worse** |
+
+**Headline: CER 67.7% -> 15.8-16.0%, WER 93.9% -> 41.7-42.5%**, two seeds agreeing to 0.2 points,
+better on 164 and 167 of 177 clips. The error is cut by about three quarters.
+
+**The instability, which must be reported with it.** At 2e-3 - the rate the pre-registered tuning
+chose on the validation lectures (1.7) - one of the two seeds collapsed into repetition loops: 82 of
+177 clips runaway, CER 118.7%, worse than doing nothing. Same data, same settings, different random
+seed. This is the third time this configuration has shown the same fragility: LoRA rank 32 diverged
+and all-four-projections diverged, in both the 2.1 h rehearsal and the 5.15 h tuning. **Do not quote
+the 16.2% from 2e-3 without its failed twin.**
+
+**A disclosure about the 1e-3 rows.** The pre-registered procedure chose 2e-3. The 1e-3 runs were
+launched *after* seeing that divergence, so this choice was not blind, and the thesis must say so.
+What can be claimed honestly: the runner-up rate from the same tuning table is stable across two
+seeds on the test set, and its two seeds agree; the chosen rate is not. The selection rule itself is
+unchanged and still recorded in `data/splits/tuning_plan.md`.
+
+**Compared with the earlier headline (1.5).** That number - CER 72.8% -> 50.3% - holds out an entire
+lecturer, so it answers a harder question with 80-114 min of training data. This one holds out whole
+lectures from lecturers who are also in training, on 4.1 h. **Both belong in the thesis, labelled:**
+this is "new lectures from known lecturers", 1.5 is "an unseen lecturer".
+
+```
+python scripts/whisper_full_pipeline.py --tune-dir F:\thesisP2\ft_work_tune5h --final-dir F:\thesisP2\ft_work_final5h
+powershell -File claude_transfer/final_lr1e3.ps1     # the 1e-3 pair, same split and data
+```
+Artifacts: `artifacts/ft_work_final5h/` (2e-3, both seeds, and the loop-safeguard evaluations),
+`artifacts/ft_work_final5h_lr1e3/` (1e-3, both seeds). Each folder's `split.json` freezes the split.
+
 ### 1.7 Hyperparameter tuning on a validation set, pre-registered (rehearsal, 2026-09-22/23, 3060)
 
 The panel will ask how the settings were chosen. They are now chosen by a procedure written down
