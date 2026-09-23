@@ -1,5 +1,5 @@
 {
-  "video": "F:\\thesisP2\\thesisP2\\data\\raw\\live_classroom\\BanglaASR18.mp4",
+  "video": "D:\\T2520875\\thesisP2\\thesisP2\\data\\raw\\live_recordings\\BanglaASR18.mp4",
   "name": "BanglaASR18",
   "mock": false,
   "seconds": {
@@ -7,11 +7,13 @@
     "boards": 59.975114583969116,
     "clean": 3.4230921268463135,
     "audio": 1.8716187477111816,
-    "transcript": 11.252315282821655
+    "transcript": 11.252315282821655,
+    "notes": 139.51382732391357
   },
   "person_model": "deeplab+shadow",
   "asr": {
     "base": "openai/whisper-large-v3-turbo",
     "adapter": "F:\\thesisP2\\ft_work_ABtoC\\lora_turbo_seed42"
-  }
+  },
+  "notes_model": "Qwen/Qwen2.5-7B-Instruct"
 }
