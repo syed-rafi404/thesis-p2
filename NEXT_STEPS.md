@@ -1,6 +1,37 @@
 # NEXT STEPS — read this file, ignore everything else
 
-If you are lost, start here. Updated 2026-09-22 (on the 3060).
+If you are lost, start here. Updated 2026-09-23 (on the 3060).
+
+---
+
+## OPEN TASKS, IN ORDER (2026-09-23 afternoon)
+
+1. **3060, tonight, the moment the Whisper run frees the GPU** (`whisper_full_pipeline.py`, started
+   12:46, log `F:\thesisP2\claude_transfer\whisper_5h_log.txt`). Do not start these while it runs:
+   the card has ~3 GB spare and an out-of-memory crash would lose the whole run.
+   - **BanglaASR44** (the 30-min lecture added for the demo, no ground truth, never trained on):
+     build its boards and transcript here, because this machine has torchvision for the person
+     mask and the 5090 falls back to the worse temporal mask without it. Use the **final adapter**
+     from `F:\thesisP2\ft_work_final5h` for the transcript, not the old leave-one-speaker-out one:
+     ```
+     python scripts/run_lecture.py --video data\raw\live_classroom\BanglaASR44.mp4 ^
+       --steps audio frames boards clean transcript --adapter F:\thesisP2\ft_work_final5h\lora_final ^
+       --python-vision C:\Users\Rafi\miniconda3\envs\pyenv\python.exe
+     ```
+     Then `git add -f output/lectures/BanglaASR44` (boards, clean, transcript, run_lecture.json;
+     not the frames) and push.
+   - **The demo lecture the 5090 picks from 29-43:** regenerate its transcript with the same final
+     adapter and push, so tomorrow's 15-minute session can rebuild its notes on it.
+   - **Record the final run** in RESULTS.md as a new section (base vs fine-tuned, both seeds, the
+     test lectures, the chosen settings from the tuning), and add the **loop-safeguard comparison**
+     (`evaluate.py --decode fallback` on the final adapters, ~20 min) as an extra row.
+2. **5090, tomorrow, 15 minutes** (the only GPU work left anywhere): `git pull`, then build 44's
+   notes (`--steps boxes notes`, banglish and english_via_banglish) and rebuild the demo lecture's
+   notes on the new transcript. Push.
+3. **The user:** the board completeness check,
+   `F:\thesisP2\thesisP2\output\lectures\board_completeness_check.html` (98 boards, 30-40 min).
+   Paste the "Copy my results" text to Claude; it goes to `data/board_completeness_<date>.json`
+   and into RESULTS.md 4.1.2.
 
 ---
 
