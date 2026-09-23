@@ -64,6 +64,23 @@ def lecture_number(name):
     return int(m.group(1)) if m else 10 ** 6
 
 
+def dataset_lecture_name(name):
+    """The name this lecture has in data/raw/live_classroom today.
+
+    The run folders here are named with the numbering used before 2026-09-22 (old BanglaASR6-13 are
+    the dataset's BanglaASR10-17), because the answer keys and every published result use it. A note
+    that says only "BanglaASR8" is therefore ambiguous: it means old 8 here and a different lecture
+    in output/lectures/. Returns the name unchanged when there is nothing to map.
+    """
+    sys.path.insert(0, str(REPO / "finetune"))
+    try:
+        from lecture_numbering import NEW_FROM_OLD
+    except ImportError:
+        return name
+    n = lecture_number(name)
+    return f"BanglaASR{NEW_FROM_OLD[n]}" if n in NEW_FROM_OLD else name
+
+
 def discover_lectures(board_roots=None):
     """{lecture name: {"run_dir": Path, "board_dir": Path}} for lectures that have boards."""
     board_roots = [Path(p) for p in (board_roots or BOARD_ROOTS)]

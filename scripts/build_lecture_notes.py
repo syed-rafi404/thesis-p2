@@ -373,7 +373,15 @@ def build(name, info, llm, language, args):
     if tfile == "transcript_finetuned_v2.txt" and nc.lecture_number(name) <= 5:
         leak = ("transcript_finetuned_v2.txt comes from an adapter trained on lectures 1-5, "
                 "this lecture included: not valid for evaluation")
+    # The 13 scored lectures live in run folders named with the OLD numbering, so a note made from
+    # output/.../BanglaASR8 is the dataset's BanglaASR12. Without this line two different lectures
+    # answer to "BanglaASR8": the old one here and the new one in output/lectures/.
+    dataset_name = nc.dataset_lecture_name(name)
+    renamed = dataset_name != name
     footer = ["---", "",
+              (f"*This lecture is `{dataset_name}` in the dataset "
+               f"(`{name}` is its old number, kept because the answer keys use it).*\n"
+               if renamed else ""),
               f"*How these notes were made. Speech: {tfile or 'no transcript'}"
               + (" (times approximate)" if approx and tfile else "") + ". "
               f"Boards: {boxes_doc.get('boxes_from', 'ink')} boxes, named by {vlm_name}. "
@@ -387,7 +395,8 @@ def build(name, info, llm, language, args):
     (run_dir / f"{stem}.md").write_text(markdown, encoding="utf-8")
     title = next((ln[2:].strip() for ln in head.splitlines() if ln.startswith("# ")), name)
     (run_dir / f"{stem}.html").write_text(notes_page.render(markdown, run_dir, title), encoding="utf-8")
-    meta = {"lecture": name, "language": language, "model": llm.model_id, "mock": mock_output,
+    meta = {"lecture": name, "dataset_lecture": dataset_name,
+            "language": language, "model": llm.model_id, "mock": mock_output,
             "transcript_file": tfile, "times_approximate": approx, "leakage_warning": leak,
             "boxes_file": boxes_path.name, "board_text_file": args.board_text_file if board_text else None,
             "quotes_kept": kept_n, "quotes_dropped": dropped_n, "invalid_box_refs": invalid_n,
