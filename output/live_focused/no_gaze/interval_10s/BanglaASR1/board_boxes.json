@@ -1,0 +1,317 @@
+{
+  "lecture": "BanglaASR1",
+  "boxes_from": "ink",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "mock": false,
+  "prompt": "This is a classroom whiteboard from a university lecture. Numbered coloured boxes\nhave been drawn on it; each box surrounds one part of the writing. There are {n} boxes,\nnumbered 1 to {n}.\n\nFor every box, reply with:\n- \"id\": the box number.\n- \"name\": 1 to 4 words saying what kind of content the box holds, for example \"Title\",\n  \"Definition\", \"Truth table\", \"Gate symbol\", \"Block diagram\", \"SQL query\", \"Code\",\n  \"List\", \"Worked example\", \"Formula\". If the box holds no lecture writing (a smudge,\n  a shadow, a logo or sticker, the edge of the board), use \"none\".\n- \"text\": everything written inside that box, copied exactly: every number, name and\n  symbol. For a bar over a term write NOT(...). Write a table as Markdown table rows.\n  Write [illegible] for what cannot be read. Never guess.\n\nReply with JSON only: a list with one object per box, in box order, like\n[{{\"id\": 1, \"name\": \"Title\", \"text\": \"Digital Logic Design\"}}]",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:00",
+      "to": "1:40",
+      "clean": true,
+      "source_image": "output\\annotation_demo\\all9_deeplab_shadow\\clean\\BanglaASR1_board_era1_000_clean.jpg",
+      "figure": "figures_annotated/board_era1_000.jpg",
+      "boxes_found": 2,
+      "boxes_kept": 2,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            588,
+            40,
+            1176,
+            224
+          ],
+          "ink_pixels": 1710,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Title",
+          "text": "Python Variables"
+        },
+        {
+          "bbox": [
+            684,
+            322,
+            1696,
+            696
+          ],
+          "ink_pixels": 4059,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Definition",
+          "text": "What is Variable? \n→ [illegible] ← Apple"
+        }
+      ],
+      "vlm_reply": "[\n    {\n        \"id\": 1,\n        \"name\": \"Title\",\n        \"text\": \"Python Variables\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Definition\",\n        \"text\": \"What is Variable? \\n→ [illegible] ← Apple\"\n    }\n]"
+    },
+    {
+      "era": 2,
+      "from": "1:50",
+      "to": "3:20",
+      "clean": true,
+      "source_image": "output\\annotation_demo\\all9_deeplab_shadow\\clean\\BanglaASR1_board_era2_150_clean.jpg",
+      "figure": "figures_annotated/board_era2_150.jpg",
+      "boxes_found": 2,
+      "boxes_kept": 2,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            586,
+            38,
+            1176,
+            222
+          ],
+          "ink_pixels": 1705,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Title",
+          "text": "Python Variables"
+        },
+        {
+          "bbox": [
+            898,
+            238,
+            1550,
+            624
+          ],
+          "ink_pixels": 3679,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Definition",
+          "text": "int (num) = 10\nnum = 10\n⌈Box⌉⌈Value⌉"
+        }
+      ],
+      "vlm_reply": "[\n    {\n        \"id\": 1,\n        \"name\": \"Title\",\n        \"text\": \"Python Variables\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Definition\",\n        \"text\": \"int (num) = 10\\nnum = 10\\n\\u2308Box\\u2309\\u2308Value\\u2309\"\n    }\n]"
+    },
+    {
+      "era": 3,
+      "from": "3:40",
+      "to": "7:00",
+      "clean": true,
+      "source_image": "output\\annotation_demo\\all9_deeplab_shadow\\clean\\BanglaASR1_board_era3_340_clean.jpg",
+      "figure": "figures_annotated/board_era3_340.jpg",
+      "boxes_found": 2,
+      "boxes_kept": 2,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            660,
+            46,
+            1248,
+            238
+          ],
+          "ink_pixels": 1707,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Title",
+          "text": "Python Variables"
+        },
+        {
+          "bbox": [
+            706,
+            258,
+            1882,
+            1070
+          ],
+          "ink_pixels": 9682,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Data Type",
+          "text": "i) String ii) Integer iii) Float iv) Bool | Fruit = 'Apple' Age = 10 Float = 3.5 True / False"
+        }
+      ],
+      "vlm_reply": "[\n    {\n        \"id\": 1,\n        \"name\": \"Title\",\n        \"text\": \"Python Variables\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Data Type\",\n        \"text\": \"i) String ii) Integer iii) Float iv) Bool | Fruit = 'Apple' Age = 10 Float = 3.5 True / False\"\n    }\n]"
+    },
+    {
+      "era": 4,
+      "from": "7:10",
+      "to": "9:50",
+      "clean": true,
+      "source_image": "output\\annotation_demo\\all9_deeplab_shadow\\clean\\BanglaASR1_board_era4_710_clean.jpg",
+      "figure": "figures_annotated/board_era4_710.jpg",
+      "boxes_found": 4,
+      "boxes_kept": 3,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            660,
+            46,
+            1248,
+            238
+          ],
+          "ink_pixels": 1708,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Title",
+          "text": "Python Variables"
+        },
+        {
+          "bbox": [
+            698,
+            280,
+            908,
+            406
+          ],
+          "ink_pixels": 577,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Data",
+          "text": "Type:"
+        },
+        {
+          "bbox": [
+            910,
+            256,
+            1836,
+            672
+          ],
+          "ink_pixels": 3662,
+          "id": 3,
+          "colour": "orange",
+          "hex": "#f77f00",
+          "name": "Code",
+          "text": "Iname = \"Rafi\" Name1 = 'I'"
+        }
+      ],
+      "vlm_reply": "[\n    {\"id\": 1, \"name\": \"Title\", \"text\": \"Python Variables\"},\n    {\"id\": 2, \"name\": \"Data\", \"text\": \"Type:\"},\n    {\"id\": 3, \"name\": \"Code\", \"text\": \"Iname = \\\"Rafi\\\" Name1 = 'I'\"},\n    {\"id\": 4, \"name\": \"None\", \"text\": \"\"}\n]"
+    },
+    {
+      "era": 5,
+      "from": "10:00",
+      "to": "10:50",
+      "clean": true,
+      "source_image": "output\\annotation_demo\\all9_deeplab_shadow\\clean\\BanglaASR1_board_era5_1000_clean.jpg",
+      "figure": "figures_annotated/board_era5_1000.jpg",
+      "boxes_found": 4,
+      "boxes_kept": 3,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            582,
+            54,
+            1122,
+            226
+          ],
+          "ink_pixels": 1706,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Title",
+          "text": "Python Variables"
+        },
+        {
+          "bbox": [
+            594,
+            276,
+            806,
+            404
+          ],
+          "ink_pixels": 671,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Definition",
+          "text": "Data"
+        },
+        {
+          "bbox": [
+            810,
+            254,
+            1920,
+            672
+          ],
+          "ink_pixels": 5692,
+          "id": 3,
+          "colour": "orange",
+          "hex": "#f77f00",
+          "name": "Truth table",
+          "text": "Type:\nName X\nName √\nIname = \"Rafi\" X\nname1=“Rafi” √\nmy_name = “Rafi”"
+        }
+      ],
+      "vlm_reply": "[\n    {\"id\": 1, \"name\": \"Title\", \"text\": \"Python Variables\"},\n    {\"id\": 2, \"name\": \"Definition\", \"text\": \"Data\"},\n    {\"id\": 3, \"name\": \"Truth table\", \"text\": \"Type:\\nName X\\nName √\\nIname = \\\"Rafi\\\" X\\nname1=“Rafi” √\\nmy_name = “Rafi”\"},\n    {\"id\": 4, \"name\": \"None\", \"text\": \"\"}\n]"
+    },
+    {
+      "era": 6,
+      "from": "11:20",
+      "to": "12:50",
+      "clean": true,
+      "source_image": "output\\annotation_demo\\all9_deeplab_shadow\\clean\\BanglaASR1_board_era6_1120_clean.jpg",
+      "figure": "figures_annotated/board_era6_1120.jpg",
+      "boxes_found": 4,
+      "boxes_kept": 4,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            558,
+            46,
+            1148,
+            234
+          ],
+          "ink_pixels": 1707,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Title",
+          "text": "Python Variables"
+        },
+        {
+          "bbox": [
+            570,
+            246,
+            1102,
+            412
+          ],
+          "ink_pixels": 1217,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Definition",
+          "text": "Data Type:"
+        },
+        {
+          "bbox": [
+            530,
+            438,
+            932,
+            580
+          ],
+          "ink_pixels": 641,
+          "id": 3,
+          "colour": "orange",
+          "hex": "#f77f00",
+          "name": "Formula",
+          "text": "pi = 3.1414"
+        },
+        {
+          "bbox": [
+            1016,
+            424,
+            1472,
+            708
+          ],
+          "ink_pixels": 2328,
+          "id": 4,
+          "colour": "green",
+          "hex": "#2a9d4f",
+          "name": "Code",
+          "text": ",age=10\n,age=10"
+        }
+      ],
+      "vlm_reply": "[\n    {\"id\": 1, \"name\": \"Title\", \"text\": \"Python Variables\"},\n    {\"id\": 2, \"name\": \"Definition\", \"text\": \"Data Type:\"},\n    {\"id\": 3, \"name\": \"Formula\", \"text\": \"pi = 3.1414\"},\n    {\"id\": 4, \"name\": \"Code\", \"text\": \",age=10\\n,age=10\"}\n]"
+    }
+  ]
+}

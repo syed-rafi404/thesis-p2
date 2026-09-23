@@ -1,0 +1,163 @@
+{
+  "lecture": "BanglaASR5_003",
+  "boxes_from": "ink",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "mock": false,
+  "prompt": "This is a classroom whiteboard from a university lecture. Numbered coloured boxes\nhave been drawn on it; each box surrounds one part of the writing. There are {n} boxes,\nnumbered 1 to {n}.\n\nFor every box, reply with:\n- \"id\": the box number.\n- \"name\": 1 to 4 words saying what kind of content the box holds, for example \"Title\",\n  \"Definition\", \"Truth table\", \"Gate symbol\", \"Block diagram\", \"SQL query\", \"Code\",\n  \"List\", \"Worked example\", \"Formula\". If the box holds no lecture writing (a smudge,\n  a shadow, a logo or sticker, the edge of the board), use \"none\".\n- \"text\": everything written inside that box, copied exactly: every number, name and\n  symbol. For a bar over a term write NOT(...). Write a table as Markdown table rows.\n  Write [illegible] for what cannot be read. Never guess.\n\nReply with JSON only: a list with one object per box, in box order, like\n[{{\"id\": 1, \"name\": \"Title\", \"text\": \"Digital Logic Design\"}}]",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:00",
+      "to": "6:00",
+      "clean": true,
+      "source_image": "output\\annotation_demo\\all9_deeplab_shadow\\clean\\BanglaASR5_003_board_era1_000_clean.jpg",
+      "figure": "figures_annotated/board_era1_000.jpg",
+      "boxes_found": 6,
+      "boxes_kept": 6,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            984,
+            140,
+            2796,
+            1008
+          ],
+          "ink_pixels": 6903,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Title",
+          "text": "Lists, Tuple and Arrays"
+        },
+        {
+          "bbox": [
+            2812,
+            648,
+            2968,
+            760
+          ],
+          "ink_pixels": 111,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "List",
+          "text": "fruit = [\"Apple\", \"Orange\", \"Mango\"]"
+        },
+        {
+          "bbox": [
+            3096,
+            604,
+            3244,
+            764
+          ],
+          "ink_pixels": 135,
+          "id": 3,
+          "colour": "orange",
+          "hex": "#f77f00",
+          "name": "List",
+          "text": "elements = [\"Apple\", 7, 3.14, 2/3]"
+        },
+        {
+          "bbox": [
+            2852,
+            880,
+            3188,
+            1008
+          ],
+          "ink_pixels": 259,
+          "id": 4,
+          "colour": "green",
+          "hex": "#2a9d4f",
+          "name": "Code",
+          "text": "print(elements[0])"
+        },
+        {
+          "bbox": [
+            3040,
+            760,
+            3252,
+            888
+          ],
+          "ink_pixels": 139,
+          "id": 5,
+          "colour": "purple",
+          "hex": "#7b2cbf",
+          "name": "Code",
+          "text": "print(len(elements))"
+        },
+        {
+          "bbox": [
+            1036,
+            1008,
+            2396,
+            1960
+          ],
+          "ink_pixels": 7376,
+          "id": 6,
+          "colour": "pink",
+          "hex": "#d63384",
+          "name": "Code",
+          "text": "elements[0] = \"Mango\""
+        }
+      ],
+      "vlm_reply": "[\n    {\"id\": 1, \"name\": \"Title\", \"text\": \"Lists, Tuple and Arrays\"},\n    {\"id\": 2, \"name\": \"List\", \"text\": \"fruit = [\\\"Apple\\\", \\\"Orange\\\", \\\"Mango\\\"]\"},\n    {\"id\": 3, \"name\": \"List\", \"text\": \"elements = [\\\"Apple\\\", 7, 3.14, 2/3]\"},\n    {\"id\": 4, \"name\": \"Code\", \"text\": \"print(elements[0])\"},\n    {\"id\": 5, \"name\": \"Code\", \"text\": \"print(len(elements))\"},\n    {\"id\": 6, \"name\": \"Code\", \"text\": \"elements[0] = \\\"Mango\\\"\"}\n]"
+    },
+    {
+      "era": 2,
+      "from": "7:10",
+      "to": "10:40",
+      "clean": true,
+      "source_image": "output\\annotation_demo\\all9_deeplab_shadow\\clean\\BanglaASR5_003_board_era2_710_clean.jpg",
+      "figure": "figures_annotated/board_era2_710.jpg",
+      "boxes_found": 1,
+      "boxes_kept": 1,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            1012,
+            156,
+            3192,
+            1604
+          ],
+          "ink_pixels": 12504,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Code",
+          "text": "Lists, Tuple and Arrays\nElements=(\"Apple\", 7, 3.1416, True)\nelement_list=list(elements)\nelement_list[2]=5\nelements=tuple(element_list)\nprint(elements)"
+        }
+      ],
+      "vlm_reply": "[\n    {\n        \"id\": 1,\n        \"name\": \"Code\",\n        \"text\": \"Lists, Tuple and Arrays\\nElements=(\"Apple\", 7, 3.1416, True)\\nelement_list=list(elements)\\nelement_list[2]=5\\nelements=tuple(element_list)\\nprint(elements)\"\n    }\n]"
+    },
+    {
+      "era": 3,
+      "from": "11:00",
+      "to": "14:00",
+      "clean": true,
+      "source_image": "output\\annotation_demo\\all9_deeplab_shadow\\clean\\BanglaASR5_003_board_era3_1100_clean.jpg",
+      "figure": "figures_annotated/board_era3_1100.jpg",
+      "boxes_found": 1,
+      "boxes_kept": 1,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            1068,
+            160,
+            2824,
+            1668
+          ],
+          "ink_pixels": 9288,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Code",
+          "text": "import numpy as np\nlist_1 = [7, 8, 9, 10]\nlist_1 = np.array([list_1])\nlist_2 = ['Apple', 07, True]"
+        }
+      ],
+      "vlm_reply": "[\n    {\n        \"id\": 1,\n        \"name\": \"Code\",\n        \"text\": \"import numpy as np\\nlist_1 = [7, 8, 9, 10]\\nlist_1 = np.array([list_1])\\nlist_2 = ['Apple', 07, True]\"\n    }\n]"
+    }
+  ]
+}

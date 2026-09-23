@@ -1,0 +1,191 @@
+{
+  "lecture": "BanglaASR10",
+  "boxes_from": "ink",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "mock": false,
+  "prompt": "This is a classroom whiteboard from a university lecture. Numbered coloured boxes\nhave been drawn on it; each box surrounds one part of the writing. There are {n} boxes,\nnumbered 1 to {n}.\n\nFor every box, reply with:\n- \"id\": the box number.\n- \"name\": 1 to 4 words saying what kind of content the box holds, for example \"Title\",\n  \"Definition\", \"Truth table\", \"Gate symbol\", \"Block diagram\", \"SQL query\", \"Code\",\n  \"List\", \"Worked example\", \"Formula\". If the box holds no lecture writing (a smudge,\n  a shadow, a logo or sticker, the edge of the board), use \"none\".\n- \"text\": everything written inside that box, copied exactly: every number, name and\n  symbol. For a bar over a term write NOT(...). Write a table as Markdown table rows.\n  Write [illegible] for what cannot be read. Never guess.\n\nReply with JSON only: a list with one object per box, in box order, like\n[{{\"id\": 1, \"name\": \"Title\", \"text\": \"Digital Logic Design\"}}]",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:20",
+      "to": "1:00",
+      "clean": true,
+      "source_image": "output\\annotation_demo\\speaker3_2s_deeplab_shadow\\clean\\BanglaASR10_board_era1_020_clean.jpg",
+      "figure": "figures_annotated/board_era1_020.jpg",
+      "boxes_found": 1,
+      "boxes_kept": 1,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            818,
+            48,
+            1418,
+            188
+          ],
+          "ink_pixels": 1085,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Definition",
+          "text": "TTL -> time to Live"
+        }
+      ],
+      "vlm_reply": "[\n    {\n        \"id\": 1,\n        \"name\": \"Definition\",\n        \"text\": \"TTL -> time to Live\"\n    }\n]"
+    },
+    {
+      "era": 2,
+      "from": "1:40",
+      "to": "2:52",
+      "clean": true,
+      "source_image": "output\\annotation_demo\\speaker3_2s_deeplab_shadow\\clean\\BanglaASR10_board_era2_140_clean.jpg",
+      "figure": "figures_annotated/board_era2_140.jpg",
+      "boxes_found": 1,
+      "boxes_kept": 1,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            816,
+            20,
+            1760,
+            312
+          ],
+          "ink_pixels": 3580,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Formula",
+          "text": "TTL -> time to Live → 29\n└─┐ Endless looping"
+        }
+      ],
+      "vlm_reply": "[\n    {\n        \"id\": 1,\n        \"name\": \"Formula\",\n        \"text\": \"TTL -> time to Live → 29\\n└─┐ Endless looping\"\n    }\n]"
+    },
+    {
+      "era": 3,
+      "from": "3:00",
+      "to": "4:34",
+      "clean": true,
+      "source_image": "output\\annotation_demo\\speaker3_2s_deeplab_shadow\\clean\\BanglaASR10_board_era3_300_clean.jpg",
+      "figure": "figures_annotated/board_era3_300.jpg",
+      "boxes_found": 4,
+      "boxes_kept": 4,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            856,
+            28,
+            1910,
+            308
+          ],
+          "ink_pixels": 6077,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "TTL",
+          "text": "TTL-> time to Live →29→0"
+        },
+        {
+          "bbox": [
+            1250,
+            272,
+            1828,
+            404
+          ],
+          "ink_pixels": 1560,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "IF",
+          "text": "IF → Reset+/Res"
+        },
+        {
+          "bbox": [
+            1284,
+            376,
+            1920,
+            488
+          ],
+          "ink_pixels": 1207,
+          "id": 3,
+          "colour": "orange",
+          "hex": "#f77f00",
+          "name": "DF",
+          "text": "DF → Don't Fragment"
+        },
+        {
+          "bbox": [
+            1292,
+            512,
+            1920,
+            830
+          ],
+          "ink_pixels": 2299,
+          "id": 4,
+          "colour": "green",
+          "hex": "#2a9d4f",
+          "name": "MF",
+          "text": "MF →"
+        }
+      ],
+      "vlm_reply": "[\n    {\n        \"id\": 1,\n        \"name\": \"TTL\",\n        \"text\": \"TTL-> time to Live →29→0\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"IF\",\n        \"text\": \"IF → Reset+/Res\"\n    },\n    {\n        \"id\": 3,\n        \"name\": \"DF\",\n        \"text\": \"DF → Don't Fragment\"\n    },\n    {\n        \"id\": 4,\n        \"name\": \"MF\",\n        \"text\": \"MF →\"\n    }\n]"
+    },
+    {
+      "era": 4,
+      "from": "5:20",
+      "to": "7:04",
+      "clean": true,
+      "source_image": "output\\annotation_demo\\speaker3_2s_deeplab_shadow\\clean\\BanglaASR10_board_era4_520_clean.jpg",
+      "figure": "figures_annotated/board_era4_520.jpg",
+      "boxes_found": 3,
+      "boxes_kept": 3,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            856,
+            28,
+            1920,
+            854
+          ],
+          "ink_pixels": 14415,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Network Protocol",
+          "text": "TTL-> time to Live →29 →0\nEndless looping\nIF → Reset+/Res\nDF → Don't Fragment\nMF →\n1500B"
+        },
+        {
+          "bbox": [
+            550,
+            824,
+            706,
+            1080
+          ],
+          "ink_pixels": 1475,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Smudge",
+          "text": "none"
+        },
+        {
+          "bbox": [
+            1426,
+            850,
+            1640,
+            904
+          ],
+          "ink_pixels": 321,
+          "id": 3,
+          "colour": "orange",
+          "hex": "#f77f00",
+          "name": "Block Diagram",
+          "text": "R1 R2"
+        }
+      ],
+      "vlm_reply": "[\n    {\n        \"id\": 1,\n        \"name\": \"Network Protocol\",\n        \"text\": \"TTL-> time to Live →29 →0\\nEndless looping\\nIF → Reset+/Res\\nDF → Don't Fragment\\nMF →\\n1500B\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Smudge\",\n        \"text\": \"none\"\n    },\n    {\n        \"id\": 3,\n        \"name\": \"Block Diagram\",\n        \"text\": \"R1 R2\"\n    }\n]"
+    }
+  ]
+}

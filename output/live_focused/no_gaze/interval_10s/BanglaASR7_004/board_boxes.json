@@ -1,0 +1,401 @@
+{
+  "lecture": "BanglaASR7_004",
+  "boxes_from": "ink",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "mock": false,
+  "prompt": "This is a classroom whiteboard from a university lecture. Numbered coloured boxes\nhave been drawn on it; each box surrounds one part of the writing. There are {n} boxes,\nnumbered 1 to {n}.\n\nFor every box, reply with:\n- \"id\": the box number.\n- \"name\": 1 to 4 words saying what kind of content the box holds, for example \"Title\",\n  \"Definition\", \"Truth table\", \"Gate symbol\", \"Block diagram\", \"SQL query\", \"Code\",\n  \"List\", \"Worked example\", \"Formula\". If the box holds no lecture writing (a smudge,\n  a shadow, a logo or sticker, the edge of the board), use \"none\".\n- \"text\": everything written inside that box, copied exactly: every number, name and\n  symbol. For a bar over a term write NOT(...). Write a table as Markdown table rows.\n  Write [illegible] for what cannot be read. Never guess.\n\nReply with JSON only: a list with one object per box, in box order, like\n[{{\"id\": 1, \"name\": \"Title\", \"text\": \"Digital Logic Design\"}}]",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:00",
+      "to": "0:50",
+      "clean": true,
+      "source_image": "output\\annotation_demo\\all9_deeplab_shadow\\clean\\BanglaASR7_004_board_era1_000_clean.jpg",
+      "figure": "figures_annotated/board_era1_000.jpg",
+      "boxes_found": 1,
+      "boxes_kept": 1,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            544,
+            92,
+            1308,
+            400
+          ],
+          "ink_pixels": 3906,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Title",
+          "text": "Digital Logic Design"
+        }
+      ],
+      "vlm_reply": "[\n    {\n        \"id\": 1,\n        \"name\": \"Title\",\n        \"text\": \"Digital Logic Design\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Universal gate\",\n        \"text\": \"Universal gate\"\n    },\n    {\n        \"id\": 3,\n        \"name\": \"NOR gate\",\n        \"text\": \"N OR gate\"\n    },\n    {\n        \"id\": 4,\n        \"name\": \"NAND gate\",\n        \"text\": \"NAND gate\"\n    }\n]"
+    },
+    {
+      "era": 2,
+      "from": "1:00",
+      "to": "4:20",
+      "clean": true,
+      "source_image": "output\\annotation_demo\\all9_deeplab_shadow\\clean\\BanglaASR7_004_board_era2_100_clean.jpg",
+      "figure": "figures_annotated/board_era2_100.jpg",
+      "boxes_found": 5,
+      "boxes_kept": 5,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            544,
+            92,
+            1096,
+            230
+          ],
+          "ink_pixels": 1554,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Title",
+          "text": "Digital Logic Design"
+        },
+        {
+          "bbox": [
+            376,
+            272,
+            684,
+            366
+          ],
+          "ink_pixels": 990,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "NOR gate",
+          "text": "NOR gate"
+        },
+        {
+          "bbox": [
+            856,
+            390,
+            1698,
+            522
+          ],
+          "ink_pixels": 2027,
+          "id": 3,
+          "colour": "orange",
+          "hex": "#f77f00",
+          "name": "Formula",
+          "text": "OR+NOT=NOR"
+        },
+        {
+          "bbox": [
+            472,
+            472,
+            1022,
+            950
+          ],
+          "ink_pixels": 3649,
+          "id": 4,
+          "colour": "green",
+          "hex": "#2a9d4f",
+          "name": "Truth table",
+          "text": "| A | B | A+B | A+B=X |\n|---|---|-----|-------|\n| 0 | 0 |   0 |     1 |\n| 0 | 1 |   1 |     0 |\n| 1 | 0 |   1 |     0 |\n| 1 | 1 |   1 |     0 |"
+        },
+        {
+          "bbox": [
+            1118,
+            648,
+            1448,
+            780
+          ],
+          "ink_pixels": 934,
+          "id": 5,
+          "colour": "purple",
+          "hex": "#7b2cbf",
+          "name": "Gate symbol",
+          "text": "A NOR B"
+        }
+      ],
+      "vlm_reply": "[\n    {\"id\": 1, \"name\": \"Title\", \"text\": \"Digital Logic Design\"},\n    {\"id\": 2, \"name\": \"NOR gate\", \"text\": \"NOR gate\"},\n    {\"id\": 3, \"name\": \"Formula\", \"text\": \"OR+NOT=NOR\"},\n    {\"id\": 4, \"name\": \"Truth table\", \"text\": \"| A | B | A+B | A+B=X |\\n|---|---|-----|-------|\\n| 0 | 0 |   0 |     1 |\\n| 0 | 1 |   1 |     0 |\\n| 1 | 0 |   1 |     0 |\\n| 1 | 1 |   1 |     0 |\"},\n    {\"id\": 5, \"name\": \"Gate symbol\", \"text\": \"A NOR B\"}\n]"
+    },
+    {
+      "era": 3,
+      "from": "4:40",
+      "to": "7:00",
+      "clean": true,
+      "source_image": "output\\annotation_demo\\all9_deeplab_shadow\\clean\\BanglaASR7_004_board_era3_440_clean.jpg",
+      "figure": "figures_annotated/board_era3_440.jpg",
+      "boxes_found": 6,
+      "boxes_kept": 6,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            544,
+            90,
+            1098,
+            228
+          ],
+          "ink_pixels": 1566,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Title",
+          "text": "Digital Logic Design"
+        },
+        {
+          "bbox": [
+            410,
+            284,
+            786,
+            396
+          ],
+          "ink_pixels": 1285,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "NAND gate",
+          "text": "NAND gate"
+        },
+        {
+          "bbox": [
+            856,
+            282,
+            1104,
+            346
+          ],
+          "ink_pixels": 519,
+          "id": 3,
+          "colour": "orange",
+          "hex": "#f77f00",
+          "name": "Definition",
+          "text": "= AND+NOT"
+        },
+        {
+          "bbox": [
+            1244,
+            282,
+            1700,
+            410
+          ],
+          "ink_pixels": 1607,
+          "id": 4,
+          "colour": "green",
+          "hex": "#2a9d4f",
+          "name": "Block diagram",
+          "text": "A ── NAND ── AB\nB ──"
+        },
+        {
+          "bbox": [
+            470,
+            410,
+            976,
+            872
+          ],
+          "ink_pixels": 3069,
+          "id": 5,
+          "colour": "purple",
+          "hex": "#7b2cbf",
+          "name": "Truth table",
+          "text": "| A | B | AB | AB |\n|---|---|----|----|\n| 0 | 0 | 0  | 1  |\n| 0 | 1 | 0  | 1  |\n| 1 | 0 | 0  | 1  |\n| 1 | 1 | 1  | 0  |"
+        },
+        {
+          "bbox": [
+            1078,
+            640,
+            1554,
+            788
+          ],
+          "ink_pixels": 1389,
+          "id": 6,
+          "colour": "pink",
+          "hex": "#d63384",
+          "name": "Gate symbol",
+          "text": "A ──┐ ── AB\nB ──└───"
+        }
+      ],
+      "vlm_reply": "[\n    {\"id\": 1, \"name\": \"Title\", \"text\": \"Digital Logic Design\"},\n    {\"id\": 2, \"name\": \"NAND gate\", \"text\": \"NAND gate\"},\n    {\"id\": 3, \"name\": \"Definition\", \"text\": \"= AND+NOT\"},\n    {\"id\": 4, \"name\": \"Block diagram\", \"text\": \"A ── NAND ── AB\\nB ──\"},\n    {\"id\": 5, \"name\": \"Truth table\", \"text\": \"| A | B | AB | AB |\\n|---|---|----|----|\\n| 0 | 0 | 0  | 1  |\\n| 0 | 1 | 0  | 1  |\\n| 1 | 0 | 0  | 1  |\\n| 1 | 1 | 1  | 0  |\"},\n    {\"id\": 6, \"name\": \"Gate symbol\", \"text\": \"A ──┐ ── AB\\nB ──└───\"}\n]"
+    },
+    {
+      "era": 4,
+      "from": "7:20",
+      "to": "10:40",
+      "clean": true,
+      "source_image": "output\\annotation_demo\\all9_deeplab_shadow\\clean\\BanglaASR7_004_board_era4_720_clean.jpg",
+      "figure": "figures_annotated/board_era4_720.jpg",
+      "boxes_found": 6,
+      "boxes_kept": 6,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            546,
+            92,
+            1098,
+            228
+          ],
+          "ink_pixels": 1627,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Title",
+          "text": "Digital Logic Design"
+        },
+        {
+          "bbox": [
+            322,
+            262,
+            684,
+            380
+          ],
+          "ink_pixels": 855,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Definition",
+          "text": "X-OR gate:"
+        },
+        {
+          "bbox": [
+            1192,
+            302,
+            1704,
+            466
+          ],
+          "ink_pixels": 1469,
+          "id": 3,
+          "colour": "orange",
+          "hex": "#f77f00",
+          "name": "Gate symbol",
+          "text": "A X-OR B"
+        },
+        {
+          "bbox": [
+            350,
+            498,
+            860,
+            856
+          ],
+          "ink_pixels": 2025,
+          "id": 4,
+          "colour": "green",
+          "hex": "#2a9d4f",
+          "name": "Truth table",
+          "text": "| 0 | 0 | 1 | 1 |\n|---|---|---|---|\n| 0 | 1 | 0 | 1 |"
+        },
+        {
+          "bbox": [
+            1214,
+            516,
+            1672,
+            664
+          ],
+          "ink_pixels": 1712,
+          "id": 5,
+          "colour": "purple",
+          "hex": "#7b2cbf",
+          "name": "Gate symbol",
+          "text": "A B A⊕B"
+        },
+        {
+          "bbox": [
+            866,
+            706,
+            1252,
+            830
+          ],
+          "ink_pixels": 1528,
+          "id": 6,
+          "colour": "pink",
+          "hex": "#d63384",
+          "name": "Formula",
+          "text": "same input = 0\ndifferent input = 1"
+        }
+      ],
+      "vlm_reply": "[\n    {\"id\": 1, \"name\": \"Title\", \"text\": \"Digital Logic Design\"},\n    {\"id\": 2, \"name\": \"Definition\", \"text\": \"X-OR gate:\"},\n    {\"id\": 3, \"name\": \"Gate symbol\", \"text\": \"A X-OR B\"},\n    {\"id\": 4, \"name\": \"Truth table\", \"text\": \"| 0 | 0 | 1 | 1 |\\n|---|---|---|---|\\n| 0 | 1 | 0 | 1 |\"},\n    {\"id\": 5, \"name\": \"Gate symbol\", \"text\": \"A B A⊕B\"},\n    {\"id\": 6, \"name\": \"Formula\", \"text\": \"same input = 0\\ndifferent input = 1\"}\n]"
+    },
+    {
+      "era": 5,
+      "from": "10:50",
+      "to": "14:00",
+      "clean": true,
+      "source_image": "output\\annotation_demo\\all9_deeplab_shadow\\clean\\BanglaASR7_004_board_era5_1050_clean.jpg",
+      "figure": "figures_annotated/board_era5_1050.jpg",
+      "boxes_found": 5,
+      "boxes_kept": 5,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            544,
+            90,
+            1098,
+            228
+          ],
+          "ink_pixels": 1564,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Title",
+          "text": "Digital Logic Design"
+        },
+        {
+          "bbox": [
+            264,
+            264,
+            984,
+            890
+          ],
+          "ink_pixels": 7164,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Truth table",
+          "text": "X-NOR gate: X-OR+NOT\nA | B | A⊕B | A⊕B\n---|---|---|---\n0 | 0 | 0 | 1\n0 | 1 | 1 | 0\n1 | 0 | 1 | 0\n1 | 1 | 0 | 1"
+        },
+        {
+          "bbox": [
+            1150,
+            308,
+            1586,
+            446
+          ],
+          "ink_pixels": 1451,
+          "id": 3,
+          "colour": "orange",
+          "hex": "#f77f00",
+          "name": "Gate symbol",
+          "text": "A ── X-NOR ── A⊕B\nB ──"
+        },
+        {
+          "bbox": [
+            1090,
+            582,
+            1522,
+            708
+          ],
+          "ink_pixels": 1364,
+          "id": 4,
+          "colour": "green",
+          "hex": "#2a9d4f",
+          "name": "Block diagram",
+          "text": "A ──┐ ── A⊕B\nB └───"
+        },
+        {
+          "bbox": [
+            994,
+            784,
+            1372,
+            850
+          ],
+          "ink_pixels": 724,
+          "id": 5,
+          "colour": "purple",
+          "hex": "#7b2cbf",
+          "name": "Formula",
+          "text": "X-NOR → AB + AB"
+        }
+      ],
+      "vlm_reply": "[\n    {\"id\": 1, \"name\": \"Title\", \"text\": \"Digital Logic Design\"},\n    {\"id\": 2, \"name\": \"Truth table\", \"text\": \"X-NOR gate: X-OR+NOT\\nA | B | A⊕B | A⊕B\\n---|---|---|---\\n0 | 0 | 0 | 1\\n0 | 1 | 1 | 0\\n1 | 0 | 1 | 0\\n1 | 1 | 0 | 1\"},\n    {\"id\": 3, \"name\": \"Gate symbol\", \"text\": \"A ── X-NOR ── A⊕B\\nB ──\"},\n    {\"id\": 4, \"name\": \"Block diagram\", \"text\": \"A ──┐ ── A⊕B\\nB └───\"},\n    {\"id\": 5, \"name\": \"Formula\", \"text\": \"X-NOR → AB + AB\"}\n]"
+    }
+  ]
+}

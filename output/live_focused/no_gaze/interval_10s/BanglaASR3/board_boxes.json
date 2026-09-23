@@ -1,0 +1,121 @@
+{
+  "lecture": "BanglaASR3",
+  "boxes_from": "ink",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "mock": false,
+  "prompt": "This is a classroom whiteboard from a university lecture. Numbered coloured boxes\nhave been drawn on it; each box surrounds one part of the writing. There are {n} boxes,\nnumbered 1 to {n}.\n\nFor every box, reply with:\n- \"id\": the box number.\n- \"name\": 1 to 4 words saying what kind of content the box holds, for example \"Title\",\n  \"Definition\", \"Truth table\", \"Gate symbol\", \"Block diagram\", \"SQL query\", \"Code\",\n  \"List\", \"Worked example\", \"Formula\". If the box holds no lecture writing (a smudge,\n  a shadow, a logo or sticker, the edge of the board), use \"none\".\n- \"text\": everything written inside that box, copied exactly: every number, name and\n  symbol. For a bar over a term write NOT(...). Write a table as Markdown table rows.\n  Write [illegible] for what cannot be read. Never guess.\n\nReply with JSON only: a list with one object per box, in box order, like\n[{{\"id\": 1, \"name\": \"Title\", \"text\": \"Digital Logic Design\"}}]",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:00",
+      "to": "5:50",
+      "clean": true,
+      "source_image": "output\\annotation_demo\\all9_deeplab_shadow\\clean\\BanglaASR3_board_era1_000_clean.jpg",
+      "figure": "figures_annotated/board_era1_000.jpg",
+      "boxes_found": 7,
+      "boxes_kept": 7,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            430,
+            12,
+            1470,
+            318
+          ],
+          "ink_pixels": 6138,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Title",
+          "text": "Conditional Statements"
+        },
+        {
+          "bbox": [
+            1480,
+            236,
+            1910,
+            620
+          ],
+          "ink_pixels": 3667,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Handwritten Note",
+          "text": "Rain user will bring Umbrella"
+        },
+        {
+          "bbox": [
+            444,
+            358,
+            518,
+            440
+          ],
+          "ink_pixels": 194,
+          "id": 3,
+          "colour": "orange",
+          "hex": "#f77f00",
+          "name": "Code",
+          "text": "if"
+        },
+        {
+          "bbox": [
+            528,
+            320,
+            1262,
+            706
+          ],
+          "ink_pixels": 5763,
+          "id": 4,
+          "colour": "green",
+          "hex": "#2a9d4f",
+          "name": "Code",
+          "text": "weather == \"Rain\": print(\"Bring Umbrella\")"
+        },
+        {
+          "bbox": [
+            1398,
+            448,
+            1474,
+            532
+          ],
+          "ink_pixels": 220,
+          "id": 5,
+          "colour": "purple",
+          "hex": "#7b2cbf",
+          "name": "Handwritten Note",
+          "text": "If not doesn't bring umbrella"
+        },
+        {
+          "bbox": [
+            458,
+            568,
+            518,
+            630
+          ],
+          "ink_pixels": 133,
+          "id": 6,
+          "colour": "pink",
+          "hex": "#d63384",
+          "name": "Code",
+          "text": "elif weather == \"Sunny\": print(\"Wear White Colon\")"
+        },
+        {
+          "bbox": [
+            454,
+            722,
+            1190,
+            894
+          ],
+          "ink_pixels": 2130,
+          "id": 7,
+          "colour": "brown",
+          "hex": "#8d5524",
+          "name": "Code",
+          "text": "else: print(\"Just Come\")"
+        }
+      ],
+      "vlm_reply": "[\n    {\"id\": 1, \"name\": \"Title\", \"text\": \"Conditional Statements\"},\n    {\"id\": 2, \"name\": \"Handwritten Note\", \"text\": \"Rain user will bring Umbrella\"},\n    {\"id\": 3, \"name\": \"Code\", \"text\": \"if\"},\n    {\"id\": 4, \"name\": \"Code\", \"text\": \"weather == \\\"Rain\\\": print(\\\"Bring Umbrella\\\")\"},\n    {\"id\": 5, \"name\": \"Handwritten Note\", \"text\": \"If not doesn't bring umbrella\"},\n    {\"id\": 6, \"name\": \"Code\", \"text\": \"elif weather == \\\"Sunny\\\": print(\\\"Wear White Colon\\\")\"},\n    {\"id\": 7, \"name\": \"Code\", \"text\": \"else: print(\\\"Just Come\\\")\"}\n]"
+    }
+  ]
+}

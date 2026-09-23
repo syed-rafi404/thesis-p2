@@ -279,6 +279,45 @@ def chip_position(box, boxes, placed, size, w, h):
 # The vision-language model
 # ---------------------------------------------------------------------------
 
+def salvage_objects(chunk):
+    """Read id/name/text out of a reply that is nearly JSON but not quite.
+
+    Strict parsing fails on exactly one thing here, and it fails every time the
+    board carries code: the model copies the board's own double quotes into a
+    JSON string without escaping them. Two real examples, from the 2026-09-23
+    run over 45 boards:
+
+        {"id": 5, "text": "Elements=("Apple", 7, 3.1416, True)"}
+        {"id": 2, "text": "the first number?\\" ..."),     <- ) closing an object
+
+    Both replies were otherwise perfect, and both boards lost all their boxes.
+    Retrying does not help, because the board still has quotes on it.
+
+    The schema is fixed and flat, so each object is read field by field instead:
+    the text value is everything between its opening quote and the last quote
+    before the object ends, whatever is inside it. Only used after json.loads
+    has failed, so a well-formed reply is never touched by this.
+    """
+    # Cut the reply at each object's "id" key rather than matching braces. A
+    # brace match runs past the end of a broken object and swallows the next
+    # one; the "id" key is the one landmark every object starts with.
+    starts = [m.start() for m in re.finditer(r'\{\s*"id"\s*:', chunk)]
+    out = []
+    for i, start in enumerate(starts):
+        body = chunk[start:starts[i + 1] if i + 1 < len(starts) else len(chunk)]
+        obj = {"id": int(re.search(r'"id"\s*:\s*(\d+)', body).group(1))}
+        m_name = re.search(r'"name"\s*:\s*"(.*?)"\s*,', body, re.S)
+        if m_name:
+            obj["name"] = m_name.group(1)
+        # The text runs to the last quote before this object's end, whatever
+        # unescaped quotes the board's own code put in between.
+        m_text = re.search(r'"text"\s*:\s*"(.*)"\s*[,}\)\]\s]*$', body.rstrip().rstrip(","), re.S)
+        if m_text:
+            obj["text"] = m_text.group(1).replace('\\"', '"').replace("\\n", "\n")
+        out.append(obj)
+    return out or None
+
+
 def parse_json_list(text):
     """The first JSON list in a model reply, tolerating code fences and trailing commas."""
     text = re.sub(r"```(?:json)?", "", text)
@@ -289,7 +328,7 @@ def parse_json_list(text):
     try:
         data = json.loads(chunk)
     except json.JSONDecodeError:
-        return None
+        return salvage_objects(chunk)
     return [d for d in data if isinstance(d, dict)] if isinstance(data, list) else None
 
 

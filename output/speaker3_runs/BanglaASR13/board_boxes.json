@@ -1,0 +1,135 @@
+{
+  "lecture": "BanglaASR13",
+  "boxes_from": "ink",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "mock": false,
+  "prompt": "This is a classroom whiteboard from a university lecture. Numbered coloured boxes\nhave been drawn on it; each box surrounds one part of the writing. There are {n} boxes,\nnumbered 1 to {n}.\n\nFor every box, reply with:\n- \"id\": the box number.\n- \"name\": 1 to 4 words saying what kind of content the box holds, for example \"Title\",\n  \"Definition\", \"Truth table\", \"Gate symbol\", \"Block diagram\", \"SQL query\", \"Code\",\n  \"List\", \"Worked example\", \"Formula\". If the box holds no lecture writing (a smudge,\n  a shadow, a logo or sticker, the edge of the board), use \"none\".\n- \"text\": everything written inside that box, copied exactly: every number, name and\n  symbol. For a bar over a term write NOT(...). Write a table as Markdown table rows.\n  Write [illegible] for what cannot be read. Never guess.\n\nReply with JSON only: a list with one object per box, in box order, like\n[{{\"id\": 1, \"name\": \"Title\", \"text\": \"Digital Logic Design\"}}]",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:00",
+      "to": "3:50",
+      "clean": true,
+      "source_image": "output\\annotation_demo\\speaker3_2s_deeplab_shadow\\clean\\BanglaASR13_board_era1_000_clean.jpg",
+      "figure": "figures_annotated/board_era1_000.jpg",
+      "boxes_found": 2,
+      "boxes_kept": 2,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            780,
+            52,
+            1892,
+            276
+          ],
+          "ink_pixels": 6318,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Definition",
+          "text": "MTU Maximum transmission unit Packet Size"
+        },
+        {
+          "bbox": [
+            858,
+            296,
+            1780,
+            658
+          ],
+          "ink_pixels": 5655,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Formula",
+          "text": "DF -> 0 * Total packet size -> 1. Header Sec. 2. Data Sec. 1500 Header + Data -> 20B - 60B"
+        }
+      ],
+      "vlm_reply": "[\n    {\n        \"id\": 1,\n        \"name\": \"Definition\",\n        \"text\": \"MTU Maximum transmission unit Packet Size\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Formula\",\n        \"text\": \"DF -> 0 * Total packet size -> 1. Header Sec. 2. Data Sec. 1500 Header + Data -> 20B - 60B\"\n    }\n]"
+    },
+    {
+      "era": 2,
+      "from": "4:00",
+      "to": "12:34",
+      "clean": true,
+      "source_image": "output\\annotation_demo\\speaker3_2s_deeplab_shadow\\clean\\BanglaASR13_board_era2_400_clean.jpg",
+      "figure": "figures_annotated/board_era2_400.jpg",
+      "boxes_found": 5,
+      "boxes_kept": 5,
+      "vlm_json_ok": true,
+      "boxes": [
+        {
+          "bbox": [
+            0,
+            52,
+            1878,
+            888
+          ],
+          "ink_pixels": 24385,
+          "id": 1,
+          "colour": "red",
+          "hex": "#d62828",
+          "name": "Maximum transmission unit",
+          "text": "MTU"
+        },
+        {
+          "bbox": [
+            216,
+            884,
+            744,
+            982
+          ],
+          "ink_pixels": 1036,
+          "id": 2,
+          "colour": "blue",
+          "hex": "#1d4ed8",
+          "name": "Fragment offset",
+          "text": "0/8"
+        },
+        {
+          "bbox": [
+            988,
+            944,
+            1196,
+            1064
+          ],
+          "ink_pixels": 674,
+          "id": 3,
+          "colour": "orange",
+          "hex": "#f77f00",
+          "name": "Fragment offset",
+          "text": "1/8"
+        },
+        {
+          "bbox": [
+            256,
+            1002,
+            356,
+            1062
+          ],
+          "ink_pixels": 194,
+          "id": 4,
+          "colour": "green",
+          "hex": "#2a9d4f",
+          "name": "Fragment offset",
+          "text": "2/8"
+        },
+        {
+          "bbox": [
+            454,
+            978,
+            776,
+            1080
+          ],
+          "ink_pixels": 750,
+          "id": 5,
+          "colour": "purple",
+          "hex": "#7b2cbf",
+          "name": "Fragment offset",
+          "text": "3/8"
+        }
+      ],
+      "vlm_reply": "[\n    {\"id\": 1, \"name\": \"Maximum transmission unit\", \"text\": \"MTU\"},\n    {\"id\": 2, \"name\": \"Fragment offset\", \"text\": \"0/8\"},\n    {\"id\": 3, \"name\": \"Fragment offset\", \"text\": \"1/8\"},\n    {\"id\": 4, \"name\": \"Fragment offset\", \"text\": \"2/8\"},\n    {\"id\": 5, \"name\": \"Fragment offset\", \"text\": \"3/8\"}\n]"
+    }
+  ]
+}
