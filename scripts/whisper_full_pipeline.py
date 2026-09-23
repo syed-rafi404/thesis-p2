@@ -127,11 +127,16 @@ def main():
     fenv = {"THESIS_FT_DIR": str(final), "THESIS_PYTHON": py}
     common = [py, REPO / "scripts" / "run_p3_experiment.py", "--split-by", "video", "--test-fraction", "0.2",
               "--split-seed", "0", "--model", BASE, "--audio-dir", args.audio_dir, "--tuned", tuned]
+    # --extra-train-args=VALUE, not two arguments: the value starts with "--" (it is
+    # "--grad-checkpointing ..."), and argparse reads that as the next option, not as this one's
+    # value. It killed the 5.15 h run on 2026-09-23 at 18:49, after the tuning had finished:
+    # "argument --extra-train-args: expected one argument". The tuning was unaffected, because
+    # tune_whisper.py calls train_lora.py directly.
     if not (final / "eval_final.json").exists():
-        run(common + (["--extra-train-args", " ".join(gc)] if gc else []) + ["--tag", "final", "--skip", "curve"],
+        run(common + ([f"--extra-train-args={' '.join(gc)}"] if gc else []) + ["--tag", "final", "--skip", "curve"],
             fenv, "4 final, seed 42")
     if not (final / "eval_final_s1.json").exists():
-        run(common + ["--extra-train-args", " ".join(gc + ["--seed", "1"]), "--tag", "final_s1",
+        run(common + [f"--extra-train-args={' '.join(gc + ['--seed', '1'])}", "--tag", "final_s1",
                       "--skip", "validate", "prepare", "curve"], fenv, "4 final, seed 1")
     split = json.loads((final / "split.json").read_text(encoding="utf-8"))
     if sorted(split.get("test_lectures", [])) != test:
