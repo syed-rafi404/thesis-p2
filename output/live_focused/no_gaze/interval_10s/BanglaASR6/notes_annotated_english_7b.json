@@ -1,5 +1,6 @@
 {
   "lecture": "BanglaASR6",
+  "dataset_lecture": "BanglaASR10",
   "language": "english",
   "model": "Qwen/Qwen2.5-7B-Instruct",
   "mock": false,
@@ -8,9 +9,12 @@
   "leakage_warning": "",
   "boxes_file": "board_boxes.json",
   "board_text_file": "board_text_clean.json",
-  "quotes_kept": 7,
-  "quotes_dropped": 1,
+  "quotes_kept": 0,
+  "quotes_dropped": 0,
   "invalid_box_refs": 0,
+  "quotes_translated": 5,
+  "quotes_word_for_word_checked": false,
+  "latex_rewritten": 41,
   "colour_fixes": 0,
   "inline_quotes_unverified": 2,
   "sections": [
@@ -21,19 +25,16 @@
       "to": "3:10",
       "transcript_chars": 2059,
       "boxes": 3,
-      "boxes_mentioned": [
-        2,
-        3
-      ],
+      "boxes_mentioned": [],
       "invalid_box_refs": [],
       "colour_fixes": [],
-      "inline_quotes_unverified": [
-        " (Logic 1) and 0 volts for ",
-        " and the binary sequence "
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
+        "so, our computer will only work with zeros and ones."
       ],
-      "quotes_kept": [
-        "analog er kintu amader computer ki? analoge chole? naah. eta chole digital e."
-      ],
+      "quotes_kept": [],
       "quotes_dropped": []
     },
     {
@@ -46,10 +47,15 @@
       "boxes_mentioned": [],
       "invalid_box_refs": [],
       "colour_fixes": [],
-      "inline_quotes_unverified": [],
-      "quotes_kept": [
-        "so amar je first, tinta gate ache, eta ke amra boltesi, fundamental base."
+      "inline_quotes_unverified": [
+        "So, which of these logic gates can we use? These logic gates will be used for decision-making processes, where a single connection is made, like a wire, and a decision is based on that connection."
       ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
+        "so, ei shakta logic gate ki korbe? ei shakta logic gate hocche amar decision making a kaaj korbe, je ekta connection ki hoy, wire er maddhome hoy, ekta connection korebhe hobe."
+      ],
+      "quotes_kept": [],
       "quotes_dropped": []
     },
     {
@@ -59,19 +65,17 @@
       "to": "10:00",
       "transcript_chars": 2909,
       "boxes": 4,
-      "boxes_mentioned": [
-        1,
-        2,
-        3,
-        4
-      ],
+      "boxes_mentioned": [],
       "invalid_box_refs": [],
       "colour_fixes": [],
       "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
+        "so, and gate basically jinish ta ki? and gate e jeta hoy, suppose eta hocche amar şey physical device ta, which is a gate, jeta ke ami bolchi, and gate. eta ki korbe? etar moddhe duita input jaite pare. suppose first input is a, and second input is b."
+      ],
       "quotes_kept": [],
-      "quotes_dropped": [
-        "so, and gate e jeta hoy, suppose eta hocche amar şey physical device ta, which is a gate, jeta ke ami bolchi, and gate."
-      ]
+      "quotes_dropped": []
     },
     {
       "board": 4,
@@ -80,19 +84,16 @@
       "to": "11:00",
       "transcript_chars": 587,
       "boxes": 4,
-      "boxes_mentioned": [
-        1,
-        2,
-        3,
-        4
-      ],
+      "boxes_mentioned": [],
       "invalid_box_refs": [],
       "colour_fixes": [],
-      "inline_quotes_unverified": [],
-      "quotes_kept": [
-        "input and x hocche amr output jeta ki chilo? a and b er multiplication. so etai hocche amr and keidh.",
-        "input and x hocche amr output jeta ki chilo? a and b er multiplication. so etai hocche amr and keidh."
+      "inline_quotes_unverified": [
+        "What is the output when we take the input and x? It is the result of multiplying A and B. So, this is the AND gate. In other words, the AND gate will have two inputs and one output, and the output will be the multiplication of the inputs. If any input is zero, the output will also be zero."
       ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
       "quotes_dropped": []
     },
     {
@@ -103,16 +104,17 @@
       "transcript_chars": 992,
       "boxes": 4,
       "boxes_mentioned": [
-        2,
-        3,
-        4
+        2
       ],
       "invalid_box_refs": [],
       "colour_fixes": [],
       "inline_quotes_unverified": [],
-      "quotes_kept": [
-        "suppose input ta hocche a and output ta hocche b. so amar output jeta there hobe, seta hocche x."
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 7,
+      "quotes_translated": [
+        "when we have two inputs, A and B, and we want to find the output, X, we need to consider all possible combinations of these inputs."
       ],
+      "quotes_kept": [],
       "quotes_dropped": []
     },
     {
@@ -132,10 +134,12 @@
       "invalid_box_refs": [],
       "colour_fixes": [],
       "inline_quotes_unverified": [],
-      "quotes_kept": [
-        "not get er concept ta kintu aro easier.",
-        "tar mane hocche amar input a and output a bar. input jodi zero hoy, tahole output hobe one. and input jodi one hoy ar output ta hobe zero. ebhabei opposite je signal toh sheita ama ke not get."
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 34,
+      "quotes_translated": [
+        "it might seem complex but it is actually quite simple. An inverter is a device where, if we give it an input, it gives us an output that is the opposite of the input."
       ],
+      "quotes_kept": [],
       "quotes_dropped": []
     }
   ]

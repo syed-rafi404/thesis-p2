@@ -1,5 +1,6 @@
 {
   "lecture": "BanglaASR8",
+  "dataset_lecture": "BanglaASR12",
   "language": "banglish",
   "model": "Qwen/Qwen2.5-7B-Instruct",
   "mock": false,
@@ -8,9 +9,12 @@
   "leakage_warning": "",
   "boxes_file": "board_boxes.json",
   "board_text_file": "board_text_clean.json",
-  "quotes_kept": 2,
+  "quotes_kept": 5,
   "quotes_dropped": 0,
   "invalid_box_refs": 0,
+  "quotes_translated": 0,
+  "quotes_word_for_word_checked": true,
+  "latex_rewritten": 0,
   "colour_fixes": 0,
   "inline_quotes_unverified": 0,
   "sections": [
@@ -27,9 +31,10 @@
       "invalid_box_refs": [],
       "colour_fixes": [],
       "inline_quotes_unverified": [],
-      "quotes_kept": [
-        "so, amader internet er ba amader aa amader ei digital word a database er importance kintu onek."
-      ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
       "quotes_dropped": []
     },
     {
@@ -43,8 +48,13 @@
       "invalid_box_refs": [],
       "colour_fixes": [],
       "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
       "quotes_kept": [
-        "so first e amar ekta database er nam dite hobe, suppose database er nam hocche university."
+        "so first e amar ekta database er nam dite hobe, suppose database er nam hocche university.",
+        "so eigula hocche amar table er head. toh etar moddhe amar sequentially kichu information sthor kora thakbe, right?",
+        "so, etai hocche query language er kaj. so, my sql er ami first a ei je table ta. ei table ta oto kono bhabe create kora hoye, right?"
       ],
       "quotes_dropped": []
     },
@@ -62,7 +72,13 @@
       "invalid_box_refs": [],
       "colour_fixes": [],
       "inline_quotes_unverified": [],
-      "quotes_kept": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "varchar hocche variable characters. so eikhane first name and second name doitai kintu amar sob somoy ekta character er variable e thakbe. so dui jaigate ami virtual likhe dilam.",
+        "suppose dhorlam ten karon ekta student er aa nam er moddhe, up to to ten character e thakte pare, er beshi usually hoy na. so, ten likhi dilam."
+      ],
       "quotes_dropped": []
     }
   ]

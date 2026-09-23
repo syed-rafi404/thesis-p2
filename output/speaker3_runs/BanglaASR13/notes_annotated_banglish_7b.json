@@ -1,5 +1,6 @@
 {
   "lecture": "BanglaASR13",
+  "dataset_lecture": "BanglaASR17",
   "language": "banglish",
   "model": "Qwen/Qwen2.5-7B-Instruct",
   "mock": false,
@@ -8,9 +9,12 @@
   "leakage_warning": "",
   "boxes_file": "board_boxes.json",
   "board_text_file": "board_text_clean.json",
-  "quotes_kept": 3,
+  "quotes_kept": 4,
   "quotes_dropped": 0,
   "invalid_box_refs": 0,
+  "quotes_translated": 0,
+  "quotes_word_for_word_checked": true,
+  "latex_rewritten": 0,
   "colour_fixes": 0,
   "inline_quotes_unverified": 0,
   "sections": [
@@ -21,13 +25,19 @@
       "to": "3:50",
       "transcript_chars": 2759,
       "boxes": 2,
-      "boxes_mentioned": [],
+      "boxes_mentioned": [
+        1,
+        2
+      ],
       "invalid_box_refs": [],
       "colour_fixes": [],
       "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
       "quotes_kept": [
-        "so, what is basically total packet size? total packet jeta amra pathai ekta network theke onno network e, it has two sections.",
-        "so, ami je fragmented packet gula reabar actually dekhte korte pari reassemble korte pari."
+        "total packet jeta amra pathai ekta network theke onno network e, it has two sections.",
+        "mtu always pack er size te bole. so, ami jeta ponno masho baytekanan likhe chai, tar mane ekhane kintu aa header ta included. mtu always pack er size ta bole."
       ],
       "quotes_dropped": []
     },
@@ -39,17 +49,17 @@
       "transcript_chars": 4784,
       "boxes": 5,
       "boxes_mentioned": [
-        1,
-        2,
-        3,
-        4,
-        5
+        2
       ],
       "invalid_box_refs": [],
       "colour_fixes": [],
       "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
       "quotes_kept": [
-        "tahole amr jodi ekta packet er size hoy, just packet er data size, sorry, amr jodi ekta data size hoy, mone koro char haajar byte. char haajar byte, right."
+        "tahole amr jodi ekta packet er size hoy, just packet er data size, sorry, amr jodi ekta data size hoy, mone koro char haajar byte. char haajar byte, right.",
+        "so, second er jonno, abar joddhoro ashi divided by eight. amra just ei value gular nivore thikase? kothomer je value ta waita? aa dhoro jodi sho asha eta ekta just calculate er kore dekhi. joddhor ashi divided by eight, that is 185. erocche second je value ta par fragment offset."
       ],
       "quotes_dropped": []
     }

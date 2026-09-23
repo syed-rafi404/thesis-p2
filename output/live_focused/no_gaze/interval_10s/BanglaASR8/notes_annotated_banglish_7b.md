@@ -1,11 +1,14 @@
 # Database Management System (DBMS)
-ei lecture e ki cover kora hoyeche Database Management System (DBMS) er introduction, database and table creation, and SQL queries.
+ei lecture e ki cover kora hoyeche database management system (DBMS) er introduction, SQL query er kaj, and table creation process.
 
 ## Key takeaways
-- Database Management System (DBMS) is a system that holds and manages data across multiple tables.
-- A database can store information in tables, each containing related data.
-- Each table has columns representing specific attributes, such as `ID`, `First_Name`, `Last_Name`, `CGPA`, `Department`, and `Enrollment_Date`.
-- SQL is used to create and manipulate databases and tables.
+- Database, DBMS, multiple tables, information, performance, software, digital world, example, single table
+- `CREATE TABLE` is used to define a new table
+- `INT`, `VARCHAR`, `FLOAT`, and `DATE` are data types used to specify the type of data each column can hold
+- `VARCHAR` is used to store variable-length strings
+- `float` is used to store floating-point numbers
+- `Date` is used to store dates
+- Semicolon at the end of the SQL statement signifies the end of the command
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 3=#f77f00 -->
 ## Database Management System (DBMS)
@@ -18,19 +21,19 @@ ei lecture e ki cover kora hoyeche Database Management System (DBMS) er introduc
 **Boxes:** 1 Title · 2 Block diagram · 3 Block diagram
 
 
-**Explanation:**
-1. **Red Box 1 (Title):** The red box titled "Database Management System (DBMS)" introduces the topic. DBMS is a system that manages and stores data.
-2. The lecturer explains that a database can hold multiple tables, each containing related data. For instance, you might have tables for customers, orders, and products.
-3. Each table in the database contains information that is useful for various purposes, such as improving the performance of applications or running specific software.
-4. The lecturer gives an example of a simple database to illustrate the concept, focusing on a single table.
+- **Box 1 (red):** The title "Database Management System (DBMS)" is clearly mentioned. This introduces the topic we will be discussing today.
 
-> Lecturer: "so, amader internet er ba amader aa amader ei digital word a database er importance kintu onek."
+- **Explanation:** A database is a collection of data. In Box 1, the lecturer explains that a database can hold multiple tables. Each table contains information that is useful for various purposes, such as improving the performance of a computer system or running specific software applications.
 
-**Mone rakho:** Database Management System (DBMS) is a system that holds and manages data across multiple tables. Each table contains relevant information that can be used for different applications.
+- **Quote:** "so, ei data gula ki thakte pare? multiple tables a thakte pare." - The lecturer emphasizes that a database can contain multiple tables, each holding different types of data.
+
+- **Extra jana kotha:** A database is essential in our digital world. For instance, imagine we have a simple example of a person's information. We can represent this information using a single table, focusing on one table for simplicity.
+
+**Mone rakho:** Database, DBMS, multiple tables, information, performance, software, digital world, example, single table.
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 3=#f77f00 4=#2a9d4f -->
-## Database Management System (DBMS)
-**Ek line e:** Database Management System (DBMS) is used to manage and organize data efficiently.
+## SQL Query for Creating a Table: Database Management System
+**Ek line e:** Create table Student_info( ID First_Name Last_Name)
 
 ![Board 2: 1:10-10:50](figures_annotated/board_era2_110.jpg)
 
@@ -39,19 +42,59 @@ ei lecture e ki cover kora hoyeche Database Management System (DBMS) er introduc
 **Boxes:** 1 Title · 2 SQL query · 3 Column header · 4 Column header
 
 
-**Explanation:**
-1. **Database Creation**: The lecturer started by creating a database named `university`. This database will store information about students.
-2. **Table Creation**: In the `university` database, a table named `Student_info` was created. This table includes columns such as `ID`, `First_Name`, `Last_Name`, `CGPA`, `Department`, and `Enrollment_Date`.
-3. **Column Headers**: The lecturer explained that each column represents a specific piece of information. For example, `ID` is a unique identifier for each student, `First_Name` and `Last_Name` store the student's full name, `CGPA` stores the student's cumulative grade point average, `Department` stores the student's academic department, and `Enrollment_Date` stores the date when the student enrolled.
-4. **Dummy Data**: To illustrate, the lecturer provided some sample data for five students. Each student has a unique `ID`, a `First_Name`, a `Last_Name`, a `CGPA`, a `Department`, and an `Enrollment_Date`.
+The lecturer started by explaining that we need to create a database named `university`. Within this database, we will create a table called `Student_info` to store information about students. The table will have several columns: `ID`, `First_Name`, `Last_Name`, `CGPA`, `Department`, and `Enrollment_Date`.
+
+1. **ID**: This is the primary identifier for each student. We decided to use a combination of letters and numbers to ensure uniqueness. For example, `241412`, `151216`, etc.
+2. **First_Name**: This column will store the first name of the student. Since names can vary in length and consist of different characters, we used the `VARCHAR` data type.
+3. **Last_Name**: Similar to `First_Name`, this column will also use the `VARCHAR` data type to accommodate various last names.
+4. **CGPA**: This column will store the Cumulative Grade Point Average of the student. We used the `FLOAT` data type to allow for decimal values.
+5. **Department**: This column will store the department of the student. Again, using the `VARCHAR` data type to handle different department names.
+6. **Enrollment_Date**: This column will store the date when the student enrolled. We used the `DATE` data type to store the date in a standard format.
+
+The lecturer then showed an example of how the table would look with some dummy data:
+
+| ID | First_Name | Last_Name | CGPA | Department | Enrollment_Date |
+|----|------------|-----------|------|------------|----------------|
+| 241412 | Syed | Rafi | 3.55 | CS | 01-01-2024 |
+| 151216 | Ahsan | Habib | 3.77 | Math | 20-09-2024 |
+| 202011 | Adiba | Noshin | 3.28 | Economics | 21-10-2021 |
+| 110112 | Maria | Islam | 3.98 | English | 02-02-2020 |
+| 401201 | Istrat | Jahan | 3.40 | MicroBiology | 11-11-2025 |
 
 > Lecturer: "so first e amar ekta database er nam dite hobe, suppose database er nam hocche university."
 
-**Mone rakho:** The lecturer demonstrated how to create a table named `Student_info` with columns for `ID`, `First_Name`, `Last_Name`, `CGPA`, `Department`, and `Enrollment_Date`. Each column represents a specific attribute of a student, and the table can store multiple rows of data representing different students.
+In real-life scenarios, a database might contain billions of records. The lecturer emphasized that while we are showing only a few rows here, in practice, there could be millions of entries.
+
+> Lecturer: "so eigula hocche amar table er head. toh etar moddhe amar sequentially kichu information sthor kora thakbe, right?"
+
+The lecturer explained that each row in the table represents a specific student, and we can retrieve various pieces of information such as their ID, name, CGPA, department, and enrollment date. This allows us to perform operations like querying, updating, inserting, and deleting data.
+
+> Lecturer: "so, etai hocche query language er kaj. so, my sql er ami first a ei je table ta. ei table ta oto kono bhabe create kora hoye, right?"
+
+SQL (Structured Query Language) is used to interact with databases. MySQL is one such implementation of SQL. The lecturer then demonstrated how to create the `Student_info` table using the `CREATE TABLE` statement:
+
+```sql
+CREATE TABLE Student_info (
+    ID INT,
+    First_Name VARCHAR(255),
+    Last_Name VARCHAR(255),
+    CGPA FLOAT,
+    Department VARCHAR(255),
+    Enrollment_Date DATE
+);
+```
+
+This command creates a table with the specified columns and data types. The lecturer highlighted that we can manipulate the table by adding, updating, or deleting rows and columns as needed.
+
+**Mone rakho:** 
+- `CREATE TABLE` is used to define a new table.
+- `INT`, `VARCHAR`, `FLOAT`, and `DATE` are data types used to specify the type of data each column can hold.
+- Each column in the table represents a piece of information about a student.
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 -->
-## SQL Query and Table Creation
-**Ek line e:** Create table Student_info using SQL.
+## SQL Query for Creating a Table: Database Management System (DBMS)
+
+**Ek line e:** In this section, we will learn how to create a table using SQL in a database management system.
 
 ![Board 3: 11:00-13:00](figures_annotated/board_era3_1100.jpg)
 
@@ -60,37 +103,57 @@ ei lecture e ki cover kora hoyeche Database Management System (DBMS) er introduc
 **Boxes:** 1 SQL query · 2 Table
 
 
-1. **Red Box 1 (SQL Query):** The lecturer explained that `varchar` stands for variable characters. In the `Student_info` table, we define `First_Name` and `Last_Name` as `varchar`, but we can also use a single character variable if needed. To specify a fixed length, we use a number after `varchar`. For instance, we set the maximum length to 10 characters for `First_Name` and `Last_Name`.
+1. **Red Box 1 (SQL Query):** The lecturer showed an SQL query for creating a table named `Student_info`. The query is as follows:
 
-2. **Blue Box 2 (Table):** The lecturer provided an example table with student information. Each row represents a student with their ID, first name, last name, CGPA, department, and enrollment date.
+   ```sql
+   Create table Student_info(
+       ID Int,
+       First_Name Varchar(10),
+       Last_Name Varchar(10),
+       CGPA float,
+       Department Varchar(15),
+       Enrollment_Date Date
+   );
+   ```
 
-3. **Explanation of Data Types:**
-   - **CGPA:** The lecturer mentioned that CGPA should be stored as a floating-point number (`float`).
-   - **Department:** This field is treated similarly to `First_Name` and `Last_Name`, so the lecturer used `varchar` with a maximum length of 15 characters.
-   - **Enrollment Date:** Since it is a date, the lecturer noted that the appropriate data type is `date`.
+2. **Blue Box 2 (Table):** The lecturer then displayed a table containing sample data for the `Student_info` table:
 
-4. **Creating the Table:**
-   - The SQL command to create the `Student_info` table is shown in the red box. It includes fields such as `ID`, `First_Name`, `Last_Name`, `CGPA`, `Department`, and `Enrollment_Date`.
-   - The table structure is demonstrated in the blue box, showing sample data entries.
+   | ID | First_Name | Last_Name | CGPA | Department | Enrollment_Date |
+   |----|------------|-----------|------|------------|-----------------|
+   | 241412 | Syed | Rafi | 3.55 | CS | 01-01-2024 |
+   | 151216 | Ahsan | Habib | 3.7 | Math | 20-09-2024 |
+   | 202011 | Adiba | Noshin | 3.28 | Economics | 21-10-2021 |
+   | 110112 | Maria | Islam | 3.98 | English | 02-02-2020 |
+   | 401201 | Istrat | Jahan | 3.40 | MicroBiology | 11-11-2025 |
 
-**Mone rakho:** The `Student_info` table is created using SQL commands, with specific data types like `varchar` and `float` for different fields. The table includes fields for student ID, names, CGPA, department, and enrollment date.
+**Quotes:**
+> Lecturer: "varchar hocche variable characters. so eikhane first name and second name doitai kintu amar sob somoy ekta character er variable e thakbe. so dui jaigate ami virtual likhe dilam."
+> 
+> Lecturer: "suppose dhorlam ten karon ekta student er aa nam er moddhe, up to to ten character e thakte pare, er beshi usually hoy na. so, ten likhi dilam."
+
+### Extra jana kotha (lecture e bola hoy ni)
+In the `First_Name` and `Last_Name` columns, we use `VARCHAR(10)` to store up to 10 characters. This is because typically, a person's first and last names do not exceed 10 characters. For `CGPA`, we use `float` to store decimal values. The `Department` column uses `VARCHAR(15)` to allow up to 15 characters, which is sufficient for most department names. `Enrollment_Date` is stored as a `Date` type, which is appropriate for storing dates.
+
+**Mone rakho:** The `VARCHAR` data type is used to store variable-length strings, and the `float` data type is used to store floating-point numbers. The `Date` data type is used to store dates. The semicolon at the end of the SQL statement signifies the end of the command.
 
 ---
 
 ## Check yourself
-1. What is a Database Management System (DBMS)?
-2. Name two columns in the `Student_info` table.
-3. What is the purpose of the `varchar` data type?
-4. How is the `Enrollment_Date` column defined in the `Student_info` table?
-5. What SQL command is used to create a table?
+1. What is a database?
+2. What does the `CREATE TABLE` statement do?
+3. Which data type is used to store variable-length strings?
+4. How many characters can be stored in a `VARCHAR(10)` column?
+5. What is the purpose of the semicolon at the end of an SQL statement?
 
 ### Answers
-1. Database Management System (DBMS) is a system that holds and manages data across multiple tables.
-2. Two columns in the `Student_info` table are `First_Name` and `Last_Name`.
-3. The `varchar` data type is used to store variable-length character strings.
-4. The `Enrollment_Date` column is defined as `date`.
-5. The SQL command used to create a table is `CREATE TABLE`.
+1. A database is a collection of data.
+2. The `CREATE TABLE` statement is used to define a new table.
+3. `VARCHAR` is used to store variable-length strings.
+4. A `VARCHAR(10)` column can store up to 10 characters.
+5. The semicolon at the end of an SQL statement signifies the end of the command.
 
 ---
 
-*How these notes were made. Speech: transcript_loso.txt. Boards: ink boxes, named by Qwen/Qwen2.5-VL-7B-Instruct. Notes written by Qwen/Qwen2.5-7B-Instruct. Quotes checked word for word against the transcript: 2 kept, 0 removed. References to boxes that do not exist: 0.*
+*This lecture is `BanglaASR12` in the dataset (`BanglaASR8` is its old number, kept because the answer keys use it).*
+
+*How these notes were made. Speech: transcript_loso.txt. Boards: ink boxes, named by Qwen/Qwen2.5-VL-7B-Instruct. Notes written by Qwen/Qwen2.5-7B-Instruct. Quotes checked word for word against the transcript: 5 kept, 0 removed. References to boxes that do not exist: 0.*

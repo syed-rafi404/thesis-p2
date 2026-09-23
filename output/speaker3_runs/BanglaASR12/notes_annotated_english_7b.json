@@ -1,5 +1,6 @@
 {
   "lecture": "BanglaASR12",
+  "dataset_lecture": "BanglaASR16",
   "language": "english",
   "model": "Qwen/Qwen2.5-7B-Instruct",
   "mock": false,
@@ -9,8 +10,11 @@
   "boxes_file": "board_boxes.json",
   "board_text_file": "board_text_clean.json",
   "quotes_kept": 0,
-  "quotes_dropped": 2,
+  "quotes_dropped": 0,
   "invalid_box_refs": 0,
+  "quotes_translated": 0,
+  "quotes_word_for_word_checked": false,
+  "latex_rewritten": 0,
   "colour_fixes": 0,
   "inline_quotes_unverified": 1,
   "sections": [
@@ -26,13 +30,12 @@
       ],
       "invalid_box_refs": [],
       "colour_fixes": [],
-      "inline_quotes_unverified": [
-        "What does the unit mean?"
-      ],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
       "quotes_kept": [],
-      "quotes_dropped": [
-        "so, ajke amra hocche m2o meddulo shobote chacchi."
-      ]
+      "quotes_dropped": []
     },
     {
       "board": 2,
@@ -46,11 +49,14 @@
       ],
       "invalid_box_refs": [],
       "colour_fixes": [],
-      "inline_quotes_unverified": [],
+      "inline_quotes_unverified": [
+        "Because there are routers in the network, there is a buffer that can store messages and packets temporarily before forwarding them to the next router."
+      ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
       "quotes_kept": [],
-      "quotes_dropped": [
-        "so for example amra maximum case e dhore nigo je df ta zero deo deo."
-      ]
+      "quotes_dropped": []
     }
   ]
 }

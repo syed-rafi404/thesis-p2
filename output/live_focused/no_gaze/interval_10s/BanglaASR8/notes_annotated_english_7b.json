@@ -1,5 +1,6 @@
 {
   "lecture": "BanglaASR8",
+  "dataset_lecture": "BanglaASR12",
   "language": "english",
   "model": "Qwen/Qwen2.5-7B-Instruct",
   "mock": false,
@@ -8,11 +9,14 @@
   "leakage_warning": "",
   "boxes_file": "board_boxes.json",
   "board_text_file": "board_text_clean.json",
-  "quotes_kept": 3,
+  "quotes_kept": 0,
   "quotes_dropped": 0,
   "invalid_box_refs": 0,
+  "quotes_translated": 2,
+  "quotes_word_for_word_checked": false,
+  "latex_rewritten": 0,
   "colour_fixes": 0,
-  "inline_quotes_unverified": 0,
+  "inline_quotes_unverified": 6,
   "sections": [
     {
       "board": 1,
@@ -21,13 +25,19 @@
       "to": "0:50",
       "transcript_chars": 840,
       "boxes": 3,
-      "boxes_mentioned": [],
+      "boxes_mentioned": [
+        1,
+        3
+      ],
       "invalid_box_refs": [],
       "colour_fixes": [],
       "inline_quotes_unverified": [],
-      "quotes_kept": [
-        "ajker topic ta hocche database management system which is dbms in a short form."
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
+        "so, amader internet er ba amader aa amader ei digital word a database er importance kintu onek."
       ],
+      "quotes_kept": [],
       "quotes_dropped": []
     },
     {
@@ -41,9 +51,12 @@
       "invalid_box_refs": [],
       "colour_fixes": [],
       "inline_quotes_unverified": [],
-      "quotes_kept": [
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
         "so first e amar ekta database er nam dite hobe, suppose database er nam hocche university."
       ],
+      "quotes_kept": [],
       "quotes_dropped": []
     },
     {
@@ -53,13 +66,24 @@
       "to": "13:00",
       "transcript_chars": 1344,
       "boxes": 2,
-      "boxes_mentioned": [],
+      "boxes_mentioned": [
+        1,
+        2
+      ],
       "invalid_box_refs": [],
       "colour_fixes": [],
-      "inline_quotes_unverified": [],
-      "quotes_kept": [
-        "varchar hocche variable characters. so eikhane first name and second name doitai kintu amar sob somoy ekta character er variable e thakbe. so dui jaigate ami virtual likhe dilam."
+      "inline_quotes_unverified": [
+        "varchar hocche variable characters. so eikhane first name and second name doitai kintu amar sob somoy ekta character er variable e thakbe. so dui jaigate ami virtual likhe dilam. varchar likhar shathe amar eikhang kar kichu length ta fix kore dite hoy. jemon ami ekhane koto maximum, koto length er akta nam rakhte hobe.",
+        "varchar is a variable character type. Here, first name and last name can be different, but we need to define a single character variable. So, I will virtually write it as varchar. When using varchar, we need to fix a certain length. For example, we can set the maximum length.",
+        "suppose a student's name can have up to ten characters, more than that is rare. So, I will set the length to ten. This means, here we will consider all names up to ten characters. Okay. Then CGPA. What should CGPA be? It should be floating-point numbers. So, for this, the data type should be float.",
+        "department. department is similar to first name and last name. So, I will write it as word char. We will set the character limit to a maximum of 15, for example. And enrollment date. Since it is a date, we call it date, which is a data type. So, the data type for this should be date.",
+        "when we write this, it will automatically be in a date format. So, I will start with the five-character packet, and end it there. Finally, I will put a semicolon.",
+        "so, in this class, we see how DBMS and DB MH work, and how to create them using SQL. In the next class, we will see some other operations."
       ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
       "quotes_dropped": []
     }
   ]

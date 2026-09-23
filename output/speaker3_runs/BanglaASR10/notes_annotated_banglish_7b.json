@@ -1,5 +1,6 @@
 {
   "lecture": "BanglaASR10",
+  "dataset_lecture": "BanglaASR14",
   "language": "banglish",
   "model": "Qwen/Qwen2.5-7B-Instruct",
   "mock": false,
@@ -8,9 +9,12 @@
   "leakage_warning": "",
   "boxes_file": "board_boxes.json",
   "board_text_file": "board_text_clean.json",
-  "quotes_kept": 2,
-  "quotes_dropped": 1,
+  "quotes_kept": 4,
+  "quotes_dropped": 0,
   "invalid_box_refs": 0,
+  "quotes_translated": 0,
+  "quotes_word_for_word_checked": true,
+  "latex_rewritten": 0,
   "colour_fixes": 0,
   "inline_quotes_unverified": 0,
   "sections": [
@@ -27,7 +31,13 @@
       "invalid_box_refs": [],
       "colour_fixes": [],
       "inline_quotes_unverified": [],
-      "quotes_kept": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "toh oneksho mai hoy ki je ekta net or ke, jokhn on and gula hop count day, jokhn on and gula hop count day, jokhn on and gula hop count day.",
+        "so one ekshomai delay ta accept te bolna toh shei ke thai amra ki kori? packet ta notun kore patai."
+      ],
       "quotes_dropped": []
     },
     {
@@ -37,10 +47,15 @@
       "to": "2:52",
       "transcript_chars": 908,
       "boxes": 1,
-      "boxes_mentioned": [],
+      "boxes_mentioned": [
+        1
+      ],
       "invalid_box_refs": [],
       "colour_fixes": [],
       "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
       "quotes_kept": [
         "main shomosh ta jeta diye amr prevent korte pari sheita hocche jekono packet er endless looping."
       ],
@@ -53,14 +68,22 @@
       "to": "4:34",
       "transcript_chars": 1838,
       "boxes": 4,
-      "boxes_mentioned": [],
+      "boxes_mentioned": [
+        1,
+        2,
+        3,
+        4
+      ],
       "invalid_box_refs": [],
       "colour_fixes": [],
       "inline_quotes_unverified": [],
-      "quotes_kept": [],
-      "quotes_dropped": [
-        "if this flag is set, the packet will not be split into smaller pieces even if the path requires it."
-      ]
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "ekhon amra goto class a koa flag er kotha bole chilon, jeta amader ekta header er dekha je id er for header er moddhe."
+      ],
+      "quotes_dropped": []
     },
     {
       "board": 4,
@@ -69,13 +92,18 @@
       "to": "7:04",
       "transcript_chars": 965,
       "boxes": 3,
-      "boxes_mentioned": [],
+      "boxes_mentioned": [
+        1,
+        2,
+        3
+      ],
       "invalid_box_refs": [],
       "colour_fixes": [],
       "inline_quotes_unverified": [],
-      "quotes_kept": [
-        "right. o bole dicche router for example 1 er router 2, router 1 er bole dicche je tumi amra shorboche ponosho byte porjondno data pathai parba."
-      ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
       "quotes_dropped": []
     }
   ]

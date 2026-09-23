@@ -1,10 +1,10 @@
 # Database Management System (DBMS)
-This lecture introduces the concept of a Database Management System (DBMS) and explains its basic functionality, including how to create and structure a database table using SQL.
+This lecture introduces the concept of a Database Management System (DBMS) and explains its basic functionality, including how to create tables and define data types using SQL commands.
 
 ## Key takeaways
-- A Database Management System (DBMS) is a system that allows us to store and manage large amounts of data efficiently.
-- We create a table named `Student_info` with specific columns to store student details.
-- Understanding the appropriate data types and constraints is crucial for creating an efficient and accurate database table.
+- A Database Management System (DBMS) is a software system designed to manage databases.
+- To create a table in a database, use SQL commands to define columns and their data types.
+- Correctly defining data types ensures accurate storage and retrieval of data.
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 3=#f77f00 -->
 ## Introduction to Database Management System (DBMS)
@@ -17,20 +17,20 @@ This lecture introduces the concept of a Database Management System (DBMS) and e
 **Boxes:** 1 Title · 2 Block diagram · 3 Block diagram
 
 
-- **Database Management System (DBMS):** The red box titled "Database Management System (DBMS)" introduces the topic. A DBMS is a system that allows us to store and manage large amounts of data efficiently.
+- **Box 1 (red):** The title "Database Management System (DBMS)" is displayed, indicating the topic of discussion.
+- **Box 3 (orange):** The lecturer explains that a database can store multiple tables, each containing relevant information. These tables can be used to perform various operations such as running different types of software and improving system performance.
+- The lecturer gives an example of a simple table to illustrate how a database works. They emphasize that databases are crucial in the digital world, especially on the internet.
 
-- **Data Storage:** The lecturer explains that a database can store multiple tables. Each table contains information that is useful for various purposes, such as improving the performance of a computer system or running specific software applications.
+>The lecturer said: "so, amader internet er ba amader aa amader ei digital word a database er importance kintu onek." This means: "So, in our internet and in our digital world, the importance of databases is significant."
 
-- **Importance of DBMS:** The lecturer emphasizes the importance of databases in our digital world. To illustrate, the lecturer gives a simple example of a household, where a single table might be used to store information about different aspects of the household, such as expenses, family members, and daily activities.
+### Background
+A Database Management System (DBMS) is a software system designed to manage databases. It allows users to create, read, update, and delete data stored in a database efficiently. DBMS ensures data integrity, security, and provides a structured way to manage large amounts of data. In the digital age, where data is the new oil, understanding and utilizing DBMS is essential for managing and retrieving information effectively.
 
-> Lecturer: "ajker topic ta hocche database management system which is dbms in a short form."
-> (In English: The topic today is database management system, which we will call DBMS for short.)
-
-**Remember:** A DBMS is essential for managing and storing data in an organized manner, allowing for efficient retrieval and manipulation of information.
+**Remember:** A database is a collection of organized data that can be accessed, managed, and updated.
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 3=#f77f00 4=#2a9d4f -->
 ## Creating a Table in a Database
-**In one line:** We create a table named `Student_info` with specific columns to store student details.
+**In one line:** This board explains how to create a table in a database using SQL commands.
 
 ![Board 2: 1:10-10:50](figures_annotated/board_era2_110.jpg)
 
@@ -39,49 +39,21 @@ This lecture introduces the concept of a Database Management System (DBMS) and e
 **Boxes:** 1 Title · 2 SQL query · 3 Column header · 4 Column header
 
 
-1. **Database Management System (DBMS):**
-   - The lecturer introduces the concept of a database, naming it "university" for this example.
-   
-2. **Creating the Table:**
-   - The lecturer explains that within the database, we create a table called `Student_info`.
-   - The table includes columns such as `ID`, `First_Name`, `Last_Name`, `CGPA`, `Department`, and `Enrollment_Date`.
-   - The lecturer provides an example of how the table might look with some sample data.
+1. **Database Name**: The lecturer starts by naming the database as "University". This database will contain a table named `Student_info`.
+2. **Table Creation**: The lecturer writes the SQL command to create the `Student_info` table. The table includes columns such as `ID`, `First_Name`, `Last_Name`, `CGPA`, `Department`, and `Enrollment_Date`.
+3. **Column Headers**: The lecturer explains that each column represents a specific piece of information about a student. For example, `ID` is a unique identifier, `First_Name` and `Last_Name` store the student's name, `CGPA` stores the cumulative grade point average, `Department` stores the student's department, and `Enrollment_Date` stores the date of enrollment.
+4. **Data Types**: The lecturer specifies the data types for each column. For instance, `ID` is an integer (`INT`), while `First_Name` and `Last_Name` are strings (`VARCHAR`).
 
-3. **Column Headers:**
-   - **ID:** This column stores unique identifiers for each student.
-   - **First_Name:** Stores the first name of the student.
-   - **Last_Name:** Stores the last name of the student.
-   - **CGPA:** Stores the cumulative grade point average of the student.
-   - **Department:** Stores the department the student belongs to.
-   - **Enrollment_Date:** Stores the date when the student enrolled.
+> The lecturer said: "so first e amar ekta database er nam dite hobe, suppose database er nam hocche university."
 
-4. **SQL Query:**
-   - The lecturer writes the SQL query to create the `Student_info` table:
-     ```sql
-     CREATE TABLE Student_info (
-       ID INT,
-       First_Name VARCHAR(255),
-       Last_Name VARCHAR(255),
-       CGPA DECIMAL(3,2),
-       Department VARCHAR(255),
-       Enrollment_Date DATE
-     );
-     ```
-   - The lecturer explains that `INT` is used for the `ID` column, `VARCHAR(255)` for `First_Name` and `Last_Name`, `DECIMAL(3,2)` for `CGPA`, and `DATE` for `Enrollment_Date`.
+### Background
+A database management system (DBMS) is used to store, manage, and retrieve large amounts of data efficiently. In this case, we are creating a table to store information about students, including their IDs, names, CGPA, department, and enrollment date. This table structure allows us to organize and access data systematically, making it easier to perform operations like querying, updating, and deleting records.
 
-5. **Explanation:**
-   - The lecturer emphasizes that while this example uses a few rows of data, in reality, a database can store billions of records.
-   - The lecturer also mentions that SQL is a query language used to interact with databases, specifically MySQL.
-
-6. **Quotes:**
-   > Lecturer: "so first e amar ekta database er nam dite hobe, suppose database er nam hocche university."
-   > (In English: "first, I will give a name to my database, suppose the name of the database is university.")
-
-**Remember:** The primary focus is on creating a structured table using SQL commands to manage student information effectively.
+**Remember:** The key point is understanding how to define and create a table in a database using SQL commands, specifying appropriate data types for each column.
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 -->
-## Creating a Table with Data Types and Constraints
-**In one line:** This board explains how to define data types and constraints for a database table using SQL.
+## Creating a Table with Data Types in DBMS
+**In one line:** This board explains how to define data types for columns in a database table using SQL.
 
 ![Board 3: 11:00-13:00](figures_annotated/board_era3_1100.jpg)
 
@@ -90,47 +62,42 @@ This lecture introduces the concept of a Database Management System (DBMS) and e
 **Boxes:** 1 SQL query · 2 Table
 
 
-### Explanation
-1. **Data Types and Constraints**: The `CREATE TABLE` statement defines the structure of a database table. Each column in the table must have a specific data type. For example, `VARCHAR(10)` is used for variable-length strings, where the maximum length is specified. In the `Student_info` table, `First_Name` and `Last_Name` are defined as `VARCHAR(10)`, meaning each can hold up to 10 characters. The `CGPA` column is defined as `FLOAT`, which is suitable for storing floating-point numbers like grades.
-   
-2. **Date Column**: The `Enrollment_Date` column is defined as `DATE`. This ensures that the data stored in this column will be in a date format, which is useful for tracking dates such as when students enrolled.
+1. **Red Box 1 (SQL Query):**
+   - The lecturer said: "varchar hocche variable characters. so eikhane first name and second name doitai kintu amar sob somoy ekta character er variable e thakbe. so dui jaigate ami virtual likhe dilam. varchar likhar shathe amar eikhang kar kichu length ta fix kore dite hoy. jemon ami ekhane koto maximum, koto length er akta nam rakhte hobe."
+   - In English, this means: "varchar is a variable character type. Here, first name and last name can be different, but we need to define a single character variable. So, I will virtually write it as varchar. When using varchar, we need to fix a certain length. For example, we can set the maximum length."
 
-3. **Primary Key**: Although not explicitly shown in the provided SQL query, it is common practice to define a primary key for the table. A primary key uniquely identifies each record in the table. For instance, the `ID` column could be set as the primary key.
+2. **Blue Box 2 (Table):**
+   - The lecturer said: "suppose dhorlam ten karon ekta student er aa nam er moddhe, up to to ten character e thakte pare, er beshi usually hoy na. so, ten likhi dilam. tar mane holo, ekhane amar aa up to ten length er sob nam consider kora jabe. okay. then cgpa. cgpa te ki thakbe? amar float numbers. so eta jonno, eta data type hobe float."
+   - In English, this means: "suppose a student's name can have up to ten characters, more than that is rare. So, I will set the length to ten. This means, here we will consider all names up to ten characters. Okay. Then CGPA. What should CGPA be? It should be floating-point numbers. So, for this, the data type should be float."
 
-4. **Table Creation**: The SQL query `CREATE TABLE Student_info(...)` creates the `Student_info` table with the specified columns and data types. The table is populated with sample data showing various students' information.
+3. **Blue Box 2 (Table):**
+   - The lecturer said: "department. department o kintu first name ar last name er matoi. so eta teo ami likhbo, word char. etar character limitation dey dela maximum 15 porjonto, for example. ar enrollment date. since eta ekta date, date naame amader eski bole, alata ekta data type e ache. so eta ar data type ta hobe dead."
+   - In English, this means: "department. department is similar to first name and last name. So, I will write it as word char. We will set the character limit to a maximum of 15, for example. And enrollment date. Since it is a date, we call it date, which is a data type. So, the data type for this should be date."
 
-**Quotes**
-> Lecturer: "varchar hocche variable characters. so eikhane first name and second name doitai kintu amar sob somoy ekta character er variable e thakbe. so dui jaigate ami virtual likhe dilam."
-> (In English: "VARCHAR is for variable characters. So here, first name and last name can be different, but we can make all of them one character variable. So I virtually write two.")
+4. **Blue Box 2 (Table):**
+   - The lecturer said: "eta likhle automatically ebhabe date format e amr skula cholo ashbo. so, eight er je five-s packet ta start with chilo, etake end kore dibo. and last ekta semikron diye dibo."
+   - In English, this means: "when we write this, it will automatically be in a date format. So, I will start with the five-character packet, and end it there. Finally, I will put a semicolon."
 
-**Remember:** Understanding the appropriate data types and constraints is crucial for creating an efficient and accurate database table.
+5. **Blue Box 2 (Table):**
+   - The lecturer said: "so, ajker class e amra dekhlam, aa dbms ki, db mh ki babe kaaj kore, dbms er trivel ki bhabe create korte hoye chhu sql. so next class e amra aro kichu operations kula dekhbo."
+   - In English, this means: "so, in this class, we see how DBMS and DB MH work, and how to create them using SQL. In the next class, we will see some other operations."
+
+**Remember:** The key point is to correctly define data types for each column in a database table to ensure accurate storage and retrieval of data.
 
 ---
 
 ## Check yourself
 1. What is a Database Management System (DBMS)?
-2. Name the columns in the `Student_info` table.
-3. What is the purpose of defining data types in a database table?
-4. Explain the importance of a primary key in a database table.
-5. Write the SQL query to create the `Student_info` table.
+2. How do you create a table in a database using SQL?
+3. What are the data types specified for the `ID`, `First_Name`, `Last_Name`, `CGPA`, `Department`, and `Enrollment_Date` columns in the `Student_info` table?
 
 ### Answers
-1. A Database Management System (DBMS) is a system that allows us to store and manage large amounts of data efficiently.
-2. The columns in the `Student_info` table are: ID, First_Name, Last_Name, CGPA, Department, and Enrollment_Date.
-3. Defining data types in a database table helps ensure that the data stored in each column is of the correct format and size, which improves data integrity and performance.
-4. A primary key uniquely identifies each record in a table, ensuring that no two records have the same value in the primary key column.
-5. The SQL query to create the `Student_info` table is:
-   ```sql
-   CREATE TABLE Student_info (
-     ID INT,
-     First_Name VARCHAR(255),
-     Last_Name VARCHAR(255),
-     CGPA DECIMAL(3,2),
-     Department VARCHAR(255),
-     Enrollment_Date DATE
-   );
-   ```
+1. A Database Management System (DBMS) is a software system designed to manage databases.
+2. To create a table in a database using SQL, you use the `CREATE TABLE` command followed by the table name and column definitions.
+3. The data types specified are: `ID` - INT, `First_Name` and `Last_Name` - VARCHAR, `CGPA` - FLOAT, `Department` - VARCHAR, and `Enrollment_Date` - DATE.
 
 ---
 
-*How these notes were made. Speech: transcript_loso.txt. Boards: ink boxes, named by Qwen/Qwen2.5-VL-7B-Instruct. Notes written by Qwen/Qwen2.5-7B-Instruct. Quotes checked word for word against the transcript: 3 kept, 0 removed. References to boxes that do not exist: 0.*
+*This lecture is `BanglaASR12` in the dataset (`BanglaASR8` is its old number, kept because the answer keys use it).*
+
+*How these notes were made. Speech: transcript_loso.txt. Boards: ink boxes, named by Qwen/Qwen2.5-VL-7B-Instruct. Notes written by Qwen/Qwen2.5-7B-Instruct. The lecturer's words are given in English translation (2 quotes); the Banglish version of these notes has the originals, checked word for word against the transcript. References to boxes that do not exist: 0.*

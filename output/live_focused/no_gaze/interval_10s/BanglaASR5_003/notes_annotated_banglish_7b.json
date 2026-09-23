@@ -1,5 +1,6 @@
 {
   "lecture": "BanglaASR5_003",
+  "dataset_lecture": "BanglaASR5_003",
   "language": "banglish",
   "model": "Qwen/Qwen2.5-7B-Instruct",
   "mock": false,
@@ -9,10 +10,13 @@
   "boxes_file": "board_boxes.json",
   "board_text_file": "board_text_clean.json",
   "quotes_kept": 2,
-  "quotes_dropped": 1,
+  "quotes_dropped": 0,
   "invalid_box_refs": 0,
+  "quotes_translated": 0,
+  "quotes_word_for_word_checked": true,
+  "latex_rewritten": 0,
   "colour_fixes": 0,
-  "inline_quotes_unverified": 2,
+  "inline_quotes_unverified": 1,
   "sections": [
     {
       "board": 1,
@@ -24,7 +28,6 @@
       "boxes_mentioned": [
         1,
         2,
-        3,
         4,
         5,
         6
@@ -32,10 +35,14 @@
       "invalid_box_refs": [],
       "colour_fixes": [],
       "inline_quotes_unverified": [
-        "]`. The orange box 3 demonstrates a more complex list `elements` that includes different data types: `[",
-        "`. When you print `elements[0]` after this update, it outputs `"
+        "` changes the first element from `"
       ],
-      "quotes_kept": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "so dhoro amra first class e ekta variable ney shilam fruit. fruit er moddhe amra ki diye shilam? apple diye shilam. but fruit ki shudu appali? aro onek jinis toh hote pari. ami o fruit hisate aro onek jinis rakhte pari. orange rakhte pari, mango rakhte pari."
+      ],
       "quotes_dropped": []
     },
     {
@@ -51,10 +58,13 @@
       "invalid_box_refs": [],
       "colour_fixes": [],
       "inline_quotes_unverified": [],
-      "quotes_kept": [],
-      "quotes_dropped": [
-        "exact words from the transcript"
-      ]
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "ekhon ami element list er second index er jeta, index dhalo jekhane 2. shekhan ami jodi 5 e replace kore di."
+      ],
+      "quotes_dropped": []
     },
     {
       "board": 3,
@@ -63,14 +73,16 @@
       "to": "14:00",
       "transcript_chars": 1848,
       "boxes": 1,
-      "boxes_mentioned": [],
+      "boxes_mentioned": [
+        1
+      ],
       "invalid_box_refs": [],
       "colour_fixes": [],
       "inline_quotes_unverified": [],
-      "quotes_kept": [
-        "ekhane amar different value ache. so eijonno ki hobe? eta eror ashbe. eta eror ashbe. eta eror ashbe. eta kaj korbe na.",
-        "thikache? so amar array hoar jonno list theke jodi ami array convert korte chai, obviously amar shobgular data type same hote hobe."
-      ],
+      "prompt_placeholders_removed": 1,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
       "quotes_dropped": []
     }
   ]

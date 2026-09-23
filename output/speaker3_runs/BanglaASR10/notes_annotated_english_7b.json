@@ -1,5 +1,6 @@
 {
   "lecture": "BanglaASR10",
+  "dataset_lecture": "BanglaASR14",
   "language": "english",
   "model": "Qwen/Qwen2.5-7B-Instruct",
   "mock": false,
@@ -8,11 +9,14 @@
   "leakage_warning": "",
   "boxes_file": "board_boxes.json",
   "board_text_file": "board_text_clean.json",
-  "quotes_kept": 1,
+  "quotes_kept": 0,
   "quotes_dropped": 0,
   "invalid_box_refs": 0,
+  "quotes_translated": 3,
+  "quotes_word_for_word_checked": false,
+  "latex_rewritten": 0,
   "colour_fixes": 0,
-  "inline_quotes_unverified": 1,
+  "inline_quotes_unverified": 3,
   "sections": [
     {
       "board": 1,
@@ -27,6 +31,12 @@
       "invalid_box_refs": [],
       "colour_fixes": [],
       "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
+        "so one ekshomai delay ta accept te bolna toh shei ke thai amra ki kori? packet ta notun kore patai. but kono packet notun kore pathonor age amra jeta previously je packet ta amno selling kore shetake destroy koral aggre rai.",
+        "So, if we accept some delay, what do we do? We don't create new packets. Instead, we destroy the previous packet after a certain number of hops."
+      ],
       "quotes_kept": [],
       "quotes_dropped": []
     },
@@ -37,12 +47,18 @@
       "to": "2:52",
       "transcript_chars": 908,
       "boxes": 1,
-      "boxes_mentioned": [],
+      "boxes_mentioned": [
+        1
+      ],
       "invalid_box_refs": [],
       "colour_fixes": [],
       "inline_quotes_unverified": [
-        "The main purpose of setting a TTL value is to prevent any packet from getting stuck in an endless loop within a network."
+        "The main purpose of setting a TTL is to prevent endless looping of a packet.",
+        "If the TTL value is 24, after 24 hops, the packet will either be dropped or discarded, preventing it from continuing indefinitely."
       ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
       "quotes_kept": [],
       "quotes_dropped": []
     },
@@ -61,10 +77,13 @@
       ],
       "invalid_box_refs": [],
       "colour_fixes": [],
-      "inline_quotes_unverified": [],
-      "quotes_kept": [
-        "ekhon amra goto class a koa flag er kotha bole chilon, jeta amader ekta header er dekha je id er for header er moddhe."
+      "inline_quotes_unverified": [
+        "Your English translation of what the lecturer said"
       ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
       "quotes_dropped": []
     },
     {
@@ -82,6 +101,11 @@
       "invalid_box_refs": [],
       "colour_fixes": [],
       "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
+        "your English translation of what the lecturer said"
+      ],
       "quotes_kept": [],
       "quotes_dropped": []
     }

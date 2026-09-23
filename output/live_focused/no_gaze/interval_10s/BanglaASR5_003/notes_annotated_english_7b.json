@@ -1,5 +1,6 @@
 {
   "lecture": "BanglaASR5_003",
+  "dataset_lecture": "BanglaASR5_003",
   "language": "english",
   "model": "Qwen/Qwen2.5-7B-Instruct",
   "mock": false,
@@ -8,11 +9,14 @@
   "leakage_warning": "",
   "boxes_file": "board_boxes.json",
   "board_text_file": "board_text_clean.json",
-  "quotes_kept": 4,
+  "quotes_kept": 0,
   "quotes_dropped": 0,
   "invalid_box_refs": 0,
+  "quotes_translated": 1,
+  "quotes_word_for_word_checked": false,
+  "latex_rewritten": 0,
   "colour_fixes": 0,
-  "inline_quotes_unverified": 1,
+  "inline_quotes_unverified": 5,
   "sections": [
     {
       "board": 1,
@@ -25,11 +29,14 @@
       "invalid_box_refs": [],
       "colour_fixes": [],
       "inline_quotes_unverified": [
-        "`, which changes the first element of the `elements` list from `"
+        "` changes the first element from `"
       ],
-      "quotes_kept": [
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
         "so dhoro amra first class e ekta variable ney shilam fruit. fruit er moddhe amra ki diye shilam? apple diye shilam. but fruit ki shudu appali? aro onek jinis toh hote pari. ami o fruit hisate aro onek jinis rakhte pari. orange rakhte pari, mango rakhte pari."
       ],
+      "quotes_kept": [],
       "quotes_dropped": []
     },
     {
@@ -39,13 +46,20 @@
       "to": "10:40",
       "transcript_chars": 2172,
       "boxes": 1,
-      "boxes_mentioned": [],
+      "boxes_mentioned": [
+        1
+      ],
       "invalid_box_refs": [],
       "colour_fixes": [],
-      "inline_quotes_unverified": [],
-      "quotes_kept": [
-        "thali ekta ki change-er cholo? structure-ly."
+      "inline_quotes_unverified": [
+        ", 7, 3.1416, True)`. The lecturer said: ",
+        "We need to create a new variable because tuples are immutable. We can't directly change their elements.",
+        "We can change the value at index 2 to 5."
       ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
       "quotes_dropped": []
     },
     {
@@ -55,14 +69,18 @@
       "to": "14:00",
       "transcript_chars": 1848,
       "boxes": 1,
-      "boxes_mentioned": [],
+      "boxes_mentioned": [
+        1
+      ],
       "invalid_box_refs": [],
       "colour_fixes": [],
-      "inline_quotes_unverified": [],
-      "quotes_kept": [
-        "ami jokhon lektesi import num by snp, toh mane ki? erpor amar jokhoni num by ke dor kare hobe.",
-        "so, ekhane dhoro amader jeta amader list, tai na? eta jodi kom list, eta okintu list. so, i can't just convert list2 into an array, because ekhane dakho amar different type-e data ache."
+      "inline_quotes_unverified": [
+        "we can perform calculations even within errors, the advantage is that we can quickly perform operations on the array."
       ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
       "quotes_dropped": []
     }
   ]

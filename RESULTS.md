@@ -1022,58 +1022,142 @@ Reproduce every number in this section: `python scripts/rescore_verified_keys.py
 ### 5.4 The annotated notes — the deliverable, measured (2026-09-23, RTX 5090)
 
 The notes a student would actually be handed: one section per board, each pointing at the
-numbered coloured boxes the VLM named, with the lecturer quoted word for word and translated.
-Built for all 13 scored lectures in both languages by `build_lecture_notes.py`, from
-`transcript_loso.txt` in every case, so the transcript came from a Whisper adapter that never
-heard that lecture's lecturer. **No leakage warnings on any of the 26 files.**
+numbered coloured boxes the VLM named, the lecturer quoted, a step-by-step walk through the board,
+and anything the lecturer did not say confined to a labelled "Background" box. Built for all 13
+scored lectures in both languages by `build_lecture_notes.py`, from `transcript_loso.txt` in every
+case, so the transcript came from a Whisper adapter that never heard that lecture's lecturer.
+**No leakage warnings on any of the 26 files.**
+
+**These are the numbers from the second build (2026-09-23, after two prompt changes: each language
+version written wholly in its own language, and the fuller step-by-step explanation with the
+Background box).** The first build's numbers are kept below, because the change moved them a lot.
 
 **Board-content recall, 35 boards of lectures 1-9, 349 items:**
 
 | Notes | Recall | Against the original notes (A) |
 |---|---|---|
-| A. original pipeline | 37.2% | — |
-| **New annotated notes, English** | **70.2%** | **better on 30 boards, worse on 0, sign p = 1.9e-09, Wilcoxon p = 1.7e-06** |
-| New annotated notes, Banglish | 53.6% | better on 29, worse on 4, sign p = 1.1e-05, Wilcoxon p = 3.0e-06 |
+| A. original pipeline | 37.2% | - |
+| **New annotated notes, Banglish** | **89.1%** | **better on 32 boards, worse on 0, sign p = 4.7e-10, Wilcoxon p = 8.0e-07** |
+| New annotated notes, English | 55.9% | better on 29, worse on 4, sign p = 1.1e-05, Wilcoxon p = 2.1e-06 |
 | C. paste the VLM board transcription (5.0) | 88.0% | better on 30, worse on 1 |
 
-**A third lecturer, Speaker3, lectures 10-13, 10 boards, 87 items** (no earlier notes exist for
-these, so this is an absolute score, not a comparison): English **72.4%**, Banglish 67.8%.
-Per lecture, English: BanglaASR10 91.3%, 11 80.0%, 12 83.3%, 13 55.3%.
+**Speaker3, lectures 10-13, 10 boards, 87 items** (no earlier notes exist for these, so this is an
+absolute score): Banglish **79.3%**, English 75.9%.
 
-Across all 13 lectures, 436 items: English **70.6%**, Banglish 56.4%.
+Across all 13 lectures, 436 items: **Banglish 87.2%, English 59.9%.**
+
+**The Banglish notes now match variant C**, which was the previous best: 88.0% -> 89.1%, better on
+14 boards, worse on 8, sign p = 0.29, Wilcoxon p = 0.34. **Statistically indistinguishable, and
+that is the point.** C reaches its number by pasting the VLM's raw board transcription into the
+notes; the annotated notes reach the same number while being a readable lecture note with boxes,
+quotes and a step-by-step explanation. The 17.8 pp gap reported after the first build is closed.
+
+**What the two prompt changes did, and the honest caveat.**
+
+| | First build | Second build | Change |
+|---|---|---|---|
+| Banglish, 35 boards | 53.6% | **89.1%** | **+35.5 pp** |
+| English, 35 boards | 70.2% | 55.9% | **-14.3 pp** |
+| Banglish, Speaker3 | 67.8% | 79.3% | +11.5 pp |
+| English, Speaker3 | 72.4% | 75.9% | +3.5 pp |
+
+**The languages swapped places.** The reason is the language-purity rule. Board content is written
+in Banglish and mixed technical English; a Banglish note reproduces those strings as they were
+written, so the scorer finds them, while an English note now translates them into English prose,
+where the scorer cannot. **This is partly a measurement artefact and must be said as such**: the
+English notes did not necessarily get worse for a reader, they got worse at containing the board's
+exact strings. The spelling-fair matching of 1.6 has never been applied to this metric and would
+probably narrow the gap.
+
+**The caveat that matters for attribution: the two prompt changes landed together**, so this
+comparison cannot say how much of the movement is the language rule and how much is the fuller
+step-by-step explanation. Separating them needs a third build with one change at a time, which has
+not been run. Do not attribute the +35.5 pp to either change alone.
+
+**Quote the Banglish number as the deliverable's result** (89.1%, or 87.2% over all 13 lectures),
+and state that the English version trades exact board strings for readability to an English-medium
+reader.
 
 ```
 python scripts/label_boards.py --all
 python scripts/build_lecture_notes.py --all --language both --tag 7b
-python scripts/score_board_recall.py --gt data/board_truth data/board_truth/draft_lectures1to6 \
-  --compare-names final_lecture_notes.md notes_annotated_english_7b.md
-python scripts/score_board_recall.py --runs output/speaker3_runs --gt data/board_truth/draft_speaker3 \
-  --notes-name notes_annotated_english_7b.md
+python scripts/score_board_recall.py --gt data/board_truth data/board_truth/draft_lectures1to6   --compare-names final_lecture_notes.md notes_annotated_banglish_7b.md
+python scripts/score_board_recall.py --gt data/board_truth data/board_truth/draft_lectures1to6   --compare-names notes_C_vlm.md notes_annotated_banglish_7b.md
+python scripts/score_board_recall.py --runs output/speaker3_runs --gt data/board_truth/draft_speaker3   --notes-name notes_annotated_banglish_7b.md
 ```
 
-**Read this honestly, in both directions.**
+#### The Background box: does the model put false things in it?
 
-- **Against the notes the pipeline used to produce, this is a large, unambiguous win:**
-  37.2% -> 70.2%, better on 30 of 35 boards and worse on none, p = 1.9e-09.
-- **Against variant C it is a 17.8 pp loss** (88.0% -> 70.2%, better on 10 boards, worse on 13,
-  sign p = 0.68). **Do not hide this.** C reaches 88.0% by pasting the VLM's raw board
-  transcription into the notes, which is close to copying the answer key's source material into
-  the answer. 5.0 already said so: "C's jump is mostly the board transcription passing into the
-  notes". The new notes write prose about the board instead of reproducing it, and this metric
-  cannot see the difference, because **recall does not measure readability**. The defensible
-  claim is "the annotated notes carry 70% of what was on the board while being readable", not
-  "the annotated notes are the best notes".
-- **Banglish is 16.6 pp behind English** (53.6% vs 70.2%). Expected: the model is writing in a
-  language with no standard spelling, so an item written one way on the board is often spelled
-  another way in the notes and the scorer cannot match it. Some of that gap is the metric, not
-  the notes; how much is unmeasured. The spelling-fair matching of 1.6 has not been applied here.
-- **The weakest lecture is BanglaASR13 at 55.3%**, which has 38 items on 2 boards, the densest
-  of the set.
+The prompt now asks for standard material the lecturer did not say in a separate
+`### Background` section, two to four sentences, and `notes_page.py` renders it as a dashed,
+labelled aside so a reader can see it is not the lecture. This is the controlled version of the
+failure that produced the old textbook NAND definition: the material is still generated, but it is
+fenced and labelled instead of passing as something the lecturer said.
 
-**The quote checker earns its place.** Over the 26 files it kept 83 lecturer quotes and deleted
-14 that were not word for word in the transcript, a 14% rejection rate, and left **0 references to
-a box that does not exist**. This is the fix for the broken-quote defect recorded against the old
-`mixed` prompt.
+**Read by hand, 2026-09-23, three lectures (BanglaASR1 and 2, Python; BanglaASR6, logic gates),
+11 Background boxes: no false statement found.** Spot checks: "`input()` returns a string, so
+convert with `int()` or `float()` before arithmetic" (true), "otherwise you get concatenation
+instead of addition" (true), "Python is case-sensitive, so `myName` and `MyName` differ" (true),
+"an AND gate outputs 1 only when both inputs are 1" (true), "a NOT gate inverts a binary signal"
+(true). **This is 11 boxes of 62, checked by one reader; it is not a guarantee.** The honest
+statement is that a hand check of a sample found nothing false, not that the boxes are correct.
+
+**The quality criticism that is fair:** the Background boxes are generic and repetitive. Several
+end on filler of the form "understanding X is essential for designing more complex systems", and
+three different boards of BanglaASR6 each restate what an AND gate does. They are true but carry
+little information, which is a readability point the recall metric cannot see.
+
+**One defect found and fixed.** The model wrote the heading four different ways - `Background`,
+`Background (not said in the lecture)`, `Extra jana kotha`, `Extra jana kotha (lecture e bola hoy
+ni)` - and **11 of the 21 boxes in the first rebuild used a bare heading with no disclaimer**. The
+heading is what the rendered label shows, so those boxes were fenced but not labelled as
+non-lecture content, which is the whole point of the box. `notes_page.py` now normalises the label
+at render time, so a shortened heading still carries the disclaimer. All 62 boxes across the 26
+pages now read "Background (not said in the lecture)" or "Extra jana kotha (lecture e bola hoy ni)".
+
+**The quote checker, and exactly which files it covers.** In the first build (2026-09-23 morning,
+before the language split below) it kept 83 lecturer quotes across the 26 files and deleted 14 that
+were not word for word in the transcript, a 14% rejection rate, and left **0 references to a box
+that does not exist**.
+
+**Then the design changed, and the claim must be narrowed.** An English-medium reader cannot read a
+Banglish quote, so the English notes now quote the lecturer **in English translation**, and a
+translation cannot be matched against a Banglish transcript. The word-for-word checker therefore
+**does not run on the English files**; it runs on the Banglish ones, which keep the lecturer's real
+words. Each file records `quotes_word_for_word_checked` and `quotes_translated`, and its footer says
+which it is.
+
+**So the supportable claim is: quotes in the Banglish notes are verified word for word against the
+transcript; quotes in the English notes are translations and are not verified.** Do not say "every
+quote in the notes is verified".
+
+**Counts from the second build (the current files), 13 lectures per language:**
+
+| | Banglish | English |
+|---|---|---|
+| Quotes kept, verified word for word | **31** | 0 (not applicable) |
+| Quotes deleted as not in the transcript | 8 (a 21% rejection rate) | 0 (checker does not run) |
+| Quotes given as translation, unverified | 0 | **27** |
+| `quotes_word_for_word_checked` | true, 13 of 13 files | false, 13 of 13 files |
+| References to a box that does not exist | 1 | 0 |
+| LaTeX rewritten to plain text | 6 | 44 |
+
+The one bad box reference out of 13 Banglish files is worth fixing if there is time; it is counted,
+not silent.
+
+**Hand-checked, and the translations held up.** In the Qwen3-32B English notes for BanglaASR7_004,
+two quotes looked invented because no string in the transcript matches them. Tracing them back by
+hand, both are faithful translations of real lines:
+
+| English quote in the notes | The transcript line it translates |
+|---|---|
+| "OR plus NOT makes NOR gate." | "toh, inverse version. tar mane **or plus not**, ei duita fundamental gates mile amar **nor gate** ta built hocche" |
+| "First we do OR, then apply NOT." | "eitoh, ekhon, **first time a ki kortesi? or kortesi. erpore ami otar opore not kore** ami final nor get ta peracchi" |
+
+So on this page the translation is doing its job. **That is a sample of two, not a guarantee**, and
+it is exactly the class of error the automatic check can no longer catch. **If the thesis shows an
+English notes page, say its quotes are model translations, not verified transcript text**, and
+point at a Banglish page for the verified ones.
 
 **What the checker does and does not cover.** It deletes a *blockquote* whose text is not in the
 transcript. A second counter, `inline_quotes_unverified`, flags quoted spans of four words or more

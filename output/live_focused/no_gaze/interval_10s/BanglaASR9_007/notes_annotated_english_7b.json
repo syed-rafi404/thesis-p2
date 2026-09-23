@@ -1,5 +1,6 @@
 {
   "lecture": "BanglaASR9_007",
+  "dataset_lecture": "BanglaASR13",
   "language": "english",
   "model": "Qwen/Qwen2.5-7B-Instruct",
   "mock": false,
@@ -8,9 +9,12 @@
   "leakage_warning": "",
   "boxes_file": "board_boxes.json",
   "board_text_file": "board_text_clean.json",
-  "quotes_kept": 2,
+  "quotes_kept": 0,
   "quotes_dropped": 0,
   "invalid_box_refs": 0,
+  "quotes_translated": 1,
+  "quotes_word_for_word_checked": false,
+  "latex_rewritten": 0,
   "colour_fixes": 0,
   "inline_quotes_unverified": 0,
   "sections": [
@@ -28,9 +32,12 @@
       "invalid_box_refs": [],
       "colour_fixes": [],
       "inline_quotes_unverified": [],
-      "quotes_kept": [
-        "so, shudhu matro data ar amra database er je table sheikhan theke data ke retrive kore."
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
+        "so, eikhane amra ki bhabe aa database table ter sathhe communicate korbo?"
       ],
+      "quotes_kept": [],
       "quotes_dropped": []
     },
     {
@@ -44,9 +51,10 @@
       "invalid_box_refs": [],
       "colour_fixes": [],
       "inline_quotes_unverified": [],
-      "quotes_kept": [
-        "so, etama ki korbe? select kortese cg max of cgpa. mane cgpa ekhane amar path ta row ache."
-      ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
       "quotes_dropped": []
     }
   ]

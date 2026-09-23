@@ -1,5 +1,6 @@
 {
   "lecture": "BanglaASR7_004",
+  "dataset_lecture": "BanglaASR11",
   "language": "banglish",
   "model": "Qwen/Qwen2.5-7B-Instruct",
   "mock": false,
@@ -8,9 +9,12 @@
   "leakage_warning": "",
   "boxes_file": "board_boxes.json",
   "board_text_file": "board_text_clean.json",
-  "quotes_kept": 5,
-  "quotes_dropped": 0,
+  "quotes_kept": 1,
+  "quotes_dropped": 2,
   "invalid_box_refs": 0,
+  "quotes_translated": 0,
+  "quotes_word_for_word_checked": true,
+  "latex_rewritten": 0,
   "colour_fixes": 0,
   "inline_quotes_unverified": 0,
   "sections": [
@@ -27,6 +31,9 @@
       "invalid_box_refs": [],
       "colour_fixes": [],
       "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
       "quotes_kept": [
         "so ajke ashbe amr universal gate. universal gate er moddhe ami ki ki bolechilam? there are two types of universal gates which are xor gate, xor gate, xor gate."
       ],
@@ -49,10 +56,10 @@
       "invalid_box_refs": [],
       "colour_fixes": [],
       "inline_quotes_unverified": [],
-      "quotes_kept": [
-        "so, etar input and output.",
-        "that means eta."
-      ],
+      "prompt_placeholders_removed": 1,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
       "quotes_dropped": []
     },
     {
@@ -61,25 +68,6 @@
       "from": "4:40",
       "to": "7:00",
       "transcript_chars": 1737,
-      "boxes": 6,
-      "boxes_mentioned": [
-        3,
-        4,
-        5,
-        6
-      ],
-      "invalid_box_refs": [],
-      "colour_fixes": [],
-      "inline_quotes_unverified": [],
-      "quotes_kept": [],
-      "quotes_dropped": []
-    },
-    {
-      "board": 4,
-      "era": 4,
-      "from": "7:20",
-      "to": "10:40",
-      "transcript_chars": 2019,
       "boxes": 6,
       "boxes_mentioned": [
         1,
@@ -92,6 +80,34 @@
       "invalid_box_refs": [],
       "colour_fixes": [],
       "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [
+        "NAND gate = AND + NOT"
+      ]
+    },
+    {
+      "board": 4,
+      "era": 4,
+      "from": "7:20",
+      "to": "10:40",
+      "transcript_chars": 2019,
+      "boxes": 6,
+      "boxes_mentioned": [
+        1,
+        2,
+        4,
+        5,
+        6
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
       "quotes_kept": [],
       "quotes_dropped": []
     },
@@ -112,11 +128,13 @@
       "invalid_box_refs": [],
       "colour_fixes": [],
       "inline_quotes_unverified": [],
-      "quotes_kept": [
-        "so, ki dekhlam? x or get. so output ta ki hobe? x or get ami first a korbo, korarpore seter ki korbo not apply korbo.",
-        "so, ekhane ami acche amr asche zero, eta hoye jabe one. eta one, zero, one zero, zero and one."
-      ],
-      "quotes_dropped": []
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [
+        "X-NOR gate is derived from X-OR gate and NOT gate."
+      ]
     }
   ]
 }

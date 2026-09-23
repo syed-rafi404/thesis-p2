@@ -1,5 +1,6 @@
 {
   "lecture": "BanglaASR4",
+  "dataset_lecture": "BanglaASR4",
   "language": "banglish",
   "model": "Qwen/Qwen2.5-7B-Instruct",
   "mock": false,
@@ -8,9 +9,12 @@
   "leakage_warning": "",
   "boxes_file": "board_boxes.json",
   "board_text_file": "board_text_clean.json",
-  "quotes_kept": 5,
-  "quotes_dropped": 0,
+  "quotes_kept": 1,
+  "quotes_dropped": 1,
   "invalid_box_refs": 0,
+  "quotes_translated": 0,
+  "quotes_word_for_word_checked": true,
+  "latex_rewritten": 0,
   "colour_fixes": 0,
   "inline_quotes_unverified": 2,
   "sections": [
@@ -28,11 +32,12 @@
       "invalid_box_refs": [],
       "colour_fixes": [],
       "inline_quotes_unverified": [
-        ") - This simple code snippet demonstrates how to print a message. We will use loops to automate more complex tasks like printing "
+        " 100 times, we would need to write the `print` function 100 times. If we want to print it a thousand or even a million times, writing it out manually would be impractical. Therefore, we need to use loops to automate this process. He wrote `num = 0` on the board and then introduced the while loop syntax: `while`. He asked, "
       ],
-      "quotes_kept": [
-        "computer e shobtheke powerful mechanism hocche she reputation e khubi expert."
-      ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
       "quotes_dropped": []
     },
     {
@@ -48,11 +53,13 @@
       ],
       "invalid_box_refs": [],
       "colour_fixes": [],
-      "inline_quotes_unverified": [],
-      "quotes_kept": [
-        "jokhon ekhane nam er value ta ten er theke boro hoye jabe or ten er shoman hobe, tokhon ami lupe dhukbo na.",
-        "so amar ekta kajkotto hobe sheta holo iteration ta dite hobe."
+      "inline_quotes_unverified": [
+        " is printed. After the first iteration, `num` becomes 1, and since 1 is also less than 10, "
       ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
       "quotes_dropped": []
     },
     {
@@ -69,13 +76,14 @@
       ],
       "invalid_box_refs": [],
       "colour_fixes": [],
-      "inline_quotes_unverified": [
-        ")`. This loop will print "
-      ],
-      "quotes_kept": [
-        "so range er value shobshomoy amar ekhane je value deoya thake sheta teke 1 minus hobe."
-      ],
-      "quotes_dropped": []
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [
+        "range er value total 9 porontor jabe, 10 porontor jabe na. but ami jodi count khore dekhi, amar total element ekhane 10 e ache."
+      ]
     },
     {
       "board": 4,
@@ -90,8 +98,11 @@
       "invalid_box_refs": [],
       "colour_fixes": [],
       "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
       "quotes_kept": [
-        "ekhon amra ki? e length ta diye dite pari. for in, range-er moddhe length."
+        "ekhon arekta khubi important jeta, shetaholo ekta syntax error jeta shobai kore thake je print jinishta ekhane dey."
       ],
       "quotes_dropped": []
     }

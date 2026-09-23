@@ -77,6 +77,22 @@ def inline(text, box_colours):
     return re.sub(r"\x00(\d+)\x00", lambda m: codes[int(m.group(1))], text)
 
 
+# The label on the background box is the one thing telling a reader that part is
+# not the lecture, so it must never be missing. The model writes the heading four
+# different ways: with the disclaimer, and without it in both languages (11 of 21
+# boxes in the 2026-09-23 build had the bare word). The disclaimer is restored
+# here at render time, so a heading the model shortened still carries it.
+BACKGROUND_LABELS = {
+    "extra jana kotha": "Extra jana kotha (lecture e bola hoy ni)",
+    "background": "Background (not said in the lecture)",
+}
+
+
+def background_label(heading):
+    key = re.sub(r"\s*\(.*$", "", heading).strip().lower().rstrip(":")
+    return html.escape(BACKGROUND_LABELS.get(key, heading))
+
+
 def render(markdown, base_dir, title="Lecture notes"):
     lines = markdown.splitlines()
     out, para, boxes = [], [], {}
@@ -141,7 +157,8 @@ def render(markdown, base_dir, title="Lecture notes"):
                 out.append("<details><summary>Show answers</summary>")
                 in_answers = True
             elif level == 3 and re.match(r"(background|extra jana kotha)\b", heading, re.I):
-                out.append(f'<aside class="background"><p class="tag">{inline(heading, boxes)}</p>')
+                out.append(f'<aside class="background">'
+                           f'<p class="tag">{background_label(heading)}</p>')
                 in_background = True
             else:
                 out.append(f"<h{level}>{inline(heading, boxes)}</h{level}>")

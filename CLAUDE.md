@@ -295,7 +295,7 @@ command; only change global config after asking.
 | BanglaASR (Bengali Unicode) | Working | Wav2Vec2 |
 | Qwen2.5-VL whiteboard reading | **Evaluated, strong** | 88.8% board recall on 35 verified boards with `transcribe_boards.py`; keyword prompt 31.2%; 84.7% on a held-out half; 3B gets 83.7% |
 | Qwen2.5-7B-Instruct notes | Board recall 88.0% (C, 35 boards) | Lecturer-quote instruction broken; readability unmeasured |
-| **The annotated notes (the deliverable)** | **Built and scored 2026-09-23** | 37.2% -> **70.2%** English over 35 boards (30 better, 0 worse), 53.6% Banglish, 72.4% on a third lecturer. RESULTS.md 5.4. **17.8 pp below variant C**, which reaches 88.0% by pasting the board text in; say so |
+| **The annotated notes (the deliverable)** | **Built and scored 2026-09-23, second build** | 37.2% -> **89.1% Banglish** over 35 boards (32 better, 0 worse); **matches variant C** (88.0%, p = 0.29) while staying readable. English 55.9% (it translates board strings, so the scorer misses them). RESULTS.md 5.4. Quote check runs on Banglish only |
 | Learned mask + clean-up, read by the VLM | **Measured, no gain** | 93.6% -> 91.7% over 45 boards, p = 0.07. Keep the clean boards for looks, not for reading. RESULTS.md 4.1.2 |
 | Board reconstruction (tiled mosaic) | **Working, measured** | median 97.7% tiles clear, 35 boards |
 | Learned lecturer mask + clean-up | **Working, judged by eye** | All 45 boards; VLM scoring pending (5090) |

@@ -1,16 +1,19 @@
-# BanglaASR13: MTU and Fragmentation
-Ei lecture e MTU (Maximum Transmission Unit) and fragmentation er concept er moddhe bhalo achi kore discus kora hoyeche.
+# BanglaASR13: Red Box 1 and Blue Box 2
+
+This lecture covers the definitions and calculations related to Maximum Transmission Unit (MTU) and packet size, as well as the concept of fragment offset in packet fragmentation.
 
 ## Key takeaways
-- MTU is the maximum size of a packet that can be transmitted over a network.
-- The header section contains metadata and flags like the DF (Don't Fragment) flag.
-- Packet reassembly is done using the DF flag and other metadata in the header.
-- Fragmentation is the process of breaking large packets into smaller ones to fit within the MTU limit.
-- The fragment offset is calculated to ensure correct reassembly of fragmented packets.
+- MTU
+- Header size
+- Data size
+- DF flag
+- Reassembly
+- Network layer
+- Fragment offset calculation
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 -->
-## MTU: Maximum Transmission Unit
-**Ek line e:** MTU is the maximum size of a packet that can be transmitted over a network.
+## Red Box 1: Definition of MTU and Packet Size
+**Ek line e:** MTU stands for Maximum Transmission Unit, which defines the total packet size.
 
 ![Board 1: 0:00-3:50](figures_annotated/board_era1_000.jpg)
 
@@ -19,22 +22,26 @@ Ei lecture e MTU (Maximum Transmission Unit) and fragmentation er concept er mod
 **Boxes:** 1 Definition · 2 Formula
 
 
-**Explanation:**
-1. **Total Packet Size:** The total packet size refers to the combined size of the header section and the data section. The header section contains metadata about the packet, while the data section holds the actual data.
-2. **Header Section:** The header section includes information such as flags like the DF (Don't Fragment) flag. This flag helps in identifying fragments of a packet and ensuring they are reassembled correctly.
-3. **Data Section:** The data section contains the actual data being transmitted. It is the part of the packet where the payload resides.
-4. **DF Flag:** The DF flag is used to indicate whether a packet can be fragmented or not. When set, it means the packet should not be fragmented and must be sent as a whole.
-5. **Packet Reassembly:** With the help of the DF flag and other metadata in the header, we can reassemble fragmented packets. This process is typically handled by devices at the network layer.
+- **Red Box 1 (Definition):** MTU Maximum transmission unit Packet Size
+- **Blue Box 2 (Formula):** DF -> 0 * Total packet size -> 1. Header Sec. 2. Data Sec. 1500 Header + Data -> 20B - 60B
 
-**Quotes:**
-> Lecturer: "so, what is basically total packet size? total packet jeta amra pathai ekta network theke onno network e, it has two sections."
-> Lecturer: "so, ami je fragmented packet gula reabar actually dekhte korte pari reassemble korte pari."
+The lecturer explains that the total packet size consists of two sections: the header section and the data section. The header section contains information like the DF (Don't Fragment) flag, which helps in identifying fragments of a packet. The data section contains the actual data being transmitted.
 
-**Mone rakho:** The header size is fixed at 20 bytes, and the data size can vary based on the amount of data being transmitted. MTU refers to the maximum size of a packet that can be transmitted, including the header.
+> Lecturer: "total packet jeta amra pathai ekta network theke onno network e, it has two sections."
+
+The DF flag in the header section is crucial because it allows us to identify and reassemble fragmented packets. This process is typically handled by devices at the network layer, such as routers. Therefore, we understand that each packet will have both a header and a data section.
+
+The header size is fixed at 20 bytes, while the data size can vary. The maximum transmission unit (MTU) refers to the largest packet size that can be sent in a single transmission without fragmentation. In this case, the MTU is defined as 1500 bytes, which includes the header and data sections.
+
+> Lecturer: "mtu always pack er size te bole. so, ami jeta ponno masho baytekanan likhe chai, tar mane ekhane kintu aa header ta included. mtu always pack er size ta bole."
+
+In summary, the total packet size is the sum of the header and data sections, with the header size fixed at 20 bytes and the data size varying based on the actual data being transmitted. The MTU is the maximum size of a packet that can be sent without fragmentation, which in this case is 1500 bytes.
+
+**Mone rakho:** MTU, header size, data size, DF flag, reassembly, network layer, 1500 bytes.
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 3=#f77f00 4=#2a9d4f 5=#7b2cbf -->
-## Fragmentation and Fragment Offset Calculation
-**Ek line e:** Fragmentation and Fragment Offset Calculation
+## Blue Box 2: Fragment Offset Calculation
+**Ek line e:** Fragment offset is used to determine the position of each fragment within the original packet.
 
 ![Board 2: 4:00-12:34](figures_annotated/board_era2_400.jpg)
 
@@ -43,37 +50,56 @@ Ei lecture e MTU (Maximum Transmission Unit) and fragmentation er concept er mod
 **Boxes:** 1 Maximum transmission unit · 2 Fragment offset · 3 Fragment offset · 4 Fragment offset · 5 Fragment offset
 
 
-**Red Box 1 (MTU):** MTU stands for Maximum Transmission Unit, which is the maximum size of a single packet that can be transmitted without being fragmented. It includes both the header and data sections.
-
-**Blue Box 2 (Fragment offset: 0/8):** Let's consider a scenario where we have a data size of 4000 bytes. The MTU is 1480 bytes, which means the header size is 20 bytes. Therefore, the data size that can be transmitted in one packet is 1460 bytes (1480 - 20).
-
-**Orange Box 3 (Fragment offset: 1/8):** We need to calculate the fragment offset for different parts of the data. For instance, if the first fragment starts at 0, the offset will be 0. The size of the first fragment is 1479 bytes (1480 - 1).
-
-**Green Box 4 (Fragment offset: 2/8):** The second fragment starts at 1480 and ends at 2959, so the offset for the second fragment is 1480.
-
-**Purple Box 5 (Fragment offset: 3/8):** The third fragment starts at 2960 and ends at 4000, so the offset for the third fragment is 2960.
+1. **MTU (Maximum Transmission Unit):**
+   - The MTU is the maximum size of a single packet that can be transmitted over a network without being fragmented. It includes both the header and the data section.
+   
+2. **Packet Size:**
+   - Suppose we have a data size of 4000 bytes. This is the total size of the data before including any headers.
+   
+3. **Fragmentation:**
+   - When the data size exceeds the MTU, the packet is split into smaller fragments. Each fragment has a fragment offset to indicate its position within the original packet.
+   
+4. **Fragment Offset Calculation:**
+   - The fragment offset is calculated using the formula: `fragment_offset = (total_size - header_size) / fragment_size`.
+   - For example, if the total size is 4000 bytes and the fragment size is 1480 bytes (including header), the first fragment will have an offset of 0.
+   - The second fragment will start at 1480 bytes, and so on.
+   
+5. **Example Calculation:**
+   - For the first fragment: `fragment_offset = 0/8 = 0`. This means the first fragment starts at the beginning of the packet.
+   - For the second fragment: `fragment_offset = 1479/8 = 185`. This means the second fragment starts at 1479 bytes.
+   - For the third fragment: `fragment_offset = 2960/8 = 370`. This means the third fragment starts at 2960 bytes.
+   
+6. **Final Fragment:**
+   - The final fragment will have a fragment offset of 3, indicating it is the last fragment.
 
 **Quotes:**
-> Lecturer: "tahole amr jodi ekta packet er size hoy, just packet er data size, sorry, amr jodi ekta data size hoy, mone koro char haajar byte. char haajar byte, right."
+> "tahole amr jodi ekta packet er size hoy, just packet er data size, sorry, amr jodi ekta data size hoy, mone koro char haajar byte. char haajar byte, right."
+> "so, second er jonno, abar joddhoro ashi divided by eight. amra just ei value gular nivore thikase? kothomer je value ta waita? aa dhoro jodi sho asha eta ekta just calculate er kore dekhi. joddhor ashi divided by eight, that is 185. erocche second je value ta par fragment offset."
 
-**Mone rakho:** To calculate the fragment offset, we divide the data size by the MTU minus the header size. For the first fragment, the offset is 0. For the second fragment, the offset is 1480. For the third fragment, the offset is 2960. The fragment offset is calculated using the formula: `offset = (total data size - (number of fragments * MTU)) / 8`. The ceiling function is used to round up to the nearest whole number. In this case, the fragment offset for the third fragment is 370.
+### Extra jana kotha
+Fragment offset helps in reassembling the original packet at the destination. By knowing the fragment offset, the receiver can correctly place each fragment in the correct position. This ensures that the entire packet is reconstructed accurately without any loss or corruption.
 
 ---
 
 ## Check yourself
-1. What is the total packet size?
-2. What does the DF flag do?
-3. How is the fragment offset calculated?
-4. What is the maximum size of a packet that can be transmitted without being fragmented?
-5. Why is packet reassembly important?
+1. What does MTU stand for and what does it define?
+2. How is the total packet size calculated?
+3. What is the purpose of the DF flag in the header section?
+4. Calculate the fragment offset for a data size of 4000 bytes with a fragment size of 1480 bytes.
+5. Why is fragment offset important in packet reassembly?
 
 ### Answers
-1. The total packet size is the combined size of the header section and the data section.
-2. The DF flag indicates whether a packet can be fragmented or not; when set, it means the packet should not be fragmented.
-3. The fragment offset is calculated using the formula: `offset = (total data size - (number of fragments * MTU)) / 8`.
-4. The maximum size of a packet that can be transmitted without being fragmented is the MTU, which is 1480 bytes in this example.
-5. Packet reassembly is important because it ensures that fragmented packets are correctly reassembled at the destination.
+1. MTU stands for Maximum Transmission Unit, which defines the total packet size.
+2. The total packet size is calculated by adding the header size (fixed at 20 bytes) and the data size (which varies).
+3. The DF flag in the header section helps in identifying and reassembling fragmented packets.
+4. The fragment offset for a data size of 4000 bytes with a fragment size of 1480 bytes is:
+   - First fragment: 0
+   - Second fragment: 185
+   - Third fragment: 370
+5. Fragment offset is important in packet reassembly because it helps the receiver correctly place each fragment in the correct position, ensuring accurate reconstruction of the original packet.
 
 ---
 
-*How these notes were made. Speech: transcript_loso.txt. Boards: ink boxes, named by Qwen/Qwen2.5-VL-7B-Instruct. Notes written by Qwen/Qwen2.5-7B-Instruct. Quotes checked word for word against the transcript: 3 kept, 0 removed. References to boxes that do not exist: 0.*
+*This lecture is `BanglaASR17` in the dataset (`BanglaASR13` is its old number, kept because the answer keys use it).*
+
+*How these notes were made. Speech: transcript_loso.txt. Boards: ink boxes, named by Qwen/Qwen2.5-VL-7B-Instruct. Notes written by Qwen/Qwen2.5-7B-Instruct. Quotes checked word for word against the transcript: 4 kept, 0 removed. References to boxes that do not exist: 0.*

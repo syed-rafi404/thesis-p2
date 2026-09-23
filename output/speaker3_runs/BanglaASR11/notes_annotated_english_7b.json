@@ -1,5 +1,6 @@
 {
   "lecture": "BanglaASR11",
+  "dataset_lecture": "BanglaASR15",
   "language": "english",
   "model": "Qwen/Qwen2.5-7B-Instruct",
   "mock": false,
@@ -8,11 +9,14 @@
   "leakage_warning": "",
   "boxes_file": "board_boxes.json",
   "board_text_file": "board_text_clean.json",
-  "quotes_kept": 1,
-  "quotes_dropped": 1,
+  "quotes_kept": 0,
+  "quotes_dropped": 0,
   "invalid_box_refs": 0,
+  "quotes_translated": 1,
+  "quotes_word_for_word_checked": false,
+  "latex_rewritten": 0,
   "colour_fixes": 0,
-  "inline_quotes_unverified": 1,
+  "inline_quotes_unverified": 2,
   "sections": [
     {
       "board": 1,
@@ -21,15 +25,18 @@
       "to": "1:30",
       "transcript_chars": 1082,
       "boxes": 1,
-      "boxes_mentioned": [
-        1
-      ],
+      "boxes_mentioned": [],
       "invalid_box_refs": [],
       "colour_fixes": [],
-      "inline_quotes_unverified": [],
-      "quotes_kept": [
+      "inline_quotes_unverified": [
+        "So, when a packet is dropped due to fragmentation, the sender will receive an error message indicating that the packet needs to be fragmented."
+      ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
         "so, ekhon ekta drop kore diye ekta error er message pathabe sender e je tumi packet ta fragment kore dek, ponor osho bite e ami eta khorte parbona."
       ],
+      "quotes_kept": [],
       "quotes_dropped": []
     },
     {
@@ -41,18 +48,20 @@
       "boxes": 4,
       "boxes_mentioned": [
         1,
+        2,
         3,
         4
       ],
       "invalid_box_refs": [],
       "colour_fixes": [],
       "inline_quotes_unverified": [
-        " (DF) flag is set, meaning the packet cannot be fragmented. The "
+        "your English translation of what the lecturer said"
       ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
       "quotes_kept": [],
-      "quotes_dropped": [
-        "exact words from the transcript"
-      ]
+      "quotes_dropped": []
     }
   ]
 }

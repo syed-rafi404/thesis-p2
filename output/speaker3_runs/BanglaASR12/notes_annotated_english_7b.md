@@ -1,14 +1,14 @@
-# Understanding Maximum Transmission Unit (MTU) and DF Flag
-This lecture covers the concepts of Maximum Transmission Unit (MTU) and the Don't Fragment (DF) flag, explaining their roles in efficient data transmission over networks.
+# BanglaASR12: Maximum Transmission Unit (MTU) and Fragmentation
+This lecture covers the definition and explanation of Maximum Transmission Unit (MTU) and how fragmentation works when the packet size is not a multiple of the MTU.
 
 ## Key takeaways
-- MTU is the largest data packet size that can be transmitted over a network without being fragmented.
-- The MTU size varies based on the protection system and is crucial for ensuring efficient data transmission.
-- The DF flag is used to manage packet fragmentation based on the MTU size, preventing packets larger than the MTU from being sent unfragmented.
+- MTU stands for the maximum size of a data packet that can be transmitted over a network without being fragmented.
+- The Don't Fragment (DF) bit determines whether a packet can be fragmented or not.
+- Padding is added to packets that are not multiples of the MTU to ensure they fit within the MTU limit.
 
 <!-- boxes: 1=#d62828 -->
-## Understanding Maximum Transmission Unit (MTU)
-**In one line:** MTU is the largest data packet size that can be transmitted over a network without being fragmented.
+## Definition of Maximum Transmission Unit (MTU)
+**In one line:** MTU stands for the maximum size of a data packet that can be transmitted over a network without being fragmented.
 
 ![Board 1: 0:00-0:52](figures_annotated/board_era1_000.jpg)
 
@@ -19,19 +19,18 @@ This lecture covers the concepts of Maximum Transmission Unit (MTU) and the Don'
 
 - **Box 1 (red):** Definition: MTU Maximum transmission unit
 
-The lecturer begins by explaining that the field form in M2 is called the Maximum Transmission Unit (MTU). He asks, "What does the unit mean?" indicating that the unit refers to the size of the data packet that can be transmitted without being broken into smaller pieces.
+The lecturer explained that MTU refers to the maximum size of a data packet that can be transmitted over a network without being fragmented. This concept is crucial in understanding how data is sent and received over networks, especially in protected systems where different types of connections require different approaches.
 
-The lecturer then explains that the MTU varies depending on the protection system. In a protection system, which refers to a connection system, the MTU size is determined based on the quality and bandwidth required for the specific connection. Different approaches and algorithms are used to ensure that the data packets can be transferred efficiently, considering the type of system and common connection systems.
+The lecturer further clarified that in a protected system, which includes various connection systems, the approach and algorithms followed differ based on the type of connection. These differences affect the quality and bandwidth of the transmission. Therefore, the MTU size is fixed to ensure that the data transfer unit is appropriate for the specific system or common connection systems.
 
-He further clarifies that the MTU size is crucial for ensuring that data packets can travel through a network without issues. For instance, when a packet travels from one route to another, an acknowledgment is sent back to confirm receipt. This process is illustrated using the three-way handshake, where an acknowledgment is given after receiving the data, such as when a router confirms the receipt of a packet.
+The lecturer also mentioned that when sending a packet, the system follows a three-way handshake process to acknowledge receipt. For instance, when a packet is sent from one point to another, the receiving end acknowledges the receipt of the packet, ensuring that the sender knows the packet has been successfully received.
 
-**Quotes:**
-
-**Remember:** The MTU size is critical for ensuring efficient data transmission and avoiding fragmentation, which is essential for maintaining the integrity of the network.
+**Remember:** Understanding MTU is essential for managing data transmission efficiently and avoiding fragmentation, which can lead to performance issues in network communication.
 
 <!-- boxes: 1=#d62828 -->
-## Understanding Maximum Transmission Unit (MTU) and DF Flag
-**In one line:** The DF flag is used to manage packet fragmentation based on the MTU size.
+## Explanation of Maximum Transmission Unit (MTU) and Fragmentation
+
+**In one line:** This board explains the concept of Maximum Transmission Unit (MTU) and how fragmentation works when the packet size is not a multiple of the MTU.
 
 ![Board 2: 1:40-3:40](figures_annotated/board_era2_140.jpg)
 
@@ -40,34 +39,36 @@ He further clarifies that the MTU size is crucial for ensuring that data packets
 **Boxes:** 1 Maximum transmission unit
 
 
-- **Box 1 (red):** Maximum transmission unit: MTU
+- **Box 1 (red):** Maximum transmission unit (MTU) is defined as the largest size of a packet that can be transmitted over a network without being fragmented. The value shown is `DF -> 0`, indicating that the Don't Fragment (DF) bit is set to 0, meaning the packet can be fragmented if necessary.
 
-The lecturer explained that due to the presence of routers, each router has a buffer that can store messages and packets. This buffer capacity is crucial for understanding how data is transmitted. The lecturer mentioned that in a future in-depth discussion, we will explore this concept further. Essentially, the buffer size determines how much data can be stored before it needs to be sent out.
+The lecturer explained that due to routers in the network, there is a buffer that can store messages and packets. This buffer allows for temporary storage before forwarding the packets to the next router. The lecturer mentioned that we will delve deeper into this topic in future lectures.
 
-The lecturer then transitioned to explaining the DF (Don't Fragment) flag, which is used in scenarios where the MTU size is critical. For instance, in the maximum case, the DF flag is set to zero. This means that if the packet size exceeds the MTU, the packet will be fragmented into smaller pieces to ensure it fits through the network. The lecturer provided an example where a packet of uneven size (not a multiple of two) would need to be padded to make its size a multiple of four, ensuring it is divisible by powers of two.
+To illustrate, the lecturer gave an example where the DF (Don't Fragment) bit is set to 0. If the packet size is not a multiple of the MTU, we need to fragment the packet to ensure it fits within the MTU limit. For instance, if the DF bit is set to 0 and the packet needs to be sent to another router, we might need to fragment the packet during transmission.
 
-The formula for determining if a size is divisible by a power of two is given by checking if the size modulo the power of two equals zero. However, the lecturer noted that this method might not always be applicable, especially in certain semesters, and suggested that we revisit this topic later for a more detailed explanation.
+The lecturer then discussed an example where a packet of uneven size (not a multiple of the MTU) is sent. In such cases, padding is added to make the packet size a multiple of the MTU. Padding involves adding extra bytes to the packet to make its size a multiple of four, ensuring it fits within the MTU limit.
 
-**Quote:**
+For example, if the packet size is not a multiple of four, we pad it to make it a multiple of four. This ensures that the packet size is divisible by four, which is a power of two. The formula to check if a size is divisible by a power of two is to see if the size modulo the power of two equals zero.
 
-**Remember:** The DF flag is used to prevent packet fragmentation when the packet size exceeds the MTU, ensuring smooth transmission through the network.
+The lecturer noted that while this method works, it might not always be the best approach, especially in certain semesters, but for now, this is the method we will use.
+
+**The lecturer said:** "Because there are routers in the network, there is a buffer that can store messages and packets temporarily before forwarding them to the next router."
+
+**Remember:** Understanding the concept of Maximum Transmission Unit (MTU) and how fragmentation works is crucial for managing data transmission efficiently in networks.
 
 ---
 
 ## Check yourself
-1. What is the definition of MTU?
-2. How does the MTU size vary based on the protection system?
-3. What is the purpose of the DF flag in relation to the MTU?
-4. Explain the process of packet fragmentation and how it relates to the MTU.
-5. What happens if a packet size exceeds the MTU and the DF flag is set to zero?
+1. What does MTU stand for?
+2. What does the Don't Fragment (DF) bit indicate?
+3. How is padding added to packets that are not multiples of the MTU?
 
 ### Answers
-1. MTU is the largest data packet size that can be transmitted over a network without being fragmented.
-2. The MTU size varies based on the protection system, which refers to the connection system, and is determined based on the quality and bandwidth required for the specific connection.
-3. The DF flag is used to manage packet fragmentation based on the MTU size, preventing packets larger than the MTU from being sent unfragmented.
-4. If a packet size exceeds the MTU, it is fragmented into smaller pieces to ensure it fits through the network.
-5. If a packet size exceeds the MTU and the DF flag is set to zero, the packet will be fragmented into smaller pieces to ensure it fits through the network.
+1. MTU stands for Maximum Transmission Unit.
+2. The Don't Fragment (DF) bit indicates whether a packet can be fragmented or not.
+3. Padding is added to make the packet size a multiple of the MTU, ensuring it fits within the MTU limit.
 
 ---
 
-*How these notes were made. Speech: transcript_loso.txt. Boards: ink boxes, named by Qwen/Qwen2.5-VL-7B-Instruct. Notes written by Qwen/Qwen2.5-7B-Instruct. Quotes checked word for word against the transcript: 0 kept, 2 removed. References to boxes that do not exist: 0.*
+*This lecture is `BanglaASR16` in the dataset (`BanglaASR12` is its old number, kept because the answer keys use it).*
+
+*How these notes were made. Speech: transcript_loso.txt. Boards: ink boxes, named by Qwen/Qwen2.5-VL-7B-Instruct. Notes written by Qwen/Qwen2.5-7B-Instruct. The lecturer's words are given in English translation (0 quotes); the Banglish version of these notes has the originals, checked word for word against the transcript. References to boxes that do not exist: 0.*

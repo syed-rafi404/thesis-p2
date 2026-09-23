@@ -1,16 +1,22 @@
-# BanglaASR9_007
-The lecture covers the basics of Database Management Systems (DBMS) and SQL queries.
+# BanglaASR9_007: Database Management System (DBMS)
+<ek line: ei lecture e ki cover kora hoyeche>
 
 ## Key takeaways
-- The `SELECT` command is used to retrieve data from a database table.
-- To get all data from a table, use `SELECT * FROM table_name`.
-- To get specific data, use `SELECT column_name(s) FROM table_name WHERE condition`.
-- Aggregation functions like `MAX`, `MIN`, and `SUM` can be used to perform operations on the data.
-- Nested queries can be used to find detailed information based on certain conditions.
+- `SELECT * FROM Student_Info;` retrieves all columns.
+- `SELECT CGPA FROM Student_Info WHERE ID = 401201;` retrieves the CGPA of a specific student.
+- `SELECT First_Name, Last_Name FROM Student_Info WHERE ID = 110112;` retrieves the first and last names of a specific student.
+- `SELECT Department FROM Student_Info WHERE ID = 151216;` retrieves the department of a specific student.
+- `SELECT ID FROM Student_Info;` retrieves all student IDs.
+- `SELECT ID FROM Student_Info ORDER BY ID ASC;` sorts IDs in ascending order.
+- `SELECT ID FROM Student_Info ORDER BY ID DESC;` sorts IDs in descending order.
+- `SELECT MAX(CGPA) FROM Student_Info;` finds the maximum CGPA in the table.
+- The query `select ID, CGPA from Student_Info where CGPA=(select max(CGPA) from Student_Info);` selects the IDs and CGPAs of students with the maximum CGPA.
+- The blue box shows the result of the query, which is the student ID 110112 with a CGPA of 3.98.
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 -->
 ## Board 1 of 2, on the whiteboard during 0:10-9:10
-**Ek line e:** Database Management System (DBMS)
+
+**Ek line e:** Database Management System (DBMS) University
 
 ![Board 1: 0:10-9:10](figures_annotated/board_era1_010.jpg)
 
@@ -19,38 +25,76 @@ The lecture covers the basics of Database Management Systems (DBMS) and SQL quer
 **Boxes:** 1 Database Management System · 2 SQL query
 
 
+1. **Red Box 1**: This box shows a table named `Student_Info` containing details of students such as ID, First Name, Last Name, CGPA, Department, and Enrollment Date.
+    - | ID | First_Name | Last_Name | CGPA | Department | Enrollment_Date |
+    - |----|------------|-----------|-------|------------|-----------------|
+    - | 241412 | Syed | Rafi | 3.55 | CS | 01-01-2024 |
+    - | 151216 | Ahsan | Habib | 2.77 | M-LH | 20-09-2024 |
+    - | 202011 | Adiba | Noshin | 3.28 | Economics | 21-10-2021 |
+    - | 110112 | Maria | Islam | 3.98 | English | 02-02-2020 |
+    - | 401201 | Israt | Jahan | 3.40 | MicroBiology | 11-11-2025 |
+
+2. **Blue Box 2**: This box lists some SQL commands: `max()`, `min()`, and `sum()`.
+
 ### Explanation
-1. **Database Management System (DBMS):**
-   - The lecturer introduced the concept of a Database Management System (DBMS) and displayed a sample student information table.
-   
-2. **SQL Query Basics:**
-   - The lecturer explained that the `SELECT` command is one of the most commonly used and important commands in SQL.
-   - The `SELECT` command is used to retrieve data from a database table.
+The lecturer introduces the concept of a Select query, which is a fundamental and widely used SQL command. A Select query allows us to retrieve specific data from a database table.
 
-3. **Selecting Data:**
-   - To retrieve all data from a table, you use `SELECT * FROM table_name`.
-   - For example, to see the entire student information table, the lecturer wrote `SELECT * FROM student_info`.
+- **Step 1**: The lecturer explains that the `select` keyword is used to fetch data from a table. For example, if we want to see the full details of a student with ID 401201, we would use the following command:
+  ```sql
+  SELECT * FROM Student_Info;
+  ```
+  Here, the asterisk (`*`) represents all columns in the table.
 
-4. **Retrieving Specific Data:**
-   - To retrieve specific data like CGPA, the lecturer showed how to use `SELECT cgpa FROM student_info WHERE id = 401201`.
-   - Similarly, to get the first name and last name of a student, the query would be `SELECT first_name, last_name FROM student_info WHERE id = 151216`.
+- **Step 2**: To retrieve specific columns, we can specify the column names after the `SELECT` keyword. For instance, to get the CGPA of a student with ID 401201, we use:
+  ```sql
+  SELECT CGPA FROM Student_Info WHERE ID = 401201;
+  ```
 
-5. **Aggregation Functions:**
-   - The lecturer then introduced aggregation functions such as `MAX`, `MIN`, and `SUM`.
-   - An example of using `MAX` was given: `SELECT MAX(cgpa) FROM student_info` to find the maximum CGPA in the table.
+- **Step 3**: The lecturer demonstrates how to retrieve multiple columns using a comma-separated list. For example, to get the first name and last name of a student with ID 110112, we use:
+  ```sql
+  SELECT First_Name, Last_Name FROM Student_Info WHERE ID = 110112;
+  ```
 
-**Quotes:**
-> Lecturer: "so, amr ekhane amr ekta type korte pari, korte pari."
+- **Step 4**: To retrieve a specific column like the department, we use:
+  ```sql
+  SELECT Department FROM Student_Info WHERE ID = 151216;
+  ```
 
-**Mone Rakho:** 
-- The `SELECT` command is used to retrieve data from a database table.
-- To get all data from a table, use `SELECT * FROM table_name`.
-- To get specific data, use `SELECT column_name(s) FROM table_name WHERE condition`.
-- Aggregation functions like `MAX`, `MIN`, and `SUM` can be used to perform operations on the data.
+- **Step 5**: The lecturer emphasizes the importance of matching the exact column names. For example, if the column name is `Department` and not `department`, the query will not work.
+
+- **Step 6**: To retrieve all student IDs, we use:
+  ```sql
+  SELECT ID FROM Student_Info;
+  ```
+
+- **Step 7**: The lecturer explains how to sort the results in ascending or descending order using the `ORDER BY` clause. For example, to sort the IDs in ascending order:
+  ```sql
+  SELECT ID FROM Student_Info ORDER BY ID ASC;
+  ```
+  And to sort in descending order:
+  ```sql
+  SELECT ID FROM Student_Info ORDER BY ID DESC;
+  ```
+
+- **Step 8**: The lecturer introduces aggregation functions like `max()`, `min()`, and `sum()`. For example, to find the maximum CGPA in the table:
+  ```sql
+  SELECT MAX(CGPA) FROM Student_Info;
+  ```
+
+
+**Mone rakho:** 
+- `SELECT * FROM Student_Info;` retrieves all columns.
+- `SELECT CGPA FROM Student_Info WHERE ID = 401201;` retrieves the CGPA of a specific student.
+- `SELECT First_Name, Last_Name FROM Student_Info WHERE ID = 110112;` retrieves the first and last names of a specific student.
+- `SELECT Department FROM Student_Info WHERE ID = 151216;` retrieves the department of a specific student.
+- `SELECT ID FROM Student_Info;` retrieves all student IDs.
+- `SELECT ID FROM Student_Info ORDER BY ID ASC;` sorts IDs in ascending order.
+- `SELECT ID FROM Student_Info ORDER BY ID DESC;` sorts IDs in descending order.
+- `SELECT MAX(CGPA) FROM Student_Info;` finds the maximum CGPA in the table.
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 -->
-## Database Management System (DBMS)
-**Ek line e:** This section covers SQL queries and their usage.
+## SQL Query and Worked Example
+**Ek line e:** This board explains an SQL query to find the maximum CGPA and the corresponding student ID.
 
 ![Board 2: 9:20-16:20](figures_annotated/board_era2_920.jpg)
 
@@ -59,34 +103,52 @@ The lecture covers the basics of Database Management Systems (DBMS) and SQL quer
 **Boxes:** 1 SQL query · 2 Worked example
 
 
-**Explanation:**
-1. **Understanding the Query**: The lecturer explains the SQL query `select ID, CGPA from Student_Info where CGPA = (select max(CGPA) from Student_Info);`. This query selects the IDs and CGPAs of students whose CGPA is the maximum in the `Student_Info` table.
-2. **Example Table**: The lecturer shows the `Student_Info` table with sample data. The query returns the row where the CGPA is 3.98.
-3. **Aggregation Functions**: The lecturer then discusses how to calculate the sum and average of CGPAs using aggregation functions like `SUM()` and `AVG()`.
-4. **Nested Queries**: The lecturer explains the concept of nested queries, demonstrating how to find the student with the highest CGPA and then retrieve all details of that student.
+1. **Red Box (Box 1):** The SQL query `select ID, CGPA from Student_Info where CGPA=(select max(CGPA) from Student_Info);` is shown. This query selects the IDs and CGPAs of students whose CGPA is equal to the maximum CGPA in the `Student_Info` table.
 
-**Quotes:**
-> Lecturer: "so, etama ki korbe? select kortese cg max of cgpa. mane cgpa ekhane amar path ta row ache."
-> Lecturer: "tahole ami ekhane main of cgpa diye dilam."
+2. **Blue Box (Box 2):** The worked example shows the result of the query: 
+   | ID | CGPA |
+   |----|------|
+   | 110112 | 3.98 |
 
-**Mone rakho:** The key points from the board include understanding the SQL query structure, identifying the student with the highest CGPA, and using nested queries to retrieve detailed information about that student.
+### Explanation
+1. **Finding Maximum CGPA:**
+   - The inner query `(select max(CGPA) from Student_Info)` finds the highest CGPA in the `Student_Info` table.
+   - The outer query `select ID, CGPA from Student_Info where CGPA = (select max(CGPA) from Student_Info);` filters the rows in the `Student_Info` table to find the student(s) with the maximum CGPA.
+
+2. **Example Walkthrough:**
+   - The table on the board lists student IDs and their CGPAs.
+   - The query returns the ID and CGPA of the student with the highest CGPA, which is 110112 with a CGPA of 3.98.
+
+3. **Understanding the Query:**
+   - The lecturer explains that the query is used to find the student with the highest CGPA.
+   - The lecturer also mentions that if we want to find the minimum CGPA, we can use a similar query but with `min(CGPA)` instead of `max(CGPA)`.
+
+4. **Average Calculation:**
+   - The lecturer briefly mentions that we can calculate the average CGPA using a similar approach by summing up all CGPAs and dividing by the number of students.
+
+5. **Nested Queries:**
+   - The lecturer explains that nested queries are used when we need to perform multiple operations on the data, such as finding the student with the highest CGPA and then retrieving their details.
+
+**Mone rakho:** The query selects the student with the highest CGPA and returns their ID and CGPA. The blue box shows the result of the query, which is the student ID 110112 with a CGPA of 3.98.
 
 ---
 
 ## Check yourself
-1. What command is used to retrieve all data from a table named `student_info`?
+1. What does the SQL command `SELECT * FROM Student_Info;` do?
 2. How would you retrieve the CGPA of a student with ID 401201?
-3. What is the purpose of the `MAX` function in SQL?
-4. How would you find the student with the highest CGPA and retrieve all their details?
-5. What does the `SELECT * FROM table_name` statement do?
+3. What is the SQL command to get the first and last names of a student with ID 110112?
+4. How do you find the maximum CGPA in the `Student_Info` table?
+5. What does the query `select ID, CGPA from Student_Info where CGPA=(select max(CGPA) from Student_Info);` do?
 
 ### Answers
-1. `SELECT * FROM student_info`
-2. `SELECT cgpa FROM student_info WHERE id = 401201`
-3. The `MAX` function is used to find the maximum value in a specified column.
-4. `SELECT * FROM student_info WHERE cgpa = (SELECT MAX(cgpa) FROM student_info)`
-5. It retrieves all columns from the specified table.
+1. It retrieves all columns from the `Student_Info` table.
+2. `SELECT CGPA FROM Student_Info WHERE ID = 401201;`
+3. `SELECT First_Name, Last_Name FROM Student_Info WHERE ID = 110112;`
+4. `SELECT MAX(CGPA) FROM Student_Info;`
+5. It selects the IDs and CGPAs of students with the maximum CGPA.
 
 ---
 
-*How these notes were made. Speech: transcript_loso.txt. Boards: ink boxes, named by Qwen/Qwen2.5-VL-7B-Instruct. Notes written by Qwen/Qwen2.5-7B-Instruct. Quotes checked word for word against the transcript: 3 kept, 1 removed. References to boxes that do not exist: 0.*
+*This lecture is `BanglaASR13` in the dataset (`BanglaASR9_007` is its old number, kept because the answer keys use it).*
+
+*How these notes were made. Speech: transcript_loso.txt. Boards: ink boxes, named by Qwen/Qwen2.5-VL-7B-Instruct. Notes written by Qwen/Qwen2.5-7B-Instruct. Quotes checked word for word against the transcript: 0 kept, 1 removed. References to boxes that do not exist: 0.*

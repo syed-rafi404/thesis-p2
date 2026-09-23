@@ -1,16 +1,14 @@
 # Digital Logic Design
-This lecture covers the fundamental concepts of digital logic design, including the differences between analog and digital signals, basic logic gates, and their applications in digital circuits.
+This lecture covers the fundamental concepts of digital logic design, including the introduction to basic logic gates and their representations.
 
 ## Key takeaways
-- Understand the difference between analog and digital signals.
-- Know the basic logic gates (AND, OR, NOT, NAND, NOR, X-OR, X-NOR) and their functions.
-- Grasp the operation of the AND gate, including its truth table, symbol, and formula.
-- Comprehend the operation of the OR gate, including its truth table, symbol, and formula.
-- Understand the function of the NOT gate, including its truth table, block diagram, and symbol.
+- Digital systems operate on discrete values (0s and 1s) rather than continuous signals.
+- The AND, OR, and NOT gates are fundamental logic gates that form the basis of more complex digital circuits.
+- The NOT gate inverts the input signal, while the AND and OR gates perform logical operations on binary inputs.
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 3=#f77f00 -->
 ## Introduction to Digital Logic Design
-**In one line:** This board introduces the fundamental concepts of digital versus analog signals and explains how computers operate using binary logic.
+**In one line:** This board introduces the fundamental concepts of digital versus analog signals and explains how computers process information using binary logic.
 
 ![Board 1: 0:10-3:10](figures_annotated/board_era1_010.jpg)
 
@@ -19,24 +17,16 @@ This lecture covers the fundamental concepts of digital logic design, including 
 **Boxes:** 1 Title · 2 Definition · 3 Formula
 
 
-### Explanation
-1. **Introduction to Digital Logic Design**
-   - The board starts with the title "Digital Logic Design," setting the context for the lecture.
-   
-2. **Analog vs. Digital Signals**
-   - The lecturer explains that analog signals are continuous, whereas digital signals are discrete. This is illustrated in Box 2 (blue).
-   - Analog signals can represent continuous values like temperature or sound waves, but computers cannot process these directly. Instead, they convert analog signals into digital form.
-   
-3. **Binary Logic in Computers**
-   - The lecturer uses the example of a light switch to illustrate binary logic. A light switch can be either "on" or "off," which corresponds to "1" and "0" respectively.
-   - These binary values are used in computers to perform operations. The voltage levels in a computer circuit represent these binary values. Box 3 (orange) shows the specific voltage levels: 5 volts for "high" (Logic 1) and 0 volts for "low" (Logic 0).
-   - The key "A" and the binary sequence "011011" in Box 3 (orange) further emphasize the binary nature of digital signals.
+1. **Digital Logic Design**: The board starts with the title "Digital Logic Design," which sets the context for the lecture.
+2. **Analog vs. Digital**: The blue box defines analog as continuous value and digital as discrete value. This distinction is crucial because analog signals can take any value within a range, whereas digital signals can only take specific, distinct values.
+3. **TTL Logic Levels**: The orange box provides the specific logic levels for TTL (Transistor-Transistor Logic). It states that 5 volts represent a high logic level (Logic 1), while 0 volts represent a low logic level (Logic 0). The key 'A' followed by '011011' is likely a reference to a specific example or key points discussed.
 
-### Quote
-> Lecturer: "analog er kintu amader computer ki? analoge chole? naah. eta chole digital e."
-> (In English: But our computer cannot handle analog signals. It handles digital signals.)
+>The lecturer said: "so, our computer will only work with zeros and ones."
 
-**Remember:** Understanding the difference between analog and digital signals is crucial for grasping how computers process information using binary logic.
+### Background
+Digital systems use binary logic to process information, where data is represented as sequences of 0s and 1s. This binary representation allows for precise and reliable computation, making digital devices like computers and microcontrollers essential in modern technology. Understanding the basics of digital logic is fundamental for designing and analyzing digital circuits.
+
+**Remember:** The key concept here is that digital systems operate on discrete values (0s and 1s) rather than continuous signals, which is why we use logic gates to process these binary inputs.
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 -->
 ## Introduction to Basic Logic Gates
@@ -49,20 +39,27 @@ This lecture covers the fundamental concepts of digital logic design, including 
 **Boxes:** 1 Title · 2 List
 
 
-- **Digital Logic Design**: The board starts with the title "Digital Logic Design," setting the context for the discussion on logic gates.
-- **List of Logic Gates**: The board lists seven types of logic gates: AND gate, OR gate, NOT gate, NOR gate, NAND gate, X-OR gate, and X-NOR gate. Each gate is briefly explained.
-- **Fundamental Gates**: Among these, the AND, OR, and NOT gates are highlighted as fundamental gates because they form the basis for more complex logic operations.
-- **Universal Gates**: The NOR and NAND gates are identified as universal gates, meaning they can be used to implement any other logic gate.
-- **Exclusive Gate**: The X-OR and X-NOR gates are mentioned as exclusive gates, which are used for specific logical operations.
+The board starts with the title "Digital Logic Design" in red, followed by a list of logic gates. The first three gates—AND, OR, and NOT—are highlighted as fundamental gates. The next two gates, NOR and NAND, are identified as universal gates. Finally, the board mentions the X-OR and X-NOR gates, which are also considered exclusive gates.
 
-**Quotes:**
-> Lecturer: "so amar je first, tinta gate ache, eta ke amra boltesi, fundamental base."
-> (In English: "so the first ones we call fundamental base.")
+1. **AND Gate**: The lecturer explains that the first gate is the AND gate. This gate outputs a high signal (1) only when all its inputs are high. It is a fundamental gate because it forms the basis for more complex logic operations.
+   
+2. **OR Gate**: The second gate is the OR gate, which outputs a high signal (1) if at least one of its inputs is high. Like the AND gate, the OR gate is also fundamental and essential for building complex logic circuits.
 
-**Remember:** The primary focus of this board is to introduce the basic logic gates and their roles in digital logic design, emphasizing that these gates are essential for decision-making processes in electronic circuits.
+3. **NOT Gate**: The third gate is the NOT gate, which inverts the input signal. If the input is high (1), the output is low (0), and vice versa. This gate is crucial for creating other logic gates and is often used to generate new signals based on existing ones.
+
+4. **NOR and NAND Gates**: The fourth and fifth gates are NOR and NAND, respectively. These gates are universal gates, meaning they can be used to implement any other logic gate. The lecturer emphasizes that these gates are versatile and can be used to create complex circuits.
+
+5. **X-OR and X-NOR Gates**: The final two gates mentioned are the X-OR and X-NOR gates, which are exclusive gates. These gates perform specific logical operations and are useful in various applications.
+
+The lecturer explains that these logic gates are used for decision-making processes in digital circuits. They help determine which signals pass through and which do not, effectively making decisions based on the input connections. For this class, the lecturer will start by covering the fundamental gates, as they form the building blocks of more complex circuits.
+
+> The lecturer said: "so, ei shakta logic gate ki korbe? ei shakta logic gate hocche amar decision making a kaaj korbe, je ekta connection ki hoy, wire er maddhome hoy, ekta connection korebhe hobe."  
+This means: "So, which of these logic gates can we use? These logic gates will be used for decision-making processes, where a single connection is made, like a wire, and a decision is based on that connection."
+
+**Remember:** The fundamental logic gates (AND, OR, NOT) are the building blocks of more complex digital circuits and are essential for understanding how digital systems make decisions.
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 3=#f77f00 4=#2a9d4f -->
-## Explanation of AND Gate in Digital Logic Design
+## Digital Logic Design: Introduction to AND Gate
 **In one line:** An AND gate takes two inputs and produces an output based on their logical AND operation.
 
 ![Board 3: 6:00-10:00](figures_annotated/board_era3_600.jpg)
@@ -72,36 +69,33 @@ This lecture covers the fundamental concepts of digital logic design, including 
 **Boxes:** 1 Title · 2 Truth table · 3 Gate symbol · 4 Worked example
 
 
-### Box 1 (Red): Digital Logic Design
-This box introduces the topic of digital logic design, setting the context for the discussion on basic logic gates.
+1. **Red Box (Title):** The red box titled "Digital Logic Design" introduces the topic of digital logic design, which deals with the fundamental building blocks of digital circuits.
+2. **Blue Box (Truth Table):** The blue box shows the truth table for the AND gate. It lists all possible combinations of inputs (A and B) and their corresponding outputs (Y). Specifically, the table is:
+   | A | B | Y |
+   |---|---|---|
+   | 0 | 0 | 0 |
+   | 0 | 1 | 0 |
+   | 1 | 0 | 0 |
+   | 1 | 1 | 1 |
+3. **Orange Box (Gate Symbol):** The orange box displays the symbol for an AND gate. It shows how the inputs (A and B) connect to the output (X) via the AND operation.
+4. **Green Box (Worked Example):** The green box provides a practical example using a bulb. It explains that when both inputs (A and B) are 1, the output (X) is 1, turning the bulb on. Conversely, if either input is 0, the output is 0, turning the bulb off. The worked example is:
+   - 0 . 0 = 0 (Light OFF)
+   - 0 . 1 = 0 (Light OFF)
+   - 1 . 0 = 0 (Light OFF)
+   - 1 . 1 = 1 (Light ON)
 
-### Box 2 (Blue): Truth Table for AND Gate
-The truth table for the AND gate is shown, detailing the outputs for all possible combinations of inputs \(A\) and \(B\):
-- When both \(A\) and \(B\) are 0, the output \(Y\) is 0.
-- When \(A\) is 0 and \(B\) is 1, the output \(Y\) is 0.
-- When \(A\) is 1 and \(B\) is 0, the output \(Y\) is 0.
-- When both \(A\) and \(B\) are 1, the output \(Y\) is 1.
+>The lecturer said: "so, and gate basically jinish ta ki? and gate e jeta hoy, suppose eta hocche amar şey physical device ta, which is a gate, jeta ke ami bolchi, and gate. eta ki korbe? etar moddhe duita input jaite pare. suppose first input is a, and second input is b."
 
-### Box 3 (Orange): Gate Symbol
-The symbol for the AND gate is illustrated, showing how the inputs \(A\) and \(B\) connect to produce the output \(X\).
+The AND gate takes two inputs and produces an output based on their logical AND operation. If both inputs are 1, the output is 1; otherwise, the output is 0.
 
-### Box 4 (Green): Worked Example
-A practical example is provided to understand the AND gate's functionality:
-- \(A \cdot B = X\)
-- For \(0 \cdot 0 = 0\), the light is OFF.
-- For \(0 \cdot 1 = 0\), the light is OFF.
-- For \(1 \cdot 0 = 0\), the light is OFF.
-- For \(1 \cdot 1 = 1\), the light is ON.
+### Background
+An AND gate is a basic component in digital logic circuits. It performs a logical AND operation on two binary inputs, producing a single binary output. This operation is crucial in various applications such as data processing, control systems, and digital communication. Understanding AND gates is essential for designing more complex digital circuits.
 
-**In English:** An AND gate basically takes two inputs, \(A\) and \(B\), and performs a logical AND operation on them. The output, \(X\), will be 1 only when both inputs are 1. Otherwise, the output is 0. This can be visualized as a light bulb turning on only when both switches are turned on.
-
-**Quote:**
-
-**Remember:** The AND gate outputs 1 only when both inputs are 1, otherwise, it outputs 0. This principle is fundamental in digital logic design and can be applied to various real-world scenarios like controlling lights based on multiple switches.
+**Remember:** An AND gate outputs 1 only when both inputs are 1; otherwise, it outputs 0.
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 3=#f77f00 4=#2a9d4f -->
-## Understanding the AND Gate in Digital Logic Design
-**In one line:** The AND gate performs a logical multiplication of its inputs, producing a high output only when both inputs are high.
+## Digital Logic Design: Introduction to AND Gate and Its Representation
+**In one line:** This board introduces the AND gate, its truth table, and the corresponding gate symbol and formula.
 
 ![Board 4: 10:10-11:00](figures_annotated/board_era4_1010.jpg)
 
@@ -110,45 +104,33 @@ A practical example is provided to understand the AND gate's functionality:
 **Boxes:** 1 Title · 2 Truth table · 3 Gate symbol · 4 Formula
 
 
-### Box 1 (Red): Digital Logic Design
-This box serves as the title for our discussion on digital logic design.
+1. **Red Box (Title):** The title "Digital Logic Design" sets the context for the lecture.
+2. **Blue Box (Truth Table):** The truth table for the AND gate is shown:
+   | A | B | Y |
+   |---|---|---|
+   | 0 | 0 | 0 |
+   | 0 | 1 | 0 |
+   | 1 | 0 | 0 |
+   | 1 | 1 | 1 |
+   This table shows the output `Y` for all possible combinations of inputs `A` and `B`. The lecturer explained that the output `Y` is the result of multiplying `A` and `B`, which is equivalent to their logical AND operation.
+3. **Orange Box (Gate Symbol):** The gate symbol for the AND gate is depicted as follows:
+   - Inputs `A` and `B` are connected to an AND gate, which produces an output `X`.
+   - The symbol for the AND gate is a box with the inputs `A` and `B` entering from the left and the output `X` exiting from the right.
+4. **Green Box (Formula):** The formula for the AND gate is given as:
+   - `X = AB`
+   - This formula represents the output `X` as the product of inputs `A` and `B`.
 
-### Box 2 (Blue): Truth Table
-The truth table for the AND gate is shown below:
-| A | B | Y |
-|---|---|---|
-| 0 | 0 | 0 |
-| 0 | 1 | 0 |
-| 1 | 0 | 0 |
-| 1 | 1 | 1 |
+The lecturer said: "input and x hocche amr output jeta ki chilo? a and b er multiplication. so etai hocche amr and keidh. tar mane amr duita input thakbe, ekta output thakbe, duitar multiplication, input er multiplication hoy ami output ta pabo, ekta jodi zero thake jekono output er moddhe, tahole kinto ami zero as a output pay jabo."
+This means: "What is the output when we take the input and x? It is the result of multiplying A and B. So, this is the AND gate. In other words, the AND gate will have two inputs and one output, and the output will be the multiplication of the inputs. If any input is zero, the output will also be zero."
 
-This table illustrates all possible combinations of inputs (A and B) and their corresponding outputs (Y).
+### Background
+An AND gate is a fundamental component in digital logic design. It performs a logical AND operation on its inputs, producing an output that is true only if both inputs are true. The AND gate is widely used in various digital circuits and systems, such as data processing and control systems, where binary decisions need to be made based on multiple conditions.
 
-### Box 3 (Orange): Gate Symbol
-The symbol for the AND gate is depicted as follows:
-A B
-AND gate X
-
-This visual representation shows how the inputs A and B are connected to the AND gate, which produces an output X.
-
-### Box 4 (Green): Formula
-The formula for the AND gate is:
-A B X = AB
-
-This equation represents the logical multiplication of inputs A and B to produce output X.
-
-> Lecturer: "input and x hocche amr output jeta ki chilo? a and b er multiplication. so etai hocche amr and keidh."  
-> (In English: "What we get as output from the input and X? It is the multiplication of A and B. So this is how the AND gate works.")
-
-### The Quotes
-> Lecturer: "input and x hocche amr output jeta ki chilo? a and b er multiplication. so etai hocche amr and keidh."  
-> (In English: "What we get as output from the input and X? It is the multiplication of A and B. So this is how the AND gate works.")
-
-**Remember:** The AND gate produces a high output only when both inputs are high.
+**Remember:** The AND gate outputs a high signal (1) only when both of its inputs are high (1). If either or both inputs are low (0), the output is low (0).
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 3=#f77f00 4=#2a9d4f -->
-## Understanding the OR Gate in Digital Logic Design
-**In one line:** The OR gate combines two inputs to produce an output based on their logical sum.
+## Digital Logic Design: Introduction to OR Gate and Its Representation
+**In one line:** This board introduces the OR gate, its truth table, and the corresponding gate symbol and formula.
 
 ![Board 5: 11:10-13:00](figures_annotated/board_era5_1110.jpg)
 
@@ -157,22 +139,30 @@ This equation represents the logical multiplication of inputs A and B to produce
 **Boxes:** 1 Title · 2 Truth table · 3 Gate symbol · 4 Formula
 
 
-### Explanation
-1. **Truth Table (Box 2, Blue):** The OR gate takes two inputs, \(A\) and \(B\), and produces an output \(X\). The truth table shows all possible combinations of \(A\) and \(B\) and their corresponding outputs. For example, when both \(A\) and \(B\) are 0, the output \(X\) is 0; when either \(A\) or \(B\) is 1, the output \(X\) is 1.
-    - Look at the orange box 3 for the gate symbol.
-    - See the green box 4 for the formula \(A + B = X\).
+1. **Understanding the OR Gate**: Look at the red box titled "Digital Logic Design." The lecturer introduced the concept of the OR gate, which is a fundamental component in digital logic design. The truth table for the OR gate is shown in Box 2 (blue). It lists all possible combinations of inputs A and B and their corresponding outputs X. The table is as follows:
 
-2. **Gate Symbol (Box 3, Orange):** The symbol for the OR gate is a box with inputs \(A\) and \(B\) connected to it, and the output labeled \(X\).
-3. **Formula (Box 4, Green):** The formula for the OR gate is \(A + B = X\), which means the output \(X\) is 1 if either \(A\) or \(B\) is 1, and 0 if both \(A\) and \(B\) are 0.
+   | A | B | X |
+   |---|---|---|
+   | 0 | 0 | 0 |
+   | 0 | 1 | 1 |
+   | 1 | 0 | 1 |
+   | 1 | 1 | 1 |
 
-> Lecturer: "suppose input ta hocche a and output ta hocche b. so amar output jeta there hobe, seta hocche x."  
-> (In English: "suppose the input is \(A\) and the output is \(B\). So, our output which will be there, is \(X\").)
+2. **OR Gate Symbol and Formula**: The orange box (3) displays the gate symbol for the OR gate, which is represented as  A  OR  B . The green box (4) provides the formula for the OR operation, which is  A + B = X .
 
-**Remember:** The OR gate outputs 1 if at least one of its inputs is 1.
+3. **Explanation of the OR Operation**: The lecturer explained that when both inputs A and B are 0, the output X is also 0. However, if either A or B is 1, the output X will be 1. This means that the OR gate outputs 1 if at least one of its inputs is 1. The lecturer further illustrated this by stating that the OR gate can be used to combine different binary values from inputs A and B.
+
+4. **Logic Circuit Representation**: The lecturer then moved on to explain how the OR gate can be represented in a logic circuit diagram. The diagram shows inputs A and B connected to an OR gate, with the output labeled as X.
+
+5. **Introduction to NOT Gate**: Finally, the lecturer mentioned that the last fundamental gate is the NOT gate, but this was discussed after explaining the OR gate.
+
+> The lecturer said: "when we have two inputs, A and B, and we want to find the output, X, we need to consider all possible combinations of these inputs."
+
+**Remember:** The OR gate outputs 1 if at least one of its inputs is 1, and it is represented by the formula  A + B = X .
 
 <!-- boxes: 1=#d62828 2=#1d4ed8 3=#f77f00 4=#2a9d4f 5=#7b2cbf -->
-## Understanding the NOT Gate in Digital Logic Design
-**In one line:** The NOT gate, also known as an inverter, inverts the input signal.
+## Introduction to NOT Gate and Its Representation
+**In one line:** This board introduces the NOT gate, also known as an inverter, and explains its truth table, block diagram, and gate symbol.
 
 ![Board 6: 13:10-14:50](figures_annotated/board_era6_1310.jpg)
 
@@ -181,39 +171,67 @@ This equation represents the logical multiplication of inputs A and B to produce
 **Boxes:** 1 Title · 2 Definition · 3 Truth table · 4 Block diagram · 5 Gate symbol
 
 
-### Explanation
-1. **Red Box 1 (Title):** The title "Digital Logic Design" sets the context for the discussion on digital circuits.
-2. **Blue Box 2 (Definition):** The NOT gate, or inverter, is defined as a device that takes one input and produces an output that is the opposite of the input. This means if the input is 0, the output will be 1, and if the input is 1, the output will be 0.
-3. **Orange Box 3 (Truth Table):** The truth table for the NOT gate is shown, which clearly illustrates the relationship between the input \( A \) and the output \( \overline{A} \):
-   - When \( A = 0 \), \( \overline{A} = 1 \).
-   - When \( A = 1 \), \( \overline{A} = 0 \).
-4. **Green Box 4 (Block Diagram):** The block diagram visually represents the NOT gate, showing how the input \( A \) is transformed into the output \( \overline{A} \). It can be written as \( A \rightarrow \overline{A} \).
-5. **Purple Box 5 (Gate Symbol):** The symbol for the NOT gate is depicted, showing the same transformation \( A \rightarrow \overline{A} \).
+### Box 1 (red): Digital Logic Design
+The board starts with the title "Digital Logic Design," setting the context for the discussion on digital logic components.
 
->Lecturer: "not get er concept ta kintu aro easier."  
->(In English: The concept of the NOT gate might seem difficult but is actually easier.)
+### Box 2 (blue): Definition: NOT gate: (Inverter)
+The lecturer defines the NOT gate, also referred to as an inverter, explaining that it is a basic logic gate that takes one input and produces an output that is the logical complement of the input. In other words, if the input is 0, the output will be 1, and if the input is 1, the output will be 0.
 
->Lecturer: "tar mane hocche amar input a and output a bar. input jodi zero hoy, tahole output hobe one. and input jodi one hoy ar output ta hobe zero. ebhabei opposite je signal toh sheita ama ke not get."  
->(In English: It means that the input and output are opposite. If the input is zero, the output will be one. And if the input is one, the output will be zero. In other words, it is an opposite signal, which is what we call a NOT gate.)
+### Box 3 (orange): Truth table
+The truth table for the NOT gate is shown:
+| A | (A)' |
+|---|--------------|
+| 0 | 1            |
+| 1 | 0            |
+This table clearly illustrates that the output (A)' is the opposite of the input A. If A is 0, (A)' is 1, and if A is 1, (A)' is 0.
 
-**Remember:** The NOT gate is a fundamental building block in digital logic design, where the output is always the opposite of the input.
+### Box 4 (green): Block diagram
+The block diagram for the NOT gate is represented as:
+A --- NOT --- (A)' ↓ alternate of A
+This diagram visually shows how the input A passes through the NOT gate to produce the output (A)', which is the alternate of A.
+
+### Box 5 (purple): Gate symbol
+The gate symbol for the NOT gate is shown as:
+A --- (A)'
+This symbol represents the relationship between the input A and the output (A)'.
+
+### Quotes
+> The lecturer said: "it might seem complex but it is actually quite simple. An inverter is a device where, if we give it an input, it gives us an output that is the opposite of the input."
+
+### Background
+The NOT gate is a fundamental component in digital logic design. It is used to invert the state of a binary signal, which is crucial in various applications such as creating complements, implementing logical operations, and simplifying complex circuits. Understanding the NOT gate is essential for designing more complex digital systems.
+
+**Remember:** The NOT gate is a basic yet critical component in digital logic, as it allows for the inversion of binary signals, enabling the implementation of various logical functions.
 
 ---
 
 ## Check yourself
-1. What is the main difference between analog and digital signals?
-2. List three basic logic gates and describe their functions.
-3. What is the output of an AND gate when both inputs are 1?
-4. Describe the truth table for the OR gate.
-5. What does the NOT gate do to the input signal?
+1. What is the difference between analog and digital signals?
+2. Explain the function of the AND gate and provide an example.
+3. Describe the truth table and gate symbol for the OR gate.
+4. What does the NOT gate do, and how is it represented?
 
 ### Answers
-1. Analog signals are continuous, while digital signals are discrete.
-2. AND gate: Outputs 1 only when both inputs are 1. OR gate: Outputs 1 if at least one input is 1. NOT gate: Outputs the opposite of the input.
-3. The output of an AND gate when both inputs are 1 is 1.
-4. The truth table for the OR gate is: | A | B | X | |---|---|---| | 0 | 0 | 0 | | 0 | 1 | 1 | | 1 | 0 | 1 | | 1 | 1 | 1 |
-5. The NOT gate inverts the input signal.
+1. Analog signals can take any value within a range, whereas digital signals can only take specific, distinct values (0s and 1s).
+2. The AND gate outputs a high signal (1) only when all its inputs are high. For example, if both inputs A and B are 1, the output X is 1; otherwise, the output is 0.
+3. The truth table for the OR gate is:
+   | A | B | X |
+   |---|---|---|
+   | 0 | 0 | 0 |
+   | 0 | 1 | 1 |
+   | 1 | 0 | 1 |
+   | 1 | 1 | 1 |
+   The gate symbol for the OR gate is:
+   ```
+   A --- OR --- X
+   ```
+4. The NOT gate inverts the input signal. If the input is 0, the output is 1, and if the input is 1, the output is 0. It is represented by the symbol:
+   ```
+   A --- (A)'
+   ```
 
 ---
 
-*How these notes were made. Speech: transcript_loso.txt. Boards: ink boxes, named by Qwen/Qwen2.5-VL-7B-Instruct. Notes written by Qwen/Qwen2.5-7B-Instruct. Quotes checked word for word against the transcript: 7 kept, 1 removed. References to boxes that do not exist: 0.*
+*This lecture is `BanglaASR10` in the dataset (`BanglaASR6` is its old number, kept because the answer keys use it).*
+
+*How these notes were made. Speech: transcript_loso.txt. Boards: ink boxes, named by Qwen/Qwen2.5-VL-7B-Instruct. Notes written by Qwen/Qwen2.5-7B-Instruct. The lecturer's words are given in English translation (5 quotes); the Banglish version of these notes has the originals, checked word for word against the transcript. References to boxes that do not exist: 0.*

@@ -1,5 +1,6 @@
 {
   "lecture": "BanglaASR1",
+  "dataset_lecture": "BanglaASR1",
   "language": "banglish",
   "model": "Qwen/Qwen2.5-7B-Instruct",
   "mock": false,
@@ -8,11 +9,14 @@
   "leakage_warning": "",
   "boxes_file": "board_boxes.json",
   "board_text_file": "board_text_clean.json",
-  "quotes_kept": 6,
-  "quotes_dropped": 3,
+  "quotes_kept": 3,
+  "quotes_dropped": 1,
   "invalid_box_refs": 0,
+  "quotes_translated": 0,
+  "quotes_word_for_word_checked": true,
+  "latex_rewritten": 0,
   "colour_fixes": 0,
-  "inline_quotes_unverified": 2,
+  "inline_quotes_unverified": 1,
   "sections": [
     {
       "board": 1,
@@ -27,16 +31,15 @@
       ],
       "invalid_box_refs": [],
       "colour_fixes": [],
-      "inline_quotes_unverified": [
-        "So, if you put a book in the box, that book is your data stored in the variable.",
-        "Now, if you want to store a fruit, you might put an apple in the box. In this case, the box itself is the variable, and the apple is the data stored within it."
-      ],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
       "quotes_kept": [
-        "Think of like a box."
+        "so think of like a box.",
+        "so eita ami mujhhe feltesi."
       ],
-      "quotes_dropped": [
-        "So, if you put a book in the box, that book is your data stored in the variable."
-      ]
+      "quotes_dropped": []
     },
     {
       "board": 2,
@@ -46,15 +49,17 @@
       "transcript_chars": 1520,
       "boxes": 2,
       "boxes_mentioned": [
-        1,
         2
       ],
       "invalid_box_refs": [],
       "colour_fixes": [],
-      "inline_quotes_unverified": [],
-      "quotes_kept": [
-        "etar modhe tumi ei 10 value ta ke takte jacche."
+      "inline_quotes_unverified": [
+        "What is the module here?"
       ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
       "quotes_dropped": []
     },
     {
@@ -71,9 +76,10 @@
       "invalid_box_refs": [],
       "colour_fixes": [],
       "inline_quotes_unverified": [],
-      "quotes_kept": [
-        "string holo je konor jinis je mon dhoro boli je jodi boli je amar nam obuk, amar nam tomo."
-      ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
       "quotes_dropped": []
     },
     {
@@ -91,9 +97,11 @@
       "invalid_box_refs": [],
       "colour_fixes": [],
       "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
       "quotes_kept": [
-        "so eta cross, eta holo right away. okay?",
-        "par tumi jeta korte paro sheta ki? name 1."
+        "so variable er naming ta khubi important dekhte jinis."
       ],
       "quotes_dropped": []
     },
@@ -112,12 +120,11 @@
       "invalid_box_refs": [],
       "colour_fixes": [],
       "inline_quotes_unverified": [],
-      "quotes_kept": [
-        "but python community te ei snake casing tai khubi standard."
-      ],
-      "quotes_dropped": [
-        "amra ekhane space ta ke kivabi tick korbo?"
-      ]
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": []
     },
     {
       "board": 6,
@@ -135,9 +142,12 @@
       "invalid_box_refs": [],
       "colour_fixes": [],
       "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
       "quotes_kept": [],
       "quotes_dropped": [
-        "exact words from the transcript"
+        "Python variables are case-sensitive."
       ]
     }
   ]

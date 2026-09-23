@@ -1,5 +1,6 @@
 {
   "lecture": "BanglaASR12",
+  "dataset_lecture": "BanglaASR16",
   "language": "banglish",
   "model": "Qwen/Qwen2.5-7B-Instruct",
   "mock": false,
@@ -8,9 +9,12 @@
   "leakage_warning": "",
   "boxes_file": "board_boxes.json",
   "board_text_file": "board_text_clean.json",
-  "quotes_kept": 2,
-  "quotes_dropped": 0,
+  "quotes_kept": 0,
+  "quotes_dropped": 1,
   "invalid_box_refs": 0,
+  "quotes_translated": 0,
+  "quotes_word_for_word_checked": true,
+  "latex_rewritten": 0,
   "colour_fixes": 0,
   "inline_quotes_unverified": 1,
   "sections": [
@@ -27,11 +31,12 @@
       "invalid_box_refs": [],
       "colour_fixes": [],
       "inline_quotes_unverified": [
-        "What do we call a unit here? Do you understand?"
+        "so, ajke amra hocche m2o meddulo shobote chacchi."
       ],
-      "quotes_kept": [
-        "unit amra kano bolte siye ta ki? unit bolte ki bujhay?"
-      ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
       "quotes_dropped": []
     },
     {
@@ -47,10 +52,13 @@
       "invalid_box_refs": [],
       "colour_fixes": [],
       "inline_quotes_unverified": [],
-      "quotes_kept": [
-        "so for example aa ekhache amr df ta deyao chilo zero, jarjomne amr ei router ta packet ta onno router e, so ekhane"
-      ],
-      "quotes_dropped": []
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [
+        "so for example amra maximum case e dhore nigo je df ta zero deo deo. pane ami fragment korte pabo doh amr packet ta throughout the transmission aa packet hoyte parbe if be necessary."
+      ]
     }
   ]
 }

@@ -1,5 +1,6 @@
 {
   "lecture": "BanglaASR2",
+  "dataset_lecture": "BanglaASR2",
   "language": "banglish",
   "model": "Qwen/Qwen2.5-7B-Instruct",
   "mock": false,
@@ -8,11 +9,14 @@
   "leakage_warning": "",
   "boxes_file": "board_boxes.json",
   "board_text_file": "board_text_clean.json",
-  "quotes_kept": 6,
+  "quotes_kept": 5,
   "quotes_dropped": 0,
   "invalid_box_refs": 0,
+  "quotes_translated": 0,
+  "quotes_word_for_word_checked": true,
+  "latex_rewritten": 0,
   "colour_fixes": 0,
-  "inline_quotes_unverified": 7,
+  "inline_quotes_unverified": 11,
   "sections": [
     {
       "board": 1,
@@ -21,15 +25,15 @@
       "to": "1:00",
       "transcript_chars": 1114,
       "boxes": 2,
-      "boxes_mentioned": [
-        1,
-        2
-      ],
+      "boxes_mentioned": [],
       "invalid_box_refs": [],
       "colour_fixes": [],
       "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
       "quotes_kept": [
-        "so shei python er ekta built-in function er eche jeta holo input. so ami jodi likhi function ta, jeta holo input function. jeta holo python er built-in ekta function."
+        "so shei python er ekta built-in function er eche jeta holo input. so ami jodi likhi function ta, jeta holo input function. jeta holo python er built-in ekta function. so ei built-in function er maddome amra user e theke input naya thakeu."
       ],
       "quotes_dropped": []
     },
@@ -46,9 +50,16 @@
       ],
       "invalid_box_refs": [],
       "colour_fixes": [],
-      "inline_quotes_unverified": [],
+      "inline_quotes_unverified": [
+        ", name)`. The `print` function is a built-in Python function used to output text or variables. In this case, it prints ",
+        ", the value of `name` will be ",
+        ", the value of `name` will be "
+      ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
       "quotes_kept": [
-        "jinis ta asholo evabey kaj kore jokodi user e roughy value ta dek. tarpore e print function er ashbe."
+        "ami ekhane input function ta likhechi. tarpore ami user e jonna ekta message diyechi. message ta ki je what is your name? user jokhon ei message ta dekhbe user korbe ki? or nijan nam ta o likhbe."
       ],
       "quotes_dropped": []
     },
@@ -60,6 +71,7 @@
       "transcript_chars": 2290,
       "boxes": 6,
       "boxes_mentioned": [
+        1,
         2,
         3,
         4,
@@ -70,9 +82,11 @@
       "colour_fixes": [],
       "inline_quotes_unverified": [
         "What is the second number?",
-        "`, showing how they would be concatenated to form `",
-        "What is the second number?"
+        ", adding them directly would result in "
       ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
       "quotes_kept": [
         "so keo jodi number ta bole je 10, ashole je pacche sheta ekta string hishabe ashtese ekhane.",
         "but amra kintu eta chacchi na. amra chacchi number, actual integer number, 10 and 20, eta add korle koto? 30 hoy."
@@ -98,10 +112,14 @@
       "colour_fixes": [],
       "inline_quotes_unverified": [
         "What is the second number?",
-        "What is the second number?"
+        " String` is converted to an integer using `int(num1)`. This means that the string `",
+        "`, you can convert it to the integer `10` using `int("
       ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
       "quotes_kept": [
-        "so tokhon ar amar quotation lagbe na, tokhon eta ki hobe? shubur tiyan hoye thakbe. thii jace."
+        "so ekhane basically ki hocche? ami user theke input niaychi num1. sheta ki? 10. string e chilo. ami jokhon int of aa num1 kore dicchi, ei string ta hoye jacche ki? amar integer."
       ],
       "quotes_dropped": []
     },
@@ -112,16 +130,20 @@
       "to": "14:00",
       "transcript_chars": 3629,
       "boxes": 1,
-      "boxes_mentioned": [],
+      "boxes_mentioned": [
+        1
+      ],
       "invalid_box_refs": [],
       "colour_fixes": [],
       "inline_quotes_unverified": [
         "What is the second number?",
-        "The sum of {num1} and {num2} is {sum}"
+        "The sum of {num1} and {num2} is {sum}",
+        "The sum of 20 and 30 is 50"
       ],
-      "quotes_kept": [
-        "ekhane amra forcefully type ta change kore dicchi."
-      ],
+      "prompt_placeholders_removed": 1,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
       "quotes_dropped": []
     }
   ]

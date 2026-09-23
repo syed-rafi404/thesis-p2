@@ -1,5 +1,6 @@
 {
   "lecture": "BanglaASR2",
+  "dataset_lecture": "BanglaASR2",
   "language": "english",
   "model": "Qwen/Qwen2.5-7B-Instruct",
   "mock": false,
@@ -8,11 +9,14 @@
   "leakage_warning": "",
   "boxes_file": "board_boxes.json",
   "board_text_file": "board_text_clean.json",
-  "quotes_kept": 4,
-  "quotes_dropped": 1,
+  "quotes_kept": 0,
+  "quotes_dropped": 0,
   "invalid_box_refs": 0,
+  "quotes_translated": 5,
+  "quotes_word_for_word_checked": false,
+  "latex_rewritten": 0,
   "colour_fixes": 0,
-  "inline_quotes_unverified": 9,
+  "inline_quotes_unverified": 7,
   "sections": [
     {
       "board": 1,
@@ -27,10 +31,15 @@
       ],
       "invalid_box_refs": [],
       "colour_fixes": [],
-      "inline_quotes_unverified": [],
-      "quotes_kept": [
-        "ei variable er value thoro 42. thik ache? but real life e erokom ki 42 daba thake? thake na. amra user e theke input nei."
+      "inline_quotes_unverified": [
+        "so this is a built-in function in Python called input. So when we write this function, it's the input function. It's a built-in function in Python. Using this built-in function, we can take input from the user."
       ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
+        "so shei python er ekta built-in function er eche jeta holo input. so ami jodi likhi function ta, jeta holo input function. jeta holo python er built-in ekta function. so ei built-in function er maddome amra user e theke input naya thakeu."
+      ],
+      "quotes_kept": [],
       "quotes_dropped": []
     },
     {
@@ -46,14 +55,15 @@
       "invalid_box_refs": [],
       "colour_fixes": [],
       "inline_quotes_unverified": [
-        ")`. Here, we are using the `input` function to prompt the user to enter their name. The function takes a string as an argument, which is displayed to the user. For example, when the user sees ",
-        ", name)`. This line uses the `print` function to output ",
-        " if the user inputs "
+        " and presses Enter, the variable `name` will store the value "
+      ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
+        "we are using the `input` function to get input from the user and store it in a variable."
       ],
       "quotes_kept": [],
-      "quotes_dropped": [
-        "exact words from the transcript"
-      ]
+      "quotes_dropped": []
     },
     {
       "board": 3,
@@ -74,11 +84,14 @@
       "colour_fixes": [],
       "inline_quotes_unverified": [
         "What is the second number?",
-        ", these are stored as strings. However, if we try to add these strings directly, Python will concatenate them rather than perform arithmetic addition. This means "
+        "`. When added together, the output will be `"
       ],
-      "quotes_kept": [
-        "so keo jodi number ta bole je 10, ashole je pacche sheta ekta string hishabe ashtese ekhane."
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
+        "Your English translation of what the lecturer said"
       ],
+      "quotes_kept": [],
       "quotes_dropped": []
     },
     {
@@ -100,11 +113,15 @@
       "colour_fixes": [],
       "inline_quotes_unverified": [
         "What is the second number?",
-        " String int(num1) -> integer` illustrates that the string `"
+        " String`. When the `int()` function is applied to `num1`, it converts the string `",
+        "Here, basically, I am taking input from the user for `num1`. It is `10` as a string. When I apply the `int()` function to `num1`, this string becomes an integer."
       ],
-      "quotes_kept": [
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
         "so ekhane basically ki hocche? ami user theke input niaychi num1. sheta ki? 10. string e chilo. ami jokhon int of aa num1 kore dicchi, ei string ta hoye jacche ki? amar integer."
       ],
+      "quotes_kept": [],
       "quotes_dropped": []
     },
     {
@@ -117,13 +134,13 @@
       "boxes_mentioned": [],
       "invalid_box_refs": [],
       "colour_fixes": [],
-      "inline_quotes_unverified": [
-        "What is the second number?",
-        "The sum of {num1} and {num2} is {sum}"
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
+        "Your English translation of what the lecturer said"
       ],
-      "quotes_kept": [
-        "ekhon jodi ami sum nei. and tahole ekhon jodi print kori."
-      ],
+      "quotes_kept": [],
       "quotes_dropped": []
     }
   ]

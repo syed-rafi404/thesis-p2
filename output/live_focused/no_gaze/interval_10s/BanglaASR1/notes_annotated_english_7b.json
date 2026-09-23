@@ -1,5 +1,6 @@
 {
   "lecture": "BanglaASR1",
+  "dataset_lecture": "BanglaASR1",
   "language": "english",
   "model": "Qwen/Qwen2.5-7B-Instruct",
   "mock": false,
@@ -8,11 +9,14 @@
   "leakage_warning": "",
   "boxes_file": "board_boxes.json",
   "board_text_file": "board_text_clean.json",
-  "quotes_kept": 4,
+  "quotes_kept": 0,
   "quotes_dropped": 0,
   "invalid_box_refs": 0,
+  "quotes_translated": 1,
+  "quotes_word_for_word_checked": false,
+  "latex_rewritten": 0,
   "colour_fixes": 0,
-  "inline_quotes_unverified": 3,
+  "inline_quotes_unverified": 8,
   "sections": [
     {
       "board": 1,
@@ -21,13 +25,19 @@
       "to": "1:40",
       "transcript_chars": 1755,
       "boxes": 2,
-      "boxes_mentioned": [],
+      "boxes_mentioned": [
+        1,
+        2
+      ],
       "invalid_box_refs": [],
       "colour_fixes": [],
-      "inline_quotes_unverified": [],
-      "quotes_kept": [
-        "so toh jodi data store korte jano, every other things will be very easy to you."
+      "inline_quotes_unverified": [
+        "variable jinish ta ki, variable jeta sheta hocche amar variable er name ta. ar apple tarpore book, egula holo amar data jeta ami variable er moddhe store kore rakhte chacchi."
       ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
       "quotes_dropped": []
     },
     {
@@ -38,14 +48,21 @@
       "transcript_chars": 1520,
       "boxes": 2,
       "boxes_mentioned": [
+        1,
         2
       ],
       "invalid_box_refs": [],
       "colour_fixes": [],
-      "inline_quotes_unverified": [],
-      "quotes_kept": [
-        "amra shudhu ekhane num likhe amra value ta boshay dite pari. python nije nije bujhe jabe je e value ta asho likhi."
+      "inline_quotes_unverified": [
+        "This means you have a variable named 'num' which you are assigning the value 10. But what does the 'int' mean here?",
+        "Python needs to know what type of data a variable will hold. Here, we are just writing 'num', but we can assign a value. Python will understand that this value is an integer.",
+        "So, what does it mean here? It means this is an integer value without a decimal point. Even though there might be a decimal point in some contexts, in this case, it is not visible. Therefore, 'num' here is like a box where we put the value 10. When we change the value later, we just write 'num' again. We understand that this refers to the integer value.",
+        "Python is dynamic, so it will recognize that the value stored in 'num' is an integer. Later, when we perform mathematical operations, we will see more examples. For now, let's understand the basics of variables."
       ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
       "quotes_dropped": []
     },
     {
@@ -58,10 +75,13 @@
       "boxes_mentioned": [],
       "invalid_box_refs": [],
       "colour_fixes": [],
-      "inline_quotes_unverified": [],
-      "quotes_kept": [
-        "string holo je konor jinis je mon dhoro boli je jodi boli je amar nam obuk, amar nam tomo. amar nam dhoro je amar nam holo ahasan. thik ache? toh amra ki likhte pari? string ar moddhe je kono jinis en name."
+      "inline_quotes_unverified": [
+        "We have an integer. Then we have another boolean, and I also have an integer."
       ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
       "quotes_dropped": []
     },
     {
@@ -71,14 +91,15 @@
       "to": "9:50",
       "transcript_chars": 2219,
       "boxes": 3,
-      "boxes_mentioned": [
-        1,
-        2,
-        3
-      ],
+      "boxes_mentioned": [],
       "invalid_box_refs": [],
       "colour_fixes": [],
-      "inline_quotes_unverified": [],
+      "inline_quotes_unverified": [
+        "To check the type of a variable, we need to look at the code thoroughly. Here, the variable names are given. But the original name of the variable is important to understand. For example, `Iname` is the original name, while `Name1` is another name. Naming conventions are crucial because when others read your code, they can quickly understand your naming choices."
+      ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
       "quotes_kept": [],
       "quotes_dropped": []
     },
@@ -97,10 +118,11 @@
       "invalid_box_refs": [],
       "colour_fixes": [],
       "inline_quotes_unverified": [
-        "If you want to write my name equals 'Rafi', you can do it. But why do we use an underscore instead of a space? Because there is a space here. Should we tick the space? We should not. Instead, we use an underscore. Underscore is commonly used in the Python community to replace spaces.",
-        "There is another style called camelCase. Let me show you. Here, the first letter is lowercase, and then each subsequent word starts with a capital letter. Similarly, look at how our variable name changes.",
-        "So, you have understood that this is the camelCase for a variable. But in the Python community, snake_case is the standard. Everyone follows this. Another important thing about Python is that it is case-sensitive, which is very important. When developers work, they need to be active and ensure that the variable names match exactly."
+        "If you want to assign 'Rafi' to your name, you can write `my_name = 'Rafi'`. Why do we use an underscore instead of a space? Because there is a space in the name. Should we use an underscore? Yes, because the Python community prefers underscores over spaces."
       ],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
       "quotes_kept": [],
       "quotes_dropped": []
     },
@@ -115,9 +137,12 @@
       "invalid_box_refs": [],
       "colour_fixes": [],
       "inline_quotes_unverified": [],
-      "quotes_kept": [
-        "aithan holo case-sensitive."
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [
+        "This is case-sensitive. If we accidentally use a capital letter, like 'Age' instead of 'age', it will be treated as a different variable."
       ],
+      "quotes_kept": [],
       "quotes_dropped": []
     }
   ]

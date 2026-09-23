@@ -454,7 +454,7 @@ Quote only these; each has its command in RESULTS.md.
 | VLM on a third lecturer's boards | **89.7%** | 5.0 |
 | Does board reading need a 7B? | Mostly no: **3B 83.7% vs 7B 89.0%** over 45 boards, p = 0.05. The prompt is worth +57.6 pp, model size +5.3 pp | 5.0 |
 | Notes, 35 boards | board content in the notes: 37.2% -> **88.0%** | 5.0 |
-| **The annotated notes** (the deliverable: boxes, quotes, two languages) | 37.2% -> **70.2%** English, better on 30 of 35 boards, worse on 0; 53.6% Banglish; **72.4%** on a third lecturer | 5.4 |
+| **The annotated notes** (the deliverable: boxes, quotes, step-by-step, two languages) | 37.2% -> **89.1% Banglish**, better on 32 of 35 boards, worse on 0; **matches variant C** (88.0%, p = 0.29) while being readable; 79.3% on a third lecturer. English 55.9%: it translates the board's strings, so the scorer cannot match them | 5.4 |
 | The new clean boards read by the VLM | **no gain**: 93.6% -> 91.7%, p = 0.07 (keep them for looks, not for reading) | 4.1.2 |
 
 - **Never quote:** 96.1% -> 81.8% (leaked split), "the curve is still falling", or board-recall
