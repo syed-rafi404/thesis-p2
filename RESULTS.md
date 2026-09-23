@@ -759,36 +759,43 @@ Checked by eye on all 10 Speaker3 boards (before/after sheets below), **not meas
 - **The VLM has now read all 45 new boards (2026-09-23, 5090), and the clean-up does NOT help it:
   93.6% -> 91.7%, better on 1 board, worse on 7.** See the measured comparison below.
 
-**A human check of the newer lectures' boards (2026-09-23) — 79.4% complete, and it is the
-weakest board number in this file. Report it.**
+**A human check of the newer lectures' boards (2026-09-23): 82 of 98 complete (83.7%), and only
+9 boards lose writing the reconstruction should have kept.**
 
 The user went through all 98 boards of lectures 6-9 and 18-43 in
 `output/lectures/board_completeness_check.html`, each shown beside two real video frames from the
-same time, and answered one question: does the reconstructed clean board contain everything that
-was written? Answers in `data/board_completeness_2026-09-23.json`
-(`scripts/make_board_check_sheet.py` built the sheet).
+same time, answering one question — does the clean board contain everything that was written? —
+and naming what was missing. Answers: `data/board_completeness_2026-09-23.json`
+(sheet built by `scripts/make_board_check_sheet.py`).
 
-| | Boards |
-|---|---|
-| Shown | 98 |
-| Answered | 97 |
-| **Judged complete** | **77 (79.4%)** |
-| Judged to be missing something | 20 |
-| Left unanswered | 1 |
+| Verdict | Boards | |
+|---|---|---|
+| **Complete** | **82** | **83.7% of 98** |
+| Missing something | 16 | |
+| ... writing genuinely lost | 9 | 9.2% |
+| ... era cut while the board was being wiped | 4 | the board is half erased in every frame of that era |
+| ... camera out of focus for the whole era | 3 | unreadable in the source video, not a reconstruction fault |
 
-**So about one board in five loses something a person can see**, and 14 of the 30 lectures have at
-least one such board. Two of the twenty losses were named (`t4` on BanglaASR6 era 1, `b` on
-BanglaASR8 era 2); the other eighteen were marked without a description, so **the severity of most
-losses is unknown** — we know a board was judged incomplete, not how much went missing. Anyone
-quoting this should say so.
+**The nine real losses**, with the user's own description: BanglaASR6 era 1 `t4`; BanglaASR8 era 2
+`b, t2`; BanglaASR22 era 2 `100`; BanglaASR28 era 8 the word "Hybrid"; BanglaASR32 era 2 numbers;
+BanglaASR33 era 4 numbers and era 5 a diagram with arrows and numbers; BanglaASR35 era 1 a diagram;
+BanglaASR41 era 1 a VLSM tree, missing entirely. Seven of the nine are single tokens or one
+diagram; **BanglaASR41 era 1 is the one bad case**, a whole tree absent.
 
-Read it against, not instead of, the other board numbers. It does not contradict them:
+Counting only the boards whose source frames were usable (dropping the 4 mid-erase and 3
+out-of-focus eras): **82 of 91, 90.1%**.
 
-- 4.1's **97.7% median of tiles fully clear** counts tiles, not whether the writing survived.
-- 5.0's **88.8% item recall** is a different set (the 13 lectures with answer keys), a different
-  judge (the VLM) and a different question (did the model read the item).
-- The known causes are in 5.0: glare the reconstruction cannot remove, and writing visible in only
-  one frame. Nothing here contradicts that; it puts a number on how often it happens.
+Two faults worth separating, because they have different fixes:
+
+- **Writing lost by the reconstruction (9 boards).** Same causes as 5.0: glare, and strokes that
+  appear in only one frame. This is the number to quote for the reconstruction.
+- **Era boundaries cut during an erase (4 boards).** Not a mosaic fault at all: `board_mosaic.py`
+  ended the era while the lecturer was still wiping, so every frame in it shows a half-erased
+  board. Fixable by holding the era open until the wipe finishes; not attempted before the defense.
+
+This does not contradict the other board numbers, which count different things: 4.1's **97.7%
+median of tiles fully clear** counts tiles, not whether writing survived, and 5.0's **88.8% item
+recall** is a different lecture set, judged by the VLM against answer keys.
 
 **The VLM reading of the new boards — a measured negative (2026-09-23, RTX 5090)**
 
