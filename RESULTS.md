@@ -756,7 +756,52 @@ Checked by eye on all 10 Speaker3 boards (before/after sheets below), **not meas
   With the clean-up every one of the 35 is a clean white board. Sheets:
   `output/annotation_demo/all9_deeplab_shadow/compare_1.jpg` ... `compare_6.jpg`, made by
   `python scripts/compare_board_sets.py --old output/annotation_demo/all9 --new output/annotation_demo/all9_deeplab_shadow`.
-- The VLM has not read any of the new boards; the 5.0 numbers are on the old ones.
+- **The VLM has now read all 45 new boards (2026-09-23, 5090), and the clean-up does NOT help it:
+  93.6% -> 91.7%, better on 1 board, worse on 7.** See the measured comparison below.
+
+**The VLM reading of the new boards — a measured negative (2026-09-23, RTX 5090)**
+
+The clean-up was judged by eye and looked better. Read by the same Qwen2.5-VL-7B with the same
+prompt, on the same hand-verified answer keys, it is slightly worse than the old mosaic:
+
+| Set | Boards | Old mosaic | New clean board | Better / worse | Sign test |
+|---|---|---|---|---|---|
+| Lectures 1-9 | 35 | 334/349 (95.7%) | 329/349 (94.3%) | 0 / 5 | p = 0.0625 |
+| Speaker3, lectures 10-13 | 10 | 74/87 (85.1%) | 71/87 (81.6%) | 1 / 2 | p = 1.0 |
+| **Combined** | **45** | **408/436 (93.6%)** | **400/436 (91.7%)** | **1 / 7** | **p = 0.0703** |
+
+```
+python scripts/transcribe_boards.py --all --source clean
+python scripts/score_board_recall.py --gt data/board_truth data/board_truth/draft_lectures1to6 \
+  --compare-names board_text_mosaic.md board_text_clean.md
+python scripts/score_board_recall.py --runs output/speaker3_runs --gt data/board_truth/draft_speaker3 \
+  --compare-names board_text_mosaic.md board_text_clean.md
+```
+
+Not significant either way, so the honest statement is **no measured difference, with the point
+estimate against the clean-up**, not "the clean-up is worse". What changed, item by item:
+
+- **The one gain is the board the clean-up was built for.** BanglaASR10 era 3, the TTL board whose
+  end-of-era diagram the old mask lost: 57.1% -> 71.4%, and "Don't Fragment" becomes readable on
+  both era 3 and era 4. The 4.1.2 claim above about that board holds.
+- **The losses are single fine-detail items**, and they are the kind of thing a clean-up erases:
+  long code strings (`weather = input("Today's weather: ")`, `elements = ("Apple", 7, 3.1416, True)`),
+  a written-out sentence, the decimal `3.77` on two different boards of BanglaASR9, and on
+  BanglaASR13 `20B - 60B`, `2.7` and `Header + Data`.
+- **There is almost no headroom to win.** The old mosaic is already at 95.7% on lectures 1-9, and
+  37 of the 45 boards score identically on both. A rebuild can lose thin strokes; it cannot gain
+  much.
+
+So the clean boards are worth keeping for **how they look** in the notes (every one is a clean white
+board, and 4.1.2's eye check stands), not for what the model reads off them. Do not claim the
+rebuild improved board reading. The 5.0 headline numbers stay on the old mosaic boards.
+
+**A decode loop, found here.** On BanglaASR10 era 3 the model read the board correctly, then tried
+to draw the diagram's diagonal and emitted the same backslash line 512 times: 42,037 characters.
+`transcribe_boards.py` now collapses a run of identical lines and records how many it dropped
+(`runaway_lines_removed` in the JSON). It changes no score, since repeated backslashes match no
+answer-key item; it matters because that text is pasted into the notes prompt. This is the same
+failure class as the Whisper runaway that made the compression-ratio safeguard necessary (1.0).
 
 ```
 python scripts/board_mosaic.py --frames output/speaker3_runs_2s/BanglaASR{n}/ingested/frames --interval 2 \

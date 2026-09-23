@@ -1,0 +1,24 @@
+{
+  "lecture": "BanglaASR13",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "source": "clean",
+  "prompt": "This is a photograph of a classroom whiteboard during a university lecture.\n\nTranscribe everything written on the whiteboard, exactly as written.\n\n- Copy every number, name, identifier, date and symbol exactly. Do not round,\n  correct or reformat values.\n- Write tables as Markdown tables with the same rows and columns as the board.\n- Write code, SQL and program text inside ``` fences, keeping line breaks.\n- Write formulas as they appear. For a bar over a term write it as NOT(...),\n  for example NOT(A+B).\n- Keep diagrams short: name what they are and copy any labels on them, for\n  example \"Gate diagram: inputs A, B into a box labelled NAND, output NOT(AB)\".\n- If part of the board cannot be read, write [illegible]. Never guess, and never\n  add anything that is not written on the board.\n- Ignore any person in the picture. Describe only what is written.\n\nOutput only the transcription.",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:00",
+      "to": "3:50",
+      "clear_fraction": 1.0,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\annotation_demo\\speaker3_2s_deeplab_shadow\\clean\\BanglaASR13_board_era1_000_clean.jpg",
+      "text": "```\nMTU\nMaximum transmission unit -> Packet Size\n\nDF -> 0\n\n* Total packet size -> 1. Header Sec.\n2. Data Sec.\n\n1500\n```\n\n```"
+    },
+    {
+      "era": 2,
+      "from": "4:00",
+      "to": "12:34",
+      "clear_fraction": 1.0,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\annotation_demo\\speaker3_2s_deeplab_shadow\\clean\\BanglaASR13_board_era2_400_clean.jpg",
+      "text": "```\nMTU\nMaximum transmission\nunit -> Packet Size\n\nData size -> 4000B\n-> 1480\n\nDF -> 0\n+ Total packet size -> 1. Header sec.\n2. Data sec.\n\nF = 0; MF = 1 -> 0\n1479 -> Frag 1\n1480 - 2959 -> Frag-2\n1480 + 20\n\nF = 0; MF = 1 -> 1480\n2960 -> Frag-3\n4000 -> Frag-4\n\nF = 0; MF = 0 -> 2960\n4000 -> Frag-5\n\nFor the\nFrag + frag -> 0/8 -> 0 -> fragment offset\n=> ceil -> 12.7 -> 3\n\nand -> 1480 -> 185 -> u\n\"\"\n\n3rd -> 2960 -> 370 -> \" for 3rd\nfrag.\n```"
+    }
+  ]
+}

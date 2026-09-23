@@ -1,0 +1,44 @@
+{
+  "lecture": "BanglaASR10",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "source": "clean",
+  "prompt": "This is a photograph of a classroom whiteboard during a university lecture.\n\nTranscribe everything written on the whiteboard, exactly as written.\n\n- Copy every number, name, identifier, date and symbol exactly. Do not round,\n  correct or reformat values.\n- Write tables as Markdown tables with the same rows and columns as the board.\n- Write code, SQL and program text inside ``` fences, keeping line breaks.\n- Write formulas as they appear. For a bar over a term write it as NOT(...),\n  for example NOT(A+B).\n- Keep diagrams short: name what they are and copy any labels on them, for\n  example \"Gate diagram: inputs A, B into a box labelled NAND, output NOT(AB)\".\n- If part of the board cannot be read, write [illegible]. Never guess, and never\n  add anything that is not written on the board.\n- Ignore any person in the picture. Describe only what is written.\n\nOutput only the transcription.",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:20",
+      "to": "1:00",
+      "clear_fraction": 0.8648,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\annotation_demo\\speaker3_2s_deeplab_shadow\\clean\\BanglaASR10_board_era1_020_clean.jpg",
+      "text": "TTL -> time to live",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 2,
+      "from": "1:40",
+      "to": "2:52",
+      "clear_fraction": 0.9615,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\annotation_demo\\speaker3_2s_deeplab_shadow\\clean\\BanglaASR10_board_era2_140_clean.jpg",
+      "text": "TTL -> time to live -> 29\n└───────┐\n        └── Endless looping",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 3,
+      "from": "3:00",
+      "to": "4:34",
+      "clear_fraction": 0.9942,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\annotation_demo\\speaker3_2s_deeplab_shadow\\clean\\BanglaASR10_board_era3_300_clean.jpg",
+      "text": "```\nTTL -> time to Live -> 29 -> 0\n↓\nEndless looping\nIF -> Reset / Res\nDF -> Don't Fragment\nMF ->\n```\n\nDiagram:\n```\nX\n  \\\n   \\\n    \\\n[509 repeated lines removed: the model looped here]",
+      "runaway_lines_removed": 509
+    },
+    {
+      "era": 4,
+      "from": "5:20",
+      "to": "7:04",
+      "clear_fraction": 1.0,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\annotation_demo\\speaker3_2s_deeplab_shadow\\clean\\BanglaASR10_board_era4_520_clean.jpg",
+      "text": "```\nTTL -> time to Live -> 29 -> 0\n└─────── Endless looping\n    IF -> Reset / Res\n    DF -> Don't Fragment\n    MF -> 1500B\n```",
+      "runaway_lines_removed": 0
+    }
+  ]
+}

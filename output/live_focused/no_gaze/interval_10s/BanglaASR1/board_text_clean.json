@@ -1,0 +1,56 @@
+{
+  "lecture": "BanglaASR1",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "source": "clean",
+  "prompt": "This is a photograph of a classroom whiteboard during a university lecture.\n\nTranscribe everything written on the whiteboard, exactly as written.\n\n- Copy every number, name, identifier, date and symbol exactly. Do not round,\n  correct or reformat values.\n- Write tables as Markdown tables with the same rows and columns as the board.\n- Write code, SQL and program text inside ``` fences, keeping line breaks.\n- Write formulas as they appear. For a bar over a term write it as NOT(...),\n  for example NOT(A+B).\n- Keep diagrams short: name what they are and copy any labels on them, for\n  example \"Gate diagram: inputs A, B into a box labelled NAND, output NOT(AB)\".\n- If part of the board cannot be read, write [illegible]. Never guess, and never\n  add anything that is not written on the board.\n- Ignore any person in the picture. Describe only what is written.\n\nOutput only the transcription.",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:00",
+      "to": "1:40",
+      "clear_fraction": 0.9685,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\annotation_demo\\all9_deeplab_shadow\\clean\\BanglaASR1_board_era1_000_clean.jpg",
+      "text": "Python Variables\n\nWhat is Variable?\n\n```plaintext\nApple\n```"
+    },
+    {
+      "era": 2,
+      "from": "1:50",
+      "to": "3:20",
+      "clear_fraction": 0.9254,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\annotation_demo\\all9_deeplab_shadow\\clean\\BanglaASR1_board_era2_150_clean.jpg",
+      "text": "Python Variables\n\nint (num) = 10\nnum = 10\nBox Value"
+    },
+    {
+      "era": 3,
+      "from": "3:40",
+      "to": "7:00",
+      "clear_fraction": 0.9907,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\annotation_demo\\all9_deeplab_shadow\\clean\\BanglaASR1_board_era3_340_clean.jpg",
+      "text": "| Python Variables |\n| --- |\n| Data Type: |\n| i) String — Fruit = 'Apple' |\n| ii) Integer — Age = 10 |\n| iii) Float — Float = 3.5 |\n| iv) Bool — True/False |\n| 'V' |"
+    },
+    {
+      "era": 4,
+      "from": "7:10",
+      "to": "9:50",
+      "clear_fraction": 0.9744,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\annotation_demo\\all9_deeplab_shadow\\clean\\BanglaASR1_board_era4_710_clean.jpg",
+      "text": "| Python Variables |\n|------------------|\n| Data Type:       |\n| Name X          |\n| Name            |\n| Iname = \"Rafi\"  |\n| Name1 = '1'     |"
+    },
+    {
+      "era": 5,
+      "from": "10:00",
+      "to": "10:50",
+      "clear_fraction": 0.9371,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\annotation_demo\\all9_deeplab_shadow\\clean\\BanglaASR1_board_era5_1000_clean.jpg",
+      "text": "| Python Variables |\n| --- |\n| Data Type: |\n| Name X |\n| Name √ |\n| lname = \"Rafi\" X |\n| name1=\"Rafi\" √ |\n| my_name = \"Rafi\" |\n| myNam |"
+    },
+    {
+      "era": 6,
+      "from": "11:20",
+      "to": "12:50",
+      "clear_fraction": 0.9907,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\annotation_demo\\all9_deeplab_shadow\\clean\\BanglaASR1_board_era6_1120_clean.jpg",
+      "text": "Python Variables\n\nData Type:\n\npi = 3.1414\nage = 10\nage = 10"
+    }
+  ]
+}

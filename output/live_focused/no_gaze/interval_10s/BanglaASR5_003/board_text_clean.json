@@ -1,0 +1,32 @@
+{
+  "lecture": "BanglaASR5_003",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "source": "clean",
+  "prompt": "This is a photograph of a classroom whiteboard during a university lecture.\n\nTranscribe everything written on the whiteboard, exactly as written.\n\n- Copy every number, name, identifier, date and symbol exactly. Do not round,\n  correct or reformat values.\n- Write tables as Markdown tables with the same rows and columns as the board.\n- Write code, SQL and program text inside ``` fences, keeping line breaks.\n- Write formulas as they appear. For a bar over a term write it as NOT(...),\n  for example NOT(A+B).\n- Keep diagrams short: name what they are and copy any labels on them, for\n  example \"Gate diagram: inputs A, B into a box labelled NAND, output NOT(AB)\".\n- If part of the board cannot be read, write [illegible]. Never guess, and never\n  add anything that is not written on the board.\n- Ignore any person in the picture. Describe only what is written.\n\nOutput only the transcription.",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:00",
+      "to": "6:00",
+      "clear_fraction": 1.0,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\annotation_demo\\all9_deeplab_shadow\\clean\\BanglaASR5_003_board_era1_000_clean.jpg",
+      "text": "```markdown\nLists, Tuple and Arrays\n\nfruit = [\"Apple\", \"Orange\", \"Mango\"]\nelements = [\"Apple\", 7, 3.14, True]\n\nprint(elements[0])\nprint(len(elements))\nelements[0] = \"Mango\"\nprint(elements[0])\n```"
+    },
+    {
+      "era": 2,
+      "from": "7:10",
+      "to": "10:40",
+      "clear_fraction": 1.0,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\annotation_demo\\all9_deeplab_shadow\\clean\\BanglaASR5_003_board_era2_710_clean.jpg",
+      "text": "```markdown\nLists, Tuple and Arrays\n\nelements=(\"Apple\", 7, 3.1416, True)\nelement_list=list(elements)\nelement_list[2]=5\nelements=tuple(element_list)\nprint(elements)\n```"
+    },
+    {
+      "era": 3,
+      "from": "11:00",
+      "to": "14:00",
+      "clear_fraction": 1.0,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\annotation_demo\\all9_deeplab_shadow\\clean\\BanglaASR5_003_board_era3_1100_clean.jpg",
+      "text": "```markdown\nLists, Tuple and Arrays\n\nimport numpy as np\n\nlist_1 = [7, 8, 9, 10]\n\nlist_1 = np.array([list_1])\n\nlist_2 = [\"Apple\", 07, True]\n```"
+    }
+  ]
+}

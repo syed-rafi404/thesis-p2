@@ -87,6 +87,37 @@ def load_vlm(model_id, max_pixels):
     return model.eval(), processor
 
 
+def trim_runaway(text, max_repeats=3):
+    """Collapse a decode loop into its first few lines.
+
+    Greedy decoding can fall into a repetition loop, the same failure that made
+    the Whisper safeguard necessary. Lecture 10's TTL board did it here: the
+    model read the board correctly, then tried to draw the diagram's diagonal
+    and emitted the same backslash line 512 times, 42,037 characters in all.
+
+    The repeated lines carry no board content, so this does not change any
+    recall score. It matters because the text is pasted into the notes prompt,
+    where 42,000 characters of one character would crowd out the lecture.
+
+    Only runs of the same line are collapsed, so a board that legitimately
+    repeats a line a few times survives intact. Returns the text and how many
+    lines were dropped, which the caller records.
+    """
+    lines = text.split("\n")
+    kept, removed, run, previous = [], 0, 0, None
+    for line in lines:
+        key = line.strip()
+        run = run + 1 if key and key == previous else 1
+        previous = key
+        if run <= max_repeats:
+            kept.append(line)
+        else:
+            removed += 1
+    if removed:
+        kept.append(f"[{removed} repeated lines removed: the model looped here]")
+    return "\n".join(kept).strip(), removed
+
+
 def read_board(model, processor, image, max_new_tokens):
     import torch
     messages = [{"role": "user", "content": [
@@ -98,8 +129,9 @@ def read_board(model, processor, image, max_new_tokens):
     with torch.no_grad():
         out = model.generate(**inputs, max_new_tokens=max_new_tokens, do_sample=False,
                              repetition_penalty=1.05)
-    return processor.decode(out[0][inputs["input_ids"].shape[1]:],
-                            skip_special_tokens=True).strip()
+    raw = processor.decode(out[0][inputs["input_ids"].shape[1]:],
+                           skip_special_tokens=True).strip()
+    return trim_runaway(raw)
 
 
 def clean_era_images(run_dir):
@@ -183,13 +215,16 @@ def main():
             continue
         boards, md = [], [f"# Board transcription ({args.source})", ""]
         for era, path in jobs:
-            text = read_board(model, processor, Image.open(path).convert("RGB"),
-                              args.max_new_tokens)
+            text, looped = read_board(model, processor,
+                                      Image.open(path).convert("RGB"),
+                                      args.max_new_tokens)
             boards.append({"era": era["era"], "from": era["from"], "to": era["to"],
                            "clear_fraction": era.get("clear_fraction"),
-                           "image": str(path), "text": text})
+                           "image": str(path), "text": text,
+                           "runaway_lines_removed": looped})
             md += [f"## Board {era['from']}-{era['to']}", "", text, ""]
-            print(f"{run_dir.name:<18} era {era['era']}: {len(text)} chars")
+            note = f"   [looped: {looped} repeated lines removed]" if looped else ""
+            print(f"{run_dir.name:<18} era {era['era']}: {len(text)} chars{note}")
 
         payload = {"lecture": run_dir.name, "model": args.model, "source": args.source,
                    "prompt": PROMPT, "boards": boards}
