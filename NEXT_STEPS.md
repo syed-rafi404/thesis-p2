@@ -172,6 +172,19 @@ with `check_new_data.py`, fixes it and pushes it.
 If fusion was shown as a success in P2 (report or poster), prepare one sentence: "re-analysis showed
 the earlier fusion claim did not hold; the measured effect is +0.7 points, not significant."
 
+**Q&A list, filled in as things come up (the user asked on 2026-09-23 to keep these for after the
+draft, not to discuss them while working). Claude adds a line here whenever an answerable question
+appears; we go through the whole list together at Q&A prep.**
+
+| Likely question | The honest answer |
+|---|---|
+| How was the ground truth made? | Human transcribers checked every word against the audio, about 1 h of work per 10 min of video. (A speech-to-text tool typed a first draft; the user decided the thesis says only "human". Measured: the references are ~69% CER away from off-the-shelf Whisper output, so no machine draft survived - `F:\thesisP2\ft_work_checkA`.) |
+| Who draws the boxes on the board - the VLM? | Our own code finds the boxes (dark-pixel grouping, frame stripped, specks dropped) and draws them on unmodified board pixels. The VLM only names and transcribes each numbered box (Set-of-Mark). `--boxes vlm` exists but is untested. |
+| Is the box finding evaluated? | No. No layout ground truth exists. It works well on sparse boards, coarse on dense ones. Say so. |
+| How were the hyperparameters chosen? | A plan committed before any run (`data/splits/tuning_plan.md`), scored on three validation lectures fixed beforehand, test set never touched; RESULTS.md 1.7. |
+| Did anything fail in the tuning? | Yes, and it is reported: LoRA rank 32 diverged at the chosen learning rate, adapting all four attention projections was no better than off-the-shelf, and the validation-loss minimum (epoch 4) scored worse than 8 epochs. |
+| Why is the final result better than the leave-one-speaker-out number? | Different, easier design: the final split holds out whole lectures from lecturers who are also in training. The unseen-lecturer number (RESULTS.md 1.5) is the harder one and stays in the thesis. |
+
 ---
 
 ## THE GOAL: what the finished thesis does (your words, 2026-09-22)
