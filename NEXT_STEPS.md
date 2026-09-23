@@ -51,6 +51,16 @@ If you are lost, start here. Updated 2026-09-23 (on the 3060).
    - **c. Video 44 and the demo** (~20 m): 44's boards and transcript arrive from the 3060 tonight,
      so `run_lecture.py --steps boxes notes` in both languages; then rebuild the demo lecture's
      notes on its new transcript. Push.
+**5090 status, end of 2026-09-23 (nothing left half-done).** All of today's 5090 work is pushed.
+Finished: the Banglish notes for all 30 demonstration lectures (6-9, 18-43), the English notes for
+all 30 by the `english_via_banglish` route, BanglaASR18 rebuilt after the 3060's board-text repair,
+and the Banglish section labels mapped out of all 43 English pages. **The demo lecture is
+BanglaASR29** (7 boards, all fully clear, 20 named boxes, the longest transcript in 29-43); its
+English page was built first and alone so it is complete whatever else happens. The 32B comparison
+was dropped on the user's instruction and was never run. Two things are counted in the notes JSON
+and not yet acted on: 37 quotes dropped as untranslatable across the 43 English pages, and 10
+references to a box that does not exist, 7 of them in BanglaASR9.
+
 3. **The user:** the board completeness check,
    `F:\thesisP2\thesisP2\output\lectures\board_completeness_check.html` (98 boards, 30-40 min).
    Paste the "Copy my results" text to Claude; it goes to `data/board_completeness_<date>.json`
