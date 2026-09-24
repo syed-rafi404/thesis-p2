@@ -392,9 +392,105 @@ def asr_detail_figures():
                                                 for n in order))
 
 
+# ---------------------------------------------------------------------------
+# Reading the board: what actually moves the number
+# ---------------------------------------------------------------------------
+
+BOARD_CACHE = REPO / "data" / "figure_inputs_board.json"
+
+
+def vision_figures():
+    """Two figures: what changes board reading, and the user's hand-check of 98 boards.
+
+    Every percentage is re-scored from the board readings in this repo against the hand-verified
+    answer keys (the cache is written by the scoring runs, not typed).
+    """
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    cache = json.loads(BOARD_CACHE.read_text(encoding="utf-8"))
+
+    def pair(label):
+        """Recall of each side, summed over the lectures in that comparison."""
+        r = cache[label]["result"]
+        out = []
+        for side in ("baseline_results", "full_results"):
+            found = sum(v["found"] for v in r[side].values())
+            items = sum(v["items"] for v in r[side].values())
+            out.append(100 * found / items)
+        return out[0], out[1]
+
+    # 1. the three things we changed, on the same 35 boards of lectures 1-9
+    kw, full = pair("lectures1-9 keyword vs transcription")
+    _, mosaic = pair("lectures1-9 frame vs mosaic")
+    _, clean = pair("lectures1-9 mosaic vs clean")
+    _, small = pair("lectures1-9 7B vs 3B")
+
+    fig, axes = plt.subplots(1, 3, figsize=(12.5, 4.4), gridspec_kw={"width_ratios": [1.1, 1, 1.25]})
+    panels = [
+        ("The prompt", ["Ask for\nkeywords", "Ask for the\nwhole board"], [kw, full],
+         [BAD_C, GOOD_C], f"+{full - kw:.1f} points"),
+        ("The model", ["Qwen2.5-VL\n3B", "Qwen2.5-VL\n7B"], [small, full],
+         ["#9aa5b1", GOOD_C], f"+{full - small:.1f} points"),
+        ("The image", ["Raw video\nframe", "Reconstructed\nboard", "Cleaned\nboard"],
+         [full, mosaic, clean], ["#9aa5b1", GOOD_C, "#f77f00"], f"+{mosaic - full:.1f} points"),
+    ]
+    for ax, (title, labels, vals, cols, delta) in zip(axes, panels):
+        ax.bar(range(len(vals)), vals, color=cols, width=0.6, edgecolor="white")
+        for x, v in enumerate(vals):
+            ax.text(x, v + 1.5, f"{v:.1f}%", ha="center", fontsize=10, fontweight="bold", color=INK)
+        ax.set_xticks(range(len(labels)))
+        ax.set_xticklabels(labels, fontsize=9)
+        ax.set_ylim(0, 108)
+        ax.set_title(f"{title}   ({delta})", fontsize=11, fontweight="bold", color=INK)
+        ax.spines[["top", "right"]].set_visible(False)
+        ax.grid(axis="y", alpha=0.25, linewidth=0.6)
+        ax.set_axisbelow(True)
+    axes[0].set_ylabel("Board items the model read (%)")
+    fig.suptitle("Reading the whiteboard: 35 boards of lectures 1-9, 349 hand-verified items",
+                 fontsize=12, fontweight="bold", color=INK)
+    fig.text(0.5, -0.01, f"One change at a time, same boards, same answer keys. What you ask for is "
+             f"worth {(full - kw) / (full - small):.0f}x the model size and "
+             f"{(full - kw) / (mosaic - full):.0f}x the image processing. The cleaned board, which "
+             f"looks best to a person, reads slightly worse than the reconstruction it came from.",
+             ha="center", va="top", fontsize=9, color="#52606d")
+    fig.tight_layout(rect=(0, 0.03, 1, 0.93))
+    for ext in ("png", "pdf"):
+        fig.savefig(OUT / f"fig_board_reading.{ext}", dpi=300, bbox_inches="tight")
+    plt.close(fig)
+
+    # 2. the human check of the newer lectures' boards
+    check = json.loads((REPO / "data" / "board_completeness_2026-09-23.json").read_text(encoding="utf-8"))
+    kinds = check["missing_by_kind"]
+    sizes = [check["complete"], kinds.get("content", 0), kinds.get("erase_frame", 0),
+             kinds.get("blurred", 0)]
+    labels = [f"Complete\n{sizes[0]} boards", f"Writing lost\n{sizes[1]}",
+              f"Era cut mid-wipe\n{sizes[2]}", f"Camera out of focus\n{sizes[3]}"]
+    fig, ax = plt.subplots(figsize=(7.4, 5.2))
+    wedges, _ = ax.pie(sizes, colors=[GOOD_C, BAD_C, "#f77f00", "#9aa5b1"], startangle=90,
+                       wedgeprops={"edgecolor": "white", "linewidth": 2})
+    ax.legend(wedges, labels, loc="center left", bbox_to_anchor=(0.98, 0.5), frameon=False, fontsize=9.5)
+    ax.set_title(f"Do the reconstructed boards keep everything?\n"
+                 f"{check['boards_answered']} boards checked by hand, {check['complete_percent']}% complete",
+                 fontsize=11.5, fontweight="bold", color=INK)
+    fig.text(0.5, 0.02, "Only the red slice is the reconstruction's fault: the orange boards were "
+             "captured while the lecturer was wiping,\nand the grey ones were out of focus in every "
+             "frame of the source video.", ha="center", fontsize=8.8, color="#52606d")
+    fig.tight_layout(rect=(0, 0.06, 1, 1))
+    for ext in ("png", "pdf"):
+        fig.savefig(OUT / f"fig_board_completeness.{ext}", dpi=300, bbox_inches="tight")
+    plt.close(fig)
+
+    print("vision figures written")
+    print(f"  prompt {kw:.1f} -> {full:.1f} | 3B {small:.1f} | mosaic {mosaic:.1f} | clean {clean:.1f}")
+    print(f"  completeness {check['complete']}/{check['boards_answered']} "
+          f"({check['complete_percent']}%), content losses {kinds.get('content')}")
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--set", default="all", choices=("all", "asr", "dataset", "asr-detail"))
+    ap.add_argument("--set", default="all", choices=("all", "asr", "dataset", "asr-detail", "vision"))
     ap.add_argument("--no-diverged", action="store_true", help="leave the collapsed seed out")
     args = ap.parse_args()
     OUT.mkdir(parents=True, exist_ok=True)
@@ -404,9 +500,12 @@ def main():
         dataset_figures()
     if args.set in ("all", "asr-detail"):
         asr_detail_figures()
+    if args.set in ("all", "vision"):
+        vision_figures()
     return 0
 
 
 if __name__ == "__main__":
     sys.exit(main())
+
 
