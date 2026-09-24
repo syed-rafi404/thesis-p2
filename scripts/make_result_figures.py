@@ -488,9 +488,87 @@ def vision_figures():
           f"({check['complete_percent']}%), content losses {kinds.get('content')}")
 
 
+def notes_figures():
+    """The notes: how much of the board reaches them, by route, and the 2x2 on the transcript.
+
+    Scored here from the notes in git, so the figure and RESULTS 5.4 cannot drift apart.
+    """
+    import subprocess
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    recall = REPO / "output" / "board_recall.json"
+    gt = ["--gt", "data/board_truth", "data/board_truth/draft_lectures1to6"]
+
+    def score(a, b):
+        """Recall of both files over the 35 boards, plus how the boards split."""
+        subprocess.run([r"C:\Users\Rafi\miniconda3\envs\pyenv\python.exe",
+                        str(REPO / "scripts" / "score_board_recall.py"), *gt, "--compare-names", a, b],
+                       cwd=REPO, capture_output=True, text=True, errors="replace")
+        r = json.loads(recall.read_text(encoding="utf-8"))
+        vals = []
+        for side in ("baseline_results", "full_results"):
+            vals.append(100 * sum(v["found"] for v in r[side].values())
+                        / sum(v["items"] for v in r[side].values()))
+        return vals[0], vals[1], r
+
+    original, banglish, _ = score("final_lecture_notes.md", "notes_annotated_banglish_7b.md")
+    _, english, _ = score("final_lecture_notes.md", "notes_annotated_english_via_banglish_7b.md")
+    _, english_direct, _ = score("final_lecture_notes.md", "notes_annotated_english_7b.md")
+    base_bt, ft_bt, r1 = score("notes_annotated_banglish_base.md", "notes_annotated_banglish_7b.md")
+    base_nb, ft_nb, r2 = score("notes_annotated_banglish_base_noboard.md", "notes_annotated_banglish_noboard.md")
+    subprocess.run(["git", "-c", "safe.directory=F:/thesisP2/thesisP2", "checkout", "--",
+                    "output/board_recall.json"], cwd=REPO)
+
+    fig, axes = plt.subplots(1, 2, figsize=(12, 4.6), gridspec_kw={"width_ratios": [1.15, 1]})
+    names = ["Original\npipeline", "English\nwritten\ndirectly", "Banglish", "English\ntranslated\nfrom it"]
+    vals = [original, english_direct, banglish, english]
+    cols = [BASE_C, "#f77f00", GOOD_C, GOOD_C]
+    axes[0].bar(range(4), vals, color=cols, width=0.62, edgecolor="white")
+    for x, v in enumerate(vals):
+        axes[0].text(x, v + 1.5, f"{v:.1f}%", ha="center", fontsize=10, fontweight="bold", color=INK)
+    axes[0].set_xticks(range(4))
+    axes[0].set_xticklabels(names, fontsize=9)
+    axes[0].set_ylim(0, 105)
+    axes[0].set_ylabel("Board items reaching the notes (%)")
+    axes[0].set_title("What the notes carry, by route", fontsize=11.5, fontweight="bold", color=INK)
+
+    w = 0.36
+    axes[1].bar([0 - w / 2, 1 - w / 2], [ft_bt, ft_nb], w, color=GOOD_C, label="Fine-tuned ASR",
+                edgecolor="white")
+    axes[1].bar([0 + w / 2, 1 + w / 2], [base_bt, base_nb], w, color=BASE_C,
+                label="Off-the-shelf ASR", edgecolor="white")
+    for x, v in ((0 - w / 2, ft_bt), (1 - w / 2, ft_nb), (0 + w / 2, base_bt), (1 + w / 2, base_nb)):
+        axes[1].text(x, v + 1.5, f"{v:.0f}%", ha="center", fontsize=9.5, color=INK)
+    axes[1].set_xticks([0, 1])
+    axes[1].set_xticklabels(["With the VLM's\nboard text", "Without it"], fontsize=9.5)
+    axes[1].set_ylim(0, 105)
+    axes[1].set_title("Does a better transcript help? No (p = 1.0 both ways)",
+                      fontsize=11.5, fontweight="bold", color=INK)
+    axes[1].legend(frameon=False, fontsize=9)
+    for ax in axes:
+        ax.spines[["top", "right"]].set_visible(False)
+        ax.grid(axis="y", alpha=0.25, linewidth=0.6)
+        ax.set_axisbelow(True)
+    fig.text(0.5, -0.02, "35 boards, 349 hand-verified items. Right: by board the split is 7 better "
+             "/ 6 worse with board text and 10 / 9 without, so the item totals overstate it. Board "
+             "recall cannot see whether the surrounding explanation is right - only people can.",
+             ha="center", va="top", fontsize=8.8, color="#52606d")
+    fig.tight_layout(rect=(0, 0.04, 1, 1))
+    for ext in ("png", "pdf"):
+        fig.savefig(OUT / f"fig_notes_recall.{ext}", dpi=300, bbox_inches="tight")
+    plt.close(fig)
+    print("notes figure written")
+    print(f"  original {original:.1f} | banglish {banglish:.1f} | english via {english:.1f} "
+          f"| english direct {english_direct:.1f}")
+    print(f"  2x2: ft {ft_bt:.1f}/{ft_nb:.1f}, base {base_bt:.1f}/{base_nb:.1f}")
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--set", default="all", choices=("all", "asr", "dataset", "asr-detail", "vision"))
+    ap.add_argument("--set", default="all",
+                    choices=("all", "asr", "dataset", "asr-detail", "vision", "notes"))
     ap.add_argument("--no-diverged", action="store_true", help="leave the collapsed seed out")
     args = ap.parse_args()
     OUT.mkdir(parents=True, exist_ok=True)
@@ -502,10 +580,13 @@ def main():
         asr_detail_figures()
     if args.set in ("all", "vision"):
         vision_figures()
+    if args.set in ("all", "notes"):
+        notes_figures()
     return 0
 
 
 if __name__ == "__main__":
     sys.exit(main())
+
 
 

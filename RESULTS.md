@@ -1356,6 +1356,16 @@ end on filler of the form "understanding X is essential for designing more compl
 three different boards of BanglaASR6 each restate what an AND gate does. They are true but carry
 little information, which is a readability point the recall metric cannot see.
 
+**What this null result does and does not say.** It says the fine-tuned transcript changes almost
+nothing that *board-content recall* can see, and that metric only asks whether facts written on the
+board reach the notes. It does **not** say the transcript is irrelevant to note quality: the metric
+is blind by construction to whether the explanation around those facts is correct, readable or even
+in the right language. The transcripts differ enormously as transcripts - CER 67.7% against 15.8%
+(1.8) - and an English page built from a 67% error transcript will contain sentences that are simply
+wrong. Nothing here measures that. **Testing it properly needs people**, which is the survey in
+NEXT_STEPS: the same lecture's notes from the two transcripts, side by side, "which would you
+rather study from". Until that exists, the defensible claim is the narrow one above.
+
 **One defect found and fixed.** The model wrote the heading four different ways - `Background`,
 `Background (not said in the lecture)`, `Extra jana kotha`, `Extra jana kotha (lecture e bola hoy
 ni)` - and **11 of the 21 boxes in the first rebuild used a bare heading with no disclaimer**. The
