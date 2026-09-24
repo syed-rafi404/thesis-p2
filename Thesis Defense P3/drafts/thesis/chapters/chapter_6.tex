@@ -1,53 +1,40 @@
 % ============================================================================
 % CHAPTER 5 - RESULT ANALYSIS   (template file chapter_6.tex)
-% Rubric mapping: CO6 (10 marks, 5 panel + 5 supervisor) is assessed from
-% 5.1, 5.2, 5.3, 5.4, 5.5 and 5.6. CO7 (5 marks) is assessed from 5.3.
-%
-% EVERY number in this chapter comes from RESULTS.md in the project repository,
-% where each one has the command that regenerates it.
+% Rubric: CO6 (10 marks) from 5.1-5.6; CO7 (5 marks) from 5.3.
+% Every number here comes from RESULTS.md in the project repository, where each
+% one has the command that regenerates it.
 % ============================================================================
 
 \section{Performance Evaluation}
 
-\subsection{What was measured, and the headline figures}
-
-Each stage of the pipeline is evaluated on its own, because a single end-to-end
-number would hide which part works. Table \ref{tab:headline} collects the main
-results, and the rest of this section takes them one at a time.
+Each stage of the pipeline is evaluated on its own, because a single end-to-end number
+would hide which part works. Table \ref{tab:headline} collects the main results and the
+sections below give the conditions and the caveats for each.
 
 \begin{table}[H]
 \centering
-\caption{The main results, one per stage. Each row has its own section below,
-where the conditions and the caveats are stated.}
+\caption{The main results, one per stage.}
 \label{tab:headline}
 \small
-\begin{tabular}{p{4.0cm}p{4.4cm}p{5.0cm}}
+\begin{tabular}{p{3.8cm}p{4.4cm}p{5.0cm}}
 \toprule
-\textbf{Stage} & \textbf{Measure} & \textbf{Result} \\
+Stage & Measure & Result \\
 \midrule
-Speech, six unseen lectures &
-Median per-clip character error rate &
-\textbf{67.7\% to 15.8\%} and 16.0\% in two seeds \\
+Speech, six unseen lectures & Median per-clip character error rate &
+67.7\% to 15.8\% and 16.0\% in two seeds \\
 \addlinespace
-Speech, unseen lecturer &
-Median per-clip character error rate &
+Speech, unseen lecturer & Median per-clip character error rate &
 72.8\% to 50.3\%, all six runs significant \\
 \addlinespace
-Board reconstruction &
-Tiles finding a clear view, 35 boards &
-median 97.7\% \\
+Board reconstruction & Tiles finding a clear view, 35 boards & median 97.7\% \\
 \addlinespace
-Board reconstruction &
-Human check, 98 boards &
+Board reconstruction & Human check, 98 boards &
 82 complete, 9 with writing genuinely lost \\
 \addlinespace
-Board reading &
-Recall of 349 hand-verified items &
-\textbf{31.2\% to 88.8\%} by changing the prompt \\
+Board reading & Recall of 349 hand-verified items &
+31.2\% to 88.8\% by changing the prompt \\
 \addlinespace
-Generated notes &
-Recall of 349 hand-verified items &
-\textbf{37.2\% to 89.1\%} \\
+Generated notes & Recall of 349 hand-verified items & 37.2\% to 89.1\% \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -55,207 +42,148 @@ Recall of 349 hand-verified items &
 \subsection{Speech recognition: the final result}
 \label{sec:asr-result}
 
-The corpus was closed at 28 transcripts and 5.15 hours. Whole lectures were held
-out at random, 20 per cent of each lecturer's minutes with the seed fixed at zero,
-giving 22 training lectures totalling 4.10 hours and six test lectures totalling
-1.05 hours and 177 clips. The three validation lectures used for tuning were locked
-out of the test set. Table \ref{tab:asrfinal} gives the result.
+The corpus was closed at 28 transcripts and 5.15 hours. Whole lectures were held out at
+random, 20 per cent of each lecturer's minutes with the seed fixed at zero, giving 22
+training lectures totalling 4.10 hours and six test lectures totalling 1.05 hours and 177
+clips. The three validation lectures used for tuning were locked out of the test set.
 
 \begin{table}[H]
 \centering
-\caption{Median per-clip error on the 177 test clips, off-the-shelf against
-fine-tuned. Greedy decoding throughout. The last row is the same configuration as
-the row above it with a different random seed.}
+\caption{Median per-clip error on the 177 test clips, off-the-shelf against fine-tuned,
+greedy decoding throughout. The last row is the row above it with a different random
+seed.}
 \label{tab:asrfinal}
 \small
-\begin{tabular}{p{2.6cm}p{1.2cm}p{1.4cm}p{1.4cm}p{2.0cm}p{1.8cm}p{1.8cm}}
+\begin{tabular}{p{2.8cm}p{1.2cm}p{1.6cm}p{1.6cm}p{2.0cm}p{1.8cm}p{1.8cm}}
 \toprule
-\textbf{Learning rate} & \textbf{Seed} & \textbf{CER} & \textbf{WER} &
-\textbf{Runaway clips} & \textbf{Better of 177} & \textbf{Wilcoxon} \\
+Learning rate & Seed & CER & WER & Runaway clips & Better of 177 & Wilcoxon \\
 \midrule
 off-the-shelf & -- & 67.7\% & 93.9\% & 13 & -- & -- \\
-\textbf{1e-3} & \textbf{42} & \textbf{15.8\%} & \textbf{42.5\%} & 1 & 164 &
-p $<$ 1e-30 \\
-\textbf{1e-3} & \textbf{1} & \textbf{16.0\%} & \textbf{41.7\%} & 1 & 167 &
-p $<$ 1e-30 \\
+1e-3 & 42 & 15.8\% & 42.5\% & 1 & 164 & p $<$ 1e-30 \\
+1e-3 & 1 & 16.0\% & 41.7\% & 1 & 167 & p $<$ 1e-30 \\
 2e-3 (the tuned choice) & 1 & 16.2\% & 41.7\% & 2 & 168 & p $<$ 1e-30 \\
-2e-3 (the tuned choice) & 42 & \textbf{118.7\%} & 189.8\% & \textbf{82} & 35 &
-worse \\
+2e-3 (the tuned choice) & 42 & 118.7\% & 189.8\% & 82 & 35 & worse \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-The headline is that the character error rate falls from 67.7 per cent to 15.8 and
-16.0 per cent, and the word error rate from 93.9 per cent to 42.5 and 41.7 per
-cent. Two seeds agree to within 0.2 points, and the fine-tuned model is better on
-164 and 167 of the 177 clips. About three quarters of the character error is
-removed.
+The character error rate falls from 67.7 per cent to 15.8 and 16.0 per cent and the word
+error rate from 93.9 per cent to 42.5 and 41.7 per cent. Two seeds agree to within 0.2
+points and the fine-tuned model is better on 164 and 167 of the 177 clips, so about three
+quarters of the character error is removed. Figure \ref{fig:fig-asr-final} shows the
+comparison and Figure \ref{fig:fig-asr-clip-scatter} shows it clip by clip.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.9\textwidth]{fig-asr-final}
-\caption{The final speech result. Median per-clip error before and after
-fine-tuning, for both stable seeds, with the diverged seed shown beside them
-rather than left out.}
+\includegraphics[width=0.72\textwidth]{fig-asr-final}
+\caption{The final speech result. Median per-clip error before and after fine-tuning for
+both stable seeds, with the diverged seed shown beside them rather than left out.}
 \label{fig:fig-asr-final}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.9\textwidth]{fig-asr-distribution}
-\caption{The distribution of per-clip character error rate over the 177 test
-clips, before and after fine-tuning. The shift is of the whole distribution, not
-of a few easy clips.}
-\label{fig:fig-asr-distribution}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.9\textwidth]{fig-asr-clip-scatter}
-\caption{Each point is one test clip, with its error before fine-tuning on one
-axis and after on the other. Points below the diagonal improved. The clips at the
-extreme right are the ones where the off-the-shelf model fell into a repetition
-loop.}
+\includegraphics[width=0.72\textwidth]{fig-asr-clip-scatter}
+\caption{Each point is one test clip, with its error before fine-tuning on one axis and
+after on the other. Points below the diagonal improved. The points at the extreme right
+are clips where the off-the-shelf model fell into a repetition loop.}
 \label{fig:fig-asr-clip-scatter}
 \end{figure}
 
-\textbf{The instability, which has to be reported with the result.} At 2e-3, which
-is the learning rate the pre-registered procedure chose on the validation
-lectures, one of the two seeds collapsed. It produced runaway output on 82 of the
-177 clips and a character error rate of 118.7 per cent, which is worse than doing
-nothing at all. The data, the split and every other setting were identical to the
-seed that reached 16.2 per cent. The 16.2 per cent figure is therefore never quoted
-in this thesis without its failed twin.
+The instability in the last row of Table \ref{tab:asrfinal} has to be reported with the
+result. At 2e-3, the learning rate the pre-registered procedure chose on the validation
+lectures, one of the two seeds collapsed: 82 of the 177 clips produced runaway output and
+the character error rate reached 118.7 per cent, which is worse than doing nothing. The
+data, the split and every other setting were identical to the seed that reached 16.2 per
+cent, so the 16.2 per cent figure is never quoted in this thesis without its failed twin.
+The same configuration has shown this fragility before, since LoRA rank 32 and all four
+attention projections both diverged during tuning.
 
-This is not the first time this configuration has shown the same fragility. LoRA
-rank 32 diverged and adapting all four attention projections diverged, in both the
-rehearsal and the full tuning run, which is reported in the next section.
-
-\textbf{A disclosure about the 1e-3 rows.} The pre-registered procedure selected
-2e-3. The runs at 1e-3 were launched after the divergence at 2e-3 had been seen, so
-that choice was not blind, and the thesis says so rather than presenting 1e-3 as
-the pre-registered winner. What can be claimed honestly is narrower and is still
-worth claiming. The runner-up rate from the same tuning table is stable across two
-seeds on the test set and its two seeds agree to 0.2 points, while the chosen rate
-is not stable. The selection rule itself was not changed and remains recorded in
-the committed tuning plan.
+The 1e-3 rows also require a disclosure. The pre-registered procedure selected 2e-3, and
+the runs at 1e-3 were launched after the divergence had been seen, so that choice was not
+blind and 1e-3 is not presented as the pre-registered winner. What can be claimed is
+narrower: the runner-up rate from the same tuning table is stable across two seeds on the
+test set while the chosen rate is not. The selection rule itself was not changed and
+remains recorded in the committed tuning plan.
 
 \subsection{How the training settings were chosen}
 \label{sec:asr-tuning}
 
-The tuning procedure of Section 4.4.2 was run on the full corpus, scored only on
-the three validation lectures, and never on the test lectures. Off-the-shelf
-Whisper on those validation clips gives a character error rate of 73.8 per cent and
-a word error rate of 97.6 per cent. Table \ref{tab:tuning} is the result.
+The tuning procedure was run on the full corpus, scored only on the three validation
+lectures and never on the test lectures. Off-the-shelf Whisper on those validation clips
+gives a character error rate of 73.8 per cent and a word error rate of 97.6 per cent.
 
 \begin{table}[H]
 \centering
-\caption{Pre-registered hyperparameter tuning on the full corpus, scored on the
-three validation lectures. Each stage starts from the winner of the previous one.
-The rows marked as diverged produced output worse than the off-the-shelf model.}
+\caption{Pre-registered hyperparameter tuning on the full corpus, scored on the three
+validation lectures. Each stage starts from the winner of the previous one. The rows
+marked diverged produced output worse than the off-the-shelf model.}
 \label{tab:tuning}
 \small
-\begin{tabular}{p{2.9cm}p{2.3cm}p{1.1cm}p{1.0cm}p{1.4cm}p{1.1cm}p{1.2cm}p{1.2cm}}
+\begin{tabular}{p{2.8cm}p{2.6cm}p{1.1cm}p{1.0cm}p{1.4cm}p{1.1cm}p{1.2cm}p{1.2cm}}
 \toprule
-\textbf{Stage} & \textbf{Run} & \textbf{lr} & \textbf{rank} & \textbf{layers} &
-\textbf{epochs} & \textbf{val CER} & \textbf{val WER} \\
+Stage & Run & lr & rank & layers & epochs & val CER & val WER \\
 \midrule
-1 learning rate & lr 5e-4 & 5e-4 & 16 & q,v & 8 & 37.9\% & 60.0\% \\
-1 learning rate & lr 1e-3 (default) & 1e-3 & 16 & q,v & 8 & 42.2\% & 61.9\% \\
-1 learning rate & \textbf{lr 2e-3} & 2e-3 & 16 & q,v & 8 & \textbf{33.6\%} &
-\textbf{54.5\%} \\
+1 learning rate & 5e-4 & 5e-4 & 16 & q,v & 8 & 37.9\% & 60.0\% \\
+1 learning rate & 1e-3 (default) & 1e-3 & 16 & q,v & 8 & 42.2\% & 61.9\% \\
+1 learning rate & 2e-3 & 2e-3 & 16 & q,v & 8 & 33.6\% & 54.5\% \\
 2 LoRA rank & rank 8 & 2e-3 & 8 & q,v & 8 & 40.1\% & 64.1\% \\
-2 LoRA rank & rank 32 & 2e-3 & 32 & q,v & 8 & \textbf{126.6\% diverged} &
-200.0\% \\
-3 adapted layers & all four projections & 2e-3 & 16 & q,k,v,o & 8 &
-\textbf{134.7\% diverged} & 174.4\% \\
+2 LoRA rank & rank 32 & 2e-3 & 32 & q,v & 8 & 126.6\% diverged & 200.0\% \\
+3 adapted layers & four projections & 2e-3 & 16 & q,k,v,o & 8 & 134.7\% diverged &
+174.4\% \\
 4 epochs & 5 epochs & 2e-3 & 16 & q,v & 5 & 39.4\% & 59.6\% \\
 5 stability & seed 1 & 2e-3 & 16 & q,v & 8 & 39.1\% & 59.6\% \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-The procedure chose a learning rate of 2e-3, rank 16, the query and value
-projections and 8 epochs. That configuration is 8.6 character error points better
-than the starting point, and the acceptance rule required it to beat the default by
-more than the spread between two seeds, which here is 5.4 points.
+The procedure chose a learning rate of 2e-3 with rank 16, the query and value projections
+and 8 epochs. That configuration is 8.6 character error points better than the starting
+point, and the acceptance rule required it to beat the default by more than the 5.4 point
+spread between two seeds.
 
-Three findings come out of this table, and none of them is flattering.
+Three findings follow from this table. More adapter capacity hurts at this learning rate,
+since rank 32 diverged outright and adapting all four attention projections diverged as
+well, so five hours of speech does not support more trainable parameters. Validation loss
+is a poor guide to the metric that is reported: the loss is lowest at 5 epochs, at 1.666
+against 1.801 at 8 epochs, so stage 4 retrained there and the character error rate got
+worse, from 33.6 to 39.4 per cent. And the margin is not large next to seed noise, at 8.6
+points ahead of the default with a 5.4 point spread from a single seed change, measured on
+34 minutes of validation speech. It passes the rule written in advance while remaining a
+modest effect, which is consistent with the divergence that the same configuration later
+showed on the test set.
 
-\textbf{More adapter capacity hurts at this learning rate.} Rank 32 diverged
-outright, and adapting all four attention projections diverged as well. More
-trainable parameters are not better here. Five hours of speech does not support
-them.
-
-\textbf{Validation loss is a poor guide to the metric that is reported.} The
-validation loss is lowest at 5 epochs, at 1.666 against 1.801 at 8 epochs, so stage
-4 retrained there. The character error rate got worse, from 33.6 to 39.4 per cent.
-The lesson, which is worth stating because it is a common mistake, is to select on
-the metric that will be reported rather than on the loss.
-
-\textbf{The margin is not large next to seed noise.} The winner is 8.6 points ahead
-of the default with a 5.4 point spread from a single seed change, measured on 34
-minutes of validation speech. It passes the rule that was written down in advance,
-and it is still a modest effect. The outcome on the test set, where that same
-configuration diverged on one seed, is consistent with a genuinely noisy region of
-the setting space rather than with a clear winner.
-
-A rehearsal of the same procedure had been run earlier on 2.69 hours of transcript,
-while transcription was still going on, to check that the machinery worked. It
-chose the same learning rate, and it produced the same two divergences at rank 32
-and at four projections. Its full table is in the project record.
-
-\subsection{Decoding, and the loop safeguard}
-\label{sec:asr-safeguard}
+A rehearsal of the procedure had been run earlier on 2.69 hours of transcript to check
+that the machinery worked. It chose the same learning rate and produced the same two
+divergences.
 
 An earlier result in this project, on a smaller model, only beat its baseline when
-Whisper's compression-ratio loop safeguard was switched on. The obvious challenge to
-the present result is therefore that the safeguard is doing the work. It is not.
-Table \ref{tab:safeguard} rescored both final models with the safeguard on.
+Whisper's compression-ratio loop safeguard was switched on, so the obvious challenge to
+the present result is that the safeguard is doing the work. Rescoring both final models
+with the safeguard gives 15.8 per cent for seed 42 and 16.0 per cent for seed 1, identical
+to the greedy figures to the first decimal, because the fine-tuned model loops on one clip
+in 177 and the safeguard has nothing to rescue. Off-the-shelf Whisper loops on thirteen.
+All figures reported in this thesis are the plain greedy ones.
 
-\begin{table}[H]
-\centering
-\caption{The final model scored with plain greedy decoding and with Whisper's loop
-safeguard. The safeguard is applied identically to both models and reads only the
-hypothesis.}
-\label{tab:safeguard}
-\small
-\begin{tabular}{p{2.0cm}p{2.6cm}p{3.4cm}p{4.4cm}}
-\toprule
-\textbf{Seed} & \textbf{Greedy CER} & \textbf{With the safeguard} &
-\textbf{Runaway clips, greedy} \\
-\midrule
-42 & 15.8\% & 15.8\% & 1 of 177 \\
-1 & 16.0\% & 16.0\% & 1 of 177 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-The two are identical to the first decimal place, because the fine-tuned model loops
-on one clip in 177 and the safeguard has nothing to rescue. Off-the-shelf Whisper
-loops on thirteen. All figures reported in this thesis are the plain greedy ones.
-
-\subsection{Where the gain is uneven}
-\label{sec:asr-perlecture}
+\subsection{Where the speech gain is uneven, and whether it is only spelling}
+\label{sec:asr-spelling}
 
 The improvement is not evenly spread, and the pattern follows the training data.
-Table \ref{tab:perlecture} breaks the result down by test lecture.
 
 \begin{table}[H]
 \centering
-\caption{Median character error rate per test lecture, seed 42, with the amount of
-that lecturer's speech in the training set.}
+\caption{Median character error rate per test lecture, seed 42, with the amount of that
+lecturer's speech in the training set.}
 \label{tab:perlecture}
 \small
-\begin{tabular}{p{2.8cm}p{2.0cm}p{1.4cm}p{2.4cm}p{2.0cm}p{2.6cm}}
+\begin{tabular}{p{2.8cm}p{1.8cm}p{1.4cm}p{2.4cm}p{2.0cm}p{2.6cm}}
 \toprule
-\textbf{Test lecture} & \textbf{Lecturer} & \textbf{Clips} &
-\textbf{Off-the-shelf} & \textbf{Fine-tuned} &
-\textbf{That lecturer in training} \\
+Test lecture & Lecturer & Clips & Off-the-shelf & Fine-tuned &
+That lecturer in training \\
 \midrule
 BanglaASR8 & A & 14 & 68\% & 15\% & 1.2 h \\
 BanglaASR9 & A & 41 & 67\% & 12\% & 1.2 h \\
-\textbf{BanglaASR11} & \textbf{B} & 46 & 70\% & \textbf{52\%} & \textbf{0.7 h} \\
+BanglaASR11 & B & 46 & 70\% & 52\% & 0.7 h \\
 BanglaASR15 & C & 8 & 88\% & 12\% & 2.2 h \\
 BanglaASR19 & C & 12 & 65\% & 12\% & 2.2 h \\
 BanglaASR27 & C & 56 & 73\% & 16\% & 2.2 h \\
@@ -263,66 +191,33 @@ BanglaASR27 & C & 56 & 73\% & 16\% & 2.2 h \\
 \end{tabular}
 \end{table}
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=\textwidth]{fig-asr-per-lecture}
-\caption{Median character error rate for each test lecture before and after
-fine-tuning. Every lecture improves. Lecturer B's lecture improves least, and
-lecturer B contributed the least training speech.}
-\label{fig:fig-asr-per-lecture}
-\end{figure}
+Every lecture improves, but lecturer B's lecture improves by far the least, ending at 52
+per cent where the others reach 12 to 16, and lecturer B contributed the least training
+speech at 0.7 hours. With one test lecture per lecturer at the low end this is an
+observation rather than a controlled result, since it cannot separate less data from this
+lecturer from this lecturer being harder to transcribe. It is the most likely explanation
+and the clearest argument for collecting more speech from under-represented lecturers.
 
-Every lecture improves, but lecturer B's lecture improves by far the least, ending
-at 52 per cent where the others reach 12 to 16 per cent, and lecturer B contributed
-the least training speech at 0.7 hours. With one test lecture per lecturer at the
-low end, this is an observation and not a controlled result. It cannot separate
-``less data from this lecturer'' from ``this lecturer is harder to transcribe''.
-The honest reading is that it is the most likely explanation and the clearest
-argument for collecting more speech from under-represented lecturers.
-
-\subsection{Is the remaining error only a spelling problem?}
-\label{sec:asr-spelling}
-
-Banglish has no standard spelling, so a reasonable challenge is that the word error
-rate is inflated by \textit{aami} against \textit{ami}. Two spelling-tolerant
-variants were computed on the same saved outputs, with the rules committed before
-any rescoring, and are shown in Table \ref{tab:spelling}. These numbers come from
-the six leave-one-speaker-out runs rather than from the final model, because that
-was the headline at the time the rules were fixed.
-
-\begin{table}[H]
-\centering
-\caption{Spelling-tolerant word error rates, mean of six per-run medians. nWER maps
-both sides to the transcription guide's canonical spellings and collapses repeated
-vowels. fWER additionally accepts a word at 80 per cent character similarity, so
-words of three letters or fewer must still match exactly.}
-\label{tab:spelling}
-\small
-\begin{tabular}{p{5.0cm}p{3.0cm}p{3.0cm}}
-\toprule
-\textbf{Measure} & \textbf{Base} & \textbf{Fine-tuned} \\
-\midrule
-Plain word error rate & 95.3\% & 75.7\% \\
-Spelling-fair nWER & 95.0\% & 74.8\% \\
-Fuzzy fWER & 92.7\% & 68.2\% \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-The canonical spelling table moves the word error rate by about one point, and
-accepting near-miss spellings moves it by about seven more. Most of the word error
-is therefore genuine recognition error rather than spelling disagreement. The
-fine-tuned model is better in all six runs on all three measures, with p between
-2.2e-16 and 2.7e-06. Plain word and character error rates remain the headline, and
-this table exists to answer the spelling question when it is asked.
+Banglish has no standard spelling, so a reasonable challenge is that the word error rate
+is inflated by \textit{aami} against \textit{ami}. Two spelling tolerant variants were
+computed on the same saved outputs with the rules committed before any rescoring. These
+come from the six leave-one-speaker-out runs rather than from the final model, because
+that was the headline at the time the rules were fixed. Over the mean of the six per-run
+medians, plain word error rate moves from 95.3 to 75.7 per cent between the base and the
+fine-tuned model, the spelling-fair variant from 95.0 to 74.8, and the fuzzy variant that
+accepts a word at 80 per cent character similarity from 92.7 to 68.2. The canonical
+spelling table therefore moves the word error rate by about one point and near-miss
+spellings by about seven more, so most of the word error is genuine recognition error.
+The fine-tuned model is better in all six runs on all three measures, with p between
+2.2e-16 and 2.7e-06.
 
 \subsection{An unseen lecturer, and a correction to an earlier result}
 \label{sec:asr-loso}
 
-The result in Section \ref{sec:asr-result} holds out whole lectures from lecturers
-who are also heard in training. A harder question is what happens on a lecturer the
-model has never heard. Each lecturer was held out in turn and the model trained on
-the other two, with two seeds per fold and plain greedy decoding.
+The result in Section \ref{sec:asr-result} holds out whole lectures from lecturers who
+are also heard in training. A harder question is what happens on a lecturer the model has
+never heard, so each lecturer was held out in turn and the model trained on the other two,
+with two seeds per fold and plain greedy decoding.
 
 \begin{table}[H]
 \centering
@@ -331,161 +226,122 @@ the other two, with two seeds per fold and plain greedy decoding.
 \small
 \begin{tabular}{p{2.4cm}p{2.6cm}p{3.2cm}p{3.2cm}p{2.0cm}}
 \toprule
-\textbf{Held out} & \textbf{Trained on} &
-\textbf{WER, base to tuned} & \textbf{CER, base to tuned} &
-\textbf{Wilcoxon} \\
+Held out & Trained on & WER, base to tuned & CER, base to tuned & Wilcoxon \\
 \midrule
-A, 172 clips & B + C, 82.9 min & 97.5\% to 76.2 / 75.8\% &
-74.2\% to 51.8 / 49.9\% & p $<$ 1e-10 \\
-B, 184 clips & A + C, 80.0 min & 93.8\% to 73.5 / 74.8\% &
-70.0\% to 48.8 / 52.1\% & p $<$ 1e-08 \\
-C, 75 clips & A + B, 114.0 min & 94.6\% to 74.5 / 79.8\% &
-74.2\% to 45.2 / 54.0\% & p $<$ 1e-05 \\
+A, 172 clips & B + C, 82.9 min & 97.5\% to 76.2 / 75.8\% & 74.2\% to 51.8 / 49.9\% &
+p $<$ 1e-10 \\
+B, 184 clips & A + C, 80.0 min & 93.8\% to 73.5 / 74.8\% & 70.0\% to 48.8 / 52.1\% &
+p $<$ 1e-08 \\
+C, 75 clips & A + B, 114.0 min & 94.6\% to 74.5 / 79.8\% & 74.2\% to 45.2 / 54.0\% &
+p $<$ 1e-05 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Averaged over the six runs, the character error rate falls from 72.8 per cent to
-50.3 per cent and the word error rate from 95.3 per cent to 75.7 per cent. All six
-runs are significant under plain decoding, and runaway clips fall or stay level in
-every fold.
+Averaged over the six runs the character error rate falls from 72.8 to 50.3 per cent and
+the word error rate from 95.3 to 75.7 per cent. All six runs are significant under plain
+decoding and runaway clips fall or stay level in every fold. Fine-tuning on 80 to 114
+minutes of transcribed Banglish from two lecturers therefore cuts the character error on
+a third, unheard lecturer by about a third, for every one of the three lecturers and in
+both seeds. It does not follow that this is usable speech recognition, since a 50 per
+cent character error rate is still very high, nor that the finding holds across many
+speakers, since three is a small number. Both designs are labelled every time they
+appear: Section \ref{sec:asr-result} is new lectures from known lecturers on 4.10 hours,
+and this one is an unseen lecturer on 80 to 114 minutes.
 
-What this supports is that fine-tuning on 80 to 114 minutes of transcribed Banglish
-from two lecturers cuts the character error on a third, unheard lecturer by about a
-third, for every one of the three lecturers and in both seeds. What it does not
-support is that this is usable speech recognition, since a 50 per cent character
-error rate is still very high, or that the finding holds across many speakers, since
-three is a small number.
+An earlier version of this work reported a word error rate falling from 96.1 to 81.8 per
+cent on a speaker never seen in training. That claim was wrong. The original nine
+transcripts carried no lecturer label, so the lectures were labelled by hand and one was
+attributed to the wrong lecturer. That lecture was in the training set and its lecturer
+was the test speaker, so 47 clips of the supposedly unseen speaker had been trained on.
+The error was found by computing speaker embeddings, which separate the groups without
+ambiguity at 0.99 to 1.00 similarity within a lecturer and 0.75 to 0.80 across. The result
+was recomputed on the corrected split, the old number was retired, and the voice check is
+now a standing part of data preparation.
 
-Both designs belong in the thesis and both are labelled every time they appear. The
-result in Section \ref{sec:asr-result} is ``new lectures from known lecturers'' on
-4.10 hours of training speech, and this one is ``an unseen lecturer'' on 80 to 114
-minutes.
-
-\textbf{A correction that has to be recorded.} An earlier version of this work
-reported a word error rate falling from 96.1 to 81.8 per cent on a speaker never
-seen in training. That claim was wrong, and the reason is instructive. The original
-nine transcripts carried no lecturer label, so the lectures were labelled by hand,
-and one lecture was attributed to the wrong lecturer. That lecture was in the
-training set and its lecturer was the test speaker, so 47 clips of the supposedly
-unseen speaker had been trained on. The error was found by computing speaker
-embeddings, which separate the groups without ambiguity at 0.99 to 1.00 similarity
-within a lecturer and 0.75 to 0.80 across. The result was recomputed on the
-corrected split, the old number was retired, and the voice check is now a standing
-part of the data preparation. This is also the reason the corpus statistics in
-Chapter 4 report the lecturer of every recording from voice rather than from a file
-name.
-
-\textbf{A data quality check on the same result.} Nine of 156 timestamps in the
-ground truth behind these runs carried stray spaces, so their text joined the
-previous segment and ten test clips carried more words than their audio. Both models
+A second check concerns the malformed timestamps described in Section 4.3.2. Both models
 were scored on the same clips, so the comparison is fair, but the effect was measured
-rather than assumed. Without those ten clips the result is 72.2 per cent to 49.6 per
-cent character error, against the published 72.8 to 50.3. The defect made the
-published figure slightly pessimistic, so the published figure stands.
+rather than assumed. Without the ten affected clips the result is 72.2 per cent to 49.6
+per cent character error against the published 72.8 to 50.3, so the defect made the
+published figure slightly pessimistic and the published figure stands.
 
-\subsection{Board reconstruction: coverage}
+\subsection{Rebuilding the board}
 \label{sec:board-coverage}
 
-The reconstruction is measured first by coverage, which is the fraction of tiles
-that found a moment when the lecturer was not in front of them. Across the 35
-boards of the first nine lectures, the median board has 97.7 per cent of its tiles
-fully clear, the mean is 96.5 per cent, and the range is 87.5 to 100 per cent. Six
-boards reach 100 per cent, 26 of the 35 reach 95 per cent or better, and only two
-fall below 90 per cent. Over all 145 boards produced in the project the median is
-100 per cent and the mean 98.4 per cent, with the worst board at 76.6 per cent.
+The reconstruction is measured first by coverage, the fraction of tiles that found a
+moment when the lecturer was not in front of them. Across the 35 boards of the first nine
+lectures the median board has 97.7 per cent of its tiles fully clear, the mean is 96.5 per
+cent and the range is 87.5 to 100. Six boards reach 100 per cent, 26 of the 35 reach 95
+per cent or better, and only two fall below 90. Over all 145 boards produced in the
+project the median is 100 per cent and the mean 98.4, with the worst board at 76.6.
 
-Two things drive the weak boards. Short eras give a tile fewer chances to be seen
-clear, and six eras are under eight frames. A lecturer who stands in one place is
-the other cause, and the worst lecture in the set is the one where the lecturer holds
-a single position far longer than the others.
+Short eras give a tile fewer chances to be seen clear, and six eras are under eight
+frames. A lecturer who stands in one place is the other cause, and the worst lecture in
+the set is the one where the lecturer holds a single position longest. That second cause
+was addressed rather than excused: extracting frames every 2 seconds instead of every 10
+raised the number of his boards reaching 95 per cent clear from 1 to 5 out of 10 and
+improved the worst board from 59 to 88 per cent.
 
-That second cause was addressed rather than excused. For the lecturer who moves
-least, extracting frames every 2 seconds instead of every 10 gives each tile five
-times as many chances. The number of his boards reaching 95 per cent clear rose from
-1 to 5 out of 10, and the worst board improved from 59 to 88 per cent.
-
-Coverage is a measure of the method, not of the result, and it is important not to
-read it as fidelity. A tile can be clear and the writing can still be missing,
-because the writing may never have been visible in any frame. That question needs a
-person, and it is the next section.
-
-\subsection{Board reconstruction: what a human check found}
-\label{sec:board-human}
-
-Every one of the 98 boards of the newer lectures was checked by hand. A page showed
-each reconstructed board beside two real frames from the same period of the video,
-and the question was whether the board contains everything that was written. Table
-\ref{tab:completeness} gives the answers.
+Coverage measures the method rather than the result, and it should not be read as
+fidelity. A tile can be clear while the writing is still missing, because the writing may
+never have been visible in any frame. Answering that needs a person, so every one of the
+98 boards of the newer lectures was checked by hand, with each rebuilt board shown beside
+two real frames from the same period and the question being whether the board contains
+everything that was written.
 
 \begin{table}[H]
 \centering
-\caption{Human check of 98 reconstructed boards.}
+\caption{Human check of 98 rebuilt boards.}
 \label{tab:completeness}
 \small
-\begin{tabular}{p{6.0cm}p{2.0cm}p{5.4cm}}
+\begin{tabular}{p{6.4cm}p{2.0cm}p{4.8cm}}
 \toprule
-\textbf{Verdict} & \textbf{Boards} & \textbf{} \\
+Verdict & Boards & \\
 \midrule
-\textbf{Complete} & \textbf{82} & 83.7 per cent of 98 \\
+Complete & 82 & 83.7 per cent of 98 \\
 Something missing & 16 & \\
 \quad writing genuinely lost & 9 & 9.2 per cent \\
 \quad era cut while the board was being wiped & 4 &
-the board is half erased in every frame of that era \\
+half erased in every frame of that era \\
 \quad camera out of focus for the whole era & 3 &
-unreadable in the source video, not a reconstruction fault \\
+unreadable in the source video \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.9\textwidth]{fig-board-completeness}
-\caption{The human check of 98 reconstructed boards, with the causes of the
-sixteen incomplete ones separated.}
-\label{fig:fig-board-completeness}
-\end{figure}
 
-The nine real losses are small. Seven of them are a single token or one diagram,
-such as a label \texttt{t4}, the number \texttt{100} or the word Hybrid. One board
-is the bad case, where a whole subnetting tree is absent. Counting only the boards
-whose source frames were usable, which means dropping the four mid-erase eras and
-the three out-of-focus ones, the reconstruction is complete on 82 of 91 boards, or
-90.1 per cent.
+The nine real losses are small. Seven are a single token or one diagram, such as a label
+\texttt{t4}, the number 100 or the word Hybrid, and one board is the bad case, where a
+whole subnetting tree is absent. Counting only the boards whose source frames were usable,
+which drops the four mid-erase eras and the three out-of-focus ones, the reconstruction is
+complete on 82 of 91 boards, or 90.1 per cent. The four mid-erase cases have a different
+cause and a different fix: the era boundary was placed while the lecturer was still
+wiping, so every frame in that era shows a half erased board, and holding the era open
+until the wipe finishes would correct it.
 
-The four mid-erase cases are worth separating because they have a different fix.
-They are not a mosaic fault at all. The era boundary was placed while the lecturer
-was still wiping, so every frame in that era shows a half-erased board. Holding the
-era open until the wipe finishes would fix it, and it was not attempted before
-submission.
+These three sets of numbers count different things and should not be added together.
+Coverage counts tiles, the human check counts whether writing survived, and the recall
+figures below count whether a model could read the writing back.
 
-These numbers count different things from the coverage figures above and from the
-recall figures below, and they should not be added together. Coverage counts tiles,
-this counts whether writing survived, and recall counts whether a model could read
-the writing back.
-
-\subsection{Reading the board with a vision-language model}
+\subsection{Reading the board and generating the notes}
 \label{sec:board-reading}
 
-The same Qwen2.5-VL-7B model was run twice on the same board images, changing only
-the prompt. The first asks for keywords, which is what the original pipeline did.
-The second asks for a full transcription of everything on the board, with every
-number exactly as written and \texttt{[illegible]} rather than a guess. Table
-\ref{tab:vlmread} gives the result against the hand-verified answer keys.
+The same Qwen2.5-VL-7B model was run twice on the same board images, changing only the
+prompt. The first asks for keywords, which is what the original pipeline did. The second
+asks for a full transcription of everything on the board, with every number exactly as
+written and \texttt{[illegible]} rather than a guess.
 
 \begin{table}[H]
 \centering
 \caption{Board-content recall, same model, same images, only the prompt changes.}
 \label{tab:vlmread}
 \small
-\begin{tabular}{p{4.6cm}p{2.2cm}p{2.8cm}p{4.0cm}}
+\begin{tabular}{p{4.4cm}p{2.2cm}p{2.8cm}p{4.2cm}}
 \toprule
-\textbf{Boards} & \textbf{Keyword prompt} & \textbf{Full transcription} &
-\textbf{Keyword to transcription} \\
+Boards & Keyword prompt & Full transcription & Keyword to transcription \\
 \midrule
 10 boards, 194 items & 41.2\% & 96.9\% & better on 9, worse on 0, sign p = 0.0039 \\
-\textbf{35 boards, 349 items} & \textbf{31.2\%} & \textbf{88.8\%} &
-better on 34, worse on 0, sign p = 1.2e-10 \\
+35 boards, 349 items & 31.2\% & 88.8\% & better on 34, worse on 0, sign p = 1.2e-10 \\
 A third lecturer, 10 boards, 87 items & not run & 89.7\% & -- \\
 \bottomrule
 \end{tabular}
@@ -493,59 +349,33 @@ A third lecturer, 10 boards, 87 items & not run & 89.7\% & -- \\
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.9\textwidth]{fig-board-reading}
-\caption{Board-content recall by item kind, keyword prompt against full
-transcription, over 35 boards and 349 items. The numbers written on the board go
-from none found to almost all found.}
+\includegraphics[width=0.72\textwidth]{fig-board-reading}
+\caption{Board-content recall by item kind, keyword prompt against full transcription,
+over 35 boards and 349 items. The numbers written on the board go from none found to
+almost all found.}
 \label{fig:fig-board-reading}
 \end{figure}
 
-Broken down by kind of item over the 35 boards, the change is from 0 of 67 numbers
-to 65 of 67, from 43 of 47 names to 45 of 47, from 14 of 111 pieces of code to 90 of
-111, from 47 of 94 terms to 89 of 94, and from 5 of 30 phrases to 21 of 30. The
-keyword prompt found not one number on any board. This is the clearest single result
-in the vision half of the thesis, and it is a result about prompting rather than
-about model capability.
+Broken down by kind over the 35 boards, the change is from 0 of 67 numbers to 65 of 67,
+from 43 of 47 names to 45 of 47, from 14 of 111 code fragments to 90 of 111, from 47 of 94
+terms to 89 of 94, and from 5 of 30 phrases to 21 of 30. The keyword prompt found not one
+number on any board. This is a result about prompting rather than about model capability.
 
-\textbf{The prompt was chosen on the same boards this is reported on, and that has
-to be said.} There was no held-out set when the choice between the two prompts was
-made. To give a figure that selection cannot explain, the boards were split by
-lecture using a rule fixed before any per-half number was looked at, with the odd
-numbered lectures as the development half and the even numbered ones as the test
-half. The split is by lecture rather than by board because boards within a lecture
-share a lecturer, a topic, a camera and a whiteboard.
+The prompt was chosen on the same boards this reports, and there was no held-out set when
+that choice was made. To give a figure that selection cannot explain, the boards were
+split by lecture using a rule fixed before any per-half number was examined, with odd
+numbered lectures as the development half and even numbered ones as the test half. The
+split is by lecture rather than by board because boards within a lecture share a lecturer,
+a topic, a camera and a whiteboard. On the development half the comparison is 34.1 to 93.1
+per cent, better on 17 of 17 boards. On the test half, which played no part in the choice,
+it is 28.4 to 84.7 per cent, better on 17 of 18 boards and worse on none. This is a split
+applied after the original comparison rather than a protocol registered before it, so it
+does not undo the original selection; it answers the narrower question of whether the
+conclusion survives on boards that played no part in choosing the prompt.
 
-\begin{table}[H]
-\centering
-\caption{The prompt comparison re-checked on a held-out half of the boards.}
-\label{tab:promptsplit}
-\small
-\begin{tabular}{p{3.6cm}p{1.6cm}p{1.4cm}p{1.8cm}p{2.4cm}p{2.2cm}}
-\toprule
-\textbf{Half} & \textbf{Boards} & \textbf{Items} & \textbf{Keyword} &
-\textbf{Full transcription} & \textbf{Better / worse} \\
-\midrule
-development & 17 & 173 & 34.1\% & 93.1\% & 17 / 0 \\
-\textbf{test} & \textbf{18} & \textbf{176} & \textbf{28.4\%} & \textbf{84.7\%} &
-\textbf{17 / 0} \\
-all, the headline & 35 & 349 & 31.2\% & 88.8\% & 34 / 0 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-On the test half, which played no part in the choice, the full transcription prompt
-still gives 28.4 per cent to 84.7 per cent, better on 17 of 18 boards and worse on
-none. The honest limit of this check is that it is a split applied after the original
-comparison, not a protocol registered before it, so it does not undo the original
-selection. It answers the narrower question of whether the conclusion survives on
-boards that played no part in choosing the prompt, and it does.
-
-\subsection{The generated notes}
-\label{sec:notes-result}
-
-The notes were built for all 13 lectures that have hand-verified board answer keys,
-in both languages, always from a transcript produced by an adapter that never heard
-that lecture's lecturer. Table \ref{tab:notes} gives the recall of board content.
+The notes were built for all 13 lectures that have hand-verified board records, in both
+languages, always from a transcript produced by an adapter that never heard that lecture's
+lecturer.
 
 \begin{table}[H]
 \centering
@@ -553,12 +383,12 @@ that lecture's lecturer. Table \ref{tab:notes} gives the recall of board content
 lectures, 349 items.}
 \label{tab:notes}
 \small
-\begin{tabular}{p{6.0cm}p{2.0cm}p{5.4cm}}
+\begin{tabular}{p{6.2cm}p{2.0cm}p{5.2cm}}
 \toprule
-\textbf{Notes} & \textbf{Recall} & \textbf{Against the original pipeline} \\
+Notes & Recall & Against the original pipeline \\
 \midrule
 Original pipeline & 37.2\% & -- \\
-\textbf{Annotated notes, Banglish} & \textbf{89.1\%} &
+Annotated notes, Banglish & 89.1\% &
 better on 32 boards, worse on 0, sign p = 4.7e-10 \\
 Annotated notes, English written directly & 55.9\% &
 better on 29, worse on 4, sign p = 1.1e-05 \\
@@ -571,183 +401,130 @@ better on 30, worse on 1 \\
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.9\textwidth]{fig-notes-recall}
-\caption{How much of the board reaches the notes, for the original pipeline and for
-the annotated notes in each language and route.}
+\includegraphics[width=0.72\textwidth]{fig-notes-recall}
+\caption{How much of the board reaches the notes, for the original pipeline and for the
+annotated notes in each language and route.}
 \label{fig:fig-notes-recall}
 \end{figure}
 
 Over all 13 lectures and 436 items the Banglish notes reach 87.2 per cent and the
-translated English notes 87.4 per cent. On the third lecturer's ten boards, for which
-no earlier notes exist, the Banglish notes reach 79.3 per cent.
+translated English notes 87.4. On the third lecturer's ten boards, for which no earlier
+notes exist, the Banglish notes reach 79.3 per cent.
 
-The comparison that matters most is with the row at the bottom of the table. Pasting
-the vision-language model's raw board transcription into the notes reaches 88.0 per
-cent, and the annotated notes reach 89.1 per cent, which a paired test cannot
-separate, at 14 boards better, 8 worse and p = 0.29. That is the point rather than a
-disappointment. The paste reaches its number by being a paste. The annotated notes
-reach the same number while being a readable document with numbered boxes,
+The comparison that matters most is with the last row of Table \ref{tab:notes}. Pasting
+the vision-language model's raw board transcription into the notes reaches 88.0 per cent
+and the annotated notes reach 89.1, which a paired test cannot separate at 14 boards
+better, 8 worse and p = 0.29. The paste reaches its number by being a paste, while the
+annotated notes reach the same number as a readable document with numbered boxes,
 quotations and a step by step explanation.
 
-\textbf{The quotation checks.} Across the 13 Banglish files the checker kept 31
-quotations that appear word for word in the transcript and deleted 8 that do not, a
-rejection rate of 21 per cent. The English files contain 27 quotations given as
-translations, and the word-for-word check does not run on them, because a
-translation cannot be matched against a Banglish transcript. The supportable claim is
-therefore specific. Quotations in the Banglish notes are verified word for word
-against the transcript, and quotations in the English notes are model translations
-and are not verified. The claim ``every quote in the notes is verified'' would be
-false and is not made anywhere in this thesis. One reference to a box that does not
-exist survived across the 13 Banglish files and is counted in the output rather than
-hidden.
+Across the 13 Banglish files the checker kept 31 quotations that appear word for word in
+the transcript and deleted 8 that do not, a rejection rate of 21 per cent. The English
+files contain 27 quotations given as translations, and the word-for-word check does not
+run on them, because a translation cannot be matched against a Banglish transcript. The
+supportable claim is therefore specific: quotations in the Banglish notes are verified
+word for word, and quotations in the English notes are model translations and are not
+verified. One reference to a box that does not exist survived across the 13 Banglish
+files, and it is counted in the output rather than hidden.
 
 \section{Analysis of Design Solutions}
 
-This section analyses the design choices against the alternatives, and reports the
-measurements that decided them. Four of the measurements below are negative results.
+This section analyses the design choices against the alternatives. Four of the
+measurements below are negative results.
 
 \subsection{Three approaches that did not work}
 
-\textbf{Dual recogniser fusion.} An English recogniser and a Bengali recogniser were
-run on the same nine lectures and their outputs merged. The merged output scores 73.9
-per cent on the term measure against the baseline's 73.2 per cent, a difference of
-0.7 percentage points, with an exact paired permutation test at p = 0.32 and a
-Wilcoxon signed-rank test at p = 0.36. Four of the nine lectures get worse. The word
-error rate of the merged output is 146.8 per cent against the baseline's 82.6 per
-cent. The conclusion is that fusion does not fix Banglish recognition, which is what
-motivated fine-tuning instead.
+An English recogniser and a Bengali recogniser were run on the same nine lectures and
+their outputs merged. The merged output scores 73.9 per cent on the term measure against
+the baseline's 73.2, a difference of 0.7 percentage points, with an exact paired
+permutation test at p = 0.32 and a Wilcoxon signed-rank test at p = 0.36. Four of the nine
+lectures get worse, and the word error rate of the merged output is 146.8 per cent against
+the baseline's 82.6. Fusion does not fix Banglish recognition, which is what motivated
+fine-tuning instead.
 
-\textbf{Biasing the decoder towards board words.} A sweep of the bias strength from
-0 to 2.0 on one lecture found term recall of 8.8 per cent with the bias off and 4.1
-per cent at every non-zero setting, with the transcript truncated from 279 to 149
-characters. Every non-zero strength produced byte-identical output. The shape of that
-result is the finding. This is not a tuning problem with a better setting waiting to
-be found, because the mechanism fails as soon as it engages. The recorded output of
-the sweep gives the optimal bias as zero, so the experiment concluded against itself.
+A sweep of the decoder bias strength from 0 to 2.0 on one lecture gave term recall of 8.8
+per cent with the bias off and 4.1 per cent at every non-zero setting, with the transcript
+truncated from 279 to 149 characters. Every non-zero strength produced byte-identical
+output. The shape of that result matters more than its size: this is not a tuning problem
+with a better setting waiting to be found, because the mechanism fails as soon as it
+engages. The recorded output gives the optimal bias as zero, so the experiment concluded
+against itself.
 
-\textbf{Occlusion as a pointer.} Where the lecturer stands might indicate what the
-lecture is currently about, which would give a free alignment between speech and
-board regions. The test needs no manual labels. If standing in front of a region
-means working on it, that region should gain more ink after the lecturer leaves than
-the regions he was not standing in front of. Over 191 occlusion episodes in nine
-lectures, the occluded region gained more ink in 101 cases and an unoccluded region
-gained more in 81, with a Wilcoxon test at p = 0.054 and an exact sign test at p =
-0.159. This does not support the claim and is reported as unsupported. The most
-likely reason is that the test measures writing while a lecturer standing in front of
-a region is often explaining it and adding no ink at all, which is exactly the case
-where the signal would have been most useful.
+Where the lecturer stands might indicate what the lecture is currently about, which would
+give a free alignment between speech and board regions. The test needs no manual labels:
+if standing in front of a region means working on it, that region should gain more ink
+after the lecturer leaves than the regions he was not standing in front of. Over 191
+occlusion episodes in nine lectures the occluded region gained more ink in 101 cases and
+an unoccluded region in 81, with a Wilcoxon test at p = 0.054 and an exact sign test at p
+= 0.159, which does not support the claim. The most likely reason is that the test
+measures writing, while a lecturer standing in front of a region is often explaining it
+and adding no ink at all, which is exactly the case where the signal would have been most
+useful.
 
-\subsection{The display clean-up: a measured negative}
+\subsection{Ablations on the vision stage}
 \label{sec:board-cleanup}
 
-The clean-up described in Section 4.4.3 makes every board a clean white image and
-was judged by eye to be better. Read by the same vision-language model with the same
-prompt against the same answer keys, it is slightly worse. Table \ref{tab:cleanup}
-gives the comparison.
+The clean-up makes every board a clean white image and was judged by eye to be better.
+Read by the same vision-language model with the same prompt against the same records, it
+is slightly worse. Over the 35 boards of the first nine lectures the mosaic scores 334 of
+349 items and the cleaned board 329, and over the third lecturer's ten boards 74 of 87
+against 71. Combined over 45 boards that is 93.6 per cent against 91.7, better on 1 board
+and worse on 7, with a sign test at p = 0.0703.
 
-\begin{table}[H]
-\centering
-\caption{The vision-language model reading the mosaic board against the cleaned
-board.}
-\label{tab:cleanup}
-\small
-\begin{tabular}{p{3.6cm}p{1.6cm}p{2.6cm}p{2.8cm}p{2.0cm}p{1.6cm}}
-\toprule
-\textbf{Set} & \textbf{Boards} & \textbf{Mosaic} & \textbf{Cleaned board} &
-\textbf{Better / worse} & \textbf{Sign} \\
-\midrule
-Lectures 1 to 9 & 35 & 334/349 (95.7\%) & 329/349 (94.3\%) & 0 / 5 & p = 0.0625 \\
-Third lecturer & 10 & 74/87 (85.1\%) & 71/87 (81.6\%) & 1 / 2 & p = 1.0 \\
-\textbf{Combined} & \textbf{45} & \textbf{408/436 (93.6\%)} &
-\textbf{400/436 (91.7\%)} & \textbf{1 / 7} & \textbf{p = 0.0703} \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-The difference is not significant either way, so the honest statement is that there
-is no measured difference, with the point estimate against the clean-up. It is not
-that the clean-up is worse.
-
+The difference is not significant either way, so the statement supported by the data is
+that there is no measured difference, with the point estimate against the clean-up.
 Reading the changes item by item explains the shape. The one gain is on the board the
 clean-up was built for, where an end-of-era diagram that the old mask lost becomes
-readable, and that board rises from 57.1 to 71.4 per cent. The losses are all single
-fine details of the kind a clean-up erases, which are long code strings, a written out
-sentence and two decimal numbers. There is also very little room to win, since the
-mosaic is already at 95.7 per cent on the first nine lectures and 37 of the 45 boards
-score identically on both.
+readable and the board rises from 57.1 to 71.4 per cent. The losses are all single fine
+details of the kind a clean-up erases, being long code strings, a written out sentence and
+two decimal numbers. There is also very little room to win, since the mosaic is already at
+95.7 per cent on the first nine lectures and 37 of the 45 boards score identically on
+both.
 
-The conclusion drawn is therefore narrow and is followed in the rest of the thesis.
-The cleaned boards are kept because of how they look in a note, where every board is a
-clean white image, and not because they help the model read. No claim is made that the
-rebuild improved board reading, and the headline board numbers are reported on the
-mosaic boards.
+The cleaned boards are therefore kept for how they look in a note rather than because they
+help the model read, no claim is made that the rebuild improved board reading, and the
+headline board figures are reported on the mosaic boards.
 
-\subsection{Does the result need a large vision-language model?}
 \label{sec:vlm-size}
+Two further claims the design invites were tested in the same way, by changing one thing
+and rescoring. The first is that the result needs a large vision-language model. Board
+reading was run again with Qwen2.5-VL-3B, changing nothing but the model. Over the
+35 boards of the first nine lectures the 3B model scores 85.4 per cent against the 7B's
+88.8, and over the third lecturer's boards 77.0 against 89.7. Combined over 45 boards and
+436 items that is 83.7 per cent against 89.0, with the 7B better on 16 boards and worse on
+6 and a sign test at p = 0.053.
 
-The board reading was run again with Qwen2.5-VL-3B, changing nothing but the model.
+Changing the prompt is worth 57.6 percentage points, from 31.2 to 88.8. Changing the model
+from 3B to 7B is worth 5.3 points, and that difference is not significant by the sign test
+on either set on its own. A 3B model at 85.4 per cent already carries most of the board.
+The 7B is the better model and remains the one reported, but model scale is not what made
+board reading work, which agrees with the published finding that large multimodal models
+are strongly sensitive to how the instruction is written
+\cite{ismithdeen2025promptception}. The 32 and 72 billion parameter versions were not run:
+their weights are 68.3 GB and 146.8 GB, the machine had 62 GB of free disk at the time,
+and both would have needed quantising to fit in 32 GB of video memory, which would
+confound model size with quantisation loss. This is therefore a comparison of a 3B model
+against a 7B model rather than a scale study.
 
-\begin{table}[H]
-\centering
-\caption{Board reading with a 3B model against a 7B model, same prompt, same
-images, same keys.}
-\label{tab:vlmsize}
-\small
-\begin{tabular}{p{4.6cm}p{2.4cm}p{2.4cm}p{2.4cm}p{2.0cm}}
-\toprule
-\textbf{Boards} & \textbf{Qwen2.5-VL-3B} & \textbf{Qwen2.5-VL-7B} &
-\textbf{7B better / worse} & \textbf{Sign} \\
-\midrule
-35 boards, 349 items & 85.4\% & 88.8\% & 11 / 5 & p = 0.21 \\
-Third lecturer, 10 boards, 87 items & 77.0\% & 89.7\% & 5 / 1 & p = 0.22 \\
-\textbf{Combined, 45 boards, 436 items} & \textbf{83.7\%} & \textbf{89.0\%} &
-\textbf{16 / 6} & \textbf{p = 0.053} \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-Changing the prompt is worth 57.6 percentage points, from 31.2 to 88.8. Changing the
-model from 3B to 7B is worth 5.3 points, and that difference is not significant by the
-sign test on either set on its own. A 3B model at 85.4 per cent already carries most of
-the board. The 7B is the better model and remains the one reported, and the thesis does
-not present model scale as the thing that made board reading work. This agrees with the
-published finding that large multimodal models are strongly sensitive to how the
-instruction is written \cite{ismithdeen2025promptception}.
-
-The 32 billion and 72 billion parameter versions were not run, and the reason is
-recorded rather than left as an omission. Their weights are 68.3 GB and 146.8 GB, the
-machine had 62 GB of free disk at the time, and both would have had to be quantised to
-fit in 32 GB of video memory, which would confound model size with quantisation loss.
-This is therefore a comparison of a 3B model against a 7B model, and the thesis calls
-it that rather than a scale study.
-
-\subsection{Does the reconstruction help the model read the board?}
-
-The reconstruction is a visual deliverable, and it is tempting to claim that it also
-improves reading. The measurement does not support that. On the 35 boards of the first
-nine lectures, recall rises from 88.8 per cent on a raw frame to 95.7 per cent on the
-reconstructed board, better on 8 boards and worse on 3, with a sign test at p = 0.23
-and a Wilcoxon test at p = 0.056. On the third lecturer's boards it goes the other way,
-from 89.7 per cent to 85.1 per cent. This is a trend on one set and absent on the
-other. The sentence this thesis uses is that the prompt is what makes the model read
-the board, and the reconstruction is what makes the board usable in a note.
-
-Two limits of the reconstruction were exposed by the hand check of the answer keys and
-each deserves a sentence. Glare from the ceiling lights sits in every frame, so no
-choice of frame removes it. Content that is visible in only one frame can be lost,
-which happened to a binary number that was fully written at one moment, covered ten
-seconds later and wiped ten seconds after that.
+The second claim is that the reconstruction improves reading, and the measurement does not
+support it. On the 35 boards of the first nine lectures, recall rises from 88.8
+per cent on a raw frame to 95.7 on the rebuilt board, better on 8 boards and worse on 3,
+with a sign test at p = 0.23 and a Wilcoxon test at p = 0.056. On the third lecturer's
+boards it moves the other way, from 89.7 to 85.1. This is a trend on one set and absent on
+the other, so the prompt is what makes the model read the board and the reconstruction is
+what makes the board usable in a note. Two limits of the reconstruction were exposed by
+the hand check: glare from the ceiling lights sits in every frame, so no choice of frame
+removes it, and content visible in only one frame can be lost, which happened to a binary
+number that was fully written at one moment, covered ten seconds later and wiped ten
+seconds after that.
 
 \subsection{Does fine-tuning the speech model improve the notes?}
 \label{sec:2x2}
 
-This is the question that joins the two halves of the thesis, and the answer is no, in
-a way that needs explaining rather than hiding.
-
-Four sets of notes were built for the 13 scored lectures, Banglish only, with
-everything held constant except two things, which are whether the transcript came from
-the fine-tuned model or the off-the-shelf model, and whether the board text was
-supplied at all.
+This question joins the two halves of the thesis and the answer is no, in a way that needs
+explaining rather than hiding. Four sets of notes were built for the 13 scored lectures,
+Banglish only, with everything held constant except whether the transcript came from the
+fine-tuned or the off-the-shelf model, and whether the board text was supplied at all.
 
 \begin{table}[H]
 \centering
@@ -756,9 +533,9 @@ supplied at all.
 \small
 \begin{tabular}{p{4.6cm}p{4.0cm}p{4.0cm}}
 \toprule
-& \textbf{With board text} & \textbf{Without board text} \\
+& With board text & Without board text \\
 \midrule
-\textbf{Fine-tuned transcript} & \textbf{89.1\% (311 items)} & 70.8\% (247) \\
+Fine-tuned transcript & 89.1\% (311 items) & 70.8\% (247) \\
 Off-the-shelf transcript & 78.5\% (274) & 73.6\% (257) \\
 \bottomrule
 \end{tabular}
@@ -766,13 +543,12 @@ Off-the-shelf transcript & 78.5\% (274) & 73.6\% (257) \\
 
 \begin{table}[H]
 \centering
-\caption{The same four cells counted by board, which is the test that matters.}
+\caption{The same four cells counted by board, which is the test the conclusion rests on.}
 \label{tab:2x2boards}
 \small
 \begin{tabular}{p{5.6cm}p{2.2cm}p{2.6cm}p{1.6cm}p{1.6cm}}
 \toprule
-\textbf{Comparison} & \textbf{Item change} & \textbf{Better / worse} &
-\textbf{Sign} & \textbf{Wilcoxon} \\
+Comparison & Item change & Better / worse & Sign & Wilcoxon \\
 \midrule
 With board text, base to fine-tuned & +10.6 pp & 7 / 6 & p = 1.0 & p = 0.81 \\
 Without board text, base to fine-tuned & -2.8 pp & 10 / 9 & p = 1.0 & p = 0.72 \\
@@ -782,221 +558,163 @@ Off-the-shelf, no board text to board text & +4.9 pp & 10 / 4 & p = 0.18 & p = 0
 \end{tabular}
 \end{table}
 
-None of the four comparisons is significant. Read by board, the two speech conditions
-split 7 to 6 with board text and 10 to 9 without it, which is as close to a coin toss
-as this data can produce.
+None of the four comparisons is significant. Counted by board, the two speech conditions
+split 7 to 6 with board text and 10 to 9 without it, which is as close to a coin toss as
+this data can produce. The plus 10.6 points in the item totals is worth taking apart,
+because quoting it as the benefit of fine-tuning would be wrong: of the 37 items gained,
+two boards of one lecture give 50 between them, and across the other 31 boards the
+fine-tuned transcript is 13 items worse.
 
-The eye-catching plus 10.6 points in the item totals is worth taking apart, because
-quoting it as the benefit of fine-tuning would be wrong. Of the 37 items gained, two
-boards of one lecture give 50 between them, and across the other 31 boards the
-fine-tuned transcript is 13 items worse. One apparently large effect is two boards out
-of thirty-five with the rest pointing gently the other way.
+The reason the better transcript loses is mechanical. Scoring the two transcripts directly
+against the same records, before any notes are written, the off-the-shelf transcript with
+67.7 per cent character error contains 106 of the 349 board items and the fine-tuned
+transcript with 15.8 per cent contains 91, better on 1 board and worse on 9 with a sign
+test at p = 0.021. Off-the-shelf Whisper translates into English, and the records are
+largely English technical strings such as NAND gate, MySQL and lines of SQL, so its output
+is unusable as a transcript while still emitting those exact strings. The fine-tuned model
+writes what the lecturer said, in Banglish, and \textit{amra NAND gate dekhbo} does not
+string-match an English item. This is the same trap as the term measure discussed in
+Section 5.4.2.
 
-\textbf{Why the better transcript loses, and why that is a finding.} The two
-transcripts were scored directly against the same answer keys, before any notes were
-written.
+The null result says that the fine-tuned transcript changes almost nothing that
+board-content recall can see, and that measure asks only whether facts written on the
+board reach the notes. It does not say the transcript is irrelevant to note quality. The
+measure is blind by construction to whether the explanation around those facts is correct,
+readable or even in the right language, and the two transcripts differ enormously as
+transcripts. An English page built from a transcript with 67 per cent character error will
+contain sentences that are simply wrong, and nothing here measures that. Testing it
+properly needs readers, which is why the reader study is the first item of future work.
 
-\begin{table}[H]
-\centering
-\caption{How much of the board content each transcript already contains, 35 boards,
-349 items.}
-\label{tab:metricbias}
-\small
-\begin{tabular}{p{7.0cm}p{6.4cm}}
-\toprule
-\textbf{Transcript} & \textbf{Board items it contains} \\
-\midrule
-Off-the-shelf Whisper, character error rate 67.7\% & \textbf{106 (30.4\%)} \\
-Fine-tuned Whisper, character error rate 15.8\% & 91 (26.1\%), better on 1 board,
-worse on 9, sign p = 0.021 \\
-\bottomrule
-\end{tabular}
-\end{table}
+The two routes to the English note bear on the same question, and their comparison shows
+the same measurement effect from the other side. Writing the English note directly from
+the board and the transcript gives 55.9 per cent
+recall, while writing the section in Banglish first and translating it gives 89.4, almost
+exactly the Banglish original's 89.1. That supports the reading above, in which the
+deficit of the direct route is the model paraphrasing the board's strings into English
+prose rather than the note carrying less of the lecture.
 
-The far worse transcript contains significantly more of the board's content, and the
-mechanism is mechanical rather than mysterious. Off-the-shelf Whisper translates into
-English, and the answer keys are largely English technical strings such as NAND gate,
-MySQL and lines of SQL. Its output is unusable as a transcript while still emitting
-those exact strings. The fine-tuned model writes what the lecturer actually said, in
-Banglish, and \textit{amra NAND gate dekhbo} does not string-match an English key
-item. This is the same trap as the term measure discussed in Section 5.4.3. A measure
-built out of English strings rewards a model that translates and penalises one that
-transcribes.
-
-\textbf{What the null result does and does not say.} It says that the fine-tuned
-transcript changes almost nothing that board-content recall can see, and that measure
-asks only whether facts written on the board reach the notes. It does not say the
-transcript is irrelevant to note quality. The measure is blind by construction to
-whether the explanation around those facts is correct, readable or even in the right
-language, and the two transcripts differ enormously as transcripts. An English page
-built from a transcript with 67 per cent character error will contain sentences that
-are simply wrong, and nothing here measures that. Testing it properly needs readers,
-which is why the reader study is the first item of future work. Until that exists, the
-defensible claim is the narrow one, which is that the factual content of the notes
-comes from the vision side and the speech improvement shows up in the quotations and
-in the readability rather than in board recall.
-
-\subsection{Two routes to the English notes}
-
-Writing the English note directly from the board and the transcript gives 55.9 per
-cent recall. Writing the section in Banglish first and translating it gives 89.4 per
-cent, almost exactly the Banglish original's 89.1 per cent. That supports the reading
-above, which is that the deficit of the direct route is the model paraphrasing the
-board's strings into English prose rather than the note carrying less of the lecture.
-
-The caveat is large and is stated with the number every time. Of the 130 items gained,
-113, or 87 per cent, come from four dense boards carrying 39 to 42 items each, and
-across the other 31 boards the two routes are level. Counted by board the comparison is
-10 better, 7 worse and 18 tied, with a sign test at p = 0.63. There are real
-regressions, with two boards falling from 6 of 7 items to 2 of 7. The statement used in
-this thesis is therefore that the translated route is much better on dense,
+The caveat is large and is stated with the number every time. Of the 130 items gained, 113
+come from four dense boards carrying 39 to 42 items each, and across the other 31 boards
+the two routes are level. Counted by board the comparison is 10 better, 7 worse and 18
+tied, with a sign test at p = 0.63, and there are real regressions, with two boards falling
+from 6 of 7 items to 2 of 7. The translated route is therefore much better on dense,
 number-heavy boards and indistinguishable from the direct route on ordinary ones.
 
 \section{Final Design Adjustments}
 \label{sec:adjustments}
 
-Evaluation changed the design in nine places. This section lists what was changed and
-what evidence forced it, and then states what is still wrong.
+Evaluation changed the design in several places, and this section records what changed,
+what evidence forced it and what is still wrong.
 
-\subsection{Adjustments made because of a measurement}
+\subsection{Changes made in response to a measurement}
 
-\textbf{The loop safeguard was adopted, and then shown to be unnecessary.} Under plain
-greedy decoding the small model fell into repetition loops on 58 of 184 clips, and the
-loops decided the result. Whisper's compression-ratio safeguard was adopted, applied
-identically to both models, and reported beside the plain numbers. With the large
-model the fine-tuned system loops on one clip in 177, so the safeguard changes nothing
-and the reported figures are the plain ones. Both facts are reported, including that
-the safeguard was adopted after the greedy result had been seen.
+The loop safeguard was adopted after the small model fell into repetition loops on 58 of
+184 clips under plain greedy decoding, and it was applied identically to both models. With
+the large model the fine-tuned system loops on one clip in 177, so the safeguard changes
+nothing and the reported figures are the plain ones. Both facts are reported, including
+that the safeguard was adopted after the greedy result had been seen.
 
-\textbf{The person mask was replaced.} The original mask took whatever differed from
-the usual appearance of the board, which failed when the lecturer stood still and
-failed again when the camera's automatic exposure darkened a frame. It was replaced by
-a pretrained segmentation network plus a shadow mask, which recovers writing the old
-mask lost.
+The person mask was replaced. The original took whatever differed from the usual
+appearance of the board, which failed when the lecturer stood still and again when the
+camera's automatic exposure darkened a frame. A pretrained segmentation network with a
+shadow mask replaced it and recovers writing the old mask lost. Frames are also extracted
+more densely for a lecturer who does not move, as measured in Section
+\ref{sec:board-coverage}.
 
-\textbf{Frames are extracted more densely for a lecturer who does not move.} Measured
-in Section \ref{sec:board-coverage}.
+Each language version is now written wholly in its own language. The first design followed
+a mock-up in which an English note quoted the lecturer in Banglish with a translation
+beside it, and reading the first real notes showed that an English-medium reader cannot
+use a Banglish quotation. The consequence for what can be claimed is stated rather than
+glossed over: the word-for-word check runs on the Banglish notes and cannot run on the
+English ones. The English note is produced by translating the Banglish note, selected on
+the measurement in Section 5.2.5 with the caveat about the four dense boards.
 
-\textbf{Each language version is written wholly in its own language.} The first design
-followed a mock-up in which an English note quoted the lecturer in Banglish with a
-translation beside it. Reading the first real notes showed that an English-medium
-reader cannot use a Banglish quotation, so the rule was changed. This has a
-consequence for what can be claimed, and the consequence is stated rather than glossed
-over. The word-for-word check runs on the Banglish notes and cannot run on the English
-ones.
-
-\textbf{The English note is produced by translating the Banglish note.} Selected on the
-measurement in Section 5.2.6, with the caveat about the four dense boards.
-
-\textbf{A loop guard in the board reader.} On one board the model emitted the same
-backslash line 512 times, giving 42,037 characters. Repeated identical lines are now
-collapsed and the number dropped is recorded. This changes no score, because repeated
-backslashes match no answer key item. It matters because that text is pasted into the
-note prompt.
-
-\textbf{A salvage parser in the board reader.} Boards carrying code make the model emit
-unescaped quotation marks that break the JSON it returns, and without a fallback such a
-board loses every one of its boxes. The parser now reads the fields one at a time when
-the JSON cannot be parsed.
-
-\textbf{A placeholder strip in the note builder.} Three times across 26 files the model
-copied the prompt's own example text into the notes, producing a sentence of the form
-\textit{The lecturer mentioned, ``exact words from the transcript''}. The quote checker
-could not catch it, because it looks for quotations absent from the transcript and this
-is not a quotation at all. The strip removes the prompt's placeholder text and records
-how many it removed. The affected lectures were rebuilt and recall was unchanged, so
-this is a readability fix rather than a scoring one.
-
-\textbf{Label repair in the translated notes.} The translation left 97 section labels in
-Banglish across the thirteen English files and returned three summary lines in capital
-letters. Both are repaired by a mapping that does not call the model. The capitalisation
-repair takes each word's casing from how the same file writes that word elsewhere, so
-that Python, TTL and DBMS are not lower-cased.
-
-\textbf{Normalising the Background label.} The model wrote the heading of the
-non-lecture box in four different ways, and 11 of 21 boxes in one rebuild used a bare
-heading with no disclaimer. Since the heading is what the reader sees, those boxes were
-fenced but not labelled, which defeats the purpose of the box. The page builder now
-normalises the label at render time, and all 62 boxes across the 26 pages now carry the
-disclaimer.
+Four defects found in the real runs are handled in code and are listed here because each
+one changes what the output contains. A loop guard collapses repeated identical lines in
+the board reader, after one board produced the same line 512 times for 42,037 characters,
+which matters because that text is pasted into the note prompt. A salvage parser recovers
+the boxes of a board whose code content made the model return broken JSON, which would
+otherwise lose every box on that board. A placeholder strip removes the prompt's own
+example text when the model copies it into the notes as though it were a quotation, a
+failure the quote checker could not catch because it looks for quotations absent from the
+transcript and this is not a quotation at all. A label repair maps the section labels the
+translation left in Banglish and the summary lines it returned in capital letters. The
+page builder also normalises the label on the Background box at render time, after the
+model wrote that heading four different ways and 11 of 21 boxes in one rebuild carried no
+disclaimer, which defeats the purpose of the box.
 
 \subsection{What is still wrong}
 \label{sec:known-defects}
 
-Four defects are known, counted and not fixed, and they are listed here rather than
-left for a reader to find.
+Four defects are known, counted and not fixed.
 
-\textbf{The box finder treats a sticker as content.} The whiteboard in one room carries
-a manufacturer's sticker, and because it is dark and separate the box finder puts a box
-around it on every board of that lecture. It is visible in Figure
-\ref{fig:board-demo-5}. It is cosmetic, it costs nothing in any measurement, and it
-would be fixed by ignoring a region that appears unchanged across every era of a
-lecture.
+The box finder treats board furniture as content. One room's whiteboard carries a
+manufacturer's sticker, and because it is dark and separate the box finder puts a box
+around it on every board of that lecture. It is cosmetic, costs nothing in any
+measurement, and would be fixed by ignoring a region that appears unchanged across every
+era of a lecture.
 
-\textbf{Some quotations cannot be translated and are dropped.} On the thirteen scored
-lectures the translation route kept 15 quotations and dropped 19 because it could not
-produce a faithful version, and over all 42 lectures that have notes it kept 60 and
-dropped 49. A dropped quotation costs the page a lecturer's voice. It is counted in the
-output file of every page rather than being silent, and it is the largest remaining
-defect in the English version.
+Some quotations cannot be translated and are dropped. On the thirteen scored lectures the
+translation route kept 15 quotations and dropped 19, and over all 42 lectures that have
+notes it kept 60 and dropped 49. A dropped quotation costs the page a lecturer's voice. It
+is counted in the output file of every page rather than being silent, and it is the
+largest remaining defect in the English version.
 
-\textbf{A few references to boxes that do not exist survive.} Across the 13 scored
-Banglish files the box reference check removed all but one. Over all 42 lectures ten
-survive in each language. They are counted, not silent.
+A few references to boxes that do not exist survive. Across the 13 scored Banglish files
+the box reference check removed all but one, and over all 42 lectures ten survive in each
+language.
 
-\textbf{Four era boundaries fall in the middle of an erase.} Described in Section
-\ref{sec:board-human}. The fix is to hold the era open until the wipe finishes.
+Four era boundaries fall in the middle of an erase, as described in Section
+\ref{sec:board-coverage}. The fix is to hold the era open until the wipe finishes.
 
-\subsection{A factual error in the generated prose, found by reading}
-
-One further defect is not a software fault and cannot be fixed by a checker. In the
-notes for one digital logic lecture the model wrote that there are two types of
-universal gates, which are XOR gates. The lecturer and the board both say NAND and
-NOR. Board-content recall cannot catch this, because it measures whether board items
-appear in the notes and not whether the prose around them is true.
-
-This is stated here deliberately. Nothing in this thesis measures the factual
-correctness of the generated explanation, the planned reader study is what would, and
-an example of the error is more useful to a reader than a claim that it does not
-happen.
+One further defect is not a software fault and cannot be fixed by a checker. In the notes
+for one digital logic lecture the model wrote that there are two types of universal gates,
+which are XOR gates, where the lecturer and the board both say NAND and NOR.
+Board-content recall cannot catch this, because it measures whether board items appear in
+the notes and not whether the prose around them is true. Nothing in this thesis measures
+the factual correctness of the generated explanation; the planned reader study is what
+would, and an example of the error is more useful to a reader than a claim that it does
+not happen.
 
 \section{Statistical Analysis}
 
-\subsection{Which tests were used and why}
+\subsection{Tests, medians and the direction of a difference}
 
-Every comparison in this thesis is paired, because both systems are run on exactly the
-same clips or the same boards. Two tests are used on every comparison. The Wilcoxon
-signed-rank test ranks the differences by size and asks whether positive and negative
-differences are balanced \cite{wilcoxon1945}. The exact sign test only counts how many
-items improved and how many got worse, which makes fewer assumptions and is the more
-conservative of the two.
+Every comparison is paired, because both systems are run on exactly the same clips or
+boards, and two tests are applied to each: the Wilcoxon signed-rank test, which ranks the
+differences by size \cite{wilcoxon1945}, and the exact sign test, which counts only how
+many items improved. Both are reported wherever they disagree, as in the two-by-two of
+Section \ref{sec:2x2}, where one comparison sits at Wilcoxon p = 0.052 and sign p = 0.18
+and neither is treated as significant.
 
-Both are reported wherever they disagree, and they do disagree in places. The
-two-by-two of Section \ref{sec:2x2} has one comparison at Wilcoxon p = 0.052 and sign
-p = 0.18, and neither is treated as significant.
+Two reporting rules were adopted after being caught out by their absence. Medians are
+reported because both models sometimes fall into a repetition loop and emit far more words
+than were spoken, which pushes a mean error rate above 100 per cent; on one early
+comparison the same data gave p = 0.76 on means and p = 2.19e-05 on medians. The direction
+of the difference is reported because a two sided p-value does not say which system won:
+one early adapter was significantly worse than its baseline at z = -2.62 and p = 8.7e-03,
+and reporting only the p-value would have made that look like a success.
 
-\subsection{Medians, not means, and the direction of the difference}
+Recall over record items is dominated by dense boards, because a board with 42 items
+contributes fourteen times as much as one with 3, and two results here look very different
+depending on which is counted. The translated English route gains 130 items over the
+direct route, of which 113 come from four boards, and counted by board it is 10 better and
+7 worse at p = 0.63. The two-by-two gains 37 items from fine-tuning, of which 50 come from
+two boards while the other 31 lose 13, and counted by board it is 7 better and 6 worse at
+p = 1.0. Both countings are reported wherever they differ and the by-board count is the
+one the conclusion rests on.
 
-Two rules were adopted after being caught out by their absence.
-
-\textbf{Report medians.} Both the base and the fine-tuned model sometimes fall into a
-repetition loop and emit far more words than were spoken, which pushes a mean error
-rate above 100 per cent. On one early comparison the same data gave p = 0.76 on means
-and p = 2.19e-05 on medians with a paired test. The mean result was an artefact of a
-handful of runaway clips, not evidence of no effect.
-
-\textbf{Read the direction, not only the p-value.} A two-sided p-value does not say
-which system won. Under plain greedy decoding one early adapter was significantly worse
-than its baseline, at z = -2.62 and p = 8.7e-03, and reporting only the p-value would
-have made that look like a success. The sign of the test statistic is stated beside
-every p-value in this thesis.
+No correction for multiple comparisons has been applied, which is a limitation rather than
+an oversight. It matters least for the speech result, where the p-values would survive any
+correction, and most for the marginal results, which is why every marginal result here is
+described as a trend or as not significant.
 
 \subsection{A metric that moves the wrong way}
 
-The measure inherited from the earlier phase of this project is a term-based F1 over a
-fixed list of 82 English words. Two independent training runs on identical data, with
-the same recipe and the same seed, differing only in the order the manifest listed the
-clips, gave the results in Table \ref{tab:termf1}.
+The measure inherited from the earlier phase of this project is a term based F1 over a
+fixed list of 82 English words. Two independent training runs on identical data, with the
+same recipe and seed and differing only in the order the manifest listed the clips, gave
+the results in Table \ref{tab:termf1}.
 
 \begin{table}[H]
 \centering
@@ -1005,58 +723,34 @@ clips, gave the results in Table \ref{tab:termf1}.
 \small
 \begin{tabular}{p{4.6cm}p{3.0cm}p{3.0cm}p{2.4cm}}
 \toprule
-\textbf{Measure} & \textbf{Run A} & \textbf{Run B} & \textbf{Spread} \\
+Measure & Run A & Run B & Spread \\
 \midrule
 Word error rate, median & 81.8\% & 77.1\% & 4.7 pp \\
 Character error rate, median & 60.7\% & 57.4\% & 3.3 pp \\
 Term recall & 88.8\% & 88.3\% & 0.5 pp \\
-Term precision & 66.7\% & 55.3\% & \textbf{11.4 pp} \\
-Term F1 & 76.1\% & 68.0\% & \textbf{8.1 pp} \\
+Term precision & 66.7\% & 55.3\% & 11.4 pp \\
+Term F1 & 76.1\% & 68.0\% & 8.1 pp \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 The speech result replicates, with both runs beating the base model at p below 0.01 on
 word and character error rate. Term F1 does not, swinging 8.1 points on identical data,
-driven by an 11.4 point swing in term precision.
+driven by an 11.4 point swing in term precision. Term precision counts how many of the 82
+fixed English words the model emits, and run B transcribes better Banglish, so it emits
+fewer English words and its term precision falls. The measure penalises the model for
+doing the task correctly.
 
-The reason is the interesting part. Term precision counts how many of the 82 fixed
-English words the model emits. Run B transcribes better Banglish, so it emits fewer
-English words, so its term precision falls. The measure penalises the model for doing
-the task correctly. Three consequences follow and are applied throughout this thesis. A
-term F1 difference smaller than about 8 points is never claimed, which independently
-rules out the fusion result of 0.7 points. Word and character error rate with their rank
-tests are the headline. Both runs are reported rather than the better one being quietly
-chosen.
+Three consequences follow and are applied throughout this thesis. A term F1 difference
+smaller than about 8 points is never claimed, which independently rules out the fusion
+result of 0.7 points. Word and character error rate with their rank tests are the
+headline. Both runs are reported rather than the better one being quietly chosen.
 
-The same effect reappears in a different place, in the note evaluation of Section
-\ref{sec:2x2}, where the worse transcript contains more of the English answer key
-items. Two independent instances of the same failure in one project is the reason this
-thesis treats it as a finding rather than as a nuisance, and it agrees with the
-published work on evaluation metrics for code-switched recognition discussed in Section
-2.2.4.
-
-\subsection{Counting by board and counting by item}
-
-Recall over answer key items is dominated by dense boards, because a board with 42
-items contributes fourteen times as much as a board with 3. Two results in this thesis
-look very different depending on which is counted. The translated English route gains
-130 items over the direct route, of which 113 come from four boards, and counted by
-board it is 10 better and 7 worse with p = 0.63. The two-by-two gains 37 items from
-fine-tuning, of which 50 come from two boards while the other 31 boards lose 13, and
-counted by board it is 7 better and 6 worse with p = 1.0.
-
-Both countings are reported for every comparison where they differ, and the by-board
-count is the one the conclusion rests on.
-
-\subsection{Multiple comparisons}
-
-This chapter reports a large number of tests. No correction for multiple comparisons
-has been applied, and that is a limitation rather than an oversight. It matters least
-for the speech result, where the p-values are below 1e-30 and would survive any
-correction, and it matters most for the marginal results, which is why every marginal
-result in this chapter is described as a trend or as not significant rather than being
-counted as a finding.
+The same effect reappears in the note evaluation of Section \ref{sec:2x2}, where the worse
+transcript contains more of the English record items. Two independent instances of the
+same failure in one project is why this thesis treats it as a finding rather than a
+nuisance, and it agrees with the published work on evaluation metrics for code-switched
+recognition discussed in Section 2.2.3.
 
 \section{Comparisons and Relationships}
 
@@ -1064,170 +758,139 @@ counted as a finding.
 
 Table \ref{tab:neighbours} in Chapter 2 places this work beside the four nearest
 Bengali-English code-switched speech systems. The comparison cannot be made on the
-numbers, and it is worth saying why clearly. Two of the four are trained and evaluated
-on synthetic speech, one targets the Bengali script and one is an undocumented public
-model evaluated on a random split of its own clips. Error rates on different datasets
-with different transcription targets are not comparable, and this thesis does not
-present them as if they were.
+numbers, because two of the four are trained and evaluated on synthetic speech, one
+targets the Bengali script and one is an undocumented public model evaluated on a random
+split of its own clips. What can be compared is the design of the evaluation, and there
+this work is stricter in three ways: whole lectures are held out, so no part of a test
+recording appears in training; the references are checked word by word by a person rather
+than generated; and the same system is reported under two designs, one with the test
+lecturers heard in training and one with an entirely unseen lecturer.
 
-What can be compared is the design of the evaluation, and there this work is stricter
-than its neighbours in three ways. Whole lectures are held out, so no part of a test
-recording appears in training. The references are checked word by word by a person
-rather than being generated. The same test is reported under two designs, one with the
-test lecturers heard in training and one with an entirely unseen lecturer, so that the
-easier and harder questions are separated.
+For the board side the comparison is different in kind. Systems such as those of Davila
+and Zanibbi \cite{davila2017whiteboard} and Kota et al. \cite{kota2019generalized} extract
+and binarise handwriting from fixed camera lecture video and report component level recall
+above 94 per cent on public datasets. This work does not beat them at that task and does
+not attempt to, since its reconstruction is engineering assembled from known parts. What
+is added is the step after it: reading the rebuilt board into text with a vision-language
+model, scoring that against hand-verified records, and carrying numbered regions of the
+board into a generated note.
 
-For the board side, the comparison with earlier work is different in kind. Systems such
-as those of Davila and Zanibbi \cite{davila2017whiteboard} and Kota et al.
-\cite{kota2019generalized} extract and binarise handwriting from fixed-camera lecture
-video and report component-level recall above 94 per cent on public datasets. This work
-does not beat them at that task and does not attempt to. Its reconstruction is
-engineering assembled from known parts. What is added is the step after it, which is
-reading the reconstructed board into text with a vision-language model, scoring that
-against hand-verified answer keys, and carrying numbered regions of the board into a
-generated note.
+\subsection{Relationships between data, stages and the earlier phase}
 
-\subsection{The relationship between training data and gain}
+Two observations connect the amount of data to the result and neither is a controlled
+experiment. Within the final result the lecturer with the least training speech has by far
+the worst test lecture, at 52 per cent character error against 12 to 16 for the others.
+Across designs, holding out an entire lecturer and training on 80 to 114 minutes gives
+50.3 per cent character error, while holding out whole lectures from known lecturers and
+training on 4.10 hours gives 15.8; the two differ in both the amount of data and the
+difficulty of the question, so neither isolates the effect of data volume. An earlier
+scaling curve on the smaller model, at 0.30, 0.60 and 0.93 hours, gave 84.6, 80.6 and 83.3
+per cent word error, which is flat within the 4.5 point run-to-run noise after the first
+18 minutes. A curve on the current corpus was planned and cancelled when the corpus
+closed.
 
-Two observations connect the amount of data to the result, and neither is a controlled
-experiment.
+The clearest relationship between the stages is that the factual content of a note comes
+from the vision side rather than the speech side. Adding the board text moves note recall
+by 18.3 points with the fine-tuned transcript and 4.9 points with the off-the-shelf one,
+while changing the transcript with board text present moves nothing a by-board test can
+detect. This is a statement about what board-content recall measures rather than a defect
+of the speech work, and it is the reason the speech result is reported on its own terms as
+a transcription result.
 
-Within the final result, the lecturer with the least training speech has by far the
-worst test lecture, at 52 per cent character error against 12 to 16 per cent for the
-others. Across designs, holding out an entire lecturer and training on 80 to 114
-minutes gives 50.3 per cent character error, while holding out whole lectures from
-known lecturers and training on 4.10 hours gives 15.8 per cent. The two differ in both
-the amount of data and the difficulty of the question, so neither comparison isolates
-the effect of data volume.
-
-An earlier scaling curve on the smaller model, at 0.30, 0.60 and 0.93 hours, gave 84.6,
-80.6 and 83.3 per cent word error, which is flat within the 4.5 point run-to-run noise
-after the first 18 minutes and significant at every budget. A curve on the current
-corpus was planned and was cancelled when the corpus closed, so the relationship
-between hours and accuracy at this scale is not measured here and is listed as future
-work.
-
-\subsection{The relationship between the stages}
-
-The clearest relationship in the results is that the factual content of a note comes
-from the vision side and not from the speech side. Adding the board text moves note
-recall by 18.3 points with the fine-tuned transcript and 4.9 points with the
-off-the-shelf one, while changing the transcript with board text present moves nothing
-that a by-board test can detect. That is not a defect of the speech work. It is a
-statement about what board-content recall measures, and it is the reason the speech
-result is reported on its own terms as a transcription result rather than being
-justified through the notes.
-
-\subsection{Comparison with the earlier phase of this project}
-
-The earlier phase of the project reported a fusion improvement of 5.7 percentage
-points with p = 0.003 and a large effect size, an ablation table, a bias sweep and a
-set of per-video statistics. None of those numbers was produced by any code in the
-project. They were re-derived where a derivation was possible and retired where it was
-not. The measured fusion effect is 0.7 points at p = 0.32. The bias sweep is the one in
-Section 5.2.1. Two of the ablation rows described modes the pipeline does not have. A
-failure-mode breakdown of five neat percentages summing to 100 had no analysis behind
-it and was removed rather than reconstructed.
-
-This is recorded here for two reasons. It is the reason for the project rule that a
-number needs a command, and a reader comparing this report with the earlier one is
-entitled to know which numbers changed and why.
+The earlier phase of the project reported a fusion improvement of 5.7 percentage points
+with p = 0.003 and a large effect size, an ablation table, a bias sweep and a set of
+per-video statistics, none of which was produced by any code in the project. They were
+re-derived where a derivation was possible and retired where it was not: the measured
+fusion effect is 0.7 points at p = 0.32, two of the ablation rows described modes the
+pipeline does not have, and a failure-mode breakdown of five neat percentages summing to
+100 had no analysis behind it and was removed rather than reconstructed. This is recorded
+because it is the reason for the project rule that a number needs a command, and because a
+reader comparing this report with the earlier one is entitled to know which numbers
+changed and why.
 
 \section{Discussions}
 
 \subsection{What the results mean}
 
-The speech result is the strongest part of the thesis. Fine-tuning a large multilingual
-model with a small adapter on 4.10 hours of hand-checked code-mixed classroom speech
+The speech result is the strongest part of the thesis. A small adapter on a large
+multilingual model, trained on 4.10 hours of hand-checked code-mixed classroom speech,
 cuts the character error rate from 67.7 to about 16 per cent on lectures the model has
-never heard, with two seeds agreeing and almost every clip improving. The practical
-meaning is that the output changes from something a transcriber cannot use to a draft
-a transcriber can correct.
+never heard, with two seeds agreeing and almost every clip improving. In practical terms
+the output changes from something a transcriber cannot use into a draft a transcriber can
+correct.
 
-The board result is a result about prompting. The same model on the same images goes
-from 31.2 to 88.8 per cent recall of what is written, purely on how it is asked, and a
-model less than half the size reaches 85.4 per cent. Anyone building a system like this
-should spend their effort on the prompt before spending it on a bigger model.
+The board result is a result about prompting rather than about model capability, since the
+same model on the same images moves from 31.2 to 88.8 per cent recall purely on how it is
+asked, and a model less than half the size reaches 85.4 per cent. Anyone building a system
+of this kind should spend effort on the prompt before spending it on a bigger model. The
+note result is that board content can be made to reach the page: the annotated notes carry
+89.1 per cent of the board items against 37.2 for a conventional summarisation prompt,
+while remaining a readable document rather than a paste of extracted text.
 
-The note result is that board content can be made to reach the page. The annotated
-notes carry 89.1 per cent of the board's items against 37.2 per cent for a
-conventional summarisation prompt, and they do it while remaining a readable document
-rather than a paste of extracted text.
-
-The negative results matter as much. Fusion, decoder bias and occlusion-as-pointer were
-all built and all measured, and none of them worked. The display clean-up looks better
-and reads slightly worse. Fine-tuning the speech model does not move note recall.
-Reporting these is what makes the positive results credible.
+The negative results matter as much. Fusion, decoder bias and occlusion as a pointer were
+all built and all measured, and none worked; the display clean-up looks better and reads
+slightly worse; and fine-tuning the speech model does not move note recall. Reporting
+these is what makes the positive results credible.
 
 \subsection{Implications}
 
-For code-mixed speech, the implication is that the data is the bottleneck and the
-method is not exotic. A standard adapter on a standard model gives a large gain, and
-what took the effort was five hours of carefully checked transcription and a split
-design that does not leak.
+For code-mixed speech, the data is the bottleneck and the method is not exotic. A standard
+adapter on a standard model gives a large gain, and what took the effort was five hours of
+carefully checked transcription and a split design that does not leak.
 
-For evaluation, the implication is stronger and is the part of this thesis most likely
-to be useful to others. Measures assembled out of English strings systematically reward
-a system that translates code-mixed speech and punish one that transcribes it. It
-happened twice here in two unrelated measures, and it is consistent with the published
-work on code-switched evaluation reviewed in Section 2.2.4. Anyone evaluating a
-code-mixed system on an English-derived metric should check for it before believing the
-result.
+For evaluation, measures assembled out of English strings systematically reward a system
+that translates code-mixed speech and punish one that transcribes it. It happened twice
+here in two unrelated measures, and it is consistent with the published work on
+code-switched evaluation reviewed in Section 2.2.3. Anyone evaluating a code-mixed system
+on an English-derived metric should check for this before believing the result.
 
-For classroom systems, the implication is that the whiteboard is worth the trouble.
-Most of the facts a student needs from these lectures are on the board and not in the
-speech, and a pipeline that reads the board recovers them.
+For classroom systems, the whiteboard is worth the trouble. Most of the facts a student
+needs from these lectures are on the board rather than in the speech, and a pipeline that
+reads the board recovers them.
 
-\subsection{Limitations}
+\subsection{Limitations and threats to validity}
 
 The limitations are listed together so that none has to be found by a reader.
 
 \begin{enumerate}
-  \item \textbf{No human evaluation of the notes.} The measure counts whether board
-        content reached the page. It cannot see whether the explanation is correct,
-        readable or useful, and a factual error in the prose has already been found by
-        reading.
-  \item \textbf{Three lecturers, one university, one language pair.} Nothing here shows
-        that the result transfers to another institution, another subject area or
-        another code-mixed pair.
-  \item \textbf{5.15 hours of transcribed speech.} Small by the standards of speech
-        recognition. The relationship between hours and accuracy at this scale is not
+  \item No human evaluation of the notes. The measure counts whether board content reached
+        the page and cannot see whether the explanation is correct, readable or useful, and
+        a factual error in the prose has already been found by reading.
+  \item Three lecturers, one university, one language pair. Nothing here shows that the
+        result transfers to another institution, subject area or code-mixed pair.
+  \item 5.15 hours of transcribed speech, which is small by the standards of speech
+        recognition, and the relationship between hours and accuracy at this scale is not
         measured.
-  \item \textbf{Training is unstable at the selected learning rate.} One seed of the
-        pre-registered configuration diverged completely. The stable configuration
+  \item Training is unstable at the selected learning rate, since one seed of the
+        pre-registered configuration diverged completely, and the stable configuration
         reported beside it was chosen after that was seen.
-  \item \textbf{The board-reading prompt was chosen on the boards it is reported on.}
-        A held-out half was checked afterwards and supports the conclusion, but it does
-        not undo the selection.
-  \item \textbf{Box finding is not evaluated.} No layout ground truth exists. It works
-        well on sparse boards and coarsely on dense ones, and it draws a box around a
-        sticker.
-  \item \textbf{Quotations in the English notes are not verified.} They are
-        translations, and the automatic check cannot apply to them.
-  \item \textbf{No comparison against a neighbouring model on our own data.} Running a
-        public Bengali-English model on our test clips would turn a discussion into a
-        table, and it was not done before submission.
-  \item \textbf{No correction for multiple comparisons.} Marginal results are described
-        as trends for that reason.
-  \item \textbf{The system is for recorded lectures.} Nothing here runs in real time.
+  \item The board-reading prompt was chosen on the boards it is reported on. A held-out
+        half was checked afterwards and supports the conclusion without undoing the
+        selection.
+  \item Box finding is not evaluated, because no layout ground truth exists. It works well
+        on sparse boards and coarsely on dense ones, and it draws a box around a sticker.
+  \item Quotations in the English notes are not verified, since they are translations and
+        the automatic check cannot apply to them.
+  \item No comparison against a neighbouring model on our own data. Running a public
+        Bengali-English model on our test clips would turn a discussion into a table, and
+        it was not done before submission.
+  \item No correction for multiple comparisons, which is why marginal results are described
+        as trends.
+  \item The system is for recorded lectures and nothing here runs in real time.
 \end{enumerate}
 
-\subsection{Threats to validity}
+The main threat to the speech result would be leakage between training and test. Whole
+lecture splits, the voice check on every recording and the frozen record of which lectures
+were on each side of every split guard against it. One leak did occur earlier in the
+project, it was found by the voice check, and the affected claim was retired.
 
-The main threat to the speech result would be leakage between training and test. Three
-things guard against it, which are whole-lecture splits, the voice check on every
-recording, and the frozen record of which lectures were on each side of every split.
-One leak did occur earlier in the project, it was found by the voice check, and the
-affected claim was retired.
+The main threat to the vision results is that the board records were drafted by reading
+the rebuilt boards, which could favour the reconstruction over a raw frame. The records
+were then checked by a person against the board images without seeing any model output,
+and the comparison between the reconstruction and the raw frame is reported as a trend
+rather than a result, so the conclusion does not depend on it.
 
-The main threat to the vision results is that the answer keys were drafted by reading
-the reconstructed boards, which could favour the reconstruction over a raw frame. The
-keys were then checked by a person against the board images without seeing any model
-output, and the comparison between the reconstruction and the raw frame is reported as
-a trend rather than a result, so the conclusion does not depend on it.
-
-The main threat to the note results is that board-content recall is a narrow measure
-that a system could game by pasting the board text into the page. That is exactly what
-the variant at 88.0 per cent does, which is why the annotated notes are compared
-against it rather than only against the original pipeline, and why the thesis says that
-matching it while remaining readable is the claim.
+The main threat to the note results is that board-content recall is a narrow measure that
+a system could satisfy by pasting the board text into the page. That is exactly what the
+variant at 88.0 per cent does, which is why the annotated notes are compared against it
+rather than only against the original pipeline.

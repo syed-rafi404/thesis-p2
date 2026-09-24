@@ -1,25 +1,20 @@
 \chapter*{Appendix A: The Transcription Standard}
 
 Every reference transcript in this thesis was produced against the written standard
-summarised here, version 1.0. The full document was given to the transcription team
-before any file was written, and a validation script checks every file against it.
+summarised here, version 1.0. The full document was given to the transcription team before
+any file was written, and a validation script checks every file against it.
 
-\section*{A.1 The segment rule}
+\section*{A.1 Segments and file format}
 
-The single most important rule is that no segment may be longer than 30 seconds,
-because that is the length of audio the speech model sees at once. Anything longer is
-cut by software that does not know where sentences end, which produces audio that does
-not match its text. The target is 10 to 25 seconds per segment, and a break is always
-taken at a natural pause, never inside a word or a phrase.
+No segment may be longer than 30 seconds, because that is the length of audio the speech
+model sees at once. Anything longer is cut by software that does not know where sentences
+end, which produces audio that does not match its text. The target is 10 to 25 seconds per
+segment, and a break is always taken at a natural pause. The nine transcripts produced
+before the standard existed do not follow this rule: their segments run to a median of 79
+seconds and up to 225, and 98 per cent are over 30 seconds, so they are subdivided at
+sentence ends by the data preparation step.
 
-The nine transcripts produced before the standard existed do not follow this rule.
-Their segments run to a median of 79 seconds and up to 225 seconds, and 98 per cent are
-over 30 seconds. They are subdivided at sentence ends by the data preparation step, and
-the report says so wherever they are used.
-
-\section*{A.2 File format}
-
-One UTF-8 text file per video, named \texttt{BanglaASR<N>\_ground\_truth.txt}, with a
+Each video has one UTF-8 text file, named \texttt{BanglaASR<N>\_ground\_truth.txt}, with a
 header of comment lines and then one line per segment.
 
 \begin{verbatim}
@@ -27,7 +22,6 @@ header of comment lines and then one line per segment.
 # Topic: Python Functions
 # Speaker ID: B
 # Video duration: 14:22
-# Transcriber: RH
 # Style guide version: 1.0
 # ==========================================================================
 [0:00-0:16] Assalamualaikum shobai. Aj amra dekhbo je kivabe python e
@@ -36,43 +30,40 @@ header of comment lines and then one line per segment.
             korte pari.
 \end{verbatim}
 
-The timestamp is exactly \texttt{[M:SS-M:SS]} with no space anywhere inside the
-brackets. The end timestamp of one segment is the start of the next, so there are no
-gaps and no overlaps. Lines beginning with \texttt{\#} are ignored by the software.
+The timestamp is exactly \texttt{[M:SS-M:SS]} with no space inside the brackets, and the
+end timestamp of one segment is the start of the next, so there are no gaps and no
+overlaps. Lines beginning with \texttt{\#} are ignored by the software.
 
-\section*{A.3 Write it exactly as spoken}
+\section*{A.2 Write it exactly as spoken}
 
-Fillers are kept, every one of them, every time. This includes \textit{um},
-\textit{uh}, \textit{aaa}, \textit{mane}, \textit{je}, \textit{tahole},
-\textit{okay} and \textit{thik ache}. Three reasons were given to the team and all
-three are real. The model has to learn them, and in the existing files fillers are
-about 5 per cent of tokens, at 671 out of 12,890. Removing them breaks the alignment
-between the text and its time window. And a reference cleaner than reality makes every
-error rate reported from it wrong in our favour.
+Fillers are kept, every one of them, every time, including \textit{um}, \textit{uh},
+\textit{aaa}, \textit{mane}, \textit{je}, \textit{tahole} and \textit{thik ache}. Three
+reasons were given to the team. The model has to learn them, and in the existing files
+fillers are about 5 per cent of tokens, at 671 out of 12,890. Removing them breaks the
+alignment between the text and its time window. And a reference cleaner than reality makes
+every error rate reported from it wrong in our favour.
 
-The one thing that is removed is an abandoned restart, where the lecturer begins a
-sentence, stops and starts again differently. Only the finished version is kept. If it
-is unclear whether something is a restart or a filler, it is kept.
+The one thing removed is an abandoned restart, where the lecturer begins a sentence, stops
+and starts again differently; only the finished version is kept, and anything ambiguous is
+kept. The lecturer is never corrected, so slips, repeats and self-corrections are
+transcribed as they happen.
 
-The lecturer is never corrected. Slips, repeats and self-corrections are transcribed as
-they happen.
-
-\section*{A.4 Spelling}
+\section*{A.3 Spelling and validation}
 
 Banglish has no spelling standard, so the guide fixes one. If one transcriber writes
-\textit{kore} and another writes \textit{koree} for the same word, the model sees two
-unrelated words and learns both badly. The canonical list was derived from what the
-team already wrote most often, so it mostly matches their instincts. Table
-\ref{tab:spellinglist} gives a sample of it.
+\textit{kore} and another \textit{koree} for the same word, the model sees two unrelated
+words and learns both badly. The canonical list was derived from what the team already
+wrote most often. Table \ref{tab:spellinglist} gives a sample. Technical terms stay in
+English, and the text is ASCII only with no Bengali script.
 
 \begin{table}[H]
 \centering
-\caption{A sample of the canonical spelling list. The validator enforces these.}
+\caption{A sample of the canonical spelling list, which the validator enforces.}
 \label{tab:spellinglist}
 \small
-\begin{tabular}{p{4.0cm}p{3.0cm}p{5.0cm}}
+\begin{tabular}{p{3.6cm}p{2.8cm}p{4.4cm}}
 \toprule
-\textbf{Meaning} & \textbf{Use this} & \textbf{Do not write} \\
+Meaning & Use this & Do not write \\
 \midrule
 I, my & \texttt{ami}, \texttt{amar} & amr, aami \\
 we & \texttt{amra} & aamra, amraa \\
@@ -90,14 +81,9 @@ plural marker & \texttt{gula} & gulo \\
 \end{tabular}
 \end{table}
 
-Technical terms stay in English and are spelled in English. Text is ASCII only, with no
-smart quotes and no Bengali script.
-
-\section*{A.5 The validator}
-
-A script checks every transcript against the rules above and reports segments over 30
-seconds, unreadable timestamps, gaps and overlaps, missing headers and spellings outside
-the canonical list. It can repair malformed timestamps automatically, keeping a backup
-copy of the original file. The checks that would corrupt training silently, such as a
-transcript with no matching video or a lecturer label that disagrees with the voice
-check, are a hard gate that stops a training run before it starts.
+A script checks every transcript against these rules and reports segments over 30 seconds,
+unreadable timestamps, gaps and overlaps, missing headers and spellings outside the
+canonical list. It can repair malformed timestamps automatically, keeping a backup of the
+original file. The checks that would corrupt training silently, such as a transcript with
+no matching video or a lecturer label that disagrees with the voice check, are a hard gate
+that stops a training run before it starts.

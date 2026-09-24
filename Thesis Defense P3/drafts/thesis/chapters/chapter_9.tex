@@ -4,186 +4,134 @@
 
 \section{Summary of Findings}
 
-This thesis set out to turn a recorded Bengali-English code-mixed whiteboard
-lecture into a lecture note that a student can use. The system was built as four
-stages and each stage was measured separately. The findings are summarised below in
-the order they were produced.
+This thesis set out to turn a recorded Bengali-English code-mixed whiteboard lecture into
+a lecture note a student can use. The system was built as four stages and each stage was
+measured separately.
 
-\textbf{Off-the-shelf speech recognition does not work on this speech, and the
-failure is specific.} On six held-out lectures, Whisper large-v3-turbo has a median
-character error rate of 67.7 per cent and a median word error rate of 93.9 per cent.
-It translates the speech into English instead of transcribing it, and it falls into
-repetition loops on thirteen of the 177 test clips.
+Off-the-shelf speech recognition does not work on this speech, and the failure is
+specific: on six held out lectures Whisper large-v3-turbo produces a median character
+error rate of 67.7 per cent and a median word error rate of 93.9, translating the speech
+into English rather than transcribing it and falling into repetition loops on thirteen of
+the 177 test clips. A small adapter on the same model corrects most of that. Trained on
+4.10 hours of hand-checked Banglish from 22 lectures, LoRA adapters bring the character
+error rate down to 15.8 and 16.0 per cent in two random seeds and the word error rate to
+42.5 and 41.7, better on 164 and 167 of 177 clips and needing no decoding safeguard. The
+gain also holds for a lecturer the model has never heard, at a lower level, cutting the
+character error rate from 72.8 to 50.3 per cent in all six runs. Training at the selected
+settings is not stable, however, since one of two seeds at the chosen learning rate
+collapsed into repetition and produced output worse than doing nothing.
 
-\textbf{A small adapter on the same model fixes most of that.} Trained on 4.10 hours
-of hand-checked Banglish from 22 lectures, LoRA adapters bring the character error
-rate down to 15.8 and 16.0 per cent in two random seeds, and the word error rate to
-42.5 and 41.7 per cent. The adapted model is better on 164 and 167 of 177 clips with
-p below 1e-30, and it needs no decoding safeguard, since it loops on one clip in 177.
+The whiteboard can be rebuilt from the video without inventing anything, and the median
+board has 97.7 per cent of its tiles fully clear. A human check of 98 boards found 82
+complete, with writing genuinely lost on 9 and the remaining 7 explained by the source
+video rather than by the method. Reading the board is then a question of prompting rather
+than of model size: the same vision-language model on the same images moves from 31.2 to
+88.8 per cent recall of hand-verified board content when the prompt asks for a full
+transcription instead of keywords, and from none of 67 numbers to 65 of 67, while a model
+less than half the size reaches 85.4 per cent. Board content can be made to reach the
+notes, which carry 89.1 per cent of the board items against 37.2 for a conventional
+summarisation prompt.
 
-\textbf{The gain also holds for a lecturer the model has never heard, at a lower
-level.} Holding out each lecturer in turn and training on the other two cuts the
-character error rate from 72.8 to 50.3 per cent, significant in all six runs. This
-is the harder question and the worse number, and both designs are reported.
-
-\textbf{Training at the selected settings is not stable.} At the learning rate the
-pre-registered tuning procedure chose, one of two seeds collapsed into repetition and
-produced output worse than doing nothing. The stable configuration reported beside it
-is the runner-up rate from the same table, and it was run after the divergence was
-seen.
-
-\textbf{The whiteboard can be reconstructed from the video without inventing
-anything.} Tiling the frame and taking each tile from a moment when the lecturer was
-not in front of it gives boards in which every pixel is unmodified camera output. The
-median board has 97.7 per cent of its tiles fully clear. A human check of 98 boards
-found 82 complete, with writing genuinely lost on 9 and the remaining 7 explained by
-the source video rather than by the method.
-
-\textbf{Reading the board is a question of prompting, not of model size.} The same
-vision-language model on the same images goes from 31.2 to 88.8 per cent recall of
-hand-verified board content when the prompt asks for a full transcription instead of
-keywords, and from none of 67 numbers to 65 of 67. A model less than half the size
-reaches 85.4 per cent with the same prompt. The prompt is worth 57.6 points and the
-model size 5.3.
-
-\textbf{Board content can be made to reach the notes.} The annotated notes carry 89.1
-per cent of the board items against 37.2 per cent for a conventional summarisation
-prompt, and they match a variant that simply pastes the extracted board text, while
-remaining a readable document with numbered regions, verified quotations and a
-step-by-step explanation.
-
-\textbf{Several things did not work, and that is part of the result.} Dual recogniser
-fusion gives 0.7 percentage points at p = 0.32. Biasing the decoder towards board
-words halves term recall at every non-zero strength. Using occlusion as a pointer to
-align speech with board regions is not supported, at p = 0.054 and p = 0.159. The
-display clean-up that makes boards look better makes the model read them very slightly
-worse. Fine-tuning the speech model does not measurably improve board-content recall
+Several approaches did not work, and that is part of the result. Dual recogniser fusion
+gives 0.7 percentage points at p = 0.32, biasing the decoder towards board words halves
+term recall at every non-zero strength, using occlusion as a pointer is not supported at p
+= 0.054 and p = 0.159, the display clean-up makes the model read boards very slightly
+worse, and fine-tuning the speech model does not measurably improve board-content recall
 in the notes.
 
-\textbf{Measures built out of English strings mislead in this setting.} This appeared
-twice, independently. A term-based F1 over a fixed English word list swings 8.1 points
-between two training runs on identical data, and it moves against transcription
-quality because a better Banglish transcript contains fewer English words. In the note
-evaluation, the transcript with 67.7 per cent character error contains significantly
-more of the English answer key items than the one with 15.8 per cent, for the same
-mechanical reason.
+Measures built out of English strings mislead in this setting, and this appeared twice
+independently. A term based F1 over a fixed English word list swings 8.1 points between
+two training runs on identical data and moves against transcription quality, because a
+better Banglish transcript contains fewer English words. In the note evaluation the
+transcript with 67.7 per cent character error contains significantly more of the English
+record items than the one with 15.8 per cent, for the same mechanical reason.
 
 \section{Contributions to the Field}
 
-The contributions of this thesis, stated as narrowly as the evidence allows, are the
-following.
+Stated as narrowly as the evidence allows, the contributions are the following.
 
-\textbf{A hand-checked corpus of code-mixed classroom speech in romanized Banglish.}
-Forty-four lecture recordings totalling 8.33 hours, of which 28 lectures and 5.15
-hours are transcribed word by word against the audio according to a written
-transcription standard, with 609 timed segments and about 39,100 words. As far as
-could be found, no comparable corpus of spontaneous Bengali-English classroom speech
-transcribed in the Roman alphabet existed. The nearest published corpora in this
-language pair are synthetic.
+A hand-checked corpus of code-mixed classroom speech in romanized Banglish: 44 lecture
+recordings totalling 8.33 hours, of which 28 lectures and 5.15 hours are transcribed word
+by word against the audio according to a written standard, with 609 timed segments and
+about 39,100 words. No comparable corpus of spontaneous Bengali-English classroom speech
+transcribed in the Roman alphabet could be found, and the nearest published corpora in
+this language pair are synthetic.
 
-\textbf{A measured speech recognition result for this variety, under a strict
-evaluation design.} Whole lectures are held out, references are human, the settings
-come from a procedure written down before any run, and two seeds are reported for
-every configuration including the one that diverged. Two designs are reported and
-labelled, one with the test lecturers heard in training and one with an entirely
-unseen lecturer.
+A measured speech recognition result for this variety under a strict evaluation design.
+Whole lectures are held out, references are human, the settings come from a procedure
+written down before any run, and two seeds are reported for every configuration including
+the one that diverged. Two designs are reported and labelled, one with the test lecturers
+heard in training and one with an entirely unseen lecturer.
 
-\textbf{A whiteboard reconstruction that generates nothing, read into text by a
-vision-language model and scored against hand-verified answer keys.} The reconstruction
-itself is engineering assembled from known parts, and the thesis says so. What is new
-is the combination with a vision-language reader and the measurement of it, including
-45 boards and 436 items verified by hand and 98 boards checked for missing writing.
+A whiteboard reconstruction that generates nothing, read into text by a vision-language
+model and scored against hand-verified records. The reconstruction itself is engineering
+assembled from known parts. What is new is the combination with a vision-language reader
+and the measurement of it, including 45 boards and 436 items verified by hand and 98
+boards checked for missing writing.
 
-\textbf{A demonstration that the prompt, not the model size, is what makes a
-vision-language model read a handwritten board.} 57.6 points against 5.3 points, with
-the choice re-checked on a held-out half of the boards.
+A demonstration that the prompt rather than the model size is what makes a vision-language
+model read a handwritten board, at 57.6 points against 5.3, with the choice re-checked on
+a held-out half of the boards.
 
-\textbf{A note generator whose claims can be checked.} Board content is supplied as
-text rather than recalled, non-lecture material is confined to a labelled box,
-quotations are verified word for word against the transcript and deleted when they
-fail, and references to numbered regions of the board are checked against the regions
-that exist. Each of these is counted in the output file of every page.
+A note generator whose claims can be checked. Board content is supplied as text rather
+than recalled, non-lecture material is confined to a labelled box, quotations are verified
+word for word against the transcript and deleted when they fail, and references to
+numbered regions of the board are checked against the regions that exist. Each of these is
+counted in the output file of every page.
 
-\textbf{A methodological finding about evaluating code-mixed systems.} Measures
-assembled from English strings reward a model that translates and penalise one that
-transcribes. This was observed twice in unrelated measures within one project, it is
-consistent with the published literature on code-switched evaluation, and it is
-reported here with the mechanism and the numbers rather than as an aside.
+A methodological finding about evaluating code-mixed systems, in which measures assembled
+from English strings reward a model that translates and penalise one that transcribes.
+This was observed twice in unrelated measures within one project, it is consistent with the
+published literature on code-switched evaluation, and it is reported with the mechanism
+and the numbers.
 
-\textbf{A set of measured negative results.} Fusion, decoder bias, occlusion-as-pointer
-and the display clean-up were all built, all measured and all reported as they came
-out.
+A set of measured negative results, since fusion, decoder bias, occlusion as a pointer and
+the display clean-up were all built, all measured and all reported as they came out.
 
 \section{Recommendations for Future Work}
 
-\subsection{The work that would most improve the thesis}
+The single most valuable missing piece is a reader study. Nothing in this thesis measures
+whether the notes are good to read or whether what they say is true, and a factual error
+in the generated prose has already been found by reading. The study should show about
+twenty students the old notes and the new notes for the same lecture and ask which helps
+more, together with ratings for usefulness, correctness and readability, giving a paired
+before and after result rather than a score. A second arm should compare notes built from
+the off-the-shelf transcript with notes built from the fine-tuned one, which is the only
+way to test the part of the speech improvement that board-content recall cannot see.
 
-\textbf{A reader study.} This is the single most valuable missing piece. Nothing in
-this thesis measures whether the notes are good to read or whether what they say is
-true, and a factual error in the generated prose has already been found by reading.
-The study should show about twenty students the old notes and the new notes for the
-same lecture and ask which helps more, together with ratings for usefulness,
-correctness and readability, giving a paired before-and-after result rather than a
-score. A second arm should compare notes built from the off-the-shelf transcript with
-notes built from the fine-tuned one, which is the only way to test the part of the
-speech improvement that board-content recall cannot see.
+Two smaller pieces of evidence would also strengthen the report. Running a public
+Bengali-English code-switched model on our own test clips would turn the discussion in
+Section 5.5.1 into a table, and it costs about twenty minutes on any suitable machine.
+Timing transcribers as they correct real model drafts would replace the projection in
+Section 3.8 with a measurement, and it is the number a department would actually want.
 
-\textbf{A benchmark against a neighbouring model.} Running a public Bengali-English
-code-switched model on our own test clips would turn the discussion in Section 5.5.1
-into a table. It costs about twenty minutes on any suitable machine and it was not
-done before submission.
+On the speech side, more data from under-represented lecturers is the clearest next step,
+since the lecturer with 0.7 hours in training has a test lecture at 52 per cent character
+error while the others reach 12 to 16, and collecting more from that lecturer would test
+whether the cause is the data or the speaker. A scaling curve on the current corpus,
+planned and cancelled when the corpus closed, would answer how much more transcription is
+worth buying. The divergence at the selected learning rate is reproducible enough to
+study, and warmup, gradient clipping or a lower scaling factor are the obvious things to
+try; a configuration that never diverges would be worth more than a small gain in error
+rate. Reporting the spelling tolerant variants of Section \ref{sec:asr-spelling} as
+standard, and applying the same idea to the note measure, would reduce the measurement
+problem described throughout this thesis.
 
-\textbf{Measuring post-editing effort.} The economic argument in Section 3.8.3 rests on
-a projection. Timing transcribers as they correct real model drafts would replace it
-with a measurement, and it is the number a department would actually want.
+On the vision and note side, four changes have known causes. Holding an era open until a
+wipe finishes would fix the four boards cut in the middle of an erase. Ignoring a region
+that appears unchanged in every era of a lecture would stop the box finder putting a
+numbered box around a sticker. Evaluating the box finding would attach a number to the one
+part of the pipeline that has none, and it needs layout ground truth that does not yet
+exist. Notes in the Bengali script were dropped from this thesis deliberately, since they
+would be produced by translation alone, and they are straightforward to add if a reader
+wants them. A larger notes model was intended for comparison and dropped for disk space;
+it would change the writing rather than the facts, since it reads the extracted board text
+and never the board.
 
-\subsection{Work on the speech side}
-
-\textbf{More speech, especially from under-represented lecturers.} The lecturer with
-0.7 hours in training has a test lecture at 52 per cent character error while the
-others reach 12 to 16. Collecting more from that lecturer would test whether the cause
-is the data or the speaker.
-
-\textbf{A scaling curve on the current corpus.} Planned and cancelled when the corpus
-closed. It would answer how much more transcription is worth buying.
-
-\textbf{Stabilising the training.} The divergence at the selected learning rate is
-reproducible enough to study. Warmup, gradient clipping or a lower alpha are the
-obvious things to try, and a configuration that never diverges would be worth more than
-a small gain in error rate.
-
-\textbf{A spelling-tolerant metric as standard.} The variants computed in Section
-\ref{sec:asr-spelling} were used only to answer a question. Reporting them alongside
-plain error rates, and applying the same idea to the note metric, would reduce the
-measurement problem described throughout this thesis.
-
-\subsection{Work on the vision and note side}
-
-\textbf{Hold the era open until a wipe finishes.} Four of the 98 boards were cut in the
-middle of an erase. This is a small change with a known cause.
-
-\textbf{Ignore board furniture.} A sticker that appears unchanged in every era of a
-lecture should not be given a numbered box.
-
-\textbf{Evaluate the box finding.} No layout ground truth exists, so the step that
-produces the numbered regions is the one part of the pipeline with no number attached
-to it.
-
-\textbf{Notes in Bengali script.} Dropped from this thesis deliberately, because it
-would be produced by translation alone and would add checking work without adding a
-contribution. It is straightforward to add if a reader wants it.
-
-\textbf{A larger notes model.} A 32 billion parameter model was intended for comparison
-and was dropped for disk space. It would only change the writing, not the facts, since
-it reads the extracted board text and never the board.
-
-\subsection{Closing remark}
-
-The system described here does what it was built to do, and the report says exactly how
-well. A student can put in a recorded Banglish whiteboard lecture and get out a note
-containing the lecturer's words and the lecturer's board, with the board drawn from
-real pixels and the quotations checked against the transcript. The speech model is good
-enough to be a draft and not good enough to be trusted unchecked. The board reading is
-strong and the reason it is strong is the prompt. Whether the notes are genuinely
-useful to a student is the one question this thesis cannot answer, and it is the first
-thing that should be measured next.
+The system does what it was built to do, and this report states how well. A student can
+put in a recorded Banglish whiteboard lecture and get out a note containing the lecturer's
+words and the lecturer's board, with the board drawn from real pixels and the quotations
+checked against the transcript. The speech model is good enough to be a draft and not good
+enough to be trusted unchecked, the board reading is strong and the prompt is the reason,
+and whether the notes are genuinely useful to a student is the one question this thesis
+cannot answer.

@@ -1,420 +1,250 @@
 % ============================================================================
 % CHAPTER 4 - PROPOSED METHODOLOGY   (template file chapter_5.tex)
-% Rubric mapping: CO5 (15 marks, 5 supervisor + 10 defense panel) is assessed
-% from 4.1 Design Process and 4.2 Preliminary Design.
+% Rubric: CO5 (15 marks, 5 supervisor + 10 defense panel) from 4.1 and 4.2.
 % ============================================================================
 
 \section{Design Process or Methodology Overview}
 
-\subsection{What the design has to achieve}
+\subsection{Design objectives and the shape of the solution}
 
-The design follows directly from the objectives in Section 1.4 and the constraints
-in Section 3.1.5. A lecture video goes in. A lecture note comes out that contains
-the lecturer's words and the lecturer's board. The whole thing has to run on one
-desktop graphics card, it has to be measurable stage by stage, and it must not
-invent content.
+The design follows from the objectives in Section 1.4 and the constraints in Section
+3.1.3. A lecture video is the input and a lecture note containing the lecturer's words
+and the lecturer's board is the output. The system must run on one desktop graphics card,
+it must be measurable stage by stage, and it must not invent content.
 
-\subsection{Why a pipeline of stages rather than one model}
+One option was a single multimodal model that reads the video and writes the note. It was
+rejected for three reasons. A single model gives one number at the end, so when that
+number is poor there is nothing to inspect, whereas a pipeline gives a separate
+measurement for the speech, the board reconstruction, the board reading and the note.
+Chapter 5 shows this paying off, because the four stages turned out to contribute very
+differently. Keeping the stages apart also means only one model is in memory at a time,
+which matters on the hardware available. Finally, when the board is read into text as a
+separate step the note-writing model receives the board as text rather than having to
+remember it, so a fact in the note can be traced to the board; when one model both looks
+at the image and writes the note, a fact cannot be traced to its source.
 
-One design option was a single multimodal model that reads the video and writes
-the note. It was rejected for three reasons.
-
-The first is measurement. A single model gives one number at the end, and when
-that number is poor there is nothing to look at. A pipeline gives a separate
-measurement for the speech, for the board reconstruction, for the board reading
-and for the note, so a weakness can be located. Chapter 5 shows this paying off,
-because the four stages turned out to contribute very differently and one of them
-contributes almost nothing to the metric used.
-
-The second is hardware. Keeping the stages apart means only one model is in memory
-at a time. The speech model, the vision-language model and the note-writing model
-never have to fit together.
-
-The third is honesty about content. When the board is read into text as a separate
-step, the note-writing model receives the board as text rather than having to
-remember it, so it has less reason to invent. When the note is written by a model
-that also had to look at the image, there is no way to tell whether a fact came
-from the board or from the model's training data.
+Four rules were fixed before building and were not relaxed. Each stage is a separate
+program with a file interface, and a stage is skipped when its output already exists, so
+an interrupted run continues and a single stage can be replaced without touching the
+others. Nothing in the image is invented: the board reconstruction may leave a visible
+gap but may not fill one with plausible pixels. The board records used for scoring sit in
+a folder that the note generator refuses to read, enforced in code rather than by
+discipline. And every reported number is produced by a command recorded beside it.
 
 \subsection{The four stages}
 
-\figplaceholder{fig-4-1-pipeline}{The InsightLens pipeline. Each stage writes a
-file that the next stage reads.}{The main system diagram, drawn left to right or
-top to bottom. Boxes in order: (1) Video, (2) Audio extraction at 16 kHz and
-frame extraction every 2 s, (3) Stage 1 Speech: Whisper large-v3-turbo plus LoRA
-adapter, output "transcript.txt (timestamped Banglish)", (4) Stage 2 Board:
-erase detection, era split, tiled mosaic, person mask, clean-up, output "one
-clean board image per era", (5) Stage 3 Board reading: box finding, numbered
-coloured boxes drawn, Qwen2.5-VL names and transcribes each box, output
-"board\_boxes.json", (6) Stage 4 Notes: Qwen2.5-7B writes one section per board,
-quote checker, box-reference check, output "notes in Banglish and English,
-Markdown and HTML". Show the file passed between each pair of stages on the
-arrow. Mark which stages run on which machine if there is room.}{9cm}
+\figplaceholder{fig-4-1-pipeline}{The InsightLens pipeline. Each stage writes a file that
+the next stage reads.}{The main system diagram, drawn left to right or top to bottom.
+Boxes in order: (1) Video; (2) Audio at 16 kHz and frames every 2 s; (3) Stage 1 Speech,
+Whisper large-v3-turbo with a LoRA adapter, output ``timestamped Banglish transcript'';
+(4) Stage 2 Board, erase detection, era split, tiled mosaic with a person mask, clean-up,
+output ``one clean board image per era''; (5) Stage 3 Board reading, box finding,
+numbered coloured boxes drawn, Qwen2.5-VL names and transcribes each box; (6) Stage 4
+Notes, Qwen2.5-7B writes one section per board, quote checker and box-reference check,
+output ``notes in Banglish and English''. Put the file passed between each pair of stages
+on the arrow.}{5.5cm}
 
-\textbf{Stage 1, speech.} The audio is extracted and cut into clips. A LoRA
-adapter trained on the corpus is attached to Whisper large-v3-turbo, and the
-adapted model writes a timestamped transcript in romanized Banglish.
+In stage one the audio is extracted and cut into clips, a LoRA adapter trained on the
+corpus is attached to Whisper large-v3-turbo, and the adapted model writes a timestamped
+transcript in romanized Banglish.
 
-\textbf{Stage 2, the board.} Frames are extracted at a fixed interval. Erase
-events are detected and split the lecture into eras, one board per era. Within an
-era the frame is tiled, and each tile is taken from a moment when the lecturer was
-not standing in front of that tile. The result is one image per board in which
-every pixel came from some real frame.
+In stage two frames are extracted at a fixed interval, erase events split the lecture
+into eras with one board per era, and within an era each tile of the frame is taken from
+a moment when the lecturer was not standing in front of that tile.
 
-\textbf{Stage 3, reading the board.} Blocks of writing are found on the clean
-board, a numbered coloured box is drawn around each, and Qwen2.5-VL is asked to
-name and transcribe each numbered box.
+In stage three the blocks of writing are found on the clean board, a numbered coloured
+box is drawn around each, and Qwen2.5-VL names and transcribes each numbered box.
 
-\textbf{Stage 4, the note.} For each board, Qwen2.5-7B-Instruct is given the boxes,
-the board text and the part of the transcript that belongs to that board, and
-writes one section of notes that points at the boxes. Checkers then remove
-unverifiable quotations and bad box references, and the sections are assembled
-into a page.
-
-\subsection{Principles that were fixed before building}
-
-Four rules were adopted at the start and were not relaxed.
-
-\textbf{Every stage is a separate program with a file interface.} A stage is
-skipped when its output already exists, so a run continues after an interruption
-and a single stage can be replaced without touching the others.
-
-\textbf{Nothing is invented in the image.} The board reconstruction may leave a
-visible gap, but it may not fill one with plausible pixels.
-
-\textbf{The answer keys are never given to a generator.} The board answer keys
-used for scoring sit in a folder that the note generator refuses to read, enforced
-in code rather than by discipline.
-
-\textbf{A number needs a command.} Every result in Chapter 5 is produced by a
-command recorded beside it.
+In stage four a language model receives each board's boxes, the board text and the part
+of the transcript belonging to that board, and returns one section of notes that points
+at the boxes. Checkers then remove unverifiable quotations and bad box references, and
+the sections are assembled into a page.
 
 \section{Preliminary Design and Alternatives Considered}
 
-Several designs were built and measured before the final one was chosen. This
-section presents them with the verification each received, because three of them
-failed and the failures are part of the argument for the design that was kept.
+Several designs were built and measured before the final one was chosen. Three of them
+failed, and the failures are part of the argument for the design that was kept. Table
 
-\subsection{Alternatives for the speech stage}
+ef{tab:alternatives} summarises the comparison, and the paragraphs below give the
+reasoning where the table cannot.
 
-\textbf{Option A, use Whisper as it is.} This is the obvious baseline and it was
-measured first. On the held-out lectures it gives a median character error rate of
-67.7 per cent and a median word error rate of 93.9 per cent, and it translates the
-speech into English rather than transcribing it. Rejected on the measurement.
+For the speech stage the two rejected-by-measurement options are the informative ones.
+Running an English recogniser and a Bengali recogniser and merging their outputs was built
+and measured on nine lectures: the merged output scored 0.7 percentage points above the
+baseline on the term measure, which a paired permutation test puts at p = 0.32, while its
+word error rate was far worse at 146.8 per cent against 82.6. Biasing the decoder towards
+words seen on the board, implemented as a logits processor with a strength parameter,
+halved term recall at every non-zero setting and truncated the transcript. Using a Bengali
+model and transliterating afterwards was rejected on the design rather than by experiment,
+because it loses the English technical terms twice, first when the Bengali model spells
+them phonetically and again when they are romanized back.
 
-\textbf{Option B, use a Bengali speech model and transliterate.} A Bengali model
-writes the Bengali script, so the output would have to be romanized afterwards.
-This loses the English technical terms twice, first when the Bengali model spells
-them phonetically in Bengali and again when they are romanized back. Rejected on
-the design, without a full experiment, because the failure is structural.
+For the board, the option that had to be abandoned was the one the first version of the
+project used, which removed the lecturer and filled the hole by inpainting. Inspection
+against the source frame found the lecturer still visible as a grey silhouette, because
+the brightness threshold missed the light squares of his shirt, and text he was writing at
+that moment lost, because the filled region was rebuilt from a single donor frame. The
+filled figure also showed content not yet written at that time, so it was a plausible
+picture of a board that never existed. Generative inpainting with a diffusion model was
+not attempted, because on a whiteboard a plausible fill is invented writing and a reader
+cannot distinguish it from the real thing. The tiled mosaic over erase separated eras was
+selected because every output pixel is unmodified camera output, so the only question is
+whether each tile found a clear moment, and that is counted exactly.
 
-\textbf{Option C, run two recognisers and merge them.} An English recogniser and a
-Bengali recogniser could be run on the same audio and their outputs combined.
-This was built and measured on nine lectures. The merged output scored 0.7
-percentage points above the baseline on the term measure, which a paired
-permutation test puts at p = 0.32, and its word error rate was far worse than the
-baseline at 146.8 per cent against 82.6 per cent. Rejected on the measurement.
-
-\textbf{Option D, bias the decoder towards words seen on the board.} The idea was
-to push the speech model towards terms the board shows, implemented as a logits
-processor with a strength parameter. A sweep over the strength from 0 to 2.0 found
-that any non-zero value halves term recall and truncates the transcript, and that
-every non-zero value produces byte-identical output. Rejected on the measurement,
-and the mechanism was disabled.
-
-\textbf{Option E, adapt Whisper to this speech with LoRA.} Selected. It keeps the
-multilingual model's acoustic knowledge, trains a small number of parameters so
-that a few hours of speech is enough, and produces the romanized output directly
-because that is what the training references contain.
-
-\subsection{Alternatives for reconstructing the board}
-
-\textbf{Option A, take the clearest single frame of each era.} Simple, and it is
-the fallback the pipeline still supports. It fails whenever the lecturer stands in
-front of part of the board in every frame of the era, which measurement showed to
-be the normal case rather than the exception. Over 79 frames of one lecture the
-lecturer covers 23.5 per cent of the writing surface in the median frame and never
-less than 5 per cent.
-
-\textbf{Option B, remove the lecturer and fill the hole by inpainting.} This was
-the method in the first version of the project. Inspection of its output against
-the source frame found two failures. The lecturer remained visible as a grey
-silhouette because the brightness threshold missed the light squares of his
-shirt, and text he was writing at that moment was lost because the filled region
-was rebuilt from a single donor frame. Worse, the filled figure showed content
-that had not yet been written at that time, so the image was a plausible picture
-of a board that never existed. Rejected.
-
-\textbf{Option C, generative inpainting with a diffusion model.} Not attempted, on
-purpose. On a whiteboard, a plausible fill is invented writing, and a reader
-cannot tell it from the real thing. A visible gap is honest and an invented
-character is not.
-
-\textbf{Option D, a tiled mosaic over erase-separated eras.} Selected, and
-described in Section 4.4.3. Its property is that every output pixel is unmodified
-camera output, so there is no fidelity question to argue about. The only question
-is whether each tile found a clear moment, and that is counted exactly and
-reported.
-
-\subsection{Alternatives for reading the board}
-
-\textbf{Option A, classical optical character recognition.} Standard OCR engines
-are built for printed text. The board carries handwriting, diagrams with arrows,
-truth tables and code, and the earlier phase of the project already showed this
-route giving very little.
-
-\textbf{Option B, ask the vision-language model for keywords.} This is what the
-first version of the pipeline did. Measured against the hand-verified answer keys
-over 35 boards it recovers 31.2 per cent of the items and, tellingly, none of the
-67 numbers. Rejected on the measurement.
-
-\textbf{Option C, ask the vision-language model to transcribe the board in full.}
-Selected. The same model with the same images recovers 88.8 per cent of the items
-and 65 of the 67 numbers. The prompt asks for every number exactly as written and
-for the marker \texttt{[illegible]} instead of a guess.
-
-\textbf{Option D, let the model find the regions itself.} The code supports asking
-the model to draw the boxes, but it was not adopted, because our own box finder is
-deterministic and its output can be drawn onto the real image and checked by eye.
-This option remains untested and is listed as such.
-
-\subsection{Alternatives for writing the note}
-
-\textbf{Option A, ask for good notes on the lecture.} The original prompt. The
-model recited textbook material, including a definition of a NAND gate that the
-lecturer never gave and that was wrong. Measured board recall 37.2 per cent over
-35 boards.
-
-\textbf{Option B, a grounded prompt with board keywords as the visual input.}
-Recall fell to 25.8 per cent. The grounded prompt stops the model reciting, and
-with only keywords there is nothing better to put in place of the recitation.
-
-\textbf{Option C, a grounded prompt with the full board transcription.} Recall
-88.0 per cent. This works, but the note reads like a paste of the board text.
-
-\textbf{Option D, the annotated note.} Selected. One section per board, pointing
-at the numbered boxes, with the lecturer quoted, a step by step walk through the
-board, and non-lecture material confined to a labelled box. It reaches 89.1 per
-cent, which is statistically indistinguishable from option C, while being a
-readable document rather than a paste.
-
-For the English version two routes were built and compared. Writing English
-directly from the board and the transcript reaches 55.9 per cent on this measure.
-Writing the section in Banglish first and then translating it reaches 89.4 per
-cent. The translated route was selected, and Chapter 5 explains why the gap is
-partly an artefact of the measure and reports the caveat that four dense boards
-carry most of it.
-
-\subsection{Summary of the design decisions}
+For reading the board and for writing the note, the choices were settled by the
+measurements reported in Chapter 5 and are summarised in the table. One option remains
+untested: the code supports asking the vision-language model to draw the boxes itself, but
+our own box finder was kept because it is deterministic and its output can be drawn onto
+the real image and checked by eye.
 
 \begin{table}[H]
 \centering
-\caption{The alternatives considered at each stage and the reason for the choice.
-Options marked as measured were built and evaluated before being rejected.}
+\caption{The alternatives considered at each stage. Options marked as measured were built
+and evaluated before being rejected.}
 \label{tab:alternatives}
 \small
-\begin{tabular}{p{2.1cm}p{4.6cm}p{2.0cm}p{5.0cm}}
+\begin{tabular}{p{1.8cm}p{4.4cm}p{2.0cm}p{5.4cm}}
 \toprule
-\textbf{Stage} & \textbf{Option} & \textbf{Status} & \textbf{Reason} \\
+Stage & Option & Status & Reason \\
 \midrule
-Speech & Off-the-shelf Whisper & measured &
-CER 67.7 per cent, and it translates \\
+Speech & Off-the-shelf Whisper & measured & CER 67.7 per cent, and it translates \\
 Speech & Bengali model plus transliteration & rejected by design &
 loses English terms twice \\
-Speech & Dual recogniser fusion & measured &
-+0.7 pp, p = 0.32, and WER far worse \\
-Speech & Visual bias in the decoder & measured &
-halves term recall at any strength \\
-Speech & \textbf{Whisper plus LoRA} & \textbf{selected} &
-CER 15.8 per cent on unseen lectures \\
+Speech & Dual recogniser fusion & measured & +0.7 pp, p = 0.32, and WER far worse \\
+Speech & Visual bias in the decoder & measured & halves term recall at any strength \\
+Speech & Whisper plus LoRA & selected & CER 15.8 per cent on unseen lectures \\
 \addlinespace
-Board & Best single frame & fallback &
-the lecturer is never absent \\
+Board & Best single frame & fallback & the lecturer is never absent \\
 Board & Mask and inpaint & measured &
 left a silhouette and showed writing from the wrong time \\
-Board & Generative inpainting & not attempted &
-would invent writing \\
-Board & \textbf{Tiled mosaic over eras} & \textbf{selected} &
-every pixel is real, coverage is counted \\
+Board & Generative inpainting & not attempted & would invent writing \\
+Board & Tiled mosaic over eras & selected & every pixel is real, coverage is counted \\
 \addlinespace
-Reading & Classical OCR & rejected &
-built for print, not handwriting and diagrams \\
-Reading & Keyword prompt & measured &
-31.2 per cent recall, no numbers at all \\
-Reading & \textbf{Full transcription prompt} & \textbf{selected} &
-88.8 per cent recall \\
-Reading & Model draws its own boxes & untested &
-kept in the code, not evaluated \\
+Reading & Classical OCR & rejected & built for print, not handwriting and diagrams \\
+Reading & Keyword prompt & measured & 31.2 per cent recall, no numbers at all \\
+Reading & Full transcription prompt & selected & 88.8 per cent recall \\
+Reading & Model draws its own boxes & untested & kept in the code, not evaluated \\
 \addlinespace
 Notes & Free summarisation & measured & 37.2 per cent, recites a textbook \\
 Notes & Grounded prompt, keywords & measured & 25.8 per cent \\
 Notes & Grounded prompt, board text & measured & 88.0 per cent, reads like a paste \\
-Notes & \textbf{Annotated note with boxes} & \textbf{selected} &
-89.1 per cent and readable \\
+Notes & Annotated note with boxes & selected & 89.1 per cent and readable \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \section{Data Collection}
 
-\subsection{The recordings}
+\subsection{Recording and transcription}
 
-Forty-four lectures were recorded in Brac University classrooms with a fixed
-camera pointed at the lecturer and the whiteboard. Three lecturers took part, and
-no lecture uses slides. The subjects are introductory programming, digital logic,
-databases and computer networking. The recordings total 8.33 hours, with the
-shortest at 3.4 minutes and the longest at 36.4 minutes.
+Forty-four lectures were recorded in Brac University classrooms with a fixed camera
+pointed at the lecturer and the whiteboard. Three lecturers took part and no lecture uses
+slides. The recordings total 8.33 hours, the shortest 3.4 minutes and the longest 36.4
+minutes.
 
-The lecturer of each recording was confirmed by voice rather than by memory. A
-WavLM speaker embedding was computed for every lecture and compared with reference
-embeddings, giving cosine similarity between 0.98 and 0.998 within a lecturer and
-between 0.59 and 0.90 across lecturers. This check exists because an early version
-of the split had one lecture attributed to the wrong lecturer, which made a result
-look better than it was, and the error is described in Section 
-ef{sec:asr-loso}.
+The lecturer of each recording was confirmed by voice rather than by memory. A WavLM
+speaker embedding was computed for every lecture and compared with reference embeddings,
+giving cosine similarity between 0.98 and 0.998 within a lecturer and between 0.59 and
+0.90 across lecturers. This check exists because an early version of the split
+attributed one lecture to the wrong lecturer, which made a result look better than it
+was; the error is described in Section \ref{sec:asr-loso}.
 
-\subsection{The transcription standard}
-
-Before any transcription started, a written standard was produced, and every
-transcript is checked against it by a validation script. Its main rules are as
-follows.
-
-\begin{itemize}
-  \item Each line is a timed segment written as \texttt{[M:SS-M:SS]} followed by
-        the text, with no spaces inside the brackets.
-  \item Segments are 10 to 25 seconds long and never longer than 30, because
-        Whisper processes a 30 second window.
-  \item There are no gaps between segments and no overlaps.
-  \item Fillers are kept, including \textit{aaa}, \textit{um}, \textit{mane},
-        \textit{je} and \textit{tahole}, because the goal is a transcript of the
-        speech and not a tidied version of it.
-  \item The text is ASCII only, with no smart quotes.
-  \item A table of canonical spellings fixes the most common words, so that the
-        same word is not written three ways by three transcribers.
-  \item A header records the lecture, the video file, its duration and the
-        lecturer.
-\end{itemize}
-
-Transcription was done by hand. Every word of every transcript was checked against
-the audio by a member of the team. This costs about one hour of work for ten
-minutes of video.
+Before transcription began, a written standard was produced, and every transcript is
+checked against it by a validation script. Its main rules are that each line is a timed
+segment written as \texttt{[M:SS-M:SS]} followed by the text; that segments are 10 to 25
+seconds long and never longer than 30, because Whisper processes a 30 second window; that
+there are no gaps and no overlaps; that fillers such as \textit{aaa}, \textit{mane} and
+\textit{tahole} are kept, because the goal is a transcript of the speech rather than a
+tidied version of it; that the text is ASCII only; and that a table of canonical spellings
+fixes the most common words so that three transcribers do not write the same word three
+ways. Appendix A gives the standard in full. Transcription was done by hand, with every
+word checked against the audio by a member of the team, at a cost of about one hour of
+work for ten minutes of video.
 
 \subsection{Data Cleaning}
 
-Four cleaning problems occurred and each is handled by a script rather than by
-hand editing.
+Four cleaning problems occurred and each is handled by a script rather than by hand
+editing.
 
-\textbf{Malformed timestamps.} The segment parser accepts a timestamp only in the
-exact form \texttt{[1:34-1:53]}. In an earlier version of the corpus, 9 of 156
-timestamps carried stray spaces, written for example as \texttt{[4:22- 4:45 ]}.
-Those lines did not register as segment boundaries, so their text was joined to the
-previous segment and ten evaluation clips carried more words than their audio. The
-validator now reports every unreadable timestamp and can repair them with a
-\texttt{--fix} flag, keeping a backup copy of the original file. The effect of the
-defect on the affected result was measured rather than assumed, and is reported in
-Section 
-ef{sec:asr-loso}.
+The segment parser accepts a timestamp only in the exact form \texttt{[1:34-1:53]}. In an
+earlier version of the corpus, 9 of 156 timestamps carried stray spaces, written for
+example as \texttt{[4:22- 4:45 ]}. Those lines did not register as segment boundaries, so
+their text joined the previous segment and ten evaluation clips carried more words than
+their audio. The validator now reports every unreadable timestamp and can repair them,
+keeping a backup of the original file. The effect of the defect on the affected result
+was measured rather than assumed and is reported in Section \ref{sec:asr-loso}.
 
-\textbf{Files not yet ready.} A transcript that is still being written is marked
-by its file name, and the pipeline skips it until the marker is removed. Files
-were also delivered at one point with a placeholder extension that made them
-invisible to the pipeline, which was found by counting how many transcripts the
+A transcript still being written is marked by its file name and skipped until the marker
+is removed. Files were also delivered at one point with a placeholder extension that made
+them invisible to the pipeline, which was found by counting how many transcripts the
 loader actually saw rather than how many files existed.
 
-\textbf{Missing lecturer labels.} Where the lecturer header was missing, it was
-filled from the voice check rather than guessed, and any recording where the voice
-check was not confident was left for a person to decide.
+Where the lecturer header was missing it was filled from the voice check rather than
+guessed, and any recording where the voice check was not confident was left for a person
+to decide.
 
-\textbf{Duplicate or mismatched names.} A preflight script refuses to start
-training if a transcript has no matching video, if two different videos share a
-name, if a transcript is longer than its video, or if a lecturer label disagrees
-with the voice check. This runs as a hard gate before every training run, because
-all of these faults corrupt training silently rather than crashing.
+A preflight script refuses to start training if a transcript has no matching video, if two
+different videos share a name, if a transcript is longer than its video, or if a lecturer
+label disagrees with the voice check. It runs as a hard gate before every training run,
+because all of these faults corrupt training silently rather than crashing.
 
-\subsection{Data Transformation}
+\subsection{Data Transformation and Integration}
 
-\textbf{Audio.} Each video is converted to 16 kHz mono PCM WAV, which is the input
-format Whisper expects.
+Each video is converted to 16 kHz mono PCM WAV, the input format Whisper expects. The
+human transcript gives the segment boundaries, so one clip is cut per segment, and
+segments longer than the model's 30 second window are subdivided at sentence ends. Each
+clip becomes one training example of an audio array and its reference text. The audio is
+turned into a log-Mel spectrogram by the model's own feature extractor and the reference
+text is tokenised by the model's own tokeniser, so no custom preprocessing can differ
+between training and evaluation. For the vision side, frames are extracted at a fixed
+interval and scaled so that the longer side is at most 1920 pixels; a 10 second interval
+suffices for lecturers who move about, while a 2 second interval gives each tile five
+times as many chances to see the board clear for a lecturer who stands still.
 
-\textbf{Clips.} The human transcript gives the segment boundaries, so a clip is cut
-for each segment. Segments longer than the model's 30 second window are subdivided
-at sentence ends, with a working limit of 28 seconds to stay comfortably inside the
-window. Each clip becomes one training example of an audio array and its reference
-text.
-
-\textbf{Features.} The audio is turned into a log-Mel spectrogram by the model's own
-feature extractor, and the reference text is tokenised by the model's tokeniser, so
-that no custom preprocessing can differ between training and evaluation.
-
-\textbf{Frames.} For the vision side, frames are extracted at a fixed interval and
-scaled so that the longer side is at most 1920 pixels. A 10 second interval is
-enough for lecturers who move about. For a lecturer who stands still, a 2 second
-interval gives each tile five times as many chances to see the board clear, and
-Section 
-ef{sec:board-coverage} shows what that is worth.
-
-\subsection{Data Integration}
-
-The corpus was renumbered part way through the project so that lectures are grouped
-by lecturer. Every result produced before the renumbering used the old names, so
-two things were done rather than renaming files and hoping. A lookup table records
-the correspondence between old and new numbers, and every script that has to find a
-lecture's audio or board uses the table instead of assuming that the number in a
-file name means the same thing everywhere. The exact ground truth behind the earlier
-results is frozen in a separate folder, so any of those results can still be
-reproduced by pointing the data preparation script at the frozen copy.
-
-Three sources have to line up for one lecture, which are the video, the transcript
-and the reconstructed boards. They are joined by lecture number through that table,
-and the preflight script checks the join before any training.
-
-\subsection{Data Reduction}
+The corpus was renumbered part way through the project so that lectures are grouped by
+lecturer. Because every result produced before the renumbering used the old names, a
+lookup table records the correspondence, and every script that finds a lecture's audio or
+board uses the table rather than assuming the number in a file name means the same thing
+everywhere. The ground truth behind the earlier results is frozen in a separate folder, so
+those results can still be reproduced. Three sources have to line up for one lecture,
+which are the video, the transcript and the rebuilt boards; they are joined by lecture
+number through that table, and the preflight script checks the join before any training.
 
 No dimensionality reduction is applied to the audio or the images, since the models
-consume raw signals. Reduction happens in three other places.
-
-Lectures without a transcript take no part in training or in the speech evaluation,
-which leaves 28 of the 44 for the speech experiments. All 44 are available to the
-vision side, because the vision stages never touch the audio.
-
-For scoring the notes, only the 13 lectures with hand-verified board answer keys can
-be used. The other 30 lectures receive the same notes as demonstrations and are not
-scored, and the report says which is which every time.
-
-Within the board stage, an era shorter than four frames is ignored, because too few
-frames means too few chances for a tile to see the board clear and the resulting
-board would be poor evidence of anything.
+consume raw signals. Reduction happens in three other places. Lectures without a
+transcript take no part in training or in the speech evaluation, which leaves 28 of the 44
+for the speech experiments, while all 44 are available to the vision side. For scoring the
+notes only the 13 lectures with hand-verified board records can be used; the other 30
+receive the same notes as demonstrations and are not scored, and the report says which is
+which. Within the board stage an era shorter than four frames is ignored, because too few
+frames means too few chances for a tile to see the board clear.
 
 \subsection{The splits}
 
-Three separate splits are used and they must not be confused with one another.
+Three separate splits are used and they must not be confused.
 
-\textbf{The validation split, for choosing settings.} Three lectures, one per
-lecturer, were drawn with a fixed seed before any tuning started, and were recorded
-in a file that the data preparation script reads. They are BanglaASR2 from lecturer
-A, BanglaASR12 from B and BanglaASR14 from C, 34.2 minutes in total. They are used
-only to score tuning runs and are locked out of every test set afterwards by a
-\texttt{--never-test} flag.
+The validation split chooses settings. Three lectures, one per lecturer, were drawn with a
+fixed seed before any tuning began and recorded in a file that the data preparation script
+reads. They are BanglaASR2 from lecturer A, BanglaASR12 from B and BanglaASR14 from C,
+34.2 minutes in total, used only to score tuning runs and locked out of every test set
+afterwards.
 
-\textbf{The test split, for the final result.} Whole lectures are held out at
-random, about 20 per cent of each lecturer's minutes, with the seed fixed at zero
-and the rule written down before the draw. A lecture is never cut between training
-and test, and every lecturer appears on both sides. The draw selected BanglaASR8, 9,
-11, 15, 19 and 27, which is 1.05 hours and 177 clips, leaving 4.10 hours and 22
-lectures for training. Because the test lecturers are also heard in training, this
-design answers the question ``new lectures from known lecturers'', and the report
-labels it that way every time it is quoted.
+The test split gives the final result. Whole lectures are held out at random, about 20 per
+cent of each lecturer's minutes, with the seed fixed at zero and the rule written down
+before the draw. A lecture is never cut between training and test and every lecturer
+appears on both sides. The draw selected BanglaASR8, 9, 11, 15, 19 and 27, which is 1.05
+hours and 177 clips, leaving 4.10 hours and 22 lectures for training. Because the test
+lecturers are also heard in training, this design answers the question of new lectures
+from known lecturers, and the report labels it that way whenever it is quoted.
 
-\textbf{The leave-one-speaker-out splits, for the harder question.} Each lecturer in
-turn is held out entirely and the model is trained on the other two. This answers
-``an unseen lecturer'', which is harder and gives worse numbers, and both are
-reported.
+The leave-one-speaker-out splits answer the harder question. Each lecturer in turn is held
+out entirely and the model is trained on the other two, which gives worse numbers, and
+both designs are reported.
 
-There is one more rule, which exists to protect the note evaluation. A note that is
-scored on a lecture's board answer key must be written from a transcript produced by
-an adapter that never heard that lecture's lecturer. The transcripts used for the
-scored lectures therefore come from the leave-one-speaker-out adapters, and the
-builder records in each output file which adapter produced its input.
+One further rule protects the note evaluation. A note scored on a lecture's board records
+must be written from a transcript produced by an adapter that never heard that lecture's
+lecturer, so the transcripts for the scored lectures come from the leave-one-speaker-out
+adapters, and the builder records in each output file which adapter produced its input.
 
 \subsection{Summary of Preprocessed Data}
 
@@ -423,15 +253,14 @@ builder records in each output file which adapter produced its input.
 \caption{The corpus after preprocessing.}
 \label{tab:corpus}
 \small
-\begin{tabular}{p{7.0cm}p{6.4cm}}
+\begin{tabular}{p{7.0cm}p{6.2cm}}
 \toprule
-\textbf{Quantity} & \textbf{Value} \\
+Quantity & Value \\
 \midrule
 Lecture recordings & 44, 8.33 hours \\
 Lectures with a hand-checked transcript & 28, 5.15 hours of timed speech \\
 Lectures used for vision only & 16, 3.10 hours \\
-Transcribed segments & 609 \\
-Median segment length & 24 seconds \\
+Transcribed segments & 609, median 24 seconds \\
 Words transcribed & about 39,100 \\
 Lecturer A & 9 lectures, 1.51 h, 141 segments \\
 Lecturer B & 4 lectures, 0.97 h, 39 segments \\
@@ -439,317 +268,237 @@ Lecturer C & 15 lectures, 2.66 h, 429 segments \\
 Training set for the final model & 22 lectures, 4.10 hours \\
 Test set for the final model & 6 lectures, 1.05 hours, 177 clips \\
 Validation lectures, never tested on & 3 lectures, 34.2 minutes \\
-Reconstructed boards & 145 across 40 lectures \\
-Boards with a hand-verified answer key & 45, holding 436 items \\
+Rebuilt boards & 145 across 40 lectures \\
+Boards with hand-verified content records & 45, holding 436 items \\
 Boards checked by hand for missing writing & 98 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Figure \ref{fig:fig-data-composition} shows how the recordings divide between
-lecturers and between training, testing and vision-only use. The imbalance is real
-and matters for the results, since lecturer B contributed the least speech and
-Chapter 5 shows that lecturer B's test lecture improves the least.
+Figure \ref{fig:fig-data-composition} shows how the recordings divide between lecturers
+and between training, testing and vision-only use. The imbalance is real and matters for
+the results, since lecturer B contributed the least speech and Chapter 5 shows that
+lecturer B's test lecture improves the least. Figure \ref{fig:fig-data-segments} shows the
+segment lengths against Whisper's 30 second window.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.85\textwidth]{fig-data-composition}
-\caption{The corpus by lecturer. The darker part of each bar is training speech,
-the middle part is held out for testing, and the lightest part is video with no
-transcript, used for the vision side only.}
+\includegraphics[width=0.72\textwidth]{fig-data-composition}
+\caption{The corpus by lecturer. The darker part of each bar is training speech, the
+middle part is held out for testing, and the lightest part is video with no transcript.}
 \label{fig:fig-data-composition}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.85\textwidth]{fig-data-segments}
-\caption{Lengths of the 609 transcribed segments against Whisper's 30 second
-window. Segments longer than the window are subdivided at sentence ends before
-training.}
+\includegraphics[width=0.72\textwidth]{fig-data-segments}
+\caption{Lengths of the 609 transcribed segments against Whisper's 30 second window.
+Segments longer than the window are subdivided at sentence ends before training.}
 \label{fig:fig-data-segments}
 \end{figure}
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=\textwidth]{fig-data-per-lecture}
-\caption{Transcribed minutes and speaking rate for each lecture with a transcript.
-Bar colour is the lecturer. Lectures marked \textit{test} are the six held out for
-the final result.}
-\label{fig:fig-data-per-lecture}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=\textwidth]{fig-data-boards}
-\caption{Left, the number of erase-separated boards found in each lecture. Right,
-the distribution of the fraction of tiles that found a completely clear view of
-the board, with the median marked.}
-\label{fig:fig-data-boards}
-\end{figure}
 
 \section{Implementation of Selected Design}
 
-\subsection{Stage 1: adapting the speech model}
+\subsection{Adapting the speech model}
 
-The base model is whisper-large-v3-turbo, an encoder-decoder transformer with 809
-million parameters \cite{radford2023whisper}. The base weights are frozen. LoRA
-adapters are attached to the query and value projection matrices of the attention
-layers, with rank 16 and scaling factor alpha 32 \cite{hu2022lora}. Training uses a
-batch size of 8, 8 epochs, bfloat16 precision, and gradient checkpointing on the
-12 GB card, which cuts the memory needed from about 18 GB to 6.1 GB at the cost of
-recomputing activations. Every run is done with two random seeds, 42 and 1, and both
-are reported.
+The base model is whisper-large-v3-turbo, an encoder-decoder transformer with 809 million
+parameters \cite{radford2023whisper}, and its weights are frozen. LoRA adapters are
+attached to the query and value projection matrices of the attention layers, with rank 16
+and scaling factor 32 \cite{hu2022lora}. Training uses a batch size of 8, 8 epochs,
+bfloat16 precision and gradient checkpointing on the 12 GB card, which reduces the memory
+needed from about 18 GB to 6.1 GB at the cost of recomputing activations. Every run is
+done with two random seeds and both are reported.
 
-\textbf{Decoding.} The reported numbers use plain greedy decoding. The loop
-safeguard from the Whisper paper is also available and is reported beside the main
-result for comparison. It works by checking the gzip compression ratio of a
-hypothesis, and if the ratio is above 2.4 the clip is decoded again with sampling at
-temperatures 0.2, 0.4 and upwards until the output stops looping. It reads only the
-hypothesis and never the reference, and it is applied identically to the base and
-the adapted model. Only the compression ratio half of the published rule is used,
-because the log probability half would resample most Banglish clips rather than only
-the looping ones.
+The reported numbers use plain greedy decoding. The loop safeguard from the Whisper paper
+is also available and is reported beside the main result: a hypothesis whose gzip
+compression ratio exceeds 2.4 is decoded again with sampling at rising temperatures until
+the output stops looping. It reads only the hypothesis, never the reference, and is
+applied identically to the base and the adapted model.
 
-\subsection{Stage 1b: choosing the settings, and the pre-registered plan}
+The settings come from a plan committed to version control before any tuning run, which
+fixes the validation lectures, the order of the search and the rule for accepting a
+winner. The plan has five stages, run in order, each starting from the winner of the
+previous one: learning rate over 5e-4, 1e-3 and 2e-3; LoRA rank over 8, 16 and 32 with the
+scaling factor at twice the rank; the adapted layers, comparing the query and value
+projections against all four attention projections; the number of epochs, taken from the
+validation loss curve; and seed stability, by repeating the winner with a second seed.
+Everything else is held fixed. The score is the median per-clip character error rate on
+the validation clips, and a candidate replaces the default only if it beats the default by
+more than the spread between two seeds of the same configuration, which is the plan's way
+of refusing to chase noise. The procedure was run twice, first as a rehearsal on 2.69
+hours of transcript to check that the machinery worked, then on the full corpus once
+transcription closed; the second run supersedes the first and Section \ref{sec:asr-tuning}
+reports it.
 
-The panel question that any tuned result invites is whether the settings were
-chosen by trying things until the test number looked good. The answer here is a
-written plan, committed to version control before any tuning run, that fixes the
-validation lectures, the order of the search, and the rule for accepting a winner.
+\subsection{Rebuilding the board}
 
-The plan has five stages, run in order, each one starting from the winner of the
-previous stage.
+The amount of ink on the board is tracked across frames, and when a large fraction of it
+disappears between consecutive frames the board has been wiped, so the frames between two
+wipes form one era. Within an era the frame is cut into small overlapping tiles. A tile
+counts as clear in a given frame when almost none of it is covered by the lecturer, and
+for each tile independently the pipeline takes the latest frame in which that tile was
+clear. The chosen tiles are blended back together with a raised-cosine weight so that the
+seams do not show.
 
-\begin{enumerate}
-  \item \textbf{Learning rate}, over 5e-4, 1e-3 and 2e-3.
-  \item \textbf{LoRA rank}, over 8, 16 and 32, with alpha fixed at twice the rank.
-  \item \textbf{Which layers are adapted}, comparing the query and value
-        projections against all four attention projections.
-  \item \textbf{Number of epochs}, taken from the validation loss curve.
-  \item \textbf{Seed stability}, by repeating the winner with a second seed.
-\end{enumerate}
+The method works because the lecturer occupies one place at a time, which is also its
+stated limit: it needs the lecturer to move. Where a tile never finds a clear moment the
+residue is left visible and reported rather than filled in.
 
-Everything else is held fixed, which means the base model, batch size 8, bfloat16,
-gradient checkpointing and greedy decoding. The score is the median per-clip
-character error rate on the validation clips. The acceptance rule is that a
-candidate replaces the default only if it beats the default by more than the spread
-between two seeds of the same configuration, which is the plan's way of refusing to
-chase noise.
-
-The procedure was run twice. A rehearsal on 2.69 hours of transcript was used to
-check that the machinery worked, and the real run was repeated on the full corpus
-once transcription closed. The second run supersedes the first, and Section 
-ef{sec:asr-tuning}
-reports both.
-
-\subsection{Stage 2: reconstructing the board}
-
-\textbf{Finding the eras.} The amount of ink on the board is tracked across frames.
-When 30 per cent of it disappears between consecutive frames, the board has been
-wiped, and the frames between two wipes form one era. An era shorter than four
-frames is discarded.
-
-\textbf{Tiling.} Work is done at a scan width of 640 pixels. The frame is cut into
-tiles of 32 scan pixels with 50 per cent overlap between neighbours. A tile counts
-as clear in a given frame when less than 2 per cent of it is covered by the
-lecturer. For each tile independently, the pipeline takes the latest frame within
-the era in which that tile was clear, and the chosen tiles are blended back together
-with a raised-cosine weight so that the seams do not show.
-
-This works because the lecturer occupies one place at a time. It is also the reason
-the method has a stated limit, which is that it needs the lecturer to move. Where a
-tile never finds a clear moment, the residue is left visible and reported rather
-than filled in.
-
-\textbf{Locating the lecturer.} Three options exist and the third is used. The
-simplest takes whatever differs from the usual appearance of the board, which fails
-when the lecturer stands still, because then he is part of the usual appearance, and
-fails again when the camera's automatic exposure darkens a frame, because then every
-pixel differs. The second uses a pretrained DeepLabV3 network with a ResNet-101
-backbone and takes its person class frame by frame \cite{chen2017deeplabv3}. The
-third adds a shadow mask to the network, computed as board that is darker than usual
-after dividing out each frame's exposure gain, with pen-stroke-thin marks eroded away
-so that writing is not mistaken for shadow. The third option recovers writing the
-first one lost, including a diagram drawn at the end of an era and seven of the eight
+Locating the lecturer has three implementations and the third is used. The simplest takes
+whatever differs from the usual appearance of the board, which fails when the lecturer
+stands still, because then he is part of the usual appearance, and fails again when the
+camera's automatic exposure darkens a frame, because then every pixel differs. The second
+uses a pretrained DeepLabV3 network with a ResNet-101 backbone and takes its person class
+frame by frame \cite{chen2017deeplabv3}. The third adds a shadow mask, computed as board
+darker than usual after dividing out each frame's exposure gain, with pen-stroke-thin
+marks eroded away so that writing is not mistaken for shadow. The third recovers writing
+the first lost, including a diagram drawn at the end of an era and seven of the eight
 digits of a binary number that the old mask reduced to four.
 
-\textbf{Display clean-up.} A separate step flattens the background and fades
-everything that is not clearly darker than its surroundings to white, in the manner
-of the whiteboard mode of a document scanner application, and blanks the pixels the
-mosaic itself flagged as the lecturer. This makes every board a clean white image.
-It is important to be exact about what this step is, because it replaces background
-pixels. A cleaned board is therefore not unmodified camera output. The strokes are
-camera pixels and the background is not, and the report says so wherever a cleaned
-board is shown. Section 
-ef{sec:board-cleanup} reports the measured effect of this step on how well
-the vision-language model reads the board, which was not the expected one.
+A separate clean-up step flattens the background and fades everything not clearly darker
+than its surroundings to white, in the manner of the whiteboard mode of a document
+scanner, and blanks the pixels the mosaic flagged as the lecturer. Because it replaces
+background pixels, a cleaned board is not unmodified camera output: the strokes are camera
+pixels and the background is not, and the report says so wherever a cleaned board is
+shown. Section \ref{sec:board-cleanup} reports the measured effect of this step on how
+well the vision-language model reads the board, which was not the expected one.
 
-\figplaceholder{fig-4-2-before-frame}{A single frame of the same lecture, showing
-why one frame is not enough. The lecturer stands in front of the part of the board
-he has just written on.}{Take one frame from
-\texttt{output/lectures/BanglaASR29/frames/} where the lecturer is standing in
-front of the writing, for example \texttt{frame\_000619\_001238s.jpg}, and blur or
-pixelate his face before using it. The ethics statement says no person is
-identifiable in the figures, so the face must be covered. Put it beside or above
-the reconstructed board in Figure \ref{fig:board-mosaic-raw} if you prefer a
-two-panel figure.}{6.5cm}
+Figure \ref{fig:nand-mosaic-raw} shows a rebuilt board from the digital logic lecture,
+BanglaASR11, and Figure \ref{fig:nand-mosaic-clean} the same board after clean-up.
+
+\figplaceholder{fig-4-2-before-frame}{A single frame of the same lecture, showing why one
+frame is not enough.}{Take one frame from the lecture's frame folder in which the lecturer
+stands in front of the writing, and blur or pixelate his face before using it. The ethics
+statement says no person is identifiable in the figures, so the face must be covered.
+Placing it directly above Figure \ref{fig:nand-mosaic-raw} makes the before and after
+comparison clearest.}{5.5cm}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.92\textwidth]{board-mosaic-raw}
-\caption{A reconstructed board from lecture BanglaASR29, era 5. Every pixel comes
-from a real frame of the video. The lecturer stood in front of the left half of
-this board for most of the era, and what remains of him is the soft grey shadow on
-the left, not a filled-in guess.}
-\label{fig:board-mosaic-raw}
+\includegraphics[width=0.74\textwidth]{nand-mosaic-raw}
+\caption{A rebuilt board from lecture BanglaASR11. Every pixel comes from a real frame of
+the video. The horizontal bands are glare from the ceiling lights, which is present in
+every frame and therefore cannot be removed by choosing a different one.}
+\label{fig:nand-mosaic-raw}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.92\textwidth]{board-mosaic-clean}
-\caption{The same board after the display clean-up. The background has been
-replaced, so this image is enhanced rather than unmodified camera output, while
-the strokes themselves are camera pixels.}
-\label{fig:board-mosaic-clean}
+\includegraphics[width=0.74\textwidth]{nand-mosaic-clean}
+\caption{The same board after the display clean-up. The background has been replaced, so
+this image is enhanced rather than unmodified camera output, while the strokes themselves
+are camera pixels.}
+\label{fig:nand-mosaic-clean}
 \end{figure}
 
-\subsection{Stage 3: numbered boxes and the vision-language model}
+\subsection{Numbered boxes and the vision-language model}
 
-\textbf{Finding the boxes.} Our own code, not the model, finds the blocks of
-writing. It groups dark pixels, strips the board frame, drops specks by counting
-dark pixels, and rejoins boxes that are parts of the same written line. At most ten
-boxes are produced per board. Each box gets a number and a colour from a fixed list
-of ten distinct colours, and the notes later refer to a box by both, for example
-``the purple box 5''.
+Our own code, not the model, finds the blocks of writing. It groups dark pixels, strips
+the board frame, drops specks and rejoins boxes that are parts of the same written line,
+producing at most ten boxes per board. Each box receives a number and a colour from a
+fixed list of ten, and the notes later refer to a box by both, for example the purple box
+5.
 
-\textbf{Naming and transcribing.} The numbered boxes are drawn onto the clean board
-and the image is given to Qwen2.5-VL-7B-Instruct with a prompt that asks, for each
-numbered box, for a short name and a full transcription of what is inside it. This
-is Set-of-Mark prompting \cite{yang2023som}, with the marks supplied by our code.
-Boxes the model reports as empty are dropped.
+The numbered boxes are drawn onto the clean board and the image is given to
+Qwen2.5-VL-7B-Instruct with a prompt asking, for each numbered box, for a short name and a
+full transcription of what is inside it. This is Set-of-Mark prompting \cite{yang2023som}
+with the marks supplied by our code. Boxes the model reports as empty are dropped.
 
-Two defects in this stage were found during the real runs and both are handled in
-code. On one board the model read the content correctly, then tried to draw a
-diagonal line of the diagram and emitted the same backslash line 512 times, giving
-42,037 characters. The reader now collapses a run of identical lines and records how
-many it dropped, which matters because that text is pasted into the note prompt.
-Separately, boards carrying code make the model emit unescaped quotation marks that
-break the JSON it is asked to return, and without a fallback such a board loses all
-of its boxes. A salvage parser now reads the identifier, name and text fields one at
-a time when the JSON cannot be parsed.
+Two defects were found during the real runs and both are handled in code. On one board the
+model read the content correctly, then tried to draw a diagram's diagonal and emitted the
+same backslash line 512 times, giving 42,037 characters; the reader now collapses runs of
+identical lines and records how many it dropped, which matters because that text is pasted
+into the note prompt. Separately, boards carrying code make the model emit unescaped
+quotation marks that break the JSON it is asked to return, and without a fallback such a
+board loses all of its boxes, so a salvage parser reads the fields one at a time when the
+JSON cannot be parsed.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.92\textwidth]{board-demo-5}
-\caption{The same board with the numbered coloured boxes drawn on it and named by
-the vision-language model. The notes refer to these numbers and colours. Box 1 is a
-manufacturer's sticker on the whiteboard, which the box finder treats as content
-because it is dark and separate. This is a known cosmetic defect and is discussed in
-Section 
-ef{sec:known-defects}.}
-\label{fig:board-demo-5}
+\includegraphics[width=0.74\textwidth]{nand-demo-3}
+\caption{The board of Figure \ref{fig:nand-mosaic-clean} with the numbered coloured boxes
+drawn by our code and named by the vision-language model. The generated notes refer to
+these numbers and colours.}
+\label{fig:nand-demo-3}
 \end{figure}
 
-\subsection{Stage 4: writing the note}
+\subsection{Writing the note}
 
-The note is written by Qwen2.5-7B-Instruct, one call per board. Each call receives
-the board image's boxes with their names and transcribed text, and the part of the
-transcript that falls between that board's first and last frame, so that the model
-sees the words that were spoken while that board was on the wall. A final call
-produces the title, the takeaways and the self-check questions for the whole
-lecture.
+The note is written by Qwen2.5-7B-Instruct, one call per board. Each call receives the
+board's boxes with their names and transcribed text, and the part of the transcript
+falling between that board's first and last frame, so the model sees the words spoken
+while that board was on the wall. A final call produces the title, the takeaways and the
+self-check questions for the whole lecture.
 
-The prompt asks for a section that walks the reader through the board step by step,
-refers to the boxes by number and colour, and quotes the lecturer between two and
-five times. Material that is standard for the topic but that the lecturer did not say
-is allowed, but only inside a section headed \texttt{Background}, which the page
-builder renders as a dashed, labelled aside so that the reader can see it is not part
-of the lecture. This is the controlled version of the failure that produced the wrong
-textbook definition in the first version of the pipeline. The material is still
-generated, but it is fenced and labelled instead of passing as something the lecturer
-said.
+The prompt asks for a section that walks the reader through the board, refers to the boxes
+by number and colour, and quotes the lecturer between two and five times. Material that is
+standard for the topic but that the lecturer did not say is allowed only inside a section
+headed \texttt{Background}, which the page builder renders as a dashed, labelled aside. This
+is the controlled version of the failure that produced the wrong textbook definition in
+the first version of the pipeline: the material is still generated, but it is fenced and
+labelled rather than passing as something the lecturer said.
 
-Three checks then run over the generated text.
+Three checks then run over the generated text. The quote checker searches the transcript
+for every block quotation and deletes any that is not there word for word, writing the
+count of kept and deleted quotations into the output file. A second counter flags quoted
+spans of four or more words inside ordinary paragraphs that match neither the transcript
+nor the board, but only flags them, since most turn out to be code or translated lines
+rather than errors. The box reference check removes any reference to a box number the
+board does not have and counts them. The placeholder strip removes the prompt's own
+example text when the model copies it into the notes instead of leaving the quotation out,
+a failure found by reading the output.
 
-\textbf{The quote checker} takes every block quotation and searches for it in the
-transcript. A quotation that is not there word for word is deleted, and the count of
-kept and deleted quotations is written into the output file. A second counter flags
-quoted spans of four or more words inside ordinary paragraphs that match neither the
-transcript nor the board, but only flags them, because most of them turn out to be
-code or translated lines rather than errors.
+Each language version is written wholly in its own language. The Banglish note quotes the
+lecturer's real words, so the quote checker applies to it. The English note quotes the
+lecturer in English translation, and a translation cannot be matched against a Banglish
+transcript, so the checker does not run on the English files. Every output file records
+which of the two it is, and Chapter 5 states the resulting claim precisely. The English
+note is produced by writing the section in Banglish first and then translating it with the
+same model, keeping the Markdown structure, the tables, the box numbers and the colours. A
+defect in this route was found and fixed: the translation left 97 section labels in
+Banglish across the thirteen scored files and returned three summary lines in capital
+letters, both repaired by a mapping script that does not call the model, since the labels
+are a fixed set written by our own prompt.
 
-\textbf{The box reference check} removes any reference to a box number that the board
-does not have, and counts them.
+The sections are finally assembled into Markdown and into one self-contained HTML page
+with the board images embedded, coloured tags for the box references and click-to-reveal
+answers for the self-check questions.
 
-\textbf{The placeholder strip} removes the prompt's own example text when the model
-copies it into the notes instead of leaving the quotation out. This was found by
-reading the output, where the model had written the words \textit{exact words from
-the transcript} as if they were a quotation.
+\subsection{Running the system, and how it is evaluated}
 
-\textbf{The two languages.} Each version is written wholly in its own language. The
-Banglish note quotes the lecturer's real words, so the quote checker applies to it.
-The English note quotes the lecturer in English translation, and a translation
-cannot be matched against a Banglish transcript, so the checker does not run on the
-English files. Every output file records which of the two it is, and Chapter 5 states
-the resulting claim precisely, which is that quotations in the Banglish notes are
-verified word for word and quotations in the English notes are unverified
-translations.
+The whole pipeline is one command that takes a video and produces the notes. It runs each
+stage as a separate process, skips any stage whose output already exists, and writes the
+time each stage took to a file beside the outputs, which is what makes the run times in
+Section 3.3 measurements rather than estimates.
 
-The English note is produced by writing the section in Banglish first and then
-translating it with the same model, keeping the Markdown structure, the tables, the
-box numbers and the colours. A defect in this route was found and fixed. The
-translation left 97 section labels in Banglish across the thirteen files, so a page
-billed as English still showed Banglish headings, and three files returned the
-summary line in capital letters. Both are repaired by a mapping script that does not
-call the model, since the labels are a fixed set written by our own prompt. The
-capitalisation repair takes each word's casing from how the same file writes that
-word elsewhere, so that Python, TTL and DBMS survive.
+Speech is evaluated by computing word and character error rate for each test clip
+separately and reporting the median, because a single runaway output can push a mean above
+100 per cent. The base model and the adapted model are run on exactly the same clips, so
+the comparison is paired and is tested with a Wilcoxon signed-rank test and a sign test,
+and the number of runaway clips is reported for both. Two spelling tolerant variants are
+also computed, with the rules committed before any rescoring: the first maps both sides to
+the transcription guide's canonical spellings and collapses repeated vowels, and the
+second additionally counts a word as correct at 80 per cent character similarity, so words
+of three letters or fewer must still match exactly.
 
-\textbf{The page.} The sections are assembled into Markdown and into a single
-self-contained HTML page with the board images embedded, coloured tags for the box
-references and click-to-reveal answers for the self-check questions.
+For the board reconstruction two different things are counted and must not be confused.
+The fraction of tiles that found a completely clear view is computed by the reconstruction
+itself and measures coverage rather than whether writing survived. Whether writing
+survived was answered by a person, who viewed each rebuilt board beside two real frames
+from the same time and said whether anything written was missing and what it was.
 
-\subsection{How the system is run}
+Board reading and note quality are both scored by recall of items from the hand-verified
+records. A record is a list of the things written on one board, each labelled as a number,
+name, code fragment, term or phrase. Recall is the right measure rather than F1, because
+good notes legitimately contain a great deal that was not on the board, so precision would
+punish the behaviour we want. Items of three characters or fewer must match as whole
+words, so that \textit{CS} is not found inside \textit{economics}. The records were
+drafted from the board images and then checked by hand, one board at a time, without the
+checker seeing any model output, and the folder holding them is refused by the note
+generator in code.
 
-The whole pipeline is one command that takes a video and produces the notes. It runs
-each stage as a separate process, skips any stage whose output already exists, and
-writes the time each stage took to a JSON file beside the outputs. This is what makes
-the run times in Section 3.3.2 measurements rather than estimates.
-
-\subsection{Evaluation method}
-
-Evaluation is described here once and is used throughout Chapter 5.
-
-\textbf{Speech.} Word and character error rate are computed for each test clip
-separately, and the median across clips is reported, because a single runaway output
-can push a mean above 100 per cent. The base model and the adapted model are run on
-exactly the same clips, so the comparison is paired and is tested with a Wilcoxon
-signed-rank test and a sign test. The number of runaway clips is reported for both
-models. Two spelling-tolerant variants are also computed. The first maps both sides
-to the transcription guide's canonical spellings and collapses repeated vowels. The
-second additionally counts a word as correct when it is at least 80 per cent similar
-to the reference word, so that words of three letters or fewer still have to match
-exactly. The rules for both were committed before any rescoring.
-
-\textbf{Board reconstruction.} Two different things are counted and they must not be
-confused. The fraction of tiles that found a completely clear view is computed by the
-reconstruction itself and measures coverage, not whether writing survived. Whether
-writing survived was answered by a person, who looked at each reconstructed board
-beside two real frames from the same time and said whether anything written was
-missing and what it was.
-
-\textbf{Board reading and note quality.} Both are scored by recall of items from the
-hand-verified answer keys. An answer key is a list of the things written on one
-board, each labelled as a number, a name, a piece of code, a term or a phrase. Recall
-is the right measure rather than F1, because good notes legitimately contain a great
-deal that was not on the board, so precision would punish the behaviour we want.
-Items of three characters or fewer must match as whole words, so that ``CS'' is not
-found inside ``economics''. The keys were drafted from the board images and then
-checked by hand, one board at a time, without the checker seeing any model output.
-The folder holding them is refused by the note generator in code.
-
-\textbf{Reporting rules.} Medians rather than means. The direction of every
-difference is stated beside its p-value. Counting by board is reported alongside
-counting by item, because the item count is dominated by a few dense boards and the
-two can disagree. Results that go against the design are reported in the same detail
-as results that support it.
+Three reporting rules apply throughout Chapter 5. Medians are reported rather than means.
+The direction of every difference is stated beside its p-value. Counting by board is
+reported alongside counting by item, because the item count is dominated by a few dense
+boards and the two can disagree.

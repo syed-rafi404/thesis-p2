@@ -25,7 +25,8 @@
 \usepackage{array}
 \usepackage{booktabs}     % better rules in tables
 \usepackage{longtable}    % tables that break across pages
-\usepackage{float}        % [H] placement
+\usepackage{float}
+\usepackage[section]{placeins}   % keep floats inside the section that introduces them
 \usepackage{xcolor}
 \usepackage{multirow}
 
@@ -43,7 +44,7 @@
 \urlstyle{same}
 
 \setlength{\parindent}{0em}
-\setlength{\parskip}{0.6em}
+\setlength{\parskip}{0.45em}
 
 \usepackage{nomencl}
 \renewcommand{\nompreamble}{The next list describes several symbols \& abbreviation that will be later used within the body of the document}
@@ -106,10 +107,6 @@
 \phantomsection
 \addcontentsline{toc}{chapter}{Abstract}
 \input{core/abstract}
-
-\phantomsection
-\addcontentsline{toc}{chapter}{Dedication}
-\input{core/dedication}
 
 \phantomsection
 \addcontentsline{toc}{chapter}{Acknowledgment}

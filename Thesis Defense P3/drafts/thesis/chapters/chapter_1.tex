@@ -1,6 +1,6 @@
 % ============================================================================
 % CHAPTER 1 - INTRODUCTION
-% Rubric mapping: CO1 (5 marks) is assessed from 1.1, 1.2, 1.3, 1.4, 1.5, 1.6.
+% Rubric mapping: CO1 (5 marks) is assessed from 1.1 to 1.6.
 % ============================================================================
 
 \nomenclature{ASR}{Automatic Speech Recognition}
@@ -9,315 +9,250 @@
 \nomenclature{LoRA}{Low-Rank Adaptation}
 \nomenclature{LLM}{Large Language Model}
 \nomenclature{VLM}{Vision-Language Model}
-\nomenclature{SoM}{Set-of-Mark prompting}
 \nomenclature{LOSO}{Leave-One-Speaker-Out}
 \nomenclature{Banglish}{Bengali-English code-mixed speech written in the Roman alphabet}
-\nomenclature{GPU}{Graphics Processing Unit}
 \nomenclature{OCR}{Optical Character Recognition}
 
 \section{Background}
 
-Teaching in Bangladeshi universities rarely happens in a single language. In a
-typical computer science class the lecturer explains an idea in Bangla, names it
-in English, writes the English term on the whiteboard, and then returns to Bangla
-for the worked example. A single sentence can carry both languages, as in
-\textit{``erpor e ami ki korbo? not korbo''}, where the grammar is Bengali and the
-technical word is English. When students write this mixture down they almost never
-use the Bengali script. They type it in Roman letters, and the result is commonly
-called Banglish. Students take notes in Banglish, message each other in Banglish
-and search in Banglish, so Banglish is the written form that matches how the class
-actually sounds.
+Teaching in Bangladeshi universities is rarely monolingual. In a typical computer science
+class the lecturer explains an idea in Bangla, names it in English, writes the English
+term on the whiteboard and returns to Bangla for the worked example. A single sentence
+carries both languages, as in \textit{erpor e ami ki korbo? not korbo}, where the grammar
+is Bengali and the technical word is English. Students almost never write this mixture in
+the Bengali script. They type it in Roman letters, and the result is commonly called
+Banglish. Because students take notes, message each other and search in Banglish, it is
+the written form that matches how the class actually sounds.
 
-Automatic speech recognition has become very good at the languages it was built
-for. Large multilingual models such as Whisper are trained on hundreds of
-thousands of hours of audio and reach usable accuracy on many languages, including
-Bengali \cite{radford2023whisper}. These models, however, assume that an utterance
-belongs to one language. Whisper is given a language token and a task token, and
-for Bengali audio that contains English words it usually produces a fluent English
-translation rather than a transcript of what was said. A Bengali speech model of
-the other kind, trained only on clean Bengali, writes everything in Bengali script
-and turns the English technical terms into Bengali spellings. Neither output is
-the lecturer's own words, and neither can be searched by a student who writes in
-Banglish.
+Automatic speech recognition performs well on the languages it was built for. Whisper is
+trained on roughly 680,000 hours of multilingual audio and reaches usable accuracy on
+many languages, including Bengali \cite{radford2023whisper}. Such models assume, however,
+that an utterance belongs to one language. Whisper receives a language token and a task
+token, and on Bengali audio containing English words it usually produces a fluent English
+translation rather than a transcript. A Bengali model trained on clean Bengali writes
+everything in Bengali script and spells the English technical terms phonetically. Neither
+output preserves the lecturer's words, and neither can be searched by a student who
+writes in Banglish.
 
-Speech is also only half of a whiteboard lecture. In the classrooms recorded for
-this work the lecturer does not use slides. Definitions, truth tables, SQL
-queries, IP address calculations and diagrams appear on the board and are then
-talked about. A note taken from the audio alone loses all of it. Reading the board
-from the video is not a simple screenshot problem either, because the lecturer
-stands in front of what he has just written, the room lights leave glare on the
-surface, and the board is wiped and reused several times in one class.
+Speech is also only half of a whiteboard lecture. The classrooms recorded for this work
+use no slides. Definitions, truth tables, SQL queries, subnetting calculations and
+diagrams appear on the board and are then discussed, so a note taken from the audio alone
+loses them. Recovering the board from the video is not a screenshot problem either: the
+lecturer stands in front of what he has just written, the ceiling lights leave glare on
+the surface, and the board is wiped and reused several times in one class.
 
-Three developments make a system that handles both sides practical on ordinary
-hardware. Parameter efficient fine-tuning, in particular Low-Rank Adaptation
-\cite{hu2022lora}, allows a large speech model to be adapted on a few hours of new
-speech by training a small number of extra weights, which fits in the memory of a
-single desktop graphics card. Open vision-language models such as Qwen2.5-VL read
-text inside an image and answer questions about it without any dedicated OCR stage
-\cite{bai2025qwen25vl}. Instruction tuned language models such as Qwen2.5-7B can
-take the transcript and the board content together and write a structured
-document from them \cite{qwen2025qwen25}.
+Three developments make a system that handles both sides practical on ordinary hardware.
+Parameter efficient fine-tuning, in particular Low-Rank Adaptation \cite{hu2022lora},
+adapts a large speech model on a few hours of new speech by training a small number of
+additional weights, which fits in the memory of one desktop graphics card. Open
+vision-language models such as Qwen2.5-VL read text inside an image without a dedicated
+optical character recognition stage \cite{bai2025qwen25vl}. Instruction tuned language
+models such as Qwen2.5-7B can take a transcript and board content together and write a
+structured document from them \cite{qwen2025qwen25}.
 
-This thesis brings the three together into one system, called InsightLens. A
-lecture video goes in. What comes out is a lecture note that a student can read,
-containing the board redrawn without the lecturer in front of it, numbered
-coloured boxes around each part of the board, an explanation written from the
-lecturer's own words, and quotations of the lecturer that have been checked
-against the transcript. The note is produced in two versions, one in Banglish and
-one in English, so that both an English-medium reader and a student who is more
-comfortable in the mixed language can use it.
+This thesis combines the three into a system called InsightLens. A lecture video is the
+input. The output is a lecture note containing the board redrawn without the lecturer in
+front of it, numbered coloured boxes around each part of the board, an explanation
+written from the lecturer's own words, and quotations checked against the transcript. The
+note is produced in Banglish and in English so that the student can choose.
 
-\figplaceholder{fig-1-1-overview}{The InsightLens idea in one picture. A recorded
-Banglish lecture is turned into a readable lecture note that contains both the
-speech and the whiteboard.}{A simple left to right drawing. On the left, a camera
-icon and the words ``Banglish lecture video''. In the middle, three boxes stacked
-or in a row: ``Speech to Banglish text'', ``Whiteboard reconstructed and read'',
-``Notes written''. On the right, a picture of the finished note page with a
-coloured board image and numbered boxes. Keep it non-technical, this is the
-opening figure.}{6.5cm}
+\figplaceholder{fig-1-1-overview}{The InsightLens idea. A recorded Banglish lecture
+becomes a lecture note that contains both the speech and the whiteboard.}{A simple left
+to right drawing. On the left, a camera icon and the words ``Banglish lecture video''. In
+the middle, three boxes: ``Speech to Banglish text'', ``Whiteboard rebuilt and read'',
+``Notes written''. On the right, a picture of the finished note page with a board image
+and numbered boxes. Keep it non-technical; this is the opening figure.}{5.5cm}
 
 \section{Rational of the Study or Motivation}
 
-The direct motivation is that a student who misses a class, or who cannot follow
-the English terms at the speed they are spoken, currently has nothing useful to
-fall back on. A recording of the class exists, but three hours of video is not a
-study aid. Running that video through any available transcription service returns
-either English prose that was never spoken or Bengali script that no one in the
-class writes. Neither helps the student revise, and neither contains the
-whiteboard, which is where most of the examples live.
+A student who misses a class, or who cannot follow the English terms at the speed they
+are spoken, currently has only the recording. Three hours of video is not a study aid.
+Passing that video through an available transcription service returns either English
+prose that was never spoken or Bengali script that nobody in the class writes, and
+neither contains the whiteboard.
 
-The second motivation is cost. Producing a correct Banglish transcript by hand is
-slow work. In this project it took about one hour of human effort for every ten
-minutes of video, because existing tools give the transcriber almost nothing
-usable to start from. At that rate a single semester of one course is weeks of
-work. If a model can be brought close enough to the lecturer's words that a human
-only has to fix small errors, the cost of making lecture material accessible drops
-sharply. That is a realistic goal, and it is measurable, which is why the error
-rate of the speech model is treated in this thesis as a result in its own right
-rather than as an internal detail.
+The second motivation is cost. Producing a correct Banglish transcript by hand took about
+one hour of work for every ten minutes of video in this project, because existing tools
+give a transcriber nothing usable to start from. At that rate one course for one semester
+is several weeks of work. Bringing a model close enough to the lecturer's words that a
+person only corrects small errors would reduce that cost substantially, which is why the
+error rate of the speech model is treated here as a result in its own right rather than
+as an internal detail.
 
-The third motivation is that the research gap is specific and checkable. Code
-switched speech recognition has been studied for Hindi-English and for several
-other language pairs, and Bengali speech recognition has its own literature. What
-is missing is the combination that a Bangladeshi classroom actually needs, which
-is recognition of Bengali-English code-mixed speech written back in the Roman
-alphabet, evaluated on real lectures rather than on read or synthetic speech.
-Chapter 2 reviews the systems that come closest, including recent Bengali-English
-code-switched models, and states exactly which part of this work is new and which
-part is not.
+The third motivation is that the gap is specific and checkable. Code switched speech
+recognition has been studied for Hindi-English and several other pairs, and Bengali
+speech recognition has its own literature. What is missing is the combination a
+Bangladeshi classroom needs, which is recognition of Bengali-English code-mixed speech
+written back in the Roman alphabet and evaluated on real lectures rather than on read or
+synthetic speech. Chapter 2 reviews the systems that come closest and states which part
+of this work is new.
 
-Finally, the whiteboard side of the problem has a practical value beyond note
-taking. A clean picture of every board a lecturer wrote, with the person removed
-and the content read out as text, is useful on its own. It can be searched, it can
-be pasted into a study guide, and it gives a student a record of a class that was
-never written down anywhere else.
+The whiteboard side has value beyond note taking. A clean picture of every board a
+lecturer wrote, with the person removed and the content available as text, can be
+searched and reused, and it is a record of a class that was otherwise never written down.
 
 \section{Problem Statement}
 
-The problem this thesis addresses is the following. Given an ordinary recording of
-a university lecture delivered in Bengali-English code-mixed speech, in a room
-with a whiteboard and no slides, produce a lecture note that is faithful to what
-the lecturer said and to what the lecturer wrote.
+Given an ordinary recording of a university lecture delivered in Bengali-English
+code-mixed speech, in a room with a whiteboard and no slides, produce a lecture note that
+is faithful to what the lecturer said and to what the lecturer wrote.
 
-This breaks into four smaller problems, each of which was confirmed by measurement
-on our own recordings before any solution was attempted.
+Four smaller problems make this difficult, and each was confirmed by measurement on our
+own recordings before any solution was attempted.
 
-\textbf{The speech is not transcribed by existing systems.} On the six lectures
-held out for testing in this work, off-the-shelf Whisper large-v3-turbo makes a
-median character error rate of 67.7 per cent and a median word error rate of 93.9
-per cent against human references. The failure is not random noise. The model
-translates the speech into English and, on thirteen of the one hundred and
-seventy-seven test clips, falls into a repetition loop and repeats the same phrase
-until it hits the token limit. Table \ref{tab:motivating_example} shows one
-segment of a digital logic class in three versions.
+Existing systems do not transcribe the speech. On the six lectures held out for testing,
+off-the-shelf Whisper large-v3-turbo produces a median character error rate of 67.7 per
+cent and a median word error rate of 93.9 per cent against human references. The failure
+is systematic rather than random: the model translates into English and, on thirteen of
+the 177 test clips, repeats a phrase until it reaches the token limit. Table
+\ref{tab:motivating_example} shows one segment of a digital logic class in three
+versions.
 
 \begin{table}[H]
 \centering
-\caption{One segment of lecture BanglaASR7, as spoken and as produced by two
-models. The reference is the human transcript. The off-the-shelf model translates
-and then loops. The fine-tuned model writes what was said.}
+\caption{One segment of lecture BanglaASR11, as spoken and as produced by two models.}
 \label{tab:motivating_example}
 \begin{tabular}{p{2.6cm}p{10.5cm}}
 \toprule
-\textbf{Source} & \textbf{Text} \\
+Source & Text \\
 \midrule
 Human reference &
-\textit{done. so x-or jodi amra bujhe jai tahole last je exclusive gate sheitao
-kintu amader bujha easier hoye jabe.} \\
+\textit{done. so x-or jodi amra bujhe jai tahole last je exclusive gate sheitao kintu
+amader bujha easier hoye jabe.} \\
 \addlinespace
-Off-the-shelf Whisper &
-\textit{so, x or gate and x or gate and x or gate and x or gate and \dots}
-(repeats until the token limit) \\
+Off-the-shelf &
+\textit{so, x or gate and x or gate and x or gate and x or gate and \dots} (repeats to
+the token limit) \\
 \addlinespace
-Fine-tuned Whisper &
-\textit{done. so, x or jodi amra bujhe jai, tahole last je exclusive gate, sheta o
-kintu amader bujha easier hoye chabe.} \\
+Fine-tuned &
+\textit{done. so, x or jodi amra bujhe jai, tahole last je exclusive gate, sheta o kintu
+amader bujha easier hoye chabe.} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\textbf{The board is hidden by the person who wrote on it.} The lecturer is never
-absent from the frame. Measured over seventy-nine frames of one lecture, the
-lecturer covers 23.5 per cent of the writing surface in the median frame and 7.0
-per cent in the best one, and no single frame is under 5 per cent. There is
-therefore no moment in the video at which a clean photograph of the board can
-simply be taken.
+The person who wrote on the board is standing in front of it. Measured over 79 frames of
+one lecture, the lecturer covers 23.5 per cent of the writing surface in the median frame
+and 7.0 per cent in the clearest one, and no frame is below 5 per cent. There is no
+moment at which a clean photograph of the board can simply be taken.
 
-\textbf{A summarising model writes from memory instead of from the lecture.} The
-first version of this pipeline asked a language model for clear notes on the
-lecture. The model produced confident textbook material, including a definition of
-a NAND gate that the lecturer never gave and that was wrong. Measured against
-hand-checked answer keys of what was actually written on the board, those notes
-contained only 37.2 per cent of the board items across thirty-five boards. The
-numbers written on the board, which a model cannot guess, were the worst category
-at six items found out of sixty-seven.
+A summarising model writes from memory rather than from the lecture. The first version of
+this pipeline asked a language model for clear notes on the lecture, and the model
+produced textbook material, including a definition of a NAND gate that the lecturer never
+gave and that was wrong. Scored against hand-checked records of what was written on the
+board, those notes contained 37.2 per cent of the board items across 35 boards, and only
+six of the 67 numbers.
 
-\textbf{The obvious ways of scoring the system are misleading.} The measure
-inherited from the earlier phase of this project, a term based F1 over a fixed
-list of eighty-two English words, moves by 8.1 percentage points between two
-training runs on identical data, and it moves in the wrong direction. A model that
-transcribes the mixed speech correctly emits fewer English words than a model that
-translates it, so the better transcript scores worse. Any evaluation built out of
-English strings has this property, and it affects the note metric as well. Part of
-the contribution of this thesis is to state this clearly and to measure around it.
+The obvious ways of scoring the system are misleading. A term based F1 over a fixed list
+of 82 English words, inherited from the earlier phase of this project, moves by 8.1
+percentage points between two training runs on identical data, and it moves in the wrong
+direction. A model that transcribes the mixed speech correctly emits fewer English words
+than a model that translates it, so the better transcript scores worse. Any measure built
+from English strings behaves this way, and part of the contribution of this thesis is to
+document it.
 
 \section{Objective}
 
-The aim of this study is to build and evaluate an end to end system that turns a
-recorded Banglish whiteboard lecture into a usable lecture note, and to report
-honestly how well each part of it works. The specific objectives are listed
-below.
+The aim is to build and evaluate a system that converts a recorded Banglish whiteboard
+lecture into a usable lecture note, and to report how well each part of it works. The
+specific objectives are:
 
 \begin{enumerate}
-  \item To build a hand-checked corpus of Bengali-English code-mixed classroom
-        speech, transcribed in the Roman alphabet according to a written
-        transcription standard, large enough to fine-tune and test a speech
-        model.
-  \item To adapt a large pretrained speech recognition model to this speech with
-        Low-Rank Adaptation, and to measure the change in word and character
-        error rate against the same model without adaptation, on lectures that
-        were never used for training.
-  \item To choose the training settings by a procedure that is written down before
-        any result is seen, scored on a separate validation set, so that the
-        reported test result is not the product of repeated tuning on the test
-        data.
-  \item To reconstruct each whiteboard from the video without the lecturer in
-        front of it, without inventing any pixel, and to measure how much of the
-        writing survives.
-  \item To have a vision-language model read each reconstructed board, and to
-        measure how much of the board's content it recovers against answer keys
-        checked by hand.
-  \item To generate a lecture note in both Banglish and English that is grounded
-        in the board and the transcript, that points the reader at numbered
-        regions of the board image, and that only quotes the lecturer using words
-        that appear in the transcript.
-  \item To evaluate each stage separately with paired statistical tests, to run
-        ablations that show which design choices matter, and to report the results
-        that did not work as clearly as the ones that did.
+  \item to build a hand-checked corpus of Bengali-English code-mixed classroom speech,
+        transcribed in the Roman alphabet against a written standard, large enough to
+        fine-tune and test a speech model;
+  \item to adapt a pretrained speech recognition model to this speech with Low-Rank
+        Adaptation and measure the change in error rate on lectures never used for
+        training;
+  \item to choose the training settings by a procedure written down before any result is
+        seen and scored on a separate validation set, so that the reported test result is
+        not the product of repeated tuning on the test data;
+  \item to rebuild each whiteboard from the video without the lecturer in front of it and
+        without synthesising any pixel, and to measure how much of the writing survives;
+  \item to have a vision-language model read each rebuilt board and measure how much of
+        its content is recovered against records checked by hand;
+  \item to generate a lecture note in Banglish and English that is grounded in the board
+        and the transcript, points at numbered regions of the board image, and quotes the
+        lecturer only in words that appear in the transcript;
+  \item to evaluate each stage with paired statistical tests and ablations, and to report
+        the approaches that did not work as fully as the ones that did.
 \end{enumerate}
 
 \section{Methodology in Brief}
 
-The system runs as four stages, and each stage writes a file that the next stage
-reads, so any stage can be re-run or replaced on its own.
+The system runs as four stages. Each stage writes a file that the next stage reads, so
+any stage can be re-run or replaced on its own.
 
-The first stage handles the speech. The audio is extracted from the video and
-split into segments at the boundaries given by the transcription standard. A
-pretrained Whisper large-v3-turbo model is adapted with LoRA adapters on the
-training lectures, and the adapted model writes a timestamped Banglish transcript
-for a lecture it has never seen.
+The first stage handles the speech. Audio is extracted from the video and cut into
+segments at the boundaries given by the transcription standard. Whisper large-v3-turbo is
+adapted with LoRA adapters on the training lectures, and the adapted model writes a
+timestamped Banglish transcript for a lecture it has not seen.
 
-The second stage handles the board. Frames are taken from the video at a fixed
-interval. Points at which the board is wiped are detected, which splits the
-lecture into eras, one board per era. Within an era the frame is cut into
-overlapping tiles, and each tile is taken from a moment when the lecturer was not
-standing in front of that particular tile. The lecturer is located by a pretrained
-person segmentation network together with a shadow mask. The tiles are blended
-back into one image, so every pixel of the result is unmodified camera output.
+The second stage handles the board. Frames are taken at a fixed interval and the points
+at which the board is wiped are detected, which divides the lecture into eras with one
+board per era. Within an era the frame is cut into overlapping tiles and each tile is
+taken from a moment when the lecturer was not standing in front of that tile. The
+lecturer is located by a pretrained person segmentation network together with a shadow
+mask, so every pixel of the result is unmodified camera output.
 
-The third stage reads the board. Our own code finds the blocks of writing on the
-clean board, draws a numbered coloured box around each one, and a vision-language
-model is asked to name and transcribe each numbered box. This is the Set-of-Mark
-style of prompting \cite{yang2023som}, where the marks are drawn on the image and
-the model answers per mark.
+The third stage reads the board. Our own code finds the blocks of writing, draws a
+numbered coloured box around each, and a vision-language model names and transcribes each
+box. This follows the Set-of-Mark style of prompting \cite{yang2023som}, in which the
+marks are drawn on the image and the model answers per mark.
 
-The fourth stage writes the note. For each board, a language model is given that
-board's boxes, the board text, and the part of the transcript that belongs to that
-board, and is asked for one section of notes that refers to the boxes by number
-and colour. A checker then deletes any quotation that does not appear word for
-word in the transcript, and any reference to a box number that does not exist. The
-sections are assembled into a page in Markdown and in HTML with the board image
-embedded.
+The fourth stage writes the note. For each board a language model receives that board's
+boxes, the board text and the part of the transcript belonging to that board, and returns
+one section of notes that refers to the boxes by number and colour. A checker then
+deletes any quotation absent from the transcript and any reference to a box that does not
+exist, and the sections are assembled into a page in Markdown and HTML.
 
-Evaluation is done per stage and never by eye alone. Speech is scored by per-clip
-median word and character error rate against human transcripts, with paired
-Wilcoxon signed-rank tests and sign tests. The board reconstruction is scored by
-the fraction of tiles that found a clear view and by a human check of whether any
-writing was lost. Board reading and note quality are scored by recall of items
-from hand-verified answer keys of what each board contained. Chapter 4 gives the
-full detail of each stage and Chapter 5 gives the results.
+Evaluation is done per stage. Speech is scored by per-clip median word and character
+error rate against human transcripts with paired Wilcoxon signed-rank and sign tests. The
+board reconstruction is scored by the fraction of tiles that found a clear view and by a
+human check of whether any writing was lost. Board reading and note quality are scored by
+recall of items from hand-verified records of each board's content.
 
 \section{Scopes and Challenges}
 
-\textbf{Scope.} The dataset is forty-four lecture recordings from three lecturers
-at one university, 8.33 hours of video in total, of which twenty-eight lectures
-covering 5.15 hours of speech carry hand-checked transcripts. The subjects are
-introductory programming, digital logic, databases and computer networking. Every
-recording is of a whiteboard class with no slides, taken with a fixed camera. The
-notes are produced in Banglish and in English. Notes in the Bengali script were
-considered and dropped, because they would be produced by translation alone and
-would add nothing that the system itself contributes. The system is built for
-recorded lectures, not for live captioning.
+The dataset is 44 lecture recordings from three lecturers at one university, 8.33 hours
+of video, of which 28 lectures covering 5.15 hours carry hand-checked transcripts. The
+subjects are introductory programming, digital logic, databases and computer networking.
+Every recording is a whiteboard class with no slides, taken with a fixed camera. Notes
+are produced in Banglish and English. Notes in the Bengali script were considered and
+dropped, since they would be produced by translation alone and would add nothing the
+system itself contributes. The system is built for recorded lectures rather than live
+captioning.
 
-\textbf{What this thesis does not claim.} It does not claim that the speech model
-is accurate enough to be used without a human check, and Chapter 5 states the
-remaining error rate plainly. It does not claim that the generated notes are good
-to read, because that has not been tested with readers. The measure used for the
-notes counts whether board content reached the page, which is a real and checkable
-property, but it says nothing about whether the surrounding explanation is well
-written or even correct. A reader study is described in Chapter 6 as the next
-step.
+Two limits are stated at the outset. The speech model is not accurate enough to be used
+without a human check, and Chapter 5 gives the remaining error rate. The generated notes
+have not been tested with readers, so nothing here shows that they are good to read. The
+measure used for the notes counts whether board content reached the page, which is a
+checkable property, but it says nothing about whether the surrounding explanation is well
+written or correct.
 
-\textbf{Challenges.} Five difficulties shaped the work.
-
-\begin{enumerate}
-  \item \textbf{No standard spelling.} Banglish has no agreed orthography, so the
-        same word can be written \textit{ami}, \textit{aami} or \textit{amee}. A
-        written transcription guide was produced and enforced by a validator, and
-        a spelling-tolerant version of the error rate was computed to show how
-        much of the error is spelling and how much is genuine.
-  \item \textbf{No dataset existed.} There is no public corpus of Bengali-English
-        code-mixed classroom speech in Roman script. The corpus had to be
-        recorded and transcribed by hand, and this was the single largest cost in
-        the project.
-  \item \textbf{Limited hardware.} All training was done on one desktop with a
-        12 GB graphics card and all vision-language work on a second desktop with
-        a 32 GB card. This ruled out the largest vision-language models, and the
-        thesis says so rather than pretending the comparison was a free choice.
-  \item \textbf{Unstable training.} The configuration chosen by the tuning
-        procedure diverged on one of its two random seeds and produced a model
-        worse than doing nothing. This is reported in full in Chapter 5, together
-        with the settings that were stable.
-  \item \textbf{Metrics that mislead.} As described in the problem statement,
-        measures built out of English strings reward a model that translates. Two
-        separate results in this thesis are affected by it, and both are reported
-        with the explanation beside them.
-\end{enumerate}
+Five difficulties shaped the work. Banglish has no agreed orthography, so a written
+transcription guide was produced and enforced by a validator, and a spelling tolerant
+version of the error rate was computed to separate spelling disagreement from genuine
+error. No public corpus of Bengali-English code-mixed classroom speech in Roman script
+exists, so the corpus had to be recorded and transcribed by hand, which was the largest
+cost in the project. All training ran on one desktop with a 12 GB graphics card and all
+vision-language work on a second with a 32 GB card, which put the largest
+vision-language models out of reach. The configuration chosen by the tuning procedure
+diverged on one of its two random seeds and produced a model worse than doing nothing.
+Finally, measures built from English strings reward a model that translates, which
+affects two separate results reported in Chapter 5.
 
 \section{Team Overview}
 
-This thesis was carried out by a team of three students of the Department of
-Computer Science and Engineering, Brac University, under the supervision of
-Dr. Md. Golam Rabiul Alam and the co-supervision of Md. Tanzim Reza.
+The thesis was carried out by three students of the Department of Computer Science and
+Engineering, Brac University, supervised by Dr. Md. Golam Rabiul Alam and co-supervised
+by Md. Tanzim Reza.
 
-% TODO (Rafi): confirm or correct the division of work in the paragraph below
-% before submission. Student IDs go on the title page and the declaration page.
-The work was divided into three areas. Data collection and transcription was the
-largest shared task, since every transcript in the corpus was checked word by word
-against the audio by a member of the team. Model training and evaluation covered
-the speech recognition experiments, the tuning procedure and the statistical
-testing. The vision and note generation side covered board reconstruction, the
-vision-language prompting and the note builder. All three members took part in the
-verification of the board answer keys, which had to be done by a person looking at
-the board image without seeing any model output, and in the writing of this
-report.
+% TODO (Rafi): confirm or correct the division of work below before submission.
+The work divided into three areas. Data collection and transcription was the largest
+shared task, since every transcript was checked word by word against the audio by a
+member of the team. Model training and evaluation covered the speech experiments, the
+tuning procedure and the statistical testing. The vision and note generation area covered
+board reconstruction, the vision-language prompting and the note builder. All three
+members verified the board records, which had to be done by a person reading the board
+image without seeing model output, and all three contributed to this report.
