@@ -42,7 +42,7 @@ output ``one clean board image per era''; (5) Stage 3 Board reading, box finding
 numbered coloured boxes drawn, Qwen2.5-VL names and transcribes each box; (6) Stage 4
 Notes, Qwen2.5-7B writes one section per board, quote checker and box-reference check,
 output ``notes in Banglish and English''. Put the file passed between each pair of stages
-on the arrow.}{5.5cm}
+on the arrow.}{4.6cm}
 
 In stage one the audio is extracted and cut into clips, a LoRA adapter trained on the
 corpus is attached to Whisper large-v3-turbo, and the adapted model writes a timestamped
@@ -97,7 +97,7 @@ untested: the code supports asking the vision-language model to draw the boxes i
 our own box finder was kept because it is deterministic and its output can be drawn onto
 the real image and checked by eye.
 
-\begin{table}[H]
+\begin{table}[htbp]
 \centering
 \caption{The alternatives considered at each stage. Options marked as measured were built
 and evaluated before being rejected.}
@@ -248,7 +248,7 @@ adapters, and the builder records in each output file which adapter produced its
 
 \subsection{Summary of Preprocessed Data}
 
-\begin{table}[H]
+\begin{table}[htbp]
 \centering
 \caption{The corpus after preprocessing.}
 \label{tab:corpus}
@@ -281,17 +281,17 @@ the results, since lecturer B contributed the least speech and Chapter 5 shows t
 lecturer B's test lecture improves the least. Figure \ref{fig:fig-data-segments} shows the
 segment lengths against Whisper's 30 second window.
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=0.72\textwidth]{fig-data-composition}
+\includegraphics[width=0.97\textwidth]{fig-data-composition}
 \caption{The corpus by lecturer. The darker part of each bar is training speech, the
 middle part is held out for testing, and the lightest part is video with no transcript.}
 \label{fig:fig-data-composition}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=0.72\textwidth]{fig-data-segments}
+\includegraphics[width=0.97\textwidth]{fig-data-segments}
 \caption{Lengths of the 609 transcribed segments against Whisper's 30 second window.
 Segments longer than the window are subdivided at sentence ends before training.}
 \label{fig:fig-data-segments}
@@ -372,20 +372,20 @@ frame is not enough.}{Take one frame from the lecture's frame folder in which th
 stands in front of the writing, and blur or pixelate his face before using it. The ethics
 statement says no person is identifiable in the figures, so the face must be covered.
 Placing it directly above Figure \ref{fig:nand-mosaic-raw} makes the before and after
-comparison clearest.}{5.5cm}
+comparison clearest.}{4.6cm}
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=0.74\textwidth]{nand-mosaic-raw}
+\includegraphics[width=\textwidth]{nand-mosaic-raw}
 \caption{A rebuilt board from lecture BanglaASR11. Every pixel comes from a real frame of
 the video. The horizontal bands are glare from the ceiling lights, which is present in
 every frame and therefore cannot be removed by choosing a different one.}
 \label{fig:nand-mosaic-raw}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=0.74\textwidth]{nand-mosaic-clean}
+\includegraphics[width=\textwidth]{nand-mosaic-clean}
 \caption{The same board after the display clean-up. The background has been replaced, so
 this image is enhanced rather than unmodified camera output, while the strokes themselves
 are camera pixels.}
@@ -414,9 +414,9 @@ quotation marks that break the JSON it is asked to return, and without a fallbac
 board loses all of its boxes, so a salvage parser reads the fields one at a time when the
 JSON cannot be parsed.
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=0.74\textwidth]{nand-demo-3}
+\includegraphics[width=\textwidth]{nand-demo-3}
 \caption{The board of Figure \ref{fig:nand-mosaic-clean} with the numbered coloured boxes
 drawn by our code and named by the vision-language model. The generated notes refer to
 these numbers and colours.}

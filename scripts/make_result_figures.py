@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python
+#!/usr/bin/env python
 """
 Thesis figures for the 2026-09 results, computed from the evaluation files, never typed in.
 
@@ -25,6 +25,17 @@ INK = "#1f2933"
 BASE_C = "#9aa5b1"
 GOOD_C = "#2a9d4f"
 BAD_C = "#d62828"
+
+
+def wrapnote(text, width=84):
+    """Break a figure footnote into short lines.
+
+    Saved with bbox_inches="tight", a long single-line note widens the figure's
+    bounding box far beyond the plot, which then has to be scaled down to fit the
+    page and takes the whole figure with it.
+    """
+    import textwrap
+    return textwrap.fill(text, width=width)
 
 
 def read(path):
@@ -54,26 +65,27 @@ def asr_figure(show_diverged=True):
         wer.append(bad["wer"])
         colours.append(BAD_C)
 
-    fig, axes = plt.subplots(1, 2, figsize=(11, 4.6))
+    fig, axes = plt.subplots(2, 1, figsize=(6.6, 6.2))
     for ax, vals, name in ((axes[0], cer, "Character error rate"), (axes[1], wer, "Word error rate")):
         bars = ax.bar(range(len(vals)), vals, color=colours, width=0.62, edgecolor="white")
         for x, v in zip(range(len(vals)), vals):
-            ax.text(x, v + 2, f"{v:.1f}%", ha="center", va="bottom", fontsize=10,
+            ax.text(x, v + 2, f"{v:.1f}%", ha="center", va="bottom", fontsize=11.5,
                     fontweight="bold", color=INK)
         ax.set_xticks(range(len(labels)))
-        ax.set_xticklabels(labels, fontsize=9)
-        ax.set_ylabel(f"{name}, median per clip (%)", fontsize=10)
+        ax.set_xticklabels(labels, fontsize=10.5)
+        ax.set_ylabel(f"{name} (%)", fontsize=11.5)
         ax.set_ylim(0, max(vals) * 1.18)
         ax.spines[["top", "right"]].set_visible(False)
         ax.grid(axis="y", alpha=0.25, linewidth=0.6)
         ax.set_axisbelow(True)
         ax.axhline(vals[0], color=BASE_C, linestyle="--", linewidth=1, alpha=0.8)
-    fig.suptitle(f"Banglish ASR: {a['clips']} clips from six lectures held out of training "
-                 f"(4.10 h of training speech)", fontsize=11.5, fontweight="bold", color=INK)
+    fig.suptitle(wrapnote(f"Banglish ASR: {a['clips']} clips from six lectures held out "
+                          f"of training (4.10 h of training speech)", 58),
+                 fontsize=13, fontweight="bold", color=INK)
     note = ("Lower is better. Both stable seeds use learning rate 1e-3. The red bar is the rate the "
             "pre-registered tuning chose (2e-3): its other seed reached 16.2%, this one collapsed "
             "into repetition loops on 82 of 177 clips.")
-    fig.text(0.5, -0.02, note, ha="center", va="top", fontsize=8.5, color="#52606d", wrap=True)
+    fig.text(0.5, -0.02, wrapnote(note), ha="center", va="top", fontsize=10, color="#52606d")
     fig.tight_layout(rect=(0, 0.04, 1, 0.94))
     OUT.mkdir(parents=True, exist_ok=True)
     for ext in ("png", "pdf"):
@@ -193,14 +205,14 @@ def dataset_figures():
         for s, v in zip("ABC", vals):
             if v > 0.15:
                 ax.text("ABC".index(s), bottoms[s] + v / 2, f"{v:.1f} h", ha="center", va="center",
-                        fontsize=9, color="white", fontweight="bold")
+                        fontsize=10.5, color="white", fontweight="bold")
             bottoms[s] += v
     ax.set_xlabel("Lecturer")
     ax.set_ylabel("Hours of video")
     ax.set_title(f"The dataset: {sum(v['minutes'] for v in stats.values() if v['has_gt'])/60:.2f} h "
                  f"transcribed of {sum(v['minutes'] for v in stats.values())/60:.1f} h recorded",
-                 fontsize=11.5, fontweight="bold", color=INK)
-    ax.legend(fontsize=9, frameon=False)
+                 fontsize=13, fontweight="bold", color=INK)
+    ax.legend(fontsize=10.5, frameon=False)
     ax.spines[["top", "right"]].set_visible(False)
     ax.grid(axis="y", alpha=0.25, linewidth=0.6)
     ax.set_axisbelow(True)
@@ -215,12 +227,12 @@ def dataset_figures():
     ax.hist(segs, bins=range(0, max(segs) + 5, 2), color="#1d4ed8", alpha=0.85, edgecolor="white")
     ax.axvline(30, color=BAD_C, linestyle="--", linewidth=1.4)
     ax.text(31, ax.get_ylim()[1] * 0.92, "Whisper's 30 s window\n(longer segments are split at\n"
-            "sentence ends before training)", color=BAD_C, fontsize=8.5, va="top")
+            "sentence ends before training)", color=BAD_C, fontsize=10, va="top")
     over = sum(1 for d in segs if d > 30)
     ax.set_xlabel("Segment length (seconds)")
     ax.set_ylabel("Segments")
     ax.set_title(f"{len(segs)} transcribed segments, median {sorted(segs)[len(segs)//2]} s, "
-                 f"{over} over 30 s", fontsize=11.5, fontweight="bold", color=INK)
+                 f"{over} over 30 s", fontsize=13, fontweight="bold", color=INK)
     ax.spines[["top", "right"]].set_visible(False)
     ax.grid(axis="y", alpha=0.25, linewidth=0.6)
     ax.set_axisbelow(True)
@@ -230,22 +242,22 @@ def dataset_figures():
     plt.close(fig)
 
     # 3. per lecture: transcribed minutes and speaking rate
-    fig, axes = plt.subplots(2, 1, figsize=(10, 6.4), sharex=True)
+    fig, axes = plt.subplots(2, 1, figsize=(8.4, 6.0), sharex=True)
     keyed = [(n, v) for n, v in stats.items() if v["has_gt"]]
     xs = range(len(keyed))
     axes[0].bar(xs, [v["minutes"] for _, v in keyed],
                 color=[colours.get(v["speaker"], "#9aa5b1") for _, v in keyed], edgecolor="white")
     for x, (n, _) in zip(xs, keyed):
         if n in test:
-            axes[0].text(x, 0.4, "test", rotation=90, fontsize=7, color="white", ha="center", va="bottom")
+            axes[0].text(x, 0.4, "test", rotation=90, fontsize=8.5, color="white", ha="center", va="bottom")
     axes[0].set_ylabel("Transcribed minutes")
     axes[0].set_title("Per lecture: length and speaking rate (bar colour is the lecturer)",
-                      fontsize=11.5, fontweight="bold", color=INK)
+                      fontsize=13, fontweight="bold", color=INK)
     axes[1].bar(xs, [v["words"] / max(v["minutes"], 0.01) for _, v in keyed],
                 color=[colours.get(v["speaker"], "#9aa5b1") for _, v in keyed], edgecolor="white")
     axes[1].set_ylabel("Words per minute")
     axes[1].set_xticks(list(xs))
-    axes[1].set_xticklabels([f"{n}" for n, _ in keyed], fontsize=8)
+    axes[1].set_xticklabels([f"{n}" for n, _ in keyed], fontsize=9.5)
     axes[1].set_xlabel("Lecture")
     for ax in axes:
         ax.spines[["top", "right"]].set_visible(False)
@@ -259,24 +271,24 @@ def dataset_figures():
     # 4. the boards
     boards = board_stats()
     clear = [100 * b["clear"] for b in boards if b["clear"] is not None]
-    fig, axes = plt.subplots(1, 2, figsize=(11, 4.2))
+    fig, axes = plt.subplots(1, 2, figsize=(7.6, 4.2))
     per = {}
     for b in boards:
         per[b["lecture"]] = per.get(b["lecture"], 0) + 1
     axes[0].bar(range(len(per)), [per[k] for k in sorted(per)], color="#7b2cbf", edgecolor="white")
     axes[0].set_xticks(range(len(per)))
-    axes[0].set_xticklabels([str(k) for k in sorted(per)], fontsize=7, rotation=90)
+    axes[0].set_xticklabels([str(k) for k in sorted(per)], fontsize=8.5, rotation=90)
     axes[0].set_xlabel("Lecture")
     axes[0].set_ylabel("Boards (erase-separated eras)")
-    axes[0].set_title(f"{len(boards)} boards across {len(per)} lectures", fontsize=11,
+    axes[0].set_title(f"{len(boards)} boards across {len(per)} lectures", fontsize=12.5,
                       fontweight="bold", color=INK)
     axes[1].hist(clear, bins=20, color="#2a9d4f", alpha=0.85, edgecolor="white")
     axes[1].axvline(sorted(clear)[len(clear) // 2], color=INK, linestyle="--", linewidth=1.2)
     axes[1].text(sorted(clear)[len(clear) // 2] - 1, axes[1].get_ylim()[1] * 0.9,
-                 f"median {sorted(clear)[len(clear)//2]:.1f}%", ha="right", fontsize=9, color=INK)
+                 f"median {sorted(clear)[len(clear)//2]:.1f}%", ha="right", fontsize=10.5, color=INK)
     axes[1].set_xlabel("Tiles fully clear of the lecturer (%)")
     axes[1].set_ylabel("Boards")
-    axes[1].set_title("Reconstruction quality per board", fontsize=11, fontweight="bold", color=INK)
+    axes[1].set_title("Reconstruction quality per board", fontsize=12.5, fontweight="bold", color=INK)
     for ax in axes:
         ax.spines[["top", "right"]].set_visible(False)
         ax.grid(axis="y", alpha=0.25, linewidth=0.6)
@@ -320,8 +332,8 @@ def asr_detail_figures():
     ax.set_xlabel("Character error rate of one clip (%), capped at 200")
     ax.set_ylabel("Clips")
     ax.set_title(f"Error spread over {len(keys)} held-out clips, not just the median",
-                 fontsize=11.5, fontweight="bold", color=INK)
-    ax.legend(frameon=False, fontsize=9)
+                 fontsize=13, fontweight="bold", color=INK)
+    ax.legend(frameon=False, fontsize=10.5)
     ax.spines[["top", "right"]].set_visible(False)
     ax.grid(axis="y", alpha=0.25, linewidth=0.6)
     ax.set_axisbelow(True)
@@ -337,14 +349,14 @@ def asr_detail_figures():
                color="#1d4ed8", edgecolors="none")
     lim = 205
     ax.plot([0, lim], [0, lim], color=INK, linewidth=1, linestyle="--")
-    ax.text(lim * 0.52, lim * 0.6, "worse after\nfine-tuning", fontsize=9, color="#52606d")
-    ax.text(lim * 0.45, lim * 0.12, f"better: {better} of {len(keys)} clips", fontsize=9.5,
+    ax.text(lim * 0.52, lim * 0.6, "worse after\nfine-tuning", fontsize=10.5, color="#52606d")
+    ax.text(lim * 0.45, lim * 0.12, f"better: {better} of {len(keys)} clips", fontsize=11,
             color=GOOD_C, fontweight="bold")
     ax.set_xlim(0, lim)
     ax.set_ylim(0, lim)
     ax.set_xlabel("Off-the-shelf error (%)")
     ax.set_ylabel("Fine-tuned error (%)")
-    ax.set_title("Every held-out clip, before and after", fontsize=11.5, fontweight="bold", color=INK)
+    ax.set_title("Every held-out clip, before and after", fontsize=13, fontweight="bold", color=INK)
     ax.spines[["top", "right"]].set_visible(False)
     ax.grid(alpha=0.2, linewidth=0.6)
     ax.set_axisbelow(True)
@@ -362,7 +374,7 @@ def asr_detail_figures():
         per[n]["tuned"].append(100 * tuned[k]["cer"])
     med = lambda xs: sorted(xs)[len(xs) // 2]
     order = sorted(per)
-    fig, ax = plt.subplots(figsize=(8.2, 4.3))
+    fig, ax = plt.subplots(figsize=(7.6, 4.2))
     w = 0.38
     ax.bar([i - w / 2 for i in range(len(order))], [med(per[n]["base"]) for n in order], w,
            color=BASE_C, label="Off-the-shelf", edgecolor="white")
@@ -370,14 +382,14 @@ def asr_detail_figures():
            color=GOOD_C, label="Fine-tuned", edgecolor="white")
     for i, n in enumerate(order):
         ax.text(i + w / 2, med(per[n]["tuned"]) + 1.5, f"{med(per[n]['tuned']):.0f}", ha="center",
-                fontsize=8.5, color=INK)
+                fontsize=10, color=INK)
     ax.set_xticks(range(len(order)))
     ax.set_xticklabels([f"BanglaASR{n}\nlecturer {per[n]['speaker']}\n{len(per[n]['base'])} clips"
-                        for n in order], fontsize=8)
+                        for n in order], fontsize=9.5)
     ax.set_ylabel("Median character error rate (%)")
     ax.set_title("Each held-out lecture on its own: all six improve, lecturer B's by far the least",
-                 fontsize=11.5, fontweight="bold", color=INK)
-    ax.legend(frameon=False, fontsize=9)
+                 fontsize=13, fontweight="bold", color=INK)
+    ax.legend(frameon=False, fontsize=10.5)
     ax.spines[["top", "right"]].set_visible(False)
     ax.grid(axis="y", alpha=0.25, linewidth=0.6)
     ax.set_axisbelow(True)
@@ -427,7 +439,7 @@ def vision_figures():
     _, clean = pair("lectures1-9 mosaic vs clean")
     _, small = pair("lectures1-9 7B vs 3B")
 
-    fig, axes = plt.subplots(1, 3, figsize=(12.5, 4.4), gridspec_kw={"width_ratios": [1.1, 1, 1.25]})
+    fig, axes = plt.subplots(1, 3, figsize=(7.8, 4.6), gridspec_kw={"width_ratios": [1.1, 1, 1.25]})
     panels = [
         ("The prompt", ["Ask for\nkeywords", "Ask for the\nwhole board"], [kw, full],
          [BAD_C, GOOD_C], f"+{full - kw:.1f} points"),
@@ -439,22 +451,23 @@ def vision_figures():
     for ax, (title, labels, vals, cols, delta) in zip(axes, panels):
         ax.bar(range(len(vals)), vals, color=cols, width=0.6, edgecolor="white")
         for x, v in enumerate(vals):
-            ax.text(x, v + 1.5, f"{v:.1f}%", ha="center", fontsize=10, fontweight="bold", color=INK)
+            ax.text(x, v + 1.5, f"{v:.1f}%", ha="center", fontsize=11.5, fontweight="bold", color=INK)
         ax.set_xticks(range(len(labels)))
-        ax.set_xticklabels(labels, fontsize=9)
+        ax.set_xticklabels(labels, fontsize=10.5)
         ax.set_ylim(0, 108)
-        ax.set_title(f"{title}   ({delta})", fontsize=11, fontweight="bold", color=INK)
+        ax.set_title(f"{title}   ({delta})", fontsize=12.5, fontweight="bold", color=INK)
         ax.spines[["top", "right"]].set_visible(False)
         ax.grid(axis="y", alpha=0.25, linewidth=0.6)
         ax.set_axisbelow(True)
     axes[0].set_ylabel("Board items the model read (%)")
-    fig.suptitle("Reading the whiteboard: 35 boards of lectures 1-9, 349 hand-verified items",
-                 fontsize=12, fontweight="bold", color=INK)
-    fig.text(0.5, -0.01, f"One change at a time, same boards, same answer keys. What you ask for is "
+    fig.suptitle(wrapnote("Reading the whiteboard: 35 boards of lectures 1-9, "
+                          "349 hand-verified items", 70),
+                 fontsize=13.5, fontweight="bold", color=INK)
+    fig.text(0.5, -0.01, wrapnote(f"One change at a time, same boards, same answer keys. What you ask for is "
              f"worth {(full - kw) / (full - small):.0f}x the model size and "
              f"{(full - kw) / (mosaic - full):.0f}x the image processing. The cleaned board, which "
-             f"looks best to a person, reads slightly worse than the reconstruction it came from.",
-             ha="center", va="top", fontsize=9, color="#52606d")
+             f"looks best to a person, reads slightly worse than the reconstruction it came from."),
+             ha="center", va="top", fontsize=10.5, color="#52606d")
     fig.tight_layout(rect=(0, 0.03, 1, 0.93))
     for ext in ("png", "pdf"):
         fig.savefig(OUT / f"fig_board_reading.{ext}", dpi=300, bbox_inches="tight")
@@ -470,13 +483,13 @@ def vision_figures():
     fig, ax = plt.subplots(figsize=(7.4, 5.2))
     wedges, _ = ax.pie(sizes, colors=[GOOD_C, BAD_C, "#f77f00", "#9aa5b1"], startangle=90,
                        wedgeprops={"edgecolor": "white", "linewidth": 2})
-    ax.legend(wedges, labels, loc="center left", bbox_to_anchor=(0.98, 0.5), frameon=False, fontsize=9.5)
+    ax.legend(wedges, labels, loc="center left", bbox_to_anchor=(0.98, 0.5), frameon=False, fontsize=11)
     ax.set_title(f"Do the reconstructed boards keep everything?\n"
                  f"{check['boards_answered']} boards checked by hand, {check['complete_percent']}% complete",
-                 fontsize=11.5, fontweight="bold", color=INK)
-    fig.text(0.5, 0.02, "Only the red slice is the reconstruction's fault: the orange boards were "
+                 fontsize=13, fontweight="bold", color=INK)
+    fig.text(0.5, 0.02, wrapnote(f"Only the red slice is the reconstruction's fault: the orange boards were "
              "captured while the lecturer was wiping,\nand the grey ones were out of focus in every "
-             "frame of the source video.", ha="center", fontsize=8.8, color="#52606d")
+             "frame of the source video."), ha="center", fontsize=10, color="#52606d")
     fig.tight_layout(rect=(0, 0.06, 1, 1))
     for ext in ("png", "pdf"):
         fig.savefig(OUT / f"fig_board_completeness.{ext}", dpi=300, bbox_inches="tight")
@@ -521,18 +534,18 @@ def notes_figures():
     subprocess.run(["git", "-c", "safe.directory=F:/thesisP2/thesisP2", "checkout", "--",
                     "output/board_recall.json"], cwd=REPO)
 
-    fig, axes = plt.subplots(1, 2, figsize=(12, 4.6), gridspec_kw={"width_ratios": [1.15, 1]})
+    fig, axes = plt.subplots(1, 2, figsize=(7.4, 4.6), gridspec_kw={"width_ratios": [1.15, 1]})
     names = ["Original\npipeline", "English\nwritten\ndirectly", "Banglish", "English\ntranslated\nfrom it"]
     vals = [original, english_direct, banglish, english]
     cols = [BASE_C, "#f77f00", GOOD_C, GOOD_C]
     axes[0].bar(range(4), vals, color=cols, width=0.62, edgecolor="white")
     for x, v in enumerate(vals):
-        axes[0].text(x, v + 1.5, f"{v:.1f}%", ha="center", fontsize=10, fontweight="bold", color=INK)
+        axes[0].text(x, v + 1.5, f"{v:.1f}%", ha="center", fontsize=11.5, fontweight="bold", color=INK)
     axes[0].set_xticks(range(4))
-    axes[0].set_xticklabels(names, fontsize=9)
+    axes[0].set_xticklabels(names, fontsize=10.5)
     axes[0].set_ylim(0, 105)
     axes[0].set_ylabel("Board items reaching the notes (%)")
-    axes[0].set_title("What the notes carry, by route", fontsize=11.5, fontweight="bold", color=INK)
+    axes[0].set_title("What the notes carry, by route", fontsize=13, fontweight="bold", color=INK)
 
     w = 0.36
     axes[1].bar([0 - w / 2, 1 - w / 2], [ft_bt, ft_nb], w, color=GOOD_C, label="Fine-tuned ASR",
@@ -540,21 +553,21 @@ def notes_figures():
     axes[1].bar([0 + w / 2, 1 + w / 2], [base_bt, base_nb], w, color=BASE_C,
                 label="Off-the-shelf ASR", edgecolor="white")
     for x, v in ((0 - w / 2, ft_bt), (1 - w / 2, ft_nb), (0 + w / 2, base_bt), (1 + w / 2, base_nb)):
-        axes[1].text(x, v + 1.5, f"{v:.0f}%", ha="center", fontsize=9.5, color=INK)
+        axes[1].text(x, v + 1.5, f"{v:.0f}%", ha="center", fontsize=11, color=INK)
     axes[1].set_xticks([0, 1])
-    axes[1].set_xticklabels(["With the VLM's\nboard text", "Without it"], fontsize=9.5)
+    axes[1].set_xticklabels(["With the VLM's\nboard text", "Without it"], fontsize=11)
     axes[1].set_ylim(0, 105)
     axes[1].set_title("Does a better transcript help? No (p = 1.0 both ways)",
-                      fontsize=11.5, fontweight="bold", color=INK)
-    axes[1].legend(frameon=False, fontsize=9)
+                      fontsize=13, fontweight="bold", color=INK)
+    axes[1].legend(frameon=False, fontsize=10.5)
     for ax in axes:
         ax.spines[["top", "right"]].set_visible(False)
         ax.grid(axis="y", alpha=0.25, linewidth=0.6)
         ax.set_axisbelow(True)
-    fig.text(0.5, -0.02, "35 boards, 349 hand-verified items. Right: by board the split is 7 better "
+    fig.text(0.5, -0.02, wrapnote(f"35 boards, 349 hand-verified items. Right: by board the split is 7 better "
              "/ 6 worse with board text and 10 / 9 without, so the item totals overstate it. Board "
-             "recall cannot see whether the surrounding explanation is right - only people can.",
-             ha="center", va="top", fontsize=8.8, color="#52606d")
+             "recall cannot see whether the surrounding explanation is right - only people can."),
+             ha="center", va="top", fontsize=10, color="#52606d")
     fig.tight_layout(rect=(0, 0.04, 1, 1))
     for ext in ("png", "pdf"):
         fig.savefig(OUT / f"fig_notes_recall.{ext}", dpi=300, bbox_inches="tight")

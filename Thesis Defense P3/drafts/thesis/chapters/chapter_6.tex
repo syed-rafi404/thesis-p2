@@ -11,7 +11,7 @@ Each stage of the pipeline is evaluated on its own, because a single end-to-end 
 would hide which part works. Table \ref{tab:headline} collects the main results and the
 sections below give the conditions and the caveats for each.
 
-\begin{table}[H]
+\begin{table}[htbp]
 \centering
 \caption{The main results, one per stage.}
 \label{tab:headline}
@@ -47,7 +47,7 @@ random, 20 per cent of each lecturer's minutes with the seed fixed at zero, givi
 training lectures totalling 4.10 hours and six test lectures totalling 1.05 hours and 177
 clips. The three validation lectures used for tuning were locked out of the test set.
 
-\begin{table}[H]
+\begin{table}[htbp]
 \centering
 \caption{Median per-clip error on the 177 test clips, off-the-shelf against fine-tuned,
 greedy decoding throughout. The last row is the row above it with a different random
@@ -73,17 +73,17 @@ points and the fine-tuned model is better on 164 and 167 of the 177 clips, so ab
 quarters of the character error is removed. Figure \ref{fig:fig-asr-final} shows the
 comparison and Figure \ref{fig:fig-asr-clip-scatter} shows it clip by clip.
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=0.72\textwidth]{fig-asr-final}
+\includegraphics[width=0.97\textwidth]{fig-asr-final}
 \caption{The final speech result. Median per-clip error before and after fine-tuning for
 both stable seeds, with the diverged seed shown beside them rather than left out.}
 \label{fig:fig-asr-final}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=0.72\textwidth]{fig-asr-clip-scatter}
+\includegraphics[width=0.97\textwidth]{fig-asr-clip-scatter}
 \caption{Each point is one test clip, with its error before fine-tuning on one axis and
 after on the other. Points below the diagonal improved. The points at the extreme right
 are clips where the off-the-shelf model fell into a repetition loop.}
@@ -113,7 +113,7 @@ The tuning procedure was run on the full corpus, scored only on the three valida
 lectures and never on the test lectures. Off-the-shelf Whisper on those validation clips
 gives a character error rate of 73.8 per cent and a word error rate of 97.6 per cent.
 
-\begin{table}[H]
+\begin{table}[htbp]
 \centering
 \caption{Pre-registered hyperparameter tuning on the full corpus, scored on the three
 validation lectures. Each stage starts from the winner of the previous one. The rows
@@ -170,7 +170,7 @@ All figures reported in this thesis are the plain greedy ones.
 
 The improvement is not evenly spread, and the pattern follows the training data.
 
-\begin{table}[H]
+\begin{table}[htbp]
 \centering
 \caption{Median character error rate per test lecture, seed 42, with the amount of that
 lecturer's speech in the training set.}
@@ -190,6 +190,14 @@ BanglaASR27 & C & 56 & 73\% & 16\% & 2.2 h \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.97\textwidth]{fig-asr-per-lecture}
+\caption{Median character error rate for each test lecture before and after
+fine-tuning. Every lecture improves, and lecturer B's lecture improves least.}
+\label{fig:fig-asr-per-lecture}
+\end{figure}
 
 Every lecture improves, but lecturer B's lecture improves by far the least, ending at 52
 per cent where the others reach 12 to 16, and lecturer B contributed the least training
@@ -219,7 +227,7 @@ are also heard in training. A harder question is what happens on a lecturer the 
 never heard, so each lecturer was held out in turn and the model trained on the other two,
 with two seeds per fold and plain greedy decoding.
 
-\begin{table}[H]
+\begin{table}[htbp]
 \centering
 \caption{Leave-one-speaker-out. Each row holds out one lecturer entirely.}
 \label{tab:loso}
@@ -289,7 +297,7 @@ never have been visible in any frame. Answering that needs a person, so every on
 two real frames from the same period and the question being whether the board contains
 everything that was written.
 
-\begin{table}[H]
+\begin{table}[htbp]
 \centering
 \caption{Human check of 98 rebuilt boards.}
 \label{tab:completeness}
@@ -331,7 +339,7 @@ prompt. The first asks for keywords, which is what the original pipeline did. Th
 asks for a full transcription of everything on the board, with every number exactly as
 written and \texttt{[illegible]} rather than a guess.
 
-\begin{table}[H]
+\begin{table}[htbp]
 \centering
 \caption{Board-content recall, same model, same images, only the prompt changes.}
 \label{tab:vlmread}
@@ -347,9 +355,9 @@ A third lecturer, 10 boards, 87 items & not run & 89.7\% & -- \\
 \end{tabular}
 \end{table}
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=0.72\textwidth]{fig-board-reading}
+\includegraphics[width=0.97\textwidth]{fig-board-reading}
 \caption{Board-content recall by item kind, keyword prompt against full transcription,
 over 35 boards and 349 items. The numbers written on the board go from none found to
 almost all found.}
@@ -377,7 +385,7 @@ The notes were built for all 13 lectures that have hand-verified board records, 
 languages, always from a transcript produced by an adapter that never heard that lecture's
 lecturer.
 
-\begin{table}[H]
+\begin{table}[htbp]
 \centering
 \caption{Board-content recall of the generated notes, 35 boards of the first nine
 lectures, 349 items.}
@@ -399,9 +407,9 @@ better on 30, worse on 1 \\
 \end{tabular}
 \end{table}
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=0.72\textwidth]{fig-notes-recall}
+\includegraphics[width=0.97\textwidth]{fig-notes-recall}
 \caption{How much of the board reaches the notes, for the original pipeline and for the
 annotated notes in each language and route.}
 \label{fig:fig-notes-recall}
@@ -526,7 +534,7 @@ explaining rather than hiding. Four sets of notes were built for the 13 scored l
 Banglish only, with everything held constant except whether the transcript came from the
 fine-tuned or the off-the-shelf model, and whether the board text was supplied at all.
 
-\begin{table}[H]
+\begin{table}[htbp]
 \centering
 \caption{Board-content recall for the two-by-two, 35 boards, 349 items.}
 \label{tab:2x2items}
@@ -541,7 +549,7 @@ Off-the-shelf transcript & 78.5\% (274) & 73.6\% (257) \\
 \end{tabular}
 \end{table}
 
-\begin{table}[H]
+\begin{table}[htbp]
 \centering
 \caption{The same four cells counted by board, which is the test the conclusion rests on.}
 \label{tab:2x2boards}
@@ -716,7 +724,7 @@ fixed list of 82 English words. Two independent training runs on identical data,
 same recipe and seed and differing only in the order the manifest listed the clips, gave
 the results in Table \ref{tab:termf1}.
 
-\begin{table}[H]
+\begin{table}[htbp]
 \centering
 \caption{Two training runs on identical data, showing which measures replicate.}
 \label{tab:termf1}

@@ -1,5 +1,5 @@
-% Following command is used to created grouped signature line for the authors
-\newcommand*\wildcard[2][6cm]{\vspace{2cm}\parbox{#1}{\hrulefill\par#2}}
+% Grouped signature lines for the authors. The optional argument is the box width.
+\newcommand*\wildcard[2][6cm]{\vspace{1.6cm}\parbox[t]{#1}{\setlength{\parskip}{0pt}\hrulefill\par#2}}
 
 \section*{Declaration}
 
@@ -19,10 +19,11 @@ It is hereby declared that
 \begingroup
 
     \begin{center}
-        \wildcard{\centerline{Syed Ar Rafi} ~\ \centerline{[Student ID]}}
-        \hspace{2cm}
-        \wildcard{\centerline{Adiba Islam Khan} ~\ \centerline{[Student ID]} }
-        \wildcard{\centerline{Ahsan Habib} ~\ \centerline{[Student ID]} }
+        \wildcard[4.4cm]{\centerline{Syed Ar Rafi}\centerline{[Student ID]}}
+        \hspace{0.4cm}
+        \wildcard[4.4cm]{\centerline{Adiba Islam Khan}\centerline{[Student ID]}}
+        \hspace{0.4cm}
+        \wildcard[4.4cm]{\centerline{Ahsan Habib}\centerline{[Student ID]}}
     \end{center}
 
 \endgroup
