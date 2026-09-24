@@ -32,6 +32,10 @@ diagram tool if you would rather start from a generated draft.
 Keep `width=0.97\textwidth` for wide diagrams. Use `width=0.8\textwidth` for a tall one so
 it does not run off the bottom of the page.
 
+Each figure below has a **Rough shape** block in plain text. It is there so you can check
+the arrangement before spending time on the artwork, not as a style to copy. Boxes, arrows
+and labels should match; spacing, colour and icons are yours.
+
 ## Design rules that apply to all five
 
 The generated figures already in the thesis set the house style, so match them:
@@ -67,6 +71,20 @@ arrows crossing each other, no jargon.
    - "Notes written"
 3. An arrow out to a page icon labelled **"Lecture note"**.
 4. Under the page icon, two small tags side by side: **"Banglish"** and **"English"**.
+
+**Rough shape.** Compare what you draw against this. The proportions do not matter, the
+arrangement does.
+
+```
+   +---------------+        +------------------------------+        +---------------+
+   |               |        |                              |        |   +-------+   |
+   |   [ camera ]  | -----> |  Speech to Banglish text     | -----> |   | note  |   |
+   |               |        |  Whiteboard rebuilt and read |        |   | page  |   |
+   |               |        |  Notes written               |        |   +-------+   |
+   +---------------+        +------------------------------+        +---------------+
+      Banglish                                                         Lecture note
+    lecture video                                                  (Banglish) (English)
+```
 
 **Tool.** Canva or draw.io, 20 minutes. draw.io is better here because the boxes and arrows
 stay aligned.
@@ -104,6 +122,28 @@ In the middle, a small marked point labelled **"InsightLens (this thesis)"**.
 **Two layouts, either is fine.** A four-circle Venn is the obvious one but four circles
 overlap awkwardly; if it looks messy, use four boxes in a 2x2 grid with arrows pointing
 inward to a centre box. The 2x2 version is easier to read and easier to draw.
+
+**Rough shape**, the 2x2 version:
+
+```
+      +------------------------------+      +------------------------------+
+      |  Bengali speech recognition  |      |  Code-switched speech        |
+      |                              |      |  recognition                 |
+      +------------------------------+      +------------------------------+
+                      \                            /
+                       \                          /
+                        v                        v
+                     +--------------------------------+
+                     |   InsightLens (this thesis)    |   <-- filled green
+                     +--------------------------------+
+                        ^                        ^
+                       /                          \
+                      /                            \
+      +------------------------------+      +------------------------------+
+      |  Whiteboard content          |      |  Lecture note generation     |
+      |  extraction from video       |      |  with large models           |
+      +------------------------------+      +------------------------------+
+```
 
 **Tool.** draw.io for the 2x2 version, Canva for the Venn.
 
@@ -145,6 +185,25 @@ Mark two vertical lines: **draft submission** and **slide submission**.
 
 Put month names on the horizontal axis. Use your real project months; the exact dates are
 yours to fill, not something the repository records.
+
+**Rough shape.** The months below are placeholders; use your real ones. What matters is that
+the two Experiments bars overlap, that the transcription bar is long and spans most of the
+chart, and that the two deadlines are marked.
+
+```
+                            Apr   May   Jun   Jul   Aug   Sep
+                             |     |     |     |     |     |
+  Problem and baseline     [#####]                      :     :
+  Review and correction        [####]                   :     :
+  Data collection and          [#########################]    :
+    transcription                                       :     :
+  Experiments: speech                 [###########]     :     :
+  Experiments: vision                   [###########]   :     :
+    and notes                                           :     :
+  Writing                                     [#########]     :
+                                                        :     :
+                                                    Draft^     ^Slides
+```
 
 **Tool.** Canva has Gantt templates and is fastest here. Excel with a stacked bar chart also
 works if you prefer.
@@ -196,6 +255,70 @@ pointing at it. Spend the most time here.
 **Layout.** Top to bottom works better than left to right here, because the merge at stage 4
 needs vertical space. A4 portrait suits a tall diagram.
 
+**Rough shape.** This is the one to check carefully. If your drawing has a single straight
+chain from top to bottom, it is wrong: the flow splits after preprocessing and joins again at
+stage 4.
+
+```
+                         +-----------------------------+
+                         |       Lecture video         |
+                         +-----------------------------+
+                                       |
+                                       v
+                         +-----------------------------+
+                         |  Audio 16 kHz mono          |
+                         |  Frames every 2 s           |
+                         +-----------------------------+
+                            |                      |
+                    audio   |                      |   frames
+                            v                      v
+      +---------------------------+   +-----------------------------+
+      | STAGE 1   SPEECH          |   | STAGE 2   BOARD             |
+      | Whisper large-v3-turbo    |   | erase detection -> eras     |
+      | + LoRA adapter            |   | tiled mosaic, person mask   |
+      |                           |   | display clean-up            |
+      +---------------------------+   +-----------------------------+
+                    |                               |
+     transcript.txt |                               | one clean board
+      (timestamped  |                               | image per era
+        Banglish)   |                               v
+                    |                 +-----------------------------+
+                    |                 | STAGE 3   BOARD READING     |
+                    |                 | our code finds and numbers  |
+                    |                 |   the boxes                 |
+                    |                 | Qwen2.5-VL names and        |
+                    |                 |   transcribes each box      |
+                    |                 +-----------------------------+
+                    |                               |
+                    |                               | board_boxes.json
+                    |                               |
+                    +--------------+   +------------+
+                                   |   |
+                                   v   v
+                         +-----------------------------+
+                         | STAGE 4   NOTES             |
+                         | Qwen2.5-7B, one call per    |
+                         |   board                     |
+                         | quote checker               |
+                         | box-reference check         |
+                         +-----------------------------+
+                                       |
+                                       v
+                         +-----------------------------+
+                         |  Lecture note               |
+                         |  Banglish | English         |
+                         |  Markdown | HTML            |
+                         +-----------------------------+
+
+   left branch: 12 GB card          right branch and stage 4: 32 GB card
+```
+
+Three checks against your drawing:
+
+1. Two arrows arrive at stage 4, one from stage 1 and one from stage 3.
+2. Every arrow between stages carries a file name.
+3. Stage 3 sits below stage 2, not beside it. It reads what stage 2 produced.
+
 **Tool.** draw.io. Do not use an AI image generator for this one; they cannot keep six
 labelled boxes and eight labelled arrows accurate, and a wrong arrow in this figure is worse
 than no figure. Use the prompt below only to get a first layout you then correct by hand.
@@ -241,6 +364,21 @@ person out entirely, because the whole point of the figure is that he is in the 
 rebuilt board on the right, with a short label under each ("one frame" and "rebuilt from the
 whole era"). If you do that, replace Figure 4.5 with the combined image and delete the
 separate placeholder.
+
+**Rough shape**, if you make it the two-panel version:
+
+```
+   +-------------------------------+   +-------------------------------+
+   |  +-------------------------+  |   |  +-------------------------+  |
+   |  | ####                    |  |   |  |  Digital Logic Design   |  |
+   |  | ####  lecturer standing |  |   |  |  NAND gate = AND + NOT  |  |
+   |  | ####  in front of the   |  |   |  |  A B | AB | (AB)'       |  |
+   |  | ####  writing           |  |   |  |  0 0 |  0 |   1  ...    |  |
+   |  +-------------------------+  |   |  +-------------------------+  |
+   |     face blurred              |   |                               |
+   +-------------------------------+   +-------------------------------+
+        one frame                        rebuilt from the whole era
+```
 
 **Tool.** Canva, or any photo editor with a blur brush. Five minutes.
 
