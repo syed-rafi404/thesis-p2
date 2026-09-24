@@ -12,8 +12,10 @@
   "quotes_kept": 0,
   "quotes_dropped": 0,
   "invalid_box_refs": 0,
-  "quotes_translated": 7,
+  "quotes_translated": 5,
   "quotes_word_for_word_checked": false,
+  "quotes_retranslated": 0,
+  "quotes_untranslated_dropped": 2,
   "written_in": "banglish",
   "translated_to_english": true,
   "latex_rewritten": 6,
@@ -39,7 +41,9 @@
       "latex_rewritten": 0,
       "quotes_translated": [],
       "quotes_kept": [],
-      "quotes_dropped": []
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
     },
     {
       "board": 2,
@@ -58,7 +62,9 @@
         "So, which logic gate will we use? These logic gates will perform decision-making tasks, like connecting wires, making a single connection."
       ],
       "quotes_kept": [],
-      "quotes_dropped": []
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
     },
     {
       "board": 3,
@@ -85,7 +91,9 @@
         "So, zero mane ki amar light off. And one hocche, aikat zero ke ami rakhe light off."
       ],
       "quotes_kept": [],
-      "quotes_dropped": []
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
     },
     {
       "board": 4,
@@ -105,11 +113,13 @@
       "inline_quotes_unverified": [],
       "prompt_placeholders_removed": 0,
       "latex_rewritten": 2,
-      "quotes_translated": [
-        "Input and x hocche amr output jeta ki chilo? A and B er multiplication. So etai hocche amr and keidh."
-      ],
+      "quotes_translated": [],
       "quotes_kept": [],
-      "quotes_dropped": []
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": [
+        "Input and x hocche amr output jeta ki chilo? A and B er multiplication. So etai hocche amr and keidh."
+      ]
     },
     {
       "board": 5,
@@ -132,7 +142,9 @@
         "Suppose input is a and output is b. So our output which will be there, is x."
       ],
       "quotes_kept": [],
-      "quotes_dropped": []
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
     },
     {
       "board": 6,
@@ -156,11 +168,14 @@
       "prompt_placeholders_removed": 0,
       "latex_rewritten": 4,
       "quotes_translated": [
-        "NOT gate a ki hoy? Amar je physical device ta seikhane just ekta ei input ber dhukbe and ekta ei output ber hobe.",
-        "ekhane ei bar jinish ta ki? ta hobe jabe, a bar hocche alternate of a. tar mane ki? tar mane hocche amar input a and output a bar. input jodi zero hoy, tahole output hobe one. and input jodi one hoy ar output ta hobe zero. ebhabei opposite je signal toh sheita ama ke not get."
+        "NOT gate a ki hoy? Amar je physical device ta seikhane just ekta ei input ber dhukbe and ekta ei output ber hobe."
       ],
       "quotes_kept": [],
-      "quotes_dropped": []
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": [
+        "ekhane ei bar jinish ta ki? ta hobe jabe, a bar hocche alternate of a. tar mane ki? tar mane hocche amar input a and output a bar. input jodi zero hoy, tahole output hobe one. and input jodi one hoy ar output ta hobe zero. ebhabei opposite je signal toh sheita ama ke not get."
+      ]
     }
   ]
 }

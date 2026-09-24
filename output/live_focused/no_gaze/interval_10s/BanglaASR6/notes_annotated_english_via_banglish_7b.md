@@ -131,7 +131,6 @@ In a real-world scenario, if both bulbs are on, the room will be bright. Convers
 4. **Box 4 (green)**: The formula for the AND gate is given as X = AB.
 
 **Quotes:**
-> The lecturer said: "Input and x hocche amr output jeta ki chilo? A and B er multiplication. So etai hocche amr and keidh."
 
 **Background (not said in the lecture):**
 The AND gate is a fundamental component in digital logic design. It takes two inputs and produces an output based on the logical AND operation. If either of the inputs is zero, the output will also be zero. This gate is used in various electronic circuits to perform logical operations. Understanding the AND gate is crucial for designing more complex digital systems.
@@ -183,7 +182,6 @@ The OR gate is a fundamental component in digital logic design. It takes two bin
 
 **Quotes:**
 > Lecturer: "NOT gate a ki hoy? Amar je physical device ta seikhane just ekta ei input ber dhukbe and ekta ei output ber hobe."
-> Lecturer: "ekhane ei bar jinish ta ki? ta hobe jabe, a bar hocche alternate of a. tar mane ki? tar mane hocche amar input a and output a bar. input jodi zero hoy, tahole output hobe one. and input jodi one hoy ar output ta hobe zero. ebhabei opposite je signal toh sheita ama ke not get."
 
 ### Background (not said in the lecture) (lecture e bola hoy ni)
 The NOT gate is a fundamental component in digital logic design. It takes a single input and produces an output that is the logical opposite of the input. This gate is crucial for creating more complex circuits and is used extensively in digital systems. Understanding the NOT gate is essential for grasping more advanced concepts in digital logic.
@@ -208,4 +206,4 @@ The NOT gate is a fundamental component in digital logic design. It takes a sing
 
 *This lecture is `BanglaASR10` in the dataset (`BanglaASR6` is its old number, kept because the answer keys use it).*
 
-*How these notes were made. Speech: transcript_loso.txt. Boards: ink boxes, named by Qwen/Qwen2.5-VL-7B-Instruct. Notes written by Qwen/Qwen2.5-7B-Instruct. These notes were written in Banglish from the board and the transcript, then translated into English by the same model. The lecturer's words are given in English translation (7 quotes); the Banglish version of these notes has the originals, checked word for word against the transcript. References to boxes that do not exist: 0.*
+*How these notes were made. Speech: transcript_loso.txt. Boards: ink boxes, named by Qwen/Qwen2.5-VL-7B-Instruct. Notes written by Qwen/Qwen2.5-7B-Instruct. These notes were written in Banglish from the board and the transcript, then translated into English by the same model. The lecturer's words are given in English translation (5 quotes); the Banglish version of these notes has the originals, checked word for word against the transcript. References to boxes that do not exist: 0.*

@@ -12,8 +12,10 @@
   "quotes_kept": 0,
   "quotes_dropped": 0,
   "invalid_box_refs": 0,
-  "quotes_translated": 4,
+  "quotes_translated": 1,
   "quotes_word_for_word_checked": false,
+  "quotes_retranslated": 0,
+  "quotes_untranslated_dropped": 3,
   "written_in": "banglish",
   "translated_to_english": true,
   "latex_rewritten": 0,
@@ -36,12 +38,14 @@
       "inline_quotes_unverified": [],
       "prompt_placeholders_removed": 0,
       "latex_rewritten": 0,
-      "quotes_translated": [
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": [
         "so think of like a box.",
         "so eita ami mujhhe feltesi."
-      ],
-      "quotes_kept": [],
-      "quotes_dropped": []
+      ]
     },
     {
       "board": 2,
@@ -62,7 +66,9 @@
       "latex_rewritten": 0,
       "quotes_translated": [],
       "quotes_kept": [],
-      "quotes_dropped": []
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
     },
     {
       "board": 3,
@@ -82,7 +88,9 @@
       "latex_rewritten": 0,
       "quotes_translated": [],
       "quotes_kept": [],
-      "quotes_dropped": []
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
     },
     {
       "board": 4,
@@ -105,11 +113,13 @@
       ],
       "prompt_placeholders_removed": 0,
       "latex_rewritten": 0,
-      "quotes_translated": [
-        "So variable er naming ta khubi important dekhte jinis."
-      ],
+      "quotes_translated": [],
       "quotes_kept": [],
-      "quotes_dropped": []
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": [
+        "So variable er naming ta khubi important dekhte jinis."
+      ]
     },
     {
       "board": 5,
@@ -133,7 +143,9 @@
       "latex_rewritten": 0,
       "quotes_translated": [],
       "quotes_kept": [],
-      "quotes_dropped": []
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
     },
     {
       "board": 6,
@@ -159,7 +171,9 @@
         "Python variables are case-sensitive."
       ],
       "quotes_kept": [],
-      "quotes_dropped": []
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
     }
   ]
 }

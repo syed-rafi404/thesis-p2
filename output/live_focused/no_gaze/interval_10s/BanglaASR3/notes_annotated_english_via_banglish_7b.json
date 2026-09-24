@@ -14,6 +14,8 @@
   "invalid_box_refs": 0,
   "quotes_translated": 0,
   "quotes_word_for_word_checked": false,
+  "quotes_retranslated": 0,
+  "quotes_untranslated_dropped": 0,
   "written_in": "banglish",
   "translated_to_english": true,
   "latex_rewritten": 0,
@@ -46,7 +48,9 @@
       "latex_rewritten": 0,
       "quotes_translated": [],
       "quotes_kept": [],
-      "quotes_dropped": []
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
     }
   ]
 }

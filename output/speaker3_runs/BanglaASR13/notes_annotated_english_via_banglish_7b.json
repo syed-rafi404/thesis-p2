@@ -12,8 +12,10 @@
   "quotes_kept": 0,
   "quotes_dropped": 0,
   "invalid_box_refs": 0,
-  "quotes_translated": 4,
+  "quotes_translated": 3,
   "quotes_word_for_word_checked": false,
+  "quotes_retranslated": 0,
+  "quotes_untranslated_dropped": 1,
   "written_in": "banglish",
   "translated_to_english": true,
   "latex_rewritten": 0,
@@ -39,11 +41,14 @@
       "prompt_placeholders_removed": 0,
       "latex_rewritten": 0,
       "quotes_translated": [
-        "Total packet jeta amra pathai ekta network theke onno network e, it has two sections.",
         "MTU always refers to the size of a packet. So, I write 1500 bytes here, meaning the header is included. MTU always refers to the size of a packet."
       ],
       "quotes_kept": [],
-      "quotes_dropped": []
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": [
+        "Total packet jeta amra pathai ekta network theke onno network e, it has two sections."
+      ]
     },
     {
       "board": 2,
@@ -65,7 +70,9 @@
         "For the second fragment, we add this value again divided by eight. Let's just take this value for now. What value are we waiting for? Okay, let's calculate it. Divided by eight, that is 185. So, what is the value for the second fragment?"
       ],
       "quotes_kept": [],
-      "quotes_dropped": []
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
     }
   ]
 }

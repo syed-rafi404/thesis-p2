@@ -1,0 +1,27 @@
+{
+  "lecture": "BanglaASR44",
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "source": "clean",
+  "prompt": "This is a photograph of a classroom whiteboard during a university lecture.\n\nTranscribe everything written on the whiteboard, exactly as written.\n\n- Copy every number, name, identifier, date and symbol exactly. Do not round,\n  correct or reformat values.\n- Write tables as Markdown tables with the same rows and columns as the board.\n- Write code, SQL and program text inside ``` fences, keeping line breaks.\n- Write formulas as they appear. For a bar over a term write it as NOT(...),\n  for example NOT(A+B).\n- Keep diagrams short: name what they are and copy any labels on them, for\n  example \"Gate diagram: inputs A, B into a box labelled NAND, output NOT(AB)\".\n- If part of the board cannot be read, write [illegible]. Never guess, and never\n  add anything that is not written on the board.\n- Ignore any person in the picture. Describe only what is written.\n\nOutput only the transcription.",
+  "boards": [
+    {
+      "era": 1,
+      "from": "0:00",
+      "to": "17:44",
+      "clear_fraction": 1.0,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR44\\boards\\clean\\BanglaASR44_board_era1_000_clean.jpg",
+      "text": "```\nRegression Tree\n\nOutlook = {Sunny, Overcast, Rain}\n\nTotal SSR (Outlook)\n= 12.50 + 0 + 458.00\n= 470.50\n\nΔSSR = 758.83 - 470.50\n\nNumber Outlook | Temp | Humidity | Wind | Players\n---------------|------|----------|------|--------\n1             | Sunny| Hot      | High | Weak  | 25\n2             | Sunny| Hot      | High | Strong| 30\n3             | Overcast| Hot | High | Weak  | 46\n4             | Rain | Mild    | High | Weak  | 45\n5             | Rain | Cool    | Normal | Weak | 52\n6             | Rain | Cool    | Normal | Strong| 23\n\nSSR(Players) = 758.83\nSSR(Outlook = Sunny) = 12.50\nSSR(Outlook = Overcast) = 0\nSSR(Outlook = Rain) = 458.00\n```",
+      "runaway_lines_removed": 0
+    },
+    {
+      "era": 2,
+      "from": "17:50",
+      "to": "36:24",
+      "clear_fraction": 1.0,
+      "image": "D:\\T2520875\\thesisP2\\thesisP2\\output\\lectures\\BanglaASR44\\boards\\clean\\BanglaASR44_board_era2_1750_clean.jpg",
+      "text": "```\nRegression Tree\n\n| Number | Outlook | Temp | Humidity | Wind | Players |\n|--------|---------|------|----------|------|---------|\n| 1      | Sunny   | Hot  | High     | weak | 25      |\n| 2      | Sunny   | Hot  | High     | Strong| 30      |\n| 3      | Overcast| Hot  | High     | weak | 46      |\n| 4      | Rain    | Mild | High     | weak | 45      |\n| 5      | Rain    | Cool | Normal   | weak | 52      |\n| 6      | Rain    | Cool | Normal   | Strong| 23      |\n\nSSR(Players) = 758.83\n\nWeak\nWind\nStrong\n\nOutlook\nRain\nOutlook\nRain\nSunny\nOvercast\nRain\nTemp\nMild\nCool\n25\n46\n30\n95.0\n52.0\n```",
+      "runaway_lines_removed": 0
+    }
+  ],
+  "mock": false
+}

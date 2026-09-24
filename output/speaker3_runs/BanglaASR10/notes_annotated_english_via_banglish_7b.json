@@ -12,8 +12,10 @@
   "quotes_kept": 0,
   "quotes_dropped": 0,
   "invalid_box_refs": 0,
-  "quotes_translated": 3,
+  "quotes_translated": 0,
   "quotes_word_for_word_checked": false,
+  "quotes_retranslated": 0,
+  "quotes_untranslated_dropped": 3,
   "written_in": "banglish",
   "translated_to_english": true,
   "latex_rewritten": 0,
@@ -35,12 +37,14 @@
       "inline_quotes_unverified": [],
       "prompt_placeholders_removed": 0,
       "latex_rewritten": 0,
-      "quotes_translated": [
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": [
         "toh oneksho mai hoy ki je ekta net or ke, jokhn on and gula hop count day, jokhn on and gula hop count day, jokhn on and gula hop count day.",
         "so one ekshomai delay ta accept te bolna toh shei ke thai amra ki kori? packet ta notun kore patai."
-      ],
-      "quotes_kept": [],
-      "quotes_dropped": []
+      ]
     },
     {
       "board": 2,
@@ -57,11 +61,13 @@
       "inline_quotes_unverified": [],
       "prompt_placeholders_removed": 0,
       "latex_rewritten": 0,
-      "quotes_translated": [
-        "main shomosh ta jeta diye amr prevent korte pari sheita hocche jekono packet er endless looping."
-      ],
+      "quotes_translated": [],
       "quotes_kept": [],
-      "quotes_dropped": []
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": [
+        "main shomosh ta jeta diye amr prevent korte pari sheita hocche jekono packet er endless looping."
+      ]
     },
     {
       "board": 3,
@@ -83,7 +89,9 @@
       "latex_rewritten": 0,
       "quotes_translated": [],
       "quotes_kept": [],
-      "quotes_dropped": []
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
     },
     {
       "board": 4,
@@ -107,7 +115,9 @@
       "latex_rewritten": 0,
       "quotes_translated": [],
       "quotes_kept": [],
-      "quotes_dropped": []
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
     }
   ]
 }

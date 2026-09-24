@@ -12,8 +12,10 @@
   "quotes_kept": 0,
   "quotes_dropped": 0,
   "invalid_box_refs": 0,
-  "quotes_translated": 5,
+  "quotes_translated": 0,
   "quotes_word_for_word_checked": false,
+  "quotes_retranslated": 0,
+  "quotes_untranslated_dropped": 5,
   "written_in": "banglish",
   "translated_to_english": true,
   "latex_rewritten": 0,
@@ -33,11 +35,13 @@
       "inline_quotes_unverified": [],
       "prompt_placeholders_removed": 0,
       "latex_rewritten": 0,
-      "quotes_translated": [
-        "so shei python er ekta built-in function er eche jeta holo input. so ami jodi likhi function ta, jeta holo input function. jeta holo python er built-in ekta function. so ei built-in function er maddome amra user e theke input naya thakeu."
-      ],
+      "quotes_translated": [],
       "quotes_kept": [],
-      "quotes_dropped": []
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": [
+        "so shei python er ekta built-in function er eche jeta holo input. so ami jodi likhi function ta, jeta holo input function. jeta holo python er built-in ekta function. so ei built-in function er maddome amra user e theke input naya thakeu."
+      ]
     },
     {
       "board": 2,
@@ -59,11 +63,13 @@
       ],
       "prompt_placeholders_removed": 0,
       "latex_rewritten": 0,
-      "quotes_translated": [
-        "ami ekhane input function ta likhechi. tarpore ami user e jonna ekta message diyechi. message ta ki je what is your name? user jokhon ei message ta dekhbe user korbe ki? or nijan nam ta o likhbe."
-      ],
+      "quotes_translated": [],
       "quotes_kept": [],
-      "quotes_dropped": []
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": [
+        "ami ekhane input function ta likhechi. tarpore ami user e jonna ekta message diyechi. message ta ki je what is your name? user jokhon ei message ta dekhbe user korbe ki? or nijan nam ta o likhbe."
+      ]
     },
     {
       "board": 3,
@@ -88,12 +94,14 @@
       ],
       "prompt_placeholders_removed": 0,
       "latex_rewritten": 0,
-      "quotes_translated": [
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": [
         "so keo jodi number ta bole je 10, ashole je pacche sheta ekta string hishabe ashtese ekhane.",
         "but amra kintu eta chacchi na. amra chacchi number, actual integer number, 10 and 20, eta add korle koto? 30 hoy."
-      ],
-      "quotes_kept": [],
-      "quotes_dropped": []
+      ]
     },
     {
       "board": 4,
@@ -119,11 +127,13 @@
       ],
       "prompt_placeholders_removed": 0,
       "latex_rewritten": 0,
-      "quotes_translated": [
-        "so ekhane basically ki hocche? ami user theke input niaychi num1. sheta ki? 10. string e chilo. ami jokhon int of aa num1 kore dicchi, ei string ta hoye jacche ki? amar integer."
-      ],
+      "quotes_translated": [],
       "quotes_kept": [],
-      "quotes_dropped": []
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": [
+        "so ekhane basically ki hocche? ami user theke input niaychi num1. sheta ki? 10. string e chilo. ami jokhon int of aa num1 kore dicchi, ei string ta hoye jacche ki? amar integer."
+      ]
     },
     {
       "board": 5,
@@ -146,7 +156,9 @@
       "latex_rewritten": 0,
       "quotes_translated": [],
       "quotes_kept": [],
-      "quotes_dropped": []
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
     }
   ]
 }

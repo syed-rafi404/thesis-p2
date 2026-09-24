@@ -105,7 +105,6 @@ The lecturer also mentioned that in the previous class, they learned about lists
 
 6. **Step 5:** The final sum, `260`, is the total of all elements in the list. This demonstrates a basic for loop structure in Python.
 
-> Lecturer: "ekhon arekta khubi important jeta, shetaholo ekta syntax error jeta shobai kore thake je print jinishta ekhane dey."
 
 ### Background (not said in the lecture) (lecture e bola hoy ni)
 Understanding for loops is crucial for performing operations on collections of data. By iterating over each element, you can perform calculations or manipulations that would be tedious to do manually. For example, you can use for loops to find the average of a list of numbers, count the occurrences of a specific value, or even modify each element in a list.
@@ -129,4 +128,4 @@ Understanding for loops is crucial for performing operations on collections of d
 ---
 
 
-*How these notes were made. Speech: transcript_loso.txt. Boards: ink boxes, named by Qwen/Qwen2.5-VL-7B-Instruct. Notes written by Qwen/Qwen2.5-7B-Instruct. These notes were written in Banglish from the board and the transcript, then translated into English by the same model. The lecturer's words are given in English translation (2 quotes); the Banglish version of these notes has the originals, checked word for word against the transcript. References to boxes that do not exist: 0.*
+*How these notes were made. Speech: transcript_loso.txt. Boards: ink boxes, named by Qwen/Qwen2.5-VL-7B-Instruct. Notes written by Qwen/Qwen2.5-7B-Instruct. These notes were written in Banglish from the board and the transcript, then translated into English by the same model. The lecturer's words are given in English translation (1 quotes); the Banglish version of these notes has the originals, checked word for word against the transcript. References to boxes that do not exist: 0.*

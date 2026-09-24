@@ -32,7 +32,6 @@ Today we will start with the concept of universal gates.
 
 - **Example with NOR Gate**: First, we will start with the NOR gate. The NOR gate is named as such because it involves an OR gate but with a negation. In the NOR gate, if both inputs are low (0), the output is high (1). If either or both inputs are high (1), the output is low (0).
 
-> Lecturer: "so ajke ashbe amr universal gate. universal gate er moddhe ami ki ki bolechilam? there are two types of universal gates which are xor gate, xor gate, xor gate."
 
 **Background (not said in the lecture)**: A universal gate is a gate that can be used to implement any other type of logic gate. The NOR gate is one such universal gate. By understanding the NOR gate, we can build more complex circuits using just this single type of gate.
 
@@ -205,4 +204,4 @@ The X-NOR gate is a universal gate along with AND, OR, and NOR gates. It is usef
 
 *This lecture is `BanglaASR11` in the dataset (`BanglaASR7_004` is its old number, kept because the answer keys use it).*
 
-*How these notes were made. Speech: transcript_loso.txt. Boards: ink boxes, named by Qwen/Qwen2.5-VL-7B-Instruct. Notes written by Qwen/Qwen2.5-7B-Instruct. These notes were written in Banglish from the board and the transcript, then translated into English by the same model. The lecturer's words are given in English translation (2 quotes); the Banglish version of these notes has the originals, checked word for word against the transcript. References to boxes that do not exist: 0.*
+*How these notes were made. Speech: transcript_loso.txt. Boards: ink boxes, named by Qwen/Qwen2.5-VL-7B-Instruct. Notes written by Qwen/Qwen2.5-7B-Instruct. These notes were written in Banglish from the board and the transcript, then translated into English by the same model. The lecturer's words are given in English translation (1 quotes); the Banglish version of these notes has the originals, checked word for word against the transcript. References to boxes that do not exist: 0.*

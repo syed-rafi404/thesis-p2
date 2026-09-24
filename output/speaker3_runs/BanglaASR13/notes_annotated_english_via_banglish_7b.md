@@ -24,7 +24,6 @@ The lecture covers the concepts of Maximum Transmission Unit (MTU) and packet si
 
 The lecturer said: "Total packet size consists of two sections: the header section and the data section. The header section contains information like the DF (Don't Fragment) flag, which helps in identifying fragments of a packet. The data section contains the actual data being transmitted."
 
-> Lecturer: "Total packet jeta amra pathai ekta network theke onno network e, it has two sections."
 
 The DF flag in the header section is crucial because it allows us to identify and reassemble fragmented packets. This process is typically handled by devices at the network layer, such as routers. Therefore, we understand that each packet will have both a header and a data section.
 
@@ -96,4 +95,4 @@ Fragment offset helps in reassembling the original packet at the destination. By
 
 *This lecture is `BanglaASR17` in the dataset (`BanglaASR13` is its old number, kept because the answer keys use it).*
 
-*How these notes were made. Speech: transcript_loso.txt. Boards: ink boxes, named by Qwen/Qwen2.5-VL-7B-Instruct. Notes written by Qwen/Qwen2.5-7B-Instruct. These notes were written in Banglish from the board and the transcript, then translated into English by the same model. The lecturer's words are given in English translation (4 quotes); the Banglish version of these notes has the originals, checked word for word against the transcript. References to boxes that do not exist: 0.*
+*How these notes were made. Speech: transcript_loso.txt. Boards: ink boxes, named by Qwen/Qwen2.5-VL-7B-Instruct. Notes written by Qwen/Qwen2.5-7B-Instruct. These notes were written in Banglish from the board and the transcript, then translated into English by the same model. The lecturer's words are given in English translation (3 quotes); the Banglish version of these notes has the originals, checked word for word against the transcript. References to boxes that do not exist: 0.*

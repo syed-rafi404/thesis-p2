@@ -23,8 +23,6 @@
    - The purpose of TTL is to prevent packets from circulating indefinitely in a network, which could lead to issues like buffer overflow and increased delays.
 
 **Quotes:**
-> "toh oneksho mai hoy ki je ekta net or ke, jokhn on and gula hop count day, jokhn on and gula hop count day, jokhn on and gula hop count day."
-> "so one ekshomai delay ta accept te bolna toh shei ke thai amra ki kori? packet ta notun kore patai."
 
 ### Background (not said in the lecture)
 TTL is crucial for managing packet lifetimes in networks. When a packet reaches its TTL value, it is discarded to avoid infinite looping and potential network congestion. This mechanism helps in maintaining network efficiency and preventing delays caused by packet loss or buffer overflow.
@@ -46,7 +44,6 @@ The lecturer explained that TTL is used to prevent an endless loop in a network.
 
 The TTL value, which is set to 29 in this case, helps prevent this issue. When a packet travels through a network, the TTL value decreases by one at each hop. Once the TTL value reaches zero, the packet is discarded, preventing it from continuing to loop indefinitely. For example, if the TTL value is 24, after 24 hops, the packet will be dropped if it hasn't reached its destination. This ensures that packets do not keep circulating forever and eventually get removed from the network.
 
-> Lecturer: "main shomosh ta jeta diye amr prevent korte pari sheita hocche jekono packet er endless looping."
 
 ### Background (not said in the lecture)
 Therefore, when the TTL value reaches zero, the packet will be dropped. However, if a network is down and another network is up, the packet can still be sent to the next available network. In other words, when the TTL value reaches zero, the packet will be dropped, but if a network is down and another network is up, the packet can still be sent to the next available network.
@@ -128,4 +125,4 @@ The lecturer also said: "If the 'Don't Fragment' flag (DF) is set to 0, fragment
 
 *This lecture is `BanglaASR14` in the dataset (`BanglaASR10` is its old number, kept because the answer keys use it).*
 
-*How these notes were made. Speech: transcript_loso.txt. Boards: ink boxes, named by Qwen/Qwen2.5-VL-7B-Instruct. Notes written by Qwen/Qwen2.5-7B-Instruct. These notes were written in Banglish from the board and the transcript, then translated into English by the same model. The lecturer's words are given in English translation (3 quotes); the Banglish version of these notes has the originals, checked word for word against the transcript. References to boxes that do not exist: 0.*
+*How these notes were made. Speech: transcript_loso.txt. Boards: ink boxes, named by Qwen/Qwen2.5-VL-7B-Instruct. Notes written by Qwen/Qwen2.5-7B-Instruct. These notes were written in Banglish from the board and the transcript, then translated into English by the same model. The lecturer's words are given in English translation (0 quotes); the Banglish version of these notes has the originals, checked word for word against the transcript. References to boxes that do not exist: 0.*

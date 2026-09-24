@@ -29,7 +29,6 @@ The lecturer explains that when the DF value is set to `0`, it means the packet 
 
 The lecturer also mentions that fragmentation is a process where a large packet is divided into smaller packets. He gives an example where a single byte of data might be split into multiple fragments. The key point is that after splitting the data into fragments, you cannot join them until the last fragment is received.
 
->The lecturer said: "so, ekhon ekta drop kore diye ekta error er message pathabe sender e je tumi packet ta fragment kore dek, ponor osho bite e ami eta khorte parbona."
 
 In summary, the TTL parameter controls the lifespan of a packet, the DF parameter prevents fragmentation, and the MF parameter indicates if more fragments are coming. Understanding these parameters is crucial for managing data transmission efficiently.
 
@@ -87,4 +86,4 @@ In summary, the TTL parameter controls the lifespan of a packet, the DF paramete
 
 *This lecture is `BanglaASR15` in the dataset (`BanglaASR11` is its old number, kept because the answer keys use it).*
 
-*How these notes were made. Speech: transcript_loso.txt. Boards: ink boxes, named by Qwen/Qwen2.5-VL-7B-Instruct. Notes written by Qwen/Qwen2.5-7B-Instruct. These notes were written in Banglish from the board and the transcript, then translated into English by the same model. The lecturer's words are given in English translation (1 quotes); the Banglish version of these notes has the originals, checked word for word against the transcript. References to boxes that do not exist: 1.*
+*How these notes were made. Speech: transcript_loso.txt. Boards: ink boxes, named by Qwen/Qwen2.5-VL-7B-Instruct. Notes written by Qwen/Qwen2.5-7B-Instruct. These notes were written in Banglish from the board and the transcript, then translated into English by the same model. The lecturer's words are given in English translation (0 quotes); the Banglish version of these notes has the originals, checked word for word against the transcript. References to boxes that do not exist: 1.*

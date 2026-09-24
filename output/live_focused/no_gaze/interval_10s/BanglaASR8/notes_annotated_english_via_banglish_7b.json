@@ -14,6 +14,8 @@
   "invalid_box_refs": 0,
   "quotes_translated": 2,
   "quotes_word_for_word_checked": false,
+  "quotes_retranslated": 0,
+  "quotes_untranslated_dropped": 0,
   "written_in": "banglish",
   "translated_to_english": true,
   "latex_rewritten": 0,
@@ -37,7 +39,9 @@
       "latex_rewritten": 0,
       "quotes_translated": [],
       "quotes_kept": [],
-      "quotes_dropped": []
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
     },
     {
       "board": 2,
@@ -54,7 +58,9 @@
       "latex_rewritten": 0,
       "quotes_translated": [],
       "quotes_kept": [],
-      "quotes_dropped": []
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
     },
     {
       "board": 3,
@@ -77,7 +83,9 @@
         "Suppose I wrote 10 because a student's full name usually does not exceed 10 characters. So, I wrote 10."
       ],
       "quotes_kept": [],
-      "quotes_dropped": []
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
     }
   ]
 }

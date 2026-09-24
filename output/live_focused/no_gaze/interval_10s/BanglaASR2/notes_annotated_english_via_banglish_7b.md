@@ -26,7 +26,6 @@ The lecturer started by revisiting the previous class where they discussed varia
 
 3. **Using the `input()` Function**: The lecturer demonstrated the usage of the `input()` function by declaring a new variable named `name`. They used the statement `name = input()`. Here, the `input()` function waits for the user to enter some text and then stores that text in the variable `name`.
 
-> Lecturer: "so shei python er ekta built-in function er eche jeta holo input. so ami jodi likhi function ta, jeta holo input function. jeta holo python er built-in ekta function. so ei built-in function er maddome amra user e theke input naya thakeu."
 
 ### Background (not said in the lecture)
 When you use the `input()` function, the value entered by the user is always treated as a string. If you need to perform operations that require numerical values, you will need to convert the string to an integer or float using type casting functions like `int()` or `float()`. This ensures that the operations are performed correctly.
@@ -53,7 +52,6 @@ The lecturer said: "We are using the `input` function to get input from the user
 The lecturer emphasized that when you use the `input` function, whatever the user types is treated as a string. For example, if the user types "Rafi", the value of `name` will be "Rafi".
 
 **Quotes:**
-> Lecturer: "ami ekhane input function ta likhechi. tarpore ami user e jonna ekta message diyechi. message ta ki je what is your name? user jokhon ei message ta dekhbe user korbe ki? or nijan nam ta o likhbe."
 
 ### Background (not said in the lecture)
 When you use the `input` function, the value entered by the user is always a string. Even if the user enters a number, it will still be treated as a string. For example, if the user types "123", the value of `name` will be "123". To convert this string to an integer, you would need to use the `int()` function. This is a common mistake beginners make, so always remember to check the data type of the input before performing operations on it.
@@ -90,8 +88,6 @@ However, the lecturer pointed out an important issue: when we take input from th
 The lecturer emphasized that beginners often forget to convert string inputs to integers, leading to incorrect results. For instance, if `num1` is "10" and `num2` is "20", adding them directly would result in "1020" instead of 30.
 
 **Quotes:**
-> Lecturer: "so keo jodi number ta bole je 10, ashole je pacche sheta ekta string hishabe ashtese ekhane."
-> Lecturer: "but amra kintu eta chacchi na. amra chacchi number, actual integer number, 10 and 20, eta add korle koto? 30 hoy."
 
 ### Background (not said in the lecture)
 When dealing with user inputs, always remember to convert string inputs to integers before performing any arithmetic operations. This ensures that your program works correctly and gives the expected results.
@@ -119,7 +115,6 @@ When dealing with user inputs, always remember to convert string inputs to integ
 
 - **Pink Box 6 (Function):** The function `int(` is used to convert a string to an integer. For example, `int("10")` converts the string `"10"` to the integer `10`.
 
-> Lecturer: "so ekhane basically ki hocche? ami user theke input niaychi num1. sheta ki? 10. string e chilo. ami jokhon int of aa num1 kore dicchi, ei string ta hoye jacche ki? amar integer."
 
 ### Background (not said in the lecture)
 When you take input from the user, it is always a string. To use it as an integer, you need to convert it using the `int()` function. For example, if the user inputs `"10"`, you can convert it to the integer `10` using `int("10")`. Similarly, if you want to convert `num1` to an integer, you would use `int(num1)`.
@@ -200,4 +195,4 @@ String formatting is a powerful feature in Python that helps in creating more re
 ---
 
 
-*How these notes were made. Speech: transcript_loso.txt. Boards: ink boxes, named by Qwen/Qwen2.5-VL-7B-Instruct. Notes written by Qwen/Qwen2.5-7B-Instruct. These notes were written in Banglish from the board and the transcript, then translated into English by the same model. The lecturer's words are given in English translation (5 quotes); the Banglish version of these notes has the originals, checked word for word against the transcript. References to boxes that do not exist: 0.*
+*How these notes were made. Speech: transcript_loso.txt. Boards: ink boxes, named by Qwen/Qwen2.5-VL-7B-Instruct. Notes written by Qwen/Qwen2.5-7B-Instruct. These notes were written in Banglish from the board and the transcript, then translated into English by the same model. The lecturer's words are given in English translation (0 quotes); the Banglish version of these notes has the originals, checked word for word against the transcript. References to boxes that do not exist: 0.*

@@ -30,11 +30,9 @@ Next, he introduces the concept of a variable name and the data stored within it
 
 To illustrate, the lecturer writes `Apple` on the board and explains that this is the name of the variable, and the apple is the data stored in it.
 
-> Lecturer: "so think of like a box."
 
 The lecturer then removes the `Apple` from the board to emphasize that the variable name can hold different types of data, just like the box can hold different items.
 
-> Lecturer: "so eita ami mujhhe feltesi."
 
 In summary, a variable in Python is a container where we can store data. The name of the variable is like the label on the box, and the data stored in it is like the item inside the box.
 
@@ -122,7 +120,6 @@ Understanding Python variables and their data types is crucial for writing effec
 
 The lecturer said: "When we look at a piece of code, it's important to understand the type of a variable. In the given code, `Iname` and `Name1` are defined, but the type is not explicitly mentioned. The lecturer pointed out that the names `Iname` and `Name1` are the names of the variables, which can be confusing. However, the type of these variables can be determined by their values. Here, `Iname` is assigned a string value `"Rafi"`, and `Name1` is assigned the string `'1'`. Therefore, both variables are of type `str`, which stands for string."
 
-> Lecturer: "So variable er naming ta khubi important dekhte jinis."
 
 The lecturer said: "Variable naming is crucial because when someone else reads your code, they should be able to understand the purpose of the variable just by looking at its name. For instance, if you see a variable named `Iname`, you would expect it to hold a string value like `"Rafi"`."
 
@@ -209,4 +206,4 @@ Understanding that variables are case-sensitive is crucial because it prevents c
 ---
 
 
-*How these notes were made. Speech: transcript_loso.txt. Boards: ink boxes, named by Qwen/Qwen2.5-VL-7B-Instruct. Notes written by Qwen/Qwen2.5-7B-Instruct. These notes were written in Banglish from the board and the transcript, then translated into English by the same model. The lecturer's words are given in English translation (4 quotes); the Banglish version of these notes has the originals, checked word for word against the transcript. References to boxes that do not exist: 0.*
+*How these notes were made. Speech: transcript_loso.txt. Boards: ink boxes, named by Qwen/Qwen2.5-VL-7B-Instruct. Notes written by Qwen/Qwen2.5-7B-Instruct. These notes were written in Banglish from the board and the transcript, then translated into English by the same model. The lecturer's words are given in English translation (1 quotes); the Banglish version of these notes has the originals, checked word for word against the transcript. References to boxes that do not exist: 0.*

@@ -1,10 +1,10 @@
 {
-  "lecture": "BanglaASR9_007",
-  "dataset_lecture": "BanglaASR13",
+  "lecture": "BanglaASR44",
+  "dataset_lecture": "BanglaASR44",
   "language": "english_via_banglish",
   "model": "Qwen/Qwen2.5-7B-Instruct",
   "mock": false,
-  "transcript_file": "transcript_loso.txt",
+  "transcript_file": "transcript.txt",
   "times_approximate": false,
   "leakage_warning": "",
   "boxes_file": "board_boxes.json",
@@ -12,7 +12,7 @@
   "quotes_kept": 0,
   "quotes_dropped": 0,
   "invalid_box_refs": 0,
-  "quotes_translated": 1,
+  "quotes_translated": 2,
   "quotes_word_for_word_checked": false,
   "quotes_retranslated": 0,
   "quotes_untranslated_dropped": 0,
@@ -20,26 +20,35 @@
   "translated_to_english": true,
   "latex_rewritten": 0,
   "colour_fixes": 0,
-  "inline_quotes_unverified": 1,
+  "inline_quotes_unverified": 5,
   "sections": [
     {
       "board": 1,
       "era": 1,
-      "from": "0:10",
-      "to": "9:10",
-      "transcript_chars": 5778,
-      "boxes": 2,
+      "from": "0:00",
+      "to": "17:44",
+      "transcript_chars": 5966,
+      "boxes": 6,
       "boxes_mentioned": [
         1,
-        2
+        2,
+        3,
+        4,
+        5,
+        6
       ],
       "invalid_box_refs": [],
       "colour_fixes": [],
-      "inline_quotes_unverified": [],
+      "inline_quotes_unverified": [
+        " feature from the SSR of the ",
+        " feature is 470.50, indicating how much variance in the ",
+        " variable is explained by the ",
+        " outlook explains the most variance, followed by "
+      ],
       "prompt_placeholders_removed": 0,
       "latex_rewritten": 0,
       "quotes_translated": [
-        "To select a particular column, you have to specify the column name. If you want to get the CGPA of a particular student, you have to write `SELECT CGPA FROM Student_Info WHERE ID equals to that particular ID`."
+        "Total SSR (Outlook) = 12.50 + 0 + 458.00 = 470.50"
       ],
       "quotes_kept": [],
       "quotes_dropped": [],
@@ -49,22 +58,21 @@
     {
       "board": 2,
       "era": 2,
-      "from": "9:20",
-      "to": "16:20",
-      "transcript_chars": 4231,
-      "boxes": 2,
-      "boxes_mentioned": [
-        1,
-        2
-      ],
+      "from": "17:50",
+      "to": "36:24",
+      "transcript_chars": 6325,
+      "boxes": 1,
+      "boxes_mentioned": [],
       "invalid_box_refs": [],
       "colour_fixes": [],
       "inline_quotes_unverified": [
-        "The query is used to find the student with the highest CGPA."
+        " being a significant factor. The tree splits further into "
       ],
       "prompt_placeholders_removed": 0,
       "latex_rewritten": 0,
-      "quotes_translated": [],
+      "quotes_translated": [
+        "ekhon ekta ekta je ekta je ekta ekta je ekta ekta ekta ekhane, je ekta ekta ekta ekta ekhane ekta ekhane ekhane ekh"
+      ],
       "quotes_kept": [],
       "quotes_dropped": [],
       "quotes_retranslated": [],

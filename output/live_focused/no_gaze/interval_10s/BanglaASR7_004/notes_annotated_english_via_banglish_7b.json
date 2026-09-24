@@ -12,8 +12,10 @@
   "quotes_kept": 0,
   "quotes_dropped": 0,
   "invalid_box_refs": 0,
-  "quotes_translated": 2,
+  "quotes_translated": 1,
   "quotes_word_for_word_checked": false,
+  "quotes_retranslated": 0,
+  "quotes_untranslated_dropped": 1,
   "written_in": "banglish",
   "translated_to_english": true,
   "latex_rewritten": 0,
@@ -35,11 +37,13 @@
       "inline_quotes_unverified": [],
       "prompt_placeholders_removed": 0,
       "latex_rewritten": 0,
-      "quotes_translated": [
-        "so ajke ashbe amr universal gate. universal gate er moddhe ami ki ki bolechilam? there are two types of universal gates which are xor gate, xor gate, xor gate."
-      ],
+      "quotes_translated": [],
       "quotes_kept": [],
-      "quotes_dropped": []
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": [
+        "so ajke ashbe amr universal gate. universal gate er moddhe ami ki ki bolechilam? there are two types of universal gates which are xor gate, xor gate, xor gate."
+      ]
     },
     {
       "board": 2,
@@ -62,7 +66,9 @@
       "latex_rewritten": 0,
       "quotes_translated": [],
       "quotes_kept": [],
-      "quotes_dropped": []
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
     },
     {
       "board": 3,
@@ -86,7 +92,9 @@
       "latex_rewritten": 0,
       "quotes_translated": [],
       "quotes_kept": [],
-      "quotes_dropped": []
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
     },
     {
       "board": 4,
@@ -112,7 +120,9 @@
       "latex_rewritten": 0,
       "quotes_translated": [],
       "quotes_kept": [],
-      "quotes_dropped": []
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
     },
     {
       "board": 5,
@@ -139,7 +149,9 @@
         "X-NOR gate is derived from X-OR gate and NOT gate."
       ],
       "quotes_kept": [],
-      "quotes_dropped": []
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
     }
   ]
 }

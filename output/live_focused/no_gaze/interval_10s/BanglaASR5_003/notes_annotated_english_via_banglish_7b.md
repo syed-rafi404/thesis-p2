@@ -35,7 +35,6 @@ The sections cover lists, tuples, and arrays in Python, including how to create,
    - We can modify the list by changing an element. For example, `elements[0] = "Mango"` changes the first element from `"Apple"` to `"Mango"`.
    - After updating the list, printing `elements[0]` again will output `"Mango"`.
 
-> Lecturer: "so dhoro amra first class e ekta variable ney shilam fruit. fruit er moddhe amra ki diye shilam? apple diye shilam. but fruit ki shudu appali? aro onek jinis toh hote pari. ami o fruit hisate aro onek jinis rakhte pari. orange rakhte pari, mango rakhte pari."
 
 ### Background (not said in the lecture)
 Lists in Python are very versatile. You can store different types of data like strings, integers, floats, and booleans in a single list. This flexibility makes lists a powerful tool for handling various types of data. Additionally, you can easily modify lists by changing individual elements, making them dynamic and adaptable.
@@ -55,7 +54,6 @@ Lists in Python are very versatile. You can store different types of data like s
 
 2. **Red Box 1 (continued):** After changing the value, the code converts `element_list` back into a tuple named `elements` using the `tuple()` function. Finally, it prints the updated tuple.
 
-> Lecturer: "ekhon ami element list er second index er jeta, index dhalo jekhane 2. shekhan ami jodi 5 e replace kore di."
 
 ### Background (not said in the lecture)
 When you need to modify a tuple, you can't directly change its elements because tuples are immutable. Instead, you should convert the tuple to a list, make the necessary changes, and then convert it back to a tuple. This approach allows you to modify the elements while maintaining the immutability property of tuples. Understanding these concepts will help you work effectively with both lists and tuples in Python.
@@ -106,4 +104,4 @@ When converting a list to an array, ensure all elements are of the same data typ
 ---
 
 
-*How these notes were made. Speech: transcript_loso.txt. Boards: ink boxes, named by Qwen/Qwen2.5-VL-7B-Instruct. Notes written by Qwen/Qwen2.5-7B-Instruct. These notes were written in Banglish from the board and the transcript, then translated into English by the same model. The lecturer's words are given in English translation (2 quotes); the Banglish version of these notes has the originals, checked word for word against the transcript. References to boxes that do not exist: 0.*
+*How these notes were made. Speech: transcript_loso.txt. Boards: ink boxes, named by Qwen/Qwen2.5-VL-7B-Instruct. Notes written by Qwen/Qwen2.5-7B-Instruct. These notes were written in Banglish from the board and the transcript, then translated into English by the same model. The lecturer's words are given in English translation (0 quotes); the Banglish version of these notes has the originals, checked word for word against the transcript. References to boxes that do not exist: 0.*

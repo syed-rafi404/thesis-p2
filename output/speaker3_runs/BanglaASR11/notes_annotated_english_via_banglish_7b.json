@@ -12,8 +12,10 @@
   "quotes_kept": 0,
   "quotes_dropped": 0,
   "invalid_box_refs": 1,
-  "quotes_translated": 1,
+  "quotes_translated": 0,
   "quotes_word_for_word_checked": false,
+  "quotes_retranslated": 0,
+  "quotes_untranslated_dropped": 1,
   "written_in": "banglish",
   "translated_to_english": true,
   "latex_rewritten": 0,
@@ -35,11 +37,13 @@
       "inline_quotes_unverified": [],
       "prompt_placeholders_removed": 0,
       "latex_rewritten": 0,
-      "quotes_translated": [
-        "so, ekhon ekta drop kore diye ekta error er message pathabe sender e je tumi packet ta fragment kore dek, ponor osho bite e ami eta khorte parbona."
-      ],
+      "quotes_translated": [],
       "quotes_kept": [],
-      "quotes_dropped": []
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": [
+        "so, ekhon ekta drop kore diye ekta error er message pathabe sender e je tumi packet ta fragment kore dek, ponor osho bite e ami eta khorte parbona."
+      ]
     },
     {
       "board": 2,
@@ -69,7 +73,9 @@
       "latex_rewritten": 0,
       "quotes_translated": [],
       "quotes_kept": [],
-      "quotes_dropped": []
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
     }
   ]
 }
