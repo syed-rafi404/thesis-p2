@@ -1,0 +1,62 @@
+,CO Statements,PO,Teaching-Learning Strategy,Assessment Strategy,Mapping with Content,Marks,P1,P2,Panel,Supervisor,Comments
+CO1,Formulate a modern-day complex engineering and/or computing problem preferably relevant to the field.,2,"· Review of literature and background study
+· Prepare problem statement with scope and justification",Pre-Thesis 1 Report,"Chapter 1: 1.1 Background
+Chapter 1: 1.2 Rational of the Study or Motivation
+Chapter 1: 1.2 Problem Statement
+Chapter 1: 1.3 Objective
+Chapter 1: 1.4 Methodology in Brief
+Chapter 1: 1.5 Scopes and Challenges",5,2.5,,,2.5,2.5 from Chapter 1 of P1.
+CO2,"Identify the objectives, specifications, functional and non-functional requirements, and constraints as well as applicable compliance, standards and codes of practice to the solution of the problem",3,"· Feedback from stakeholder to find out objectives, specifications and functional requirements
+· Review of applicable standards, professional codes, practice and regulatory requirements",Final Thesis Reports,Chapter 3: 3.1 Final Specifications and Requirements,5,,,,5,5 from Supervisor Marks (Evaluating Final Report)
+CO3,"Assess the impact of the solution of the problem in terms of societal, health, safety, legal and cultural context",6,"· Study of project impact on society, health and safety, legal and culture
+· Write a report on the impact",Final Thesis Reports,Chapter 3: 3.2 Societal Impact,5,,,,5,5 from Supervisor Marks (Evaluating Final Report)
+CO4,Evaluate the sustainability and impact of solution of the proposed problem in terms of environmental consideration,7,"· Study of project sustainability and impact on environment
+· Write a report on the sustainability and impact",Final Thesis Reports,Chapter 3: 3.3 Environmental Impact,5,,,,5,5 from Supervisor Marks (Evaluating Final Report)
+CO5,"Design multiple engineering/theoretical solutions/proof of the problem to meet the desired objectives, need and requirements within the given constraints.",3,"· Preparing design process as per objectives, specifications, requirements and constraints
+· Preliminary design multiple alternative solutions of the system
+· Perform simulation of the alternative design solutions for functional verification",Pre-Thesis 2 Report,"Chapter 4: 4.1 Design Process or Methodology Overview
+Chapter 4: 4.2 Preliminary Design or Design (Model) Specification",15,,5,10,,"5 from Chapter 4 of P2.
+10 from Defense Panel"
+CO6,"Analyze and assess alternative design solutions for the problem to determine the most appropriate one, considering factors such as cost, efficiency, usability, manufacturability, impact, sustainability, maintainability, and performance in relation to provided specifications, prerequisites, and benchmarks.",4,"· Perform analysis of alternative design solutions to obtained the best suitable solution
+· Perform optimization of the selected design solution",Final Thesis Report,"Chapter 5: 5.1 Performance Evaluation
+Chapter 5: 5.2 Analysis of Design Solutions
+Chapter 5: Final Design Adjustment
+Chapter 5: 5.3 Statistical Analysis
+Chapter 5: 5.4 Comparisons and Relationships
+Chapter 5: 5.6 Discussion",10,,,5,5,"5 from Defense Panel
+5 from Supervisor Marks (Evaluating Final Report)"
+CO7,Complete the final design and development of the solution with necessary adjustment based on performance evaluation,3,"· Obtain the final design by make necessary adjustment to the selected design as per performance evaluation result
+· Develop the solution as per final design",Final Thesis Report,Chapter 5: 5.2 Final Design Adjustments,5,,,,5,5 from Supervisor Marks
+CO8,"Use contemporary engineering and information technology tools for the design, creation, and validation of the work.",5,"· Selection of appropriate tools
+· Usage of tools as necessary",Final Thesis Report Presentation and Dem,Presentation,10,,,5,5,"5 from Defense Panel (Presentation)
+5 from Supervisor Marks"
+CO9,"Conduct independent research, literature survey and learning of new technologies and concepts as appropriate to identify, analyze, and formulate the problem as well as design, develop and validate the solution.",12,"· Perform literature survey and other means to find out materials, information and sources relevant to the selected problem
+· Comprehend the materials and information obtained and establish the relationship with the problem to be solved","Pre-Thesis 1 Report
+Final Thesis Reports","Chapter 2: 2.1 Preliminaries
+Chapter 2: 2.2 Review of Existing Research
+Chapter 2: 2.3 Summary of Key Findings",5,2.5,,,2.5,"2.5 from Chapter 1.5 of P1
+2.5 from Supervisor Marks"
+CO10,Demonstrate resource management skill in various stages of developing the solution to the problem.,11,"· Obtain the final specifications and requirements
+· Determine appropriate analysis and design methodology
+· Identify and assess required and applicable resources
+· Identify project risk issues and how to address that.
+· Prepare a complete project management plan including schedule, budget, resource and risk management
+· Prepare revised project plan and reschedule as required to complete the project within the stipulated time",Final Thesis Report,"Chapter 3: 3.6 Project Management Plan
+Chapter 3: 3.7 Risk Management",3,,,,3,3 from Supervisor Marks (Evaluating Final Report)
+CO11,Perform economic analysis of the resource management.,11,"· Conduct economic analysis
+· Conduct cost-benefit estimation",Final Thesis Report,Chapter 3: 3.8 Economic Analysis,2,,,,2,2 from Supervisor Marks (Evaluating Final Report)
+CO12,Incorporate ethical considerations and uphold academic responsibilities during the solution design process and throughout all phases of the work.,8,· Identify ethical issues and professional responsibility related to design solution,"Instructor's Observations, Phase Reports",Chapter 3: 3.4 Ethical Issues,5,,,,5,5 from Supervisor Marks (Evaluating Final Report)
+CO13,Function effectively as an individual and as a team member for successfully completion of the work.,9,· Active participation in team activities,"Peer evaluation, Instructor's Observations",Supervisor and Co-Supervisor's marks,5,,,,5,5 from Supervisor and Co supervisor
+CO14,"Demonstrate effective communication by means of written documents, journals, technical reports, deliverables, presentations, and verbal exchanges as deemed suitable throughout the various stages of the work",10,"· Verbal and written communication with stakeholders
+· Write notes, Journals
+· Prepare project deliverables, reports at various
+· Prepare presentations","Journals, Project Reports, Oral Presentation and Demo","Final Report, IEEE Journal version",20,,5,10,5,"5 from P2 Poster Presentation
+10 from Defense Panel (Final Report)
+5 from Supervisor Marks"
+,,,,,,100,5,10,30,55,
+,,,,,,,,,,,
+,,,,,Pre-thesis 1,5,,,,,
+,,,,,Pre-Thesis 2,10,,,,,
+,,,,,Defense Panel,30,,,,,
+,,,,,Supervisor,55,,,,,
+,,,,,,100,,,,,

@@ -1,0 +1,48 @@
+\section*{Abstract}
+
+University teaching in Bangladesh is usually delivered in a mixture of Bengali and
+English, and students write that mixture in the Roman alphabet, a form commonly
+called Banglish. Existing speech recognition does not serve it. Given a recording of
+such a lecture, a multilingual model produces an English translation of what was
+said, and a Bengali model writes the Bengali script that no student in the class
+uses. The whiteboard, which carries most of the worked examples in a class taught
+without slides, is lost entirely.
+
+This thesis presents InsightLens, a system that takes a recorded Banglish whiteboard
+lecture and produces a lecture note containing both the speech and the board. It
+works in four stages. A Whisper large-v3-turbo model adapted with Low-Rank Adaptation
+writes a timestamped transcript in romanized Banglish. Each whiteboard is
+reconstructed from the video by tiling the frame and taking every tile from a moment
+when the lecturer was not in front of it, so that every pixel of the result is
+unmodified camera output. Numbered coloured boxes are drawn around each block of
+writing and a vision-language model names and transcribes each box. A language model
+then writes one section of notes per board, pointing the reader at the boxes, with
+every quotation checked word for word against the transcript.
+
+A corpus of 44 lecture recordings from three lecturers was collected, of which 28
+lectures covering 5.15 hours were transcribed by hand against a written transcription
+standard. On six whole lectures held out at random, fine-tuning cuts the median
+per-clip character error rate from 67.7 to 15.8 and 16.0 per cent in two random seeds
+and the word error rate from 93.9 to 42.5 and 41.7 per cent, better on 164 and 167 of
+177 clips. Holding out an entire lecturer, the harder design, gives 72.8 to 50.3 per
+cent character error in all six runs. Against hand-verified answer keys covering 45
+boards and 436 items, changing the board-reading prompt from keywords to full
+transcription raises recall from 31.2 to 88.8 per cent, while changing the model from
+3 to 7 billion parameters is worth 5.3 points, so the prompt matters far more than the
+model size. The generated notes carry 89.1 per cent of the board content against 37.2
+per cent for a conventional summarisation prompt.
+
+Results that did not support the design are reported in the same detail. Dual
+recogniser fusion, biasing the decoder towards board words and using occlusion as a
+pointer all failed. One training seed at the pre-registered learning rate diverged
+completely. Measures assembled out of English strings were found, twice and
+independently, to reward a model that translates code-mixed speech and to penalise one
+that transcribes it, which is offered as a methodological finding for anyone
+evaluating systems of this kind. The notes have not been evaluated with readers, and
+that is the first item of future work.
+
+\vspace{1cm}
+\textbf{Keywords:} Code-mixed speech recognition; Banglish; Bengali-English;
+Low-Rank Adaptation; Whisper; vision-language models; whiteboard reconstruction;
+lecture note generation; Set-of-Mark prompting; low-resource speech
+\pagebreak

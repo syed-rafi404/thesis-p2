@@ -449,6 +449,66 @@ Reproduce: `python scripts/tune_whisper.py` with `THESIS_TUNE_DIR` set to a work
 `prepare_data.py --split-by video --test-lectures BanglaASR2,BanglaASR12,BanglaASR14`
 (stage 1 alone: `claude_transfer/lr_check.ps1`).
 
+### 1.7b The SAME tuning repeated on the full 5.15 h corpus - the run that chose the final settings
+
+**This is the tuning behind 1.8, and it supersedes 1.7.** 1.7 is the rehearsal on 2.69 h; the
+plan's addendum required the procedure to be repeated on the closed corpus, and
+`whisper_full_pipeline.py` step 3 did that on 2026-09-23 (362.6 min on the 3060, 7 trainings and
+their evaluations). Same plan, same three validation lectures (BanglaASR2, 12, 14), test lectures
+never touched. Off-the-shelf Whisper on these validation clips: **CER 73.8%, WER 97.6%**.
+
+| Stage | Run | lr | rank | layers | epochs | seed | val CER | val WER | val loss, last / min |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 learning rate | lr5e-4 | 5e-4 | 16 | q,v | 8 | 42 | 37.9% | 60.0% | 1.782 / 1.685 |
+| 1 learning rate | lr1e-3 (the default) | 1e-3 | 16 | q,v | 8 | 42 | 42.2% | 61.9% | 1.811 / 1.667 |
+| 1 learning rate | **lr2e-3** | 2e-3 | 16 | q,v | 8 | 42 | **33.6%** | **54.5%** | 1.801 / 1.683 |
+| 2 LoRA rank | lr2e-3_r8 | 2e-3 | 8 | q,v | 8 | 42 | 40.1% | 64.1% | 1.813 / 1.693 |
+| 2 LoRA rank | lr2e-3_r32 | 2e-3 | 32 | q,v | 8 | 42 | **126.6% diverged** | 200.0% | 4.663 / 4.663 |
+| 3 adapted layers | lr2e-3_qkvo | 2e-3 | 16 | q,k,v,o | 8 | 42 | **134.7% diverged** | 174.4% | 4.877 / 2.037 |
+| 4 epochs | lr2e-3_e5 | 2e-3 | 16 | q,v | 5 | 42 | 39.4% | 59.6% | 1.666 / 1.656 |
+| 5 stability | lr2e-3_s1 | 2e-3 | 16 | q,v | 8 | 1 | 39.1% | 59.6% | 1.815 / 1.681 |
+
+**Chosen: lr 2e-3, rank 16, q_proj + v_proj, 8 epochs** - 8.6 CER points better than the default,
+more than the 5.4-point seed spread the noise rule requires. The same three negatives as the
+rehearsal reappear, on 2x the data: **rank 32 diverged, all four projections diverged, and the
+validation-loss minimum (5 epochs, loss 1.666 against 1.801) scored 5.8 CER points worse.** Select
+on the reported metric, not on the loss.
+
+Note for the writing: **1.8's test-set divergence at this same 2e-3 is the third and fourth
+appearance of the same fragility**, and it is why 1.8 reports the 1e-3 pair beside it.
+
+File: `artifacts/ft_work_tune5h/tuning_summary.md` (this table), `tuning_result.json` (the chosen
+settings), `artifacts/ft_work_final5h/pipeline_log.txt` (timings: tuning 362.6 min, final seed 42
+80.3 min, seed 1 66.9 min).
+Reproduce: `python scripts/whisper_full_pipeline.py --tune-dir <dir> --final-dir <dir>` (step 3).
+
+### 1.9 Corpus statistics as the figures and the thesis report them (2026-09-24)
+
+Computed from `data/ground_truth/*.txt` and the videos themselves, by the same code that draws
+`P2/figures/fig_data_*` (`scripts/make_result_figures.py`, `lecture_stats()` and `board_stats()`).
+Quote these in the data chapter.
+
+| Quantity | Value |
+|---|---|
+| Lecture recordings | **44**, **8.33 h** of video (ffprobe over `data/raw/live_classroom`) |
+| With a hand-checked transcript | **28** lectures, **5.15 h** of timed speech (5.23 h of video) |
+| Vision only, no transcript | **16** lectures, **3.10 h** |
+| Transcribed segments | **609** |
+| Segment length | median **24 s**, mean 30.4 s, max 225 s, **83 over 30 s** (the 9 pre-guide files) |
+| Words transcribed | **about 39,100** |
+| Lecturer A | 9 lectures, 1.51 h, 141 segments, ~126 words/min |
+| Lecturer B | 4 lectures, 0.97 h, 39 segments, ~97 words/min |
+| Lecturer C | 15 lectures, 2.66 h, 429 segments, ~138 words/min |
+| Boards reconstructed in total | **145** across **40** lectures (35 + 10 + 100, the three board roots) |
+| Clear-tile fraction over all 145 | median **100%**, mean **98.4%**, worst board **76.6%** |
+
+The 35-board figures in 4.1 (median 97.7% of tiles clear) are the lectures 1-9 subset and are the
+ones to quote for that set; the 145-board row above covers every board the project produced,
+including the newer lectures and BanglaASR44.
+
+Reproduce: `python scripts/make_result_figures.py --set dataset` (and the two helper functions
+directly for the table).
+
 ### 1.3 Superseded: the leaked split (do not quote)
 
 Kept so the correction is documented. The old run is untouched in
@@ -1656,6 +1716,39 @@ The fine-tuned transcripts used for D were remade with the corrected adapter:
 `scripts/transcribe_finetuned.py --all --adapter <ft_work>/lora_run --decode fallback
 --out-name transcript_finetuned_v2.txt`. The older `transcript_finetuned.txt` came
 from the leaked adapter and is kept only as a record.
+
+---
+
+### 5.5 The note-file counters, totalled over every delivered page (2026-09-24)
+
+`build_lecture_notes.py` writes its checks into the `.json` beside every page.
+`scripts/count_note_counters.py` adds them up, taking **one deliverable build per lecture per
+language** (`_final` if a rebuild exists, else `_7b`, else untagged) and **excluding the
+`_base`, `_noboard`, `_base_noboard` ablation builds of 5.4**, which are experiments and not
+delivered notes.
+
+| Counter | 13 scored lectures | All 42 lectures with notes |
+|---|---|---|
+| Banglish: quotes kept, verified word for word | **31** | **106** |
+| Banglish: quotes deleted, not in the transcript | **8** (21%) | **26** (20%) |
+| Banglish: references to a box that does not exist | **1** | **10** |
+| English via Banglish: quotes given as translation | 15 | 60 |
+| English via Banglish: quotes dropped as untranslatable | **19** | **49** |
+| English via Banglish: references to a box that does not exist | 1 | 10 |
+| English written directly: quotes given as translation | 27 | - |
+
+The scored-13 Banglish column reproduces 5.4 exactly (31 kept, 8 deleted, 1 bad box reference),
+which is the check that the counter script and 5.4 agree. **42 lecture folders carry notes**, not
+43: the run folders mix old and new lecture numbering, so count folders, not lecture numbers.
+
+The untranslatable drops are the largest remaining defect in the English pages. A dropped quote
+costs the page a lecturer's voice; it is counted, never silent.
+
+Reproduce:
+```
+python scripts/count_note_counters.py
+python scripts/count_note_counters.py --scored-only
+```
 
 ---
 

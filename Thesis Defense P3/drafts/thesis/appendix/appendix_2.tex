@@ -1,0 +1,141 @@
+\chapter*{Appendix B: Prompts Used in the Pipeline}
+
+The results in Chapter 5 depend heavily on how the models are asked, so the prompts are
+printed here in full. They are reproduced exactly as they appear in the code.
+
+\section*{B.1 Reading the whole board}
+
+This is the prompt behind the change from 31.2 to 88.8 per cent board-content recall in
+Section \ref{sec:board-reading}. The prompt it replaced simply asked the model for
+keywords visible on the board.
+
+\begin{verbatim}
+This is a photograph of a classroom whiteboard during a university lecture.
+
+Transcribe everything written on the whiteboard, exactly as written.
+
+- Copy every number, name, identifier, date and symbol exactly. Do not round,
+  correct or reformat values.
+- Write tables as Markdown tables with the same rows and columns as the board.
+- Write code, SQL and program text inside ``` fences, keeping line breaks.
+- Write formulas as they appear. For a bar over a term write it as NOT(...),
+  for example NOT(A+B).
+- Keep diagrams short: name what they are and copy any labels on them, for
+  example "Gate diagram: inputs A, B into a box labelled NAND, output NOT(AB)".
+- If part of the board cannot be read, write [illegible]. Never guess, and never
+  add anything that is not written on the board.
+- Ignore any person in the picture. Describe only what is written.
+
+Output only the transcription.
+\end{verbatim}
+
+\section*{B.2 Naming and transcribing each numbered box}
+
+The Set-of-Mark prompt of Section 4.4.4. The boxes are drawn on the image by our own
+code and numbered, and the model answers per number. Boxes it names \texttt{none} are
+dropped, which is how a smudge or a sticker can be removed by the model even though the
+box finder created it.
+
+\begin{verbatim}
+This is a classroom whiteboard from a university lecture. Numbered coloured boxes
+have been drawn on it; each box surrounds one part of the writing. There are {n}
+boxes, numbered 1 to {n}.
+
+For every box, reply with:
+- "id": the box number.
+- "name": 1 to 4 words saying what kind of content the box holds, for example
+  "Title", "Definition", "Truth table", "Gate symbol", "Block diagram",
+  "SQL query", "Code", "List", "Worked example", "Formula". If the box holds no
+  lecture writing (a smudge, a shadow, a logo or sticker, the edge of the board),
+  use "none".
+- "text": everything written inside that box, copied exactly: every number, name
+  and symbol. For a bar over a term write NOT(...). Write a table as Markdown
+  table rows. Write [illegible] for what cannot be read. Never guess.
+
+Reply with JSON only: a list with one object per box, in box order, like
+[{"id": 1, "name": "Title", "text": "Digital Logic Design"}]
+\end{verbatim}
+
+\section*{B.3 Writing one section of the notes}
+
+These rules are shared by both languages. They are the part of the note prompt that
+keeps the model on the lecture, and rule 1 is the direct answer to the textbook
+recitation described in Section 1.3.
+
+\begin{verbatim}
+RULES
+1. Teach what THIS lecturer taught, with the lecturer's own examples and values.
+   Explain it properly, for a student who missed the class: walk through each step
+   on the board, say what it means and why the lecturer does it in that order, and
+   spell out anything the board only shows as a symbol. Being thorough about the
+   lecturer's own material is wanted. What is not wanted is material from
+   elsewhere: every fact in the explanation must come from the board or the
+   transcript. Anything else belongs in the BACKGROUND section below, never mixed
+   in.
+2. The board has numbered coloured boxes, listed below. Point the student at them,
+   for example "Look at the orange box 3" or "the truth table in box 5". Use only
+   the box numbers that are listed, and mention every listed box at least once.
+3. Copy numbers, names, code, formulas and table values exactly as they appear in
+   the box text. A wrong value is worse than a missing one.
+4. The transcript is machine-made and has errors. Where it is garbled, rely on the
+   board. Never invent what the lecturer said.
+5. No greetings, no filler, no "in this section".
+6. A table on the board is written as a Markdown table, never described row by row
+   in a sentence.
+7. Plain text for formulas and symbols: A + B, (A + B)', NOT(A + B), A XOR B.
+   Never LaTeX.
+\end{verbatim}
+
+\section*{B.4 The quotation instruction, and why there are two}
+
+The Banglish note quotes the lecturer's real words, so the quotation can be checked
+against the transcript character by character.
+
+\begin{verbatim}
+QUOTES
+Include one or two short quotes of the lecturer's own words that explain something,
+copied EXACTLY from the transcript below, character for character. Put each on its
+own line:
+> Lecturer: "exact words from the transcript"
+A quote that is not word for word in the transcript is deleted automatically. If
+nothing in the transcript is worth quoting, give no quote.
+\end{verbatim}
+
+The English note is read by a student who cannot read Banglish, so the lecturer is
+quoted in translation. A translation cannot be matched against a Banglish transcript,
+so the automatic checker does not run on these files and each file records that fact in
+its footer.
+
+\begin{verbatim}
+QUOTES
+Include one or two short quotes of what the lecturer said, TRANSLATED INTO ENGLISH.
+Translate the meaning of the lecturer's own words in the transcript below; do not
+invent a quote, and do not write any Banglish. Put each on its own line:
+> The lecturer said: "your English translation of what the lecturer said"
+If nothing in the transcript is worth quoting, give no quote.
+\end{verbatim}
+
+\section*{B.5 The language instruction}
+
+\begin{verbatim}
+LANGUAGE (banglish)
+Write in Romanized Banglish, the way the lecturer speaks: Bengali in the Roman
+alphabet mixed with English, for example "hocche", "kintu", "ekhon", "tahole",
+"mane". Keep every technical term in English. Do not use Bengali script. Headings
+may be in English.
+
+LANGUAGE (english)
+Write in clear, simple English. The lecture was given in Banglish (Bengali and
+English mixed, written in the Roman alphabet); translate its meaning. Keep every
+technical term exactly as the lecturer used it ("NAND gate", "truth table",
+"primary key").
+\end{verbatim}
+
+\section*{B.6 A note on prompt placeholders}
+
+The example line in the Banglish quotation instruction, \texttt{"exact words from the
+transcript"}, was copied into the notes as if it were a real quotation three times
+across 26 files. The quotation checker could not catch it, because it looks for
+quotations that are absent from the transcript and this is not a quotation at all. A
+separate step now removes the prompt's own placeholder text and counts how many it
+removed, as described in Section \ref{sec:adjustments}.

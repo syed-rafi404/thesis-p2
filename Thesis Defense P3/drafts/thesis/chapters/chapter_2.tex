@@ -1,0 +1,513 @@
+% ============================================================================
+% CHAPTER 2 - LITERATURE REVIEW
+% Rubric mapping: CO9 (5 marks) is assessed from 2.1, 2.2, 2.3.
+% Every work cited here was checked on the web in September 2026. Where a system
+% is a public model or repository rather than a peer-reviewed paper, the text
+% says so.
+% ============================================================================
+
+\section{Preliminaries}
+
+This section explains the ideas and the vocabulary that the rest of the thesis
+uses. A reader who already knows speech recognition and vision-language models
+can move to Section 2.2.
+
+\subsection{Code-mixing, code-switching and Banglish}
+
+Code-switching is the use of more than one language by the same speaker in the
+same conversation. Linguists usually separate two cases. Inter-sentential
+switching means the speaker finishes a sentence in one language and starts the
+next in another. Intra-sentential switching, also called code-mixing, means the
+switch happens inside a single sentence. The second case is the harder one for
+speech systems, because an utterance cannot be assigned to one language and
+handed to one monolingual model \cite{agro2025cssurvey}.
+
+Bangladeshi classroom speech is strongly intra-sentential. In the recordings used
+in this thesis a single clause regularly carries a Bengali verb, an English noun
+phrase and an English technical term. The speech is Bengali in grammar and often
+English in content words.
+
+The written form matters as much as the spoken one. Bengali has its own script,
+but Bangladeshi students very often write Bengali in the Roman alphabet, a form
+usually called Banglish. There is no spelling standard for it, so the same word
+appears as \textit{ami}, \textit{aami} or \textit{amee} depending on the writer.
+Romanized Bangla is now a recognised object of study in natural language
+processing. BanglaTLit, for example, is a benchmark of 42.7 thousand romanized
+Bangla samples with a pre-training corpus of 245.7 thousand more, built for
+converting romanized Bangla back into the Bengali script
+\cite{fahim2024banglatlit}. Work of this kind establishes that romanized Bengali
+is a real written form with real users, which is the reason this thesis chose it
+as the output of the speech model rather than the Bengali script.
+
+\subsection{Automatic speech recognition and how its errors are measured}
+
+Automatic speech recognition, or ASR, takes an audio signal and returns text. The
+standard measure of its quality is the word error rate, which is the number of
+word substitutions, insertions and deletions needed to turn the output into the
+reference, divided by the number of words in the reference. The character error
+rate is the same calculation on characters. Both are error measures, so lower is
+better, and both can go above 100 per cent if the system produces more text than
+was spoken.
+
+Two practical points about these measures matter for this thesis. First, a single
+model can produce a very long wrong output for one short clip, which pushes a
+mean error rate above 100 per cent and hides everything else. Reporting the median
+error over clips avoids that, and the paired tests described below compare clips
+one by one instead of averaging them. Second, word error rate is unkind to a
+language with no spelling standard, because two acceptable spellings of the same
+word count as an error. Section 2.2.4 reviews what the code-switching literature
+does about this, and Chapter 4 describes the spelling-tolerant variant that was
+computed here.
+
+\subsection{Whisper and encoder-decoder speech models}
+
+Whisper is a family of encoder-decoder transformer models trained on about 680
+thousand hours of weakly supervised multilingual audio \cite{radford2023whisper}.
+The audio is turned into a log-Mel spectrogram, the encoder produces a sequence of
+hidden states from it, and the decoder generates text tokens one at a time while
+attending to the encoder output. The decoder is also given special tokens that
+state the language and the task, where the task is either transcribe or translate.
+
+This design explains two behaviours that shaped the present work. Because the
+model is told which single language it is hearing, mixed-language audio is pushed
+towards one of them, and for Bengali audio containing English words the model very
+often produces English. Because the decoder is autoregressive and has a strong
+internal language model, it can also enter a repetition loop where the same phrase
+is emitted until the token limit is reached. This behaviour is well documented.
+The Whisper paper itself proposes a fallback rule for it, in which a hypothesis
+whose gzip compression ratio is above a threshold is decoded again with sampling
+\cite{radford2023whisper}, and later work such as WhisperX avoids the problem by
+segmenting audio with an external voice activity detector instead of relying on
+the model's own timestamps \cite{bain2023whisperx}. Loops are reported in this
+thesis as a counted quantity rather than being quietly removed.
+
+\subsection{Fine-tuning, and Low-Rank Adaptation}
+
+Fine-tuning means continuing to train a pretrained model on new data so that it
+fits a new domain. Training all the weights of a model with hundreds of millions
+of parameters needs a large amount of memory, because the optimiser keeps extra
+state for every parameter, and it also risks destroying what the model already
+knows when the new dataset is small.
+
+Low-Rank Adaptation, or LoRA, avoids both problems \cite{hu2022lora}. The original
+weight matrix is frozen. Beside it, two small matrices are trained whose product
+has the same shape as the original, and the output of the layer becomes the sum of
+the frozen path and the small trained path. If the original matrix is $d \times k$
+and the two small matrices have inner dimension $r$, the number of trained
+parameters falls from $d \times k$ to $r(d + k)$, and $r$ is typically 8, 16 or 32.
+The frozen model is untouched, so the adapter can be removed or swapped. In speech
+work the adapters are usually placed on the attention projections, most often the
+query and value projections \cite{yang2025spt}.
+
+Two terms used throughout the thesis follow from this. The \textbf{rank} $r$
+controls how much the adapter can change the model. The \textbf{learning rate}
+controls how big each training step is. Both are hyperparameters, meaning they are
+chosen by the person training the model rather than learned from the data, and
+Section 2.1.6 explains how they should be chosen.
+
+\subsection{Validation, testing, ablation and comparison}
+
+Four ideas are used repeatedly in Chapter 4 and Chapter 5, and they are defined
+here once.
+
+\textbf{Training, validation and test data.} The training set is what the model
+learns from. The validation set is used to choose settings such as the learning
+rate. The test set is used once, at the end, to report the result. If settings are
+chosen by looking at the test set, the reported number is optimistic, because the
+choice has been fitted to the very data that is supposed to be unseen. Keeping the
+three sets separate is the single most important protection against reporting a
+number that will not hold up.
+
+\textbf{Hyperparameter tuning.} This is the search over settings. It is honest
+only if the search is scored on validation data, and it is more honest still if
+the order of the search and the rule for accepting a winner are written down
+before any run, so that the search cannot quietly turn into a hunt for the best
+test number. Chapter 4 describes the pre-registered plan used here.
+
+\textbf{Ablation.} An ablation removes or changes one component of a system and
+measures what happens, which is how a claim of the form ``this part is what makes
+it work'' is supported. This thesis runs several, including a comparison of two
+sizes of vision-language model and a two-by-two study of the speech model against
+the board reader.
+
+\textbf{Held-out speakers and held-out lectures.} In speech work it matters
+greatly whether the test speaker was heard during training. Testing on unseen
+speakers is harder and is the stronger claim. Testing on unseen recordings from
+speakers who also appear in training is easier and must be labelled as such. Both
+designs are reported separately in this thesis.
+
+\subsection{Statistical testing}
+
+Comparing two systems on a set of clips is a paired problem, because both systems
+are run on exactly the same clips. The Wilcoxon signed-rank test ranks the
+differences by size and asks whether the positive and negative differences are
+balanced \cite{wilcoxon1945}. The sign test is weaker but makes fewer assumptions,
+since it only counts how many items improved and how many got worse. Both are used
+here, and the direction of the difference is always reported beside the p-value,
+because a two-sided p-value on its own does not say which system won.
+
+\subsection{Vision-language models and visual prompting}
+
+A vision-language model takes an image and a text instruction and returns text.
+Modern open models such as Qwen2.5-VL use a vision transformer encoder with
+native-resolution input and a language model decoder, and they read text inside an
+image well enough that a separate optical character recognition stage is often not
+needed \cite{bai2025qwen25vl}. That is the property this thesis relies on for
+reading handwriting on a whiteboard.
+
+Getting such a model to answer about a specific part of an image is a separate
+problem. Set-of-Mark prompting solves it by drawing marks, such as numbered boxes,
+directly onto the image and asking the model to answer per mark
+\cite{yang2023som}. The marks give the model and the user a shared vocabulary for
+positions in the image. The board reader in this thesis uses the same idea, with
+the difference that the boxes are found by our own image processing rather than by
+a segmentation network, and the numbers then carry through into the generated
+notes so that a sentence can say which box it is describing.
+
+The output of these models is also very sensitive to how the instruction is
+written. Promptception, a systematic study of prompt sensitivity across ten large
+multimodal models, reports accuracy swings of up to 15 per cent from minor changes
+in phrasing and structure \cite{ismithdeen2025promptception}. That finding is the
+published context for one of this thesis's own results, in which changing the
+board-reading prompt was worth far more than changing the size of the model.
+
+\subsection{Language models for note writing, and the faithfulness problem}
+
+An instruction-tuned language model such as Qwen2.5-7B-Instruct can be given a
+transcript and asked for structured notes \cite{qwen2025qwen25}. The risk is
+well known from the summarisation literature. Models produce fluent text that is
+not supported by the input, and a study of state-of-the-art abstractive
+summarisers found that a large share of generated summaries contain hallucinated
+content \cite{maynez2020faithfulness}. The distinction usually drawn is between
+faithfulness, which asks whether the output follows the input given to the model,
+and factuality, which asks whether the output is true of the world. A lecture note
+must be faithful, because a statement that is true in general but was not part of
+the lecture is still the wrong note.
+
+This thesis handles the problem in three ways that are described in Chapter 4. The
+board content is passed to the model as text so that it does not have to be
+recalled. Material the lecturer did not say is allowed but is confined to a
+labelled box. Quotations are checked word for word against the transcript and
+deleted if they do not match.
+
+\section{Review of Existing Research}
+
+\figplaceholder{fig-2-1-related-map}{The areas of existing research this thesis
+draws on, and where it sits between them.}{A simple diagram with four labelled
+circles or boxes: ``Bengali ASR'', ``Code-switched ASR'', ``Whiteboard content
+extraction from lecture video'', ``Lecture note generation with LLMs and VLMs''.
+Place a small marker in the middle where all four overlap and label it
+``InsightLens (this thesis)''. A Venn-style drawing or a four-box diagram with
+arrows pointing to a centre both work.}{7cm}
+
+\subsection{Speech recognition for Bengali}
+
+Bengali speech recognition is an active area with real resources behind it.
+OOD-Speech is the largest public Bengali corpus of its kind, with 1177.94 hours of
+crowdsourced training audio from 22,645 native speakers and a 23.03 hour test set
+manually annotated from seventeen different sources, including television drama,
+audiobooks, talk shows and online classes \cite{rakib2023oodspeech}. Its purpose
+is to measure how badly models degrade when the test domain differs from the
+training domain, which is exactly the failure this thesis would meet if it trained
+on read speech and tested on a classroom.
+
+On the modelling side, self-supervised encoders and fine-tuned Whisper models both
+work for Bengali. Applying wav2vec2 to the Bengali Common Voice dataset gives a
+word error rate of 0.2524 on a validation split of 7,747 samples
+\cite{shahgir2022wav2vec2bengali}, and a number of Whisper models fine-tuned on
+Bengali Common Voice are available publicly. The model used as the Bengali branch
+of the earlier phase of this project, \texttt{bangla-speech-processing/BanglaASR},
+is one of these, a Whisper-small fine-tuned on Bengali Common Voice.
+
+Every one of these systems writes Bengali script. For a classroom in which the
+technical vocabulary is English, that is a problem rather than a solution. The
+output turns ``NAND gate'' into a Bengali spelling of the English sound, so a
+student searching for the English term will not find it, and a reader who writes
+in Banglish cannot match it either. This is the first half of the gap this thesis
+addresses.
+
+\subsection{Code-switched speech recognition}
+
+Code-switched ASR has its own literature, surveyed in general terms by Sitaram et
+al. \cite{sitaram2019survey} and, for end-to-end systems specifically, in a recent
+systematic review that catalogues the languages, datasets, metrics and model
+choices used across the field \cite{agro2025cssurvey}. The review makes two
+observations that apply directly here. Intra-sentential switching is the hard
+case, and the field is short of natural, spontaneous, in-domain speech data,
+because most corpora are read or scripted.
+
+For South Asian languages, Chadha et al. built code-switched and code-mixed
+recognition for Indic languages using wav2vec 2.0 with language identification,
+reporting word error rates of 21.77 for Hindi-English and 28.27 for
+Bengali-English \cite{chadha2022indic}. Those numbers are much lower than the ones
+reported in this thesis, and the reason is not that their system is better at our
+task. Their transcription target is the native script for the Bengali parts, their
+audio comes from a different and generally cleaner domain, and their test split is
+not made of whole unseen lectures. Error rates across different datasets and
+different transcription targets are not comparable, and this thesis does not
+present them as if they were.
+
+On the efficiency side, Yang et al. study parameter-efficient adaptation of Whisper
+for code-switching, comparing soft prompt tuning variants against LoRA on the SEAME
+and ASRU2019 Mandarin-English datasets, and find deep prompt tuning to be
+competitive with LoRA while preserving performance on the original languages
+\cite{yang2025spt}. Their conclusion supports the design used here, which is that
+a small adapter on a frozen multilingual model is an appropriate way to add a
+code-switched variety without retraining everything.
+
+\subsection{The nearest systems: Bengali-English code-switched speech}
+
+Four efforts are close enough to this thesis that they must be named explicitly.
+They are compared in Table \ref{tab:neighbours}.
+
+\begin{table}[H]
+\centering
+\caption{Systems that recognise Bengali-English code-switched speech, compared
+with the system built in this thesis. The error rates in the last column come
+from different datasets with different transcription targets and are not
+comparable with one another.}
+\label{tab:neighbours}
+\small
+\begin{tabular}{p{3.0cm}p{2.4cm}p{3.1cm}p{2.0cm}p{2.2cm}}
+\toprule
+\textbf{System} & \textbf{Model} & \textbf{Data} & \textbf{Output} &
+\textbf{Reported error} \\
+\midrule
+MediBeng Whisper Tiny \cite{ghosh2025medibeng} &
+Whisper-tiny, full fine-tune &
+Synthetic clinical dialogue &
+English translation &
+WER 0.01, BLEU 0.98 \\
+\addlinespace
+BEHE-CMDisfl \cite{mitra2026behe} &
+Kaldi GMM-HMM baseline &
+Synthetic speech from LLM text and TTS, 1.3 h subset &
+Not stated &
+WER 37.74\% \\
+\addlinespace
+Indic code-switched ASR \cite{chadha2022indic} &
+wav2vec 2.0 with language ID &
+Indic code-switched corpora &
+Native script &
+WER 28.27 (Bengali-English) \\
+\addlinespace
+\texttt{whisper-small-benglish} (public model, no paper) &
+Whisper-small fine-tune &
+194 manually prepared clips of about 30 s, roughly 1.6 h &
+Not documented &
+WER 0.4123 on a 10 per cent random split \\
+\addlinespace
+\textbf{This thesis} &
+Whisper-large-v3-turbo with LoRA &
+5.15 h of hand-checked real classroom speech, 28 lectures, 3 lecturers &
+Romanized Banglish &
+CER 67.7 to 15.8, WER 93.9 to 41.7, six whole unseen lectures \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Reading the table in order, MediBeng is a translation system, not a transcription
+system, and its training data is synthetic \cite{ghosh2025medibeng}. Its reported
+word error rate of 0.01 with a BLEU score of 0.98 is what synthetic data produces
+and should not be read as accuracy on real clinical speech. BEHE-CMDisfl is
+likewise synthetic, generated by prompting a language model for code-mixed text
+with disfluencies and then rendering it with a text-to-speech system
+\cite{mitra2026behe}. It is a useful resource and it makes the same point this
+thesis makes, which is that spontaneous code-mixed speech is missing from the
+existing corpora, but it is not spontaneous speech itself. The Indic work is real
+speech but targets the native script \cite{chadha2022indic}. The community model
+\texttt{whisper-small-benglish} is the closest in spirit, since its card names
+lecture notes among its intended uses, but it is a model card rather than a study.
+It is trained on about 1.6 hours and evaluated on a random ten per cent of the same
+chunks, so the same speakers and very likely the same recordings appear on both
+sides of the split, and no example output is given, so the orthography it produces
+cannot be confirmed. A public repository by Asrarul applies LoRA to
+Whisper-large-v3 for Bengali-English meeting speech and is the closest match in
+method, but it reports no results.
+
+The honest conclusion is therefore narrower than ``the first Banglish speech
+recogniser''. Bengali-English code-switched speech recognition exists. What does
+not exist, as far as could be found, is a system that transcribes spontaneous
+Bengali-English classroom speech into romanized Banglish, evaluated on whole
+lectures held out from training, on hand-checked references, with the whiteboard
+read alongside it. Every ``first'' sentence in this thesis is written in that
+form.
+
+\subsection{How code-switched speech recognition is measured}
+
+The evaluation problem is a recognised research topic in its own right, and it is
+directly relevant because two separate results in this thesis were affected by it.
+
+Hamed et al. benchmarked evaluation metrics for code-switching ASR against human
+judgements and found that transliteration followed by text normalisation gives the
+strongest agreement with human acceptance \cite{hamed2022benchmarking}. Emond et
+al. proposed transliteration-based word error rate for the same reason, mapping
+mixed-script output into a single script before scoring
+\cite{emond2018transliteration}. PolyWER goes further and accepts several valid
+forms of a reference, including transliterations and translations, arguing that
+plain word error rate is simply too strict for speech that can be correctly written
+in more than one way \cite{kadaoui2024polywer}.
+
+The common thread is that a measure built around one script or one vocabulary will
+misjudge a system that legitimately produces another. This thesis reaches the same
+conclusion from a different direction. Its inherited term-based measure counts a
+fixed list of English words, so a model that transcribes the mixed speech
+faithfully emits fewer of them than a model that translates, and scores worse for
+being right. The effect is quantified in Chapter 5 and is one of the findings
+offered as a contribution.
+
+\subsection{Getting whiteboard content out of lecture video}
+
+Extracting what is written on a board from a fixed-camera lecture video is an
+established line of work in document analysis, and it is important to say so
+plainly rather than presenting the board pipeline of this thesis as new science.
+Table \ref{tab:boardwork} lists the main reference points.
+
+\begin{table}[H]
+\centering
+\caption{Earlier work on extracting handwritten content from lecture video.}
+\label{tab:boardwork}
+\small
+\begin{tabular}{p{4.2cm}p{3.2cm}p{5.6cm}}
+\toprule
+\textbf{Work} & \textbf{Approach} & \textbf{What it produces} \\
+\midrule
+Yeh et al. \cite{yeh2016robust} &
+Statistical modelling and clustering of board pixels &
+Extracted handwriting and a video summary, robust to noise, lighting change and
+occlusion \\
+\addlinespace
+Davila and Zanibbi \cite{davila2017whiteboard} &
+Spatio-temporal index of content regions, temporal segmentation by conflict
+detection &
+Static image summaries of the whole lecture from a minimal set of frames,
+96.28 per cent recall of connected components \\
+\addlinespace
+Kota et al. \cite{kota2019generalized} &
+Deep network to detect handwritten text, formulae and sketches, then binarise &
+A generalised summarisation framework, f-measure 94.32 per cent for binary
+connected components on the AccessMath dataset \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+These systems solve a closely related problem and solve it well. Two differences
+matter for this thesis. First, their output is a binarised summary image or an
+index of handwriting regions, which is the right target when the goal is search
+and navigation, whereas the target here is a photograph-like board that a student
+can look at inside a note, with the original strokes and colours intact. Second,
+none of them attempts to read the content into text with a model that understands
+what it is reading, because that capability did not exist when most of them were
+published.
+
+The board method used here is a tiled mosaic over erase-separated eras, which is
+engineering built from known parts rather than a new algorithm, and Chapter 4
+describes it as such. Its one property worth defending is that nothing is
+generated. Every pixel of an output board is unmodified camera output taken from
+some real frame, so there is no possibility of the system inventing writing.
+Generative inpainting was rejected for exactly this reason, since a plausible
+invented character on a board is worse than a visible gap.
+
+\subsection{Reading text in images with vision-language models}
+
+The step this thesis adds on top of board reconstruction is a vision-language
+model that reads the board. Modern open models are strong at text in images and are
+routinely benchmarked on document understanding tasks such as DocVQA, OCRBench and
+TextVQA \cite{bai2025qwen25vl}. Handwriting is harder than print, and recent
+benchmarks target it directly, which is a reminder that a high score on printed
+documents does not transfer automatically to a whiteboard.
+
+Because this is a young area, results are strongly affected by the prompt, as the
+prompt-sensitivity study cited earlier shows \cite{ismithdeen2025promptception}.
+This thesis reports a large instance of that effect and treats it as a finding
+rather than as a tuning detail.
+
+\subsection{Automatic lecture notes and multimodal summarisation}
+
+Turning a recorded lecture into notes is an old goal that has been given new life
+by large models. M3AV is a recent academic lecture dataset of nearly 367 hours
+across five sources with human annotation of slide text and spoken words, built to
+support contextual speech recognition, slide generation and script generation
+\cite{chen2024m3av}. NoteIt converts instructional videos into interactable notes
+by extracting hierarchical structure and multimodal key information, and evaluates
+the result both on technical metrics and with a user study of 36 participants
+\cite{zhao2025noteit}.
+
+Two gaps stand out when this work is put beside the classroom this thesis targets.
+The first is the visual source. Existing systems assume slides, and slides are text
+that can be read reliably with optical character recognition or taken directly
+from the file. Our lecturers write on a whiteboard and are standing in front of
+what they write. The second is language. These datasets and systems are built for
+English or Chinese, and for speech that stays in one language.
+
+The user study in NoteIt also points at something this thesis has not done. Whether
+notes are good is a question about readers, and it is answered by asking readers.
+Chapter 6 lists the reader study as the main piece of future work, and Chapter 5 is
+careful never to claim readability from a metric that cannot see it.
+
+\section{Summary of Key Findings}
+
+The review supports four conclusions.
+
+\textbf{The speech problem is real and is not solved by anything available.}
+Bengali speech recognition is mature but writes the wrong script for this purpose.
+Code-switched recognition for Bengali and English exists, but the published
+systems either translate into English, are trained on synthetic speech, or target
+the native script. The one community model that matches the intent most closely is
+undocumented and is evaluated on a random split of its own clips rather than on
+unseen recordings.
+
+\textbf{The board problem is well studied, and this thesis should not claim
+otherwise.} Extracting handwritten content from fixed-camera lecture video has a
+fifteen-year literature with strong results on public datasets. What is new here is
+not the extraction but what happens next, which is reading the reconstructed board
+with a vision-language model and carrying numbered regions of it into a generated
+note.
+
+\textbf{Measurement is a genuine open problem in this area, not a detail.} Several
+independent groups have found that standard word error rate misjudges
+code-switched output, and have proposed transliteration-based or multi-reference
+alternatives. The same class of problem appears twice in this thesis, once in the
+inherited term measure and once in the note-quality measure, and reporting it
+honestly is part of the contribution.
+
+\textbf{Lecture note generation with large models is active but assumes a
+different classroom.} Existing systems expect slides and a single language.
+Nothing found combines code-mixed speech, a handwritten whiteboard and generated
+notes in two languages.
+
+Table \ref{tab:gap} states the gap in the form the rest of the thesis uses.
+
+\begin{table}[H]
+\centering
+\caption{The gap this thesis addresses.}
+\label{tab:gap}
+\small
+\begin{tabular}{p{3.4cm}p{5.2cm}p{5.0cm}}
+\toprule
+\textbf{Component} & \textbf{What already exists} & \textbf{What this thesis
+adds} \\
+\midrule
+Speech &
+Bengali ASR in native script; Bengali-English code-switched systems on synthetic
+or out-of-domain data &
+Romanized Banglish transcription of spontaneous classroom speech, tested on whole
+unseen lectures against hand-checked references \\
+\addlinespace
+Evaluation &
+Transliteration-based and multi-reference metrics for code-switched ASR &
+A measured demonstration that English-string measures reward a translating model
+and penalise a transcribing one, in two separate places \\
+\addlinespace
+Whiteboard &
+Handwriting extraction, binarisation and summary images from fixed-camera video &
+A reconstruction in real camera pixels that is then read as text by a
+vision-language model and scored against hand-verified answer keys \\
+\addlinespace
+Notes &
+Slide-based lecture summarisation and note generation in English &
+Notes in two languages that point at numbered regions of the board, with
+quotations checked word for word against the transcript \\
+\bottomrule
+\end{tabular}
+\end{table}

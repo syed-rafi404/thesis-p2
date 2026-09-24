@@ -1,0 +1,637 @@
+% ============================================================================
+% CHAPTER 3 - REQUIREMENTS, IMPACTS AND CONSTRAINTS
+% Rubric mapping:
+%   CO2  (5)  -> 3.1 Final Specifications and Requirements
+%   CO3  (5)  -> 3.2 Societal Impact
+%   CO4  (5)  -> 3.3 Environmental Impact
+%   CO12 (5)  -> 3.4 Ethical Issues
+%   CO10 (3)  -> 3.6 Project Management Plan, 3.7 Risk Management
+%   CO11 (2)  -> 3.8 Economic Analysis
+% This chapter carries 25 of the 100 marks, all from the supervisor.
+% ============================================================================
+
+\section{Final Specifications and Requirements}
+
+This section states what the system has to do, what it has to be, and what it
+needs in order to run. The requirements were fixed before the final build and were
+checked against the delivered system at the end of the project.
+
+\subsection{Functional requirements}
+
+Table \ref{tab:fr} lists what the system must do. Each requirement has a short
+identifier so that later chapters can refer to it, and the last column says where
+the requirement is met and where it is evaluated.
+
+\begin{table}[H]
+\centering
+\caption{Functional requirements.}
+\label{tab:fr}
+\small
+\begin{tabular}{p{1.0cm}p{9.2cm}p{3.3cm}}
+\toprule
+\textbf{ID} & \textbf{Requirement} & \textbf{Where met} \\
+\midrule
+FR1 & Accept a recorded lecture video in a common container and extract a
+16 kHz mono audio track from it. & Chapter 4.5 \\
+FR2 & Produce a timestamped transcript of the lecture in romanized Banglish,
+using a model adapted to this speech. & Chapter 4.2, result in 5.1 \\
+FR3 & Detect the points at which the whiteboard is wiped, and treat the writing
+between two wipes as one board. & Chapter 4.3 \\
+FR4 & Reconstruct each board without the lecturer in front of it, using only
+pixels that appear in some real frame of the video. & Chapter 4.3, result in 5.2 \\
+FR5 & Find the separate blocks of writing on a reconstructed board and draw a
+numbered coloured box around each one. & Chapter 4.4 \\
+FR6 & Name and transcribe the content of each numbered box with a
+vision-language model. & Chapter 4.4, result in 5.3 \\
+FR7 & Generate a lecture note, one section per board, that refers to the boxes by
+number and colour. & Chapter 4.5, result in 5.4 \\
+FR8 & Produce the note in two languages, Banglish and English, each written
+wholly in its own language. & Chapter 4.5 \\
+FR9 & Delete any quotation of the lecturer that does not appear word for word in
+the transcript, and any reference to a box number that does not exist. &
+Chapter 4.5 \\
+FR10 & Keep material that the lecturer did not say inside a separate labelled
+section of the note. & Chapter 4.5 \\
+FR11 & Output the note as Markdown and as a single self-contained HTML page with
+the board images embedded. & Chapter 4.5 \\
+FR12 & Record, for every lecture processed, how long each stage took and how many
+quotations were kept and deleted. & Chapter 4.6 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Non-functional requirements}
+
+\begin{table}[H]
+\centering
+\caption{Non-functional requirements.}
+\label{tab:nfr}
+\small
+\begin{tabular}{p{1.2cm}p{5.0cm}p{7.3cm}}
+\toprule
+\textbf{ID} & \textbf{Requirement} & \textbf{How it is satisfied} \\
+\midrule
+NFR1 & Runs on one consumer desktop graphics card & Speech training fits in 12 GB
+with gradient checkpointing; the vision-language work fits in 32 GB. No cluster
+and no paid cloud service is used. \\
+\addlinespace
+NFR2 & Reproducible & Every reported number has a command that regenerates it
+from files held in the project repository. Splits, seeds and the chosen settings
+are written to JSON beside the model. \\
+\addlinespace
+NFR3 & Restartable & Each stage writes its output to a file and is skipped when
+that file already exists, so a run that is interrupted continues instead of
+starting again. \\
+\addlinespace
+NFR4 & No fabricated content in the board image & Every pixel of a reconstructed
+board comes from a real frame. Generative inpainting is not used. \\
+\addlinespace
+NFR5 & Traceable claims in the note & Quotations are checked against the
+transcript, board content is passed to the model as text, and non-lecture
+material is labelled. \\
+\addlinespace
+NFR6 & Offline operation & After the model weights are downloaded once, no
+component needs the internet. No lecture audio, video or text is sent to any
+external service. \\
+\addlinespace
+NFR7 & Data protection & Videos, transcripts and board images are held in a
+private repository. The public output of the project contains no raw recording. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Data requirements}
+
+The project needed three kinds of data, and the cost of producing them shaped the
+whole schedule.
+
+\textbf{Lecture recordings.} Forty-four classroom recordings were collected from
+three lecturers, 8.33 hours in total, each a fixed-camera view of a lecturer at a
+whiteboard with no slides. The subjects are introductory programming, digital
+logic, databases and computer networking.
+
+\textbf{Reference transcripts.} Twenty-eight of the lectures, covering 5.15 hours
+of speech in 609 timed segments and about 39,000 words, were transcribed by hand.
+Every transcript follows a written transcription standard described in Section
+3.5 and validated by a checking script. The remaining sixteen recordings have no
+transcript and are used for the vision side and for demonstration only.
+
+\textbf{Board answer keys.} To measure whether board content reaches the notes,
+the contents of 45 boards were written out by hand as lists of items, giving 436
+items in total. Each item is labelled by kind, which is one of number, name, code,
+term or phrase. These keys are used only for scoring and are never given to any
+model. A separate human check covered a further 98 boards and recorded, for each
+one, whether anything written on the board was missing from the reconstruction.
+
+\subsection{Software and hardware requirements}
+
+\begin{table}[H]
+\centering
+\caption{Hardware used. The earlier phase of the project ran on a different
+machine, and the two are kept separate throughout this report.}
+\label{tab:hw}
+\small
+\begin{tabular}{p{3.0cm}p{2.4cm}p{8.2cm}}
+\toprule
+\textbf{Machine} & \textbf{GPU} & \textbf{What it was used for} \\
+\midrule
+Development desktop & RTX 3060, 12 GB & All speech work: data preparation,
+hyperparameter tuning, LoRA training, evaluation, board reconstruction and the
+person segmentation network. \\
+\addlinespace
+Second desktop & RTX 5090, 32 GB & All Qwen work: board reading with the
+vision-language model, box naming, and note generation for every lecture. \\
+\addlinespace
+Earlier phase machine & RTX 3090, 24 GB & The first version of the pipeline,
+whose results are reported separately where they are still used. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The software stack is Python 3.11 on the development desktop with PyTorch
+2.5.1 built for CUDA 12.1, and Python 3.12 on the second desktop with PyTorch
+2.11 built for CUDA 12.8, which the newer card requires. Both machines run
+Transformers 5.12.1 and PEFT for the LoRA adapters. FFmpeg extracts audio and
+frames. The models used are whisper-large-v3-turbo for speech,
+Qwen2.5-VL-7B-Instruct and Qwen2.5-VL-3B-Instruct for board reading,
+Qwen2.5-7B-Instruct for note writing, a pretrained DeepLabV3 with a ResNet-101
+backbone for person segmentation \cite{chen2017deeplabv3}, and a WavLM speaker
+embedding model used only to confirm which lecturer appears in which recording.
+About 31 GB of model weights and roughly 75 GB of video have to be stored.
+
+\subsection{Constraints}
+
+Four constraints were fixed and could not be traded away.
+
+\textbf{Data.} The corpus is what three lecturers agreed to record and what the
+team could transcribe by hand in the time available. It is 5.15 hours of
+transcribed speech, not tens of hours, and this bounds how strong any speech
+result can be.
+
+\textbf{Memory.} Training the 809 million parameter speech model on a 12 GB card
+is only possible with gradient checkpointing, which trades computation for
+memory. The largest vision-language models were out of reach entirely, since
+Qwen2.5-VL-32B is 68 GB of weights and the 72B version is 147 GB.
+
+\textbf{Time.} The whole project runs to a fixed submission date, so a run that
+takes fourteen hours can be started once, not five times.
+
+\textbf{Honesty.} A self-imposed constraint, and the one that removed the most
+work. No number enters this report unless a command in the project regenerates
+it. An earlier version of the project carried several figures whose numbers had
+been typed rather than computed, and those were removed rather than defended.
+
+\section{Societal Impact}
+
+\subsection{Who benefits}
+
+The immediate beneficiaries are students in classrooms where teaching is
+code-mixed. A student who missed a class, who is slower at English, or who simply
+wants to revise, currently has a video and nothing else. The system turns that
+video into a document with the board in it. Because the note exists in Banglish as
+well as English, a student who thinks in the mixed language is not forced to read
+a translation of their own lecture.
+
+There is a second group of beneficiaries who are easy to overlook. Lecturers get a
+record of every board they wrote. Nothing else in a whiteboard class preserves
+that, and it costs the lecturer no extra work.
+
+\subsection{Language and fairness}
+
+Language technology serves widely spoken standard languages well and serves mixed
+speech badly. A student whose classroom language is Bengali-English code-mixed is
+poorly served by both English tools and Bengali tools. Treating that mixture as a
+first-class target, with its own transcription standard and its own written form,
+is a small step against that imbalance. The same argument applies to the choice of
+the Roman alphabet, which is what students actually write in.
+
+\subsection{Accessibility}
+
+A text transcript and a text version of the board make a lecture reachable by a
+screen reader and searchable by keyword, which a video is not. The system was not
+designed as an assistive technology and has not been tested with users who have a
+disability, so this is stated as a plausible benefit rather than a demonstrated
+one.
+
+\subsection{Risks and harms}
+
+Three risks are worth naming plainly.
+
+\textbf{Wrong notes can mislead.} The generated notes are not guaranteed to be
+correct. Chapter 5 gives a real example in which the model wrote that the two
+universal gates are XOR gates when the lecturer and the board both said NAND and
+NOR. A student who trusts a note like that will learn the wrong thing. Any
+deployment must present the notes as machine-generated study aids to be checked
+against the lecture, not as authoritative material, and the system keeps the board
+image beside the text so that the reader can check.
+
+\textbf{Privacy of the classroom.} A lecture recording captures a person at work
+and may capture student voices. This project used recordings made with the
+lecturers' permission and kept them private. Any wider use needs consent from the
+people recorded and a clear rule about who may see the output.
+
+\textbf{Effects on attendance and on note taking.} Good automatic notes may reduce
+attendance, and the act of taking notes by hand has a learning value of its own.
+This is a genuine trade-off and is not resolved by this thesis. The honest
+position is that the system is aimed at revision and at students who could not
+attend, not at replacing attendance.
+
+\subsection{Health, safety, legal and cultural aspects}
+
+There is no physical safety dimension to this work, since nothing is built that a
+person interacts with physically. On the legal side, lecture recordings and
+whiteboard content belong to the lecturer and the university, so the recordings
+are not redistributed and the model weights released by others are used under
+their own licences. On the cultural side, the system deliberately preserves the
+lecturer's own mixed speech rather than converting it into standard English, which
+respects how the class is actually taught.
+
+\section{Environmental Impact}
+
+\subsection{Why this section is short but not empty}
+
+Training machine learning models consumes electricity, and the field has been
+criticised for not reporting it \cite{strubell2019energy}. The headline numbers in
+that literature come from very large models trained on clusters. The work in this
+thesis is at the other end of the scale, and the point of this section is to give
+the actual figure rather than to claim the question does not apply.
+
+\subsection{Compute actually used}
+
+All training is parameter-efficient, so no full model was ever trained from
+scratch or fine-tuned end to end. Table \ref{tab:compute} lists the machine time
+taken by the jobs that produced the results in Chapter 5, read from the job logs.
+
+\begin{table}[H]
+\centering
+\caption{Machine time for the jobs behind the reported results, from the job
+logs. The two rows marked as approximate are added from run records rather than a
+single log line.}
+\label{tab:compute}
+\small
+\begin{tabular}{p{7.4cm}p{2.4cm}p{3.6cm}}
+\toprule
+\textbf{Job} & \textbf{Machine} & \textbf{Time} \\
+\midrule
+Hyperparameter tuning, rehearsal, 7 trainings and evaluations & RTX 3060 &
+about 5.4 h \\
+Hyperparameter tuning on the full corpus, 7 trainings and evaluations & RTX 3060 &
+6.0 h \\
+Final model, seed 42 & RTX 3060 & 1.3 h \\
+Final model, seed 1 & RTX 3060 & 1.1 h \\
+Second learning rate, two seeds & RTX 3060 & about 2.4 h \\
+Transcripts and board reconstruction for all lectures & RTX 3060 &
+about 2 h \\
+Board reading, box naming and note generation for all lectures & RTX 5090 &
+about 6 h \\
+\midrule
+\textbf{Total} & & \textbf{about 24 h} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Energy and emissions}
+
+The figures below are an estimate built from the measured hours above and stated
+assumptions, not a meter reading.
+
+Assuming a whole-system draw of about 250 W for the development desktop while
+training and about 600 W for the second desktop, the 18 hours on the first machine
+and 6 hours on the second come to roughly 4.5 and 3.6 kilowatt hours, so about
+8 kWh in total. At a grid emission factor of about 0.65 kilograms of carbon
+dioxide equivalent per kilowatt hour, which is a reasonable figure for the
+Bangladesh grid, that is roughly 5 kilograms of carbon dioxide equivalent for the
+entire experimental programme. For comparison, the widely cited estimate for
+training a single large language model with neural architecture search is over
+280,000 kilograms \cite{strubell2019energy}.
+
+\subsection{Design choices that reduced the footprint}
+
+Three decisions kept the figure small, and they were taken for other reasons as
+well.
+
+Using LoRA rather than full fine-tuning means each training run updates a few
+million parameters instead of 809 million, which is why a run finishes in about
+an hour on a mid-range card. Choosing hyperparameters by a pre-registered plan
+with a fixed number of stages meant seven training runs rather than an open-ended
+search. Deciding not to run the 32 billion and 72 billion parameter
+vision-language models avoided both a 68 GB download and the compute to use them,
+and the 3B against 7B comparison reported in Chapter 5 shows that the larger model
+was not where the important difference lay.
+
+\subsection{Sustainability of the solution in use}
+
+Once trained, the system runs on one desktop. Processing a lecture end to end
+takes a few minutes of graphics card time, so a department could run it on
+hardware it already owns. There is no requirement for a data centre, and no
+per-lecture payment to an external service, which also means no lecture content
+leaves the institution.
+
+\section{Ethical Issues}
+
+\subsection{Consent and the people in the recordings}
+
+Every recording used here was made with the knowledge and permission of the
+lecturer in it. Three lecturers took part. The recordings are not published and
+are not shared outside the team. Where a board image appears in this report, the
+lecturer has been removed by the reconstruction itself, so the figures show
+writing rather than people.
+
+\subsection{Data handling}
+
+Videos, audio, transcripts and board images are kept in a private repository. The
+transcripts contain classroom speech only. No student personal data was collected.
+No lecture content is sent to an external service at any point in the pipeline,
+because every model runs locally, which was one of the reasons for preferring open
+model weights over a commercial interface.
+
+\subsection{Honesty about results, and how it was enforced}
+
+The most serious professional risk in a project of this kind is reporting a number
+that was never computed. This project had that problem in its earlier phase. A
+significance value, an effect size, an ablation table and a set of per-video
+statistics had been written into figures and text without any code behind them.
+They were found during a review, they are listed in the project record as retired
+claims, and none of them appears in this report.
+
+Two rules were then adopted and kept. First, a number may be written in the report
+only if a command in the project regenerates it, and the command is recorded
+beside the number. Second, results that go against the project's own hypothesis
+are reported in the same detail as results that support it. Chapter 5 contains
+several of the second kind, including a display clean-up that made board reading
+slightly worse, an alignment idea that did not validate, and a null result on
+whether the improved transcript improves the notes.
+
+\subsection{Risks created by the system itself}
+
+A note generator can state things the lecturer never said. The design contains
+three specific controls for this, described in Chapter 4, and Chapter 5 reports
+how well each one held, including the one case where a box reference survived the
+checker and the counted number of quotations that had to be deleted. The controls
+reduce the risk and do not remove it, and the report says so.
+
+There is also an academic integrity dimension. Notes produced by a machine from a
+lecture are a study aid. If a student submits them as their own writing, that is
+plagiarism in the ordinary sense, and the labelling of generated material inside
+the notes makes the origin visible.
+
+\subsection{Professional responsibility}
+
+The project follows the ordinary expectations of engineering practice, which in
+this context mean citing the models and datasets that others released, obeying
+their licences, not overstating what was built, and keeping the limitations
+visible in the same document as the results rather than in a footnote.
+
+% TODO (Rafi): if the department requires a declaration about the use of AI tools
+% during writing, put the exact wording here and in core/ethics_statement.tex.
+
+\section{Standards}
+
+The project follows the standards and conventions listed in Table
+\ref{tab:standards}. Several of them are conventions of the field rather than
+formal standards, and the table says which is which.
+
+\begin{table}[H]
+\centering
+\caption{Standards and conventions followed.}
+\label{tab:standards}
+\small
+\begin{tabular}{p{3.4cm}p{4.0cm}p{6.2cm}}
+\toprule
+\textbf{Area} & \textbf{Standard} & \textbf{How it is applied} \\
+\midrule
+Transcription & Project transcription guide, version 1.0 &
+Segments of 10 to 25 seconds and never over 30, timestamps written as
+\texttt{[M:SS-M:SS]}, fillers kept, ASCII only, a fixed spelling table for common
+words. A validation script checks every file against it. \\
+\addlinespace
+Audio & 16 kHz mono PCM WAV &
+The input format the speech model expects, produced by FFmpeg from any container.
+\\
+\addlinespace
+Speech evaluation & Word and character error rate &
+The standard measures of the field, reported as per-clip medians with paired
+rank tests, following the practice discussed in Chapter 2. \\
+\addlinespace
+Text encoding & UTF-8 &
+All transcripts, notes and result files. \\
+\addlinespace
+Interchange formats & JSON, Markdown, HTML5 &
+Machine-readable results in JSON, notes in Markdown, and a self-contained HTML
+page with images embedded so that a note can be opened with no other files. \\
+\addlinespace
+Code & PEP 8 for Python, Git for version control &
+One script per stage, no deletion of experimental scripts, every result
+traceable to a commit. \\
+\addlinespace
+Referencing & IEEE style &
+As required by the department template, produced with biblatex. \\
+\addlinespace
+Licensing & Licences of the released models &
+Whisper, Qwen and the segmentation network are used under the terms their
+publishers set, and are cited. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Project Management Plan}
+
+\subsection{Phases}
+
+The work ran in five phases.
+
+\textbf{Phase 1, problem and baseline.} The earlier version of the pipeline was
+built and measured, which established that the speech side was the binding
+problem and that the note quality had never been evaluated against anything.
+
+\textbf{Phase 2, review and correction.} Every claim of the earlier phase was
+checked against code. Claims with no computation behind them were retired, and a
+project-wide rule was adopted that a number needs a command.
+
+\textbf{Phase 3, data.} The transcription standard was written, the recordings
+were collected, and the transcripts were produced and checked word by word. This
+phase was the longest in human hours and ran in parallel with the others.
+
+\textbf{Phase 4, experiments.} Speech fine-tuning with its pre-registered tuning
+plan, board reconstruction, board reading, and note generation, with evaluation at
+each stage. Work was split across two machines, with all speech work on one and
+all vision-language work on the other, so that neither waited for the other.
+
+\textbf{Phase 5, writing.} Figures, tables and this report.
+
+\figplaceholder{fig-3-1-gantt}{Project schedule.}{A Gantt chart with one row per
+phase, drawn from the list in Section 3.6.1. Rows: Problem and baseline, Review
+and correction, Data collection and transcription, Experiments (with the speech
+and vision tracks as two sub-rows running in parallel), Writing. Mark the two
+fixed deadlines as vertical lines: draft submission and slide submission. Keep
+the month names on the horizontal axis.}{7cm}
+
+\subsection{Division of work and resources}
+
+Three students worked on the project under a supervisor and a co-supervisor. The
+resources were the two desktops described in Section 3.1.4, both already owned,
+the open model weights, and the team's own time. No budget was spent on cloud
+computing or on paid annotation.
+
+Two practices mattered more than any tool. Long jobs were written as scripts that
+run unattended, commit their own results and push them, so that a fourteen-hour
+training run cost no attention. All planning lived in two files in the repository,
+one holding the ordered task list and one holding every result with the command
+that produces it, so that work could move between machines without anything being
+carried in a person's memory.
+
+\subsection{Schedule control}
+
+The fixed points were the draft submission and the slide submission. Work was
+scheduled backwards from them. When the corpus was closed at 5.15 hours, the
+planned six-hour and ten-hour training runs were cancelled rather than delayed,
+because a result that arrives after the deadline is worth nothing. The decision
+and the reason were recorded at the time.
+
+\section{Risk Management}
+
+Table \ref{tab:risks} lists the risks identified for the project, what was done
+about each, and what actually happened. Several of these risks occurred, so the
+last column is a record rather than a prediction.
+
+\begin{table}[H]
+\centering
+\caption{Risk register, with outcomes.}
+\label{tab:risks}
+\small
+\begin{tabular}{p{3.0cm}p{1.3cm}p{4.4cm}p{4.9cm}}
+\toprule
+\textbf{Risk} & \textbf{Severity} & \textbf{Mitigation planned} &
+\textbf{What happened} \\
+\midrule
+Not enough transcribed speech &
+High &
+Use parameter-efficient fine-tuning, which needs less data; report both an
+unseen-lecturer design and an unseen-lecture design &
+Occurred. The corpus closed at 5.15 h instead of the hoped ten. Both designs are
+reported, and the limitation is stated. \\
+\addlinespace
+Speaker leakage between training and test &
+High &
+Sort recordings by lecturer and confirm with speaker verification &
+Occurred. One recording had been labelled as the wrong lecturer, so an early
+result was optimistic. It was found by voice verification, the result was
+recomputed and the old number was retired. \\
+\addlinespace
+Training instability &
+High &
+Run two random seeds for every reported configuration &
+Occurred. At the tuned learning rate one seed collapsed into repetition loops.
+Both seeds are reported, and a stable configuration is reported beside them. \\
+\addlinespace
+Graphics memory exhausted &
+Medium &
+Gradient checkpointing, smaller batch, second machine for the large models &
+Occurred and was handled. Training needed checkpointing to fit in 12 GB. \\
+\addlinespace
+Model weights too large for the disk &
+Medium &
+Check free space before any download &
+Occurred. The 32 billion parameter vision-language model did not fit and was
+dropped, with the reason recorded. \\
+\addlinespace
+Results that cannot be reproduced &
+High &
+A command recorded for every number; splits and seeds written to disk &
+Controlled. Every table in Chapter 5 has a command behind it. \\
+\addlinespace
+Generated notes containing false statements &
+High &
+Ground the notes in board text, fence non-lecture material, check quotations
+against the transcript &
+Partly controlled. The controls work and are measured, but a factual error in the
+generated prose was still found by reading, and it is reported. \\
+\addlinespace
+Loss of work or of a machine &
+Medium &
+Version control, results committed and pushed automatically by the jobs
+themselves &
+Did not occur. \\
+\addlinespace
+Deadline slip &
+High &
+Two machines in parallel, unattended overnight jobs, cancel rather than delay &
+Controlled. The planned larger runs were cancelled when the corpus closed. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Economic Analysis}
+
+\subsection{What the project cost}
+
+The project spent no money on computing. Both desktops were already available, and
+every model used is published under an open licence. The real cost is human time,
+and most of it is transcription.
+
+\begin{table}[H]
+\centering
+\caption{Cost of the project. The transcription figure is measured, at about one
+hour of human work per ten minutes of video. The electricity figure uses the
+assumptions in Section 3.3.3.}
+\label{tab:cost}
+\small
+\begin{tabular}{p{6.0cm}p{3.6cm}p{4.2cm}}
+\toprule
+\textbf{Item} & \textbf{Quantity} & \textbf{Cost} \\
+\midrule
+Transcribing 5.15 h of lecture speech by hand & about 31 person-hours &
+team time, no cash cost \\
+Writing and verifying 45 board answer keys, 436 items & one working day &
+team time \\
+Checking 98 reconstructed boards for missing writing & 30 to 40 minutes &
+team time \\
+Graphics card time for every reported experiment & about 24 h & about 8 kWh,
+a negligible cash amount \\
+Model weights and video storage & about 106 GB & existing disks \\
+Graphics hardware & two desktops & already owned \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{What it would have cost otherwise}
+
+Two alternatives are worth pricing for comparison.
+
+Renting the same compute is cheap. Twenty-four hours on a rented mid-range
+graphics card at typical rates of one to two United States dollars an hour is
+about thirty to fifty dollars. Compute is not what makes this kind of project
+expensive.
+
+Commercial transcription is the opposite. Bengali speech-to-text services exist,
+but they output the Bengali script, so for this purpose they would not remove the
+human work at all. Every one of the 31 hours would still be needed, and a fee
+would be added on top.
+
+\subsection{Cost and benefit of the system}
+
+The benefit to be weighed is the reduction in human effort to produce a usable
+transcript.
+
+Producing a transcript by hand from nothing took about six hours of work per hour
+of video in this project, because off-the-shelf output was of no use as a starting
+point. The fine-tuned model reaches a median character error rate of 15.8 per
+cent, which is a draft that a person can correct rather than retype. If correcting
+such a draft takes a third of the time, the cost falls from about six hours per
+hour of video to about two. Over the 8.33 hours of recordings collected here, that
+is the difference between about fifty hours of work and about seventeen.
+
+This projection has not been tested, and the thesis does not claim it as a result.
+Measuring it properly means timing people as they correct real drafts, which is
+listed with the reader study in Chapter 6. What can be claimed is the input to the
+calculation, which is the measured error rate, and the measured cost of the manual
+route.
+
+\subsection{Cost of deployment}
+
+A department that wanted to run this on its own lectures would need one desktop
+with a graphics card of 12 GB or more, which is ordinary teaching laboratory
+hardware, and no recurring payment. Processing one lecture takes a few minutes of
+card time. The recurring cost is storage for the recordings and someone to check
+the notes before they are given to students, and that check is the part the system
+does not remove.
