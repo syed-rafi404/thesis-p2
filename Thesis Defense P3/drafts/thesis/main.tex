@@ -27,6 +27,12 @@
 \usepackage{longtable}    % tables that break across pages
 \usepackage{float}
 \usepackage[section]{placeins}   % keep floats inside the section that introduces them
+% This document is table-heavy. With the default fractions LaTeX refuses to put a large
+% table on a page that also carries text, which left several pages nearly empty.
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\textfraction}{0.07}
+\renewcommand{\floatpagefraction}{0.75}
 \usepackage{xcolor}
 \usepackage{multirow}
 \setlength{\tabcolsep}{4pt}   % the results tables are wide; 6pt each side does not fit

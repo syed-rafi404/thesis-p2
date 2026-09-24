@@ -33,16 +33,13 @@ discipline. And every reported number is produced by a command recorded beside i
 
 \subsection{The four stages}
 
-\figplaceholder{fig-4-1-pipeline}{The InsightLens pipeline. Each stage writes a file that
-the next stage reads.}{The main system diagram, drawn left to right or top to bottom.
-Boxes in order: (1) Video; (2) Audio at 16 kHz and frames every 2 s; (3) Stage 1 Speech,
-Whisper large-v3-turbo with a LoRA adapter, output ``timestamped Banglish transcript'';
-(4) Stage 2 Board, erase detection, era split, tiled mosaic with a person mask, clean-up,
-output ``one clean board image per era''; (5) Stage 3 Board reading, box finding,
-numbered coloured boxes drawn, Qwen2.5-VL names and transcribes each box; (6) Stage 4
-Notes, Qwen2.5-7B writes one section per board, quote checker and box-reference check,
-output ``notes in Banglish and English''. Put the file passed between each pair of stages
-on the arrow.}{4.6cm}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.97\textwidth]{fig-4-1-pipeline}
+\caption{The InsightLens pipeline. Each stage writes a file that
+the next stage reads.}
+\label{fig:fig-4-1-pipeline}
+\end{figure}
 
 In stage one the audio is extracted and cut into clips, a LoRA adapter trained on the
 corpus is attached to Whisper large-v3-turbo, and the adapted model writes a timestamped
@@ -64,8 +61,7 @@ the sections are assembled into a page.
 
 Several designs were built and measured before the final one was chosen. Three of them
 failed, and the failures are part of the argument for the design that was kept. Table
-
-ef{tab:alternatives} summarises the comparison, and the paragraphs below give the
+\ref{tab:alternatives} summarises the comparison, and the paragraphs below give the
 reasoning where the table cannot.
 
 For the speech stage the two rejected-by-measurement options are the informative ones.
@@ -364,15 +360,19 @@ pixels and the background is not, and the report says so wherever a cleaned boar
 shown. Section \ref{sec:board-cleanup} reports the measured effect of this step on how
 well the vision-language model reads the board, which was not the expected one.
 
-Figure \ref{fig:nand-mosaic-raw} shows a rebuilt board from the digital logic lecture,
-BanglaASR11, and Figure \ref{fig:nand-mosaic-clean} the same board after clean-up.
+Figure \ref{fig:fig-4-2-before-frame} shows why one frame is not enough, and Figures
+\ref{fig:nand-mosaic-raw} and \ref{fig:nand-mosaic-clean} show the board this era produces,
+before and after clean-up.
 
-\figplaceholder{fig-4-2-before-frame}{A single frame of the same lecture, showing why one
-frame is not enough.}{Take one frame from the lecture's frame folder in which the lecturer
-stands in front of the writing, and blur or pixelate his face before using it. The ethics
-statement says no person is identifiable in the figures, so the face must be covered.
-Placing it directly above Figure \ref{fig:nand-mosaic-raw} makes the before and after
-comparison clearest.}{4.6cm}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.97\textwidth]{fig-4-2-before-frame}
+\caption{One frame of the digital logic lecture, BanglaASR11, at 6:50. The lecturer covers
+the two right-hand columns of the truth table she has just written, and no frame of this
+era shows the whole board at once. Figure \ref{fig:nand-mosaic-raw} is what the
+reconstruction recovers from the same era.}
+\label{fig:fig-4-2-before-frame}
+\end{figure}
 
 \begin{figure}[htbp]
 \centering
