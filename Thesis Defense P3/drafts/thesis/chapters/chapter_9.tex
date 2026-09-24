@@ -9,7 +9,7 @@ a lecture note a student can use. The system was built as four stages and each s
 measured separately.
 
 Off-the-shelf speech recognition does not work on this speech, and the failure is
-specific: on six held out lectures Whisper large-v3-turbo produces a median character
+specific. On six held out lectures Whisper large-v3-turbo produces a median character
 error rate of 67.7 per cent and a median word error rate of 93.9, translating the speech
 into English rather than transcribing it and falling into repetition loops on thirteen of
 the 177 test clips. A small adapter on the same model corrects most of that. Trained on
@@ -25,7 +25,7 @@ The whiteboard can be rebuilt from the video without inventing anything, and the
 board has 97.7 per cent of its tiles fully clear. A human check of 98 boards found 82
 complete, with writing genuinely lost on 9 and the remaining 7 explained by the source
 video rather than by the method. Reading the board is then a question of prompting rather
-than of model size: the same vision-language model on the same images moves from 31.2 to
+than of model size. The same vision-language model on the same images moves from 31.2 to
 88.8 per cent recall of hand-verified board content when the prompt asks for a full
 transcription instead of keywords, and from none of 67 numbers to 65 of 67, while a model
 less than half the size reaches 85.4 per cent. Board content can be made to reach the
@@ -33,9 +33,9 @@ notes, which carry 89.1 per cent of the board items against 37.2 for a conventio
 summarisation prompt.
 
 Several approaches did not work, and that is part of the result. Dual recogniser fusion
-gives 0.7 percentage points at p = 0.32, biasing the decoder towards board words halves
-term recall at every non-zero strength, using occlusion as a pointer is not supported at p
-= 0.054 and p = 0.159, the display clean-up makes the model read boards very slightly
+gives 0.7 percentage points at p = 0.32, and biasing the decoder towards board words halves
+term recall at every non-zero strength. Using occlusion as a pointer is not supported, at
+p = 0.054 and p = 0.159. The display clean-up makes the model read boards very slightly
 worse, and fine-tuning the speech model does not measurably improve board-content recall
 in the notes.
 
@@ -50,43 +50,48 @@ record items than the one with 15.8 per cent, for the same mechanical reason.
 
 Stated as narrowly as the evidence allows, the contributions are the following.
 
-A hand-checked corpus of code-mixed classroom speech in romanized Banglish: 44 lecture
-recordings totalling 8.33 hours, of which 28 lectures and 5.15 hours are transcribed word
-by word against the audio according to a written standard, with 609 timed segments and
-about 39,100 words. No comparable corpus of spontaneous Bengali-English classroom speech
-transcribed in the Roman alphabet could be found, and the nearest published corpora in
-this language pair are synthetic.
+\begin{enumerate}
+  \item A hand-checked corpus of code-mixed classroom speech in romanized Banglish.
+        Forty-four lecture recordings totalling 8.33 hours, of which 28 lectures and 5.15
+        hours are transcribed word by word against the audio according to a written
+        standard, with 609 timed segments and about 39,100 words. No comparable corpus of
+        spontaneous Bengali-English classroom speech transcribed in the Roman alphabet
+        could be found, and the nearest published corpora in this language pair are
+        synthetic.
 
-A measured speech recognition result for this variety under a strict evaluation design.
-Whole lectures are held out, references are human, the settings come from a procedure
-written down before any run, and two seeds are reported for every configuration including
-the one that diverged. Two designs are reported and labelled, one with the test lecturers
-heard in training and one with an entirely unseen lecturer.
+  \item A measured speech recognition result for this variety under a strict evaluation
+        design. Whole lectures are held out, references are human, the settings come from
+        a procedure written down before any run, and two seeds are reported for every
+        configuration including the one that diverged. Two designs are reported and
+        labelled, one with the test lecturers heard in training and one with an entirely
+        unseen lecturer.
 
-A whiteboard reconstruction that generates nothing, read into text by a vision-language
-model and scored against hand-verified records. The reconstruction itself is engineering
-assembled from known parts. What is new is the combination with a vision-language reader
-and the measurement of it, including 45 boards and 436 items verified by hand and 98
-boards checked for missing writing.
+  \item A whiteboard reconstruction that generates nothing, read into text by a
+        vision-language model and scored against hand-verified records. The reconstruction
+        itself is engineering assembled from known parts, and what is new is the
+        combination with a vision-language reader and the measurement of it, including 45
+        boards and 436 items verified by hand and 98 boards checked for missing writing.
 
-A demonstration that the prompt rather than the model size is what makes a vision-language
-model read a handwritten board, at 57.6 points against 5.3, with the choice re-checked on
-a held-out half of the boards.
+  \item A demonstration that the prompt rather than the model size is what makes a
+        vision-language model read a handwritten board, at 57.6 points against 5.3, with
+        the choice re-checked on a held-out half of the boards.
 
-A note generator whose claims can be checked. Board content is supplied as text rather
-than recalled, non-lecture material is confined to a labelled box, quotations are verified
-word for word against the transcript and deleted when they fail, and references to
-numbered regions of the board are checked against the regions that exist. Each of these is
-counted in the output file of every page.
+  \item A note generator whose claims can be checked. Board content is supplied as text
+        rather than recalled, non-lecture material is confined to a labelled box,
+        quotations are verified word for word against the transcript and deleted when they
+        fail, and references to numbered regions of the board are checked against the
+        regions that exist. Each of these is counted in the output file of every page.
 
-A methodological finding about evaluating code-mixed systems, in which measures assembled
-from English strings reward a model that translates and penalise one that transcribes.
-This was observed twice in unrelated measures within one project, it is consistent with the
-published literature on code-switched evaluation, and it is reported with the mechanism
-and the numbers.
+  \item A methodological finding about evaluating code-mixed systems, in which measures
+        assembled from English strings reward a model that translates and penalise one
+        that transcribes. This was observed twice in unrelated measures within one
+        project, it agrees with the published literature on code-switched evaluation, and
+        it is reported with the mechanism and the numbers.
 
-A set of measured negative results, since fusion, decoder bias, occlusion as a pointer and
-the display clean-up were all built, all measured and all reported as they came out.
+  \item A set of measured negative results, since fusion, decoder bias, occlusion as a
+        pointer and the display clean-up were all built, all measured and all reported as
+        they came out.
+\end{enumerate}
 
 \section{Recommendations for Future Work}
 

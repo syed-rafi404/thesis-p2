@@ -20,13 +20,13 @@ Chapter 5 shows this paying off, because the four stages turned out to contribut
 differently. Keeping the stages apart also means only one model is in memory at a time,
 which matters on the hardware available. Finally, when the board is read into text as a
 separate step the note-writing model receives the board as text rather than having to
-remember it, so a fact in the note can be traced to the board; when one model both looks
+remember it, so a fact in the note can be traced to the board. When one model both looks
 at the image and writes the note, a fact cannot be traced to its source.
 
 Four rules were fixed before building and were not relaxed. Each stage is a separate
 program with a file interface, and a stage is skipped when its output already exists, so
 an interrupted run continues and a single stage can be replaced without touching the
-others. Nothing in the image is invented: the board reconstruction may leave a visible
+others. Nothing in the image is invented. The board reconstruction may leave a visible
 gap but may not fill one with plausible pixels. The board records used for scoring sit in
 a folder that the note generator refuses to read, enforced in code rather than by
 discipline. And every reported number is produced by a command recorded beside it.
@@ -41,21 +41,20 @@ the next stage reads.}
 \label{fig:fig-4-1-pipeline}
 \end{figure}
 
-In stage one the audio is extracted and cut into clips, a LoRA adapter trained on the
-corpus is attached to Whisper large-v3-turbo, and the adapted model writes a timestamped
-transcript in romanized Banglish.
+The first two stages work on the two halves of the recording independently. In stage one
+the audio is extracted and cut into clips, a LoRA adapter trained on the corpus is
+attached to Whisper large-v3-turbo, and the adapted model writes a timestamped transcript
+in romanized Banglish. In stage two frames are extracted at a fixed interval, erase events
+split the lecture into eras with one board per era, and within an era each tile of the
+frame is taken from a moment when the lecturer was not standing in front of that tile.
 
-In stage two frames are extracted at a fixed interval, erase events split the lecture
-into eras with one board per era, and within an era each tile of the frame is taken from
-a moment when the lecturer was not standing in front of that tile.
-
-In stage three the blocks of writing are found on the clean board, a numbered coloured
-box is drawn around each, and Qwen2.5-VL names and transcribes each numbered box.
-
-In stage four a language model receives each board's boxes, the board text and the part
-of the transcript belonging to that board, and returns one section of notes that points
-at the boxes. Checkers then remove unverifiable quotations and bad box references, and
-the sections are assembled into a page.
+The last two stages turn the board into text and then combine the two halves. In stage
+three the blocks of writing are found on the clean board, a numbered coloured box is drawn
+around each, and Qwen2.5-VL names and transcribes each numbered box. In stage four a
+language model receives each board's boxes, the board text and the part of the transcript
+belonging to that board, and returns one section of notes that points at the boxes.
+Checkers then remove unverifiable quotations and bad box references, and the sections are
+assembled into a page.
 
 \section{Preliminary Design and Alternatives Considered}
 
@@ -66,7 +65,7 @@ reasoning where the table cannot.
 
 For the speech stage the two rejected-by-measurement options are the informative ones.
 Running an English recogniser and a Bengali recogniser and merging their outputs was built
-and measured on nine lectures: the merged output scored 0.7 percentage points above the
+and measured on nine lectures. The merged output scored 0.7 percentage points above the
 baseline on the term measure, which a paired permutation test puts at p = 0.32, while its
 word error rate was far worse at 146.8 per cent against 82.6. Biasing the decoder towards
 words seen on the board, implemented as a logits processor with a strength parameter,
@@ -89,7 +88,7 @@ whether each tile found a clear moment, and that is counted exactly.
 
 For reading the board and for writing the note, the choices were settled by the
 measurements reported in Chapter 5 and are summarised in the table. One option remains
-untested: the code supports asking the vision-language model to draw the boxes itself, but
+untested. The code supports asking the vision-language model to draw the boxes itself, but
 our own box finder was kept because it is deterministic and its output can be drawn onto
 the real image and checked by eye.
 
@@ -146,23 +145,22 @@ attributed one lecture to the wrong lecturer, which made a result look better th
 was; the error is described in Section \ref{sec:asr-loso}.
 
 Before transcription began, a written standard was produced, and every transcript is
-checked against it by a validation script. Its main rules are that each line is a timed
-segment written as \texttt{[M:SS-M:SS]} followed by the text; that segments are 10 to 25
-seconds long and never longer than 30, because Whisper processes a 30 second window; that
-there are no gaps and no overlaps; that fillers such as \textit{aaa}, \textit{mane} and
-\textit{tahole} are kept, because the goal is a transcript of the speech rather than a
-tidied version of it; that the text is ASCII only; and that a table of canonical spellings
-fixes the most common words so that three transcribers do not write the same word three
-ways. Appendix A gives the standard in full. Transcription was done by hand, with every
+checked against it by a validation script. Each line is a timed segment written as
+\texttt{[M:SS-M:SS]} followed by the text. Segments run 10 to 25 seconds and never longer
+than 30, because Whisper processes a 30 second window, and there are no gaps and no
+overlaps between them. Fillers such as \textit{aaa}, \textit{mane} and \textit{tahole} are
+kept, because the goal is a transcript of the speech rather than a tidied version of it.
+The text is ASCII only, and a table of canonical spellings fixes the most common words so
+that three transcribers do not write the same word three ways. Appendix A gives the
+standard in full. Transcription was done by hand, with every
 word checked against the audio by a member of the team, at a cost of about one hour of
 work for ten minutes of video.
 
 \subsection{Data Cleaning}
 
 Four cleaning problems occurred and each is handled by a script rather than by hand
-editing.
-
-The segment parser accepts a timestamp only in the exact form \texttt{[1:34-1:53]}. In an
+editing. The first concerns timestamps. The segment parser accepts a timestamp only in
+the exact form \texttt{[1:34-1:53]}. In an
 earlier version of the corpus, 9 of 156 timestamps carried stray spaces, written for
 example as \texttt{[4:22- 4:45 ]}. Those lines did not register as segment boundaries, so
 their text joined the previous segment and ten evaluation clips carried more words than
@@ -170,16 +168,16 @@ their audio. The validator now reports every unreadable timestamp and can repair
 keeping a backup of the original file. The effect of the defect on the affected result
 was measured rather than assumed and is reported in Section \ref{sec:asr-loso}.
 
-A transcript still being written is marked by its file name and skipped until the marker
+The second is incomplete files. A transcript still being written is marked by its file
+name and skipped until the marker
 is removed. Files were also delivered at one point with a placeholder extension that made
 them invisible to the pipeline, which was found by counting how many transcripts the
 loader actually saw rather than how many files existed.
 
-Where the lecturer header was missing it was filled from the voice check rather than
+The third is missing lecturer labels. Where the header was absent it was filled from
+the voice check rather than
 guessed, and any recording where the voice check was not confident was left for a person
-to decide.
-
-A preflight script refuses to start training if a transcript has no matching video, if two
+to decide. A preflight script then refuses to start training if a transcript has no matching video, if two
 different videos share a name, if a transcript is longer than its video, or if a lecturer
 label disagrees with the voice check. It runs as a hard gate before every training run,
 because all of these faults corrupt training silently rather than crashing.
@@ -193,7 +191,7 @@ clip becomes one training example of an audio array and its reference text. The 
 turned into a log-Mel spectrogram by the model's own feature extractor and the reference
 text is tokenised by the model's own tokeniser, so no custom preprocessing can differ
 between training and evaluation. For the vision side, frames are extracted at a fixed
-interval and scaled so that the longer side is at most 1920 pixels; a 10 second interval
+interval and scaled so that the longer side is at most 1920 pixels. A 10 second interval
 suffices for lecturers who move about, while a 2 second interval gives each tile five
 times as many chances to see the board clear for a lecturer who stands still.
 
@@ -217,9 +215,8 @@ frames means too few chances for a tile to see the board clear.
 
 \subsection{The splits}
 
-Three separate splits are used and they must not be confused.
-
-The validation split chooses settings. Three lectures, one per lecturer, were drawn with a
+Three separate splits are used and they must not be confused. The validation split
+chooses settings. Three lectures, one per lecturer, were drawn with a
 fixed seed before any tuning began and recorded in a file that the data preparation script
 reads. They are BanglaASR2 from lecturer A, BanglaASR12 from B and BanglaASR14 from C,
 34.2 minutes in total, used only to score tuning runs and locked out of every test set
@@ -307,7 +304,7 @@ needed from about 18 GB to 6.1 GB at the cost of recomputing activations. Every 
 done with two random seeds and both are reported.
 
 The reported numbers use plain greedy decoding. The loop safeguard from the Whisper paper
-is also available and is reported beside the main result: a hypothesis whose gzip
+is also available and is reported beside the main result. A hypothesis whose gzip
 compression ratio exceeds 2.4 is decoded again with sampling at rising temperatures until
 the output stops looping. It reads only the hypothesis, never the reference, and is
 applied identically to the base and the adapted model.
@@ -315,10 +312,17 @@ applied identically to the base and the adapted model.
 The settings come from a plan committed to version control before any tuning run, which
 fixes the validation lectures, the order of the search and the rule for accepting a
 winner. The plan has five stages, run in order, each starting from the winner of the
-previous one: learning rate over 5e-4, 1e-3 and 2e-3; LoRA rank over 8, 16 and 32 with the
-scaling factor at twice the rank; the adapted layers, comparing the query and value
-projections against all four attention projections; the number of epochs, taken from the
-validation loss curve; and seed stability, by repeating the winner with a second seed.
+previous one.
+
+\begin{enumerate}
+  \item Learning rate, over 5e-4, 1e-3 and 2e-3.
+  \item LoRA rank, over 8, 16 and 32, with the scaling factor at twice the rank.
+  \item The adapted layers, comparing the query and value projections against all four
+        attention projections.
+  \item The number of epochs, taken from the validation loss curve.
+  \item Seed stability, by repeating the winner with a second seed.
+\end{enumerate}
+
 Everything else is held fixed. The score is the median per-clip character error rate on
 the validation clips, and a candidate replaces the default only if it beats the default by
 more than the spread between two seeds of the same configuration, which is the plan's way
@@ -338,7 +342,7 @@ clear. The chosen tiles are blended back together with a raised-cosine weight so
 seams do not show.
 
 The method works because the lecturer occupies one place at a time, which is also its
-stated limit: it needs the lecturer to move. Where a tile never finds a clear moment the
+stated limit. It needs the lecturer to move. Where a tile never finds a clear moment the
 residue is left visible and reported rather than filled in.
 
 Locating the lecturer has three implementations and the third is used. The simplest takes
@@ -355,7 +359,7 @@ digits of a binary number that the old mask reduced to four.
 A separate clean-up step flattens the background and fades everything not clearly darker
 than its surroundings to white, in the manner of the whiteboard mode of a document
 scanner, and blanks the pixels the mosaic flagged as the lecturer. Because it replaces
-background pixels, a cleaned board is not unmodified camera output: the strokes are camera
+background pixels, a cleaned board is not unmodified camera output. The strokes are camera
 pixels and the background is not, and the report says so wherever a cleaned board is
 shown. Section \ref{sec:board-cleanup} reports the measured effect of this step on how
 well the vision-language model reads the board, which was not the expected one.
@@ -436,7 +440,7 @@ by number and colour, and quotes the lecturer between two and five times. Materi
 standard for the topic but that the lecturer did not say is allowed only inside a section
 headed \texttt{Background}, which the page builder renders as a dashed, labelled aside. This
 is the controlled version of the failure that produced the wrong textbook definition in
-the first version of the pipeline: the material is still generated, but it is fenced and
+the first version of the pipeline. The material is still generated, but it is fenced and
 labelled rather than passing as something the lecturer said.
 
 Three checks then run over the generated text. The quote checker searches the transcript
@@ -456,7 +460,7 @@ transcript, so the checker does not run on the English files. Every output file 
 which of the two it is, and Chapter 5 states the resulting claim precisely. The English
 note is produced by writing the section in Banglish first and then translating it with the
 same model, keeping the Markdown structure, the tables, the box numbers and the colours. A
-defect in this route was found and fixed: the translation left 97 section labels in
+defect in this route was found and fixed. The translation left 97 section labels in
 Banglish across the thirteen scored files and returned three summary lines in capital
 letters, both repaired by a mapping script that does not call the model, since the labels
 are a fixed set written by our own prompt.
@@ -477,7 +481,7 @@ separately and reporting the median, because a single runaway output can push a 
 100 per cent. The base model and the adapted model are run on exactly the same clips, so
 the comparison is paired and is tested with a Wilcoxon signed-rank test and a sign test,
 and the number of runaway clips is reported for both. Two spelling tolerant variants are
-also computed, with the rules committed before any rescoring: the first maps both sides to
+also computed, with the rules committed before any rescoring. The first maps both sides to
 the transcription guide's canonical spellings and collapses repeated vowels, and the
 second additionally counts a word as correct at 80 per cent character similarity, so words
 of three letters or fewer must still match exactly.

@@ -73,7 +73,7 @@ generated notes.
 
 An instruction tuned language model such as Qwen2.5-7B-Instruct can be given a transcript
 and asked for structured notes \cite{qwen2025qwen25}. The risk is known from the
-summarisation literature: models produce fluent text that the input does not support, and
+summarisation literature. Models produce fluent text that the input does not support, and
 a study of state of the art abstractive summarisers found that a large share of generated
 summaries contain hallucinated content \cite{maynez2020faithfulness}. Faithfulness asks
 whether the output follows the input given to the model; factuality asks whether it is
@@ -102,7 +102,7 @@ than learned from the data.
 
 Four further terms recur in Chapters 4 and 5. The training set is what the model learns
 from, the validation set is used to choose settings such as the learning rate, and the
-test set is used once at the end to report the result; choosing settings by looking at the
+test set is used once at the end to report the result. Choosing settings by looking at the
 test set makes the reported number optimistic, because the choice has been fitted to data
 that is supposed to be unseen. Hyperparameter tuning is the search over settings, and it
 is defensible only when scored on validation data, with the order of the search and the
@@ -159,7 +159,7 @@ For South Asian languages, Chadha et al. built code-switched recognition for Ind
 languages using wav2vec 2.0 with language identification, reporting word error rates of
 21.77 for Hindi-English and 28.27 for Bengali-English \cite{chadha2022indic}. Those
 figures are much lower than the ones reported here, but not because their system is
-better at this task: their transcription target is the native script for the Bengali
+better at this task. Their transcription target is the native script for the Bengali
 parts, their audio comes from a different and generally cleaner domain, and their test
 split is not made of whole unseen lectures. Error rates across different datasets and
 transcription targets are not comparable, and are not presented as such in this thesis.
@@ -230,7 +230,7 @@ model for code-mixed text with disfluencies and rendering it with text-to-speech
 spontaneous data, but it is not spontaneous speech. The Indic work uses real speech but
 targets the native script \cite{chadha2022indic}. The community model
 \texttt{whisper-small-benglish} is closest in intent, since its card names lecture notes
-among its uses, but it is a model card rather than a study: it is trained on about 1.6
+among its uses, but it is a model card rather than a study. It is trained on about 1.6
 hours and evaluated on a random ten per cent of the same clips, so the same speakers and
 very likely the same recordings appear on both sides of the split, and no example output
 is given, so its orthography cannot be confirmed. A public repository by Asrarul applies
@@ -259,7 +259,7 @@ too strict for speech that can be correctly written in more than one way
 
 The common thread is that a measure built around one script or one vocabulary misjudges a
 system that legitimately produces another. This thesis reaches the same conclusion from a
-different direction: its inherited term based measure counts a fixed list of English
+different direction. Its inherited term based measure counts a fixed list of English
 words, so a model that transcribes the mixed speech faithfully emits fewer of them and
 scores worse for being right. Section 5.4.2 quantifies the effect.
 
@@ -297,7 +297,7 @@ placed beside the classroom targeted here. Existing systems assume slides, which
 that can be read reliably or taken directly from a file, whereas our lecturers write on a
 whiteboard and stand in front of what they write. The datasets and systems are also built
 for English or Chinese and for speech that stays in one language. The user study in
-NoteIt points at something this thesis has not done: whether notes are good is a question
+NoteIt points at something this thesis has not done. Whether notes are good is a question
 about readers, and it is answered by asking readers.
 
 Results from vision-language models in this area are also strongly affected by the
@@ -309,28 +309,29 @@ was worth far more than changing the size of the model.
 
 \section{Summary of Key Findings}
 
-The review supports four conclusions.
-
-The speech problem is real and is not solved by anything available. Bengali speech
+The review supports four conclusions. The first is that the speech problem is real and is
+not solved by anything available. Bengali speech
 recognition is mature but writes the wrong script for this purpose. Code-switched
 recognition for Bengali and English exists, but the published systems either translate
 into English, train on synthetic speech, or target the native script, and the one
 community model that matches the intent most closely is undocumented and evaluated on a
 random split of its own clips.
 
-The board problem is well studied, and this thesis should not claim otherwise. Extracting
+The second is that the board problem is well studied, and this thesis should not
+claim otherwise. Extracting
 handwritten content from fixed camera lecture video has a long literature with strong
 results on public datasets. What is new here is not the extraction but what follows it,
 which is reading the rebuilt board with a vision-language model and carrying numbered
 regions of it into a generated note.
 
-Measurement is an open problem in this area rather than a detail. Several independent
+The third is that measurement is an open problem in this area rather than a detail. Several independent
 groups have found that standard word error rate misjudges code-switched output and have
 proposed transliteration based or multi-reference alternatives. The same class of problem
 appears twice in this thesis, once in the inherited term measure and once in the note
 quality measure.
 
-Lecture note generation with large models is active but assumes a different classroom.
+The last is that lecture note generation with large models is active but assumes a
+different classroom.
 Existing systems expect slides and a single language, and nothing found combines
 code-mixed speech, a handwritten whiteboard and generated notes in two languages. Table
 \ref{tab:gap} states the gap in the form the rest of the thesis uses.

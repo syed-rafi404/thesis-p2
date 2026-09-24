@@ -102,7 +102,7 @@ attention projections both diverged during tuning.
 The 1e-3 rows also require a disclosure. The pre-registered procedure selected 2e-3, and
 the runs at 1e-3 were launched after the divergence had been seen, so that choice was not
 blind and 1e-3 is not presented as the pre-registered winner. What can be claimed is
-narrower: the runner-up rate from the same tuning table is stable across two seeds on the
+narrower. The runner-up rate from the same tuning table is stable across two seeds on the
 test set while the chosen rate is not. The selection rule itself was not changed and
 remains recorded in the committed tuning plan.
 
@@ -145,7 +145,7 @@ spread between two seeds.
 Three findings follow from this table. More adapter capacity hurts at this learning rate,
 since rank 32 diverged outright and adapting all four attention projections diverged as
 well, so five hours of speech does not support more trainable parameters. Validation loss
-is a poor guide to the metric that is reported: the loss is lowest at 5 epochs, at 1.666
+is a poor guide to the metric that is reported. The loss is lowest at 5 epochs, at 1.666
 against 1.801 at 8 epochs, so stage 4 retrained there and the character error rate got
 worse, from 33.6 to 39.4 per cent. And the margin is not large next to seed noise, at 8.6
 points ahead of the default with a 5.4 point spread from a single seed change, measured on
@@ -169,6 +169,8 @@ All figures reported in this thesis are the plain greedy ones.
 \label{sec:asr-spelling}
 
 The improvement is not evenly spread, and the pattern follows the training data.
+Table 
+ef{tab:perlecture} breaks the result down by test lecture.
 
 \begin{table}[htbp]
 \centering
@@ -286,7 +288,7 @@ project the median is 100 per cent and the mean 98.4, with the worst board at 76
 Short eras give a tile fewer chances to be seen clear, and six eras are under eight
 frames. A lecturer who stands in one place is the other cause, and the worst lecture in
 the set is the one where the lecturer holds a single position longest. That second cause
-was addressed rather than excused: extracting frames every 2 seconds instead of every 10
+was addressed rather than excused. Extracting frames every 2 seconds instead of every 10
 raised the number of his boards reaching 95 per cent clear from 1 to 5 out of 10 and
 improved the worst board from 59 to 88 per cent.
 
@@ -323,7 +325,7 @@ The nine real losses are small. Seven are a single token or one diagram, such as
 whole subnetting tree is absent. Counting only the boards whose source frames were usable,
 which drops the four mid-erase eras and the three out-of-focus ones, the reconstruction is
 complete on 82 of 91 boards, or 90.1 per cent. The four mid-erase cases have a different
-cause and a different fix: the era boundary was placed while the lecturer was still
+cause and a different fix. The era boundary was placed while the lecturer was still
 wiping, so every frame in that era shows a half erased board, and holding the era open
 until the wipe finishes would correct it.
 
@@ -430,7 +432,7 @@ Across the 13 Banglish files the checker kept 31 quotations that appear word for
 the transcript and deleted 8 that do not, a rejection rate of 21 per cent. The English
 files contain 27 quotations given as translations, and the word-for-word check does not
 run on them, because a translation cannot be matched against a Banglish transcript. The
-supportable claim is therefore specific: quotations in the Banglish notes are verified
+supportable claim is therefore specific. Quotations in the Banglish notes are verified
 word for word, and quotations in the English notes are model translations and are not
 verified. One reference to a box that does not exist survived across the 13 Banglish
 files, and it is counted in the output rather than hidden.
@@ -453,7 +455,7 @@ fine-tuning instead.
 A sweep of the decoder bias strength from 0 to 2.0 on one lecture gave term recall of 8.8
 per cent with the bias off and 4.1 per cent at every non-zero setting, with the transcript
 truncated from 279 to 149 characters. Every non-zero strength produced byte-identical
-output. The shape of that result matters more than its size: this is not a tuning problem
+output. The shape of that result matters more than its size. This is not a tuning problem
 with a better setting waiting to be found, because the mechanism fails as soon as it
 engages. The recorded output gives the optimal bias as zero, so the experiment concluded
 against itself.
@@ -521,7 +523,7 @@ with a sign test at p = 0.23 and a Wilcoxon test at p = 0.056. On the third lect
 boards it moves the other way, from 89.7 to 85.1. This is a trend on one set and absent on
 the other, so the prompt is what makes the model read the board and the reconstruction is
 what makes the board usable in a note. Two limits of the reconstruction were exposed by
-the hand check: glare from the ceiling lights sits in every frame, so no choice of frame
+the hand check. Glare from the ceiling lights sits in every frame, so no choice of frame
 removes it, and content visible in only one frame can be lost, which happened to a binary
 number that was fully written at one moment, covered ten seconds later and wiped ten
 seconds after that.
@@ -569,7 +571,7 @@ Off-the-shelf, no board text to board text & +4.9 pp & 10 / 4 & p = 0.18 & p = 0
 None of the four comparisons is significant. Counted by board, the two speech conditions
 split 7 to 6 with board text and 10 to 9 without it, which is as close to a coin toss as
 this data can produce. The plus 10.6 points in the item totals is worth taking apart,
-because quoting it as the benefit of fine-tuning would be wrong: of the 37 items gained,
+because quoting it as the benefit of fine-tuning would be wrong. Of the 37 items gained,
 two boards of one lecture give 50 between them, and across the other 31 boards the
 fine-tuned transcript is 13 items worse.
 
@@ -611,8 +613,8 @@ number-heavy boards and indistinguishable from the direct route on ordinary ones
 \section{Final Design Adjustments}
 \label{sec:adjustments}
 
-Evaluation changed the design in several places, and this section records what changed,
-what evidence forced it and what is still wrong.
+Evaluation changed the design in several places. What follows is what changed, what
+evidence forced it, and what is still wrong.
 
 \subsection{Changes made in response to a measurement}
 
@@ -633,7 +635,7 @@ Each language version is now written wholly in its own language. The first desig
 a mock-up in which an English note quoted the lecturer in Banglish with a translation
 beside it, and reading the first real notes showed that an English-medium reader cannot
 use a Banglish quotation. The consequence for what can be claimed is stated rather than
-glossed over: the word-for-word check runs on the Banglish notes and cannot run on the
+glossed over. The word-for-word check runs on the Banglish notes and cannot run on the
 English ones. The English note is produced by translating the Banglish note, selected on
 the measurement in Section \ref{sec:2x2} with the caveat about the four dense boards.
 
@@ -654,25 +656,25 @@ disclaimer, which defeats the purpose of the box.
 \subsection{What is still wrong}
 \label{sec:known-defects}
 
-Four defects are known, counted and not fixed.
-
-The box finder treats board furniture as content. One room's whiteboard carries a
+Four defects are known, counted and not fixed. The first is that the box finder treats
+board furniture as content. One room's whiteboard carries a
 manufacturer's sticker, and because it is dark and separate the box finder puts a box
 around it on every board of that lecture. It is cosmetic, costs nothing in any
 measurement, and would be fixed by ignoring a region that appears unchanged across every
 era of a lecture.
 
-Some quotations cannot be translated and are dropped. On the thirteen scored lectures the
+A second defect is that some quotations cannot be translated and are dropped. On the thirteen scored lectures the
 translation route kept 15 quotations and dropped 19, and over all 42 lectures that have
 notes it kept 60 and dropped 49. A dropped quotation costs the page a lecturer's voice. It
 is counted in the output file of every page rather than being silent, and it is the
 largest remaining defect in the English version.
 
-A few references to boxes that do not exist survive. Across the 13 scored Banglish files
+A third is that a few references to boxes that do not exist survive. Across the 13 scored Banglish files
 the box reference check removed all but one, and over all 42 lectures ten survive in each
 language.
 
-Four era boundaries fall in the middle of an erase, as described in Section
+The last is that four era boundaries fall in the middle of an erase, as described in
+Section
 \ref{sec:board-coverage}. The fix is to hold the era open until the wipe finishes.
 
 One further defect is not a software fault and cannot be fixed by a checker. In the notes
@@ -769,7 +771,7 @@ Bengali-English code-switched speech systems. The comparison cannot be made on t
 numbers, because two of the four are trained and evaluated on synthetic speech, one
 targets the Bengali script and one is an undocumented public model evaluated on a random
 split of its own clips. What can be compared is the design of the evaluation, and there
-this work is stricter in three ways: whole lectures are held out, so no part of a test
+this work is stricter in three ways. Whole lectures are held out, so no part of a test
 recording appears in training; the references are checked word by word by a person rather
 than generated; and the same system is reported under two designs, one with the test
 lecturers heard in training and one with an entirely unseen lecturer.
@@ -779,7 +781,7 @@ and Zanibbi \cite{davila2017whiteboard} and Kota et al. \cite{kota2019generalize
 and binarise handwriting from fixed camera lecture video and report component level recall
 above 94 per cent on public datasets. This work does not beat them at that task and does
 not attempt to, since its reconstruction is engineering assembled from known parts. What
-is added is the step after it: reading the rebuilt board into text with a vision-language
+is added is the step after it. Reading the rebuilt board into text with a vision-language
 model, scoring that against hand-verified records, and carrying numbered regions of the
 board into a generated note.
 
@@ -790,7 +792,7 @@ experiment. Within the final result the lecturer with the least training speech 
 the worst test lecture, at 52 per cent character error against 12 to 16 for the others.
 Across designs, holding out an entire lecturer and training on 80 to 114 minutes gives
 50.3 per cent character error, while holding out whole lectures from known lecturers and
-training on 4.10 hours gives 15.8; the two differ in both the amount of data and the
+training on 4.10 hours gives 15.8. The two differ in both the amount of data and the
 difficulty of the question, so neither isolates the effect of data volume. An earlier
 scaling curve on the smaller model, at 0.30, 0.60 and 0.93 hours, gave 84.6, 80.6 and 83.3
 per cent word error, which is flat within the 4.5 point run-to-run noise after the first
@@ -808,7 +810,7 @@ a transcription result.
 The earlier phase of the project reported a fusion improvement of 5.7 percentage points
 with p = 0.003 and a large effect size, an ablation table, a bias sweep and a set of
 per-video statistics, none of which was produced by any code in the project. They were
-re-derived where a derivation was possible and retired where it was not: the measured
+re-derived where a derivation was possible and retired where it was not. The measured
 fusion effect is 0.7 points at p = 0.32, two of the ablation rows described modes the
 pipeline does not have, and a failure-mode breakdown of five neat percentages summing to
 100 had no analysis behind it and was removed rather than reconstructed. This is recorded
@@ -831,7 +833,7 @@ The board result is a result about prompting rather than about model capability,
 same model on the same images moves from 31.2 to 88.8 per cent recall purely on how it is
 asked, and a model less than half the size reaches 85.4 per cent. Anyone building a system
 of this kind should spend effort on the prompt before spending it on a bigger model. The
-note result is that board content can be made to reach the page: the annotated notes carry
+note result is that board content can be made to reach the page. The annotated notes carry
 89.1 per cent of the board items against 37.2 for a conventional summarisation prompt,
 while remaining a readable document rather than a paste of extracted text.
 
@@ -858,7 +860,7 @@ reads the board recovers them.
 
 \subsection{Limitations and threats to validity}
 
-The limitations are listed together so that none has to be found by a reader.
+The limitations are listed together rather than spread through the chapter.
 
 \begin{enumerate}
   \item No human evaluation of the notes. The measure counts whether board content reached

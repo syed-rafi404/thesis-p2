@@ -37,7 +37,7 @@ writes in Banglish.
 Speech is also only half of a whiteboard lecture. The classrooms recorded for this work
 use no slides. Definitions, truth tables, SQL queries, subnetting calculations and
 diagrams appear on the board and are then discussed, so a note taken from the audio alone
-loses them. Recovering the board from the video is not a screenshot problem either: the
+loses them. Recovering the board from the video is not a screenshot problem either. The
 lecturer stands in front of what he has just written, the ceiling lights leave glare on
 the surface, and the board is wiped and reused several times in one class.
 
@@ -99,12 +99,11 @@ code-mixed speech, in a room with a whiteboard and no slides, produce a lecture 
 is faithful to what the lecturer said and to what the lecturer wrote.
 
 Four smaller problems make this difficult, and each was confirmed by measurement on our
-own recordings before any solution was attempted.
-
-Existing systems do not transcribe the speech. On the six lectures held out for testing,
+own recordings before any solution was attempted. The first is that existing systems do
+not transcribe the speech. On the six lectures held out for testing,
 off-the-shelf Whisper large-v3-turbo produces a median character error rate of 67.7 per
 cent and a median word error rate of 93.9 per cent against human references. The failure
-is systematic rather than random: the model translates into English and, on thirteen of
+is systematic rather than random. The model translates into English and, on thirteen of
 the 177 test clips, repeats a phrase until it reaches the token limit. Table
 \ref{tab:motivating_example} shows one segment of a digital logic class in three
 versions.
@@ -132,19 +131,20 @@ amader bujha easier hoye chabe.} \\
 \end{tabular}
 \end{table}
 
-The person who wrote on the board is standing in front of it. Measured over 79 frames of
+The second is that the person who wrote on the board is standing in front of it. Measured over 79 frames of
 one lecture, the lecturer covers 23.5 per cent of the writing surface in the median frame
 and 7.0 per cent in the clearest one, and no frame is below 5 per cent. There is no
 moment at which a clean photograph of the board can simply be taken.
 
-A summarising model writes from memory rather than from the lecture. The first version of
+The third is that a summarising model writes from memory rather than from the
+lecture. The first version of
 this pipeline asked a language model for clear notes on the lecture, and the model
 produced textbook material, including a definition of a NAND gate that the lecturer never
 gave and that was wrong. Scored against hand-checked records of what was written on the
 board, those notes contained 37.2 per cent of the board items across 35 boards, and only
 six of the 67 numbers.
 
-The obvious ways of scoring the system are misleading. A term based F1 over a fixed list
+The last is that the obvious ways of scoring the system are misleading. A term based F1 over a fixed list
 of 82 English words, inherited from the earlier phase of this project, moves by 8.1
 percentage points between two training runs on identical data, and it moves in the wrong
 direction. A model that transcribes the mixed speech correctly emits fewer English words

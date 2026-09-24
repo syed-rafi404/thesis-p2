@@ -51,7 +51,7 @@ Section 4.4.5 \\
 Seven non-functional requirements constrain how those functions are delivered. The system
 runs on one consumer graphics card, with speech training fitting in 12 GB using gradient
 checkpointing and the vision-language work in 32 GB, and uses no cluster and no paid
-cloud service. It is reproducible: every reported number has a command that regenerates
+cloud service. It is reproducible. Every reported number has a command that regenerates
 it, and splits, seeds and chosen settings are written to disk beside the model. It is
 restartable, because each stage writes its output to a file and is skipped when that file
 exists. Nothing in the board image is fabricated, since every pixel comes from a real
@@ -64,18 +64,20 @@ project contains no raw recording.
 
 \subsection{Data requirements}
 
-Three kinds of data were needed, and the cost of producing them shaped the schedule.
+Three kinds of data were needed, and the cost of producing them shaped the schedule. The
+first is the recordings themselves. Forty-four classroom recordings were collected from
+three lecturers, 8.33 hours in total, each a fixed camera view of a lecturer at a
+whiteboard with no slides. The subjects are introductory programming, digital logic,
+databases and computer networking.
 
-Forty-four classroom recordings were collected from three lecturers, 8.33 hours in total,
-each a fixed camera view of a lecturer at a whiteboard with no slides. The subjects are
-introductory programming, digital logic, databases and computer networking.
-
-Twenty-eight of these lectures, covering 5.15 hours of speech in 609 timed segments and
+The second is the reference transcripts. Twenty-eight of these lectures, covering 5.15
+hours of speech in 609 timed segments and
 about 39,100 words, were transcribed by hand. Every transcript follows the written
 standard of Appendix A and is validated by a checking script. The remaining sixteen
 recordings have no transcript and support the vision side and the demonstration only.
 
-To measure whether board content reaches the notes, the contents of 45 boards were
+The third is the board records. To measure whether board content reaches the notes,
+the contents of 45 boards were
 written out by hand as lists of items, 436 items in total, each labelled as a number,
 name, code fragment, term or phrase. These records are used only for scoring and are
 never given to a model. A separate human check covered a further 98 boards and recorded
@@ -226,7 +228,7 @@ was never computed, and this project had that problem in its earlier phase. A
 significance value, an effect size, an ablation table and a set of per-video statistics
 had been written into figures and text without any code behind them. They were found
 during a review, they are listed in the project record as retired claims, and none of
-them appears in this report. Two rules were adopted afterwards and kept: a number may be
+them appears in this report. Two rules were adopted afterwards and kept. A number may be
 written only if a command in the project regenerates it, and results that go against the
 project's own hypothesis are reported in the same detail as results that support it.
 Chapter 5 contains several of the second kind.
@@ -235,7 +237,7 @@ A note generator can also state things the lecturer never said. The design conta
 controls for this, described in Section 4.4.4, and Section 5.3 reports how well each one
 held, including the counted number of quotations that had to be deleted and the one box
 reference that survived the checker. The controls reduce the risk without removing it.
-There is an academic integrity dimension as well: notes produced by a machine from a
+There is an academic integrity dimension as well. Notes produced by a machine from a
 lecture are a study aid, and if a student submits them as their own writing that is
 plagiarism in the ordinary sense, which is one reason generated material inside the notes
 is labelled.
