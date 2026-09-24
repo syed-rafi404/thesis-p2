@@ -33,7 +33,17 @@ If you are lost, start here. Updated 2026-09-23 (on the 3060).
    - **Record the final run** in RESULTS.md as a new section (base vs fine-tuned, both seeds, the
      test lectures, the chosen settings from the tuning), and add the **loop-safeguard comparison**
      (`evaluate.py --decode fallback` on the final adapters, ~20 min) as an extra row.
-2. **5090, tomorrow, about 2.5 hours** (the only GPU work left anywhere). `git pull` first.
+2. **DONE on the 5090, 2026-09-24 07:36-08:35, one hour instead of the 2.5 budgeted. No GPU work
+   is left anywhere.** (a) The 2x2 is in RESULTS.md 5.4 and **the answer is no: fine-tuning the ASR
+   does not measurably improve the notes.** By board, with board text it is 7 better and 6 worse
+   (sign p = 1.0), without it 10 and 9 (p = 1.0); the eye-catching +10.6 pp in the item totals is
+   two boards of BanglaASR9, and across the other 31 the fine-tuned transcript is 13 items worse.
+   The plan's expectation that the no-board row would show the ASR did not hold. (b) The 13 English
+   pages are rebuilt with translated quotes, 15 translated and 19 dropped as untranslatable.
+   (c) BanglaASR44 has notes in both languages, and the demo BanglaASR29 is rebuilt on
+   `transcript_final.txt` from the final adapter, tagged `_final`. **BanglaASR29 stays the demo:
+   video 44 is 30 minutes but yields only 2 board eras against 29's 7.** The original instructions,
+   kept as a record:
    - **a. Does fine-tuning the ASR improve the notes? (the 2x2 the user asked for, ~1 h 15 m.)**
      The 13 scored lectures, Banglish only, **batched with `--all` so the model loads once** - per
      lecture that is ~1.5 min, against ~9 min if `run_lecture.py` reloads it every time.
