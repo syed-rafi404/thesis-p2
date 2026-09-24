@@ -1356,6 +1356,25 @@ end on filler of the form "understanding X is essential for designing more compl
 three different boards of BanglaASR6 each restate what an AND gate does. They are true but carry
 little information, which is a readability point the recall metric cannot see.
 
+**Why the better transcript does not win: the metric favours the worse one (2026-09-24, 3060).**
+Scoring the two transcripts themselves against the same answer keys, before any notes are written:
+
+| Transcript, 35 boards, 349 items | Board items it contains |
+|---|---|
+| Off-the-shelf Whisper (CER 67.7%) | **106 (30.4%)** |
+| Fine-tuned Whisper (CER 15.8%) | 91 (26.1%), better on 1 board, worse on 9, sign p = 0.021, Wilcoxon p = 0.0069 |
+
+**The far worse transcript carries significantly more of the board's content**, and the mechanism is
+mechanical: off-the-shelf Whisper *translates into English*, and the answer keys are largely English
+technical strings ("NAND gate", "MySQL", "Create table Student_info", code). Its output is unusable
+as a transcript while still emitting those exact strings. The fine-tuned model writes what the
+lecturer actually said, in Banglish, and "amra NAND gate dekhbo" does not string-match an English
+key item. This is the same trap as the Term F1 finding in section 3: **a measure built out of
+English strings rewards a model that translates and penalises one that transcribes.** Report the 2x2
+with this beside it, or the null result will be read as "fine-tuning was pointless".
+
+Reproduce: `python scripts/score_board_recall.py --gt data/board_truth data/board_truth/draft_lectures1to6 --compare-names transcript_base.txt transcript_loso.txt`
+
 **What this null result does and does not say.** It says the fine-tuned transcript changes almost
 nothing that *board-content recall* can see, and that metric only asks whether facts written on the
 board reach the notes. It does **not** say the transcript is irrelevant to note quality: the metric
