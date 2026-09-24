@@ -501,6 +501,9 @@ Quote these in the data chapter.
 | Lecturer C | 15 lectures, 2.66 h, 429 segments, ~138 words/min |
 | Boards reconstructed in total | **145** across **40** lectures (35 + 10 + 100, the three board roots) |
 | Clear-tile fraction over all 145 | median **100%**, mean **98.4%**, worst board **76.6%** |
+| Shortest / longest recording | **3.4 min** / **36.4 min** |
+| Voice check, all 43 videos with a reference | same lecturer **0.979-0.998**, other lecturers **0.590-0.899**, smallest margin 0.087 |
+
 
 The 35-board figures in 4.1 (median 97.7% of tiles clear) are the lectures 1-9 subset and are the
 ones to quote for that set; the 145-board row above covers every board the project produced,
