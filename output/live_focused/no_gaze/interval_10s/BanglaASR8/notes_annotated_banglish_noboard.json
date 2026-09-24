@@ -1,0 +1,103 @@
+{
+  "lecture": "BanglaASR8",
+  "dataset_lecture": "BanglaASR12",
+  "language": "banglish",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "mock": false,
+  "transcript_file": "transcript_loso.txt",
+  "times_approximate": false,
+  "leakage_warning": "",
+  "boxes_file": "board_boxes.json",
+  "board_text_file": null,
+  "quotes_kept": 5,
+  "quotes_dropped": 0,
+  "invalid_box_refs": 0,
+  "quotes_translated": 0,
+  "quotes_word_for_word_checked": true,
+  "quotes_retranslated": 0,
+  "quotes_untranslated_dropped": 0,
+  "written_in": "banglish",
+  "translated_to_english": false,
+  "latex_rewritten": 0,
+  "colour_fixes": 0,
+  "inline_quotes_unverified": 0,
+  "sections": [
+    {
+      "board": 1,
+      "era": 1,
+      "from": "0:00",
+      "to": "0:50",
+      "transcript_chars": 840,
+      "boxes": 3,
+      "boxes_mentioned": [
+        1,
+        2,
+        3
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "so, suppose amai ekta jihita amra ekta khub simple aa example diye start korbo, toh amra table o ami ekta gula multiple tables naniye, ami just ekta table e focus kori."
+      ],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    },
+    {
+      "board": 2,
+      "era": 2,
+      "from": "1:10",
+      "to": "10:50",
+      "transcript_chars": 4932,
+      "boxes": 4,
+      "boxes_mentioned": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "so first e amar ekta database er nam dite hobe, suppose database er nam hocche university.",
+        "so eigula hocche amar table er head. toh etar moddhe amar sequentially kichu information sthor kora thakbe, right?",
+        "so, id. id te ki hobe? ekhane amar mostly thakbe shobshome ki? digits. so, ekhane amra likhte pari. integer. i n d. tarpore, first name. first name er je column ta ekhane ki thakbe? students der name thakbe. ekhon name ki diye tuiri hoy? different characters. abar name gula ki different length ero hoite pare. so characters er jonno amra, ekhane name ki thakbe?"
+      ],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    },
+    {
+      "board": 3,
+      "era": 3,
+      "from": "11:00",
+      "to": "13:00",
+      "transcript_chars": 1344,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "varchar hocche variable characters. so eikhane first name and second name doitai kintu amar sob somoy ekta character er variable e thakbe. so dui jaigate ami virtual likhe dilam.vurchar likhar shathe amar eikhang kar kichu length ta fix kore dite hoy. jemon ami ekhane koto maximum, koto length er akta nam rakhte hobe."
+      ],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    }
+  ]
+}

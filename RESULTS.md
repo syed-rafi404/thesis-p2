@@ -1277,6 +1277,64 @@ python scripts/score_board_recall.py --gt data/board_truth data/board_truth/draf
 python scripts/score_board_recall.py --runs output/speaker3_runs --gt data/board_truth/draft_speaker3   --notes-name notes_annotated_english_via_banglish_7b.md
 ```
 
+#### Does fine-tuning the ASR improve the notes? A 2x2 (2026-09-24)
+
+The question the user asked: the fine-tuned transcript is much better as a transcript (1.8, CER
+67.7% -> 15.8%), but does any of that reach the notes? Four builds, 13 scored lectures, Banglish
+only, everything else held constant. The board text is the other input, so it is crossed with the
+ASR to see which one the notes actually live on.
+
+**Item totals, 35 boards of lectures 1-9, 349 items:**
+
+| | With VLM board text | Without board text |
+|---|---|---|
+| **Fine-tuned ASR** | **89.1%** (311) | 70.8% (247) |
+| Off-the-shelf ASR | 78.5% (274) | 73.6% (257) |
+
+**The same four cells counted by board, which is the test that matters:**
+
+| Comparison | Item change | Better / worse boards | Sign test | Wilcoxon |
+|---|---|---|---|---|
+| With board text: base -> fine-tuned | +10.6 pp | 7 / 6 | **p = 1.0** | p = 0.81 |
+| Without board text: base -> fine-tuned | -2.8 pp | 10 / 9 | **p = 1.0** | p = 0.72 |
+| Fine-tuned ASR: no board -> board text | +18.3 pp | 13 / 7 | p = 0.26 | p = 0.16 |
+| Off-the-shelf ASR: no board -> board text | +4.9 pp | 10 / 4 | p = 0.18 | p = 0.052 |
+
+**Not one of the four is significant.** Read the by-board column, not the percentages.
+
+**The headline answer: fine-tuning the ASR does not measurably improve the notes.** With board text
+the boards split 7 better and 6 worse; without it, 10 and 9. Both are as close to a coin toss as
+the data can get.
+
+**Where the +10.6 pp actually comes from, and it is not the ASR in general.** Of the +37 items,
+**two boards of BanglaASR9 give +50 between them**, and across the other 31 boards the fine-tuned
+transcript is **13 items worse**. So the one apparently large ASR effect in the table is two boards
+out of thirty-five, with the rest pointing gently the other way. Quoting "+10.6 pp" as the benefit
+of fine-tuning for the notes would be wrong.
+
+**Why this is not a disappointment, and how to say it.** The board carries the facts the metric
+scores; the transcript carries the explanation, which this metric cannot see. 5.0 already found
+the same shape (C vs D: adding the fine-tuned transcript to board text changed nothing). So the
+honest sentence for the thesis is: **the notes' factual content comes from the vision side, and the
+ASR improvement shows up in readability and in the quotes rather than in board recall** - and the
+quotes are real, 31 kept word for word across the 13 Banglish files. It is also the reason the
+fine-tuning result is reported on its own terms in 1.8, as a transcription result, not as a notes
+result.
+
+**The board-text rows are a trend, not a result.** Adding board text is worth +18.3 pp with the
+fine-tuned ASR and +4.9 pp with the off-the-shelf one, but by board those are p = 0.26 and p = 0.18
+(Wilcoxon 0.052). With 35 boards this metric cannot resolve them. Note the two rows disagree about
+where the gain sits: with the fine-tuned ASR, 53 of the 64 items come from the 4 dense boards; with
+the off-the-shelf ASR the dense boards contribute -3 and the gain is spread over the other 31.
+
+```
+python scripts/build_lecture_notes.py --all --language banglish --transcript-file transcript_base.txt --tag base
+python scripts/build_lecture_notes.py --all --language banglish --board-text-file none.json --tag noboard
+python scripts/build_lecture_notes.py --all --language banglish --transcript-file transcript_base.txt --board-text-file none.json --tag base_noboard
+python scripts/score_board_recall.py --gt data/board_truth data/board_truth/draft_lectures1to6   --compare-names notes_annotated_banglish_base.md notes_annotated_banglish_7b.md
+python scripts/score_board_recall.py --gt data/board_truth data/board_truth/draft_lectures1to6   --compare-names notes_annotated_banglish_base_noboard.md notes_annotated_banglish_noboard.md
+```
+
 #### The Background box: does the model put false things in it?
 
 The prompt now asks for standard material the lecturer did not say in a separate

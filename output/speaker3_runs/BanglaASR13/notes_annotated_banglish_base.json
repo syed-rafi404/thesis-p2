@@ -1,0 +1,79 @@
+{
+  "lecture": "BanglaASR13",
+  "dataset_lecture": "BanglaASR17",
+  "language": "banglish",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "mock": false,
+  "transcript_file": "transcript_base.txt",
+  "times_approximate": false,
+  "leakage_warning": "",
+  "boxes_file": "board_boxes.json",
+  "board_text_file": "board_text_clean.json",
+  "quotes_kept": 2,
+  "quotes_dropped": 1,
+  "invalid_box_refs": 0,
+  "quotes_translated": 0,
+  "quotes_word_for_word_checked": true,
+  "quotes_retranslated": 0,
+  "quotes_untranslated_dropped": 0,
+  "written_in": "banglish",
+  "translated_to_english": false,
+  "latex_rewritten": 0,
+  "colour_fixes": 0,
+  "inline_quotes_unverified": 0,
+  "sections": [
+    {
+      "board": 1,
+      "era": 1,
+      "from": "0:00",
+      "to": "3:50",
+      "transcript_chars": 1928,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "total packet size. I am one by one, I will do all the checks-pents."
+      ],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    },
+    {
+      "board": 2,
+      "era": 2,
+      "from": "4:00",
+      "to": "12:34",
+      "transcript_chars": 3882,
+      "boxes": 5,
+      "boxes_mentioned": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "I just need plain and simple divide."
+      ],
+      "quotes_dropped": [
+        "So, the fragment starts with 0, then the fragment starts with 5."
+      ],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    }
+  ]
+}

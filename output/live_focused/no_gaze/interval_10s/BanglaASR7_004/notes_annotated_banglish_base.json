@@ -1,0 +1,157 @@
+{
+  "lecture": "BanglaASR7_004",
+  "dataset_lecture": "BanglaASR11",
+  "language": "banglish",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "mock": false,
+  "transcript_file": "transcript_base.txt",
+  "times_approximate": false,
+  "leakage_warning": "",
+  "boxes_file": "board_boxes.json",
+  "board_text_file": "board_text_clean.json",
+  "quotes_kept": 2,
+  "quotes_dropped": 2,
+  "invalid_box_refs": 0,
+  "quotes_translated": 0,
+  "quotes_word_for_word_checked": true,
+  "quotes_retranslated": 0,
+  "quotes_untranslated_dropped": 0,
+  "written_in": "banglish",
+  "translated_to_english": false,
+  "latex_rewritten": 4,
+  "colour_fixes": 0,
+  "inline_quotes_unverified": 0,
+  "sections": [
+    {
+      "board": 1,
+      "era": 1,
+      "from": "0:00",
+      "to": "0:50",
+      "transcript_chars": 657,
+      "boxes": 1,
+      "boxes_mentioned": [
+        1
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "NOR gate, we start to call NOR gate."
+      ],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    },
+    {
+      "board": 2,
+      "era": 2,
+      "from": "1:00",
+      "to": "4:20",
+      "transcript_chars": 1622,
+      "boxes": 5,
+      "boxes_mentioned": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 1,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    },
+    {
+      "board": 3,
+      "era": 3,
+      "from": "4:40",
+      "to": "7:00",
+      "transcript_chars": 1151,
+      "boxes": 6,
+      "boxes_mentioned": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "Here is the term and we have a term. Here is the primary gate, the fundamental gate and and not gate. Here is the and plus not gate."
+      ],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    },
+    {
+      "board": 4,
+      "era": 4,
+      "from": "7:20",
+      "to": "10:40",
+      "transcript_chars": 1639,
+      "boxes": 6,
+      "boxes_mentioned": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 4,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [
+        "same input = 0 different input = 1"
+      ],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    },
+    {
+      "board": 5,
+      "era": 5,
+      "from": "10:50",
+      "to": "14:00",
+      "transcript_chars": 1673,
+      "boxes": 5,
+      "boxes_mentioned": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [
+        "X-NOR gate is derived from X-OR gate and NOT gate."
+      ],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    }
+  ]
+}

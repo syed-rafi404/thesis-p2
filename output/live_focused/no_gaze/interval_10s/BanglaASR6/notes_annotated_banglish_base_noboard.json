@@ -1,0 +1,177 @@
+{
+  "lecture": "BanglaASR6",
+  "dataset_lecture": "BanglaASR10",
+  "language": "banglish",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "mock": false,
+  "transcript_file": "transcript_base.txt",
+  "times_approximate": false,
+  "leakage_warning": "",
+  "boxes_file": "board_boxes.json",
+  "board_text_file": null,
+  "quotes_kept": 10,
+  "quotes_dropped": 0,
+  "invalid_box_refs": 0,
+  "quotes_translated": 0,
+  "quotes_word_for_word_checked": true,
+  "quotes_retranslated": 0,
+  "quotes_untranslated_dropped": 0,
+  "written_in": "banglish",
+  "translated_to_english": false,
+  "latex_rewritten": 43,
+  "colour_fixes": 0,
+  "inline_quotes_unverified": 0,
+  "sections": [
+    {
+      "board": 1,
+      "era": 1,
+      "from": "0:10",
+      "to": "3:10",
+      "transcript_chars": 1812,
+      "boxes": 3,
+      "boxes_mentioned": [
+        1,
+        2,
+        3
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "Analog is the same as analog.",
+        "Digital means discrete value.",
+        "Computer-dhoran-aay 1 and of-ke-dhoran-aay 0.",
+        "So, this is logic 0. So, this computer has logic 1 and logic 0.",
+        "This is the same as 5V is high voltage and 0V is ground voltage."
+      ],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    },
+    {
+      "board": 2,
+      "era": 2,
+      "from": "3:20",
+      "to": "5:50",
+      "transcript_chars": 1043,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    },
+    {
+      "board": 3,
+      "era": 3,
+      "from": "6:00",
+      "to": "10:00",
+      "transcript_chars": 2267,
+      "boxes": 4,
+      "boxes_mentioned": [
+        2,
+        3
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "Suppose, 0 is 0, light on and 1 is 0, light off."
+      ],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    },
+    {
+      "board": 4,
+      "era": 4,
+      "from": "10:10",
+      "to": "11:00",
+      "transcript_chars": 457,
+      "boxes": 4,
+      "boxes_mentioned": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 20,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "input and x, so our output is a and b are multiplication."
+      ],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    },
+    {
+      "board": 5,
+      "era": 5,
+      "from": "11:10",
+      "to": "13:00",
+      "transcript_chars": 777,
+      "boxes": 4,
+      "boxes_mentioned": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 5,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "Suppose inputta hoche A and outputta hoche B. So, my outputta bheer hobeer, sheta hoche X.",
+        "x equals to a plus b. That means, 0 plus 0 equals to 0. 0 plus 1 equals to 3-bar-qintu hoye jabye 1. Because we have input in the 2-1-1."
+      ],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    },
+    {
+      "board": 6,
+      "era": 6,
+      "from": "13:10",
+      "to": "14:50",
+      "transcript_chars": 787,
+      "boxes": 5,
+      "boxes_mentioned": [
+        3
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 18,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "Taur maanhe huchhe aamar input a and output a bar. Input jodhi 0 hoye. Tahu le output hobhe 1. And input jodhi 1 hoye. And output tahobhe 0."
+      ],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    }
+  ]
+}

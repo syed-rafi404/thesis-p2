@@ -1,0 +1,72 @@
+{
+  "lecture": "BanglaASR9_007",
+  "dataset_lecture": "BanglaASR13",
+  "language": "banglish",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "mock": false,
+  "transcript_file": "transcript_loso.txt",
+  "times_approximate": false,
+  "leakage_warning": "",
+  "boxes_file": "board_boxes.json",
+  "board_text_file": null,
+  "quotes_kept": 2,
+  "quotes_dropped": 1,
+  "invalid_box_refs": 0,
+  "quotes_translated": 0,
+  "quotes_word_for_word_checked": true,
+  "quotes_retranslated": 0,
+  "quotes_untranslated_dropped": 0,
+  "written_in": "banglish",
+  "translated_to_english": false,
+  "latex_rewritten": 0,
+  "colour_fixes": 0,
+  "inline_quotes_unverified": 0,
+  "sections": [
+    {
+      "board": 1,
+      "era": 1,
+      "from": "0:10",
+      "to": "9:10",
+      "transcript_chars": 5778,
+      "boxes": 2,
+      "boxes_mentioned": [],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    },
+    {
+      "board": 2,
+      "era": 2,
+      "from": "9:20",
+      "to": "16:20",
+      "transcript_chars": 4231,
+      "boxes": 2,
+      "boxes_mentioned": [
+        1,
+        2
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "so, etama ki korbe? select kortese cg max of cgpa. mane cgpa ekhane amar path ta row ache.",
+        "tahole ki korbe? ei cgp-e gular average ber korbe. tahole first e ki? shob gula ke sum korte hoy average ber korar jonno, sum korar pore ekhane amar total value kore ta ajta. to divided by five kore je result er ashbe, setai kintu ami."
+      ],
+      "quotes_dropped": [
+        "so, amar eto alada kore complication ba alada kore cgpa-er gula ber kore kore, average ba sum egola kintu korte hocche na, ami easily esob functions use kore, ami aa value ta jene perde parchi."
+      ],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    }
+  ]
+}

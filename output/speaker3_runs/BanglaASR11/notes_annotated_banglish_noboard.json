@@ -1,0 +1,76 @@
+{
+  "lecture": "BanglaASR11",
+  "dataset_lecture": "BanglaASR15",
+  "language": "banglish",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "mock": false,
+  "transcript_file": "transcript_loso.txt",
+  "times_approximate": false,
+  "leakage_warning": "",
+  "boxes_file": "board_boxes.json",
+  "board_text_file": null,
+  "quotes_kept": 3,
+  "quotes_dropped": 0,
+  "invalid_box_refs": 0,
+  "quotes_translated": 0,
+  "quotes_word_for_word_checked": true,
+  "quotes_retranslated": 0,
+  "quotes_untranslated_dropped": 0,
+  "written_in": "banglish",
+  "translated_to_english": false,
+  "latex_rewritten": 0,
+  "colour_fixes": 0,
+  "inline_quotes_unverified": 0,
+  "sections": [
+    {
+      "board": 1,
+      "era": 1,
+      "from": "0:40",
+      "to": "1:30",
+      "transcript_chars": 1082,
+      "boxes": 1,
+      "boxes_mentioned": [
+        1
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "so, ekhon ekta drop kore diye ekta error er message pathabe sender e je tumi packet ta fragment kore dek, ponor osho bite e ami eta khorte parbona."
+      ],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    },
+    {
+      "board": 2,
+      "era": 2,
+      "from": "1:40",
+      "to": "2:48",
+      "transcript_chars": 1245,
+      "boxes": 4,
+      "boxes_mentioned": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "invalid_box_refs": [],
+      "colour_fixes": [],
+      "inline_quotes_unverified": [],
+      "prompt_placeholders_removed": 0,
+      "latex_rewritten": 0,
+      "quotes_translated": [],
+      "quotes_kept": [
+        "packet two. porer packet ta amar hocche tinar jar hoy, jesno ekhaj er baki thake. toh porer packet ta jabe ekhaj er byte er packet three.",
+        "but jokhn amra packet three te chole jabo jekhane ekha jar byte makro jabe. because achchi ki are ekha jar byte? so ekhane jodi jabe tokho nam er dute debo, emy fer bollte value ta zero. tar mane o bujhacche je amar eitai last packet chilo, amr je fragmented packet gula theke last packet tar mane purrata chole giyeche ebhojotbo."
+      ],
+      "quotes_dropped": [],
+      "quotes_retranslated": [],
+      "quotes_untranslated_dropped": []
+    }
+  ]
+}
