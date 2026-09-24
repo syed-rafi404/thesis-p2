@@ -108,9 +108,9 @@ speech result can be. Training the 809 million parameter speech model on a 12 GB
 possible only with gradient checkpointing, and the largest vision-language models were
 out of reach, since Qwen2.5-VL-32B is 68 GB of weights and the 72B version 147 GB. The
 project runs to a fixed submission date, so a fourteen hour run can be started once
-rather than five times. The fourth constraint was self imposed and removed the most work:
+instead of five times. The fourth constraint was self imposed and removed the most work:
 no number enters this report unless a command in the project regenerates it. An earlier
-version of the project carried figures whose numbers had been typed rather than computed,
+version of the project carried figures whose numbers had been typed instead of computed,
 and those were removed rather than defended.
 
 \section{Societal Impact}
@@ -142,13 +142,13 @@ and may capture student voices; this project used recordings made with the lectu
 permission and kept them private, and any wider use needs consent from the people
 recorded. Finally, good automatic notes may reduce attendance, and taking notes by hand
 has a learning value of its own. That trade-off is not resolved here, and the system is
-aimed at revision and at students who could not attend rather than at replacing
+aimed at revision and at students who could not attend, not at replacing
 attendance.
 
 There is no physical safety dimension to the work. Lecture recordings and whiteboard
 content belong to the lecturer and the university, so recordings are not redistributed and
 released model weights are used under their own licences. Culturally, the system preserves
-the lecturer's own mixed speech rather than converting it into standard English, which
+the lecturer's own mixed speech instead of converting it into standard English, which
 respects how the class is taught.
 
 \section{Environmental Impact}
@@ -188,7 +188,7 @@ Total & & about 24 h \\
 \end{table}
 
 The energy figure below is an estimate from the measured hours and stated assumptions
-rather than a meter reading. Assuming a whole system draw of about 250 W for the first
+and not a meter reading. Assuming a whole system draw of about 250 W for the first
 desktop while training and about 600 W for the second, the 18 hours on the first machine
 and 6 hours on the second come to roughly 4.5 and 3.6 kilowatt hours, so about 8 kWh in
 total. At a grid emission factor of about 0.65 kilograms of carbon dioxide equivalent per
@@ -198,10 +198,10 @@ estimate for training a single large language model with neural architecture sea
 over 280,000 kilograms \cite{strubell2019energy}.
 
 Three decisions kept the figure small, and each was taken for other reasons as well.
-Using LoRA rather than full fine-tuning means a training run updates a few million
+Using LoRA instead of full fine-tuning means a training run updates a few million
 parameters instead of 809 million, so a run finishes in about an hour on a mid-range
 card. Choosing hyperparameters by a plan with a fixed number of stages meant seven
-training runs rather than an open ended search. Not running the 32 billion and 72 billion
+training runs instead of an open ended search. Not running the 32 billion and 72 billion
 parameter vision-language models avoided both a 68 GB download and the compute to use
 them, and the comparison in Section \ref{sec:vlm-size} shows the larger model was not where the
 important difference lay.
@@ -248,7 +248,7 @@ is labelled.
 \section{Standards}
 
 The project follows the standards and conventions in Table \ref{tab:standards}. Several
-are conventions of the field rather than formal standards, and the table says which.
+are conventions of the field and not formal standards, and the table says which.
 
 \begin{table}[htbp]
 \centering
@@ -287,15 +287,24 @@ cited. \\
 
 \section{Project Management Plan}
 
-The work ran in five phases. The first built and measured the earlier version of the
-pipeline, which established that the speech side was the binding problem and that note
-quality had never been evaluated. The second checked every claim of that phase against
-code, retired the claims with no computation behind them and introduced the rule that a
-number needs a command. The third produced the data: the transcription standard, the
-recordings and the hand-checked transcripts. This phase took the most human hours and ran
-in parallel with the others. The fourth ran the experiments, with speech work on one
-machine and vision-language work on the other so that neither waited for the other. The
-fifth produced the figures, tables and this report.
+The work ran in five phases over thirteen months, from September 2025 to September 2026,
+and Figure \ref{fig:fig-3-1-gantt} shows the schedule. The first phase, in September and
+October 2025, built and measured the earlier version of the pipeline. It established that
+the speech side was the binding problem and that note quality had never been evaluated
+against anything. The second, from December 2025 to
+February 2026, checked every claim of that phase against code, retired the claims with no
+computation behind them and introduced the rule that a number needs a command.
+
+The third phase produced the data, which is the transcription standard, the recordings and
+the hand-checked transcripts. It started in November 2025 and did not finish until
+September 2026, so it ran underneath every other phase and took more human hours than any
+of them.
+
+The fourth phase ran the experiments on two tracks. Speech work began in February 2026 on
+the 12 GB machine and vision-language work in June on the 32 GB machine, so the two
+overlapped through the middle of the year and the second track did not wait for the first
+to finish. The fifth phase, writing, began in August 2026 and produced the figures, tables
+and this report.
 
 \begin{figure}[htbp]
 \centering
@@ -315,7 +324,7 @@ could move between machines without anything being carried in a person's memory.
 
 The fixed points were the draft submission and the slide submission, and work was
 scheduled backwards from them. When the corpus was closed at 5.15 hours the planned six
-hour and ten hour training runs were cancelled rather than delayed, because a result that
+hour and ten hour training runs were cancelled instead of delayed, because a result that
 arrives after the deadline is worth nothing.
 
 \section{Risk Management}
@@ -397,7 +406,7 @@ The benefit to be weighed is the reduction in human effort to produce a usable
 transcript. Producing one by hand from nothing took about six hours of work per hour of
 video, because off-the-shelf output was useless as a starting point. The fine-tuned model
 reaches a median character error rate of 15.8 per cent, which is a draft a person can
-correct rather than retype. If correcting such a draft takes a third of the time, the
+correct instead of retyping. If correcting such a draft takes a third of the time, the
 cost falls from about six hours per hour of video to about two, which over the 8.33 hours
 recorded here is the difference between about fifty hours of work and about seventeen.
 This projection has not been tested and is not claimed as a result; measuring it properly

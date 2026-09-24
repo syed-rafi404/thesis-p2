@@ -29,7 +29,7 @@ trained on roughly 680,000 hours of multilingual audio and reaches usable accura
 many languages, including Bengali \cite{radford2023whisper}. Such models assume, however,
 that an utterance belongs to one language. Whisper receives a language token and a task
 token, and on Bengali audio containing English words it usually produces a fluent English
-translation rather than a transcript. A Bengali model trained on clean Bengali writes
+translation instead of a transcript. A Bengali model trained on clean Bengali writes
 everything in Bengali script and spells the English technical terms phonetically. Neither
 output preserves the lecturer's words, and neither can be searched by a student who
 writes in Banglish.
@@ -84,7 +84,7 @@ The third motivation is that the gap is specific and checkable. Code switched sp
 recognition has been studied for Hindi-English and several other pairs, and Bengali
 speech recognition has its own literature. What is missing is the combination a
 Bangladeshi classroom needs, which is recognition of Bengali-English code-mixed speech
-written back in the Roman alphabet and evaluated on real lectures rather than on read or
+written back in the Roman alphabet and evaluated on real lectures and not on read or
 synthetic speech. Chapter 2 reviews the systems that come closest and states which part
 of this work is new.
 
@@ -103,7 +103,7 @@ own recordings before any solution was attempted. The first is that existing sys
 not transcribe the speech. On the six lectures held out for testing,
 off-the-shelf Whisper large-v3-turbo produces a median character error rate of 67.7 per
 cent and a median word error rate of 93.9 per cent against human references. The failure
-is systematic rather than random. The model translates into English and, on thirteen of
+is systematic, not random. The model translates into English and, on thirteen of
 the 177 test clips, repeats a phrase until it reaches the token limit. Table
 \ref{tab:motivating_example} shows one segment of a digital logic class in three
 versions.
@@ -136,7 +136,7 @@ one lecture, the lecturer covers 23.5 per cent of the writing surface in the med
 and 7.0 per cent in the clearest one, and no frame is below 5 per cent. There is no
 moment at which a clean photograph of the board can simply be taken.
 
-The third is that a summarising model writes from memory rather than from the
+The third is that a summarising model writes from memory instead of from the
 lecture. The first version of
 this pipeline asked a language model for clear notes on the lecture, and the model
 produced textbook material, including a definition of a NAND gate that the lecturer never
@@ -221,8 +221,7 @@ subjects are introductory programming, digital logic, databases and computer net
 Every recording is a whiteboard class with no slides, taken with a fixed camera. Notes
 are produced in Banglish and English. Notes in the Bengali script were considered and
 dropped, since they would be produced by translation alone and would add nothing the
-system itself contributes. The system is built for recorded lectures rather than live
-captioning.
+system itself contributes. The system is built for recorded lectures, not live captioning.
 
 Two limits are stated at the outset. The speech model is not accurate enough to be used
 without a human check, and Chapter 5 gives the remaining error rate. The generated notes

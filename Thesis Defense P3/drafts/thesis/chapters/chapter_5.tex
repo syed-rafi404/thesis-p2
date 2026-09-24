@@ -19,7 +19,7 @@ measurement for the speech, the board reconstruction, the board reading and the 
 Chapter 5 shows this paying off, because the four stages turned out to contribute very
 differently. Keeping the stages apart also means only one model is in memory at a time,
 which matters on the hardware available. Finally, when the board is read into text as a
-separate step the note-writing model receives the board as text rather than having to
+separate step the note-writing model receives the board as text instead of having to
 remember it, so a fact in the note can be traced to the board. When one model both looks
 at the image and writes the note, a fact cannot be traced to its source.
 
@@ -70,7 +70,7 @@ baseline on the term measure, which a paired permutation test puts at p = 0.32, 
 word error rate was far worse at 146.8 per cent against 82.6. Biasing the decoder towards
 words seen on the board, implemented as a logits processor with a strength parameter,
 halved term recall at every non-zero setting and truncated the transcript. Using a Bengali
-model and transliterating afterwards was rejected on the design rather than by experiment,
+model and transliterating afterwards was rejected on the design and not by experiment,
 because it loses the English technical terms twice, first when the Bengali model spells
 them phonetically and again when they are romanized back.
 
@@ -137,7 +137,7 @@ pointed at the lecturer and the whiteboard. Three lecturers took part and no lec
 slides. The recordings total 8.33 hours, the shortest 3.4 minutes and the longest 36.4
 minutes.
 
-The lecturer of each recording was confirmed by voice rather than by memory. A WavLM
+The lecturer of each recording was confirmed by voice, not by memory. A WavLM
 speaker embedding was computed for every lecture and compared with reference embeddings,
 giving cosine similarity between 0.98 and 0.998 within a lecturer and between 0.59 and
 0.90 across lecturers. This check exists because an early version of the split
@@ -149,7 +149,7 @@ checked against it by a validation script. Each line is a timed segment written 
 \texttt{[M:SS-M:SS]} followed by the text. Segments run 10 to 25 seconds and never longer
 than 30, because Whisper processes a 30 second window, and there are no gaps and no
 overlaps between them. Fillers such as \textit{aaa}, \textit{mane} and \textit{tahole} are
-kept, because the goal is a transcript of the speech rather than a tidied version of it.
+kept, because the goal is a transcript of the speech and not a tidied version of it.
 The text is ASCII only, and a table of canonical spellings fixes the most common words so
 that three transcribers do not write the same word three ways. Appendix A gives the
 standard in full. Transcription was done by hand, with every
@@ -158,8 +158,7 @@ work for ten minutes of video.
 
 \subsection{Data Cleaning}
 
-Four cleaning problems occurred and each is handled by a script rather than by hand
-editing. The first concerns timestamps. The segment parser accepts a timestamp only in
+Four cleaning problems occurred and each is handled by a script and not by hand editing. The first concerns timestamps. The segment parser accepts a timestamp only in
 the exact form \texttt{[1:34-1:53]}. In an
 earlier version of the corpus, 9 of 156 timestamps carried stray spaces, written for
 example as \texttt{[4:22- 4:45 ]}. Those lines did not register as segment boundaries, so
@@ -172,7 +171,7 @@ The second is incomplete files. A transcript still being written is marked by it
 name and skipped until the marker
 is removed. Files were also delivered at one point with a placeholder extension that made
 them invisible to the pipeline, which was found by counting how many transcripts the
-loader actually saw rather than how many files existed.
+loader actually saw instead of how many files existed.
 
 The third is missing lecturer labels. Where the header was absent it was filled from
 the voice check rather than
@@ -180,7 +179,7 @@ guessed, and any recording where the voice check was not confident was left for 
 to decide. A preflight script then refuses to start training if a transcript has no matching video, if two
 different videos share a name, if a transcript is longer than its video, or if a lecturer
 label disagrees with the voice check. It runs as a hard gate before every training run,
-because all of these faults corrupt training silently rather than crashing.
+because all of these faults corrupt training silently instead of crashing.
 
 \subsection{Data Transformation and Integration}
 
@@ -198,7 +197,7 @@ times as many chances to see the board clear for a lecturer who stands still.
 The corpus was renumbered part way through the project so that lectures are grouped by
 lecturer. Because every result produced before the renumbering used the old names, a
 lookup table records the correspondence, and every script that finds a lecture's audio or
-board uses the table rather than assuming the number in a file name means the same thing
+board uses the table instead of assuming the number in a file name means the same thing
 everywhere. The ground truth behind the earlier results is frozen in a separate folder, so
 those results can still be reproduced. Three sources have to line up for one lecture,
 which are the video, the transcript and the rebuilt boards; they are joined by lecture
@@ -343,7 +342,7 @@ seams do not show.
 
 The method works because the lecturer occupies one place at a time, which is also its
 stated limit. It needs the lecturer to move. Where a tile never finds a clear moment the
-residue is left visible and reported rather than filled in.
+residue is left visible and reported instead of filled in.
 
 Locating the lecturer has three implementations and the third is used. The simplest takes
 whatever differs from the usual appearance of the board, which fails when the lecturer
@@ -391,7 +390,7 @@ every frame and therefore cannot be removed by choosing a different one.}
 \centering
 \includegraphics[width=\textwidth]{nand-mosaic-clean}
 \caption{The same board after the display clean-up. The background has been replaced, so
-this image is enhanced rather than unmodified camera output, while the strokes themselves
+this image is enhanced and not unmodified camera output, while the strokes themselves
 are camera pixels.}
 \label{fig:nand-mosaic-clean}
 \end{figure}
@@ -488,13 +487,13 @@ of three letters or fewer must still match exactly.
 
 For the board reconstruction two different things are counted and must not be confused.
 The fraction of tiles that found a completely clear view is computed by the reconstruction
-itself and measures coverage rather than whether writing survived. Whether writing
+itself and measures coverage and not whether writing survived. Whether writing
 survived was answered by a person, who viewed each rebuilt board beside two real frames
 from the same time and said whether anything written was missing and what it was.
 
 Board reading and note quality are both scored by recall of items from the hand-verified
 records. A record is a list of the things written on one board, each labelled as a number,
-name, code fragment, term or phrase. Recall is the right measure rather than F1, because
+name, code fragment, term or phrase. Recall is the right measure and not F1, because
 good notes legitimately contain a great deal that was not on the board, so precision would
 punish the behaviour we want. Items of three characters or fewer must match as whole
 words, so that \textit{CS} is not found inside \textit{economics}. The records were
@@ -502,7 +501,7 @@ drafted from the board images and then checked by hand, one board at a time, wit
 checker seeing any model output, and the folder holding them is refused by the note
 generator in code.
 
-Three reporting rules apply throughout Chapter 5. Medians are reported rather than means.
+Three reporting rules apply throughout Chapter 5. Medians are reported, not means.
 The direction of every difference is stated beside its p-value. Counting by board is
 reported alongside counting by item, because the item count is dominated by a few dense
 boards and the two can disagree.
