@@ -439,13 +439,13 @@ def vision_figures():
     _, clean = pair("lectures1-9 mosaic vs clean")
     _, small = pair("lectures1-9 7B vs 3B")
 
-    fig, axes = plt.subplots(1, 3, figsize=(7.8, 4.6), gridspec_kw={"width_ratios": [1.1, 1, 1.25]})
+    fig, axes = plt.subplots(1, 3, figsize=(8.0, 4.9), gridspec_kw={"width_ratios": [1.05, 1, 1.35]})
     panels = [
         ("The prompt", ["Ask for\nkeywords", "Ask for the\nwhole board"], [kw, full],
          [BAD_C, GOOD_C], f"+{full - kw:.1f} points"),
         ("The model", ["Qwen2.5-VL\n3B", "Qwen2.5-VL\n7B"], [small, full],
          ["#9aa5b1", GOOD_C], f"+{full - small:.1f} points"),
-        ("The image", ["Raw video\nframe", "Reconstructed\nboard", "Cleaned\nboard"],
+        ("The image", ["Raw\nframe", "Rebuilt\nboard", "Cleaned\nboard"],
          [full, mosaic, clean], ["#9aa5b1", GOOD_C, "#f77f00"], f"+{mosaic - full:.1f} points"),
     ]
     for ax, (title, labels, vals, cols, delta) in zip(axes, panels):
@@ -453,9 +453,9 @@ def vision_figures():
         for x, v in enumerate(vals):
             ax.text(x, v + 1.5, f"{v:.1f}%", ha="center", fontsize=11.5, fontweight="bold", color=INK)
         ax.set_xticks(range(len(labels)))
-        ax.set_xticklabels(labels, fontsize=10.5)
-        ax.set_ylim(0, 108)
-        ax.set_title(f"{title}   ({delta})", fontsize=12.5, fontweight="bold", color=INK)
+        ax.set_xticklabels(labels, fontsize=10)
+        ax.set_ylim(0, 112)
+        ax.set_title(f"{title}\n({delta})", fontsize=11.5, fontweight="bold", color=INK)
         ax.spines[["top", "right"]].set_visible(False)
         ax.grid(axis="y", alpha=0.25, linewidth=0.6)
         ax.set_axisbelow(True)
@@ -534,7 +534,7 @@ def notes_figures():
     subprocess.run(["git", "-c", "safe.directory=F:/thesisP2/thesisP2", "checkout", "--",
                     "output/board_recall.json"], cwd=REPO)
 
-    fig, axes = plt.subplots(1, 2, figsize=(7.4, 4.6), gridspec_kw={"width_ratios": [1.15, 1]})
+    fig, axes = plt.subplots(1, 2, figsize=(7.6, 4.8), gridspec_kw={"width_ratios": [1.15, 1]})
     names = ["Original\npipeline", "English\nwritten\ndirectly", "Banglish", "English\ntranslated\nfrom it"]
     vals = [original, english_direct, banglish, english]
     cols = [BASE_C, "#f77f00", GOOD_C, GOOD_C]
@@ -545,7 +545,8 @@ def notes_figures():
     axes[0].set_xticklabels(names, fontsize=10.5)
     axes[0].set_ylim(0, 105)
     axes[0].set_ylabel("Board items reaching the notes (%)")
-    axes[0].set_title("What the notes carry, by route", fontsize=13, fontweight="bold", color=INK)
+    axes[0].set_title("What the notes carry,\nby route", fontsize=11.5, fontweight="bold",
+                      color=INK)
 
     w = 0.36
     axes[1].bar([0 - w / 2, 1 - w / 2], [ft_bt, ft_nb], w, color=GOOD_C, label="Fine-tuned ASR",
@@ -556,9 +557,9 @@ def notes_figures():
         axes[1].text(x, v + 1.5, f"{v:.0f}%", ha="center", fontsize=11, color=INK)
     axes[1].set_xticks([0, 1])
     axes[1].set_xticklabels(["With the VLM's\nboard text", "Without it"], fontsize=11)
-    axes[1].set_ylim(0, 105)
-    axes[1].set_title("Does a better transcript help? No (p = 1.0 both ways)",
-                      fontsize=13, fontweight="bold", color=INK)
+    axes[1].set_ylim(0, 118)
+    axes[1].set_title("Does a better transcript help?\nNo (p = 1.0 both ways)",
+                      fontsize=11.5, fontweight="bold", color=INK)
     axes[1].legend(frameon=False, fontsize=10.5)
     for ax in axes:
         ax.spines[["top", "right"]].set_visible(False)

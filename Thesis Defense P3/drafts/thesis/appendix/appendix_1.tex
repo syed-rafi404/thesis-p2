@@ -17,6 +17,7 @@ sentence ends by the data preparation step.
 Each video has one UTF-8 text file, named \texttt{BanglaASR<N>\_ground\_truth.txt}, with a
 header of comment lines and then one line per segment.
 
+\begingroup\footnotesize
 \begin{verbatim}
 # BanglaASR12 Ground Truth Transcription
 # Topic: Python Functions
@@ -29,6 +30,7 @@ header of comment lines and then one line per segment.
 [0:16-0:33] Function mane hocche ekta code block jeta amra baar baar call
             korte pari.
 \end{verbatim}
+\endgroup
 
 The timestamp is exactly \texttt{[M:SS-M:SS]} with no space inside the brackets, and the
 end timestamp of one segment is the start of the next, so there are no gaps and no

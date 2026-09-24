@@ -29,6 +29,7 @@
 \usepackage[section]{placeins}   % keep floats inside the section that introduces them
 \usepackage{xcolor}
 \usepackage{multirow}
+\setlength{\tabcolsep}{4pt}   % the results tables are wide; 6pt each side does not fit
 
 \usepackage[nottoc]{tocbibind}
 \usepackage[normalem]{ulem}
@@ -45,6 +46,9 @@
 
 \setlength{\parindent}{0em}
 \setlength{\parskip}{0.45em}
+% Bibliography entries carry unbreakable identifiers (arXiv:1904.00784 and the
+% like). Without this TeX cannot avoid pushing them into the margin.
+\setlength{\emergencystretch}{3em}
 
 \usepackage{nomencl}
 \renewcommand{\nompreamble}{The next list describes several symbols \& abbreviation that will be later used within the body of the document}
