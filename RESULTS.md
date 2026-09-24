@@ -335,6 +335,20 @@ test lectures.
 **Headline: CER 67.7% -> 15.8-16.0%, WER 93.9% -> 41.7-42.5%**, two seeds agreeing to 0.2 points,
 better on 164 and 167 of 177 clips. The error is cut by about three quarters.
 
+**The gain is not a decoding trick.** The whisper-small result of 1.0 only beat its baseline with
+Whisper's compression-ratio loop safeguard switched on, so the obvious challenge here is that the
+safeguard is doing the work. It is not. Re-scored with `evaluate.py --decode fallback` on both
+models:
+
+| Seed | Greedy | With the safeguard | Runaway clips, greedy |
+|---|---|---|---|
+| 42 | 15.8% | **15.8%** | 1 of 177 |
+| 1 | 16.0% | **16.0%** | 1 of 177 |
+
+Identical to the first decimal, because the fine-tuned model loops on one clip in 177 and has
+nothing for the safeguard to rescue (off-the-shelf Whisper loops on 13). Report the greedy numbers;
+this table is the answer if anyone asks.
+
 **The instability, which must be reported with it.** At 2e-3 - the rate the pre-registered tuning
 chose on the validation lectures (1.7) - one of the two seeds collapsed into repetition loops: 82 of
 177 clips runaway, CER 118.7%, worse than doing nothing. Same data, same settings, different random
