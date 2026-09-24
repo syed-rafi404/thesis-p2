@@ -349,6 +349,24 @@ Identical to the first decimal, because the fine-tuned model loops on one clip i
 nothing for the safeguard to rescue (off-the-shelf Whisper loops on 13). Report the greedy numbers;
 this table is the answer if anyone asks.
 
+**The gain is uneven, and the pattern follows the training data** (`P2/figures/fig_asr_per_lecture`,
+seed 42, median CER per lecture):
+
+| Test lecture | Lecturer | Clips | Off-the-shelf | Fine-tuned | That lecturer's training speech |
+|---|---|---|---|---|---|
+| BanglaASR8 | A | 14 | 68% | 15% | 1.2 h |
+| BanglaASR9 | A | 41 | 67% | 12% | 1.2 h |
+| **BanglaASR11** | **B** | 46 | 70% | **52%** | **0.7 h** |
+| BanglaASR15 | C | 8 | 88% | 12% | 2.2 h |
+| BanglaASR19 | C | 12 | 65% | 12% | 2.2 h |
+| BanglaASR27 | C | 56 | 73% | 16% | 2.2 h |
+
+Every lecture improves, but **lecturer B's lecture improves least by a wide margin** - 52% where the
+others reach 12-16% - and B contributed the least training speech. With one lecture per lecturer at
+the low end this is an observation, not a controlled result: it cannot separate "less data from
+this lecturer" from "this lecturer is harder". State it as the most likely reading and as the
+argument for collecting more from under-represented lecturers.
+
 **The instability, which must be reported with it.** At 2e-3 - the rate the pre-registered tuning
 chose on the validation lectures (1.7) - one of the two seeds collapsed into repetition loops: 82 of
 177 clips runaway, CER 118.7%, worse than doing nothing. Same data, same settings, different random
