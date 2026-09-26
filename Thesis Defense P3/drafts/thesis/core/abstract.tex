@@ -7,9 +7,9 @@ English translation of what was said, and a Bengali model returns Bengali script
 student in the class writes. The whiteboard, which carries most of the worked examples in
 a class taught without slides, is lost in both cases.
 
-This thesis presents InsightLens, a four stage system that converts a recorded Banglish
+This research presents InsightLens, a four stage system that converts a recorded Banglish
 whiteboard lecture into a lecture note. Whisper large-v3-turbo adapted with Low-Rank
-Adaptation produces a romanized Banglish transcript. Each whiteboard is rebuilt from the
+Adaptation produces a romanised Banglish transcript. Each whiteboard is rebuilt from the
 video by taking every tile of the image from a moment when the lecturer was not standing
 in front of it, so no pixel is synthesised. A vision-language model then names and
 transcribes numbered regions of the rebuilt board, and a language model writes one
@@ -20,7 +20,9 @@ transcribed by hand. On six held out lectures, fine-tuning reduces the median pe
 character error rate from 67.7 to 15.8 per cent across two random seeds. Changing the
 board reading prompt raises recall of hand-verified board content from 31.2 to 88.8 per
 cent, while a larger model is worth 5.3 points. The generated notes carry 89.1 per cent
-of the board content against 37.2 per cent for a conventional summarisation prompt. Four
+of the board content against 37.2 per cent for a conventional summarisation prompt, and
+in a blind pilot twenty readers preferred them to the earlier notes, 15 of the 19 who
+expressed a preference. Four
 approaches that failed are reported with the same detail, and the evaluation shows that
 measures built from English word lists systematically favour a model that translates
 code-mixed speech over one that transcribes it.

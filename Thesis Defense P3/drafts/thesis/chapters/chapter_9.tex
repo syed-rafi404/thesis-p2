@@ -4,7 +4,7 @@
 
 \section{Summary of Findings}
 
-This thesis set out to turn a recorded Bengali-English code-mixed whiteboard lecture into
+This research set out to turn a recorded Bengali-English code-mixed whiteboard lecture into
 a lecture note a student can use. The system was built as four stages and each stage was
 measured separately.
 
@@ -48,10 +48,46 @@ record items than the one with 15.8 per cent, for the same mechanical reason.
 
 \section{Contributions to the Field}
 
-Stated as narrowly as the evidence allows, the contributions are the following.
+Stated as narrowly as the evidence allows, the contributions are the following. They are
+ordered by how far each one reaches beyond this dataset, because the corpus is the most
+visible contribution but not the most transferable one.
 
 \begin{enumerate}
-  \item A hand-checked corpus of code-mixed classroom speech in romanized Banglish.
+  \item A demonstration that the prompt, rather than the model size, is what makes a
+        vision-language model read a handwritten board. On the same 35 boards with the
+        same model, changing only the prompt moved board-content recall from 31.2 to 88.8
+        per cent, while going from the 3 billion parameter model to the 7 billion
+        parameter one moved it from 83.7 to 89.0. The prompt is worth 57.6 points and the
+        model size 5.3, about eleven times less. The prompt was re-checked on a held-out
+        half of the boards, where it gives 28.4 to 84.7 per cent, so the conclusion does
+        not rest on the boards the prompt was chosen on. Nothing about this finding is
+        specific to Banglish or to this corpus.
+
+  \item A note-quality measure that a language model cannot satisfy from prior knowledge.
+        Board-content recall scores only facts physically written on the board, which the
+        summarising model cannot invent from what it already knows, so it separates
+        grounding from world knowledge. It behaves as a valid measure should: recall falls
+        as items become more guessable. Generated lecture notes are usually evaluated by
+        fluency or by overlap with a reference summary, and neither can tell whether the
+        note is about the lecture that was actually given.
+
+  \item A measured demonstration that measures assembled from English strings are invalid
+        for code-mixed speech, because they reward a model that translates and penalise
+        one that transcribes. The inherited term measure moves in the wrong direction as
+        transcription improves, since better Banglish emits fewer of the English words the
+        measure counts, and it moves by 8.1 points between two runs on identical data.
+        This was observed twice in unrelated measures within one project and it agrees
+        with the published literature on code-switched evaluation.
+
+  \item The first measurement, as far as could be found, of what published Bengali and
+        Bengali-English speech models actually produce on spontaneous code-mixed classroom
+        speech. Five models were run on the same held-out clips as this work. Not one
+        produced romanised Banglish on a single clip: four write Bengali script and the
+        fifth translates into English. The finding survives the obvious objection, since
+        transliterating their output to Roman and scoring again still leaves the best of
+        them at 47.1 per cent character error against 15.8 here.
+
+  \item A hand-checked corpus of code-mixed classroom speech in romanised Banglish.
         Forty-four lecture recordings totalling 8.33 hours, of which 28 lectures and 5.15
         hours are transcribed word by word against the audio according to a written
         standard, with 609 timed segments and about 39,100 words. No comparable corpus of
@@ -72,21 +108,11 @@ Stated as narrowly as the evidence allows, the contributions are the following.
         combination with a vision-language reader and the measurement of it, including 45
         boards and 436 items verified by hand and 98 boards checked for missing writing.
 
-  \item A demonstration that the prompt rather than the model size is what makes a
-        vision-language model read a handwritten board, at 57.6 points against 5.3, with
-        the choice re-checked on a held-out half of the boards.
-
   \item A note generator whose claims can be checked. Board content is supplied as text
         instead of being recalled, non-lecture material is confined to a labelled box,
         quotations are verified word for word against the transcript and deleted when they
         fail, and references to numbered regions of the board are checked against the
         regions that exist. Each of these is counted in the output file of every page.
-
-  \item A methodological finding about evaluating code-mixed systems, in which measures
-        assembled from English strings reward a model that translates and penalise one
-        that transcribes. This was observed twice in unrelated measures within one
-        project, it agrees with the published literature on code-switched evaluation, and
-        it is reported with the mechanism and the numbers.
 
   \item A set of measured negative results, since fusion, decoder bias, occlusion as a
         pointer and the display clean-up were all built, all measured and all reported as
@@ -95,18 +121,23 @@ Stated as narrowly as the evidence allows, the contributions are the following.
 
 \section{Recommendations for Future Work}
 
-The single most valuable missing piece is a reader study. Nothing in this thesis measures
-whether the notes are good to read or whether what they say is true, and a factual error
-in the generated prose has already been found by reading. The study should show about
-twenty students the old notes and the new notes for the same lecture and ask which helps
-more, together with ratings for usefulness, correctness and readability, giving a paired
-before and after result rather than a score. A second arm should compare notes built from
-the off-the-shelf transcript with notes built from the fine-tuned one, which is the only
-way to test the part of the speech improvement that board-content recall cannot see.
+The reader study reported in Section \ref{sec:reader-study} is a pilot and the obvious
+thing to extend. Twenty readers on one lecture preferred the notes this system produces,
+but the comparison moved several things at once and no reader was asked to learn from
+either note. A fuller study would randomise the order, cover several lectures and
+lecturers, separate the changes so that the board images, the box references and the
+language can be judged one at a time, and above all ask readers to answer questions about
+the lecture after studying a note, which measures learning rather than preference. A
+second arm should compare notes built from the off-the-shelf transcript with notes built
+from the fine-tuned one, which is the only way to test the part of the speech improvement
+that board-content recall cannot see.
 
-Two smaller pieces of evidence would also strengthen the report. Running a public
-Bengali-English code-switched model on our own test clips would turn the discussion in
-Section 5.5.1 into a table, and it costs about twenty minutes on any suitable machine.
+Measuring whether the generated prose is true is still untouched. A factual error has
+already been found by reading, and nothing in this research counts how often that happens.
+The check needs a reader who knows the subject going through the notes statement by
+statement against the recording.
+
+One smaller piece of evidence would also strengthen the report.
 Timing transcribers as they correct real model drafts would replace the projection in
 Section 3.8 with a measurement, and it is the number a department would actually want.
 
@@ -120,14 +151,14 @@ study, and warmup, gradient clipping or a lower scaling factor are the obvious t
 try; a configuration that never diverges would be worth more than a small gain in error
 rate. Reporting the spelling tolerant variants of Section \ref{sec:asr-spelling} as
 standard, and applying the same idea to the note measure, would reduce the measurement
-problem described throughout this thesis.
+problem described throughout this research.
 
 On the vision and note side, four changes have known causes. Holding an era open until a
 wipe finishes would fix the four boards cut in the middle of an erase. Ignoring a region
 that appears unchanged in every era of a lecture would stop the box finder putting a
 numbered box around a sticker. Evaluating the box finding would attach a number to the one
 part of the pipeline that has none, and it needs layout ground truth that does not yet
-exist. Notes in the Bengali script were dropped from this thesis deliberately, since they
+exist. Notes in the Bengali script were dropped from this research deliberately, since they
 would be produced by translation alone, and they are straightforward to add if a reader
 wants them. A larger notes model was intended for comparison and dropped for disk space;
 it would change the writing rather than the facts, since it reads the extracted board text
@@ -138,5 +169,5 @@ put in a recorded Banglish whiteboard lecture and get out a note containing the 
 words and the lecturer's board, with the board drawn from real pixels and the quotations
 checked against the transcript. The speech model is good enough to be a draft and not good
 enough to be trusted unchecked, the board reading is strong and the prompt is the reason,
-and whether the notes are genuinely useful to a student is the one question this thesis
+and whether the notes are genuinely useful to a student is the one question this research
 cannot answer.

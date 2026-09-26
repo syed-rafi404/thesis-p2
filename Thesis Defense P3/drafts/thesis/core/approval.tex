@@ -1,8 +1,34 @@
+% The university's approval page is one page carrying the whole examining committee.
+% With the role label stacked above its signature rule, the four blocks need about
+% 23 cm and the text area is 24.7 cm less the heading, so the fourth signature was
+% pushed onto a page of its own. \sigblock puts the role at the left and the rule at
+% the right of the same band, which is how the university's own page is laid out and
+% gives back two lines per member. The signing gap stays close to the declaration's.
+\setlength\sigskip{1.25cm}
+
+% The optional argument is a cropped signature file. It goes through \esignhere
+% from the declaration page, which gives it no width and no height, so it sits in
+% the blank signing gap that is already there and every block keeps exactly the
+% size it had unsigned. That matters here more than anywhere: this page only just
+% holds four signatures, and any real height would push the fourth off it again.
+\newcommand*\sigblock[3][]{%
+  \par\vspace{0.45cm}%
+  \noindent
+  \begin{minipage}[t]{4.2cm}\setlength\parskip{0pt}#2\end{minipage}%
+  \hfill
+  \begin{minipage}[t]{10.5cm}\setlength\parskip{0pt}%
+    \vspace*{\sigskip}%
+    \ifx\relax#1\relax\else\esignhere{#1}\fi
+    \hrulefill\par#3%
+  \end{minipage}%
+  \par}
+
 \section*{Approval}
 
 The thesis titled ``A Vision-Language Based Framework for Extracting and Understanding
 Classroom Content in Dual Languages'' submitted by
 \begin{enumerate}
+  \setlength\itemsep{0pt}\setlength\parskip{0pt}\setlength\topsep{2pt}
   \item Syed Ar Rafi (24141215)
   \item Adiba Islam Khan (24141216)
   \item Ahsan Habib (22201027)
@@ -11,49 +37,31 @@ Classroom Content in Dual Languages'' submitted by
 of Fall, 2026 has been accepted as satisfactory in partial fulfillment of the requirement
 for the degree of B.Sc. in Computer Science and Engineering in Fall 2026.
 
-\vspace{0.5cm}
+\vspace{0.35cm}
 \textbf{Examining Committee:}
 
-\vspace{0.3cm}
+\sigblock[supervisor-sign]{Supervisor:\\(Member)}{%
+  \centerline{Dr. Md. Golam Rabiul Alam}%
+  \centerline{Professor}%
+  \centerline{Department of Computer Science and Engineering}%
+  \centerline{Brac University}}
 
-Supervisor:\\
-(Member)
-\begin{flushright}
-  \wildcard[10.5cm]{%
-    \centerline{Dr. Md. Golam Rabiul Alam}%
-    \centerline{Professor}%
-    \centerline{Department of Computer Science and Engineering}%
-    \centerline{Brac University}}
-\end{flushright}
+\sigblock[co-supervisor-sign]{Co-Supervisor:\\(Member)}{%
+  \centerline{Md. Tanzim Reza}%
+  \centerline{Lecturer}%
+  \centerline{Department of Computer Science and Engineering}%
+  \centerline{Brac University}}
 
-Co-Supervisor:\\
-(Member)
-\begin{flushright}
-  \wildcard[10.5cm]{%
-    \centerline{Md. Tanzim Reza}%
-    \centerline{Lecturer}%
-    \centerline{Department of Computer Science and Engineering}%
-    \centerline{Brac University}}
-\end{flushright}
+\sigblock{Thesis Coordinator:\\(Member)}{%
+  \centerline{Dr. Md. Golam Rabiul Alam}%
+  \centerline{Professor}%
+  \centerline{Department of Computer Science and Engineering}%
+  \centerline{Brac University}}
 
-Thesis Coordinator:\\
-(Member)
-\begin{flushright}
-  \wildcard[10.5cm]{%
-    \centerline{Dr. Md. Golam Rabiul Alam}%
-    \centerline{Professor}%
-    \centerline{Department of Computer Science and Engineering}%
-    \centerline{Brac University}}
-\end{flushright}
-
-Head of Department:\\
-(Chair)
-\begin{flushright}
-  \wildcard[10.5cm]{%
-    \centerline{Sadia Hamid Kazi, PhD}%
-    \centerline{Associate Professor and Chairperson}%
-    \centerline{Department of Computer Science and Engineering}%
-    \centerline{Brac University}}
-\end{flushright}
+\sigblock{Head of Department:\\(Chair)}{%
+  \centerline{Sadia Hamid Kazi, PhD}%
+  \centerline{Associate Professor and Chairperson}%
+  \centerline{Department of Computer Science and Engineering}%
+  \centerline{Brac University}}
 
 \pagebreak

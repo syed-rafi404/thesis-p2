@@ -1,12 +1,37 @@
 % Grouped signature lines for the authors. The optional argument is the box width.
-\newcommand*\wildcard[2][6cm]{\vspace{1.6cm}\parbox[t]{#1}{\setlength{\parskip}{0pt}\hrulefill\par#2}}
+% \sigskip is the blank left above each rule for the handwritten signature. The
+% approval page sets it smaller, because it carries four committee signatures and
+% at this value the fourth one is pushed onto a page of its own.
+\newlength\sigskip
+\setlength\sigskip{1.6cm}
+
+% Signatures. scripts/trim_signatures.py crops each scan to the writing itself
+% and computes one height per file, which this reads. The heights differ because
+% the signatures are different shapes: a common height would print the squarer
+% ones a third narrower than the wide ones. The script equalises the size a
+% reader actually judges by instead. Nothing here is typed by hand; rerun the
+% script after changing a scan.
+\input{esign/trimmed/sizes}
+
+% Drops a signature into the blank gap that already sits above a rule.
+% \makebox[0pt] and a \raisebox with zero height and zero depth give it no width
+% and no height at all, so the rule still spans the full measure and the block
+% keeps exactly the size it had unsigned. Nothing on the page moves.
+\newcommand*\esignhere[1]{%
+  \makebox[0pt][l]{\makebox[\linewidth][c]{%
+    \raisebox{2pt}[0pt][0pt]{%
+      \includegraphics[height=\csname esignh@#1\endcsname]{esign/trimmed/#1.png}}}}}
+
+% #2 is the signature overlay, empty for an unsigned line.
+\newcommand*\wildcard[3][6cm]{%
+  \vspace{\sigskip}\parbox[t]{#1}{\setlength{\parskip}{0pt}#2\hrulefill\par#3}}
 
 \section*{Declaration}
 
 It is hereby declared that
 
 \begin{enumerate}
-  \item The thesis submitted is my/our own original work while completing degree at Brac University.
+  \item The thesis submitted is my/our own original work while completing my/our degree at Brac University.
   \item The thesis does not contain material previously published or written by a third party, except where this is appropriately cited through full and accurate referencing.
   \item The thesis does not contain material which has been accepted, or submitted, for any other degree or diploma at a university or other institution.
   \item We have acknowledged all main sources of help.
@@ -15,14 +40,26 @@ It is hereby declared that
 \vspace{1cm}
 \textbf{Student's Full Name \& Signature:}
 
+% The university's grid, two signatures to a row. With three authors the third sits
+% alone and centred on the second row, which the center environment does by itself.
+% \idgap puts the id a clear space under the name instead of on the next line: the
+% template does that with a ~\ spacer, which has no effect here because \wildcard
+% zeroes \parskip inside the box, so the space is set explicitly.
+\newcommand*\idgap{\vspace{0.38cm}}
 \begingroup
 
     \begin{center}
-        \wildcard[4.4cm]{\centerline{Syed Ar Rafi}\centerline{24141215}}
-        \hspace{0.4cm}
-        \wildcard[4.4cm]{\centerline{Adiba Islam Khan}\centerline{24141216}}
-        \hspace{0.4cm}
-        \wildcard[4.4cm]{\centerline{Ahsan Habib}\centerline{22201027}}
+        % The trailing %% matter: without them the line breaks in this source become
+        % interword spaces, the row measures over the 15cm text width and the second
+        % signature wraps onto a line of its own underneath the first.
+        \wildcard[6.2cm]{\esignhere{rafi}}%
+          {\centerline{Syed Ar Rafi}\idgap\centerline{24141215}}%
+        \hspace{2.2cm}%
+        \wildcard[6.2cm]{\esignhere{adiba}}%
+          {\centerline{Adiba Islam Khan}\idgap\centerline{24141216}}
+
+        \wildcard[6.2cm]{\esignhere{ahsan}}%
+          {\centerline{Ahsan Habib}\idgap\centerline{22201027}}
     \end{center}
 
 \endgroup

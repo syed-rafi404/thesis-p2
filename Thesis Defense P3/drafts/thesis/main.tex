@@ -29,10 +29,14 @@
 \usepackage[section]{placeins}   % keep floats inside the section that introduces them
 % This document is table-heavy. With the default fractions LaTeX refuses to put a large
 % table on a page that also carries text, which left several pages nearly empty.
+% textfraction is the least text a page carrying floats must still show, and
+% floatpagefraction is how full a page of nothing but floats has to be. Left too low,
+% the first lets a page end up as two figures and one stray line, and the second hands
+% a whole page to a table that does not fill it. Raised until neither happened.
 \renewcommand{\topfraction}{0.9}
 \renewcommand{\bottomfraction}{0.8}
-\renewcommand{\textfraction}{0.07}
-\renewcommand{\floatpagefraction}{0.75}
+\renewcommand{\textfraction}{0.12}
+\renewcommand{\floatpagefraction}{0.85}
 \usepackage{xcolor}
 \usepackage{multirow}
 \setlength{\tabcolsep}{4pt}   % the results tables are wide; 6pt each side does not fit
@@ -47,6 +51,15 @@
     filecolor=magenta,
     urlcolor=black,
     citecolor=black,
+    % Document properties. Without these the submitted file carries an empty
+    % title and author, which is what a repository and a reader's PDF viewer
+    % show in place of the real ones.
+    pdftitle={A Vision-Language Based Framework for Extracting and Understanding
+              Classroom Content in Dual Languages},
+    pdfauthor={Syed Ar Rafi, Adiba Islam Khan, Ahsan Habib},
+    pdfsubject={B.Sc. in Computer Science and Engineering, Brac University},
+    pdfkeywords={Banglish, code-mixed speech recognition, Whisper, LoRA,
+                 vision-language models, whiteboard reconstruction, lecture notes},
 }
 \urlstyle{same}
 
@@ -57,7 +70,7 @@
 \setlength{\emergencystretch}{3em}
 
 \usepackage{nomencl}
-\renewcommand{\nompreamble}{The next list describes several symbols \& abbreviation that will be later used within the body of the document}
+\renewcommand{\nompreamble}{The next list describes several symbols \& abbreviations that are used later within the body of the document}
 \makenomenclature
 
 \usepackage[backend=biber,style=ieee,sorting=none]{biblatex}
@@ -65,16 +78,16 @@
 
 \let\cleardoublepage=\clearpage
 
-%*******************************************************************
-% Placeholder for a figure that still has to be drawn by hand
-% (Canva / draw.io / Figma). Usage:
-%   \figplaceholder{file_stem}{Caption text.}{What the drawing must show.}{7cm}
-% To finish it, replace the whole command with:
-%   \begin{figure}[H]\centering
-%     \includegraphics[width=0.9\textwidth]{file_stem}
-%     \caption{Caption text.}\label{fig:file_stem}
-%   \end{figure}
-%*******************************************************************
+%*****************************************************************************
+% Placeholder for a figure that still has to be drawn by hand\\\\\\\\\\\\\\\\\\\
+% (Canva / draw.io / Figma). Usage:\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+%   \figplaceholder{file_stem}{Caption text.}{What the drawing must show.}{7cm}\\\
+% To finish it, replace the whole command with:\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+%   \begin{figure}[H]\centering\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+%     \includegraphics[width=0.9\textwidth]{file_stem}\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+%     \caption{Caption text.}\label{fig:file_stem}\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+%   \end{figure} \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+%***************************************************************************************
 \newcommand{\figplaceholder}[4]{%
   \begin{figure}[H]
   \centering
@@ -119,17 +132,25 @@
 \input{core/abstract}
 
 \phantomsection
-\addcontentsline{toc}{chapter}{Acknowledgment}
+\addcontentsline{toc}{chapter}{Acknowledgement}
 \input{core/acknowledgement}
 
 \renewcommand{\contentsname}{Table of Contents}
 \cleardoublepage
 \phantomsection
 \addcontentsline{toc}{chapter}{Table of Contents}
+% The document sets \parskip to 0.45em for readable body text, but the contents
+% lists inherit it and gain that much between every entry. Over 91 + 19 + 23
+% entries that is several pages of padding, and it left the last table entry
+% stranded alone on a page of its own. Standard LaTeX sets no skip between these
+% entries; the group below restores that for the three lists only.
+\begingroup
+\setlength{\parskip}{0pt}
 \tableofcontents
 
 \listoffigures
 \listoftables
+\endgroup
 
 \printnomenclature
 \addcontentsline{toc}{chapter}{Nomenclature}
@@ -155,14 +176,22 @@
 \chapter{Conclusion}
 \input{chapters/chapter_9.tex}
 
+% The contents line records whatever page is current when it runs, so it has to run
+% after the page break that the bibliography starts on and before the bibliography
+% itself. Placed after \printbibliography it recorded the page the bibliography ends
+% on (71 for a bibliography starting at 68); placed before it without the \clearpage
+% it recorded the last page of the preceding chapter.
+\clearpage
 \phantomsection
-\printbibliography
 \addcontentsline{toc}{chapter}{Bibliography}
+\printbibliography
 
 % ********************************** Appendices ********************************
+% These entry titles are typed by hand, so they must be kept word for word the same
+% as the \chapter* headings in the appendix files themselves.
 \newpage
 \phantomsection
-\addcontentsline{toc}{chapter}{Appendix A: Transcription Guide}
+\addcontentsline{toc}{chapter}{Appendix A: The Transcription Standard}
 \input{appendix/appendix_1}
 
 \newpage

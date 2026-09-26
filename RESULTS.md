@@ -482,6 +482,52 @@ settings), `artifacts/ft_work_final5h/pipeline_log.txt` (timings: tuning 362.6 m
 80.3 min, seed 1 66.9 min).
 Reproduce: `python scripts/whisper_full_pipeline.py --tune-dir <dir> --final-dir <dir>` (step 3).
 
+### 1.8b The worked example used throughout the methodology chapter (2026-09-25, revised)
+
+Every figure in the methodology chapter now carries **one moment of one lecture**: the same
+seventeen seconds of audio, the frame taken while it was spoken, the board that minute
+produced, and the note written from it. Lecture **BanglaASR11** (old numbering 7, the
+`BanglaASR7_004` run folder), **board era 5, 10:50 to 14:00**, the X-NOR gate.
+
+| | value |
+|---|---|
+| Clip | `BanglaASR11/seg_041.wav`, 754.0 to 771.1 s, 17.06 s, 16 kHz |
+| CER, fine-tuned | **24.5%** (run median 15.8%) |
+| WER, fine-tuned | **43.6%** (run median 42.5%) |
+| Reference | `so 1st cell e ami pabo 0, 0 equals to 0. 0, 1 equals to 1. 1, 0 equals to 1. 1, 1 equals to 0. x-or banano amar shesh. ekhon etake ami not kore felbo. not mane ki?` |
+| Fine-tuned output | `so first ele ami pabo 0 0 equals to 0, 0 1 equals to 1, 1 0 equals to 1, 1 1 equals to 0. x or banano amar shesh. ekhon eitake ami not kore felbo. not mane ki? inverse ta baupar felbo.` |
+| Frame | 760 s (12:40), the lecturer writing that column with her arm across the board |
+| Mel array | 128 mel bins x 3000 frames, values -0.75 to 1.25, from `WhisperFeatureExtractor` |
+
+**Why this clip and not a median one.** The clip says out loud the exact column of the
+truth table that box 2 of that board contains, so the audio, the frame, the board and the
+note are the same event rather than four unrelated examples. Its CER is 24.5 per cent
+against the run's median of 15.8, so it is **worse than typical, not better**, which is the
+safe direction for a worked example. The figure caption gives both numbers.
+
+**Box names the VLM returned for era 5** (`board_boxes.json`, `mock: false`, model
+`Qwen/Qwen2.5-VL-7B-Instruct`): 1 Title, 2 Truth table, 3 Gate symbol, 4 Block diagram,
+5 Formula. **Two of these are swapped and the figure is left as the model produced it:**
+box 3 is the block diagram and box 4 is the gate symbol. Both names describe something
+that is on the board, which is why a naming error of this kind survives a recall measure
+that scores content rather than labels. The caption says so.
+
+**Why the example moved off the NAND board (era 3).** On that board the lecturer labels the
+gate NAND but draws the NOR symbol, an OR body with a bubble rather than an AND body. The
+thesis already reports that this lecturer mislabels gates, in Chapter 3 and in Chapter 5,
+so the error is not hidden; it was simply a poor choice for the one board reproduced four
+times as the showcase. Era 5 is correct throughout: the truth table, the symbol and the
+formula all agree.
+
+Files: `xnor-frame-before.jpg`, `xnor-mosaic-raw.jpg`, `xnor-mosaic-clean.jpg`,
+`xnor-boxes.jpg` in the thesis images folder. The old `nand-*.jpg` files are left in place,
+unused, as a record.
+
+Reproduce: `scripts/make_example_inputs.py --stage extract` then `--stage plot` (two
+interpreters, see the file header); `scripts/redraw_board_figure.py --era 5` to redraw the
+labelled board from the stored box records without a GPU; `scripts/make_arch_figures.py`.
+Per-clip numbers come from `ft_work_final5h_lr1e3/eval_lr1e3.json`, key `per_clip.tuned`.
+
 ### 1.9 Corpus statistics as the figures and the thesis report them (2026-09-24)
 
 Computed from `data/ground_truth/*.txt` and the videos themselves, by the same code that draws
@@ -511,6 +557,163 @@ including the newer lectures and BanglaASR44.
 
 Reproduce: `python scripts/make_result_figures.py --set dataset` (and the two helper functions
 directly for the table).
+
+### 1.10 Published Bengali and Banglish models run on our own test clips (2026-09-25, 3060)
+
+**The question.** Chapter 2 compared this work with other systems by quoting the error rates
+printed in their own papers on their own data, which is an argument rather than a measurement.
+This runs the published models on the same 177 held-out clips as 1.8, with the same references,
+the same normaliser (`normalize_banglish`) and the same metric code (`evaluate.py`'s `wer` and
+`cer`), so every row sits on one scale.
+
+**Two decisions that make this fair, both of which must be stated whenever the table is used.**
+1. Each model decodes under **its own** generation config. `evaluate.py` forces the `en` and
+   `transcribe` tokens, which is right for our model and wrong for somebody else's; a Bengali
+   model was trained to emit Bengali, and forcing it into English mode would break it for
+   reasons that would be our fault. No language or task token is imposed here.
+2. The alphabet each model wrote in is counted and reported beside its error rate. Our
+   references are romanized, and `normalize_banglish` drops every non-ASCII character, so a
+   Bengali-script answer scores near 100 per cent however well the model heard the speech.
+   **The error rates in this table are not a ranking of recognition quality.** Read them with
+   the script column or they will be misread.
+
+| Model | CER median | WER median | Script written | ASCII kept | Runaway |
+|---|---|---|---|---|---|
+| `the-blue-panther/whisper-small-benglish` | **89.9%** | **95.8%** | Bengali script 124 clips, mixed 53, romanized 0 | 12% | 0 |
+| `bangla-speech-processing/BanglaASR` | **98.6%** | **100.0%** | Bengali script all 177 clips | 2% | 1 |
+| `bengaliAI/tugstugi_bengaliai-asr_whisper-medium` | **100.0%** | **100.0%** | Bengali script all 177 clips | **0%** | 0 |
+| `arif11/bangla-ASR-v5` | **98.6%** | **100.0%** | Bengali script all 177 clips | 2% | 1 |
+| `pr0mila-gh0sh/MediBeng-Whisper-Tiny` | **109.2%** | **146.5%** | Latin 176 clips, empty 1 | 189% | **70** |
+| `openai/whisper-large-v3-turbo` off the shelf (from 1.8) | 67.7% | 93.9% | Latin (English translation) | - | see 1.8 |
+| **This thesis, large-v3-turbo + LoRA (from 1.8)** | **15.8 / 16.0%** | **42.5 / 41.7%** | romanized Banglish | - | 0 |
+
+**The orthography objection, answered rather than argued with.** The obvious reply to the row
+above is that it penalises a model for its alphabet, not its hearing. So every Bengali-script
+run in every hypothesis was transliterated to Roman and the clips were scored again, with the
+references untouched. Two deterministic transliterations were tried, ITRANS as emitted and
+ITRANS with the unpronounced word-final inherent "a" removed, and **the better of the two is
+reported for each clip**, which is deliberately generous:
+
+| Model | CER raw | CER transliterated | WER raw | WER transliterated |
+|---|---|---|---|---|
+| `tugstugi_bengaliai-asr_whisper-medium` | 100.0% | **47.1%** | 100.0% | **90.2%** |
+| `whisper-small-benglish` | 89.9% | **66.0%** | 95.8% | **93.3%** |
+| `bangla-ASR-v5` | 98.6% | **73.0%** | 100.0% | **97.0%** |
+| `BanglaASR` | 98.6% | **73.8%** | 100.0% | **97.3%** |
+| `MediBeng-Whisper-Tiny` | 109.2% | 109.2% (already Latin) | 146.5% | 146.5% |
+| Off-the-shelf whisper-large-v3-turbo | 67.7% | - (already Latin) | 93.9% | - |
+| This thesis (from 1.8) | - | **15.8 / 16.0%** | - | **42.5 / 41.7%** |
+
+Transliteration recovers a great deal, which confirms these models really are hearing the speech
+and that most of the raw gap was the alphabet. **The strongest case is the one that must be
+quoted:** `tugstugi_bengaliai-asr_whisper-medium` goes from a perfect 100.0 per cent CER, with
+not one ASCII character surviving, to **47.1 per cent** once its Bengali is romanized. That is
+**better than off-the-shelf whisper-large-v3-turbo (67.7 per cent)**, so it is simply untrue to
+say these models are no better than an untuned Whisper. It is still three times the error of the
+fine-tuned model (15.8 per cent).
+
+**The defensible claims, and the ones that are not.**
+- Defensible: no published model writes romanized Banglish, so none can be dropped into this
+  pipeline as it stands. Four of the five write Bengali script; the fifth translates to English.
+- Defensible: even after a generous transliteration, the best of them is at 47.1 per cent CER
+  against 15.8, and WER hardly moves at all (100.0 to 90.2). Transliteration fixes the alphabet
+  and cannot invent Banglish spelling, which has no standard form; the same effect is measured
+  directly in 1.6.
+- **Not defensible, and an earlier draft of this section said it:** that the transliterated
+  baselines "land where off-the-shelf Whisper sits". That was written when only the two weakest
+  models had been run, and tugstugi disproves it.
+- Not defensible: that these are bad models. They are good at the task they were built for. The
+  mismatch is the target orthography and the domain, not their quality.
+
+Reproduce: `scripts/rescore_baselines_transliterated.py`, output
+`output/baseline_benchmark_translit.json`. It needs `indic-transliteration`, which is installed
+into a scratch directory and put on `sys.path` through `THESIS_SCRATCH_LIBS` so that the 3060's
+`thesis_ft` environment is not modified (checked afterwards: torch 2.5.1+cu121, CUDA still
+available, package absent from the env).
+
+**What the Benglish model actually produces.** It does code-switch, and it is not a bad model.
+It writes the English words in Latin and the Bengali words in Bengali script, which is a
+different target from ours, not a failed attempt at ours. Clip `BanglaASR11/seg_000.wav`:
+
+- Reference: `hello everyone, welcome to the second class of digital logic design. so goto class e amra ki dekhechilam? kichu fundamen...`
+- Hypothesis: `Hello এর্প্রিভান welcome to the second class of digital logic design সো বতকলাস আমরা কি দেখে ছিলাম কিছু fundamental গেইত...`
+
+`এর্প্রিভান` is the English word *everyone* spelled out in Bengali script. On 124 of the 177
+clips the output is majority Bengali script and on the other 53 it is mixed; **not one clip came
+back as romanized Banglish.** Only 12 per cent of the reference character count survives ASCII
+normalisation. This is the measured form of the novelty claim in Section 2.2.2: the nearest
+published model to this thesis solves a neighbouring problem in a different orthography, so a
+student who reads Banglish cannot use its output.
+
+**BanglaASR is the stricter case and the more useful row for the thesis**, because it is the
+Bengali branch of this project's own earlier pipeline, so it is the "what we had before"
+measurement. It writes Bengali script on every one of the 177 clips and does not code-switch at
+all: the English technical terms come back in Bengali letters too. The same clip reads
+`আলু এ পিভান বলকন্তু দ্য সেক্যান্ড ক্লাস অব ডিজিটাল লজিক ডিজাইন` where the lecturer said
+"hello everyone, welcome to the second class of digital logic design". Two per cent of the
+reference character count survives ASCII normalisation, and the WER is exactly 100 per cent:
+**not one word of any reference was matched.** This is the direct evidence for the claim in the
+notes chapter that the old Bengali-script transcript was unusable as input to the summariser.
+
+Reproduce (weights fetched by `scripts/fetch_baseline_models.sh`, which downloads over curl
+because a HuggingFace lookup from Python crashes this machine, and over IPv4 because the LFS
+CDN's IPv6 route from here stalls in the TLS handshake):
+
+```
+bash scripts/fetch_baseline_models.sh F:/thesisP2/models
+set HF_HUB_OFFLINE=1
+set TRANSFORMERS_OFFLINE=1
+set THESIS_FT_DIR=F:\thesisP2\ft_work_final5h
+F:\thesisP2\envs\thesis_ft\Scripts\python.exe scripts\benchmark_existing_models.py ^
+  --models-dir F:\thesisP2\models --batch 8
+```
+
+Output: `output/baseline_benchmark.json`, one entry per model with every clip's hypothesis kept.
+Decoding all 177 clips takes about 100 s for a whisper-small model on the 3060.
+
+`arif11/bangla-ASR-v5` ships only `pytorch_model.bin`, and transformers 5.12.1 refuses to load a
+pickle checkpoint unless torch is 2.6 or newer (CVE-2025-32434). The torch on the 3060 is pinned
+at 2.5.1 and must not be touched, so the weights were converted once with
+`scripts/bin_to_safetensors.py`, which reads them with `weights_only=True` and writes safetensors.
+No environment was modified.
+
+**MediBeng is the third distinct failure mode and the only one that scores above 100 per cent.**
+It writes the Latin alphabet, so on the script column it looks like the right kind of output, but
+it is a translation system: it renders the lecture into English and pads. Its output runs to
+**189 per cent of the reference character count**, 70 of the 177 clips are runaways by
+`evaluate.py`'s definition, and the error rates exceed 100 per cent because insertions are
+counted. Its model card reports WER 0.01 and BLEU 0.98, which is what synthetic clinical training
+data produces; on real spontaneous classroom speech it is the weakest of the three. Transliteration
+does nothing for it because it already writes Latin. **This row is the argument against reading
+any published error rate as a property of the model rather than of its test set.**
+
+**The other architecture, checked from the output vocabulary rather than by running it.**
+wav2vec2 is the other main family for Bengali, and a table of Whisper rows alone invites the
+question of whether the finding is an artefact of one architecture. A CTC model can only ever
+emit characters that are in its output vocabulary, and that file is a few kilobytes, so the
+question is answerable without downloading 1.2 GB of weights:
+
+| Model | Vocabulary | Bengali characters | Latin letters present |
+|---|---|---|---|
+| `arijitx/wav2vec2-large-xlsr-bengali` | 111 | 74 | 25 of 26 (no `q`) |
+| `tanmoyio/wav2vec2-large-xlsr-bengali` | 119 | 71 | 17 of 26 (no h, i, j, k, m, q, x, y, z) |
+
+**This did not come out the way it was expected to, and the honest reading is the narrower one.**
+Both vocabularies are Bengali-dominant, and `tanmoyio` **cannot** produce romanized Banglish at
+all: without h, i, k, m or y it cannot spell `kichu`, `ami` or `hobe`. But `arijitx` has an almost
+complete Latin alphabet, so it is not structurally prevented from writing romanized text, and the
+claim "no wav2vec2 Bengali model can write Banglish" would be false. What the vocabularies show
+is that these models are built to write Bengali script, not that emitting Latin is impossible for
+every one of them. Running `arijitx` is the only way to settle its row and it is queued behind
+the Whisper models.
+
+Fetched with `curl .../resolve/main/vocab.json`; counted by Unicode block.
+
+**All five Whisper-family models are run.** `arijitx/wav2vec2-large-xlsr-bengali` is the one
+candidate left unmeasured; its vocabulary is in the table above but its weights were not
+downloaded, and the thesis says so rather than implying the survey is exhaustive. Note also that
+`pr0mila-gh0sh/MediBeng-Whisper-Tiny` now redirects to `The-Data-Dilemma/MediBeng-Whisper-Tiny`;
+the repository moved to an organisation account, which matters because Chapter 2 cites it.
 
 ### 1.3 Superseded: the leaked split (do not quote)
 
@@ -1721,6 +1924,53 @@ The fine-tuned transcripts used for D were remade with the corrected adapter:
 from the leaked adapter and is kept only as a record.
 
 ---
+
+### 5.6 Reader study, the first human evaluation of the notes (2026-09-25)
+
+**Twenty readers, one lecture, the two notes shown blind.** The lecture is BanglaASR11
+(the `BanglaASR7_004` run folder). Note A was the original pipeline's note
+(`final_lecture_notes.md`, English prose, no board images, no box references, 653 words).
+Note B was this system's note (`notes_annotated_banglish_7b.md`, board images, numbered
+box references, checked quotations, Banglish, 2339 words). Every mention of a model or a
+method was stripped from both pages before they were shown, so a reader could not tell
+which system produced which page (verified: zero occurrences of Whisper, Qwen, LoRA,
+fine-tuned, off-the-shelf or any transcript filename in either page).
+
+| Question | This thesis (B) | Original (A) | Same | of decided | p |
+|---|---|---|---|---|---|
+| Prefer overall | **15** | 4 | 1 | 15 / 19 | **0.019** |
+| Easier to read and understand | 10 | 4 | 6 | 10 / 14 | 0.180 |
+| Better layout | **18** | 2 | 0 | 18 / 20 | **0.0004** |
+| Explains concepts more clearly | **10** | 2 | 8 | 10 / 12 | **0.039** |
+
+Test: two-sided exact binomial on the readers who expressed a preference, which is the
+sign test for a paired preference. Ties are excluded rather than split, the standard
+convention and the conservative choice, since each "about the same" removes evidence
+rather than adding half a vote to the winner.
+
+**What may be claimed and what may not.**
+- Three of the four questions favour this system. **Ease of reading does not reach
+  significance** (10 of 14, p = 0.18) and must not be reported as if it did.
+- **No correction for multiple comparisons.** Four tests at 0.05 give roughly an 18 per
+  cent family-wise error rate. Under Bonferroni (0.0125) **only the layout result
+  survives**; the overall preference and the concept question become suggestive. Say so.
+- **The comparison moves several things at once**: board images, box references, checked
+  quotations, language and three times the length. It measures the pipeline as a whole
+  and cannot attribute the preference to any one change.
+- **Order was not randomised.** Note A was always shown first. Position bias usually
+  favours the first item, so this works against the reported result, not for it.
+- **n = 20, one lecture, convenience sample.** A pilot. No reader was asked to study a
+  note and then answer questions about the lecture, which is the test that would measure
+  learning rather than preference.
+
+Raw responses: `Thesis Defense P3/drafts/thesis/survey.txt` (tab separated, 20 rows).
+Reproduce: `python scripts/analyse_survey.py`, which writes `output/survey_results.json`.
+The two pages and the key saying which is which:
+`scripts/make_survey_pair.py --lecture BanglaASR7_004 --a final_lecture_notes.md
+--b notes_annotated_banglish_7b.md --out output/survey_pipeline`.
+
+**This closes the "no human evaluation" gap as a pilot, not as a settled result.** The
+thesis text says exactly that in Section 5.2.7 and in the limitations list.
 
 ### 5.5 The note-file counters, totalled over every delivered page (2026-09-24)
 

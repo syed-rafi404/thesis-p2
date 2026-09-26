@@ -25,11 +25,11 @@ technical term, so the speech is Bengali in grammar and often English in content
 The written form matters as much as the spoken one. Bengali has its own script, but
 Bangladeshi students commonly write Bengali in the Roman alphabet, a form usually called
 Banglish. There is no spelling standard, so the same word appears as \textit{ami},
-\textit{aami} or \textit{amee} depending on the writer. Romanized Bangla is now an object
+\textit{aami} or \textit{amee} depending on the writer. Romanised Bangla is now an object
 of study in natural language processing in its own right. BanglaTLit, for example, is a
-benchmark of 42,700 romanized Bangla samples with a pre-training corpus of 245,700 more,
-built for converting romanized Bangla back into the Bengali script
-\cite{fahim2024banglatlit}. Work of this kind establishes romanized Bengali as a real
+benchmark of 42,700 romanised Bangla samples with a pre-training corpus of 245,700 more,
+built for converting romanised Bangla back into the Bengali script
+\cite{fahim2024banglatlit}. Work of this kind establishes romanised Bengali as a real
 written form with real users, which is the reason it was chosen here as the output of the
 speech model rather than the Bengali script.
 
@@ -41,12 +41,35 @@ turn the output into the reference divided by the number of reference words. Cha
 error rate is the same calculation over characters. Both can exceed 100 per cent when the
 system produces more text than was spoken.
 
-Two properties of these measures shaped how results are reported in this thesis. A single
+Two properties of these measures shaped how results are reported in this research. A single
 long wrong output for one short clip pushes a mean error rate above 100 per cent and
 hides everything else, so medians over clips are reported and systems are compared clip
 by clip. Word error rate is also unkind to a language with no spelling standard, because
-two acceptable spellings of the same word count as an error; Section 2.2.3 reviews what
+two acceptable spellings of the same word count as an error; Section \ref{sec:cs-metrics} reviews what
 the code-switching literature does about this.
+
+Modern recognisers are built in one of two ways, and the difference matters later in this
+research because the two write their output differently. The first is connectionist temporal
+classification, which scores an alignment between audio frames and a fixed set of output
+symbols \cite{graves2006ctc}. A model of this kind can only ever emit characters that are
+in its output alphabet, which is decided before training. The second is the encoder-decoder
+transformer \cite{vaswani2017attention}, which generates text one token at a time and can
+in principle produce any string its tokeniser can represent. Conformer models add
+convolution to the transformer encoder and are a common choice for speech
+\cite{gulati2020conformer}.
+
+Most recent recognisers for languages with little transcribed audio start from a model
+pretrained on unlabelled speech. wav2vec 2.0 learns from masked audio with a contrastive
+objective \cite{baevski2020wav2vec2}, HuBERT predicts hidden units discovered by
+clustering \cite{hsu2021hubert}, and WavLM extends the idea to a wider set of speech tasks
+\cite{chen2022wavlm}; a review covers the family and how the approaches relate
+\cite{mohamed2022sslreview}. The same recipe has been scaled across many languages at once,
+first with XLSR \cite{conneau2021xlsr} and then with XLS-R \cite{babu2022xlsr2}, which is
+where most published Bengali recognisers begin. WavLM is used directly in this research, not
+as a recogniser but to produce a voice embedding for each recording, which is how the
+lecturer of every video was confirmed. Where labelled audio is scarce, SpecAugment masks
+bands of time and frequency during training and is close to standard practice
+\cite{park2019specaugment}.
 
 Whisper is a family of encoder-decoder transformer models trained on about 680,000 hours
 of weakly supervised multilingual audio \cite{radford2023whisper}. Its decoder receives
@@ -60,14 +83,14 @@ paper proposes a fallback rule for this, in which a hypothesis whose gzip compre
 ratio exceeds a threshold is decoded again with sampling \cite{radford2023whisper}, and
 WhisperX avoids the problem by segmenting audio with an external voice activity detector
 instead of relying on the model's own timestamps \cite{bain2023whisperx}. Loops are
-reported in this thesis as a counted quantity.
+reported in this research as a counted quantity.
 
 A vision-language model takes an image and a text instruction and returns text. Open
 models such as Qwen2.5-VL read text inside an image well enough that a separate optical
 character recognition stage is often unnecessary \cite{bai2025qwen25vl}. Directing such a
 model at a specific part of an image is a separate problem, which Set-of-Mark prompting
 solves by drawing marks such as numbered boxes onto the image and asking the model to
-answer per mark \cite{yang2023som}. The board reader in this thesis uses the same idea,
+answer per mark \cite{yang2023som}. The board reader in this research uses the same idea,
 with the boxes found by our own image processing and the numbers carried through into the
 generated notes.
 
@@ -87,6 +110,15 @@ new domain. Training all weights of a model with hundreds of millions of paramet
 requires a large amount of memory, because the optimiser keeps extra state for every
 parameter, and it risks destroying what the model already knows when the new dataset is
 small.
+
+A family of methods answers this by training a small number of new parameters and leaving
+the pretrained weights alone. Adapters insert small trainable layers between the frozen
+ones \cite{houlsby2019adapters}, and prefix tuning learns a short sequence of vectors that
+is prepended to the input instead of changing any weight \cite{li2021prefix}. Low-Rank
+Adaptation is the member of that family used here. A later variant, QLoRA, quantises the
+frozen model to four bits so that a much larger model fits on one card
+\cite{dettmers2023qlora}; this research did not need it for the recogniser, but the same
+idea is what makes the note-writing model practical on a single consumer card.
 
 Low-Rank Adaptation avoids both problems \cite{hu2022lora}. The original weight matrix is
 frozen, and beside it two small matrices are trained whose product has the same shape as
@@ -109,8 +141,12 @@ is defensible only when scored on validation data, with the order of the search 
 rule for accepting a winner written down in advance. An ablation removes or changes one
 component and measures the effect, which is how a claim that a particular part is
 responsible for a result can be supported. Finally, in speech work it matters greatly
-whether the test speaker was heard during training, so this thesis reports both an unseen
+whether the test speaker was heard during training, so this research reports both an unseen
 speaker design and an unseen recording design and labels each one.
+
+Training in this research uses AdamW, which decouples weight decay from the gradient update
+and is the usual optimiser for transformer fine-tuning \cite{loshchilov2019adamw}, through
+the Hugging Face Transformers library \cite{wolf2020transformers}.
 
 Comparisons here are paired, because both systems are run on the same clips or boards. The
 Wilcoxon signed-rank test ranks the differences by size and asks whether positive and
@@ -120,13 +156,15 @@ difference is reported beside every p-value.
 
 \section{Review of Existing Research}
 
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.92\textwidth]{fig-2-1-related-map}
-\caption{The areas of existing research this thesis draws on,
-and where it sits between them.}
-\label{fig:fig-2-1-related-map}
-\end{figure}
+The work this research builds on falls into four areas. The first is speech recognition
+for Bengali and for code-switched speech, which supplies both the models and the
+evidence that code-switching is where they fail. The second is the small set of systems
+that target Bengali-English speech directly, which is where this research has to state
+what is new. The third is how code-switched recognition is measured, which matters here
+because two of the results in Chapter 5 are about a metric misleading rather than about
+a model improving. The fourth is reading a whiteboard and generating lecture notes,
+which is the vision half of the pipeline. Each is reviewed in turn, and the section ends
+with the gap the four leave open.
 
 \subsection{Bengali and code-switched speech recognition}
 
@@ -136,7 +174,15 @@ crowdsourced training audio from 22,645 native speakers and a 23.03 hour test se
 annotated by hand from seventeen sources, including television drama, audiobooks, talk
 shows and online classes \cite{rakib2023oodspeech}. Its purpose is to measure how badly
 models degrade when the test domain differs from the training domain, which is exactly
-the failure this thesis would meet by training on read speech and testing on a classroom.
+the failure this research would meet by training on read speech and testing on a classroom.
+Two other resources sit behind most published Bengali systems. Common Voice is a
+crowdsourced multilingual corpus whose Bengali portion is the training set for a large
+share of the public models \cite{ardila2020commonvoice}, and Multilingual LibriSpeech
+supplies read speech for the same purpose in other languages \cite{pratap2020mls}. For
+Indian languages specifically, IndicSUPERB provides the Kathbath corpus and a benchmark
+across twelve languages, which is the closest thing the region has to a standard
+evaluation \cite{javed2023indicsuperb}.
+
 On the modelling side, applying wav2vec 2.0 to the Bengali Common Voice dataset gives a
 word error rate of 0.2524 on a validation split of 7,747 samples
 \cite{shahgir2022wav2vec2bengali}, and several Whisper models fine-tuned on Bengali
@@ -146,14 +192,30 @@ project used one of them, a Whisper-small model fine-tuned on Bengali Common Voi
 All of these write Bengali script. For a classroom whose technical vocabulary is English
 that is a problem, not a solution, because the output turns \textit{NAND gate}
 into a Bengali spelling of the English sound, which neither a search for the English term
-nor a reader who writes Banglish can match.
+nor a reader who writes Banglish can match. This is not left as an argument: Section
+\ref{sec:baselines} reports what five of these published models actually produce when they
+are run on the test clips of this research.
+
+Writing a South Asian language in the Latin alphabet is itself a studied problem. The
+Dakshina dataset pairs native-script and romanised text for twelve South Asian languages
+and documents how unstandardised the romanised side is \cite{roark2020dakshina}, and
+Aksharantar is a large transliteration corpus built to train models that move between the
+two \cite{madhani2023aksharantar}. For Bengali specifically, BanglaTLit addresses the
+reverse direction, turning romanised Bangla back into Bengali script
+\cite{fahim2024banglatlit}. What none of this work does is treat the romanised form as the
+transcription target for speech, which is the position taken here.
 
 Code-switched recognition has its own literature, surveyed in general terms by Sitaram et
 al. \cite{sitaram2019survey} and, for end-to-end systems, in a recent systematic review
 that catalogues the languages, datasets, metrics and model choices used across the field
 \cite{agro2025cssurvey}. Two observations from that review apply here: intra-sentential
 switching is the hard case, and the field is short of natural, spontaneous, in-domain
-speech data, because most corpora are read or scripted.
+speech data, because most corpora are read or scripted. The best known exception is SEAME,
+about 192 hours of spontaneous Mandarin-English conversation, which has served as the
+standard benchmark for the field for over a decade \cite{lyu2010seame}. Nothing of that
+kind exists for Bengali-English. Winata et al. also show that a multilingual model is not
+automatically a code-switching model, since handling two languages separately is not the
+same as handling them in one sentence \cite{winata2021multilingual}.
 
 For South Asian languages, Chadha et al. built code-switched recognition for Indic
 languages using wav2vec 2.0 with language identification, reporting word error rates of
@@ -162,7 +224,7 @@ figures are much lower than the ones reported here, but not because their system
 better at this task. Their transcription target is the native script for the Bengali
 parts, their audio comes from a different and generally cleaner domain, and their test
 split is not made of whole unseen lectures. Error rates across different datasets and
-transcription targets are not comparable, and are not presented as such in this thesis.
+transcription targets are not comparable, and are not presented as such in this research.
 
 On the efficiency side, Yang et al. study parameter efficient adaptation of Whisper for
 code-switching, comparing soft prompt tuning variants against LoRA on the SEAME and
@@ -173,13 +235,13 @@ multilingual model adds a code-switched variety without retraining everything.
 
 \subsection{The nearest Bengali-English systems}
 
-Four efforts are close enough to this thesis to be named explicitly, and Table
+Four efforts are close enough to this research to be named explicitly, and Table
 \ref{tab:neighbours} compares them.
 
 \begin{table}[htbp]
 \centering
-\caption{Systems that recognise Bengali-English code-switched speech, with the system
-built in this thesis. The error rates come from different datasets with different
+\caption[Systems that recognise Bengali-English code-switched speech]{Systems that recognise Bengali-English code-switched speech, with the system
+built in this research. The error rates come from different datasets with different
 transcription targets and are not comparable with one another.}
 \label{tab:neighbours}
 \small
@@ -205,17 +267,17 @@ Indic code-switched corpora &
 Native script &
 WER 28.27 (Bengali-English) \\
 \addlinespace
-\texttt{whisper-small-}\newline\texttt{benglish} (public
+Whisper-small-\newline benglish (public
 model, no paper) &
 Whisper-small fine-tune &
 194 clips of about 30 s, roughly 1.6 h &
 Not documented &
 WER 0.4123 on a random 10 per cent split \\
 \addlinespace
-This thesis &
+This research &
 Whisper-large-v3-turbo with LoRA &
 5.15 h of hand-checked classroom speech, 28 lectures, 3 lecturers &
-Romanized Banglish &
+Romanised Banglish &
 CER 67.7 to 15.8, WER 93.9 to 41.7, six whole unseen lectures \\
 \bottomrule
 \end{tabular}
@@ -229,7 +291,7 @@ model for code-mixed text with disfluencies and rendering it with text-to-speech
 \cite{mitra2026behe}; it is a useful resource and makes the same point about missing
 spontaneous data, but it is not spontaneous speech. The Indic work uses real speech but
 targets the native script \cite{chadha2022indic}. The community model
-\texttt{whisper-small-benglish} is closest in intent, since its card names lecture notes
+Whisper-small-benglish is closest in intent, since its card names lecture notes
 among its uses, but it is a model card and not a study. It is trained on about 1.6
 hours and evaluated on a random ten per cent of the same clips, so the same speakers and
 very likely the same recordings appear on both sides of the split, and no example output
@@ -239,12 +301,85 @@ method, but reports no results.
 
 The conclusion is narrower than a claim of the first Banglish speech recogniser.
 Bengali-English code-switched recognition exists. What could not be found is a system
-that transcribes spontaneous Bengali-English classroom speech into romanized Banglish,
+that transcribes spontaneous Bengali-English classroom speech into romanised Banglish,
 evaluated on whole lectures held out from training against hand-checked references, with
-the whiteboard read alongside it. Every claim of novelty in this thesis is written in
+the whiteboard read alongside it. Every claim of novelty in this research is written in
 that form.
 
+\subsection{What the published models produce on our data}
+\label{sec:baselines}
+
+The error rates in Table \ref{tab:neighbours} come from different datasets with different
+transcription targets, so they cannot be compared with one another or with this work. An
+argument of that kind is weaker than a measurement, so five published models were run on
+the 177 held-out clips of this research, with the same references, the same normaliser and
+the same metric code that produced the result in Chapter 5. Table \ref{tab:baselines}
+gives the outcome.
+
+Two decisions keep the comparison fair. Each model decodes under its own generation
+settings, with no language or task token imposed on it, because a Bengali model was
+trained to emit Bengali and forcing it into another mode would break it for reasons that
+would be our fault. And because our references are romanised, a model that answers in
+Bengali script scores badly no matter how well it heard the speech, so the alphabet each
+model wrote in is counted and reported beside its error rate.
+
+\begin{table}[htbp]
+\centering
+\caption[Published Bengali models run on the 177 held-out clips]{Published Bengali and Bengali-English models run on the 177 held-out clips of
+this research. Median per-clip rates. The transliterated column romanises each model's
+Bengali output before scoring and keeps the better of two schemes per clip, so it is an
+upper bound on what the model could score if orthography were free.}
+\label{tab:baselines}
+\small
+\begin{tabular}{p{4.3cm}p{1.5cm}p{1.9cm}p{1.4cm}p{3.3cm}}
+\toprule
+Model & CER & CER after translit. & WER & What it wrote \\
+\midrule
+tugstugi Bengali Whisper-medium & 100.0 & 47.1 & 100.0 & Bengali script, all 177 clips \\
+\addlinespace
+Whisper-small-benglish & 89.9 & 66.0 & 95.8 & Bengali script 124, mixed 53 \\
+\addlinespace
+bangla-ASR-v5 & 98.6 & 73.0 & 100.0 & Bengali script, all 177 clips \\
+\addlinespace
+BanglaASR & 98.6 & 73.8 & 100.0 & Bengali script, all 177 clips \\
+\addlinespace
+MediBeng Whisper-tiny & 109.2 & n/a & 146.5 & English translation, 70 runaways \\
+\addlinespace
+Whisper-large-v3-turbo, off the shelf & 67.7 & n/a & 93.9 & English translation \\
+\addlinespace
+This research & \textbf{15.8} & n/a & \textbf{42.5} & Romanised Banglish \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Not one of the five produced romanised Banglish on a single clip. Four write Bengali
+script and the fifth translates into English. The clearest case is the model whose card
+advertises Benglish, which does switch between languages but writes the Bengali half in
+Bengali letters: where the lecturer said \textit{hello everyone, welcome to the second
+class of digital logic design}, it returned \textit{Hello} followed by the English word
+\textit{everyone} spelled out in Bengali script, then the English clause, then Bengali
+script again. The strongest Bengali model in the table writes Bengali script so
+consistently that none of its output survives conversion to plain ASCII at all, which is
+why both of its error rates are exactly 100.
+
+The obvious objection is that this punishes a model for its alphabet rather than for its
+hearing, so the Bengali output was transliterated to Roman and scored again. That closes
+much of the gap and it must be reported honestly. The strongest model improves from 100.0
+to 47.1, which is better than off-the-shelf Whisper, so it would be wrong to say these
+models are no better than an untuned system. It does not close the comparison: 47.1
+against 15.8 is still three times the error, and word error rate barely moves at all,
+from 100.0 to 90.2, because transliteration can fix an alphabet but cannot invent the
+spelling of a language that has no spelling standard.
+
+The conclusion is therefore narrow and measured. These are capable models being asked for
+something they were not built to produce. No published system was found that outputs
+romanised Banglish, and the transcripts they do produce cannot be read by the student this
+research is written for. One candidate, a wav2vec 2.0 Bengali model, was not run; its output
+alphabet was inspected instead and is dominated by Bengali characters, but it is not
+claimed here as measured.
+
 \subsection{Measuring code-switched recognition}
+\label{sec:cs-metrics}
 
 Evaluation is a recognised research topic in this area, and it bears directly on two
 results reported in Chapter 5. Hamed et al. benchmarked evaluation metrics for
@@ -258,7 +393,7 @@ too strict for speech that can be correctly written in more than one way
 \cite{kadaoui2024polywer}.
 
 The common thread is that a measure built around one script or one vocabulary misjudges a
-system that legitimately produces another. This thesis reaches the same conclusion from a
+system that legitimately produces another. This research reaches the same conclusion from a
 different direction. Its inherited term based measure counts a fixed list of English
 words, so a model that transcribes the mixed speech faithfully emits fewer of them and
 scores worse for being right. Section 5.4.2 quantifies the effect.
@@ -276,9 +411,21 @@ Kota et al. generalise this with a deep network that detects handwritten text, f
 and sketches and then binarises them, reaching an f-measure of 94.32 per cent for binary
 connected components on the AccessMath dataset \cite{kota2019generalized}.
 
+Reading text out of an image has itself changed since that work was published. Document
+understanding first moved to models that combine text, layout and image features, such as
+LayoutLM \cite{xu2020layoutlm}, and then to models that skip optical character recognition
+altogether and map the image straight to the output string, such as Donut
+\cite{kim2022donut}. General vision-language models followed. Visual instruction tuning
+produced open models that answer questions about an image in natural language
+\cite{liu2023llava}, closed models of the same kind read text in photographs well
+\cite{openai2023gpt4}, and a recent survey covers how these models are now applied to
+visually rich documents and where they still fail \cite{ding2025vrdusurvey}. A whiteboard
+is a harder case than a scanned page, because the writing is handwritten, unevenly lit,
+partly occluded by the person writing it, and never captured straight on.
+
 These systems solve a closely related problem and solve it well. Two differences matter
 here. Their output is a binarised summary image or an index of handwriting regions, which
-is the right target for search and navigation, whereas the target in this thesis is a
+is the right target for search and navigation, whereas the target in this research is a
 photograph-like board that a student can look at inside a note, with the original strokes
 and colours intact. None of them reads the content into text with a model that
 understands what it is reading, because that capability did not exist when most of them
@@ -297,7 +444,7 @@ placed beside the classroom targeted here. Existing systems assume slides, which
 that can be read reliably or taken directly from a file, whereas our lecturers write on a
 whiteboard and stand in front of what they write. The datasets and systems are also built
 for English or Chinese and for speech that stays in one language. The user study in
-NoteIt points at something this thesis has not done. Whether notes are good is a question
+NoteIt points at something this research has not done. Whether notes are good is a question
 about readers, and it is answered by asking readers.
 
 Results from vision-language models in this area are also strongly affected by the
@@ -317,7 +464,7 @@ into English, train on synthetic speech, or target the native script, and the on
 community model that matches the intent most closely is undocumented and evaluated on a
 random split of its own clips.
 
-The second is that the board problem is well studied, and this thesis should not
+The second is that the board problem is well studied, and this research should not
 claim otherwise. Extracting
 handwritten content from fixed camera lecture video has a long literature with strong
 results on public datasets. What is new here is not the extraction but what follows it,
@@ -327,28 +474,28 @@ regions of it into a generated note.
 The third is that measurement is an open problem in this area and not a detail. Several independent
 groups have found that standard word error rate misjudges code-switched output and have
 proposed transliteration based or multi-reference alternatives. The same class of problem
-appears twice in this thesis, once in the inherited term measure and once in the note
+appears twice in this research, once in the inherited term measure and once in the note
 quality measure.
 
 The last is that lecture note generation with large models is active but assumes a
 different classroom.
 Existing systems expect slides and a single language, and nothing found combines
 code-mixed speech, a handwritten whiteboard and generated notes in two languages. Table
-\ref{tab:gap} states the gap in the form the rest of the thesis uses.
+\ref{tab:gap} states the gap in the form the rest of the research uses.
 
 \begin{table}[htbp]
 \centering
-\caption{The gap this thesis addresses.}
+\caption{The gap this research addresses.}
 \label{tab:gap}
 \small
 \begin{tabular}{p{2.8cm}p{5.4cm}p{5.4cm}}
 \toprule
-Component & What already exists & What this thesis adds \\
+Component & What already exists & What this research adds \\
 \midrule
 Speech &
 Bengali ASR in native script; Bengali-English code-switched systems on synthetic or out
 of domain data &
-Romanized Banglish transcription of spontaneous classroom speech, tested on whole unseen
+Romanised Banglish transcription of spontaneous classroom speech, tested on whole unseen
 lectures against hand-checked references \\
 \addlinespace
 Evaluation &

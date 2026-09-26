@@ -33,18 +33,29 @@ discipline. And every reported number is produced by a command recorded beside i
 
 \subsection{The four stages}
 
-\begin{figure}[htbp]
+\begin{figure}[p]
 \centering
-\includegraphics[width=0.97\textwidth]{fig-4-1-pipeline}
-\caption{The InsightLens pipeline. Each stage writes a file that
-the next stage reads.}
+\includegraphics[width=\textwidth,height=0.86\textheight,keepaspectratio]{fig-pipeline-full}
+\caption[The InsightLens pipeline in full]{The InsightLens pipeline in full. One lecture video enters at the top and two
+lecture notes leave at the bottom. The speech and vision halves run independently and
+meet only at the note-writing model, which receives the board as text rather than as an
+image. Each box is a separate program that writes a file the next one reads, so any stage
+can be rerun on its own. The three shaded models are the only learned components, and of
+these only the LoRA adapter on Whisper was trained here. The grey path on the left is that
+training. It is drawn apart and dashed because it happens once, before any lecture is
+processed, and a new lecture does not need a hand-written transcript to pass through the
+system; Section \ref{sec:data-collection} describes how the corpus was built. The two
+boxes before the output are checks that can delete text the model produced. The error
+rates and counts shown are the measured values reported in Chapter 5.}
 \label{fig:fig-4-1-pipeline}
 \end{figure}
 
+Figure \ref{fig:fig-4-1-pipeline} shows the whole system, with the file each stage
+hands to the next named on the arrow.
 The first two stages work on the two halves of the recording independently. In stage one
 the audio is extracted and cut into clips, a LoRA adapter trained on the corpus is
 attached to Whisper large-v3-turbo, and the adapted model writes a timestamped transcript
-in romanized Banglish. In stage two frames are extracted at a fixed interval, erase events
+in romanised Banglish. In stage two frames are extracted at a fixed interval, erase events
 split the lecture into eras with one board per era, and within an era each tile of the
 frame is taken from a moment when the lecturer was not standing in front of that tile.
 
@@ -72,7 +83,7 @@ words seen on the board, implemented as a logits processor with a strength param
 halved term recall at every non-zero setting and truncated the transcript. Using a Bengali
 model and transliterating afterwards was rejected on the design and not by experiment,
 because it loses the English technical terms twice, first when the Bengali model spells
-them phonetically and again when they are romanized back.
+them phonetically and again when they are romanised back.
 
 For the board, the option that had to be abandoned was the one the first version of the
 project used, which removed the lecturer and filled the hole by inpainting. Inspection
@@ -94,7 +105,7 @@ the real image and checked by eye.
 
 \begin{table}[htbp]
 \centering
-\caption{The alternatives considered at each stage. Options marked as measured were built
+\caption[The alternatives considered at each stage]{The alternatives considered at each stage. Options marked as measured were built
 and evaluated before being rejected.}
 \label{tab:alternatives}
 \small
@@ -129,13 +140,15 @@ Notes & Annotated note with boxes & selected & 89.1 per cent and readable \\
 \end{table}
 
 \section{Data Collection}
+\label{sec:data-collection}
 
 \subsection{Recording and transcription}
 
-Forty-four lectures were recorded in Brac University classrooms with a fixed camera
-pointed at the lecturer and the whiteboard. Three lecturers took part and no lecture uses
-slides. The recordings total 8.33 hours, the shortest 3.4 minutes and the longest 36.4
-minutes.
+Forty-four lectures were recorded in classrooms of Brac University and in other
+classrooms available to us, with a fixed camera pointed at the lecturer and the
+whiteboard. The three people who appear as lecturers are the authors of this research, and
+no lecture uses slides. The recordings total 8.33 hours, the shortest 3.4 minutes and the
+longest 36.4 minutes.
 
 The lecturer of each recording was confirmed by voice, not by memory. A WavLM
 speaker embedding was computed for every lecture and compared with reference embeddings,
@@ -146,7 +159,7 @@ was; the error is described in Section \ref{sec:asr-loso}.
 
 Before transcription began, a written standard was produced, and every transcript is
 checked against it by a validation script. Each line is a timed segment written as
-\texttt{[M:SS-M:SS]} followed by the text. Segments run 10 to 25 seconds and never longer
+[M:SS-M:SS] followed by the text. Segments run 10 to 25 seconds and never longer
 than 30, because Whisper processes a 30 second window, and there are no gaps and no
 overlaps between them. Fillers such as \textit{aaa}, \textit{mane} and \textit{tahole} are
 kept, because the goal is a transcript of the speech and not a tidied version of it.
@@ -159,9 +172,9 @@ work for ten minutes of video.
 \subsection{Data Cleaning}
 
 Four cleaning problems occurred and each is handled by a script and not by hand editing. The first concerns timestamps. The segment parser accepts a timestamp only in
-the exact form \texttt{[1:34-1:53]}. In an
+the exact form [1:34-1:53]. In an
 earlier version of the corpus, 9 of 156 timestamps carried stray spaces, written for
-example as \texttt{[4:22- 4:45 ]}. Those lines did not register as segment boundaries, so
+example as [4:22- 4:45 ]. Those lines did not register as segment boundaries, so
 their text joined the previous segment and ten evaluation clips carried more words than
 their audio. The validator now reports every unreadable timestamp and can repair them,
 keeping a backup of the original file. The effect of the defect on the affected result
@@ -237,6 +250,7 @@ One further rule protects the note evaluation. A note scored on a lecture's boar
 must be written from a transcript produced by an adapter that never heard that lecture's
 lecturer, so the transcripts for the scored lectures come from the leave-one-speaker-out
 adapters, and the builder records in each output file which adapter produced its input.
+Table \ref{tab:corpus} summarises the corpus after these steps.
 
 \subsection{Summary of Preprocessed Data}
 
@@ -276,7 +290,7 @@ segment lengths against Whisper's 30 second window.
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.97\textwidth]{fig-data-composition}
-\caption{The corpus by lecturer. The darker part of each bar is training speech, the
+\caption[The corpus by lecturer]{The corpus by lecturer. The darker part of each bar is training speech, the
 middle part is held out for testing, and the lightest part is video with no transcript.}
 \label{fig:fig-data-composition}
 \end{figure}
@@ -284,7 +298,7 @@ middle part is held out for testing, and the lightest part is video with no tran
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.97\textwidth]{fig-data-segments}
-\caption{Lengths of the 609 transcribed segments against Whisper's 30 second window.
+\caption[Lengths of the 609 transcribed segments against Whisper's 30 second window]{Lengths of the 609 transcribed segments against Whisper's 30 second window.
 Segments longer than the window are subdivided at sentence ends before training.}
 \label{fig:fig-data-segments}
 \end{figure}
@@ -294,6 +308,27 @@ Segments longer than the window are subdivided at sentence ends before training.
 
 \subsection{Adapting the speech model}
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig-arch-whisper}
+\caption[Whisper large-v3-turbo with the LoRA adapter, and one real clip]{Whisper large-v3-turbo with the LoRA adapter, and one real clip passing through
+it. The picture on the left is the log-Mel array of clip 41 of lecture BanglaASR11, made
+by Whisper's own feature extractor, so it is the array the encoder is actually given. The
+clip runs from 12:34 to 12:51, inside the board era shown in Figures
+\ref{fig:xnor-frame-before} to \ref{fig:xnor-boxes}, and in it the lecturer reads out the
+exclusive-or column of the truth table that box 2 of that board holds. Its character error
+rate is 24.5 per cent against the run's median of 15.8, so this is a slightly worse than
+typical clip rather than a flattering one. What the fine-tuned model returned was
+\textit{``so first ele ami pabo 0 0 equals to 0, 0 1 equals to 1, 1 0 equals to 1, 1 1
+equals to 0. x or banano amar shesh. ekhon eitake ami not kore felbo. not mane ki? inverse
+ta baupar felbo.''} Every size shown is read from
+the model's configuration file. The turbo model is unusual in having 32 encoder layers but
+only 4 decoder layers, which is what makes it fast. Only the small LoRA matrices were
+trained; the 809 million parameters of the base model were never updated.}
+\label{fig:arch-whisper}
+\end{figure}
+
+Figure \ref{fig:arch-whisper} shows the model and one real clip passing through it.
 The base model is whisper-large-v3-turbo, an encoder-decoder transformer with 809 million
 parameters \cite{radford2023whisper}, and its weights are frozen. LoRA adapters are
 attached to the query and value projection matrices of the attention layers, with rank 16
@@ -332,6 +367,17 @@ reports it.
 
 \subsection{Rebuilding the board}
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig-board-reconstruction}
+\caption[How one clean board is built from a lecture video]{How one clean board is built from a lecture video. Nothing in this chain
+generates pixels: every part of the finished board was photographed by the camera at some
+moment, and the only step that changes a pixel is the display clean-up at the end, which
+replaces the background but leaves the strokes alone.}
+\label{fig:board-reconstruction}
+\end{figure}
+
+The steps are shown in Figure \ref{fig:board-reconstruction}.
 The amount of ink on the board is tracked across frames, and when a large fraction of it
 disappears between consecutive frames the board has been wiped, so the frames between two
 wipes form one era. Within an era the frame is cut into small overlapping tiles. A tile
@@ -363,45 +409,62 @@ pixels and the background is not, and the report says so wherever a cleaned boar
 shown. Section \ref{sec:board-cleanup} reports the measured effect of this step on how
 well the vision-language model reads the board, which was not the expected one.
 
-Figure \ref{fig:fig-4-2-before-frame} shows why one frame is not enough, and Figures
-\ref{fig:nand-mosaic-raw} and \ref{fig:nand-mosaic-clean} show the board this era produces,
+Figure \ref{fig:xnor-frame-before} shows why one frame is not enough, and Figures
+\ref{fig:xnor-mosaic-raw} and \ref{fig:xnor-mosaic-clean} show the board this era produces,
 before and after clean-up.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.97\textwidth]{fig-4-2-before-frame}
-\caption{One frame of the digital logic lecture, BanglaASR11, at 6:50. The lecturer covers
-the two right-hand columns of the truth table she has just written, and no frame of this
-era shows the whole board at once. Figure \ref{fig:nand-mosaic-raw} is what the
-reconstruction recovers from the same era.}
-\label{fig:fig-4-2-before-frame}
+\includegraphics[width=0.97\textwidth]{xnor-frame-before}
+\caption[One frame of lecture BanglaASR11, with the lecturer in front of the board]{One frame of the digital logic lecture, BanglaASR11, at 12:40. The lecturer is
+filling in the exclusive-or column of the truth table, and her arm and body cover the
+left half of the board while she does it. The last two columns do not exist yet, so no
+single frame of this era shows the finished board. Figure \ref{fig:xnor-mosaic-raw} is
+what the reconstruction recovers from the era as a whole.}
+\label{fig:xnor-frame-before}
 \end{figure}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\textwidth]{nand-mosaic-raw}
-\caption{A rebuilt board from lecture BanglaASR11. Every pixel comes from a real frame of
+\includegraphics[width=\textwidth]{xnor-mosaic-raw}
+\caption[A rebuilt board from lecture BanglaASR11]{A rebuilt board from lecture BanglaASR11. Every pixel comes from a real frame of
 the video. The horizontal bands are glare from the ceiling lights, which is present in
 every frame and therefore cannot be removed by choosing a different one.}
-\label{fig:nand-mosaic-raw}
+\label{fig:xnor-mosaic-raw}
 \end{figure}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\textwidth]{nand-mosaic-clean}
-\caption{The same board after the display clean-up. The background has been replaced, so
+\includegraphics[width=\textwidth]{xnor-mosaic-clean}
+\caption[The same board after the display clean-up]{The same board after the display clean-up. The background has been replaced, so
 this image is enhanced and not unmodified camera output, while the strokes themselves
 are camera pixels.}
-\label{fig:nand-mosaic-clean}
+\label{fig:xnor-mosaic-clean}
 \end{figure}
 
 \subsection{Numbered boxes and the vision-language model}
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig-arch-qwen-vl}
+\caption[Qwen2.5-VL-7B reading a real board of lecture BanglaASR11]{Qwen2.5-VL-7B reading a board, with the real board of lecture BanglaASR11 as the
+input. The numbered boxes on that image were drawn by our own code, not by the model; the
+model is asked to name and transcribe each number in turn, which is Set-of-Mark prompting
+\cite{yang2023som}. For this board it returned \textit{box 1 ``Title'': Digital Logic
+Design}, \textit{box 2 ``Truth table'': X-NOR gate, X-OR + NOT, A, B, A$\oplus$B,
+$\overline{A \oplus B}$} and \textit{box 5 ``Formula'': X-NOR $\rightarrow$
+$\overline{A}\,\overline{B} + AB$}. Sizes come from the model's configuration file. The vision encoder and the language model are one
+network, since image patches become tokens in the same 3584-dimensional space as the text,
+which is why the model can be asked about a specific numbered region in words.}
+\label{fig:arch-qwen-vl}
+\end{figure}
+
+Figure \ref{fig:arch-qwen-vl} shows this stage on a real board.
 Our own code, not the model, finds the blocks of writing. It groups dark pixels, strips
 the board frame, drops specks and rejoins boxes that are parts of the same written line,
 producing at most ten boxes per board. Each box receives a number and a colour from a
 fixed list of ten, and the notes later refer to a box by both, for example the purple box
-5.
+5. Figure \ref{fig:xnor-boxes} is a finished example.
 
 The numbered boxes are drawn onto the clean board and the image is given to
 Qwen2.5-VL-7B-Instruct with a prompt asking, for each numbered box, for a short name and a
@@ -419,15 +482,43 @@ JSON cannot be parsed.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\textwidth]{nand-demo-3}
-\caption{The board of Figure \ref{fig:nand-mosaic-clean} with the numbered coloured boxes
+\includegraphics[width=\textwidth]{xnor-boxes}
+\caption[A clean board with the numbered coloured boxes our code draws]{The board of Figure \ref{fig:xnor-mosaic-clean} with the numbered coloured boxes
 drawn by our code and named by the vision-language model. The generated notes refer to
-these numbers and colours.}
-\label{fig:nand-demo-3}
+these numbers and colours. The naming is not perfect and the figure is left as the model
+produced it: box 3 is the block diagram and box 4 is the gate symbol, and the model has
+given each of them the other's name. Both names describe something that is on the board,
+which is why an error of this kind survives a recall measure that scores content rather
+than labels.}
+\label{fig:xnor-boxes}
 \end{figure}
 
 \subsection{Writing the note}
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig-arch-qwen-llm}
+\caption[Qwen2.5-7B-Instruct writing one section of a note]{Qwen2.5-7B-Instruct writing one section of a note. The panel on the left is the
+real input for the board of Figure \ref{fig:xnor-boxes}, that is the transcript of the
+minutes the board was on the wall and the box text the vision model returned for it. What
+came back includes \textit{``Truth Table (Box 2): the truth table for the X-NOR gate is
+shown above. The output is 1 if both inputs are the same, both 0 or both 1, and 0 if the
+inputs are different.''} This model has no image branch at all. It never sees the board,
+only the text read off it, which is the property that makes the output checkable.}
+\label{fig:arch-qwen-llm}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig-notes-assembly}
+\caption[One board and the matching minutes of transcript becoming one section of a note]{One board and the matching minutes of transcript becoming one section of a note.
+The two checks on the right can delete text the model produced, and the number of
+deletions is written into the output file for every page.}
+\label{fig:notes-assembly}
+\end{figure}
+
+Figures \ref{fig:arch-qwen-llm} and \ref{fig:notes-assembly} show the model
+and the steps around it.
 The note is written by Qwen2.5-7B-Instruct, one call per board. Each call receives the
 board's boxes with their names and transcribed text, and the part of the transcript
 falling between that board's first and last frame, so the model sees the words spoken
@@ -437,7 +528,7 @@ self-check questions for the whole lecture.
 The prompt asks for a section that walks the reader through the board, refers to the boxes
 by number and colour, and quotes the lecturer between two and five times. Material that is
 standard for the topic but that the lecturer did not say is allowed only inside a section
-headed \texttt{Background}, which the page builder renders as a dashed, labelled aside. This
+headed Background, which the page builder renders as a dashed, labelled aside. This
 is the controlled version of the failure that produced the wrong textbook definition in
 the first version of the pipeline. The material is still generated, but it is fenced and
 labelled rather than passing as something the lecturer said.

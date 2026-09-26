@@ -50,21 +50,21 @@ optical character recognition stage \cite{bai2025qwen25vl}. Instruction tuned la
 models such as Qwen2.5-7B can take a transcript and board content together and write a
 structured document from them \cite{qwen2025qwen25}.
 
-This thesis combines the three into a system called InsightLens. A lecture video is the
+This research combines the three into a system called InsightLens. A lecture video is the
 input. The output is a lecture note containing the board redrawn without the lecturer in
 front of it, numbered coloured boxes around each part of the board, an explanation
 written from the lecturer's own words, and quotations checked against the transcript. The
-note is produced in Banglish and in English so that the student can choose.
+note is produced in Banglish and in English so that the student can choose. Figure \ref{fig:fig-1-1-overview} shows the idea.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.92\textwidth]{fig-1-1-overview}
-\caption{The InsightLens idea. A recorded Banglish lecture
+\caption[The InsightLens idea]{The InsightLens idea. A recorded Banglish lecture
 becomes a lecture note that contains both the speech and the whiteboard.}
 \label{fig:fig-1-1-overview}
 \end{figure}
 
-\section{Rational of the Study or Motivation}
+\section{Rationale of the Study or Motivation}
 
 A student who misses a class, or who cannot follow the English terms at the speed they
 are spoken, currently has only the recording. Three hours of video is not a study aid.
@@ -149,7 +149,7 @@ of 82 English words, inherited from the earlier phase of this project, moves by 
 percentage points between two training runs on identical data, and it moves in the wrong
 direction. A model that transcribes the mixed speech correctly emits fewer English words
 than a model that translates it, so the better transcript scores worse. Any measure built
-from English strings behaves this way, and part of the contribution of this thesis is to
+from English strings behaves this way, and part of the contribution of this research is to
 document it.
 
 \section{Objective}
@@ -178,6 +178,18 @@ specific objectives are:
   \item to evaluate each stage with paired statistical tests and ablations, and to report
         the approaches that did not work as fully as the ones that did.
 \end{enumerate}
+
+Four of the findings that came out of this work are not tied to the corpus and would hold
+for another language or another classroom. First, for reading a handwritten board with a
+vision-language model, the prompt matters about eleven times more than the size of the
+model: 57.6 points of board-content recall against 5.3. Second, generated notes can be
+scored on facts that were physically written on the board, which the note-writing model
+cannot supply from prior knowledge, and that separates grounding from general knowledge in
+a way fluency measures cannot. Third, measures built from English word lists are invalid
+for code-mixed speech, because they reward a system that translates and penalise one that
+transcribes correctly. Fourth, no published Bengali or Bengali-English speech model
+produces romanised Banglish, which is shown here by running five of them on the same test
+clips. Chapter 6 states all of these again with the numbers behind them.
 
 \section{Methodology in Brief}
 
@@ -244,11 +256,11 @@ affects two separate results reported in Chapter 5.
 
 \section{Team Overview}
 
-The thesis was carried out by three students of the Department of Computer Science and
+The research was carried out by three students of the Department of Computer Science and
 Engineering, Brac University, supervised by Dr. Md. Golam Rabiul Alam and co-supervised
 by Md. Tanzim Reza.
 
-The work divided into three areas. Data collection and transcription was the largest
+The work fell into three areas. Data collection and transcription was the largest
 shared task, since every transcript was checked word by word against the audio by a member
 of the team. Model training and evaluation covered the speech experiments, the tuning
 procedure and the statistical testing. The vision and note generation area covered board

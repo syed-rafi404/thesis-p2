@@ -1,0 +1,67 @@
+{
+ "v": 4,
+ "createdOnFiles": {
+  "v": 1,
+  "at": "2026-09-26T00:00:00Z"
+ },
+ "title": "InsightLens Thesis Defense",
+ "order": [
+  "cover",
+  "problem",
+  "overview",
+  "baselines",
+  "corpus",
+  "pipeline",
+  "archwhisper",
+  "prereg",
+  "asrresult",
+  "unseen",
+  "boardproblem",
+  "boardrecon",
+  "prompt",
+  "boxes",
+  "notes",
+  "reader",
+  "negatives",
+  "contrib",
+  "limits",
+  "future",
+  "b_leak",
+  "b_metric",
+  "b_perlecture",
+  "b_ethics"
+ ],
+ "sections": {
+  "s1": {
+   "description": "The problem and why existing tools do not solve it",
+   "start": "cover"
+  },
+  "s2": {
+   "description": "Adapting the speech model and what it achieved",
+   "start": "archwhisper"
+  },
+  "s3": {
+   "description": "Rebuilding the whiteboard and reading it with a vision model",
+   "start": "boardproblem"
+  },
+  "s4": {
+   "description": "The notes, the reader study and what did not work",
+   "start": "notes"
+  },
+  "s5": {
+   "description": "Backup slides held for questions",
+   "start": "b_leak"
+  }
+ },
+ "faces": {
+  "eb-garamond": {
+   "family": "EB Garamond",
+   "href": "https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600&display=swap"
+  },
+  "ibm-plex-sans": {
+   "family": "IBM Plex Sans",
+   "href": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&display=swap"
+  }
+ },
+ "designSystems": []
+}

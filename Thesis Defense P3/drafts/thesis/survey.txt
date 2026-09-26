@@ -1,0 +1,22 @@
+Overall, which set of lecture notes do you prefer?	Which lecture notes are easier to read and understand?	Which notes have a better layout and visual organization?	Which set of notes explains the complex concepts more clearly?
+Note B	Note B	Note B	Note B
+Note A	Note A	Note A	Note A
+Note B	Both are same	Note B	Note B
+Note B	Note B	Note B	Both are about the same
+Note B	Both are same	Note B	Both are about the same
+Note B	Note B	Note B	Both are about the same
+Note B	Note B	Note B	Both are about the same
+Note B	Both are same	Note B	Both are about the same
+Note B	Note B	Note B	Note B
+Note B	Note B	Note B	Note B
+Note B	Note B	Note B	Note B
+Note B	Note A	Note B	Note B
+Note B	Note B	Note B	Note B
+Note A	Note A	Note B	Both are about the same
+No preference	Both are same	Note B	Both are about the same
+Note A	Note A	Note A	Note A
+Note B	Note B	Note B	Note B
+Note B	Both are same	Note B	Note B
+Note A	Note B	Note B	Note B
+Note B	Both are same	Note B	Both are about the same
+			

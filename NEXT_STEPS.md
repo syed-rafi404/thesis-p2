@@ -1,6 +1,20 @@
 # NEXT STEPS — read this file, ignore everything else
 
-If you are lost, start here. Updated 2026-09-23 (on the 3060).
+If you are lost, start here. Updated 2026-09-25 (on the 3060).
+
+---
+
+## WRITING IS THE ONLY WORK LEFT (2026-09-25)
+
+The pipeline and the experiments are finished. Everything still outstanding is about the thesis
+document, and it is tracked in **`Thesis Defense P3\DRAFTING_TODO.md`**, not here. That file holds
+the supervisor's six requested changes with their state, the answers to the two questions he keeps
+asking (what is novel without the dataset, and whether the published models beat ours), and the
+order to do the rest in.
+
+Done 2026-09-25: the baseline comparison against five published Bengali and Banglish models
+(RESULTS.md 1.10, no model beats ours, none writes Banglish), the bibliography taken to 55 cited
+references, the font inconsistency, and the lone-table page.
 
 ---
 

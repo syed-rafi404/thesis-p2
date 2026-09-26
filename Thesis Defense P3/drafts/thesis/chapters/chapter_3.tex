@@ -22,7 +22,7 @@ ID & Requirement & Where met \\
 \midrule
 FR1 & Accept a recorded lecture video and extract a 16 kHz mono audio track. &
 Section 4.3 \\
-FR2 & Produce a timestamped transcript in romanized Banglish using a model adapted to
+FR2 & Produce a timestamped transcript in romanised Banglish using a model adapted to
 this speech. & Section 4.4.1 \\
 FR3 & Detect the points at which the board is wiped and treat the writing between two
 wipes as one board. & Section 4.4.2 \\
@@ -108,7 +108,7 @@ speech result can be. Training the 809 million parameter speech model on a 12 GB
 possible only with gradient checkpointing, and the largest vision-language models were
 out of reach, since Qwen2.5-VL-32B is 68.3 GB of weights and the 72B version 146.8 GB. The
 project runs to a fixed submission date, so a fourteen hour run can be started once
-instead of five times. The fourth constraint was self imposed and removed the most work:
+instead of five times. The fourth constraint was self-imposed and removed the most work:
 no number enters this report unless a command in the project regenerates it. An earlier
 version of the project carried figures whose numbers had been typed instead of computed,
 and those were removed.
@@ -155,7 +155,7 @@ respects how the class is taught.
 
 Training machine learning models consumes electricity, and the field has been criticised
 for not reporting it \cite{strubell2019energy}. The headline figures in that literature
-come from very large models trained on clusters. The work in this thesis sits at the
+come from very large models trained on clusters. The work in this research sits at the
 other end of the scale, and the actual figure is below.
 
 All training is parameter efficient, so no full model was trained from scratch or
@@ -164,7 +164,7 @@ that produced the results in Chapter 5, read from the job logs.
 
 \begin{table}[htbp]
 \centering
-\caption{Machine time for the jobs behind the reported results, from the job logs. The
+\caption[Machine time for the jobs behind the reported results]{Machine time for the jobs behind the reported results, from the job logs. The
 rows marked approximate are added from run records rather than a single log line.}
 \label{tab:compute}
 \small
@@ -212,8 +212,11 @@ service, which also means no lecture content leaves the institution.
 
 \section{Ethical Issues}
 
-Every recording used here was made with the knowledge and permission of the lecturer in
-it. Three lecturers took part. The recordings are not published and are not shared
+The people recorded are the authors. Three of us appear as lecturers across the corpus,
+and no one outside the team was recorded or asked to take part, so there is no
+third-party participant in the dataset and no external consent to obtain. The recordings
+were made in classrooms of Brac University and in other classrooms available to us, with
+no student present as a subject. The recordings are not published and are not shared
 outside the team. Where a board image appears in this report, the lecturer has been
 removed by the reconstruction itself, so the figures show writing rather than people.
 Videos, audio, transcripts and board images are kept in a private repository, the
@@ -257,7 +260,7 @@ are conventions of the field and not formal standards, and the table says which.
 Area & Standard & How it is applied \\
 \midrule
 Transcription & Project transcription guide, version 1.0 &
-Segments of 10 to 25 seconds and never over 30, timestamps as \texttt{[M:SS-M:SS]},
+Segments of 10 to 25 seconds and never over 30, timestamps as [M:SS-M:SS],
 fillers kept, ASCII only, a fixed spelling table. A validator checks every file. \\
 \addlinespace
 Audio & 16 kHz mono PCM WAV & The input format the speech model expects. \\
@@ -393,7 +396,7 @@ reported experiment was about 24 hours, which is about 8 kWh and a negligible ca
 amount, and storage came to about 106 GB on existing disks.
 
 Two alternatives are worth pricing. Renting the same compute is cheap: 24 hours on a
-rented mid-range graphics card at typical rates of one to two United States dollars an
+rented mid-range graphics card at typical rates of \$1 to \$2 an
 hour is about thirty to fifty dollars, so compute is not what makes a project of this
 kind expensive. Commercial transcription is the opposite. Bengali speech-to-text services
 exist, but they output the Bengali script, so for this purpose they would not remove any
