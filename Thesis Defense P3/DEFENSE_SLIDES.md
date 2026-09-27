@@ -3,12 +3,40 @@
 For the three of you to build the deck from. Every number here is in
 [RESULTS.md](../RESULTS.md); do not add one that is not.
 
-Target: **20 slides, about 20 minutes**, then questions. Three speakers, roughly
-6 minutes each. Backup slides at the end are not presented, they are there so a question
-gets an answer with a picture instead of a story.
+Target: **about 20 minutes**, then questions. Three speakers, roughly 6 minutes each.
+Backup slides at the end are not presented, they are there so a question gets an answer
+with a picture instead of a story.
 
-Image paths are relative to the repository root. `T/` below means
-`Thesis Defense P3/drafts/thesis/images/`.
+**The slide count is not a budget.** The twenty below are the argument, not the page
+count. If a slide holds a figure and four claims, split it across two or three; a
+template page can be duplicated as many times as the content needs. Squeezing this
+material into fifteen pages was tried once and produced a cramped deck with the ablation
+and the hyperparameters cut out of it. Give each result the room it needs.
+
+**The prose here is a script to speak from, not text to paste onto a slide.** On the
+slide put the claim and the number. The sentences below are what you say over it.
+
+Image paths are relative to the repository root. `T/` means
+`Thesis Defense P3/drafts/thesis/images/` (PDF, for LaTeX) and `S/` means
+`Thesis Defense P3/slide_images/` (PNG and JPG at 150 dpi, for Canva). Use `S/` when
+building slides: Canva imports a PDF as a whole page, not as a placeable image.
+
+| Slide | Canva-ready file in `S/` |
+|---|---|
+| 3  overview | `1-1-overview.png` |
+| 4  baselines | `baselines.png` |
+| 5  corpus | `datacomp.png` |
+| 6  pipeline | `pipeline.png` |
+| 7  Whisper + LoRA | `archwhisper.png` |
+| 9  speech result | `asrfinal.png` |
+| 11 whiteboard problem | `xnor-frame-before.jpg` |
+| 12 reconstruction | `xnor-mosaic-raw.jpg`, `xnor-mosaic-clean.jpg` |
+| 13 prompt vs model size | `boardreading.png` |
+| 14 numbered boxes | `xnor-boxes.jpg` |
+| 15 note quality | `notesrecall.png` |
+| B1 clip scatter | `asr-clip-scatter.png` |
+| B3 per-lecture | `perlecture.png` |
+| B6 schedule | `3-1-gantt.png` |
 
 **The one thing to get right:** your supervisor has asked more than once what is novel
 apart from the dataset. Slide 17 answers it, and slide 13 is the evidence. Do not let the
@@ -69,14 +97,14 @@ and no tool produces that.
 One line: a recorded Banglish whiteboard lecture in, a usable lecture note out, in the
 language the student actually writes.
 
-`[IMAGE: T/fig-1-1-overview.pdf]`
+`[IMAGE: S/1-1-overview.png]`
 
 ### Slide 4. What already exists, and what it actually produces
 
 **This is a measured slide, not a related-work list.** Five published models run on our own
 177 held-out clips.
 
-`[IMAGE: Thesis Defense P3/slide_images/baselines.png]`
+`[IMAGE: S/baselines.png]`
 
 | | CER as written | after transliteration |
 |---|---|---|
@@ -88,14 +116,14 @@ language the student actually writes.
 | Off-the-shelf Whisper turbo | 67.7 | already Latin |
 | **Ours** | **15.8** | |
 
-Two sentences, no more: **not one of the five produced romanized Banglish on a single
+Two sentences, no more: **not one of the five produced romanised Banglish on a single
 clip.** Four write Bengali script, the fifth translates to English. And when we
 transliterate their output to Roman to be fair to them, the best still sits at 47.1
 against our 15.8.
 
 ### Slide 5. The corpus
 
-`[IMAGE: T/fig-data-composition.pdf]`
+`[IMAGE: S/datacomp.png]`
 
 44 recordings, 8.33 h. 28 transcribed by hand word by word, 5.15 h, 609 timed segments,
 three lecturers. **Say plainly that the three lecturers are us** — it is in the ethics
@@ -107,14 +135,14 @@ statement and it is better said than discovered.
 
 ### Slide 6. The system in one picture
 
-`[IMAGE: T/fig-pipeline-full.pdf]`
+`[IMAGE: S/pipeline.png]`
 
 Walk it once, top to bottom, in about 40 seconds. Point out that the grey box on the left
 is training and happens once, not per lecture.
 
 ### Slide 7. How the speech model was adapted
 
-`[IMAGE: T/fig-arch-whisper.pdf]`
+`[IMAGE: S/archwhisper.png]`
 
 Whisper large-v3-turbo, weights frozen, LoRA rank 16 on the query and value projections.
 Only the small matrices train. 809 million parameters untouched.
@@ -140,7 +168,7 @@ This slide buys you credibility for everything after it.
 
 ### Slide 9. The speech result
 
-`[IMAGE: T/fig-asr-final.pdf]`
+`[IMAGE: S/asrfinal.png]`
 
 **CER 67.7 -> 15.8 and 16.0 per cent** across two seeds, on six whole lectures never seen
 in training, 177 clips. Better on 164 and 167 of them. Wilcoxon p < 1e-30.
@@ -165,7 +193,7 @@ does not, and it is much worse.** Both are in the report and both are labelled.
 
 ### Slide 11. The whiteboard problem
 
-`[IMAGE: T/xnor-frame-before.jpg]`
+`[IMAGE: S/xnor-frame-before.jpg]`
 
 One frame. The lecturer's arm is across the truth table and the last two columns do not
 exist yet. **No single frame of this era shows the finished board.**
@@ -176,9 +204,9 @@ Build as a two-step reveal on one slide.
 
 ```
 +----------------------------+  +----------------------------+
-|  T/xnor-mosaic-raw.jpg     |  |  T/xnor-mosaic-clean.jpg   |
+|  S/xnor-mosaic-raw.jpg     |  |  S/xnor-mosaic-clean.jpg   |
 |  every pixel from a real   |  |  background whitened for   |
-|  frame, lecturer removed   |  |  readability              |
+|  frame, lecturer removed   |  |  readability               |
 +----------------------------+  +----------------------------+
 ```
 
@@ -190,7 +218,7 @@ genuinely lost. Say the 9.
 
 **This is the slide for your supervisor. Give it the most time.**
 
-`[IMAGE: T/fig-board-reading.pdf]`
+`[IMAGE: S/boardreading.png]`
 
 ```
    Same model. Same 35 boards. Only the prompt changed.
@@ -214,7 +242,7 @@ and even to report, and on the half we never touched it is 28.4 -> 84.7, better 
 
 ### Slide 14. From board to note
 
-`[IMAGE: T/xnor-boxes.jpg]`
+`[IMAGE: S/xnor-boxes.jpg]`
 
 Our code finds the blocks of writing and numbers them. **The model does not place the
 boxes** — it is shown the board with the boxes already on it and asked to name and
@@ -226,7 +254,7 @@ report. Say it before they say it.
 
 ### Slide 15. The notes, and what stops them making things up
 
-`[IMAGE: T/fig-notes-recall.pdf]`
+`[IMAGE: S/notesrecall.png]`
 
 Board content reaching the notes: **37.2 -> 89.1 per cent** over 35 boards.
 
@@ -332,7 +360,7 @@ An earlier split trained on a video that was also the test speaker. We found it 
 embeddings, corrected it, and **retired the old numbers**. `scripts/verify_speakers.py`
 confirmed the speaker labels, 0.99 against 0.77 similarity. Never quote 96.1 -> 81.8.
 
-`[IMAGE: T/fig-asr-clip-scatter.pdf]`
+`[IMAGE: S/asr-clip-scatter.png]`
 
 ### B2. Why we did not use the inherited metric
 
@@ -343,7 +371,7 @@ project. That is why note quality is scored on board content instead.
 
 ### B3. Per-lecture breakdown
 
-`[IMAGE: T/fig-asr-per-lecture.pdf]`
+`[IMAGE: S/perlecture.png]`
 
 Every one of the six test lectures improves. Lecturer B's improves least, ending at 52
 against 12 to 16 for the others, and lecturer B contributed the least training speech at
@@ -364,7 +392,7 @@ because every model runs locally.
 
 ### B6. Runtime
 
-`[IMAGE: T/fig-3-1-gantt.pdf]` or the machine-time table from Section 3.3.
+`[IMAGE: S/3-1-gantt.png]` or the machine-time table from Section 3.3.
 
 Two machines: an RTX 3060 for development, an RTX 5090 for the Qwen runs and the long
 fine-tunes. Decoding 177 clips takes about 100 seconds for a whisper-small model.
@@ -390,7 +418,7 @@ in the report and both are labelled. **Do not dodge this one.**
 
 **"You beat the published Bengali models. Are you claiming a better Bengali recogniser?"**
 No. We did not test that and we would probably lose on Bengali script. The claim is
-narrower: for romanized Banglish classroom speech nothing published is usable.
+narrower: for romanised Banglish classroom speech nothing published is usable.
 
 **"Board recall did not improve when the transcript improved. Does the transcript matter?"**
 Board recall measures facts written on the board, and the board text is supplied to the
@@ -419,3 +447,35 @@ audio, about an hour of human work per ten minutes of video.
   RESULTS.md, and saying so is a strong answer.
 - Export the deck to PDF as well as the native format, and put `note_B.html` on the
   laptop in case they ask to see a real output.
+
+---
+
+# Changed in the paper after this plan was written (2026-09-27)
+
+Nothing here changes the argument, but the deck should not contradict the submitted PDF.
+
+- **The submitted thesis is 88 pages**, not 91. Three pages of padding and two stranded
+  stubs came out: the approval page no longer spills the Head of Department's signature
+  onto a page of its own, and the contents lists no longer carry the body paragraph skip.
+- **"thesis" became "research"** in 52 places of the body text, at the supervisor's RA's
+  request. The title page, approval page and declaration keep the word, because there it
+  is the university's own wording for the degree. Worth matching in what you say.
+- **"romanized" became "romanised"** throughout, to match the document's own -ise
+  convention. Corrected in this file too.
+- **The baselines figure was redrawn** as horizontal bars. Seven model names collided on
+  the old vertical axis and the two "109" labels sat on top of each other. It also lost a
+  wrong bar: MediBeng was showing an "after transliteration" result, but it wrote zero
+  Bengali script, so there was nothing to transliterate and the bar implied a test that
+  was never run. `S/baselines.png` is the corrected one.
+- **Section 1.6 no longer says the notes were never read by anyone.** That sentence
+  predated the reader study and contradicted Section 5.1.7. It now names the pilot and
+  states that ease of reading was the one question of four that did not reach
+  significance. **Say it that way on slide 16 as well** — the survey does not license a
+  readability claim, and under a Bonferroni correction only the layout result survives.
+- **Three stale cross-references were fixed.** Passages pointing at "Section 2.2.3" for
+  the code-switched evaluation literature actually wanted 2.2.4; the baseline section had
+  been inserted and pushed it down. If you quote a section number on a slide, take it
+  from the final PDF.
+- **Supervisor and co-supervisor signatures, and all three student signatures, are in**
+  the approval and declaration pages. The Thesis Coordinator and Head of Department slots
+  are still blank by design.
