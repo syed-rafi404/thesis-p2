@@ -256,7 +256,16 @@ report. Say it before they say it.
 
 `[IMAGE: S/notesrecall.png]`
 
-Board content reaching the notes: **37.2 -> 89.1 per cent** over 35 boards.
+**Say what language the note is in, because it is the whole point.** The note is written
+in Banglish, which is what students actually write in, and an English version is produced
+beside it for anyone who does not read Banglish. Each is written wholly in its own
+language: the Banglish note quotes the lecturer's real words, the English note quotes a
+translation. That is why the word-for-word quotation check runs on the Banglish note and
+cannot run on the English one.
+
+Board content reaching the notes: **37.2 -> 89.1 per cent** over 35 boards. Over all 13
+lectures the Banglish notes reach 87.2 per cent and the translated English notes 87.4, so
+neither language loses board content to the other.
 
 ```
    Three controls, all counted in every output file
@@ -268,7 +277,14 @@ Board content reaching the notes: **37.2 -> 89.1 per cent** over 35 boards.
 
 ### Slide 16. Does it actually help a reader
 
-Twenty readers, one lecture, the two notes shown blind.
+Twenty readers, one lecture, the two notes shown blind. **Say which was which:** the note
+they preferred is the Banglish one from this system; the note it beat is the earlier
+pipeline's English prose. Readers chose the note written the way students write.
+
+Be careful with that, though, and say the limit in the same breath. The two notes differ
+in five ways at once — language, board images, numbered box references, checked
+quotations and three times the length — so the study measures the pipeline as a whole. It
+does not isolate Banglish as the cause, and we do not claim it does.
 
 | | ours | original | same | p |
 |---|---|---|---|---|
