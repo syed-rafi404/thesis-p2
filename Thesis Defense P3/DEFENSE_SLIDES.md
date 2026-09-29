@@ -81,21 +81,35 @@ as a table and let it sit for a beat before you speak.
 |  Off-the-shelf Whisper           -> English translation      |
 |    "inputs and outputs create a sheet of a book..."          |
 |                                                              |
-|  A Bengali model                 -> Bengali script           |
-|    [Bengali text, even for the English words]                |
+|  A Bengali model                 -> Bengali script, and      |
+|    [Bengali text, even for the English words]     often a    |
+|    or a repetition loop: the same character over  collapse   |
+|    and over for the whole clip                               |
 |                                                              |
-|  What the student actually writes  -> Banglish               |
+|  A faithful record of what was said -> Banglish              |
 |    "so ajke amra ei duita gate er inputs and outputs..."     |
 +--------------------------------------------------------------+
 ```
 
-Say: the lecture is in two languages at once, students write it in the Roman alphabet,
-and no tool produces that.
+Say: **the class is taught in two languages at once, and no recogniser will write down
+what was actually said.** Forced into English, Whisper invents English words nobody
+spoke. Forced into Bengali, it writes Bengali script for the English terms and often
+collapses into a repetition loop. Neither gives you a record of the lecture.
+
+**Do not say students take notes in Banglish, or search in Banglish.** They do not, and
+you cannot evidence it. Banglish here is the only way to write down code-mixed speech
+without forcing it into one language or the other. It is a faithful transcript, and the
+transcript is a means, not the product.
 
 ### Slide 3. Who this is for, and what we built
 
-One line: a recorded Banglish whiteboard lecture in, a usable lecture note out, in the
-language the student actually writes.
+One line: a recorded Banglish whiteboard lecture in, a usable lecture note out.
+
+The chain to say out loud, because it is the argument of the whole talk: the class is
+code-mixed, so no recogniser transcribes it faithfully; without a faithful transcript the
+note generator has nothing true to work from; so the speech model is adapted to produce
+one; and the note is then written from the lecturer's real words rather than from a
+model's guess at them.
 
 `[IMAGE: S/1-1-overview.png]`
 
@@ -256,12 +270,12 @@ report. Say it before they say it.
 
 `[IMAGE: S/notesrecall.png]`
 
-**Say what language the note is in, because it is the whole point.** The note is written
-in Banglish, which is what students actually write in, and an English version is produced
-beside it for anyone who does not read Banglish. Each is written wholly in its own
-language: the Banglish note quotes the lecturer's real words, the English note quotes a
-translation. That is why the word-for-word quotation check runs on the Banglish note and
-cannot run on the English one.
+**Say what language the note is in, and why there are two.** The note is produced in
+Banglish and in English, each written wholly in its own language. The Banglish version
+can quote the lecturer's real words, which is why the word-for-word quotation check runs
+on it. The English version reads naturally for a student who does not want Banglish, but
+its quotations are translations and therefore cannot be verified the same way. The
+student picks; the system does not decide for them.
 
 Board content reaching the notes: **37.2 -> 89.1 per cent** over 35 boards. Over all 13
 lectures the Banglish notes reach 87.2 per cent and the translated English notes 87.4, so
@@ -279,12 +293,12 @@ neither language loses board content to the other.
 
 Twenty readers, one lecture, the two notes shown blind. **Say which was which:** the note
 they preferred is the Banglish one from this system; the note it beat is the earlier
-pipeline's English prose. Readers chose the note written the way students write.
+pipeline's English prose.
 
-Be careful with that, though, and say the limit in the same breath. The two notes differ
-in five ways at once — language, board images, numbered box references, checked
-quotations and three times the length — so the study measures the pipeline as a whole. It
-does not isolate Banglish as the cause, and we do not claim it does.
+Say the limit in the same breath, and do not let this become a claim about language. The
+two notes differ in five ways at once — board images, numbered box references, checked
+quotations, three times the length, and language — so the study measures the pipeline as
+a whole. It does not show that readers wanted Banglish, and we do not claim it does.
 
 | | ours | original | same | p |
 |---|---|---|---|---|
@@ -435,6 +449,16 @@ in the report and both are labelled. **Do not dodge this one.**
 **"You beat the published Bengali models. Are you claiming a better Bengali recogniser?"**
 No. We did not test that and we would probably lose on Bengali script. The claim is
 narrower: for romanised Banglish classroom speech nothing published is usable.
+
+**"Do students actually write or search in Banglish?"**
+Be straight: we have no evidence that they take lecture notes or search in it, and we do
+not claim it. What we know is that the class is spoken in code-mixed Bengali and English,
+and that no recogniser writes that down faithfully. Romanised Banglish is the only form
+that holds both languages in one stream without forcing the speech into one of them, so
+it is what a faithful transcript has to look like. The transcript is an intermediate
+step. What the student reads is the note, and that is produced in English as well.
+**If anyone quotes the abstract or Chapter 1 back at you on this, concede the sentence
+rather than defend it** — the technical argument does not depend on it.
 
 **"Board recall did not improve when the transcript improved. Does the transcript matter?"**
 Board recall measures facts written on the board, and the board text is supplied to the
