@@ -665,7 +665,7 @@ def baseline_figure():
         for row in ours_clips[side]:
             kind = _script_of(row["hypothesis"])
             if kind == "Latin":
-                kind = "romanized Banglish" if side == "tuned" else "Latin"
+                kind = "romanised Banglish" if side == "tuned" else "Latin"
             into[kind] = into.get(kind, 0) + 1
     rows.append({"name": "Off-the-shelf Whisper turbo", "raw": ours["base_cer"],
                  "tr": None, "mix": base_mix})
@@ -699,9 +699,9 @@ def baseline_figure():
     axes[0].bar(0, 0, color="#f77f00", label="After transliteration to Roman")
     axes[0].legend(frameon=False, fontsize=10, loc="lower right")
 
-    order = ["Bengali script", "mixed", "Latin", "romanized Banglish", "empty"]
+    order = ["Bengali script", "mixed", "Latin", "romanised Banglish", "empty"]
     palette = {"Bengali script": BAD_C, "mixed": "#f77f00", "Latin": BASE_C,
-               "romanized Banglish": GOOD_C, "empty": "#cbd2d9"}
+               "romanised Banglish": GOOD_C, "empty": "#cbd2d9"}
     left = np.zeros(n)
     for kind in order:
         vals = np.array([100 * r["mix"].get(kind, 0) / max(1, sum(r["mix"].values()))
@@ -728,7 +728,7 @@ def baseline_figure():
 
     fig.text(0.5, -0.015, wrapnote(
         "Every model decodes under its own generation config; no language or task token is "
-        "imposed on anyone else's model. Our references are romanized, so a Bengali-script "
+        "imposed on anyone else's model. Our references are romanised, so a Bengali-script "
         "answer scores near 100 per cent however well the model heard the speech. The orange "
         "bars transliterate that output to Roman and keep the better of two schemes per clip, "
         "so they are an upper bound on what each model could score if orthography were free.",
