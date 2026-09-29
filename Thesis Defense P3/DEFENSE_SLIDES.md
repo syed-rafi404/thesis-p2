@@ -103,15 +103,30 @@ transcript is a means, not the product.
 
 ### Slide 3. Who this is for, and what we built
 
-One line: a recorded Banglish whiteboard lecture in, a usable lecture note out.
+**Built. On the slide:**
 
-The chain to say out loud, because it is the argument of the whole talk: the class is
-code-mixed, so no recogniser transcribes it faithfully; without a faithful transcript the
-note generator has nothing true to work from; so the speech model is adapted to produce
-one; and the note is then written from the lecturer's real words rather than from a
-model's guess at them.
+> **A student misses a class. All they have is the recording.**
+>
+> A video does not help. The board is blocked by the lecturer, and what is written is
+> not always clear. And in a mixed classroom, a student from an English-medium
+> background does not follow the harder Bangla the lecturer uses. To solve this, we
+> built the first system that turns a code-mixed whiteboard lecture into a lecture
+> note. We call it **InsightLens**.
 
-`[IMAGE: S/1-1-overview.png]`
+`[IMAGE: S/1-1-overview.png]` — sits underneath the text block.
+
+The English-medium point is the one to land, because it is the reason there are two
+language versions at all. A student who cannot follow the harder Bangla loses the
+explanation, not just the words, and the English note is what serves them.
+
+If asked about "the first system", the boundary is the one Chapter 2 draws and it holds:
+systems that turn lectures into notes assume slides and one language. NoteIt and M3AV are
+the nearest, both slides, both monolingual. Whiteboard extraction is an established field
+and we do not claim it. What was not found is the combination.
+
+Do not say students take notes or search in Banglish. The Banglish transcript exists
+because it is the only way to write down code-mixed speech without forcing it into one
+language, not because anyone reads it.
 
 ### Slide 4. What already exists, and what it actually produces
 
