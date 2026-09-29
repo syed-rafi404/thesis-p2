@@ -159,9 +159,12 @@ wipe finishes would fix the four boards cut in the middle of an erase. Ignoring 
 that appears unchanged in every era of a lecture would stop the box finder putting a
 numbered box around a sticker. Evaluating the box finding would attach a number to the one
 part of the pipeline that has none, and it needs layout ground truth that does not yet
-exist. Notes in the Bengali script were dropped from this research deliberately, since they
-would be produced by translation alone, and they are straightforward to add if a reader
-wants them. A larger notes model was intended for comparison and dropped for disk space;
+exist. Notes in the Bengali script were dropped from this research deliberately. They are
+straightforward to produce, since the English note is already made by translating the
+Banglish one, but board-content recall would not see them: the answer keys are romanised,
+so a Bengali-script note would score near zero for reasons unrelated to its quality.
+Adding them properly means a measure that matches across scripts, which is a small piece
+of work and the right way to do it. A larger notes model was intended for comparison and dropped for disk space;
 it would change the writing rather than the facts, since it reads the extracted board text
 and never the board.
 
