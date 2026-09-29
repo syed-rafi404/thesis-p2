@@ -543,10 +543,14 @@ board does not have and counts them. The placeholder strip removes the prompt's 
 example text when the model copies it into the notes instead of leaving the quotation out,
 a failure found by reading the output.
 
-Each language version is written wholly in its own language. The Banglish note quotes the
+Each version is asked for in a single language rather than the mixed style of the
+mock-up, and the two differ in how the lecturer is quoted. The Banglish note quotes the
 lecturer's real words, so the quote checker applies to it. The English note quotes the
 lecturer in English translation, and a translation cannot be matched against a Banglish
-transcript, so the checker does not run on the English files. Every output file records
+transcript, so the checker does not run on the English files. Compliance with the
+language instruction is partial: the explanatory prose of the Banglish note is often
+written in English even when the quotations are not, so the labels name the language the
+section was requested in rather than a guarantee about every sentence. Every output file records
 which of the two it is, and Chapter 5 states the resulting claim precisely. The English
 note is produced by writing the section in Banglish first and then translating it with the
 same model, keeping the Markdown structure, the tables, the box numbers and the colours. A

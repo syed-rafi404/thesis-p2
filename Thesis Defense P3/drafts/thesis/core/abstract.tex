@@ -1,11 +1,14 @@
 \section*{Abstract}
 
 University teaching in Bangladesh is usually delivered in a mixture of Bengali and
-English, and students write that mixture in the Roman alphabet, a form commonly called
-Banglish. Existing speech recognition does not serve it. A multilingual model returns an
-English translation of what was said, and a Bengali model returns Bengali script that no
-student in the class writes. The whiteboard, which carries most of the worked examples in
-a class taught without slides, is lost in both cases.
+English, a code-mixed form commonly called Banglish when it is written in the Roman
+alphabet. Existing speech recognition does not transcribe it. A multilingual model
+returns an English translation of what was said and falls into repetition loops on part
+of the material; a Bengali model returns Bengali script and spells the English technical
+terms phonetically. Neither preserves what the lecturer actually said, and a faithful
+transcript of such a class therefore has to be written in the Roman alphabet, which is
+the only way to carry both languages in one stream. The whiteboard, which holds most of
+the worked examples in a class taught without slides, is lost in both cases.
 
 This research presents InsightLens, a four stage system that converts a recorded Banglish
 whiteboard lecture into a lecture note. Whisper large-v3-turbo adapted with Low-Rank

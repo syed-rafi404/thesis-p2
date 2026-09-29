@@ -20,10 +20,11 @@ class the lecturer explains an idea in Bangla, names it in English, writes the E
 term on the whiteboard and returns to Bangla for the worked example. A single sentence
 carries both languages, as in \textit{Ekhon amra ei expression-er logical circuit dekhbo
 }, where the grammar
-is Bengali and the technical word is English. Students almost never write this mixture in
-the Bengali script. They type it in Roman letters, and the result is commonly called
-Banglish. Because students take notes, message each other and search in Banglish, it is
-the written form that matches how the class actually sounds.
+is Bengali and the technical word is English. Written down, this mixture is normally
+rendered in Roman letters rather than in the Bengali script, and the result is commonly
+called Banglish. That is the form a transcript of such a class has to take. It is the
+only way to write both languages in a single stream without committing the sentence to
+one of them, so it is what a faithful record of the lecture looks like.
 
 Automatic speech recognition performs well on the languages it was built for. Whisper is
 trained on roughly 680,000 hours of multilingual audio and reaches usable accuracy on
@@ -32,8 +33,8 @@ that an utterance belongs to one language. Whisper receives a language token and
 token, and on Bengali audio containing English words it usually produces a fluent English
 translation instead of a transcript. A Bengali model trained on clean Bengali writes
 everything in Bengali script and spells the English technical terms phonetically. Neither
-output preserves the lecturer's words, and neither can be searched by a student who
-writes in Banglish.
+output preserves the lecturer's words, and neither can be searched for the terms that
+were actually spoken.
 
 Speech is also only half of a whiteboard lecture. The classrooms recorded for this work
 use no slides. Definitions, truth tables, SQL queries, subnetting calculations and

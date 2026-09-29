@@ -456,7 +456,9 @@ Twenty readers were shown two sets of notes for the same lecture, the digital lo
 of BanglaASR11, and asked four questions about them. One set was produced by the original
 pipeline, which writes English prose from the transcript alone. The other was produced by
 the system described in this research, which adds the rebuilt board images, the numbered
-box references and the checked quotations, and writes in Banglish. The two pages were
+box references and the checked quotations. Its explanatory prose is largely in English as
+well, and the lecturer is quoted in Banglish, so the comparison is not primarily one of
+language. The two pages were
 shown as Note A and Note B with every mention of a model or a method removed from them,
 so a reader could not tell which system produced which page. Table \ref{tab:reader}
 gives the result.
@@ -493,7 +495,8 @@ sampled. No correction for multiple comparisons has been applied, and under a Bo
 correction across the four questions only the layout result would remain, so the overall
 preference and the concept question should be read as suggestive rather than settled. The
 two notes differ in several ways at once, since the new note has board images, box
-references, checked quotations, a different language and three times the length, so the
+references, checked quotations, Banglish quotations of the lecturer and three times the
+length, so the
 study measures the pipeline as a whole and cannot say which of those changes the readers
 responded to. The order was not randomised and Note A was always shown first, which if
 anything works against the result reported here, because the first item seen usually has
@@ -697,11 +700,14 @@ shadow mask replaced it and recovers writing the old mask lost. Frames are also 
 more densely for a lecturer who does not move, as measured in Section
 \ref{sec:board-coverage}.
 
-Each language version is now written wholly in its own language. The first design followed
+Each version is now asked for in a single language. The first design followed
 a mock-up in which an English note quoted the lecturer in Banglish with a translation
 beside it, and reading the first real notes showed that an English-medium reader cannot
 use a Banglish quotation. That narrows what can be claimed. The word-for-word check runs on the Banglish notes and cannot run on the
-English ones. The English note is produced by translating the Banglish note, selected on
+English ones. The instruction is only partly obeyed, and this should be read as a
+limitation of the generator rather than a property of the output: in the Banglish notes
+the quotations are in Banglish but much of the explanatory prose around them is written
+in English anyway. The English note is produced by translating the Banglish note, selected on
 the measurement in Section \ref{sec:2x2} with the caveat about the four dense boards.
 
 Four defects found in the real runs are handled in code and are listed here because each

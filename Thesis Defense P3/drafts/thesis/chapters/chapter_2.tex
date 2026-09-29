@@ -22,8 +22,8 @@ Bangladeshi classroom speech is strongly intra-sentential. In the recordings use
 single clause regularly carries a Bengali verb, an English noun phrase and an English
 technical term, so the speech is Bengali in grammar and often English in content words.
 
-The written form matters as much as the spoken one. Bengali has its own script, but
-Bangladeshi students commonly write Bengali in the Roman alphabet, a form usually called
+The written form matters as much as the spoken one. Bengali has its own script, but it is
+also widely written in the Roman alphabet in informal digital text, a form usually called
 Banglish. There is no spelling standard, so the same word appears as \textit{ami},
 \textit{aami} or \textit{amee} depending on the writer. Romanised Bangla is now an object
 of study in natural language processing in its own right. BanglaTLit, for example, is a
@@ -191,8 +191,8 @@ project used one of them, a Whisper-small model fine-tuned on Bengali Common Voi
 
 All of these write Bengali script. For a classroom whose technical vocabulary is English
 that is a problem, not a solution, because the output turns \textit{NAND gate}
-into a Bengali spelling of the English sound, which neither a search for the English term
-nor a reader who writes Banglish can match. This is not left as an argument: Section
+into a Bengali spelling of the English sound, which a search for the English term cannot
+match and which no longer records the word the lecturer actually used. This is not left as an argument: Section
 \ref{sec:baselines} reports what five of these published models actually produce when they
 are run on the test clips of this research.
 
@@ -203,7 +203,9 @@ Aksharantar is a large transliteration corpus built to train models that move be
 two \cite{madhani2023aksharantar}. For Bengali specifically, BanglaTLit addresses the
 reverse direction, turning romanised Bangla back into Bengali script
 \cite{fahim2024banglatlit}. What none of this work does is treat the romanised form as the
-transcription target for speech, which is the position taken here.
+transcription target for speech, which is the position taken here. The reason is not that
+the romanised form is preferred for reading, but that it is the only target that records a
+code-mixed utterance without committing it to one language or the other.
 
 Code-switched recognition has its own literature, surveyed in general terms by Sitaram et
 al. \cite{sitaram2019survey} and, for end-to-end systems, in a recent systematic review
@@ -458,7 +460,8 @@ was worth far more than changing the size of the model.
 
 The review supports four conclusions. The first is that the speech problem is real and is
 not solved by anything available. Bengali speech
-recognition is mature but writes the wrong script for this purpose. Code-switched
+recognition is mature but writes a script that discards the code-mixing a faithful
+transcript has to keep. Code-switched
 recognition for Bengali and English exists, but the published systems either translate
 into English, train on synthetic speech, or target the native script, and the one
 community model that matches the intent most closely is undocumented and evaluated on a
