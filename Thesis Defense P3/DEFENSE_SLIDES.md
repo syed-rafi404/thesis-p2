@@ -246,8 +246,18 @@ genuinely lost. Say the 9.
      Qwen2.5-VL-7B         89.0 % ###########################
 
      prompt  +57.6 points        size  +5.3 points
-             about eleven times more
+             p = 1.2e-10               p = 0.053, not significant
 ```
+
+**Do not say "eleven times more".** It compares two things that are not commensurable,
+and the ratio depends entirely on which endpoints you pick. Say the two tests instead:
+changing the prompt moved board reading enormously; trebling the model did not
+measurably move it at all. That is the stronger claim and it is the one the paper makes.
+
+If asked whether the comparison is fair, two answers, both checkable: the prompt sent to
+the 3B and the 7B was byte-identical, recorded in every output file; and the losing
+keyword prompt was not a strawman invented to lose, it was the original pipeline's own
+prompt, because the earlier code consumed a keyword list.
 
 Then the honesty line that makes it stick: **the prompt was chosen on the boards it is
 reported on.** So we split the boards by a rule fixed in advance, odd lectures to develop
@@ -270,12 +280,15 @@ report. Say it before they say it.
 
 `[IMAGE: S/notesrecall.png]`
 
-**Say what language the note is in, and why there are two.** The note is produced in
-Banglish and in English, each written wholly in its own language. The Banglish version
-can quote the lecturer's real words, which is why the word-for-word quotation check runs
-on it. The English version reads naturally for a student who does not want Banglish, but
-its quotations are translations and therefore cannot be verified the same way. The
-student picks; the system does not decide for them.
+**Say what language the note is in, and be accurate about it.** Two versions are
+generated, one asked for in Banglish and one in English, and the difference that actually
+holds is how the lecturer is quoted: verbatim in the Banglish version, in translation in
+the English one. That is why the word-for-word check can only run on the Banglish notes.
+
+**The language instruction is only partly obeyed, so do not claim more.** In the Banglish
+notes the quotations are Banglish but much of the explanatory prose comes out in English
+anyway. The paper says this in Chapter 4; say it too if it comes up, as a limitation of
+the generator rather than a property of the output.
 
 Board content reaching the notes: **37.2 -> 89.1 per cent** over 35 boards. Over all 13
 lectures the Banglish notes reach 87.2 per cent and the translated English notes 87.4, so
@@ -292,12 +305,14 @@ neither language loses board content to the other.
 ### Slide 16. Does it actually help a reader
 
 Twenty readers, one lecture, the two notes shown blind. **Say which was which:** the note
-they preferred is the Banglish one from this system; the note it beat is the earlier
-pipeline's English prose.
+they preferred is this system's; the note it beat is the earlier pipeline's plain prose.
+Both are largely English — the new one quotes the lecturer in Banglish, but its
+explanations are English too, so **this is not a comparison of languages** and should not
+be presented as one.
 
-Say the limit in the same breath, and do not let this become a claim about language. The
-two notes differ in five ways at once — board images, numbered box references, checked
-quotations, three times the length, and language — so the study measures the pipeline as
+Say the limit in the same breath. The two notes differ in four ways at once — board
+images, numbered box references, checked quotations and three times the length — so the
+study measures the pipeline as
 a whole. It does not show that readers wanted Banglish, and we do not claim it does.
 
 | | ours | original | same | p |
@@ -320,9 +335,10 @@ significance and we do not claim it.
 **Have this slide ready and do not rush it. It is the question he keeps asking.**
 
 ```
-1  Prompt design matters about 11x more than model size for reading a
-   handwritten board.      57.6 points against 5.3, re-checked on a
-                           held-out half of the boards.
+1  Prompt design, not model size, is what makes a vision-language model
+   read a handwritten board.  +57.6 points at p = 1.2e-10; the 5.3 from
+                           a 3x larger model does not reach significance.
+                           Re-checked on a held-out half of the boards.
 
 2  A note-quality measure a language model cannot satisfy from prior
    knowledge.              It scores only facts physically on the board.
