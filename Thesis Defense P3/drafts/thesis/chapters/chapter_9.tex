@@ -54,12 +54,12 @@ visible contribution but not the most transferable one.
 
 \begin{enumerate}
   \item A demonstration that the prompt, rather than the model size, is what makes a
-        vision-language model read a handwritten board. On the same 35 boards with the
-        same model, changing only the prompt moved board-content recall from 31.2 to 88.8
-        per cent, while going from the 3 billion parameter model to the 7 billion
-        parameter one moved it from 83.7 to 89.0. The prompt is worth 57.6 points at a
-        sign test of $p = 1.2 \times 10^{-10}$, while the 5.3 points from the larger model
-        do not reach significance at $p = 0.053$. The prompt was re-checked on a held-out
+        vision-language model read a handwritten board. On 35 boards with the same model,
+        changing only the prompt moved board-content recall from 31.2 to 88.8 per cent,
+        which is 57.6 points at a sign test of $p = 1.2 \times 10^{-10}$. Across all 45
+        boards with hand-verified keys, going from the 3 billion parameter model to the
+        7 billion parameter one moved it from 83.7 to 89.0, and those 5.3 points do not
+        reach significance at $p = 0.053$. The prompt was re-checked on a held-out
         half of the boards, where it gives 28.4 to 84.7 per cent, so the conclusion does
         not rest on the boards the prompt was chosen on. Nothing about this finding is
         specific to Banglish or to this corpus.
@@ -148,9 +148,11 @@ error while the others reach 12 to 16, and collecting more from that lecturer wo
 whether the cause is the data or the speaker. A scaling curve on the current corpus,
 planned and cancelled when the corpus closed, would answer how much more transcription is
 worth buying. The divergence at the selected learning rate is reproducible enough to
-study, and warmup, gradient clipping or a lower scaling factor are the obvious things to
-try; a configuration that never diverges would be worth more than a small gain in error
-rate. Reporting the spelling tolerant variants of Section \ref{sec:asr-spelling} as
+study. Training already warms up over the first tenth of its steps and already clips
+gradients at norm one, so a fix has to go further than those defaults: a longer warmup, a
+lower LoRA scaling factor, or a lower peak learning rate, which is in effect what the
+stable pair reported here already is. A configuration that never diverges would be worth
+more than a small gain in error rate. Reporting the spelling tolerant variants of Section \ref{sec:asr-spelling} as
 standard, and applying the same idea to the note measure, would reduce the measurement
 problem described throughout this research.
 

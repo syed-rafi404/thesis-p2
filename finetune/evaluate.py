@@ -132,6 +132,22 @@ def _normal_cdf(z):
     return 0.5 * (1 + math.erf(z / math.sqrt(2)))
 
 
+def _normal_two_sided_p(z):
+    """Two-sided normal tail, without losing the answer to rounding.
+
+    `2 * (1 - _normal_cdf(z))` underflows to exactly 0.0 once z is above about
+    8.3, because the cdf rounds to 1.0 in double precision. A stored 0.0 then
+    reads as "smaller than any threshold", which is how an earlier version of
+    this file reported p < 1e-30 for runs whose real value was near 1e-26. Above
+    that point the standard asymptotic tail is used instead, which stays
+    accurate to a few per cent out to any z these tests produce.
+    """
+    z = abs(z)
+    if z < 8.0:
+        return 2 * (1 - _normal_cdf(z))
+    return 2 * math.exp(-z * z / 2) / (math.sqrt(2 * math.pi) * z)
+
+
 def wilcoxon_signed_rank(deltas):
     """Two-sided Wilcoxon signed-rank test, normal approximation with tied ranks.
 
@@ -158,7 +174,7 @@ def wilcoxon_signed_rank(deltas):
     mu = n * (n + 1) / 4
     sigma = math.sqrt(n * (n + 1) * (2 * n + 1) / 24)
     z = (w_plus - mu) / sigma if sigma else 0.0
-    return 2 * (1 - _normal_cdf(abs(z))), n, z
+    return _normal_two_sided_p(z), n, z
 
 
 def sign_test(better, total):

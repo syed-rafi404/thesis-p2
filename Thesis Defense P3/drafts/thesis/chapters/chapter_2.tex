@@ -269,7 +269,7 @@ Indic code-switched corpora &
 Native script &
 WER 28.27 (Bengali-English) \\
 \addlinespace
-Whisper-small-\newline benglish (public
+Whisper-small-\newline benglish \cite{bluepanther2024benglish} (public
 model, no paper) &
 Whisper-small fine-tune &
 194 clips of about 30 s, roughly 1.6 h &
@@ -293,7 +293,7 @@ model for code-mixed text with disfluencies and rendering it with text-to-speech
 \cite{mitra2026behe}; it is a useful resource and makes the same point about missing
 spontaneous data, but it is not spontaneous speech. The Indic work uses real speech but
 targets the native script \cite{chadha2022indic}. The community model
-Whisper-small-benglish is closest in intent, since its card names lecture notes
+Whisper-small-benglish \cite{bluepanther2024benglish} is closest in intent, since its card names lecture notes
 among its uses, but it is a model card and not a study. It is trained on about 1.6
 hours and evaluated on a random ten per cent of the same clips, so the same speakers and
 very likely the same recordings appear on both sides of the split, and no example output
@@ -337,17 +337,17 @@ upper bound on what the model could score if orthography were free.}
 \toprule
 Model & CER & CER after translit. & WER & What it wrote \\
 \midrule
-tugstugi Bengali Whisper-medium & 100.0 & 47.1 & 100.0 & Bengali script, all 177 clips \\
+tugstugi Bengali Whisper-medium \cite{tugstugi2023bengaliasr} & 100.0 & 47.1 & 100.0 & Bengali script, all 177 clips \\
 \addlinespace
-Whisper-small-benglish & 89.9 & 66.0 & 95.8 & Bengali script 124, mixed 53 \\
+Whisper-small-benglish \cite{bluepanther2024benglish} & 89.9 & 66.0 & 95.8 & Bengali script 124, mixed 53 \\
 \addlinespace
-bangla-ASR-v5 & 98.6 & 73.0 & 100.0 & Bengali script, all 177 clips \\
+bangla-ASR-v5 \cite{arif2024banglaasrv5} & 98.6 & 73.0 & 100.0 & Bengali script, all 177 clips \\
 \addlinespace
-BanglaASR & 98.6 & 73.8 & 100.0 & Bengali script, all 177 clips \\
+BanglaASR \cite{banglaasr2023} & 98.6 & 73.8 & 100.0 & Bengali script, all 177 clips \\
 \addlinespace
-MediBeng Whisper-tiny & 109.2 & n/a & 146.5 & English translation, 70 runaways \\
+MediBeng Whisper-tiny \cite{ghosh2025medibeng} & 109.2 & n/a & 146.5 & English translation, 70 runaways \\
 \addlinespace
-Whisper-large-v3-turbo, off the shelf & 67.7 & n/a & 93.9 & English translation \\
+Whisper-large-v3-turbo, off the shelf \cite{radford2023whisper} & 67.7 & n/a & 93.9 & English translation \\
 \addlinespace
 This research & \textbf{15.8} & n/a & \textbf{42.5} & Romanised Banglish \\
 \bottomrule
@@ -446,8 +446,10 @@ placed beside the classroom targeted here. Existing systems assume slides, which
 that can be read reliably or taken directly from a file, whereas our lecturers write on a
 whiteboard and stand in front of what they write. The datasets and systems are also built
 for English or Chinese and for speech that stays in one language. The user study in
-NoteIt points at something this research has not done. Whether notes are good is a question
-about readers, and it is answered by asking readers.
+NoteIt also sets the standard this work has to meet on its own terms, since whether notes
+are good is a question about readers and is answered by asking readers. NoteIt asks 36
+participants; the study reported in Section \ref{sec:reader-study} asks twenty, on one
+lecture, and is presented as a pilot rather than as a settled result.
 
 Results from vision-language models in this area are also strongly affected by the
 prompt. Promptception, a systematic study of prompt sensitivity across ten large

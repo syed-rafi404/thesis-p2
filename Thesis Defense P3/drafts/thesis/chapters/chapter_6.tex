@@ -62,9 +62,9 @@ seed.}
 Learning rate & Seed & CER & WER & Runaway clips & Better of 177 & Wilcoxon \\
 \midrule
 off-the-shelf & -- & 67.7\% & 93.9\% & 13 & -- & -- \\
-1e-3 & 42 & 15.8\% & 42.5\% & 1 & 164 & p $<$ 1e-30 \\
-1e-3 & 1 & 16.0\% & 41.7\% & 1 & 167 & p $<$ 1e-30 \\
-2e-3 (the tuned choice) & 1 & 16.2\% & 41.7\% & 2 & 168 & p $<$ 1e-30 \\
+1e-3 & 42 & 15.8\% & 42.5\% & 1 & 164 & p $<$ 0.001 \\
+1e-3 & 1 & 16.0\% & 41.7\% & 1 & 167 & p $<$ 0.001 \\
+2e-3 (the tuned choice) & 1 & 16.2\% & 41.7\% & 2 & 168 & p $<$ 0.001 \\
 2e-3 (the tuned choice) & 42 & 118.7\% & 189.8\% & 82 & 35 & worse \\
 \bottomrule
 \end{tabular}
@@ -75,6 +75,16 @@ error rate from 93.9 per cent to 42.5 and 41.7 per cent. Two seeds agree to with
 points and the fine-tuned model is better on 164 and 167 of the 177 clips, so about three
 quarters of the character error is removed. Figure \ref{fig:fig-asr-final} shows the
 comparison and Figure \ref{fig:fig-asr-clip-scatter} shows it clip by clip.
+
+The per-clip test in Table \ref{tab:asrfinal} treats the 177 clips as independent, and
+they are not: they come from six lectures and three lecturers, so clips recorded in the
+same room by the same speaker vary together. The effective sample is therefore smaller
+than 177 and the per-clip p-value overstates the evidence, which is why it is reported
+only as $p < 0.001$ rather than as the much smaller figure the normal approximation
+returns. The result that does not rest on that assumption is the per-lecture one, since
+lectures are independent of one another: \textbf{all six test lectures improve}, which is a
+two-sided sign test at $p = 0.031$ on its own, and the per-lecture medians are given in
+Table \ref{tab:perlecture}.
 
 \begin{figure}[htbp]
 \centering

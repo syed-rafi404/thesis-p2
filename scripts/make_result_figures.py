@@ -466,10 +466,12 @@ def vision_figures():
     fig.suptitle(wrapnote("Reading the whiteboard: 35 boards of lectures 1-9, "
                           "349 hand-verified items", 70),
                  fontsize=13.5, fontweight="bold", color=INK)
-    fig.text(0.5, -0.01, wrapnote(f"One change at a time, same boards, same answer keys. What you ask for is "
-             f"worth {(full - kw) / (full - small):.0f}x the model size and "
-             f"{(full - kw) / (mosaic - full):.0f}x the image processing. The cleaned board, which "
-             f"looks best to a person, reads slightly worse than the reconstruction it came from."),
+    # No ratio between the three gaps: the model and image differences are not significant
+    # (sign p = 0.21 and 0.23), so dividing by them states a multiple of noise.
+    fig.text(0.5, -0.01, wrapnote("One change at a time, same boards, same answer keys. Only the prompt "
+             "reaches significance; model size and image processing were tested as controls and "
+             "neither does. The cleaned board, which looks best to a person, reads slightly worse "
+             "than the reconstruction it came from."),
              ha="center", va="top", fontsize=10.5, color="#52606d")
     fig.tight_layout(rect=(0, 0.03, 1, 0.93))
     for ext in ("png", "pdf"):

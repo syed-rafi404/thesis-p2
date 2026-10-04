@@ -1,16 +1,14 @@
-%*******************************************************************
-%   BracU Thesis Template (Ayesha Abed Library, Brac University)
-%   Filled in for: InsightLens (CSE400, Fall 2026)
-%
-%   Chapter file mapping (kept from the original template):
-%     chapters/chapter_1.tex -> Chapter 1  Introduction
-%     chapters/chapter_2.tex -> Chapter 2  Literature Review
-%     chapters/chapter_3.tex -> Chapter 3  Requirements, Impacts and Constraints
-%     chapters/chapter_5.tex -> Chapter 4  Proposed Methodology
-%     chapters/chapter_6.tex -> Chapter 5  Result Analysis
-%     chapters/chapter_9.tex -> Chapter 6  Conclusion
-%*******************************************************************
-
+%********************************************************************************
+%   BracU Thesis Template (Ayesha Abed Library, Brac University)*****************
+%   Filled in for: InsightLens (CSE400, Fall 2026)*******************************
+%  ******************************************************************************
+%   Chapter file mapping (kept from the original template):**********************
+%     chapters/chapter_1.tex -> Chapter 1  Introduction**************************
+%     chapters/chapter_2.tex -> Chapter 2  Literature Review*********************
+%     chapters/chapter_3.tex -> Chapter 3  Requirements, Impacts and Constraints*
+%     chapters/chapter_5.tex -> Chapter 4  Proposed Methodology******************
+%     chapters/chapter_6.tex -> Chapter 5  Result Analysis***********************
+%     chapters/chapter_9.tex -> Chapter 6  Conclusion****************************
 \documentclass[Times,12pt,oneside,openany,print,index]{report}
 \usepackage[a4paper,width=150mm,top=25mm,bottom=25mm]{geometry}
 \usepackage[english]{babel}
@@ -78,7 +76,7 @@
 
 \let\cleardoublepage=\clearpage
 
-%*****************************************************************************
+%******************************************************************************
 % Placeholder for a figure that still has to be drawn by hand\\\\\\\\\\\\\\\\\\\
 % (Canva / draw.io / Figma). Usage:\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 %   \figplaceholder{file_stem}{Caption text.}{What the drawing must show.}{7cm}\\\
@@ -179,18 +177,18 @@
 % The contents line records whatever page is current when it runs, so it has to run
 % after the page break that the bibliography starts on and before the bibliography
 % itself. Placed after \printbibliography it recorded the page the bibliography ends
-% on (71 for a bibliography starting at 68); placed before it without the \clearpage
-% it recorded the last page of the preceding chapter.
+% on; placed before it without the \clearpage it recorded the last page of the
+% preceding chapter.
 \clearpage
 \phantomsection
 \addcontentsline{toc}{chapter}{Bibliography}
 \printbibliography
 
 % ********************************** Appendices ********************************
-% These entry titles are typed by hand, so they must be kept word for word the same
-% as the \chapter* headings in the appendix files themselves.
 \newpage
 \phantomsection
+% These entry titles are typed by hand, so they must be kept word for word the same
+% as the \chapter* headings in the appendix files themselves.
 \addcontentsline{toc}{chapter}{Appendix A: The Transcription Standard}
 \input{appendix/appendix_1}
 

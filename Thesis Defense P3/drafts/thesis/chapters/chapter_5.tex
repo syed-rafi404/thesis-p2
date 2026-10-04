@@ -334,8 +334,13 @@ parameters \cite{radford2023whisper}, and its weights are frozen. LoRA adapters 
 attached to the query and value projection matrices of the attention layers, with rank 16
 and scaling factor 32 \cite{hu2022lora}. Training uses a batch size of 8, 8 epochs,
 bfloat16 precision and gradient checkpointing on the 12 GB card, which reduces the memory
-needed from about 18 GB to 6.1 GB at the cost of recomputing activations. Every run is
-done with two random seeds and both are reported.
+needed from about 18 GB to 6.1 GB at the cost of recomputing activations. The optimiser is
+AdamW \cite{loshchilov2019adamw} at the library defaults, which are $\beta_1 = 0.9$,
+$\beta_2 = 0.999$, $\epsilon = 10^{-8}$ and no weight decay, with gradients clipped at
+norm one; the learning rate follows a linear schedule warming up over the first tenth of
+the steps. Only the learning rate was tuned, by the procedure in Section
+\ref{sec:asr-tuning}; the rest are defaults and are recorded here so that the
+configuration is stated in full. Every run is done with two random seeds and both are reported.
 
 The reported numbers use plain greedy decoding. The loop safeguard from the Whisper paper
 is also available and is reported beside the main result. A hypothesis whose gzip

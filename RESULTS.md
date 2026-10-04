@@ -327,10 +327,22 @@ test lectures.
 | Learning rate | Seed | CER | WER | Runaway clips | Better / 177 | Wilcoxon |
 |---|---|---|---|---|---|---|
 | off-the-shelf | - | 67.7% | 93.9% | 13 | - | - |
-| **1e-3** | **42** | **15.8%** | **42.5%** | 1 | 164 | p < 1e-30 |
-| **1e-3** | **1** | **16.0%** | **41.7%** | 1 | 167 | p < 1e-30 |
-| 2e-3 (the tuned choice) | 1 | 16.2% | 41.7% | 2 | 168 | p < 1e-30 |
+| **1e-3** | **42** | **15.8%** | **42.5%** | 1 | 164 | p < 0.001 |
+| **1e-3** | **1** | **16.0%** | **41.7%** | 1 | 167 | p < 0.001 |
+| 2e-3 (the tuned choice) | 1 | 16.2% | 41.7% | 2 | 168 | p < 0.001 |
 | 2e-3 (the tuned choice) | 42 | **118.7%** | 189.8% | **82** | 35 | **worse** |
+
+**Two corrections to the p-values above (2026-10-03).** `evaluate.py` stored
+`wilcoxon_p: 0.0` for these rows, because it computes `2 * (1 - normal_cdf(z))` and that
+subtraction underflows for z above about 8.3. The z values were saved correctly, and the
+asymptotic tail gives **1.3e-26 (s42 CER), 1.7e-29 (s1 CER)** - not below 1e-30, which is
+what the stored zero was read as. Second and more important, the per-clip test treats 177
+clips as independent when they come from 6 lectures and 3 lecturers, so the effective
+sample is far smaller and any exponent of that size overstates the evidence. **Quote
+`p < 0.001`, and lead with the clustering-free result: all 6 test lectures improve, a
+two-sided sign test at p = 0.031.** 12 other eval files carry the same stored zero; none
+of their numbers is quoted anywhere. The LOSO p-values of 1.5 (z = 5.9 to 8.2) did not
+underflow and are correct as written.
 
 **Headline: CER 67.7% -> 15.8-16.0%, WER 93.9% -> 41.7-42.5%**, two seeds agreeing to 0.2 points,
 better on 164 and 167 of 177 clips. The error is cut by about three quarters.
